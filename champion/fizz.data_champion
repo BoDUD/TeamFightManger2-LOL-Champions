@@ -6,12 +6,12 @@
     "Melee",
     "Magic"
   ],
-  "sprite": "asset/test_mod/aseprite_resources/champions/fizz",
+  "sprite": "asset/bo_league_champions/aseprite_resources/champions/fizz",
   "anim_prefix": "",
   "skill_icons": [
-    "asset/test_mod/icons/fizz_skill",
-    "asset/test_mod/icons/fizz_skill2",
-    "asset/test_mod/icons/fizz_ult"
+    "asset/bo_league_champions/icons/fizz_skill",
+    "asset/bo_league_champions/icons/fizz_skill2",
+    "asset/bo_league_champions/icons/fizz_ult"
   ],
   "stat": {
     "attack": 78,
@@ -359,7 +359,7 @@
     {
       "type": "Animated",
       "name": "test_mod_fizz_fish",
-      "anim": "asset/test_mod/aseprite_resources/effects/fizz_ult",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/fizz_ult",
       "tag": "fish",
       "z": -1,
       "repeat": true
@@ -367,7 +367,7 @@
     {
       "type": "Animated",
       "name": "test_mod_fizz_shark_hitbox",
-      "anim": "asset/test_mod/aseprite_resources/effects/fizz_ult",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/fizz_ult",
       "tag": "shark",
       "z": -1,
       "repeat": false
@@ -377,7 +377,7 @@
     {
       "type": "Animation",
       "name": "test_mod_fizz_shark_impact",
-      "anim": "asset/test_mod/aseprite_resources/effects/fizz_ult",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/fizz_ult",
       "tag": "shark",
       "z": -1,
       "is_follow": false

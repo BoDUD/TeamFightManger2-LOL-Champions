@@ -5,12 +5,12 @@
     "AD",
     "Range"
   ],
-  "sprite": "asset/test_mod/aseprite_resources/champions/jhin",
+  "sprite": "asset/bo_league_champions/aseprite_resources/champions/jhin",
   "anim_prefix": "",
   "skill_icons": [
-    "asset/test_mod/icons/jhin_skill",
-    "asset/test_mod/icons/jhin_skill2",
-    "asset/test_mod/icons/jhin_ult"
+    "asset/bo_league_champions/icons/jhin_skill",
+    "asset/bo_league_champions/icons/jhin_skill2",
+    "asset/bo_league_champions/icons/jhin_ult"
   ],
   "stat": {
     "attack": 100,
@@ -529,7 +529,7 @@
     {
       "type": "Animated",
       "name": "test_mod_jhin_deadly_flourish",
-      "anim": "asset/test_mod/aseprite_resources/effects/jhin_deadly_flourish",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/jhin_deadly_flourish",
       "tag": "line",
       "z": -1,
       "repeat": false
@@ -537,7 +537,7 @@
     {
       "type": "Animated",
       "name": "test_mod_jhin_curtain_call_shot",
-      "anim": "asset/test_mod/aseprite_resources/effects/jhin_curtain_call_shot",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/jhin_curtain_call_shot",
       "tag": "projectile",
       "z": 1,
       "repeat": true
@@ -545,7 +545,7 @@
     {
       "type": "Animated",
       "name": "test_mod_jhin_curtain_call_shot_4",
-      "anim": "asset/test_mod/aseprite_resources/effects/jhin_curtain_call_shot_4",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/jhin_curtain_call_shot_4",
       "tag": "projectile",
       "z": 1,
       "repeat": true
@@ -553,7 +553,7 @@
     {
       "type": "Animated",
       "name": "test_mod_jhin_grenade",
-      "anim": "asset/test_mod/aseprite_resources/effects/jhin_grenade",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/jhin_grenade",
       "tag": "projectile",
       "z": 1,
       "repeat": true
@@ -561,7 +561,7 @@
     {
       "type": "Animated",
       "name": "test_mod_jhin_attack_shot",
-      "anim": "asset/test_mod/aseprite_resources/effects/jhin_attack_shot",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/jhin_attack_shot",
       "tag": "projectile",
       "z": 1,
       "repeat": true
@@ -569,7 +569,7 @@
     {
       "type": "Animated",
       "name": "test_mod_jhin_attack_shot_4",
-      "anim": "asset/test_mod/aseprite_resources/effects/jhin_attack_shot_4",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/jhin_attack_shot_4",
       "tag": "projectile",
       "z": 1,
       "repeat": true
@@ -579,20 +579,20 @@
     {
       "type": "Animated",
       "name": "test_mod_jhin_aa_3",
-      "anim": "asset/test_mod/aseprite_resources/effects/jhin_fourth_shot_ready",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/jhin_fourth_shot_ready",
       "tag": "loop",
       "z": 4
     },
     {
       "type": "Animated",
       "name": "test_mod_jhin_reload_visual",
-      "anim": "asset/test_mod/aseprite_resources/effects/jhin_reload_circle",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/jhin_reload_circle",
       "tag": "loop",
       "z": 5
     }
   ],
   "skill_icon": {
-    "source": "asset/test_mod/aseprite_resources/UI_aseprite/test_mod_skill_icons",
+    "source": "asset/bo_league_champions/aseprite_resources/UI_aseprite/test_mod_skill_icons",
     "tags": [
       "test_mod_jhin_skill",
       "test_mod_jhin_skill2",

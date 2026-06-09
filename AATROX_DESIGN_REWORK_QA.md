@@ -22,7 +22,8 @@ In scope:
 
 Preserved:
 
-- `test_mod_aatrox` id
+- `test_mod_aatrox` internal champion id
+- `bo_league_champions` mod id and `asset/bo_league_champions/...` asset namespace
 - `champion/aatrox.data_champion` gameplay timings, damage, ranges, cooldowns, event names, and skill logic
 - existing sprite/icon/effect paths loaded by the mod
 - existing `style/champion_view.champion_view` offsets

@@ -7,12 +7,12 @@
     "Tank",
     "CC"
   ],
-  "sprite": "asset/test_mod/aseprite_resources/champions/aatrox",
+  "sprite": "asset/bo_league_champions/aseprite_resources/champions/aatrox",
   "anim_prefix": "",
   "skill_icons": [
-    "asset/test_mod/icons/aatrox_skill",
-    "asset/test_mod/icons/aatrox_skill2",
-    "asset/test_mod/icons/aatrox_ult"
+    "asset/bo_league_champions/icons/aatrox_skill",
+    "asset/bo_league_champions/icons/aatrox_skill2",
+    "asset/bo_league_champions/icons/aatrox_ult"
   ],
   "stat": {
     "attack": 80,
@@ -203,7 +203,7 @@
     {
       "type": "Animated",
       "name": "test_mod_aatrox_cleave",
-      "anim": "asset/test_mod/aseprite_resources/effects/aatrox_q_impact",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/aatrox_q_impact",
       "tag": "impact",
       "z": -1,
       "repeat": false
@@ -213,13 +213,13 @@
     {
       "type": "Animated",
       "name": "test_mod_aatrox_world_ender",
-      "anim": "asset/test_mod/aseprite_resources/effects/aatrox_ult_aura",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/aatrox_ult_aura",
       "tag": "loop",
       "z": 3
     }
   ],
   "skill_icon": {
-    "source": "asset/test_mod/aseprite_resources/UI_aseprite/test_mod_skill_icons",
+    "source": "asset/bo_league_champions/aseprite_resources/UI_aseprite/test_mod_skill_icons",
     "tags": [
       "test_mod_aatrox_skill",
       "test_mod_aatrox_skill2",

@@ -6,11 +6,11 @@
     "Range",
     "Magic"
   ],
-  "sprite": "asset/test_mod/aseprite_resources/champions/veigar",
+  "sprite": "asset/bo_league_champions/aseprite_resources/champions/veigar",
   "skill_icons": [
-    "asset/test_mod/icons/veigar_skill",
-    "asset/test_mod/icons/veigar_skill2",
-    "asset/test_mod/icons/veigar_ult"
+    "asset/bo_league_champions/icons/veigar_skill",
+    "asset/bo_league_champions/icons/veigar_skill2",
+    "asset/bo_league_champions/icons/veigar_ult"
   ],
   "stat": {
     "attack": 55,
@@ -285,7 +285,7 @@
     {
       "type": "Animated",
       "name": "test_mod_veigar_attack",
-      "anim": "asset/test_mod/aseprite_resources/effects/veigar_attack_projectile",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/veigar_attack_projectile",
       "tag": "projectile",
       "z": 1,
       "repeat": true
@@ -293,7 +293,7 @@
     {
       "type": "Animated",
       "name": "test_mod_veigar_ult_projectile",
-      "anim": "asset/test_mod/aseprite_resources/effects/veigar_ult_projectile",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/veigar_ult_projectile",
       "tag": "projectile",
       "z": 1,
       "repeat": true
@@ -305,7 +305,7 @@
     {
       "type": "Animation",
       "name": "test_mod_veigar_skill1_warning",
-      "anim": "asset/test_mod/aseprite_resources/effects/veigar_skill1",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/veigar_skill1",
       "tag": "warning",
       "z": -1,
       "is_follow": false
@@ -313,7 +313,7 @@
     {
       "type": "Animation",
       "name": "test_mod_veigar_skill1_impact",
-      "anim": "asset/test_mod/aseprite_resources/effects/veigar_skill1",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/veigar_skill1",
       "tag": "impact",
       "z": 1,
       "is_follow": false
@@ -321,14 +321,14 @@
     {
       "type": "Animation",
       "name": "test_mod_veigar_cage",
-      "anim": "asset/test_mod/aseprite_resources/effects/veigar_cage",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/veigar_cage",
       "tag": "cage",
       "z": -1,
       "is_follow": false
     }
   ],
   "skill_icon": {
-    "source": "asset/test_mod/aseprite_resources/UI_aseprite/test_mod_skill_icons",
+    "source": "asset/bo_league_champions/aseprite_resources/UI_aseprite/test_mod_skill_icons",
     "tags": [
       "test_mod_veigar_skill",
       "test_mod_veigar_skill2",
