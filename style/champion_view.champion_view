@@ -10,7 +10,27 @@
         "y": -15
       }
     },
+    "bo_league_champions_aatrox": {
+      "face": {
+        "x": 7,
+        "y": -34
+      },
+      "center": {
+        "x": 0,
+        "y": -15
+      }
+    },
     "test_mod_viktor": {
+      "face": {
+        "x": 0,
+        "y": -34
+      },
+      "center": {
+        "x": 0,
+        "y": -12
+      }
+    },
+    "bo_league_champions_viktor": {
       "face": {
         "x": 0,
         "y": -34
@@ -30,7 +50,27 @@
         "y": -14
       }
     },
+    "bo_league_champions_veigar": {
+      "face": {
+        "x": 0,
+        "y": -35
+      },
+      "center": {
+        "x": 0,
+        "y": -14
+      }
+    },
     "test_mod_jhin": {
+      "face": {
+        "x": 0,
+        "y": -35
+      },
+      "center": {
+        "x": 0,
+        "y": -14
+      }
+    },
+    "bo_league_champions_jhin": {
       "face": {
         "x": 0,
         "y": -35
@@ -50,7 +90,27 @@
         "y": -14
       }
     },
+    "bo_league_champions_vayne": {
+      "face": {
+        "x": 0,
+        "y": -35
+      },
+      "center": {
+        "x": 0,
+        "y": -14
+      }
+    },
     "test_mod_fiddlesticks": {
+      "face": {
+        "x": 0,
+        "y": -35
+      },
+      "center": {
+        "x": 0,
+        "y": -14
+      }
+    },
+    "bo_league_champions_fiddlesticks": {
       "face": {
         "x": 0,
         "y": -35
@@ -70,6 +130,16 @@
         "y": -14
       }
     },
+    "bo_league_champions_azir": {
+      "face": {
+        "x": 0,
+        "y": -35
+      },
+      "center": {
+        "x": 0,
+        "y": -14
+      }
+    },
     "test_mod_fizz": {
       "face": {
         "x": 0,
@@ -80,7 +150,27 @@
         "y": -8
       }
     },
+    "bo_league_champions_fizz": {
+      "face": {
+        "x": 0,
+        "y": -27
+      },
+      "center": {
+        "x": 0,
+        "y": -8
+      }
+    },
     "test_mod_ezreal": {
+      "face": {
+        "x": 0,
+        "y": -34
+      },
+      "center": {
+        "x": 0,
+        "y": -12
+      }
+    },
+    "bo_league_champions_ezreal": {
       "face": {
         "x": 0,
         "y": -34
