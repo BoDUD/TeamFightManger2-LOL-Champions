@@ -1,0 +1,9 @@
+asset_type,output,source,contract
+actor,aseprite_resources\champions\aatrox#sheet.png,source\aatrox_design_rework\imagegen_actor_design_source.png,"design-book rebuild: larger compact demon silhouette, stronger run poses, stable existing frame contract"
+icons,icons/aatrox_skill.png;icons/aatrox_skill2.png;icons/aatrox_ult.png,source\aatrox_design_rework\imagegen_icons_design_source.png,"green removed, dark framed, 24x24 outputs with Q slash / E dash / R transform reads"
+vfx,aseprite_resources\effects\aatrox_attack_slash#sheet.png,procedural compact red-black slash,"4 frame caster-follow basic attack slash, 96x72 per frame"
+vfx,aseprite_resources\effects\aatrox_q_impact#sheet.png,source\aatrox_design_rework\imagegen_vfx_design_source.png,"6 frame long ground-crack cleave, 192x96 per frame, not a circular explosion"
+vfx,skill2 body frames,source\aatrox_design_rework\imagegen_vfx_design_source.png,dash trail composited into existing skill2 actor frames without changing champion data
+vfx,aseprite_resources\effects\aatrox_ult_aura#sheet.png,source\aatrox_design_rework\imagegen_vfx_design_source.png,"4 frame low-opacity world-ender aura loop, 96x96 per frame, reduced face/body obstruction"
+sfx,sound/sfx/test_mod_aatrox_*_clip.wav,existing workshop package,event names and audio files preserved
+view,style/champion_view.champion_view,existing tuned offsets,face x=0 y=-20 and center x=0 y=-15 preserved
