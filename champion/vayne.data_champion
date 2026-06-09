@@ -1,5 +1,5 @@
 {
-  "id": "test_mod_vayne",
+  "id": "bo_league_champions_vayne",
   "category": "Range",
   "tags": [
     "AD",
@@ -31,7 +31,7 @@
   },
   "attack": {
     "action_name": "attack",
-    "description": "#asset/base/text/champion?description.test_mod_vayne.attack",
+    "description": "#asset/base/text/champion?description.bo_league_champions_vayne.attack",
     "duration": 18,
     "cooltime": 56,
     "start_timing": 10,
@@ -250,7 +250,7 @@
   },
   "skill": {
     "action_name": "skill",
-    "description": "#asset/base/text/champion?description.test_mod_vayne.skill",
+    "description": "#asset/base/text/champion?description.bo_league_champions_vayne.skill",
     "duration": 24,
     "cooltime": 420,
     "start_timing": 1,
@@ -375,7 +375,7 @@
   },
   "skill2": {
     "action_name": "skill2",
-    "description": "#asset/base/text/champion?description.test_mod_vayne.skill2",
+    "description": "#asset/base/text/champion?description.bo_league_champions_vayne.skill2",
     "duration": 6,
     "cooltime": 6000,
     "start_timing": 1,
@@ -395,7 +395,7 @@
   },
   "ult": {
     "action_name": "ult",
-    "description": "#asset/base/text/champion?description.test_mod_vayne.ult",
+    "description": "#asset/base/text/champion?description.bo_league_champions_vayne.ult",
     "duration": 18,
     "cooltime": 3600,
     "start_timing": 1,

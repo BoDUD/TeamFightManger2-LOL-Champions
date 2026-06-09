@@ -1,5 +1,5 @@
 {
-  "id": "test_mod_viktor",
+  "id": "bo_league_champions_viktor",
   "category": "Magician",
   "tags": [
     "AP",
@@ -37,7 +37,7 @@
   },
   "attack": {
     "action_name": "attack",
-    "description": "#asset/base/text/champion?description.test_mod_viktor.attack",
+    "description": "#asset/base/text/champion?description.bo_league_champions_viktor.attack",
     "duration": 24,
     "cooltime": 66,
     "start_timing": 14,
@@ -75,7 +75,7 @@
   },
   "skill": {
     "action_name": "skill",
-    "description": "#asset/base/text/champion?description.test_mod_viktor.skill",
+    "description": "#asset/base/text/champion?description.bo_league_champions_viktor.skill",
     "duration": 66,
     "cooltime": 360,
     "start_timing": 40,
@@ -258,7 +258,7 @@
   },
   "skill2": {
     "action_name": "skill2",
-    "description": "#asset/base/text/champion?description.test_mod_viktor.skill2",
+    "description": "#asset/base/text/champion?description.bo_league_champions_viktor.skill2",
     "duration": 36,
     "cooltime": 840,
     "start_timing": 16,
@@ -328,7 +328,7 @@
   },
   "ult": {
     "action_name": "ult",
-    "description": "#asset/base/text/champion?description.test_mod_viktor.ult",
+    "description": "#asset/base/text/champion?description.bo_league_champions_viktor.ult",
     "duration": 36,
     "cooltime": 4200,
     "start_timing": 16,

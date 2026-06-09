@@ -1,5 +1,5 @@
 {
-  "id": "test_mod_fiddlesticks",
+  "id": "bo_league_champions_fiddlesticks",
   "category": "Magician",
   "tags": [
     "AP",
@@ -39,7 +39,7 @@
   },
   "attack": {
     "action_name": "attack",
-    "description": "#asset/base/text/champion?description.test_mod_fiddlesticks.attack",
+    "description": "#asset/base/text/champion?description.bo_league_champions_fiddlesticks.attack",
     "duration": 30,
     "cooltime": 66,
     "start_timing": 18,
@@ -76,7 +76,7 @@
   },
   "skill": {
     "action_name": "skill",
-    "description": "#asset/base/text/champion?description.test_mod_fiddlesticks.skill",
+    "description": "#asset/base/text/champion?description.bo_league_champions_fiddlesticks.skill",
     "duration": 36,
     "cooltime": 540,
     "start_timing": 24,
@@ -121,7 +121,7 @@
   },
   "skill2": {
     "action_name": "skill2",
-    "description": "#asset/base/text/champion?description.test_mod_fiddlesticks.skill2",
+    "description": "#asset/base/text/champion?description.bo_league_champions_fiddlesticks.skill2",
     "duration": 72,
     "cooltime": 720,
     "start_timing": 18,
@@ -420,7 +420,7 @@
   },
   "ult": {
     "action_name": "ult",
-    "description": "#asset/base/text/champion?description.test_mod_fiddlesticks.ult",
+    "description": "#asset/base/text/champion?description.bo_league_champions_fiddlesticks.ult",
     "duration": 72,
     "cooltime": 1800,
     "start_timing": 66,
@@ -431,16 +431,16 @@
     "effect": {
       "type": "Combine",
       "effects": [
-      {
-        "type": "Teleport"
-      },
-      {
-        "type": "Sfx",
-        "name": "test_mod_fiddlesticks_ult_screech"
-      },
-      {
-        "type": "AddCasterBuff",
-        "buff_state": {
+        {
+          "type": "Teleport"
+        },
+        {
+          "type": "Sfx",
+          "name": "test_mod_fiddlesticks_ult_screech"
+        },
+        {
+          "type": "AddCasterBuff",
+          "buff_state": {
             "name": "test_mod_fiddlesticks_crowstorm_active",
             "duration": {
               "Time": {

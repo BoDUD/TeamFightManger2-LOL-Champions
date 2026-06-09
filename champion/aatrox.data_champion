@@ -1,5 +1,5 @@
 {
-  "id": "test_mod_aatrox",
+  "id": "bo_league_champions_aatrox",
   "category": "Melee",
   "tags": [
     "AD",
@@ -38,7 +38,7 @@
   },
   "attack": {
     "action_name": "attack",
-    "description": "#asset/base/text/champion?description.test_mod_aatrox.attack",
+    "description": "#asset/base/text/champion?description.bo_league_champions_aatrox.attack",
     "duration": 24,
     "cooltime": 66,
     "start_timing": 14,
@@ -68,7 +68,7 @@
   },
   "skill": {
     "action_name": "skill",
-    "description": "#asset/base/text/champion?description.test_mod_aatrox.skill",
+    "description": "#asset/base/text/champion?description.bo_league_champions_aatrox.skill",
     "duration": 66,
     "cooltime": 420,
     "start_timing": 40,
@@ -121,7 +121,7 @@
   },
   "skill2": {
     "action_name": "skill2",
-    "description": "#asset/base/text/champion?description.test_mod_aatrox.skill2",
+    "description": "#asset/base/text/champion?description.bo_league_champions_aatrox.skill2",
     "duration": 20,
     "cooltime": 280,
     "start_timing": 1,
@@ -162,7 +162,7 @@
   },
   "ult": {
     "action_name": "ult",
-    "description": "#asset/base/text/champion?description.test_mod_aatrox.ult",
+    "description": "#asset/base/text/champion?description.bo_league_champions_aatrox.ult",
     "duration": 24,
     "cooltime": 3000,
     "start_timing": 8,
