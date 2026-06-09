@@ -1432,7 +1432,7 @@
   "zh-hans": {
     "description": {
       "bo_league_champions_aatrox": {
-        "name": "剑魔亚托克斯",
+        "name": "亚托克斯",
         "attack": "赐死剑气：强化下一次巨剑攻击，造成<#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力112%<>的<#ff9028ff>物理伤害<>。",
         "skill": "Q - 暗裔利刃：亚托克斯连续三段向前挥剑：窄幅前刺、横向宽扫、最后重砸。每段造成<#ff9028ff>物理伤害<>；第三段伤害更高，并将敌人<#ef5350ff>击飞0.5秒<>。",
         "skill2": "W - 恶火束链：亚托克斯向前发射恶火锁链，命中敌方英雄时造成伤害并<#ffb900ff>减速<>。短暂延迟后锁链收束，再次造成伤害并短暂束缚路径上的敌人。",
@@ -1495,7 +1495,7 @@
         "ult": "精准弹幕：向敌人方向发射无限距离攻击，对命中的敌人造成<#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力的110%<>的<#ff9028ff>物理伤害<>，并额外造成<i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法术强度的70%<>的<#a974ffff>魔法伤害<>。"
       },
       "test_mod_aatrox": {
-        "name": "剑魔亚托克斯",
+        "name": "亚托克斯",
         "attack": "赐死剑气：强化下一次巨剑攻击，造成<#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力112%<>的<#ff9028ff>物理伤害<>。",
         "skill": "Q - 暗裔利刃：亚托克斯连续三段向前挥剑：窄幅前刺、横向宽扫、最后重砸。每段造成<#ff9028ff>物理伤害<>；第三段伤害更高，并将敌人<#ef5350ff>击飞0.5秒<>。",
         "skill2": "W - 恶火束链：亚托克斯向前发射恶火锁链，命中敌方英雄时造成伤害并<#ffb900ff>减速<>。短暂延迟后锁链收束，再次造成伤害并短暂束缚路径上的敌人。",
@@ -1562,7 +1562,7 @@
   "zh-hant": {
     "description": {
       "bo_league_champions_aatrox": {
-        "name": "劍魔亞托克斯",
+        "name": "亞托克斯",
         "attack": "賜死劍氣：強化下一次巨劍攻擊，造成<#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力112%<>的<#ff9028ff>物理傷害<>。",
         "skill": "Q - 冥血邪劍：亞托克斯連續三段向前揮劍：窄幅前刺、橫向寬掃、最後重砸。每段造成<#ff9028ff>物理傷害<>；第三段傷害更高，並將敵人<#ef5350ff>擊飛0.5秒<>。",
         "skill2": "W - 惡火束鏈：亞托克斯向前發射惡火鎖鏈，命中敵方英雄時造成傷害並<#ffb900ff>減速<>。短暫延遲後鎖鏈收束，再次造成傷害並短暫束縛路徑上的敵人。",
@@ -1625,7 +1625,7 @@
         "ult": "精準彈幕：向敵人方向發射無限距離攻擊，對命中的敵人造成<#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力的110%<>的<#ff9028ff>物理傷害<>，並額外造成<i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>魔法攻擊的70%<>的<#a974ffff>魔法傷害<>。"
       },
       "test_mod_aatrox": {
-        "name": "劍魔亞托克斯",
+        "name": "亞托克斯",
         "attack": "賜死劍氣：強化下一次巨劍攻擊，造成<#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力112%<>的<#ff9028ff>物理傷害<>。",
         "skill": "Q - 冥血邪劍：亞托克斯連續三段向前揮劍：窄幅前刺、橫向寬掃、最後重砸。每段造成<#ff9028ff>物理傷害<>；第三段傷害更高，並將敵人<#ef5350ff>擊飛0.5秒<>。",
         "skill2": "W - 惡火束鏈：亞托克斯向前發射惡火鎖鏈，命中敵方英雄時造成傷害並<#ffb900ff>減速<>。短暫延遲後鎖鏈收束，再次造成傷害並短暫束縛路徑上的敵人。",
