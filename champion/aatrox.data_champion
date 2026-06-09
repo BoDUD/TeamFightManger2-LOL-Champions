@@ -364,31 +364,31 @@
     {
       "type": "Animated",
       "name": "test_mod_aatrox_q1",
-      "anim": "asset/bo_league_champions/aseprite_resources/effects/aatrox_q_impact",
-      "tag": "impact",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/aatrox_q1_cleave",
+      "tag": "q1",
       "z": -1,
       "repeat": false
     },
     {
       "type": "Animated",
       "name": "test_mod_aatrox_q2",
-      "anim": "asset/bo_league_champions/aseprite_resources/effects/aatrox_q_impact",
-      "tag": "impact",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/aatrox_q2_cleave",
+      "tag": "q2",
       "z": -1,
       "repeat": false
     },
     {
       "type": "Animated",
       "name": "test_mod_aatrox_q3",
-      "anim": "asset/bo_league_champions/aseprite_resources/effects/aatrox_q_impact",
-      "tag": "impact",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/aatrox_q3_cleave",
+      "tag": "q3",
       "z": -1,
       "repeat": false
     },
     {
       "type": "Animated",
       "name": "test_mod_aatrox_infernal_chains",
-      "anim": "asset/bo_league_champions/aseprite_resources/effects/aatrox_infernal_chains",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/aatrox_w_chain",
       "tag": "chain",
       "z": 1,
       "repeat": false
@@ -396,8 +396,8 @@
     {
       "type": "Animated",
       "name": "test_mod_aatrox_infernal_chains_snap",
-      "anim": "asset/bo_league_champions/aseprite_resources/effects/aatrox_infernal_chains",
-      "tag": "chain",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/aatrox_w_chain_snap",
+      "tag": "snap",
       "z": 1,
       "repeat": false
     }
@@ -406,7 +406,7 @@
     {
       "type": "Animated",
       "name": "test_mod_aatrox_world_ender",
-      "anim": "asset/bo_league_champions/aseprite_resources/effects/aatrox_ult_aura",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/aatrox_world_ender_aura",
       "tag": "loop",
       "z": 3
     }

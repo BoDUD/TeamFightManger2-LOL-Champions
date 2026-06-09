@@ -18,13 +18,7 @@ Workshop description and changelog snapshots are kept in `WORKSHOP_DESCRIPTION_0
 
 This branch rebuilds Aatrox's visual assets from the design-book direction. Champion ids now use the `bo_league_champions_*` namespace for standalone registration, while legacy `test_mod_*` sound and VFX event names are preserved so battle logic and audio references remain stable. Asset paths use `asset/bo_league_champions/...`.
 
-Rebuild the Aatrox visual assets with:
-
-```powershell
-python tools\build_aatrox_design_rework_assets.py
-```
-
-The build refreshes the Aatrox actor sheet, Q ground-crack impact, World Ender aura, E dash body read, and Q/E/R icons. Review notes are in `AATROX_DESIGN_REWORK_QA.md`.
+Aatrox's accepted runtime assets are committed directly: refined idle display frames, stable existing run/attack frames, separate Q1/Q2/Q3 cleaves, separate Infernal Chains launch/snap sheets, World Ender aura, and localized text. Process/source PNGs are local-only and should not be committed after a rebuild. Review notes are in `AATROX_DESIGN_REWORK_QA.md`.
 
 ## Local Runtime Check
 
