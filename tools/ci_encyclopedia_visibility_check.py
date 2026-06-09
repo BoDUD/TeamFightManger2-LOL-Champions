@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import sys
+import zlib
 from pathlib import Path
 from typing import Any
 
@@ -51,6 +52,10 @@ AATROX_BUFF_REFS = {
         "loop",
     ),
 }
+AATROX_CORE_ACTIONS = ("idle", "run", "attack", "skill", "skill2", "hit", "dead", "ult")
+AATROX_VIKTOR_FRAME_SIZE = (57.0, 54.0)
+AATROX_MIN_BOTTOM_SAFE_PIXELS = 16
+AATROX_MAX_CORE_BODY_HEIGHT = 36
 
 
 def fail(message: str) -> None:
@@ -62,6 +67,98 @@ def load_json(path: Path) -> Any:
         return json.loads(path.read_text(encoding="utf-8-sig"))
     except Exception as exc:  # pragma: no cover - failure path prints file context
         raise AssertionError(f"{path.relative_to(ROOT)} is not valid JSON: {exc}") from exc
+
+
+def load_rgba_alpha(path: Path) -> tuple[int, int, bytes]:
+    raw = path.read_bytes()
+    if not raw.startswith(b"\x89PNG\r\n\x1a\n"):
+        fail(f"{path.relative_to(ROOT)} is not a PNG file")
+
+    offset = 8
+    width = height = bit_depth = color_type = interlace = None
+    idat = bytearray()
+    while offset < len(raw):
+        length = int.from_bytes(raw[offset : offset + 4], "big")
+        chunk_type = raw[offset + 4 : offset + 8]
+        chunk_data = raw[offset + 8 : offset + 8 + length]
+        offset += 12 + length
+        if chunk_type == b"IHDR":
+            width = int.from_bytes(chunk_data[0:4], "big")
+            height = int.from_bytes(chunk_data[4:8], "big")
+            bit_depth = chunk_data[8]
+            color_type = chunk_data[9]
+            interlace = chunk_data[12]
+        elif chunk_type == b"IDAT":
+            idat.extend(chunk_data)
+        elif chunk_type == b"IEND":
+            break
+
+    if width is None or height is None:
+        fail(f"{path.relative_to(ROOT)} missing PNG IHDR")
+    if bit_depth != 8 or color_type != 6 or interlace != 0:
+        fail(f"{path.relative_to(ROOT)} must be non-interlaced 8-bit RGBA PNG for alpha QA")
+
+    data = zlib.decompress(bytes(idat))
+    bpp = 4
+    stride = width * bpp
+    rows: list[bytearray] = []
+    pos = 0
+    for row_index in range(height):
+        filter_type = data[pos]
+        pos += 1
+        row = bytearray(data[pos : pos + stride])
+        pos += stride
+        prev = rows[row_index - 1] if row_index else bytearray(stride)
+        for i in range(stride):
+            left = row[i - bpp] if i >= bpp else 0
+            up = prev[i]
+            up_left = prev[i - bpp] if i >= bpp else 0
+            if filter_type == 0:
+                recon = row[i]
+            elif filter_type == 1:
+                recon = row[i] + left
+            elif filter_type == 2:
+                recon = row[i] + up
+            elif filter_type == 3:
+                recon = row[i] + ((left + up) // 2)
+            elif filter_type == 4:
+                p = left + up - up_left
+                pa = abs(p - left)
+                pb = abs(p - up)
+                pc = abs(p - up_left)
+                predictor = left if pa <= pb and pa <= pc else up if pb <= pc else up_left
+                recon = row[i] + predictor
+            else:
+                fail(f"{path.relative_to(ROOT)} has unsupported PNG row filter {filter_type}")
+            row[i] = recon & 0xFF
+        rows.append(row)
+
+    alpha = bytearray(width * height)
+    for y, row in enumerate(rows):
+        for x in range(width):
+            alpha[y * width + x] = row[x * bpp + 3]
+    return width, height, bytes(alpha)
+
+
+def alpha_bbox_in_rect(
+    alpha: bytes, image_width: int, rect: tuple[int, int, int, int]
+) -> tuple[int, int, int, int] | None:
+    x0, y0, w, h = rect
+    min_x = min_y = 10**9
+    max_x = max_y = -1
+    for y in range(y0, y0 + h):
+        row_start = y * image_width
+        for x in range(x0, x0 + w):
+            if alpha[row_start + x] != 0:
+                local_x = x - x0
+                local_y = y - y0
+                min_x = min(min_x, local_x)
+                min_y = min(min_y, local_y)
+                max_x = max(max_x, local_x + 1)
+                max_y = max(max_y, local_y + 1)
+    if max_x < 0:
+        return None
+    return min_x, min_y, max_x, max_y
 
 
 def local_asset_path(asset: str) -> Path:
@@ -174,8 +271,8 @@ def check_no_process_images() -> None:
 
 def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
     expected_names = {
-        "zh-hans": ("\u5251\u9b54", "\u4e9a\u6258\u514b\u65af"),
-        "zh-hant": ("\u528d\u9b54", "\u4e9e\u6258\u514b\u65af"),
+        "zh-hans": ("\u4e9a\u6258\u514b\u65af",),
+        "zh-hant": ("\u4e9e\u6258\u514b\u65af",),
         "ko": ("\uc544\ud2b8\ub85d\uc2a4",),
     }
     expected_terms = {
@@ -203,7 +300,7 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
                 if expected_name_term not in name:
                     fail(
                         f"text/champion.i18n locale {locale} {aatrox_id}.name "
-                        f"must include {expected_name_term!r} for encyclopedia search"
+                        f"must include {expected_name_term!r} for localized display"
                     )
             for key in REQUIRED_DESCRIPTION_KEYS:
                 value = str(row.get(key, ""))
@@ -225,15 +322,65 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
             fail(f"style entry {aatrox_id}.center.y must keep the full-body display centered")
 
     fanim = load_json(ROOT / "aseprite_resources" / "champions" / "aatrox#anim.fanim")
+    sheet_width, sheet_height, sheet_alpha = load_rgba_alpha(
+        ROOT / "aseprite_resources" / "champions" / "aatrox#sheet.png"
+    )
     idle_frames = fanim.get("anims", {}).get("idle", {}).get("frames")
     if not isinstance(idle_frames, list) or len(idle_frames) < 6:
         fail("Aatrox idle animation must have at least six stable display frames")
-    for index, frame in enumerate(idle_frames):
-        data = frame.get("data") if isinstance(frame, dict) else None
-        if not isinstance(data, dict):
-            fail(f"Aatrox idle frame {index} missing frame data")
-        if data.get("w") != 54.0 or data.get("h") != 50.0:
-            fail(f"Aatrox idle frame {index} must use the Viktor-like 54x50 display frame")
+    run_frames = fanim.get("anims", {}).get("run", {}).get("frames")
+    if not isinstance(run_frames, list) or len(run_frames) != 8:
+        fail("Aatrox run must preserve its native eight-frame contract")
+
+    action_bboxes: dict[str, list[tuple[int, int, int, int]]] = {}
+    for action in AATROX_CORE_ACTIONS:
+        frames = fanim.get("anims", {}).get(action, {}).get("frames")
+        if not isinstance(frames, list) or not frames:
+            fail(f"Aatrox {action} animation missing frames")
+        action_bboxes[action] = []
+        for index, frame in enumerate(frames):
+            data = frame.get("data") if isinstance(frame, dict) else None
+            if not isinstance(data, dict):
+                fail(f"Aatrox {action} frame {index} missing frame data")
+            if (data.get("w"), data.get("h")) != AATROX_VIKTOR_FRAME_SIZE:
+                fail(
+                    f"Aatrox {action} frame {index} must use the Viktor-like "
+                    f"{AATROX_VIKTOR_FRAME_SIZE[0]:.0f}x{AATROX_VIKTOR_FRAME_SIZE[1]:.0f} actor frame"
+                )
+            x = int(round(float(data.get("x", -1))))
+            y = int(round(float(data.get("y", -1))))
+            w = int(round(float(data.get("w", 0))))
+            h = int(round(float(data.get("h", 0))))
+            if x < 0 or y < 0 or x + w > sheet_width or y + h > sheet_height:
+                fail(f"Aatrox {action} frame {index} points outside aatrox#sheet.png")
+            bbox = alpha_bbox_in_rect(sheet_alpha, sheet_width, (x, y, w, h))
+            if bbox is None:
+                fail(f"Aatrox {action} frame {index} is blank")
+            action_bboxes[action].append(bbox)
+            body_height = bbox[3] - bbox[1]
+            bottom_safe = h - bbox[3]
+            if body_height > AATROX_MAX_CORE_BODY_HEIGHT:
+                fail(
+                    f"Aatrox {action} frame {index} body height {body_height}px exceeds "
+                    f"{AATROX_MAX_CORE_BODY_HEIGHT}px, causing model-size jumps"
+                )
+            if bottom_safe < AATROX_MIN_BOTTOM_SAFE_PIXELS:
+                fail(
+                    f"Aatrox {action} frame {index} leaves only {bottom_safe}px bottom safety; "
+                    "feet must stay above the name/health label like Viktor"
+                )
+            if action == "run" and frame.get("duration") != 0.065:
+                fail(f"Aatrox run frame {index} must keep Viktor-like 0.065s timing")
+
+    run_widths = [bbox[2] - bbox[0] for bbox in action_bboxes["run"]]
+    run_heights = [bbox[3] - bbox[1] for bbox in action_bboxes["run"]]
+    for action in ("idle", "hit", "dead", "ult"):
+        widths = [bbox[2] - bbox[0] for bbox in action_bboxes[action]]
+        heights = [bbox[3] - bbox[1] for bbox in action_bboxes[action]]
+        if max(widths) + 2 < min(run_widths):
+            fail(f"Aatrox {action} uses a thinner display-only model than the run/action body")
+        if max(abs(height - run_heights[0]) for height in heights) > 2:
+            fail(f"Aatrox {action} model height must stay in the same scale class as run")
 
     aatrox = load_json(ROOT / "champion" / "aatrox.data_champion")
     projectile_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in aatrox.get("view_projectiles", [])}
