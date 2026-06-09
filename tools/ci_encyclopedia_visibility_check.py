@@ -174,9 +174,9 @@ def check_no_process_images() -> None:
 
 def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
     expected_names = {
-        "zh-hans": "\u4e9a\u6258\u514b\u65af",
-        "zh-hant": "\u4e9e\u6258\u514b\u65af",
-        "ko": "\uc544\ud2b8\ub85d\uc2a4",
+        "zh-hans": ("\u5251\u9b54", "\u4e9a\u6258\u514b\u65af"),
+        "zh-hant": ("\u528d\u9b54", "\u4e9e\u6258\u514b\u65af"),
+        "ko": ("\uc544\ud2b8\ub85d\uc2a4",),
     }
     expected_terms = {
         "zh-hans": (
@@ -190,7 +190,7 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
             "World Ender",
         ),
     }
-    for locale, expected_name in expected_names.items():
+    for locale, expected_name_terms in expected_names.items():
         descriptions = text.get(locale, {}).get("description")
         if not isinstance(descriptions, dict):
             fail(f"text/champion.i18n locale {locale} missing description object")
@@ -198,8 +198,13 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
             row = descriptions.get(aatrox_id)
             if not isinstance(row, dict):
                 fail(f"text/champion.i18n locale {locale} missing {aatrox_id}")
-            if row.get("name") != expected_name:
-                fail(f"text/champion.i18n locale {locale} {aatrox_id}.name must be {expected_name!r}")
+            name = str(row.get("name", ""))
+            for expected_name_term in expected_name_terms:
+                if expected_name_term not in name:
+                    fail(
+                        f"text/champion.i18n locale {locale} {aatrox_id}.name "
+                        f"must include {expected_name_term!r} for encyclopedia search"
+                    )
             for key in REQUIRED_DESCRIPTION_KEYS:
                 value = str(row.get(key, ""))
                 if "??" in value or "�" in value:
