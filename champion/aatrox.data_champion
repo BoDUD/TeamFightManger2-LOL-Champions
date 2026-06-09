@@ -56,15 +56,8 @@
         },
         {
           "type": "Attack",
-          "damage": 0,
-          "attack_ratio": 100
-        },
-        {
-          "type": "Heal",
-          "amount": 22,
-          "attack_ratio": 8,
-          "ap_ratio": 0,
-          "heal_type": "Caster"
+          "damage": 18,
+          "attack_ratio": 112
         },
         {
           "type": "TargetSfx",
@@ -109,16 +102,6 @@
             },
             {
               "effect": {
-                "type": "Heal",
-                "amount": 18,
-                "attack_ratio": 6,
-                "ap_ratio": 0,
-                "heal_type": "Caster"
-              },
-              "casting_type": "Targeting"
-            },
-            {
-              "effect": {
                 "type": "TargetSfx",
                 "name": "test_mod_aatrox_cleave_hit"
               },
@@ -144,16 +127,6 @@
                     "type": "Attack",
                     "damage": 45,
                     "attack_ratio": 105
-                  },
-                  "casting_type": "Targeting"
-                },
-                {
-                  "effect": {
-                    "type": "Heal",
-                    "amount": 18,
-                    "attack_ratio": 6,
-                    "ap_ratio": 0,
-                    "heal_type": "Caster"
                   },
                   "casting_type": "Targeting"
                 },
@@ -186,16 +159,6 @@
                     "type": "Attack",
                     "damage": 65,
                     "attack_ratio": 125
-                  },
-                  "casting_type": "Targeting"
-                },
-                {
-                  "effect": {
-                    "type": "Heal",
-                    "amount": 18,
-                    "attack_ratio": 6,
-                    "ap_ratio": 0,
-                    "heal_type": "Caster"
                   },
                   "casting_type": "Targeting"
                 },
@@ -259,16 +222,6 @@
             },
             {
               "effect": {
-                "type": "Heal",
-                "amount": 16,
-                "attack_ratio": 5,
-                "ap_ratio": 0,
-                "heal_type": "Caster"
-              },
-              "casting_type": "Targeting"
-            },
-            {
-              "effect": {
                 "type": "AddBuff",
                 "buff_state": {
                   "name": "test_mod_aatrox_infernal_chains_slow",
@@ -309,16 +262,6 @@
                     "type": "Attack",
                     "damage": 65,
                     "attack_ratio": 95
-                  },
-                  "casting_type": "Targeting"
-                },
-                {
-                  "effect": {
-                    "type": "Heal",
-                    "amount": 16,
-                    "attack_ratio": 5,
-                    "ap_ratio": 0,
-                    "heal_type": "Caster"
                   },
                   "casting_type": "Targeting"
                 },
