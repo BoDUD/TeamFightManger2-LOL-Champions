@@ -227,8 +227,8 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
         data = frame.get("data") if isinstance(frame, dict) else None
         if not isinstance(data, dict):
             fail(f"Aatrox idle frame {index} missing frame data")
-        if data.get("w") != 64.0 or data.get("h") != 72.0:
-            fail(f"Aatrox idle frame {index} must use the stable 64x72 display frame")
+        if data.get("w") != 54.0 or data.get("h") != 50.0:
+            fail(f"Aatrox idle frame {index} must use the Viktor-like 54x50 display frame")
 
     aatrox = load_json(ROOT / "champion" / "aatrox.data_champion")
     projectile_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in aatrox.get("view_projectiles", [])}
@@ -239,6 +239,18 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
     for name, expected in AATROX_BUFF_REFS.items():
         if buff_refs.get(name) != expected:
             fail(f"champion/aatrox.data_champion buff {name} must reference {expected}")
+    world_ender = next((item for item in aatrox.get("view_buffs", []) if item.get("name") == "test_mod_aatrox_world_ender"), None)
+    if not isinstance(world_ender, dict) or world_ender.get("z") != -1:
+        fail("Aatrox World Ender aura must render behind the actor instead of covering the battlefield")
+
+    aura_fanim = load_json(ROOT / "aseprite_resources" / "effects" / "aatrox_world_ender_aura#anim.fanim")
+    aura_frames = aura_fanim.get("anims", {}).get("loop", {}).get("frames")
+    if not isinstance(aura_frames, list) or len(aura_frames) != 6:
+        fail("Aatrox World Ender aura must have six restrained loop frames")
+    for index, frame in enumerate(aura_frames):
+        data = frame.get("data") if isinstance(frame, dict) else None
+        if not isinstance(data, dict) or data.get("w") != 64.0 or data.get("h") != 64.0:
+            fail(f"Aatrox World Ender aura frame {index} must stay within 64x64")
 
 
 def check_champion_visibility() -> None:

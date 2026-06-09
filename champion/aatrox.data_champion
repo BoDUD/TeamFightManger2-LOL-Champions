@@ -408,7 +408,7 @@
       "name": "test_mod_aatrox_world_ender",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/aatrox_world_ender_aura",
       "tag": "loop",
-      "z": 3
+      "z": -1
     }
   ],
   "skill_icon": {
