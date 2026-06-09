@@ -25,3 +25,19 @@ python tools\build_aatrox_design_rework_assets.py
 ```
 
 The build refreshes the Aatrox actor sheet, Q ground-crack impact, World Ender aura, E dash body read, and Q/E/R icons. Review notes are in `AATROX_DESIGN_REWORK_QA.md`.
+
+## Local Runtime Check
+
+GitHub CI checks the repository visibility chain:
+
+```powershell
+python tools\ci_encyclopedia_visibility_check.py
+```
+
+Before judging the in-game encyclopedia on this machine, also run:
+
+```powershell
+python tools\local_runtime_encyclopedia_check.py
+```
+
+This local check verifies that `mods/bo_league_champions` matches the repository, only `bo_league_champions` is enabled, and a stale AppData `custom_database.tfm2db` is not enabled while missing `bo_league_champions_aatrox`.
