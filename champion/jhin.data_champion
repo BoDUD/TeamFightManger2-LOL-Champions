@@ -1,5 +1,5 @@
 {
-  "id": "test_mod_jhin",
+  "id": "bo_league_champions_jhin",
   "category": "Range",
   "tags": [
     "AD",
@@ -36,7 +36,7 @@
   },
   "attack": {
     "action_name": "attack",
-    "description": "#asset/base/text/champion?description.test_mod_jhin.attack",
+    "description": "#asset/base/text/champion?description.bo_league_champions_jhin.attack",
     "duration": 18,
     "cooltime": 78,
     "start_timing": 10,
@@ -141,17 +141,17 @@
             ]
           }
         },
-      "effect_buff": {
-        "type": "Combine",
-        "effects": [
-          {
-            "type": "Sfx",
-            "name": "test_mod_jhin_attack_3"
-          },
-          {
-            "type": "TargetProjectile",
-            "speed": 4500,
-            "name": "test_mod_jhin_attack_shot",
+        "effect_buff": {
+          "type": "Combine",
+          "effects": [
+            {
+              "type": "Sfx",
+              "name": "test_mod_jhin_attack_3"
+            },
+            {
+              "type": "TargetProjectile",
+              "speed": 4500,
+              "name": "test_mod_jhin_attack_shot",
               "applied_target": "Enemy",
               "applied_effects": [
                 {
@@ -176,14 +176,14 @@
               "type": "RemoveCasterBuff",
               "name": "test_mod_jhin_reload"
             },
-          {
-            "type": "AddCasterBuff",
-            "buff_state": {
-              "name": "test_mod_jhin_aa_3"
+            {
+              "type": "AddCasterBuff",
+              "buff_state": {
+                "name": "test_mod_jhin_aa_3"
+              }
             }
-          }
-        ]
-      }
+          ]
+        }
       },
       "effect_buff": {
         "type": "Combine",
@@ -244,7 +244,7 @@
   },
   "skill": {
     "action_name": "skill",
-    "description": "#asset/base/text/champion?description.test_mod_jhin.skill",
+    "description": "#asset/base/text/champion?description.bo_league_champions_jhin.skill",
     "duration": 32,
     "cooltime": 480,
     "start_timing": 14,
@@ -282,7 +282,7 @@
   },
   "skill2": {
     "action_name": "skill2",
-    "description": "#asset/base/text/champion?description.test_mod_jhin.skill2",
+    "description": "#asset/base/text/champion?description.bo_league_champions_jhin.skill2",
     "duration": 66,
     "cooltime": 360,
     "start_timing": 40,
@@ -347,7 +347,7 @@
   },
   "ult": {
     "action_name": "ult",
-    "description": "#asset/base/text/champion?description.test_mod_jhin.ult",
+    "description": "#asset/base/text/champion?description.bo_league_champions_jhin.ult",
     "duration": 150,
     "cooltime": 3600,
     "start_timing": 1,

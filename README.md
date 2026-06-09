@@ -16,7 +16,7 @@ Workshop description and changelog snapshots are kept in `WORKSHOP_DESCRIPTION_0
 
 ## Aatrox Design Rework
 
-This branch rebuilds Aatrox's visual assets from the design-book direction while preserving the existing `test_mod_aatrox` internal champion id, skill logic, timings, ranges, cooldowns, and sound event names. Asset paths now use `asset/bo_league_champions/...`.
+This branch rebuilds Aatrox's visual assets from the design-book direction. Champion ids now use the `bo_league_champions_*` namespace for standalone registration, while legacy `test_mod_*` sound and VFX event names are preserved so battle logic and audio references remain stable. Asset paths use `asset/bo_league_champions/...`.
 
 Rebuild the Aatrox visual assets with:
 

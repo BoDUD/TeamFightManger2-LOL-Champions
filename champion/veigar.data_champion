@@ -1,5 +1,5 @@
 {
-  "id": "test_mod_veigar",
+  "id": "bo_league_champions_veigar",
   "category": "Magician",
   "tags": [
     "AP",
@@ -36,7 +36,7 @@
   },
   "attack": {
     "action_name": "attack",
-    "description": "#asset/base/text/champion?description.test_mod_veigar.attack",
+    "description": "#asset/base/text/champion?description.bo_league_champions_veigar.attack",
     "duration": 18,
     "cooltime": 60,
     "start_timing": 10,
@@ -80,7 +80,7 @@
   },
   "skill": {
     "action_name": "skill",
-    "description": "#asset/base/text/champion?description.test_mod_veigar.skill",
+    "description": "#asset/base/text/champion?description.bo_league_champions_veigar.skill",
     "duration": 42,
     "cooltime": 420,
     "start_timing": 12,
@@ -188,7 +188,7 @@
   },
   "skill2": {
     "action_name": "skill2",
-    "description": "#asset/base/text/champion?description.test_mod_veigar.skill2",
+    "description": "#asset/base/text/champion?description.bo_league_champions_veigar.skill2",
     "duration": 30,
     "cooltime": 720,
     "start_timing": 12,
@@ -240,7 +240,7 @@
   },
   "ult": {
     "action_name": "ult",
-    "description": "#asset/base/text/champion?description.test_mod_veigar.ult",
+    "description": "#asset/base/text/champion?description.bo_league_champions_veigar.ult",
     "duration": 25,
     "cooltime": 3600,
     "start_timing": 12,

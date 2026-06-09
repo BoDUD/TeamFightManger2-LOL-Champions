@@ -1,5 +1,5 @@
 {
-  "id": "test_mod_ezreal",
+  "id": "bo_league_champions_ezreal",
   "category": "Range",
   "tags": [
     "AD",
@@ -36,7 +36,7 @@
   },
   "attack": {
     "action_name": "attack",
-    "description": "#asset/base/text/champion?description.test_mod_ezreal.attack",
+    "description": "#asset/base/text/champion?description.bo_league_champions_ezreal.attack",
     "duration": 22,
     "cooltime": 62,
     "start_timing": 12,
@@ -74,7 +74,7 @@
   },
   "skill": {
     "action_name": "skill",
-    "description": "#asset/base/text/champion?description.test_mod_ezreal.skill",
+    "description": "#asset/base/text/champion?description.bo_league_champions_ezreal.skill",
     "duration": 18,
     "cooltime": 210,
     "start_timing": 8,
@@ -143,7 +143,7 @@
   },
   "skill2": {
     "action_name": "skill2",
-    "description": "#asset/base/text/champion?description.test_mod_ezreal.skill2",
+    "description": "#asset/base/text/champion?description.bo_league_champions_ezreal.skill2",
     "duration": 18,
     "cooltime": 540,
     "start_timing": 11,
@@ -168,7 +168,7 @@
   },
   "ult": {
     "action_name": "ult",
-    "description": "#asset/base/text/champion?description.test_mod_ezreal.ult",
+    "description": "#asset/base/text/champion?description.bo_league_champions_ezreal.ult",
     "duration": 45,
     "cooltime": 2400,
     "start_timing": 42,

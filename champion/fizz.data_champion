@@ -1,5 +1,5 @@
 {
-  "id": "test_mod_fizz",
+  "id": "bo_league_champions_fizz",
   "category": "Assassin",
   "tags": [
     "AP",
@@ -37,7 +37,7 @@
   },
   "attack": {
     "action_name": "attack",
-    "description": "#asset/base/text/champion?description.test_mod_fizz.attack",
+    "description": "#asset/base/text/champion?description.bo_league_champions_fizz.attack",
     "duration": 18,
     "cooltime": 60,
     "start_timing": 10,
@@ -94,7 +94,7 @@
   },
   "skill": {
     "action_name": "skill",
-    "description": "#asset/base/text/champion?description.test_mod_fizz.skill",
+    "description": "#asset/base/text/champion?description.bo_league_champions_fizz.skill",
     "duration": 45,
     "cooltime": 360,
     "start_timing": 12,
@@ -156,7 +156,7 @@
   },
   "skill2": {
     "action_name": "skill2",
-    "description": "#asset/base/text/champion?description.test_mod_fizz.skill2",
+    "description": "#asset/base/text/champion?description.bo_league_champions_fizz.skill2",
     "duration": 156,
     "cooltime": 600,
     "start_timing": 1,
@@ -264,7 +264,7 @@
   },
   "ult": {
     "action_name": "ult",
-    "description": "#asset/base/text/champion?description.test_mod_fizz.ult",
+    "description": "#asset/base/text/champion?description.bo_league_champions_fizz.ult",
     "duration": 42,
     "cooltime": 4200,
     "start_timing": 12,
