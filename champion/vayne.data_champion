@@ -5,7 +5,7 @@
     "AD",
     "Range"
   ],
-  "sprite": "asset/test_mod/aseprite_resources/champions/vayne",
+  "sprite": "asset/bo_league_champions/aseprite_resources/champions/vayne",
   "anim_prefix": "",
   "stat": {
     "attack": 82,
@@ -434,7 +434,7 @@
     {
       "type": "Animated",
       "name": "test_mod_vayne_attack",
-      "anim": "asset/test_mod/aseprite_resources/effects/vayne_attack_bolt",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/vayne_attack_bolt",
       "tag": "projectile",
       "z": 1,
       "repeat": true
@@ -442,7 +442,7 @@
     {
       "type": "Animated",
       "name": "test_mod_vayne_silver_bolt",
-      "anim": "asset/test_mod/aseprite_resources/effects/vayne_silver_bolt",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/vayne_silver_bolt",
       "tag": "projectile",
       "z": 1,
       "repeat": true
@@ -454,28 +454,28 @@
     }
   ],
   "skill_icons": [
-    "asset/test_mod/icons/vayne_skill",
-    "asset/test_mod/icons/vayne_skill2",
-    "asset/test_mod/icons/vayne_ult"
+    "asset/bo_league_champions/icons/vayne_skill",
+    "asset/bo_league_champions/icons/vayne_skill2",
+    "asset/bo_league_champions/icons/vayne_ult"
   ],
   "view_buffs": [
     {
       "type": "Animated",
       "name": "test_mod_vayne_invisible_visual",
-      "anim": "asset/test_mod/aseprite_resources/effects/vayne_invisible_marker",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/vayne_invisible_marker",
       "tag": "loop",
       "z": 5
     },
     {
       "type": "Animated",
       "name": "test_mod_vayne_silver_2",
-      "anim": "asset/test_mod/aseprite_resources/effects/vayne_silver_bolts_ready",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/vayne_silver_bolts_ready",
       "tag": "loop",
       "z": 4
     }
   ],
   "skill_icon": {
-    "source": "asset/test_mod/aseprite_resources/UI_aseprite/test_mod_skill_icons",
+    "source": "asset/bo_league_champions/aseprite_resources/UI_aseprite/test_mod_skill_icons",
     "tags": [
       "test_mod_vayne_skill",
       "test_mod_vayne_skill2",

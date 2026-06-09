@@ -8,12 +8,12 @@
     "CC",
     "Heal"
   ],
-  "sprite": "asset/test_mod/aseprite_resources/champions/fiddlesticks",
+  "sprite": "asset/bo_league_champions/aseprite_resources/champions/fiddlesticks",
   "anim_prefix": "",
   "skill_icons": [
-    "asset/test_mod/icons/fiddlesticks_skill",
-    "asset/test_mod/icons/fiddlesticks_skill2",
-    "asset/test_mod/icons/fiddlesticks_ult"
+    "asset/bo_league_champions/icons/fiddlesticks_skill",
+    "asset/bo_league_champions/icons/fiddlesticks_skill2",
+    "asset/bo_league_champions/icons/fiddlesticks_ult"
   ],
   "stat": {
     "attack": 52,
@@ -698,7 +698,7 @@
     {
       "type": "Animated",
       "name": "test_mod_fiddlesticks_attack_projectile",
-      "anim": "asset/test_mod/aseprite_resources/effects/fiddlesticks_attack_projectile",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_attack_projectile",
       "tag": "projectile",
       "z": 1,
       "repeat": true
@@ -706,7 +706,7 @@
     {
       "type": "Animated",
       "name": "test_mod_fiddlesticks_fear_projectile",
-      "anim": "asset/test_mod/aseprite_resources/effects/fiddlesticks_fear_projectile",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_fear_projectile",
       "tag": "projectile",
       "z": 1,
       "repeat": true
@@ -716,7 +716,7 @@
     {
       "type": "Animated",
       "name": "test_mod_fiddlesticks_drain_active",
-      "anim": "asset/test_mod/aseprite_resources/effects/fiddlesticks_drain",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_drain",
       "tag": "drain",
       "z": -1,
       "repeat": true
@@ -724,7 +724,7 @@
     {
       "type": "Animated",
       "name": "test_mod_fiddlesticks_crowstorm_active",
-      "anim": "asset/test_mod/aseprite_resources/effects/fiddlesticks_crowstorm",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_crowstorm",
       "tag": "storm",
       "z": -1,
       "repeat": true
@@ -734,7 +734,7 @@
     {
       "type": "Animation",
       "name": "test_mod_fiddlesticks_drain",
-      "anim": "asset/test_mod/aseprite_resources/effects/fiddlesticks_drain",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_drain",
       "tag": "drain",
       "z": -1,
       "is_follow": true
@@ -742,14 +742,14 @@
     {
       "type": "Animation",
       "name": "test_mod_fiddlesticks_crowstorm",
-      "anim": "asset/test_mod/aseprite_resources/effects/fiddlesticks_crowstorm",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_crowstorm",
       "tag": "storm",
       "z": -1,
       "is_follow": true
     }
   ],
   "skill_icon": {
-    "source": "asset/test_mod/aseprite_resources/UI_aseprite/test_mod_skill_icons",
+    "source": "asset/bo_league_champions/aseprite_resources/UI_aseprite/test_mod_skill_icons",
     "tags": [
       "test_mod_fiddlesticks_skill",
       "test_mod_fiddlesticks_skill2",

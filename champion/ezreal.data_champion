@@ -5,12 +5,12 @@
     "AD",
     "Range"
   ],
-  "sprite": "asset/test_mod/aseprite_resources/champions/ezreal",
+  "sprite": "asset/bo_league_champions/aseprite_resources/champions/ezreal",
   "anim_prefix": "",
   "skill_icons": [
-    "asset/test_mod/icons/ezreal_skill",
-    "asset/test_mod/icons/ezreal_skill2",
-    "asset/test_mod/icons/ezreal_ult"
+    "asset/bo_league_champions/icons/ezreal_skill",
+    "asset/bo_league_champions/icons/ezreal_skill2",
+    "asset/bo_league_champions/icons/ezreal_ult"
   ],
   "stat": {
     "attack": 68,
@@ -223,7 +223,7 @@
     {
       "type": "Animated",
       "name": "test_mod_ezreal_attack",
-      "anim": "asset/test_mod/aseprite_resources/effects/ezreal_attack_projectile",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/ezreal_attack_projectile",
       "tag": "projectile",
       "z": 0,
       "repeat": true
@@ -231,7 +231,7 @@
     {
       "type": "Animated",
       "name": "test_mod_ezreal_mystic_shot",
-      "anim": "asset/test_mod/aseprite_resources/effects/ezreal_mystic_shot",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/ezreal_mystic_shot",
       "tag": "projectile",
       "z": 0,
       "repeat": true
@@ -239,7 +239,7 @@
     {
       "type": "Animated",
       "name": "test_mod_ezreal_trueshot_barrage",
-      "anim": "asset/test_mod/aseprite_resources/effects/ezreal_trueshot_barrage",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/ezreal_trueshot_barrage",
       "tag": "projectile",
       "z": 0,
       "repeat": true

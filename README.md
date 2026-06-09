@@ -1,22 +1,22 @@
 # TeamFightManger2-LOL-Champions
 
-Steam Workshop snapshot for the Teamfight Manager 2 mod:
+Standalone Teamfight Manager 2 mod package based on the SilverBear League Champions workshop snapshot:
 
-- Workshop item: `3735969373`
-- Mod id: `test_mod`
-- Mod name: `Aatrox, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz & Ezreal`
+- Original Workshop item: `3735969373`
+- Mod id: `bo_league_champions`
+- Mod name: `BO-League Champions`
 - Author: `silverbear`
-- Version: `0.7.7`
+- Version: `0.7.8`
 - Last updated: `2026-06-09`
 - Base dependency: `base >=0.4.9`
 
-This repository mirrors the subscribed Workshop package layout so it can be copied into a Teamfight Manager 2 mod folder directly. Core files are `mod.mod_info`, `mod.override_info`, `champion/`, `aseprite_resources/`, `icons/`, `sound/`, `style/`, and `text/`.
+This repository uses its own mod id and asset namespace, so it can be copied into `mods/bo_league_champions` and enabled independently from the original Workshop subscription. Core files are `mod.mod_info`, `mod.override_info`, `champion/`, `aseprite_resources/`, `icons/`, `sound/`, `style/`, and `text/`.
 
 Workshop description and changelog snapshots are kept in `WORKSHOP_DESCRIPTION_0.7.7.txt` and `WORKSHOP_CHANGE_NOTE_0.7.7.txt`.
 
 ## Aatrox Design Rework
 
-This branch rebuilds Aatrox's visual assets from the design-book direction while preserving the existing `test_mod_aatrox` id, data paths, skill logic, timings, ranges, cooldowns, and sound event names.
+This branch rebuilds Aatrox's visual assets from the design-book direction while preserving the existing `test_mod_aatrox` internal champion id, skill logic, timings, ranges, cooldowns, and sound event names. Asset paths now use `asset/bo_league_champions/...`.
 
 Rebuild the Aatrox visual assets with:
 

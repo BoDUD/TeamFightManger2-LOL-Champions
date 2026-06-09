@@ -6,12 +6,12 @@
     "Range",
     "Magic"
   ],
-  "sprite": "asset/test_mod/aseprite_resources/champions/viktor",
+  "sprite": "asset/bo_league_champions/aseprite_resources/champions/viktor",
   "anim_prefix": "",
   "skill_icons": [
-    "asset/test_mod/icons/viktor_skill",
-    "asset/test_mod/icons/viktor_skill2",
-    "asset/test_mod/icons/viktor_ult"
+    "asset/bo_league_champions/icons/viktor_skill",
+    "asset/bo_league_champions/icons/viktor_skill2",
+    "asset/bo_league_champions/icons/viktor_ult"
   ],
   "stat": {
     "attack": 65,
@@ -396,7 +396,7 @@
     {
       "type": "Animated",
       "name": "test_mod_viktor_attack_projectile",
-      "anim": "asset/test_mod/aseprite_resources/effects/viktor_attack_projectile",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/viktor_attack_projectile",
       "tag": "projectile",
       "z": 1,
       "repeat": true
@@ -404,7 +404,7 @@
     {
       "type": "Animated",
       "name": "test_mod_viktor_laser",
-      "anim": "asset/test_mod/aseprite_resources/effects/viktor_laser",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/viktor_laser",
       "tag": "laser",
       "z": -1,
       "repeat": false
@@ -412,7 +412,7 @@
     {
       "type": "Animated",
       "name": "test_mod_viktor_laser_aftershock",
-      "anim": "asset/test_mod/aseprite_resources/effects/viktor_laser_aftershock",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/viktor_laser_aftershock",
       "tag": "burn",
       "z": -2,
       "repeat": false
@@ -423,7 +423,7 @@
     {
       "type": "Animation",
       "name": "test_mod_viktor_gravity_field",
-      "anim": "asset/test_mod/aseprite_resources/effects/viktor_gravity_field",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/viktor_gravity_field",
       "tag": "gravity_field",
       "z": -1,
       "is_follow": false
@@ -431,14 +431,14 @@
     {
       "type": "Animation",
       "name": "test_mod_viktor_chaos_storm",
-      "anim": "asset/test_mod/aseprite_resources/effects/viktor_chaos_storm",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/viktor_chaos_storm",
       "tag": "chaos_storm",
       "z": -1,
       "is_follow": false
     }
   ],
   "skill_icon": {
-    "source": "asset/test_mod/aseprite_resources/UI_aseprite/test_mod_skill_icons",
+    "source": "asset/bo_league_champions/aseprite_resources/UI_aseprite/test_mod_skill_icons",
     "tags": [
       "test_mod_viktor_skill",
       "test_mod_viktor_skill2",

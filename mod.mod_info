@@ -1,10 +1,10 @@
 {
-  "id": "test_mod",
-  "mod_id": "test_mod",
-  "name": "Aatrox, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz & Ezreal",
+  "id": "bo_league_champions",
+  "mod_id": "bo_league_champions",
+  "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.7.7",
-  "description": "Expand Teamfight Manager 2 with Aatrox, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This branch rebuilds Aatrox's visual assets from the design-book direction while keeping champion logic, timings, paths, and sound event names stable.",
+  "version": "0.7.8",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Aatrox, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version gives the package its own bo_league_champions mod id and rebuilds Aatrox's visual assets from the design-book direction while keeping champion logic, timings, and sound event names stable.",
   "last_updated": "2026-06-09",
   "dependencies": [
     {
