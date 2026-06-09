@@ -39,15 +39,19 @@ The published build produces runtime assets plus the CSV matrix only:
 - asset matrix: `qa/aatrox_design_rework_asset_matrix.csv`
 
 Temporary contact and preview sheets are treated as local diagnostics. They are not committed after the hero rebuild is complete.
+CI also fails if `source/` or `qa/` contains committed PNG/JPG/WebP process images.
 
 ## Design Checks
 
 - Actor silhouette: compact dark-red demon warrior with readable horns, black armor, red chest mark, clear feet, and a shortened close-held sword; idle/run frames do not include flames, wings, smoke, or aura.
+- Compact surfaces: `face` now uses the same full-body-safe offset as `center`, so side pick cards do not crop Aatrox into a giant upper torso.
 - Run: eight stable cross-step frames follow the Viktor reference principle: upright torso, tiny foot alternation, consistent body height, and bottom-anchor drift of no more than 1 px.
-- Attack: body pose uses the refined greatsword swing, with a separate image-source red-black caster-follow slash.
+- Attack: body pose uses the refined greatsword swing. Direct `Heal` effects were removed from attack and damaging skills because they caused a visible white flash on the actor after basic attacks.
 - Q / `skill`: The Darkin Blade is represented as three delayed line cleaves; the third strike is heavier and knocks enemies airborne.
+- Q VFX: the runtime sheet uses only forward blade/crack frames; the rejected vertical-sword impact frame is no longer used.
 - W / `skill2`: Infernal Chains replaces the earlier made-up dash guard. It fires a hooked chain, slows the target, then snaps again for delayed damage and brief control.
-- E / Umbral Dash: TFM2 has only three visible active skill slots, so E is folded into Aatrox's sustain identity: attacks and damaging skills heal Aatrox instead of showing a fake fourth active button.
+- W VFX: the runtime sheet uses a progressive chain-only animation; unrelated axe/eye symbols from the source sheet are removed.
+- E / Umbral Dash: TFM2 has only three visible active skill slots, so E is not presented as a fake fourth button. Aatrox's sustain identity is represented by World Ender's vamp window.
 - R / `ult`: World Ender grants attack damage, movement speed, and vamp; it briefly fears nearby enemies on cast. It no longer gives unrelated armor, magic resist, or attack-speed padding.
 - R VFX: World Ender buff uses a separate image-source wing/arc aura; idle, run, hit, dead, and the encyclopedia body stay clean.
 - Hit/dead/ult: these reuse the stable idle body so card, side-list, and battle HUD surfaces do not show an inflated monster pose.

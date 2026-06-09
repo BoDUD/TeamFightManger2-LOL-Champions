@@ -2,11 +2,11 @@
   "ko": {
     "description": {
       "bo_league_champions_aatrox": {
-        "name": "아트록스",
-        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
-        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
-        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
-        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
+        "name": "????",
+        "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Q - The Darkin Blade: Aatrox swings three forward blade arcs in sequence, dealing repeated <#ff9028ff>physical damage<>. The third strike is wider, hits harder, and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill2": "W - Infernal Chains: Aatrox launches a chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps again, dealing more damage and briefly locking enemies caught in the path.",
+        "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "bo_league_champions_viktor": {
         "name": "빅토르",
@@ -65,11 +65,11 @@
         "ult": "정조준 일격: 적 방향으로 사거리 제한 없는 공격을 발사해, 적중한 적에게 <#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>공격력의 110%<>만큼 <#ff9028ff>물리 피해<>를 주고, 추가로 <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력의 70%<>만큼 <#a974ffff>마법 피해<>를 줍니다."
       },
       "test_mod_aatrox": {
-        "name": "아트록스",
-        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
-        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
-        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
-        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
+        "name": "????",
+        "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Q - The Darkin Blade: Aatrox swings three forward blade arcs in sequence, dealing repeated <#ff9028ff>physical damage<>. The third strike is wider, hits harder, and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill2": "W - Infernal Chains: Aatrox launches a chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps again, dealing more damage and briefly locking enemies caught in the path.",
+        "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "test_mod_viktor": {
         "name": "빅토르",
@@ -133,10 +133,10 @@
     "description": {
       "bo_league_champions_aatrox": {
         "name": "Aatrox",
-        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
-        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
-        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
-        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
+        "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Q - The Darkin Blade: Aatrox swings three forward blade arcs in sequence, dealing repeated <#ff9028ff>physical damage<>. The third strike is wider, hits harder, and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill2": "W - Infernal Chains: Aatrox launches a chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps again, dealing more damage and briefly locking enemies caught in the path.",
+        "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "bo_league_champions_viktor": {
         "name": "Viktor",
@@ -196,10 +196,10 @@
       },
       "test_mod_aatrox": {
         "name": "Aatrox",
-        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
-        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
-        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
-        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
+        "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Q - The Darkin Blade: Aatrox swings three forward blade arcs in sequence, dealing repeated <#ff9028ff>physical damage<>. The third strike is wider, hits harder, and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill2": "W - Infernal Chains: Aatrox launches a chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps again, dealing more damage and briefly locking enemies caught in the path.",
+        "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "test_mod_viktor": {
         "name": "Viktor",
@@ -263,10 +263,10 @@
     "description": {
       "bo_league_champions_aatrox": {
         "name": "Aatrox",
-        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
-        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
-        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
-        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
+        "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Q - The Darkin Blade: Aatrox swings three forward blade arcs in sequence, dealing repeated <#ff9028ff>physical damage<>. The third strike is wider, hits harder, and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill2": "W - Infernal Chains: Aatrox launches a chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps again, dealing more damage and briefly locking enemies caught in the path.",
+        "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "bo_league_champions_viktor": {
         "name": "Viktor",
@@ -326,10 +326,10 @@
       },
       "test_mod_aatrox": {
         "name": "Aatrox",
-        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
-        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
-        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
-        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
+        "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Q - The Darkin Blade: Aatrox swings three forward blade arcs in sequence, dealing repeated <#ff9028ff>physical damage<>. The third strike is wider, hits harder, and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill2": "W - Infernal Chains: Aatrox launches a chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps again, dealing more damage and briefly locking enemies caught in the path.",
+        "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "test_mod_viktor": {
         "name": "Viktor",
@@ -393,10 +393,10 @@
     "description": {
       "bo_league_champions_aatrox": {
         "name": "Aatrox",
-        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
-        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
-        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
-        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
+        "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Q - The Darkin Blade: Aatrox swings three forward blade arcs in sequence, dealing repeated <#ff9028ff>physical damage<>. The third strike is wider, hits harder, and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill2": "W - Infernal Chains: Aatrox launches a chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps again, dealing more damage and briefly locking enemies caught in the path.",
+        "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "bo_league_champions_viktor": {
         "name": "Viktor",
@@ -456,10 +456,10 @@
       },
       "test_mod_aatrox": {
         "name": "Aatrox",
-        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
-        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
-        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
-        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
+        "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Q - The Darkin Blade: Aatrox swings three forward blade arcs in sequence, dealing repeated <#ff9028ff>physical damage<>. The third strike is wider, hits harder, and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill2": "W - Infernal Chains: Aatrox launches a chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps again, dealing more damage and briefly locking enemies caught in the path.",
+        "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "test_mod_viktor": {
         "name": "Viktor",
@@ -523,10 +523,10 @@
     "description": {
       "bo_league_champions_aatrox": {
         "name": "Aatrox",
-        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
-        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
-        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
-        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
+        "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Q - The Darkin Blade: Aatrox swings three forward blade arcs in sequence, dealing repeated <#ff9028ff>physical damage<>. The third strike is wider, hits harder, and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill2": "W - Infernal Chains: Aatrox launches a chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps again, dealing more damage and briefly locking enemies caught in the path.",
+        "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "bo_league_champions_viktor": {
         "name": "Viktor",
@@ -586,10 +586,10 @@
       },
       "test_mod_aatrox": {
         "name": "Aatrox",
-        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
-        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
-        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
-        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
+        "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Q - The Darkin Blade: Aatrox swings three forward blade arcs in sequence, dealing repeated <#ff9028ff>physical damage<>. The third strike is wider, hits harder, and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill2": "W - Infernal Chains: Aatrox launches a chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps again, dealing more damage and briefly locking enemies caught in the path.",
+        "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "test_mod_viktor": {
         "name": "Viktor",
@@ -653,10 +653,10 @@
     "description": {
       "bo_league_champions_aatrox": {
         "name": "Aatrox",
-        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
-        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
-        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
-        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
+        "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Q - The Darkin Blade: Aatrox swings three forward blade arcs in sequence, dealing repeated <#ff9028ff>physical damage<>. The third strike is wider, hits harder, and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill2": "W - Infernal Chains: Aatrox launches a chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps again, dealing more damage and briefly locking enemies caught in the path.",
+        "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "bo_league_champions_viktor": {
         "name": "Viktor",
@@ -716,10 +716,10 @@
       },
       "test_mod_aatrox": {
         "name": "Aatrox",
-        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
-        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
-        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
-        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
+        "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Q - The Darkin Blade: Aatrox swings three forward blade arcs in sequence, dealing repeated <#ff9028ff>physical damage<>. The third strike is wider, hits harder, and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill2": "W - Infernal Chains: Aatrox launches a chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps again, dealing more damage and briefly locking enemies caught in the path.",
+        "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "test_mod_viktor": {
         "name": "Viktor",
@@ -783,10 +783,10 @@
     "description": {
       "bo_league_champions_aatrox": {
         "name": "Aatrox",
-        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
-        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
-        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
-        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
+        "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Q - The Darkin Blade: Aatrox swings three forward blade arcs in sequence, dealing repeated <#ff9028ff>physical damage<>. The third strike is wider, hits harder, and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill2": "W - Infernal Chains: Aatrox launches a chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps again, dealing more damage and briefly locking enemies caught in the path.",
+        "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "bo_league_champions_viktor": {
         "name": "Viktor",
@@ -846,10 +846,10 @@
       },
       "test_mod_aatrox": {
         "name": "Aatrox",
-        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
-        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
-        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
-        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
+        "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Q - The Darkin Blade: Aatrox swings three forward blade arcs in sequence, dealing repeated <#ff9028ff>physical damage<>. The third strike is wider, hits harder, and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill2": "W - Infernal Chains: Aatrox launches a chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps again, dealing more damage and briefly locking enemies caught in the path.",
+        "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "test_mod_viktor": {
         "name": "Viktor",
@@ -913,10 +913,10 @@
     "description": {
       "bo_league_champions_aatrox": {
         "name": "Aatrox",
-        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
-        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
-        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
-        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
+        "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Q - The Darkin Blade: Aatrox swings three forward blade arcs in sequence, dealing repeated <#ff9028ff>physical damage<>. The third strike is wider, hits harder, and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill2": "W - Infernal Chains: Aatrox launches a chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps again, dealing more damage and briefly locking enemies caught in the path.",
+        "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "bo_league_champions_viktor": {
         "name": "Viktor",
@@ -976,10 +976,10 @@
       },
       "test_mod_aatrox": {
         "name": "Aatrox",
-        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
-        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
-        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
-        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
+        "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Q - The Darkin Blade: Aatrox swings three forward blade arcs in sequence, dealing repeated <#ff9028ff>physical damage<>. The third strike is wider, hits harder, and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill2": "W - Infernal Chains: Aatrox launches a chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps again, dealing more damage and briefly locking enemies caught in the path.",
+        "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "test_mod_viktor": {
         "name": "Viktor",
@@ -1043,10 +1043,10 @@
     "description": {
       "bo_league_champions_aatrox": {
         "name": "Aatrox",
-        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
-        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
-        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
-        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
+        "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Q - The Darkin Blade: Aatrox swings three forward blade arcs in sequence, dealing repeated <#ff9028ff>physical damage<>. The third strike is wider, hits harder, and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill2": "W - Infernal Chains: Aatrox launches a chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps again, dealing more damage and briefly locking enemies caught in the path.",
+        "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "bo_league_champions_viktor": {
         "name": "Виктор",
@@ -1106,10 +1106,10 @@
       },
       "test_mod_aatrox": {
         "name": "Aatrox",
-        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
-        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
-        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
-        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
+        "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Q - The Darkin Blade: Aatrox swings three forward blade arcs in sequence, dealing repeated <#ff9028ff>physical damage<>. The third strike is wider, hits harder, and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill2": "W - Infernal Chains: Aatrox launches a chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps again, dealing more damage and briefly locking enemies caught in the path.",
+        "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "test_mod_viktor": {
         "name": "Виктор",
@@ -1173,10 +1173,10 @@
     "description": {
       "bo_league_champions_aatrox": {
         "name": "Aatrox",
-        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
-        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
-        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
-        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
+        "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Q - The Darkin Blade: Aatrox swings three forward blade arcs in sequence, dealing repeated <#ff9028ff>physical damage<>. The third strike is wider, hits harder, and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill2": "W - Infernal Chains: Aatrox launches a chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps again, dealing more damage and briefly locking enemies caught in the path.",
+        "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "bo_league_champions_viktor": {
         "name": "Viktor",
@@ -1236,10 +1236,10 @@
       },
       "test_mod_aatrox": {
         "name": "Aatrox",
-        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
-        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
-        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
-        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
+        "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Q - The Darkin Blade: Aatrox swings three forward blade arcs in sequence, dealing repeated <#ff9028ff>physical damage<>. The third strike is wider, hits harder, and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill2": "W - Infernal Chains: Aatrox launches a chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps again, dealing more damage and briefly locking enemies caught in the path.",
+        "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "test_mod_viktor": {
         "name": "Viktor",
@@ -1303,10 +1303,10 @@
     "description": {
       "bo_league_champions_aatrox": {
         "name": "Aatrox",
-        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
-        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
-        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
-        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
+        "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Q - The Darkin Blade: Aatrox swings three forward blade arcs in sequence, dealing repeated <#ff9028ff>physical damage<>. The third strike is wider, hits harder, and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill2": "W - Infernal Chains: Aatrox launches a chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps again, dealing more damage and briefly locking enemies caught in the path.",
+        "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "bo_league_champions_viktor": {
         "name": "Viktor",
@@ -1366,10 +1366,10 @@
       },
       "test_mod_aatrox": {
         "name": "Aatrox",
-        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
-        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
-        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
-        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
+        "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Q - The Darkin Blade: Aatrox swings three forward blade arcs in sequence, dealing repeated <#ff9028ff>physical damage<>. The third strike is wider, hits harder, and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill2": "W - Infernal Chains: Aatrox launches a chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps again, dealing more damage and briefly locking enemies caught in the path.",
+        "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "test_mod_viktor": {
         "name": "Viktor",
@@ -1432,11 +1432,11 @@
   "zh-hans": {
     "description": {
       "bo_league_champions_aatrox": {
-        "name": "亚托克斯",
-        "attack": "赐死剑气：挥动暗裔巨剑攻击目标，造成<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力的100%<>的<#ff9028ff>物理伤害<>，并回复少量生命值。",
-        "skill": "Q - 暗裔利刃：向前连续挥出三段剑击，造成多次<#ff9028ff>物理伤害<>。第三段伤害更高，并将敌人<#ef5350ff>击飞0.5秒<>。造成伤害时会触发暗影冲决的治疗。",
-        "skill2": "W - 恶火束链：向前射出恶魔锁链，命中第一名敌方英雄时造成伤害并<#ffb900ff>减速<>。短暂延迟后锁链再次收紧，造成额外伤害并短暂拖拽/控制路径中的敌人。",
-        "ult": "R - 大灭：进入恶魔形态<#ffb900ff>10.0秒<>，获得<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75攻击力<>、<i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20%移动速度<>和<#6aff55ff>50%全能吸血<>。施放时短暂恐惧附近敌人。"
+        "name": "????",
+        "attack": "?????????????????<#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>????112%<>?<#ff9028ff>????<>?",
+        "skill": "Q - ????????????????????????<#ff9028ff>????<>??????????????????<#ef5350ff>??0.5?<>?",
+        "skill2": "W - ????????????????????????????<#ffb900ff>??<>???????????????????????????????",
+        "ult": "R - ?????????????<#ffb900ff>10.0?<>???<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75???<>?<i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20%????<>?<#6aff55ff>50%????<>?????????????"
       },
       "bo_league_champions_viktor": {
         "name": "奥术先驱",
@@ -1495,11 +1495,11 @@
         "ult": "精准弹幕：向敌人方向发射无限距离攻击，对命中的敌人造成<#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力的110%<>的<#ff9028ff>物理伤害<>，并额外造成<i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法术强度的70%<>的<#a974ffff>魔法伤害<>。"
       },
       "test_mod_aatrox": {
-        "name": "亚托克斯",
-        "attack": "赐死剑气：挥动暗裔巨剑攻击目标，造成<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力的100%<>的<#ff9028ff>物理伤害<>，并回复少量生命值。",
-        "skill": "Q - 暗裔利刃：向前连续挥出三段剑击，造成多次<#ff9028ff>物理伤害<>。第三段伤害更高，并将敌人<#ef5350ff>击飞0.5秒<>。造成伤害时会触发暗影冲决的治疗。",
-        "skill2": "W - 恶火束链：向前射出恶魔锁链，命中第一名敌方英雄时造成伤害并<#ffb900ff>减速<>。短暂延迟后锁链再次收紧，造成额外伤害并短暂拖拽/控制路径中的敌人。",
-        "ult": "R - 大灭：进入恶魔形态<#ffb900ff>10.0秒<>，获得<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75攻击力<>、<i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20%移动速度<>和<#6aff55ff>50%全能吸血<>。施放时短暂恐惧附近敌人。"
+        "name": "????",
+        "attack": "?????????????????<#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>????112%<>?<#ff9028ff>????<>?",
+        "skill": "Q - ????????????????????????<#ff9028ff>????<>??????????????????<#ef5350ff>??0.5?<>?",
+        "skill2": "W - ????????????????????????????<#ffb900ff>??<>???????????????????????????????",
+        "ult": "R - ?????????????<#ffb900ff>10.0?<>???<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75???<>?<i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20%????<>?<#6aff55ff>50%????<>?????????????"
       },
       "test_mod_viktor": {
         "name": "奥术先驱",
@@ -1562,11 +1562,11 @@
   "zh-hant": {
     "description": {
       "bo_league_champions_aatrox": {
-        "name": "亞托克斯",
-        "attack": "賜死劍氣：揮動暗裔巨劍攻擊目標，造成<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力的100%<>的<#ff9028ff>物理傷害<>，並回復少量生命值。",
-        "skill": "Q - 冥血邪劍：向前連續揮出三段劍擊，造成多次<#ff9028ff>物理傷害<>。第三段傷害更高，並將敵人<#ef5350ff>擊飛0.5秒<>。造成傷害時會觸發冥血衝刺的治療。",
-        "skill2": "W - 惡火束鏈：向前射出惡魔鎖鏈，命中第一名敵方英雄時造成傷害並<#ffb900ff>減速<>。短暫延遲後鎖鏈再次收緊，造成額外傷害並短暫拖拽/控制路徑中的敵人。",
-        "ult": "R - World Ender：進入惡魔形態<#ffb900ff>10.0秒<>，獲得<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75攻擊力<>、<i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20%移動速度<>和<#6aff55ff>50%全能吸血<>。施放時短暫恐懼附近敵人。"
+        "name": "????",
+        "attack": "?????????????????<#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>????112%<>?<#ff9028ff>????<>?",
+        "skill": "Q - ????????????????????????<#ff9028ff>????<>??????????????????<#ef5350ff>??0.5?<>?",
+        "skill2": "W - ????????????????????????????<#ffb900ff>??<>???????????????????????????????",
+        "ult": "R - World Ender???????????<#ffb900ff>10.0?<>???<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75???<>?<i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20%????<>?<#6aff55ff>50%????<>?????????????"
       },
       "bo_league_champions_viktor": {
         "name": "奧術先驅",
@@ -1625,11 +1625,11 @@
         "ult": "精準彈幕：向敵人方向發射無限距離攻擊，對命中的敵人造成<#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力的110%<>的<#ff9028ff>物理傷害<>，並額外造成<i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>魔法攻擊的70%<>的<#a974ffff>魔法傷害<>。"
       },
       "test_mod_aatrox": {
-        "name": "亞托克斯",
-        "attack": "賜死劍氣：揮動暗裔巨劍攻擊目標，造成<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力的100%<>的<#ff9028ff>物理傷害<>，並回復少量生命值。",
-        "skill": "Q - 冥血邪劍：向前連續揮出三段劍擊，造成多次<#ff9028ff>物理傷害<>。第三段傷害更高，並將敵人<#ef5350ff>擊飛0.5秒<>。造成傷害時會觸發冥血衝刺的治療。",
-        "skill2": "W - 惡火束鏈：向前射出惡魔鎖鏈，命中第一名敵方英雄時造成傷害並<#ffb900ff>減速<>。短暫延遲後鎖鏈再次收緊，造成額外傷害並短暫拖拽/控制路徑中的敵人。",
-        "ult": "R - World Ender：進入惡魔形態<#ffb900ff>10.0秒<>，獲得<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75攻擊力<>、<i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20%移動速度<>和<#6aff55ff>50%全能吸血<>。施放時短暫恐懼附近敵人。"
+        "name": "????",
+        "attack": "?????????????????<#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>????112%<>?<#ff9028ff>????<>?",
+        "skill": "Q - ????????????????????????<#ff9028ff>????<>??????????????????<#ef5350ff>??0.5?<>?",
+        "skill2": "W - ????????????????????????????<#ffb900ff>??<>???????????????????????????????",
+        "ult": "R - World Ender???????????<#ffb900ff>10.0?<>???<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75???<>?<i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20%????<>?<#6aff55ff>50%????<>?????????????"
       },
       "test_mod_viktor": {
         "name": "奧術先驅",
@@ -1693,10 +1693,10 @@
     "description": {
       "bo_league_champions_aatrox": {
         "name": "Aatrox",
-        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
-        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
-        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
-        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
+        "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Q - The Darkin Blade: Aatrox swings three forward blade arcs in sequence, dealing repeated <#ff9028ff>physical damage<>. The third strike is wider, hits harder, and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill2": "W - Infernal Chains: Aatrox launches a chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps again, dealing more damage and briefly locking enemies caught in the path.",
+        "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "bo_league_champions_viktor": {
         "name": "Viktor",
@@ -1756,10 +1756,10 @@
       },
       "test_mod_aatrox": {
         "name": "Aatrox",
-        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
-        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
-        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
-        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
+        "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Q - The Darkin Blade: Aatrox swings three forward blade arcs in sequence, dealing repeated <#ff9028ff>physical damage<>. The third strike is wider, hits harder, and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill2": "W - Infernal Chains: Aatrox launches a chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps again, dealing more damage and briefly locking enemies caught in the path.",
+        "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "test_mod_viktor": {
         "name": "Viktor",

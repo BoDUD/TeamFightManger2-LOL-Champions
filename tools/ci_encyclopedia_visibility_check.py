@@ -20,6 +20,8 @@ EXPECTED_CHAMPIONS = {
     "viktor",
 }
 REQUIRED_DESCRIPTION_KEYS = ("name", "attack", "skill", "skill2", "ult")
+PROCESS_IMAGE_ROOTS = ("source", "qa")
+PROCESS_IMAGE_SUFFIXES = {".png", ".jpg", ".jpeg", ".webp"}
 
 
 def fail(message: str) -> None:
@@ -85,6 +87,27 @@ def description_refs(champion: dict[str, Any]) -> set[tuple[str, str]]:
     return refs
 
 
+def check_effect_shapes(path: Path, node: Any) -> None:
+    if isinstance(node, dict):
+        for key, value in node.items():
+            if key == "applied_effects":
+                if not isinstance(value, list):
+                    fail(f"{path.relative_to(ROOT)} applied_effects must be a list")
+                for index, item in enumerate(value):
+                    if not isinstance(item, dict):
+                        fail(f"{path.relative_to(ROOT)} applied_effects[{index}] must be an object")
+                    has_wrapped_effect = isinstance(item.get("effect"), dict)
+                    has_direct_effect = isinstance(item.get("type"), str)
+                    if not has_wrapped_effect and not has_direct_effect:
+                        fail(f"{path.relative_to(ROOT)} applied_effects[{index}] missing effect/type object")
+                    if has_wrapped_effect and not isinstance(item.get("casting_type"), str):
+                        fail(f"{path.relative_to(ROOT)} applied_effects[{index}] missing casting_type")
+            check_effect_shapes(path, value)
+    elif isinstance(node, list):
+        for item in node:
+            check_effect_shapes(path, item)
+
+
 def check_mod_metadata() -> None:
     info = load_json(ROOT / "mod.mod_info")
     if info.get("id") != MOD_ID:
@@ -107,6 +130,19 @@ def check_mod_metadata() -> None:
             fail(f"{key} must remap to {remapping} as {override_type}, got {row!r}")
 
 
+def check_no_process_images() -> None:
+    offenders: list[str] = []
+    for root_name in PROCESS_IMAGE_ROOTS:
+        root = ROOT / root_name
+        if not root.exists():
+            continue
+        for path in root.rglob("*"):
+            if path.is_file() and path.suffix.lower() in PROCESS_IMAGE_SUFFIXES:
+                offenders.append(str(path.relative_to(ROOT)))
+    if offenders:
+        fail(f"process/source images must not be committed after rebuild: {offenders}")
+
+
 def check_champion_visibility() -> None:
     text = load_json(ROOT / "text" / "champion.i18n")
     style = load_json(ROOT / "style" / "champion_view.champion_view")
@@ -122,6 +158,7 @@ def check_champion_visibility() -> None:
     ids: set[str] = set()
     for path in champion_files:
         data = load_json(path)
+        check_effect_shapes(path, data)
         champion_name = path.stem
         champion_id = data.get("id")
         expected_id = f"{MOD_ID}_{champion_name}"
@@ -182,6 +219,7 @@ def check_champion_visibility() -> None:
 def main() -> int:
     try:
         check_mod_metadata()
+        check_no_process_images()
         check_champion_visibility()
     except AssertionError as exc:
         print(f"encyclopedia_visibility_check=fail: {exc}", file=sys.stderr)
