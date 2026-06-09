@@ -60,6 +60,13 @@
           "attack_ratio": 100
         },
         {
+          "type": "Heal",
+          "amount": 22,
+          "attack_ratio": 8,
+          "ap_ratio": 0,
+          "heal_type": "Caster"
+        },
+        {
           "type": "TargetSfx",
           "name": "test_mod_aatrox_attack_hit"
         }
@@ -69,10 +76,10 @@
   "skill": {
     "action_name": "skill",
     "description": "#asset/base/text/champion?description.bo_league_champions_aatrox.skill",
-    "duration": 66,
+    "duration": 72,
     "cooltime": 420,
-    "start_timing": 40,
-    "range": 32000,
+    "start_timing": 12,
+    "range": 38000,
     "casting_type": "Direction",
     "casting_target": "EnemyWithoutTower",
     "attack_type": "Skill",
@@ -85,25 +92,28 @@
         },
         {
           "type": "LineRangeProjectile",
-          "width": 11000,
-          "length": 32000,
-          "delay": 19,
-          "apply": 19,
-          "name": "test_mod_aatrox_cleave",
+          "width": 10500,
+          "length": 28000,
+          "delay": 8,
+          "apply": 14,
+          "name": "test_mod_aatrox_q1",
           "applied_target": "EnemyWithoutTower",
           "applied_effects": [
             {
               "effect": {
                 "type": "Attack",
-                "damage": 100,
-                "attack_ratio": 200
+                "damage": 35,
+                "attack_ratio": 90
               },
               "casting_type": "Targeting"
             },
             {
               "effect": {
-                "type": "Airborne",
-                "duration": 36
+                "type": "Heal",
+                "amount": 18,
+                "attack_ratio": 6,
+                "ap_ratio": 0,
+                "heal_type": "Caster"
               },
               "casting_type": "Targeting"
             },
@@ -115,22 +125,114 @@
               "casting_type": "Targeting"
             }
           ]
+        },
+        {
+          "type": "Delayed",
+          "tick": 18,
+          "effects": [
+            {
+              "type": "LineRangeProjectile",
+              "width": 12500,
+              "length": 33000,
+              "delay": 8,
+              "apply": 14,
+              "name": "test_mod_aatrox_q2",
+              "applied_target": "EnemyWithoutTower",
+              "applied_effects": [
+                {
+                  "effect": {
+                    "type": "Attack",
+                    "damage": 45,
+                    "attack_ratio": 105
+                  },
+                  "casting_type": "Targeting"
+                },
+                {
+                  "effect": {
+                    "type": "Heal",
+                    "amount": 18,
+                    "attack_ratio": 6,
+                    "ap_ratio": 0,
+                    "heal_type": "Caster"
+                  },
+                  "casting_type": "Targeting"
+                },
+                {
+                  "effect": {
+                    "type": "TargetSfx",
+                    "name": "test_mod_aatrox_cleave_hit"
+                  },
+                  "casting_type": "Targeting"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Delayed",
+          "tick": 38,
+          "effects": [
+            {
+              "type": "LineRangeProjectile",
+              "width": 15500,
+              "length": 38000,
+              "delay": 8,
+              "apply": 14,
+              "name": "test_mod_aatrox_q3",
+              "applied_target": "EnemyWithoutTower",
+              "applied_effects": [
+                {
+                  "effect": {
+                    "type": "Attack",
+                    "damage": 65,
+                    "attack_ratio": 125
+                  },
+                  "casting_type": "Targeting"
+                },
+                {
+                  "effect": {
+                    "type": "Heal",
+                    "amount": 18,
+                    "attack_ratio": 6,
+                    "ap_ratio": 0,
+                    "heal_type": "Caster"
+                  },
+                  "casting_type": "Targeting"
+                },
+                {
+                  "effect": {
+                    "type": "Airborne",
+                    "duration": 32
+                  },
+                  "casting_type": "Targeting"
+                },
+                {
+                  "effect": {
+                    "type": "TargetSfx",
+                    "name": "test_mod_aatrox_cleave_hit"
+                  },
+                  "casting_type": "Targeting"
+                }
+              ]
+            }
+          ]
         }
       ]
-    }
+    },
+    "cancelable": false
   },
   "skill2": {
     "action_name": "skill2",
     "description": "#asset/base/text/champion?description.bo_league_champions_aatrox.skill2",
-    "duration": 20,
-    "cooltime": 280,
-    "start_timing": 1,
-    "cancelable": true,
-    "range": 36000,
-    "casting_type": "Targeting",
-    "casting_target": "EnemyWithoutTower",
+    "duration": 48,
+    "cooltime": 900,
+    "start_timing": 12,
+    "cancelable": false,
+    "range": 66000,
+    "casting_type": "Direction",
+    "casting_target": "EnemyChampion",
     "attack_type": "Skill",
-    "can_use_with_move": true,
+    "can_use_with_move": false,
     "effect": {
       "type": "Combine",
       "effects": [
@@ -139,23 +241,126 @@
           "name": "test_mod_aatrox_dash_cast"
         },
         {
-          "type": "AddCasterBuff",
-          "buff_state": {
-            "name": "test_mod_aatrox_infernal_step_guard",
-            "duration": {
-              "Time": {
-                "tick": 300
-              }
+          "type": "LineRangeProjectile",
+          "width": 9500,
+          "length": 66000,
+          "delay": 8,
+          "apply": 14,
+          "name": "test_mod_aatrox_infernal_chains",
+          "applied_target": "EnemyChampion",
+          "applied_effects": [
+            {
+              "effect": {
+                "type": "Attack",
+                "damage": 55,
+                "attack_ratio": 80
+              },
+              "casting_type": "Targeting"
             },
-            "defence": 50,
-            "magic_resistance": 50
-          }
+            {
+              "effect": {
+                "type": "Heal",
+                "amount": 16,
+                "attack_ratio": 5,
+                "ap_ratio": 0,
+                "heal_type": "Caster"
+              },
+              "casting_type": "Targeting"
+            },
+            {
+              "effect": {
+                "type": "AddBuff",
+                "buff_state": {
+                  "name": "test_mod_aatrox_infernal_chains_slow",
+                  "duration": {
+                    "Time": {
+                      "tick": 90
+                    }
+                  },
+                  "move_speed_mult": -45
+                }
+              },
+              "casting_type": "Targeting"
+            },
+            {
+              "effect": {
+                "type": "TargetSfx",
+                "name": "test_mod_aatrox_cleave_hit"
+              },
+              "casting_type": "Targeting"
+            }
+          ]
         },
         {
-          "type": "MoveTo",
-          "speed": 3000,
-          "range": 18000,
-          "end_effects": []
+          "type": "Delayed",
+          "tick": 72,
+          "effects": [
+            {
+              "type": "LineRangeProjectile",
+              "width": 14000,
+              "length": 66000,
+              "delay": 1,
+              "apply": 14,
+              "name": "test_mod_aatrox_infernal_chains_snap",
+              "applied_target": "EnemyChampion",
+              "applied_effects": [
+                {
+                  "effect": {
+                    "type": "Attack",
+                    "damage": 65,
+                    "attack_ratio": 95
+                  },
+                  "casting_type": "Targeting"
+                },
+                {
+                  "effect": {
+                    "type": "Heal",
+                    "amount": 16,
+                    "attack_ratio": 5,
+                    "ap_ratio": 0,
+                    "heal_type": "Caster"
+                  },
+                  "casting_type": "Targeting"
+                },
+                {
+                  "effect": {
+                    "type": "Airborne",
+                    "duration": 18
+                  },
+                  "casting_type": "Targeting"
+                },
+                {
+                  "effect": {
+                    "type": "Stun",
+                    "duration": 18
+                  },
+                  "casting_type": "Targeting"
+                },
+                {
+                  "effect": {
+                    "type": "AddBuff",
+                    "buff_state": {
+                      "name": "test_mod_aatrox_infernal_chains_slow",
+                      "duration": {
+                        "Time": {
+                          "tick": 90
+                        }
+                      },
+                      "move_speed_mult": -45
+                    }
+                  },
+                  "casting_type": "Targeting"
+                },
+                {
+                  "effect": {
+                    "type": "TargetSfx",
+                    "name": "test_mod_aatrox_cleave_hit"
+                  },
+                  "casting_type": "Targeting"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -164,7 +369,7 @@
     "action_name": "ult",
     "description": "#asset/base/text/champion?description.bo_league_champions_aatrox.ult",
     "duration": 24,
-    "cooltime": 3000,
+    "cooltime": 3600,
     "start_timing": 8,
     "cancelable": true,
     "range": 0,
@@ -189,12 +394,25 @@
               }
             },
             "attack": 75,
-            "defence": 25,
-            "magic_resistance": 25,
-            "attack_speed_mult": 45,
             "move_speed_mult": 20,
-            "vamp": 40
+            "vamp": 50
           }
+        },
+        {
+          "type": "RangeEffect",
+          "shape": {
+            "Circle": {
+              "radius": 36000
+            }
+          },
+          "target": "EnemyWithoutTower",
+          "apply_type": "AroundCaster",
+          "effects": [
+            {
+              "type": "Fear",
+              "tick": 18
+            }
+          ]
         }
       ]
     }
@@ -202,10 +420,42 @@
   "view_projectiles": [
     {
       "type": "Animated",
-      "name": "test_mod_aatrox_cleave",
+      "name": "test_mod_aatrox_q1",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/aatrox_q_impact",
       "tag": "impact",
       "z": -1,
+      "repeat": false
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_aatrox_q2",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/aatrox_q_impact",
+      "tag": "impact",
+      "z": -1,
+      "repeat": false
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_aatrox_q3",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/aatrox_q_impact",
+      "tag": "impact",
+      "z": -1,
+      "repeat": false
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_aatrox_infernal_chains",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/aatrox_infernal_chains",
+      "tag": "chain",
+      "z": 1,
+      "repeat": false
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_aatrox_infernal_chains_snap",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/aatrox_infernal_chains",
+      "tag": "chain",
+      "z": 1,
       "repeat": false
     }
   ],

@@ -1,0 +1,8 @@
+# Local QA/process images generated during champion rebuilds.
+source/**/*contact*.png
+source/**/*preview*.png
+source/**/*.png
+qa/**/*contact*.png
+qa/**/*preview*.png
+__pycache__/
+**/__pycache__/

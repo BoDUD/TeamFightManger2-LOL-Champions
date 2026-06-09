@@ -3,10 +3,10 @@
     "description": {
       "bo_league_champions_aatrox": {
         "name": "아트록스",
-        "attack": "무거운 검으로 대상을 공격해 <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>공격력의 100%<>만큼 <#ff9028ff>물리 피해<>를 입힙니다.",
-        "skill": "전방으로 강력한 참격을 날려 <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>공격력의 200%<>만큼 <#ff9028ff>물리 피해<>를 입히고, 적을 <#ef5350ff>0.6초 동안 공중에 띄웁니다<>.",
-        "skill2": "적에게 돌진하고 <#ffb900ff>5.0초<> 동안 <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>방어력 50<>과 <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>마법 저항력 50<>을 얻습니다.",
-        "ult": "<#ffb900ff>10.0초<> 동안 피의 광분 상태가 되어 <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>공격력 75<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>방어력 25<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>마법 저항력 25<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>공격 속도 45%<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>이동 속도 20%<> 및 <#6aff55ff>흡혈 40%<>를 얻습니다."
+        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
+        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
+        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
+        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "bo_league_champions_viktor": {
         "name": "빅토르",
@@ -66,10 +66,10 @@
       },
       "test_mod_aatrox": {
         "name": "아트록스",
-        "attack": "무거운 검으로 대상을 공격해 <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>공격력의 100%<>만큼 <#ff9028ff>물리 피해<>를 입힙니다.",
-        "skill": "전방으로 강력한 참격을 날려 <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>공격력의 200%<>만큼 <#ff9028ff>물리 피해<>를 입히고, 적을 <#ef5350ff>0.6초 동안 공중에 띄웁니다<>.",
-        "skill2": "적에게 돌진하고 <#ffb900ff>5.0초<> 동안 <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>방어력 50<>과 <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>마법 저항력 50<>을 얻습니다.",
-        "ult": "<#ffb900ff>10.0초<> 동안 피의 광분 상태가 되어 <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>공격력 75<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>방어력 25<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>마법 저항력 25<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>공격 속도 45%<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>이동 속도 20%<> 및 <#6aff55ff>흡혈 40%<>를 얻습니다."
+        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
+        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
+        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
+        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "test_mod_viktor": {
         "name": "빅토르",
@@ -133,10 +133,10 @@
     "description": {
       "bo_league_champions_aatrox": {
         "name": "Aatrox",
-        "attack": "Strikes the target with a heavy blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Sends a brutal cleave forward, dealing <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% attack damage<> as <#ff9028ff>physical damage<> and <#ef5350ff>knocking enemies airborne for 0.6s<>.",
-        "skill2": "Dashes to an enemy, gaining <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50 armor<> and <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50 magic resist<> for <#ffb900ff>5.0s<>.",
-        "ult": "Enters a blood-fueled frenzy for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25 armor<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25 magic resist<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45% attack speed<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>40% vamp<>."
+        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
+        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
+        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
+        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "bo_league_champions_viktor": {
         "name": "Viktor",
@@ -196,10 +196,10 @@
       },
       "test_mod_aatrox": {
         "name": "Aatrox",
-        "attack": "Strikes the target with a heavy blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Sends a brutal cleave forward, dealing <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% attack damage<> as <#ff9028ff>physical damage<> and <#ef5350ff>knocking enemies airborne for 0.6s<>.",
-        "skill2": "Dashes to an enemy, gaining <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50 armor<> and <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50 magic resist<> for <#ffb900ff>5.0s<>.",
-        "ult": "Enters a blood-fueled frenzy for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25 armor<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25 magic resist<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45% attack speed<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>40% vamp<>."
+        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
+        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
+        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
+        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "test_mod_viktor": {
         "name": "Viktor",
@@ -263,10 +263,10 @@
     "description": {
       "bo_league_champions_aatrox": {
         "name": "Aatrox",
-        "attack": "Strikes the target with a heavy blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Sends a brutal cleave forward, dealing <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% attack damage<> as <#ff9028ff>physical damage<> and <#ef5350ff>knocking enemies airborne for 0.6s<>.",
-        "skill2": "Dashes to an enemy, gaining <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50 armor<> and <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50 magic resist<> for <#ffb900ff>5.0s<>.",
-        "ult": "Enters a blood-fueled frenzy for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25 armor<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25 magic resist<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45% attack speed<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>40% vamp<>."
+        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
+        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
+        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
+        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "bo_league_champions_viktor": {
         "name": "Viktor",
@@ -326,10 +326,10 @@
       },
       "test_mod_aatrox": {
         "name": "Aatrox",
-        "attack": "Strikes the target with a heavy blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Sends a brutal cleave forward, dealing <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% attack damage<> as <#ff9028ff>physical damage<> and <#ef5350ff>knocking enemies airborne for 0.6s<>.",
-        "skill2": "Dashes to an enemy, gaining <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50 armor<> and <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50 magic resist<> for <#ffb900ff>5.0s<>.",
-        "ult": "Enters a blood-fueled frenzy for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25 armor<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25 magic resist<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45% attack speed<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>40% vamp<>."
+        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
+        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
+        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
+        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "test_mod_viktor": {
         "name": "Viktor",
@@ -393,10 +393,10 @@
     "description": {
       "bo_league_champions_aatrox": {
         "name": "Aatrox",
-        "attack": "Trifft das Ziel mit einer schweren Klinge und verursacht <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% Angriffsschaden<> als <#ff9028ff>physischen Schaden<>.",
-        "skill": "Schickt einen brutalen Hieb nach vorne, der <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% Angriffsschaden<> als <#ff9028ff>physischen Schaden<> verursacht und Gegner <#ef5350ff>0.6s lang hochschleudert<>.",
-        "skill2": "Stürmt zu einem Gegner und erhält <#ffb900ff>5.0s<> lang <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50 Rüstung<> und <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50 Magieresistenz<>.",
-        "ult": "Verfällt <#ffb900ff>10.0s<> lang in blutgetriebene Raserei und erhält <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 Angriffsschaden<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25 Rüstung<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25 Magieresistenz<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45% Angriffstempo<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% Lauftempo<> und <#6aff55ff>40% Lebensraub<>."
+        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
+        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
+        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
+        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "bo_league_champions_viktor": {
         "name": "Viktor",
@@ -456,10 +456,10 @@
       },
       "test_mod_aatrox": {
         "name": "Aatrox",
-        "attack": "Trifft das Ziel mit einer schweren Klinge und verursacht <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% Angriffsschaden<> als <#ff9028ff>physischen Schaden<>.",
-        "skill": "Schickt einen brutalen Hieb nach vorne, der <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% Angriffsschaden<> als <#ff9028ff>physischen Schaden<> verursacht und Gegner <#ef5350ff>0.6s lang hochschleudert<>.",
-        "skill2": "Stürmt zu einem Gegner und erhält <#ffb900ff>5.0s<> lang <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50 Rüstung<> und <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50 Magieresistenz<>.",
-        "ult": "Verfällt <#ffb900ff>10.0s<> lang in blutgetriebene Raserei und erhält <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 Angriffsschaden<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25 Rüstung<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25 Magieresistenz<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45% Angriffstempo<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% Lauftempo<> und <#6aff55ff>40% Lebensraub<>."
+        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
+        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
+        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
+        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "test_mod_viktor": {
         "name": "Viktor",
@@ -523,10 +523,10 @@
     "description": {
       "bo_league_champions_aatrox": {
         "name": "Aatrox",
-        "attack": "Chém mục tiêu bằng lưỡi kiếm nặng, gây <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% sức mạnh công kích<> thành <#ff9028ff>sát thương vật lý<>.",
-        "skill": "Vung một nhát chém tàn bạo về phía trước, gây <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% sức mạnh công kích<> thành <#ff9028ff>sát thương vật lý<> và <#ef5350ff>hất tung kẻ địch trong 0.6 giây<>.",
-        "skill2": "Lao tới một kẻ địch, nhận <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50 giáp<> và <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50 kháng phép<> trong <#ffb900ff>5.0 giây<>.",
-        "ult": "Rơi vào cơn cuồng nộ khát máu trong <#ffb900ff>10.0 giây<>, nhận <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 sức mạnh công kích<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25 giáp<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25 kháng phép<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45% tốc độ đánh<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% tốc độ di chuyển<> và <#6aff55ff>40% hút máu<>."
+        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
+        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
+        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
+        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "bo_league_champions_viktor": {
         "name": "Viktor",
@@ -586,10 +586,10 @@
       },
       "test_mod_aatrox": {
         "name": "Aatrox",
-        "attack": "Chém mục tiêu bằng lưỡi kiếm nặng, gây <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% sức mạnh công kích<> thành <#ff9028ff>sát thương vật lý<>.",
-        "skill": "Vung một nhát chém tàn bạo về phía trước, gây <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% sức mạnh công kích<> thành <#ff9028ff>sát thương vật lý<> và <#ef5350ff>hất tung kẻ địch trong 0.6 giây<>.",
-        "skill2": "Lao tới một kẻ địch, nhận <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50 giáp<> và <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50 kháng phép<> trong <#ffb900ff>5.0 giây<>.",
-        "ult": "Rơi vào cơn cuồng nộ khát máu trong <#ffb900ff>10.0 giây<>, nhận <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 sức mạnh công kích<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25 giáp<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25 kháng phép<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45% tốc độ đánh<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% tốc độ di chuyển<> và <#6aff55ff>40% hút máu<>."
+        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
+        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
+        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
+        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "test_mod_viktor": {
         "name": "Viktor",
@@ -653,10 +653,10 @@
     "description": {
       "bo_league_champions_aatrox": {
         "name": "Aatrox",
-        "attack": "Golpeia o alvo com uma lâmina pesada, causando <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% do dano de ataque<> como <#ff9028ff>dano físico<>.",
-        "skill": "Envia um corte brutal para a frente, causando <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% do dano de ataque<> como <#ff9028ff>dano físico<> e <#ef5350ff>arremessando inimigos ao ar por 0.6s<>.",
-        "skill2": "Avança até um inimigo, recebendo <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50 de armadura<> e <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50 de resistência mágica<> por <#ffb900ff>5.0s<>.",
-        "ult": "Entra em um frenesi sanguinário por <#ffb900ff>10.0s<>, recebendo <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 de dano de ataque<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25 de armadura<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25 de resistência mágica<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45% de velocidade de ataque<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% de velocidade de movimento<> e <#6aff55ff>40% de vampirismo<>."
+        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
+        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
+        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
+        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "bo_league_champions_viktor": {
         "name": "Viktor",
@@ -716,10 +716,10 @@
       },
       "test_mod_aatrox": {
         "name": "Aatrox",
-        "attack": "Golpeia o alvo com uma lâmina pesada, causando <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% do dano de ataque<> como <#ff9028ff>dano físico<>.",
-        "skill": "Envia um corte brutal para a frente, causando <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% do dano de ataque<> como <#ff9028ff>dano físico<> e <#ef5350ff>arremessando inimigos ao ar por 0.6s<>.",
-        "skill2": "Avança até um inimigo, recebendo <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50 de armadura<> e <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50 de resistência mágica<> por <#ffb900ff>5.0s<>.",
-        "ult": "Entra em um frenesi sanguinário por <#ffb900ff>10.0s<>, recebendo <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 de dano de ataque<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25 de armadura<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25 de resistência mágica<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45% de velocidade de ataque<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% de velocidade de movimento<> e <#6aff55ff>40% de vampirismo<>."
+        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
+        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
+        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
+        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "test_mod_viktor": {
         "name": "Viktor",
@@ -783,10 +783,10 @@
     "description": {
       "bo_league_champions_aatrox": {
         "name": "Aatrox",
-        "attack": "Strikes the target with a heavy blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Sends a brutal cleave forward, dealing <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% attack damage<> as <#ff9028ff>physical damage<> and <#ef5350ff>knocking enemies airborne for 0.6s<>.",
-        "skill2": "Dashes to an enemy, gaining <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50 armor<> and <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50 magic resist<> for <#ffb900ff>5.0s<>.",
-        "ult": "Enters a blood-fueled frenzy for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25 armor<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25 magic resist<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45% attack speed<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>40% vamp<>."
+        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
+        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
+        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
+        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "bo_league_champions_viktor": {
         "name": "Viktor",
@@ -846,10 +846,10 @@
       },
       "test_mod_aatrox": {
         "name": "Aatrox",
-        "attack": "Strikes the target with a heavy blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Sends a brutal cleave forward, dealing <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% attack damage<> as <#ff9028ff>physical damage<> and <#ef5350ff>knocking enemies airborne for 0.6s<>.",
-        "skill2": "Dashes to an enemy, gaining <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50 armor<> and <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50 magic resist<> for <#ffb900ff>5.0s<>.",
-        "ult": "Enters a blood-fueled frenzy for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25 armor<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25 magic resist<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45% attack speed<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>40% vamp<>."
+        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
+        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
+        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
+        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "test_mod_viktor": {
         "name": "Viktor",
@@ -913,10 +913,10 @@
     "description": {
       "bo_league_champions_aatrox": {
         "name": "Aatrox",
-        "attack": "Strikes the target with a heavy blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Sends a brutal cleave forward, dealing <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% attack damage<> as <#ff9028ff>physical damage<> and <#ef5350ff>knocking enemies airborne for 0.6s<>.",
-        "skill2": "Dashes to an enemy, gaining <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50 armor<> and <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50 magic resist<> for <#ffb900ff>5.0s<>.",
-        "ult": "Enters a blood-fueled frenzy for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25 armor<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25 magic resist<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45% attack speed<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>40% vamp<>."
+        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
+        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
+        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
+        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "bo_league_champions_viktor": {
         "name": "Viktor",
@@ -976,10 +976,10 @@
       },
       "test_mod_aatrox": {
         "name": "Aatrox",
-        "attack": "Strikes the target with a heavy blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Sends a brutal cleave forward, dealing <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% attack damage<> as <#ff9028ff>physical damage<> and <#ef5350ff>knocking enemies airborne for 0.6s<>.",
-        "skill2": "Dashes to an enemy, gaining <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50 armor<> and <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50 magic resist<> for <#ffb900ff>5.0s<>.",
-        "ult": "Enters a blood-fueled frenzy for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25 armor<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25 magic resist<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45% attack speed<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>40% vamp<>."
+        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
+        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
+        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
+        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "test_mod_viktor": {
         "name": "Viktor",
@@ -1042,11 +1042,11 @@
   "ru": {
     "description": {
       "bo_league_champions_aatrox": {
-        "name": "Аатрокс",
-        "attack": "Бьет цель тяжелым клинком, нанося <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% силы атаки<> в виде <#ff9028ff>физического урона<>.",
-        "skill": "Посылает вперед жестокий рассекающий удар, нанося <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% силы атаки<> в виде <#ff9028ff>физического урона<> и <#ef5350ff>подбрасывая врагов на 0.6 сек.<>.",
-        "skill2": "Совершает рывок к врагу и получает <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50 брони<> и <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50 сопротивления магии<> на <#ffb900ff>5.0 сек.<>.",
-        "ult": "Впадает в кровавое неистовство на <#ffb900ff>10.0 сек.<>, получая <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 силы атаки<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25 брони<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25 сопротивления магии<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45% скорости атаки<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% скорости передвижения<> и <#6aff55ff>40% вампиризма<>."
+        "name": "Aatrox",
+        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
+        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
+        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
+        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "bo_league_champions_viktor": {
         "name": "Виктор",
@@ -1105,11 +1105,11 @@
         "ult": "Точный залп: выпускает атаку с неограниченной дальностью в сторону врагов, нанося пораженным врагам <#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% силы атаки<> в виде <#ff9028ff>физического урона<>, плюс <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> в виде <#a974ffff>магического урона<>."
       },
       "test_mod_aatrox": {
-        "name": "Аатрокс",
-        "attack": "Бьет цель тяжелым клинком, нанося <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% силы атаки<> в виде <#ff9028ff>физического урона<>.",
-        "skill": "Посылает вперед жестокий рассекающий удар, нанося <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% силы атаки<> в виде <#ff9028ff>физического урона<> и <#ef5350ff>подбрасывая врагов на 0.6 сек.<>.",
-        "skill2": "Совершает рывок к врагу и получает <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50 брони<> и <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50 сопротивления магии<> на <#ffb900ff>5.0 сек.<>.",
-        "ult": "Впадает в кровавое неистовство на <#ffb900ff>10.0 сек.<>, получая <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 силы атаки<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25 брони<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25 сопротивления магии<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45% скорости атаки<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% скорости передвижения<> и <#6aff55ff>40% вампиризма<>."
+        "name": "Aatrox",
+        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
+        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
+        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
+        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "test_mod_viktor": {
         "name": "Виктор",
@@ -1173,10 +1173,10 @@
     "description": {
       "bo_league_champions_aatrox": {
         "name": "Aatrox",
-        "attack": "Golpea al objetivo con una espada pesada e inflige <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% de daño de ataque<> como <#ff9028ff>daño físico<>.",
-        "skill": "Lanza un tajo brutal hacia delante que inflige <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% de daño de ataque<> como <#ff9028ff>daño físico<> y <#ef5350ff>lanza por los aires a los enemigos durante 0.6 s<>.",
-        "skill2": "Se abalanza sobre un enemigo y obtiene <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50 de armadura<> y <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50 de resistencia mágica<> durante <#ffb900ff>5.0 s<>.",
-        "ult": "Entra en un frenesí sangriento durante <#ffb900ff>10.0 s<>, obtiene <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 de daño de ataque<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25 de armadura<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25 de resistencia mágica<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45% de velocidad de ataque<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% de velocidad de movimiento<> y <#6aff55ff>40% de vampirismo<>."
+        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
+        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
+        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
+        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "bo_league_champions_viktor": {
         "name": "Viktor",
@@ -1236,10 +1236,10 @@
       },
       "test_mod_aatrox": {
         "name": "Aatrox",
-        "attack": "Golpea al objetivo con una espada pesada e inflige <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% de daño de ataque<> como <#ff9028ff>daño físico<>.",
-        "skill": "Lanza un tajo brutal hacia delante que inflige <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% de daño de ataque<> como <#ff9028ff>daño físico<> y <#ef5350ff>lanza por los aires a los enemigos durante 0.6 s<>.",
-        "skill2": "Se abalanza sobre un enemigo y obtiene <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50 de armadura<> y <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50 de resistencia mágica<> durante <#ffb900ff>5.0 s<>.",
-        "ult": "Entra en un frenesí sangriento durante <#ffb900ff>10.0 s<>, obtiene <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 de daño de ataque<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25 de armadura<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25 de resistencia mágica<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45% de velocidad de ataque<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% de velocidad de movimiento<> y <#6aff55ff>40% de vampirismo<>."
+        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
+        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
+        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
+        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "test_mod_viktor": {
         "name": "Viktor",
@@ -1303,10 +1303,10 @@
     "description": {
       "bo_league_champions_aatrox": {
         "name": "Aatrox",
-        "attack": "Frappe la cible avec une lourde lame, infligeant <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% des dégâts d'attaque<> en <#ff9028ff>dégâts physiques<>.",
-        "skill": "Envoie un violent coup de lame vers l'avant, infligeant <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% des dégâts d'attaque<> en <#ff9028ff>dégâts physiques<> et <#ef5350ff>projetant les ennemis dans les airs pendant 0.6s<>.",
-        "skill2": "Se rue sur un ennemi et gagne <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50 d'armure<> et <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50 de résistance magique<> pendant <#ffb900ff>5.0s<>.",
-        "ult": "Entre dans une frénésie sanguinaire pendant <#ffb900ff>10.0s<>, gagnant <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 dégâts d'attaque<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25 armure<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25 résistance magique<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45% vitesse d'attaque<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% vitesse de déplacement<> et <#6aff55ff>40% vampirisme<>."
+        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
+        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
+        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
+        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "bo_league_champions_viktor": {
         "name": "Viktor",
@@ -1366,10 +1366,10 @@
       },
       "test_mod_aatrox": {
         "name": "Aatrox",
-        "attack": "Frappe la cible avec une lourde lame, infligeant <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% des dégâts d'attaque<> en <#ff9028ff>dégâts physiques<>.",
-        "skill": "Envoie un violent coup de lame vers l'avant, infligeant <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% des dégâts d'attaque<> en <#ff9028ff>dégâts physiques<> et <#ef5350ff>projetant les ennemis dans les airs pendant 0.6s<>.",
-        "skill2": "Se rue sur un ennemi et gagne <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50 d'armure<> et <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50 de résistance magique<> pendant <#ffb900ff>5.0s<>.",
-        "ult": "Entre dans une frénésie sanguinaire pendant <#ffb900ff>10.0s<>, gagnant <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 dégâts d'attaque<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25 armure<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25 résistance magique<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45% vitesse d'attaque<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% vitesse de déplacement<> et <#6aff55ff>40% vampirisme<>."
+        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
+        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
+        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
+        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "test_mod_viktor": {
         "name": "Viktor",
@@ -1433,10 +1433,10 @@
     "description": {
       "bo_league_champions_aatrox": {
         "name": "亚托克斯",
-        "attack": "使用巨剑攻击目标，造成<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力的100%<>的<#ff9028ff>物理伤害<>。",
-        "skill": "向前方挥出一记凶猛的横扫，造成<#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力的200%<>的<#ff9028ff>物理伤害<>，并<#ef5350ff>将敌人击飞0.6秒<>。",
-        "skill2": "冲向一名敌人，在<#ffb900ff>5.0秒<>内获得<i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50点护甲<>和<i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50点魔法抗性<>。",
-        "ult": "进入血怒状态，持续<#ffb900ff>10.0秒<>，获得<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75点攻击力<>、<i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25点护甲<>、<i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25点魔法抗性<>、<i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45%攻击速度<>、<i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20%移动速度<>以及<#6aff55ff>40%吸血<>。"
+        "attack": "赐死剑气：挥动暗裔巨剑攻击目标，造成<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力的100%<>的<#ff9028ff>物理伤害<>，并回复少量生命值。",
+        "skill": "Q - 暗裔利刃：向前连续挥出三段剑击，造成多次<#ff9028ff>物理伤害<>。第三段伤害更高，并将敌人<#ef5350ff>击飞0.5秒<>。造成伤害时会触发暗影冲决的治疗。",
+        "skill2": "W - 恶火束链：向前射出恶魔锁链，命中第一名敌方英雄时造成伤害并<#ffb900ff>减速<>。短暂延迟后锁链再次收紧，造成额外伤害并短暂拖拽/控制路径中的敌人。",
+        "ult": "R - 大灭：进入恶魔形态<#ffb900ff>10.0秒<>，获得<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75攻击力<>、<i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20%移动速度<>和<#6aff55ff>50%全能吸血<>。施放时短暂恐惧附近敌人。"
       },
       "bo_league_champions_viktor": {
         "name": "奥术先驱",
@@ -1496,10 +1496,10 @@
       },
       "test_mod_aatrox": {
         "name": "亚托克斯",
-        "attack": "使用巨剑攻击目标，造成<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力的100%<>的<#ff9028ff>物理伤害<>。",
-        "skill": "向前方挥出一记凶猛的横扫，造成<#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力的200%<>的<#ff9028ff>物理伤害<>，并<#ef5350ff>将敌人击飞0.6秒<>。",
-        "skill2": "冲向一名敌人，在<#ffb900ff>5.0秒<>内获得<i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50点护甲<>和<i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50点魔法抗性<>。",
-        "ult": "进入血怒状态，持续<#ffb900ff>10.0秒<>，获得<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75点攻击力<>、<i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25点护甲<>、<i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25点魔法抗性<>、<i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45%攻击速度<>、<i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20%移动速度<>以及<#6aff55ff>40%吸血<>。"
+        "attack": "赐死剑气：挥动暗裔巨剑攻击目标，造成<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力的100%<>的<#ff9028ff>物理伤害<>，并回复少量生命值。",
+        "skill": "Q - 暗裔利刃：向前连续挥出三段剑击，造成多次<#ff9028ff>物理伤害<>。第三段伤害更高，并将敌人<#ef5350ff>击飞0.5秒<>。造成伤害时会触发暗影冲决的治疗。",
+        "skill2": "W - 恶火束链：向前射出恶魔锁链，命中第一名敌方英雄时造成伤害并<#ffb900ff>减速<>。短暂延迟后锁链再次收紧，造成额外伤害并短暂拖拽/控制路径中的敌人。",
+        "ult": "R - 大灭：进入恶魔形态<#ffb900ff>10.0秒<>，获得<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75攻击力<>、<i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20%移动速度<>和<#6aff55ff>50%全能吸血<>。施放时短暂恐惧附近敌人。"
       },
       "test_mod_viktor": {
         "name": "奥术先驱",
@@ -1562,11 +1562,11 @@
   "zh-hant": {
     "description": {
       "bo_league_champions_aatrox": {
-        "name": "厄薩斯",
-        "attack": "使用巨劍攻擊目標，造成<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力的100%<>的<#ff9028ff>物理傷害<>。",
-        "skill": "向前方揮出一記兇猛的橫掃，造成<#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力的200%<>的<#ff9028ff>物理傷害<>，並<#ef5350ff>將敵人擊飛0.6秒<>。",
-        "skill2": "衝向一名敵人，在<#ffb900ff>5.0秒<>內獲得<i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50點護甲<>和<i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50點魔法抗性<>。",
-        "ult": "進入血怒狀態，持續<#ffb900ff>10.0秒<>，獲得<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75點攻擊力<>、<i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25點護甲<>、<i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25點魔法抗性<>、<i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45%攻擊速度<>、<i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20%移動速度<>以及<#6aff55ff>40%吸血<>。"
+        "name": "亞托克斯",
+        "attack": "賜死劍氣：揮動暗裔巨劍攻擊目標，造成<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力的100%<>的<#ff9028ff>物理傷害<>，並回復少量生命值。",
+        "skill": "Q - 冥血邪劍：向前連續揮出三段劍擊，造成多次<#ff9028ff>物理傷害<>。第三段傷害更高，並將敵人<#ef5350ff>擊飛0.5秒<>。造成傷害時會觸發冥血衝刺的治療。",
+        "skill2": "W - 惡火束鏈：向前射出惡魔鎖鏈，命中第一名敵方英雄時造成傷害並<#ffb900ff>減速<>。短暫延遲後鎖鏈再次收緊，造成額外傷害並短暫拖拽/控制路徑中的敵人。",
+        "ult": "R - World Ender：進入惡魔形態<#ffb900ff>10.0秒<>，獲得<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75攻擊力<>、<i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20%移動速度<>和<#6aff55ff>50%全能吸血<>。施放時短暫恐懼附近敵人。"
       },
       "bo_league_champions_viktor": {
         "name": "奧術先驅",
@@ -1625,11 +1625,11 @@
         "ult": "精準彈幕：向敵人方向發射無限距離攻擊，對命中的敵人造成<#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力的110%<>的<#ff9028ff>物理傷害<>，並額外造成<i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>魔法攻擊的70%<>的<#a974ffff>魔法傷害<>。"
       },
       "test_mod_aatrox": {
-        "name": "厄薩斯",
-        "attack": "使用巨劍攻擊目標，造成<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力的100%<>的<#ff9028ff>物理傷害<>。",
-        "skill": "向前方揮出一記兇猛的橫掃，造成<#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力的200%<>的<#ff9028ff>物理傷害<>，並<#ef5350ff>將敵人擊飛0.6秒<>。",
-        "skill2": "衝向一名敵人，在<#ffb900ff>5.0秒<>內獲得<i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50點護甲<>和<i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50點魔法抗性<>。",
-        "ult": "進入血怒狀態，持續<#ffb900ff>10.0秒<>，獲得<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75點攻擊力<>、<i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25點護甲<>、<i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25點魔法抗性<>、<i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45%攻擊速度<>、<i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20%移動速度<>以及<#6aff55ff>40%吸血<>。"
+        "name": "亞托克斯",
+        "attack": "賜死劍氣：揮動暗裔巨劍攻擊目標，造成<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力的100%<>的<#ff9028ff>物理傷害<>，並回復少量生命值。",
+        "skill": "Q - 冥血邪劍：向前連續揮出三段劍擊，造成多次<#ff9028ff>物理傷害<>。第三段傷害更高，並將敵人<#ef5350ff>擊飛0.5秒<>。造成傷害時會觸發冥血衝刺的治療。",
+        "skill2": "W - 惡火束鏈：向前射出惡魔鎖鏈，命中第一名敵方英雄時造成傷害並<#ffb900ff>減速<>。短暫延遲後鎖鏈再次收緊，造成額外傷害並短暫拖拽/控制路徑中的敵人。",
+        "ult": "R - World Ender：進入惡魔形態<#ffb900ff>10.0秒<>，獲得<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75攻擊力<>、<i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20%移動速度<>和<#6aff55ff>50%全能吸血<>。施放時短暫恐懼附近敵人。"
       },
       "test_mod_viktor": {
         "name": "奧術先驅",
@@ -1693,10 +1693,10 @@
     "description": {
       "bo_league_champions_aatrox": {
         "name": "Aatrox",
-        "attack": "Strikes the target with a heavy blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Sends a brutal cleave forward, dealing <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% attack damage<> as <#ff9028ff>physical damage<> and <#ef5350ff>knocking enemies airborne for 0.6s<>.",
-        "skill2": "Dashes to an enemy, gaining <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50 armor<> and <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50 magic resist<> for <#ffb900ff>5.0s<>.",
-        "ult": "Enters a blood-fueled frenzy for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25 armor<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25 magic resist<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45% attack speed<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>40% vamp<>."
+        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
+        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
+        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
+        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "bo_league_champions_viktor": {
         "name": "Viktor",
@@ -1756,10 +1756,10 @@
       },
       "test_mod_aatrox": {
         "name": "Aatrox",
-        "attack": "Strikes the target with a heavy blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Sends a brutal cleave forward, dealing <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% attack damage<> as <#ff9028ff>physical damage<> and <#ef5350ff>knocking enemies airborne for 0.6s<>.",
-        "skill2": "Dashes to an enemy, gaining <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50 armor<> and <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50 magic resist<> for <#ffb900ff>5.0s<>.",
-        "ult": "Enters a blood-fueled frenzy for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25 armor<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25 magic resist<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45% attack speed<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>40% vamp<>."
+        "attack": "Deathbringer Stance: strikes with the Darkin blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<> and restoring a small amount of health.",
+        "skill": "Q - The Darkin Blade: swings three times in a line, dealing repeated <#ff9028ff>physical damage<>. The final strike deals heavier damage and <#ef5350ff>knocks enemies airborne for 0.5s<>. Damage dealt also triggers Umbral Dash healing.",
+        "skill2": "W - Infernal Chains: launches a demonic chain forward, damaging and <#ffb900ff>slowing<> the first enemy champion hit. After a short delay the chain snaps again, dealing more damage and briefly dragging/locking enemies caught in the path.",
+        "ult": "R - World Ender: unleashes demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "test_mod_viktor": {
         "name": "Viktor",
