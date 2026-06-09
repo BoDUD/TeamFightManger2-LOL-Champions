@@ -4,7 +4,7 @@
   "name": "Aatrox, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz & Ezreal",
   "author": "silverbear",
   "version": "0.7.7",
-  "description": "Expand Teamfight Manager 2 with Aatrox, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. Version 0.7.7 adds Ezreal as a ranged AD champion and expands localization coverage.",
+  "description": "Expand Teamfight Manager 2 with Aatrox, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This branch rebuilds Aatrox's visual assets from the design-book direction while keeping champion logic, timings, paths, and sound event names stable.",
   "last_updated": "2026-06-09",
   "dependencies": [
     {

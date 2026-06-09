@@ -13,3 +13,15 @@ Steam Workshop snapshot for the Teamfight Manager 2 mod:
 This repository mirrors the subscribed Workshop package layout so it can be copied into a Teamfight Manager 2 mod folder directly. Core files are `mod.mod_info`, `mod.override_info`, `champion/`, `aseprite_resources/`, `icons/`, `sound/`, `style/`, and `text/`.
 
 Workshop description and changelog snapshots are kept in `WORKSHOP_DESCRIPTION_0.7.7.txt` and `WORKSHOP_CHANGE_NOTE_0.7.7.txt`.
+
+## Aatrox Design Rework
+
+This branch rebuilds Aatrox's visual assets from the design-book direction while preserving the existing `test_mod_aatrox` id, data paths, skill logic, timings, ranges, cooldowns, and sound event names.
+
+Rebuild the Aatrox visual assets with:
+
+```powershell
+python tools\build_aatrox_design_rework_assets.py
+```
+
+The build refreshes the Aatrox actor sheet, Q ground-crack impact, World Ender aura, E dash body read, and Q/E/R icons. Review notes are in `AATROX_DESIGN_REWORK_QA.md`.
