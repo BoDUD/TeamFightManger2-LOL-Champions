@@ -1,0 +1,229 @@
+{
+  "id": "test_mod_aatrox",
+  "category": "Melee",
+  "tags": [
+    "AD",
+    "Melee",
+    "Tank",
+    "CC"
+  ],
+  "sprite": "asset/test_mod/aseprite_resources/champions/aatrox",
+  "anim_prefix": "",
+  "skill_icons": [
+    "asset/test_mod/icons/aatrox_skill",
+    "asset/test_mod/icons/aatrox_skill2",
+    "asset/test_mod/icons/aatrox_ult"
+  ],
+  "stat": {
+    "attack": 80,
+    "magic_power": 0,
+    "hp": 950,
+    "defence": 30,
+    "magic_resistance": 20,
+    "move_speed": 1000,
+    "hp_regen": 6,
+    "stack": 0,
+    "crit_chance": 0
+  },
+  "growth": {
+    "attack": 30,
+    "magic_power": 0,
+    "hp": 120,
+    "defence": 7,
+    "magic_resistance": 4,
+    "move_speed": 12,
+    "hp_regen": 2,
+    "stack": 0,
+    "crit_chance": 0
+  },
+  "attack": {
+    "action_name": "attack",
+    "description": "#asset/base/text/champion?description.test_mod_aatrox.attack",
+    "duration": 24,
+    "cooltime": 66,
+    "start_timing": 14,
+    "cancelable": true,
+    "range": 30000,
+    "casting_type": "Targeting",
+    "casting_target": "Enemy",
+    "attack_type": "BaseAttack",
+    "effect": {
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "Sfx",
+          "name": "test_mod_aatrox_attack_cast"
+        },
+        {
+          "type": "Attack",
+          "damage": 0,
+          "attack_ratio": 100
+        },
+        {
+          "type": "TargetSfx",
+          "name": "test_mod_aatrox_attack_hit"
+        }
+      ]
+    }
+  },
+  "skill": {
+    "action_name": "skill",
+    "description": "#asset/base/text/champion?description.test_mod_aatrox.skill",
+    "duration": 66,
+    "cooltime": 420,
+    "start_timing": 40,
+    "range": 32000,
+    "casting_type": "Direction",
+    "casting_target": "EnemyWithoutTower",
+    "attack_type": "Skill",
+    "effect": {
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "Sfx",
+          "name": "test_mod_aatrox_cleave_cast"
+        },
+        {
+          "type": "LineRangeProjectile",
+          "width": 11000,
+          "length": 32000,
+          "delay": 19,
+          "apply": 19,
+          "name": "test_mod_aatrox_cleave",
+          "applied_target": "EnemyWithoutTower",
+          "applied_effects": [
+            {
+              "effect": {
+                "type": "Attack",
+                "damage": 100,
+                "attack_ratio": 200
+              },
+              "casting_type": "Targeting"
+            },
+            {
+              "effect": {
+                "type": "Airborne",
+                "duration": 36
+              },
+              "casting_type": "Targeting"
+            },
+            {
+              "effect": {
+                "type": "TargetSfx",
+                "name": "test_mod_aatrox_cleave_hit"
+              },
+              "casting_type": "Targeting"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "skill2": {
+    "action_name": "skill2",
+    "description": "#asset/base/text/champion?description.test_mod_aatrox.skill2",
+    "duration": 20,
+    "cooltime": 280,
+    "start_timing": 1,
+    "cancelable": true,
+    "range": 36000,
+    "casting_type": "Targeting",
+    "casting_target": "EnemyWithoutTower",
+    "attack_type": "Skill",
+    "can_use_with_move": true,
+    "effect": {
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "Sfx",
+          "name": "test_mod_aatrox_dash_cast"
+        },
+        {
+          "type": "AddCasterBuff",
+          "buff_state": {
+            "name": "test_mod_aatrox_infernal_step_guard",
+            "duration": {
+              "Time": {
+                "tick": 300
+              }
+            },
+            "defence": 50,
+            "magic_resistance": 50
+          }
+        },
+        {
+          "type": "MoveTo",
+          "speed": 3000,
+          "range": 18000,
+          "end_effects": []
+        }
+      ]
+    }
+  },
+  "ult": {
+    "action_name": "ult",
+    "description": "#asset/base/text/champion?description.test_mod_aatrox.ult",
+    "duration": 24,
+    "cooltime": 3000,
+    "start_timing": 8,
+    "cancelable": true,
+    "range": 0,
+    "casting_type": "None",
+    "casting_target": "AllyOnlySelf",
+    "attack_type": "Skill",
+    "can_use_with_move": true,
+    "effect": {
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "Sfx",
+          "name": "test_mod_aatrox_ult_cast"
+        },
+        {
+          "type": "AddCasterBuff",
+          "buff_state": {
+            "name": "test_mod_aatrox_world_ender",
+            "duration": {
+              "Time": {
+                "tick": 600
+              }
+            },
+            "attack": 75,
+            "defence": 25,
+            "magic_resistance": 25,
+            "attack_speed_mult": 45,
+            "move_speed_mult": 20,
+            "vamp": 40
+          }
+        }
+      ]
+    }
+  },
+  "view_projectiles": [
+    {
+      "type": "Animated",
+      "name": "test_mod_aatrox_cleave",
+      "anim": "asset/test_mod/aseprite_resources/effects/aatrox_q_impact",
+      "tag": "impact",
+      "z": -1,
+      "repeat": false
+    }
+  ],
+  "view_buffs": [
+    {
+      "type": "Animated",
+      "name": "test_mod_aatrox_world_ender",
+      "anim": "asset/test_mod/aseprite_resources/effects/aatrox_ult_aura",
+      "tag": "loop",
+      "z": 3
+    }
+  ],
+  "skill_icon": {
+    "source": "asset/test_mod/aseprite_resources/UI_aseprite/test_mod_skill_icons",
+    "tags": [
+      "test_mod_aatrox_skill",
+      "test_mod_aatrox_skill2",
+      "test_mod_aatrox_ult"
+    ]
+  }
+}

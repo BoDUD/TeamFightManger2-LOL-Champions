@@ -1,0 +1,15 @@
+{
+  "id": "test_mod",
+  "mod_id": "test_mod",
+  "name": "Aatrox, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz & Ezreal",
+  "author": "silverbear",
+  "version": "0.7.7",
+  "description": "Expand Teamfight Manager 2 with Aatrox, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. Version 0.7.7 adds Ezreal as a ranged AD champion and expands localization coverage.",
+  "last_updated": "2026-06-09",
+  "dependencies": [
+    {
+      "mod_id": "base",
+      "version": ">=0.4.9"
+    }
+  ]
+}

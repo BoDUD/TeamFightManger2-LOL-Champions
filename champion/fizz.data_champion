@@ -1,0 +1,386 @@
+{
+  "id": "test_mod_fizz",
+  "category": "Assassin",
+  "tags": [
+    "AP",
+    "Melee",
+    "Magic"
+  ],
+  "sprite": "asset/test_mod/aseprite_resources/champions/fizz",
+  "anim_prefix": "",
+  "skill_icons": [
+    "asset/test_mod/icons/fizz_skill",
+    "asset/test_mod/icons/fizz_skill2",
+    "asset/test_mod/icons/fizz_ult"
+  ],
+  "stat": {
+    "attack": 78,
+    "magic_power": 55,
+    "hp": 880,
+    "defence": 24,
+    "magic_resistance": 24,
+    "move_speed": 1100,
+    "hp_regen": 3,
+    "stack": 0,
+    "crit_chance": 0
+  },
+  "growth": {
+    "attack": 8,
+    "magic_power": 20,
+    "hp": 88,
+    "defence": 5,
+    "magic_resistance": 4,
+    "move_speed": 12,
+    "hp_regen": 1,
+    "stack": 0,
+    "crit_chance": 0
+  },
+  "attack": {
+    "action_name": "attack",
+    "description": "#asset/base/text/champion?description.test_mod_fizz.attack",
+    "duration": 18,
+    "cooltime": 60,
+    "start_timing": 10,
+    "cancelable": true,
+    "range": 24000,
+    "casting_type": "Targeting",
+    "casting_target": "Enemy",
+    "attack_type": "BaseAttack",
+    "effect": {
+      "type": "SwitchByBuff",
+      "buff_name": "test_mod_fizz_seastone_ready",
+      "effect_none": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "Sfx",
+            "name": "test_mod_fizz_attack_cast"
+          },
+          {
+            "type": "ApAttack",
+            "damage": 10,
+            "attack_ratio": 100
+          }
+        ]
+      },
+      "effect_buff": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "Sfx",
+            "name": "test_mod_fizz_attack_cast"
+          },
+          {
+            "type": "ApAttack",
+            "damage": 10,
+            "attack_ratio": 100
+          },
+          {
+            "type": "AddCasted",
+            "duration": 180,
+            "period": 30,
+            "casted_type": "Poison",
+            "effects": [
+              {
+                "type": "ApAttack",
+                "damage": 3,
+                "attack_ratio": 4
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "skill": {
+    "action_name": "skill",
+    "description": "#asset/base/text/champion?description.test_mod_fizz.skill",
+    "duration": 45,
+    "cooltime": 360,
+    "start_timing": 12,
+    "cancelable": false,
+    "range": 52000,
+    "casting_type": "Targeting",
+    "casting_target": "EnemyWithoutTower",
+    "attack_type": "Skill",
+    "can_use_with_move": false,
+    "effect": {
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "Sfx",
+          "name": "test_mod_fizz_q_cast"
+        },
+        {
+          "type": "RushMoveToBack",
+          "speed": 3200,
+          "applied_effects": [
+            {
+              "type": "Combine",
+              "effects": [
+                {
+                  "type": "ApAttack",
+                  "damage": 40,
+                  "attack_ratio": 55
+                },
+                {
+                  "type": "AddCasted",
+                  "duration": 180,
+                  "period": 30,
+                  "casted_type": "Poison",
+                  "effects": [
+                    {
+                      "type": "ApAttack",
+                      "damage": 4,
+                      "attack_ratio": 5
+                    }
+                  ]
+                },
+                {
+                  "type": "AddCasterBuff",
+                  "buff_state": {
+                    "name": "test_mod_fizz_seastone_ready",
+                    "duration": {
+                      "Time": {
+                        "tick": 240
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "skill2": {
+    "action_name": "skill2",
+    "description": "#asset/base/text/champion?description.test_mod_fizz.skill2",
+    "duration": 156,
+    "cooltime": 600,
+    "start_timing": 1,
+    "cancelable": false,
+    "range": 72000,
+    "casting_type": "Direction",
+    "casting_target": "BothWithoutTower",
+    "attack_type": "Skill",
+    "can_use_with_move": false,
+    "effect": {
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "Sfx",
+          "name": "test_mod_fizz_e_cast"
+        },
+        {
+          "type": "CasterAnimation",
+          "name": "skill2",
+          "tick": 144
+        },
+        {
+          "type": "WithSelf",
+          "effects": [
+            {
+              "type": "Invisible",
+              "tick": 144
+            },
+            {
+              "type": "AddCasterBuff",
+              "buff_state": {
+                "name": "test_mod_fizz_trickster_untargetable",
+                "duration": {
+                  "Time": {
+                    "tick": 144
+                  }
+                },
+                "damaged_reduce": 100,
+                "cc_immune": true
+              }
+            }
+          ]
+        },
+        {
+          "type": "RushTime",
+          "speed": 1440,
+          "tick": 30,
+          "range": 0,
+          "casting_target": "EnemyWithoutTower",
+          "penetrate": true,
+          "applied_effects": []
+        },
+        {
+          "type": "Delayed",
+          "tick": 120,
+          "effects": [
+            {
+              "type": "RushTime",
+              "speed": 1000,
+              "tick": 14,
+              "range": 0,
+              "casting_target": "EnemyWithoutTower",
+              "penetrate": true,
+              "applied_effects": []
+            }
+          ]
+        },
+        {
+          "type": "Delayed",
+          "tick": 138,
+          "effects": [
+            {
+              "type": "RangeEffect",
+              "shape": {
+                "Circle": {
+                  "radius": 30000
+                }
+              },
+              "target": "EnemyWithoutTower",
+              "apply_type": "AroundCaster",
+              "effects": [
+                {
+                  "type": "ApAttack",
+                  "damage": 70,
+                  "attack_ratio": 65
+                },
+                {
+                  "type": "AddBuff",
+                  "buff_state": {
+                    "name": "test_mod_fizz_trickster_slow",
+                    "duration": {
+                      "Time": {
+                        "tick": 30
+                      }
+                    },
+                    "move_speed_mult": -35
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "ult": {
+    "action_name": "ult",
+    "description": "#asset/base/text/champion?description.test_mod_fizz.ult",
+    "duration": 42,
+    "cooltime": 4200,
+    "start_timing": 12,
+    "range": 130000,
+    "casting_type": "Direction",
+    "casting_target": "EnemyChampion",
+    "attack_type": "Skill",
+    "effect": {
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "Sfx",
+          "name": "test_mod_fizz_r_cast"
+        },
+        {
+          "type": "LinearProjectile",
+          "penetrate": false,
+          "speed": 2200,
+          "range": 130000,
+          "name": "test_mod_fizz_fish",
+          "shape": {
+            "Circle": {
+              "radius": 10000
+            }
+          },
+          "applied_target": "EnemyChampion",
+          "applied_effects": [
+            {
+              "effect": {
+                "type": "AddBuff",
+                "buff_state": {
+                  "name": "test_mod_fizz_chum_slow",
+                  "duration": {
+                    "Time": {
+                      "tick": 150
+                    }
+                  },
+                  "move_speed_mult": -85
+                }
+              },
+              "casting_type": "Targeting"
+            }
+          ],
+          "end_effects": [
+            {
+              "type": "ViewEffect",
+              "name": "test_mod_fizz_shark_impact"
+            },
+            {
+              "type": "RangeProjectile",
+              "name": "test_mod_fizz_shark_hitbox",
+              "delay": 30,
+              "apply": 24,
+              "shape": {
+                "Circle": {
+                  "radius": 50000
+                }
+              },
+              "applied_target": "EnemyWithoutTower",
+              "applied_effects": [
+                {
+                  "effect": {
+                    "type": "Combine",
+                    "effects": [
+                      {
+                        "type": "ApAttack",
+                        "damage": 240,
+                        "attack_ratio": 140
+                      },
+                      {
+                        "type": "Airborne",
+                        "duration": 45
+                      },
+                      {
+                        "type": "Stun",
+                        "duration": 15
+                      }
+                    ]
+                  },
+                  "casting_type": "Targeting"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "cancelable": false,
+    "can_use_with_move": false
+  },
+  "view_projectiles": [
+    {
+      "type": "Animated",
+      "name": "test_mod_fizz_fish",
+      "anim": "asset/test_mod/aseprite_resources/effects/fizz_ult",
+      "tag": "fish",
+      "z": -1,
+      "repeat": true
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_fizz_shark_hitbox",
+      "anim": "asset/test_mod/aseprite_resources/effects/fizz_ult",
+      "tag": "shark",
+      "z": -1,
+      "repeat": false
+    }
+  ],
+  "view_effects": [
+    {
+      "type": "Animation",
+      "name": "test_mod_fizz_shark_impact",
+      "anim": "asset/test_mod/aseprite_resources/effects/fizz_ult",
+      "tag": "shark",
+      "z": -1,
+      "is_follow": false
+    }
+  ]
+}

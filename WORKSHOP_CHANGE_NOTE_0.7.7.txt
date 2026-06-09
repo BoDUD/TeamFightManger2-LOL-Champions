@@ -1,0 +1,11 @@
+Changelog
+[0.7.7] - 2026-06-09
+
+New Champion:
+- Added Ezreal as a ranged AD poke champion.
+- Added Mystic Shot, Arcane Shift, and Trueshot Barrage.
+- Added Ezreal champion sprite, ability icons, projectile effects, and cast sounds.
+
+Localization:
+- Added full German, Spanish, Russian, Brazilian Portuguese, French, Vietnamese, Korean, Simplified Chinese, and Traditional Chinese champion text coverage for the active pack.
+- Japanese, Dutch, Polish, and Turkish currently use English fallback text.

@@ -1,0 +1,719 @@
+{
+  "id": "test_mod_azir",
+  "category": "Magician",
+  "tags": [
+    "AP",
+    "Range",
+    "Magic"
+  ],
+  "sprite": "asset/test_mod/aseprite_resources/champions/azir",
+  "anim_prefix": "",
+  "skill_icons": [
+    "asset/test_mod/icons/azir_skill",
+    "asset/test_mod/icons/azir_skill2",
+    "asset/test_mod/icons/azir_ult"
+  ],
+  "stat": {
+    "attack": 45,
+    "magic_power": 40,
+    "hp": 720,
+    "defence": 14,
+    "magic_resistance": 30,
+    "move_speed": 900,
+    "hp_regen": 2,
+    "stack": 0,
+    "crit_chance": 0
+  },
+  "growth": {
+    "attack": 3,
+    "magic_power": 25,
+    "hp": 70,
+    "defence": 3,
+    "magic_resistance": 4,
+    "move_speed": 0,
+    "hp_regen": 1,
+    "stack": 0,
+    "crit_chance": 0
+  },
+  "attack": {
+    "action_name": "attack",
+    "description": "#asset/base/text/champion?description.test_mod_azir.attack",
+    "duration": 24,
+    "cooltime": 66,
+    "start_timing": 14,
+    "cancelable": true,
+    "range": 50000,
+    "casting_type": "Targeting",
+    "casting_target": "Enemy",
+    "attack_type": "BaseAttack",
+    "effect": {
+      "type": "SwitchByBuff",
+      "buff_name": "test_mod_azir_aa_3",
+      "effect_none": {
+        "type": "SwitchByBuff",
+        "buff_name": "test_mod_azir_aa_2",
+        "effect_none": {
+          "type": "SwitchByBuff",
+          "buff_name": "test_mod_azir_aa_1",
+          "effect_none": {
+            "type": "Combine",
+            "effects": [
+              {
+                "type": "Sfx",
+                "name": "test_mod_azir_attack_cast"
+              },
+              {
+                "type": "ApAttack",
+                "damage": 0,
+                "attack_ratio": 75
+              },
+              {
+                "type": "RemoveCasterBuff",
+                "name": "test_mod_azir_aa_1"
+              },
+              {
+                "type": "RemoveCasterBuff",
+                "name": "test_mod_azir_aa_2"
+              },
+              {
+                "type": "RemoveCasterBuff",
+                "name": "test_mod_azir_aa_3"
+              },
+              {
+                "type": "AddCasterBuff",
+                "buff_state": {
+                  "name": "test_mod_azir_aa_1"
+                }
+              }
+            ]
+          },
+          "effect_buff": {
+            "type": "Combine",
+            "effects": [
+              {
+                "type": "Sfx",
+                "name": "test_mod_azir_attack_cast"
+              },
+              {
+                "type": "ApAttack",
+                "damage": 0,
+                "attack_ratio": 75
+              },
+              {
+                "type": "RemoveCasterBuff",
+                "name": "test_mod_azir_aa_1"
+              },
+              {
+                "type": "RemoveCasterBuff",
+                "name": "test_mod_azir_aa_2"
+              },
+              {
+                "type": "RemoveCasterBuff",
+                "name": "test_mod_azir_aa_3"
+              },
+              {
+                "type": "AddCasterBuff",
+                "buff_state": {
+                  "name": "test_mod_azir_aa_2"
+                }
+              }
+            ]
+          }
+        },
+        "effect_buff": {
+          "type": "Combine",
+          "effects": [
+            {
+              "type": "Sfx",
+              "name": "test_mod_azir_attack_cast"
+            },
+            {
+              "type": "ApAttack",
+              "damage": 0,
+              "attack_ratio": 75
+            },
+            {
+              "type": "RemoveCasterBuff",
+              "name": "test_mod_azir_aa_1"
+            },
+            {
+              "type": "RemoveCasterBuff",
+              "name": "test_mod_azir_aa_2"
+            },
+            {
+              "type": "RemoveCasterBuff",
+              "name": "test_mod_azir_aa_3"
+            },
+            {
+              "type": "AddCasterBuff",
+              "buff_state": {
+                "name": "test_mod_azir_aa_3"
+              }
+            }
+          ]
+        }
+      },
+      "effect_buff": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "Sfx",
+            "name": "test_mod_azir_attack_cast"
+          },
+          {
+            "type": "ApAttack",
+            "damage": 0,
+            "attack_ratio": 75
+          },
+          {
+            "type": "RemoveCasterBuff",
+            "name": "test_mod_azir_aa_1"
+          },
+          {
+            "type": "RemoveCasterBuff",
+            "name": "test_mod_azir_aa_2"
+          },
+          {
+            "type": "RemoveCasterBuff",
+            "name": "test_mod_azir_aa_3"
+          },
+          {
+            "type": "Sfx",
+            "name": "test_mod_azir_soldier_spawn_auto_cast"
+          },
+          {
+            "type": "ViewEffect",
+            "name": "test_mod_azir_soldier_spawn"
+          },
+          {
+            "type": "ViewEffect",
+            "name": "test_mod_azir_soldier_zone_auto"
+          },
+          {
+            "type": "RangePeriodProjectile",
+            "name": "test_mod_azir_soldier_zone_auto",
+            "tick": 130,
+            "period": 30,
+            "first_delay": 38,
+            "shape": {
+              "Circle": {
+                "radius": 28000
+              }
+            },
+            "applied_target": "EnemyWithoutTower",
+            "applied_effects": [
+              {
+                "effect": {
+                  "type": "ApAttack",
+                  "damage": 5,
+                  "attack_ratio": 25
+                },
+                "casting_type": "Targeting"
+              },
+              {
+                "effect": {
+                  "type": "AddBuff",
+                  "buff_state": {
+                    "name": "test_mod_azir_soldier_zone_slow",
+                    "duration": {
+                      "Time": {
+                        "tick": 20
+                      }
+                    },
+                    "move_speed_mult": -20
+                  }
+                },
+                "casting_type": "Targeting"
+              }
+            ],
+            "end_effects": []
+          },
+          {
+            "type": "RangePeriodProjectile",
+            "name": "test_mod_azir_soldier_zone_auto_champion_bonus",
+            "tick": 130,
+            "period": 30,
+            "first_delay": 38,
+            "shape": {
+              "Circle": {
+                "radius": 28000
+              }
+            },
+            "applied_target": "EnemyChampion",
+            "applied_effects": [
+              {
+                "effect": {
+                  "type": "ApAttack",
+                  "damage": 10,
+                  "attack_ratio": 45
+                },
+                "casting_type": "Targeting"
+              }
+            ],
+            "end_effects": []
+          },
+          {
+            "type": "Delayed",
+            "tick": 130,
+            "effects": [
+              {
+                "type": "ViewEffect",
+                "name": "test_mod_azir_soldier_death"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "skill": {
+    "action_name": "skill",
+    "description": "#asset/base/text/champion?description.test_mod_azir.skill",
+    "duration": 24,
+    "cooltime": 300,
+    "start_timing": 10,
+    "range": 77000,
+    "casting_type": "Position",
+    "casting_target": "EnemyWithoutTower",
+    "attack_type": "Skill",
+    "effect": {
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "Sfx",
+          "name": "test_mod_azir_w_cast"
+        },
+        {
+          "type": "ParabolicProjectile",
+          "name": "test_mod_azir_soldier_travel",
+          "travel_time": 22,
+          "range": 77000,
+          "range_effect_name": "",
+          "shape": {
+            "Circle": {
+              "radius": 8000
+            }
+          },
+          "applied_target": "EnemyWithoutTower",
+          "applied_effects": [
+            {
+              "effect": {
+                "type": "ApAttack",
+                "damage": 30,
+                "attack_ratio": 60
+              },
+              "casting_type": "Targeting"
+            }
+          ],
+          "end_effects": [
+            {
+              "type": "ViewEffect",
+              "name": "test_mod_azir_soldier_zone"
+            },
+            {
+              "type": "RangePeriodProjectile",
+              "name": "test_mod_azir_soldier_zone",
+              "tick": 90,
+              "period": 30,
+              "first_delay": 15,
+              "shape": {
+                "Circle": {
+                  "radius": 28000
+                }
+              },
+              "applied_target": "EnemyWithoutTower",
+              "applied_effects": [
+                {
+                  "effect": {
+                    "type": "ApAttack",
+                    "damage": 5,
+                    "attack_ratio": 25
+                  },
+                  "casting_type": "Targeting"
+                },
+                {
+                  "effect": {
+                    "type": "AddBuff",
+                    "buff_state": {
+                      "name": "test_mod_azir_soldier_zone_slow",
+                      "duration": {
+                        "Time": {
+                          "tick": 20
+                        }
+                      },
+                      "move_speed_mult": -20
+                    }
+                  },
+                  "casting_type": "Targeting"
+                }
+              ],
+              "end_effects": []
+            },
+            {
+              "type": "RangePeriodProjectile",
+              "name": "test_mod_azir_soldier_zone_champion_bonus",
+              "tick": 90,
+              "period": 30,
+              "first_delay": 15,
+              "shape": {
+                "Circle": {
+                  "radius": 28000
+                }
+              },
+              "applied_target": "EnemyChampion",
+              "applied_effects": [
+                {
+                  "effect": {
+                    "type": "ApAttack",
+                    "damage": 10,
+                    "attack_ratio": 45
+                  },
+                  "casting_type": "Targeting"
+                }
+              ],
+              "end_effects": []
+            },
+            {
+              "type": "Delayed",
+              "tick": 90,
+              "effects": [
+                {
+                  "type": "ViewEffect",
+                  "name": "test_mod_azir_soldier_death"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "skill2": {
+    "action_name": "skill2",
+    "description": "#asset/base/text/champion?description.test_mod_azir.skill2",
+    "duration": 30,
+    "cooltime": 600,
+    "start_timing": 1,
+    "cancelable": false,
+    "range": 64400,
+    "casting_type": "Direction",
+    "casting_target": "AllyOnlySelf",
+    "attack_type": "Skill",
+    "can_use_with_move": false,
+    "effect": {
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "Sfx",
+          "name": "test_mod_azir_e_cast"
+        },
+        {
+          "type": "WithSelf",
+          "effects": [
+            {
+              "type": "Shield",
+              "amount": 70,
+              "ap_ratio": 45,
+              "tick": 180
+            }
+          ]
+        },
+        {
+          "type": "RushTime",
+          "speed": 3000,
+          "tick": 28,
+          "range": 0,
+          "casting_target": "EnemyWithoutTower",
+          "penetrate": true,
+          "applied_effects": [
+            {
+              "effect": {
+                "type": "ApAttack",
+                "damage": 40,
+                "attack_ratio": 45
+              },
+              "casting_type": "Targeting"
+            }
+          ]
+        },
+        {
+          "type": "Delayed",
+          "tick": 28,
+          "effects": [
+            {
+              "type": "CasterViewEffect",
+              "name": "test_mod_azir_soldier_zone"
+            },
+            {
+              "type": "WithSelf",
+              "effects": [
+                {
+                  "type": "RangePeriodProjectile",
+                  "name": "test_mod_azir_soldier_zone",
+                  "tick": 90,
+                  "period": 30,
+                  "first_delay": 15,
+                  "shape": {
+                    "Circle": {
+                      "radius": 28000
+                    }
+                  },
+                  "applied_target": "EnemyWithoutTower",
+                  "applied_effects": [
+                    {
+                      "effect": {
+                        "type": "ApAttack",
+                        "damage": 5,
+                        "attack_ratio": 25
+                      },
+                      "casting_type": "Targeting"
+                    },
+                    {
+                      "effect": {
+                        "type": "AddBuff",
+                        "buff_state": {
+                          "name": "test_mod_azir_soldier_zone_slow",
+                          "duration": {
+                            "Time": {
+                              "tick": 20
+                            }
+                          },
+                          "move_speed_mult": -20
+                        }
+                      },
+                      "casting_type": "Targeting"
+                    }
+                  ],
+                  "end_effects": []
+                },
+                {
+                  "type": "RangePeriodProjectile",
+                  "name": "test_mod_azir_soldier_zone_champion_bonus",
+                  "tick": 90,
+                  "period": 30,
+                  "first_delay": 15,
+                  "shape": {
+                    "Circle": {
+                      "radius": 28000
+                    }
+                  },
+                  "applied_target": "EnemyChampion",
+                  "applied_effects": [
+                    {
+                      "effect": {
+                        "type": "ApAttack",
+                        "damage": 10,
+                        "attack_ratio": 45
+                      },
+                      "casting_type": "Targeting"
+                    }
+                  ],
+                  "end_effects": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "ult": {
+    "action_name": "ult",
+    "description": "#asset/base/text/champion?description.test_mod_azir.ult",
+    "duration": 48,
+    "cooltime": 3600,
+    "start_timing": 12,
+    "range": 90000,
+    "casting_type": "Direction",
+    "casting_target": "EnemyWithoutTower",
+    "attack_type": "Skill",
+    "effect": {
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "Sfx",
+          "name": "test_mod_azir_r_cast"
+        },
+        {
+          "type": "LinearProjectile",
+          "penetrate": true,
+          "speed": 3600,
+          "range": 90000,
+          "name": "test_mod_azir_soldier_wall",
+          "shape": {
+            "Circle": {
+              "radius": 18000
+            }
+          },
+          "applied_target": "EnemyWithoutTower",
+          "applied_effects": [
+            {
+              "effect": {
+                "type": "Combine",
+                "effects": [
+                  {
+                    "type": "ApAttack",
+                    "damage": 120,
+                    "attack_ratio": 100
+                  },
+                  {
+                    "type": "Knockback",
+                    "speed": 3000,
+                    "tick": 10
+                  },
+                  {
+                    "type": "Airborne",
+                    "duration": 10
+                  },
+                  {
+                    "type": "Delayed",
+                    "tick": 10,
+                    "effects": [
+                      {
+                        "type": "Stun",
+                        "duration": 30
+                      }
+                    ]
+                  }
+                ]
+              },
+              "casting_type": "Targeting"
+            }
+          ],
+          "end_effects": [
+            {
+              "type": "ViewEffect",
+              "name": "test_mod_azir_soldier_wall_linger"
+            }
+          ]
+        },
+        {
+          "type": "Delayed",
+          "tick": 25,
+          "effects": [
+            {
+              "type": "LineRangeProjectile",
+              "width": 30000,
+              "length": 90000,
+              "delay": 0,
+              "apply": 12,
+              "name": "test_mod_azir_soldier_wall_end_stun",
+              "applied_target": "EnemyWithoutTower",
+              "applied_effects": [
+                {
+                  "effect": {
+                    "type": "Stun",
+                    "duration": 30
+                  },
+                  "casting_type": "Targeting"
+                }
+              ]
+            },
+            {
+              "type": "LineRangeProjectile",
+              "width": 18000,
+              "length": 90000,
+              "delay": 0,
+              "apply": 210,
+              "name": "test_mod_azir_soldier_wall_barrier",
+              "applied_target": "EnemyWithoutTower",
+              "applied_effects": [
+                {
+                  "effect": {
+                    "type": "BlockMoveSkill",
+                    "tick": 12
+                  },
+                  "casting_type": "Targeting"
+                },
+                {
+                  "effect": {
+                    "type": "Knockback",
+                    "speed": 900,
+                    "tick": 4
+                  },
+                  "casting_type": "Targeting"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "view_projectiles": [
+    {
+      "type": "Animated",
+      "name": "test_mod_azir_soldier_travel",
+      "anim": "asset/test_mod/aseprite_resources/effects/azir_soldier_travel",
+      "tag": "projectile",
+      "z": -1,
+      "repeat": true
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_azir_soldier_wall",
+      "anim": "asset/test_mod/aseprite_resources/effects/azir_soldier_wall",
+      "tag": "wall_travel",
+      "z": -1,
+      "repeat": false
+    }
+  ],
+  "view_effects": [
+    {
+      "type": "Animation",
+      "name": "test_mod_azir_soldier_zone",
+      "anim": "asset/test_mod/aseprite_resources/effects/azir_soldier_zone",
+      "tag": "idle",
+      "z": -1,
+      "is_follow": false
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_azir_soldier_zone_auto",
+      "anim": "asset/test_mod/aseprite_resources/effects/azir_soldier_zone",
+      "tag": "idle_auto",
+      "z": -1,
+      "is_follow": false
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_azir_soldier_attack",
+      "anim": "asset/test_mod/aseprite_resources/effects/azir_soldier_attack",
+      "tag": "attack",
+      "z": -1,
+      "is_follow": false
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_azir_soldier_death",
+      "anim": "asset/test_mod/aseprite_resources/effects/azir_soldier_death",
+      "tag": "dead",
+      "z": -1,
+      "is_follow": false
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_azir_soldier_wall_linger",
+      "anim": "asset/test_mod/aseprite_resources/effects/azir_soldier_wall",
+      "tag": "wall_linger",
+      "z": -1,
+      "is_follow": false
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_azir_soldier_spawn",
+      "anim": "asset/test_mod/aseprite_resources/effects/azir_soldier_spawn",
+      "tag": "spawnSoldier",
+      "z": -1,
+      "is_follow": false
+    }
+  ],
+  "skill_icon": {
+    "source": "asset/test_mod/aseprite_resources/UI_aseprite/test_mod_azir_skill_icons",
+    "tags": [
+      "test_mod_azir_skill",
+      "test_mod_azir_skill2",
+      "test_mod_azir_ult"
+    ]
+  }
+}

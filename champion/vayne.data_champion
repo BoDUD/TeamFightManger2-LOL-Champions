@@ -1,0 +1,485 @@
+{
+  "id": "test_mod_vayne",
+  "category": "Range",
+  "tags": [
+    "AD",
+    "Range"
+  ],
+  "sprite": "asset/test_mod/aseprite_resources/champions/vayne",
+  "anim_prefix": "",
+  "stat": {
+    "attack": 82,
+    "magic_power": 0,
+    "hp": 850,
+    "defence": 18,
+    "magic_resistance": 20,
+    "move_speed": 930,
+    "hp_regen": 2,
+    "stack": 0,
+    "crit_chance": 0
+  },
+  "growth": {
+    "attack": 20,
+    "magic_power": 0,
+    "hp": 85,
+    "defence": 5,
+    "magic_resistance": 4,
+    "move_speed": 9,
+    "hp_regen": 1,
+    "stack": 0,
+    "crit_chance": 0
+  },
+  "attack": {
+    "action_name": "attack",
+    "description": "#asset/base/text/champion?description.test_mod_vayne.attack",
+    "duration": 18,
+    "cooltime": 56,
+    "start_timing": 10,
+    "cancelable": true,
+    "range": 56000,
+    "casting_type": "Targeting",
+    "casting_target": "Enemy",
+    "attack_type": "BaseAttack",
+    "effect": {
+      "type": "SwitchByBuff",
+      "buff_name": "test_mod_vayne_silver_2",
+      "effect_none": {
+        "type": "SwitchByBuff",
+        "buff_name": "test_mod_vayne_silver_1",
+        "effect_none": {
+          "type": "Combine",
+          "effects": [
+            {
+              "type": "Sfx",
+              "name": "test_mod_vayne_attack_cast"
+            },
+            {
+              "type": "RemoveCasterAnimation",
+              "name": "skill_invisible"
+            },
+            {
+              "type": "RemoveCasterAnimation",
+              "name": "run_invisible"
+            },
+            {
+              "type": "RemoveCasterBuff",
+              "name": "test_mod_vayne_invisible_visual"
+            },
+            {
+              "type": "TargetProjectile",
+              "speed": 5200,
+              "name": "test_mod_vayne_attack",
+              "applied_target": "Enemy",
+              "applied_effects": [
+                {
+                  "effect": {
+                    "type": "Combine",
+                    "effects": [
+                      {
+                        "type": "SwitchByBuff",
+                        "buff_name": "test_mod_vayne_tumble_ready",
+                        "effect_none": {
+                          "type": "Attack",
+                          "damage": 0,
+                          "attack_ratio": 100
+                        },
+                        "effect_buff": {
+                          "type": "Attack",
+                          "damage": 35,
+                          "attack_ratio": 150
+                        }
+                      },
+                      {
+                        "type": "RemoveCasterBuff",
+                        "name": "test_mod_vayne_tumble_ready"
+                      }
+                    ]
+                  },
+                  "casting_type": "Targeting"
+                }
+              ]
+            },
+            {
+              "type": "RemoveCasterBuff",
+              "name": "test_mod_vayne_silver_2"
+            },
+            {
+              "type": "AddCasterBuff",
+              "buff_state": {
+                "name": "test_mod_vayne_silver_1"
+              }
+            }
+          ]
+        },
+        "effect_buff": {
+          "type": "Combine",
+          "effects": [
+            {
+              "type": "Sfx",
+              "name": "test_mod_vayne_attack_cast"
+            },
+            {
+              "type": "RemoveCasterAnimation",
+              "name": "skill_invisible"
+            },
+            {
+              "type": "RemoveCasterAnimation",
+              "name": "run_invisible"
+            },
+            {
+              "type": "RemoveCasterBuff",
+              "name": "test_mod_vayne_invisible_visual"
+            },
+            {
+              "type": "TargetProjectile",
+              "speed": 5200,
+              "name": "test_mod_vayne_attack",
+              "applied_target": "Enemy",
+              "applied_effects": [
+                {
+                  "effect": {
+                    "type": "Combine",
+                    "effects": [
+                      {
+                        "type": "SwitchByBuff",
+                        "buff_name": "test_mod_vayne_tumble_ready",
+                        "effect_none": {
+                          "type": "Attack",
+                          "damage": 0,
+                          "attack_ratio": 100
+                        },
+                        "effect_buff": {
+                          "type": "Attack",
+                          "damage": 35,
+                          "attack_ratio": 150
+                        }
+                      },
+                      {
+                        "type": "RemoveCasterBuff",
+                        "name": "test_mod_vayne_tumble_ready"
+                      }
+                    ]
+                  },
+                  "casting_type": "Targeting"
+                }
+              ]
+            },
+            {
+              "type": "RemoveCasterBuff",
+              "name": "test_mod_vayne_silver_1"
+            },
+            {
+              "type": "AddCasterBuff",
+              "buff_state": {
+                "name": "test_mod_vayne_silver_2"
+              }
+            }
+          ]
+        }
+      },
+      "effect_buff": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "Sfx",
+            "name": "test_mod_vayne_attack_cast"
+          },
+          {
+            "type": "RemoveCasterAnimation",
+            "name": "skill_invisible"
+          },
+          {
+            "type": "RemoveCasterAnimation",
+            "name": "run_invisible"
+          },
+          {
+            "type": "RemoveCasterBuff",
+            "name": "test_mod_vayne_invisible_visual"
+          },
+          {
+            "type": "TargetProjectile",
+            "speed": 5200,
+            "name": "test_mod_vayne_silver_bolt",
+            "applied_target": "Enemy",
+            "applied_effects": [
+              {
+                "effect": {
+                  "type": "Combine",
+                  "effects": [
+                    {
+                      "type": "SwitchByBuff",
+                      "buff_name": "test_mod_vayne_tumble_ready",
+                      "effect_none": {
+                        "type": "Attack",
+                        "damage": 0,
+                        "attack_ratio": 100
+                      },
+                      "effect_buff": {
+                        "type": "Attack",
+                        "damage": 35,
+                        "attack_ratio": 150
+                      }
+                    },
+                    {
+                      "type": "FixedAttack",
+                      "damage": 30,
+                      "attack_ratio": 35,
+                      "target_hp_ratio": 4
+                    },
+                    {
+                      "type": "RemoveCasterBuff",
+                      "name": "test_mod_vayne_tumble_ready"
+                    }
+                  ]
+                },
+                "casting_type": "Targeting"
+              }
+            ]
+          },
+          {
+            "type": "RemoveCasterBuff",
+            "name": "test_mod_vayne_silver_1"
+          },
+          {
+            "type": "RemoveCasterBuff",
+            "name": "test_mod_vayne_silver_2"
+          }
+        ]
+      }
+    }
+  },
+  "skill": {
+    "action_name": "skill",
+    "description": "#asset/base/text/champion?description.test_mod_vayne.skill",
+    "duration": 24,
+    "cooltime": 420,
+    "start_timing": 1,
+    "range": 30000,
+    "casting_type": "Direction",
+    "casting_target": "AllyOnlySelf",
+    "attack_type": "Skill",
+    "effect": {
+      "type": "SwitchByBuff",
+      "buff_name": "test_mod_vayne_final_hour",
+      "effect_none": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "Sfx",
+            "name": "test_mod_vayne_tumble_cast"
+          },
+          {
+            "type": "RushTime",
+            "speed": 2400,
+            "tick": 24,
+            "range": 0,
+            "casting_target": "Enemy",
+            "penetrate": true,
+            "applied_effects": []
+          },
+          {
+            "type": "AddCasterBuff",
+            "buff_state": {
+              "name": "test_mod_vayne_tumble_ready",
+              "duration": {
+                "Time": {
+                  "tick": 180
+                }
+              }
+            }
+          }
+        ]
+      },
+      "effect_buff": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "Sfx",
+            "name": "test_mod_vayne_tumble_cast"
+          },
+          {
+            "type": "CasterAnimation",
+            "name": "skill_invisible",
+            "tick": 18
+          },
+          {
+            "type": "RushTime",
+            "speed": 3000,
+            "tick": 24,
+            "range": 0,
+            "casting_target": "Enemy",
+            "penetrate": true,
+            "applied_effects": []
+          },
+          {
+            "type": "Delayed",
+            "tick": 18,
+            "effects": [
+              {
+                "type": "WithSelf",
+                "effects": [
+                  {
+                    "type": "Invisible",
+                    "tick": 90
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "Delayed",
+            "tick": 24,
+            "effects": [
+              {
+                "type": "CasterAnimation",
+                "name": "run_invisible",
+                "tick": 12
+              },
+              {
+                "type": "RushTime",
+                "speed": 6000,
+                "tick": 8,
+                "range": 0,
+                "casting_target": "Enemy",
+                "penetrate": true,
+                "applied_effects": []
+              }
+            ]
+          },
+          {
+            "type": "Delayed",
+            "tick": 38,
+            "effects": [
+              {
+                "type": "RemoveCasterAnimation",
+                "name": "run_invisible"
+              }
+            ]
+          },
+          {
+            "type": "AddCasterBuff",
+            "buff_state": {
+              "name": "test_mod_vayne_tumble_ready",
+              "duration": {
+                "Time": {
+                  "tick": 240
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "cancelable": false,
+    "can_use_with_move": false
+  },
+  "skill2": {
+    "action_name": "skill2",
+    "description": "#asset/base/text/champion?description.test_mod_vayne.skill2",
+    "duration": 6,
+    "cooltime": 6000,
+    "start_timing": 1,
+    "range": 0,
+    "casting_type": "None",
+    "casting_target": "AllyOnlySelf",
+    "attack_type": "Skill",
+    "effect": {
+      "type": "AddCasterBuff",
+      "buff_state": {
+        "name": "test_mod_vayne_silver_bolts_passive",
+        "duration": "Permanent"
+      }
+    },
+    "cancelable": true,
+    "can_use_with_move": true
+  },
+  "ult": {
+    "action_name": "ult",
+    "description": "#asset/base/text/champion?description.test_mod_vayne.ult",
+    "duration": 18,
+    "cooltime": 3600,
+    "start_timing": 1,
+    "range": 0,
+    "casting_type": "None",
+    "casting_target": "AllyOnlySelf",
+    "attack_type": "Skill",
+    "effect": {
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "Sfx",
+          "name": "test_mod_vayne_ult_cast"
+        },
+        {
+          "type": "AddCasterBuff",
+          "buff_state": {
+            "name": "test_mod_vayne_final_hour",
+            "duration": {
+              "Time": {
+                "tick": 600
+              }
+            },
+            "attack": 50,
+            "move_speed_mult": 20,
+            "attack_speed_mult": 20,
+            "skill_cooldown_mult": 15
+          }
+        }
+      ]
+    },
+    "cancelable": true,
+    "can_use_with_move": true
+  },
+  "view_projectiles": [
+    {
+      "type": "Animated",
+      "name": "test_mod_vayne_attack",
+      "anim": "asset/test_mod/aseprite_resources/effects/vayne_attack_bolt",
+      "tag": "projectile",
+      "z": 1,
+      "repeat": true
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_vayne_silver_bolt",
+      "anim": "asset/test_mod/aseprite_resources/effects/vayne_silver_bolt",
+      "tag": "projectile",
+      "z": 1,
+      "repeat": true
+    },
+    {
+      "type": "Sprite",
+      "name": "test_mod_vayne_skill",
+      "sprite": "asset/base/sprite/arrow"
+    }
+  ],
+  "skill_icons": [
+    "asset/test_mod/icons/vayne_skill",
+    "asset/test_mod/icons/vayne_skill2",
+    "asset/test_mod/icons/vayne_ult"
+  ],
+  "view_buffs": [
+    {
+      "type": "Animated",
+      "name": "test_mod_vayne_invisible_visual",
+      "anim": "asset/test_mod/aseprite_resources/effects/vayne_invisible_marker",
+      "tag": "loop",
+      "z": 5
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_vayne_silver_2",
+      "anim": "asset/test_mod/aseprite_resources/effects/vayne_silver_bolts_ready",
+      "tag": "loop",
+      "z": 4
+    }
+  ],
+  "skill_icon": {
+    "source": "asset/test_mod/aseprite_resources/UI_aseprite/test_mod_skill_icons",
+    "tags": [
+      "test_mod_vayne_skill",
+      "test_mod_vayne_skill2",
+      "test_mod_vayne_ult"
+    ]
+  }
+}

@@ -1,0 +1,109 @@
+[h1]Silverbear's Champion Collection[/h1]
+
+[b]Expand Teamfight Manager 2 with Aatrox, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal.[/b]
+
+Nine custom champions with unique sprites, ability icons, combat effects, sound effects, champion-view entries, and localized champion text.
+
+[hr][/hr]
+
+[h2]Champions[/h2]
+
+[list]
+[*][b]Aatrox[/b] - melee AD bruiser with a forward cleave, targeted dash, knockup pressure, and a World Ender-style ultimate.
+[*][b]Viktor[/b] - AP control mage with Death Ray, Gravity Field, and a persistent Chaos Storm zone.
+[*][b]Veigar[/b] - scaling AP mage with delayed Dark Matter, Event Horizon stun setup, and a targeted burst ultimate.
+[*][b]Jhin[/b] - ranged AD marksman with a four-shot basic attack cycle, Dancing Grenade, Deadly Flourish, and Curtain Call.
+[*][b]Vayne[/b] - ranged AD carry with Tumble, Silver Bolts, Final Hour, and a short invisibility handoff.
+[*][b]Fiddlesticks[/b] - AP/CC control mage with Terrify, Bountiful Harvest, and Crowstorm-style area pressure.
+[*][b]Azir[/b] - AP soldier-control mage with sand soldier zones, Shifting Sands, and Emperor's Divide.
+[*][b]Fizz[/b] - AP melee assassin with Urchin Strike, Playful / Trickster, and Chum the Waters.
+[*][b]Ezreal[/b] - ranged AD poke champion with Mystic Shot, Arcane Shift, and an unlimited-range Trueshot Barrage attack.
+[/list]
+
+[hr][/hr]
+
+[h2]New In 0.7.7[/h2]
+
+[list]
+[*]Added [b]Ezreal[/b] as the ninth champion in the collection.
+[*]Ezreal is a [b]ranged AD poke champion[/b] with frequent Mystic Shot damage, short repositioning with Arcane Shift, and a lower-cooldown unlimited-range Trueshot Barrage.
+[*]Added Ezreal's custom sprite sheet, projectile effects, ability icons, sound effects, champion-view entry, and localized champion text.
+[*]Expanded localization support with full German, Spanish, Russian, Brazilian Portuguese, French, Vietnamese, Korean, Simplified Chinese, and Traditional Chinese champion text coverage for the active pack.
+[/list]
+
+[hr][/hr]
+
+[h2]Version[/h2]
+
+[b]Current Version:[/b] 0.7.7
+[b]Updated:[/b] 2026-06-09
+[b]Requires:[/b] Teamfight Manager 2 base 0.4.9 or newer
+
+[hr][/hr]
+
+[h2]Compatibility[/h2]
+
+[list]
+[*]Requires Teamfight Manager 2/base [b]0.4.9+[/b].
+[*]Champion text uses the official [b]merge[/b] path instead of replacing the full base champion text file.
+[*]This is a data-only champion pack. It does not modify the game executable or bundle files.
+[*]New champion mods can be sensitive to existing saves. A clean save or the workaround below is the safest route.
+[/list]
+
+[hr][/hr]
+
+[h2]Save Workaround[/h2]
+
+If a new career shows a mod-state mismatch or save loading issue:
+
+[list]
+[*]Start the career with this mod disabled.
+[*]Advance and save once in vanilla state.
+[*]Quit, enable the mod, then continue that save.
+[*]The custom champions should then enter through the game's patch flow instead of being present at save creation.
+[/list]
+
+[hr][/hr]
+
+[h2]Known Limitations[/h2]
+
+[list]
+[*]Ability ratio text is static, so descriptions need a manual update when custom champion numbers change.
+[*]Champion role/lane presentation can be affected by Teamfight Manager 2's own patch and meta systems.
+[*]Vayne's Final Hour invisibility is an approximation within the current modding tools.
+[*]Azir's Shifting Sands direction choice can occasionally produce a very short dash when controlled by AI.
+[*]Some original champion mechanics are approximated through available Teamfight Manager 2 data effects.
+[/list]
+
+[hr][/hr]
+
+[h2]Localization[/h2]
+
+[list]
+[*]English and fallback language entries are included for all active pack champions.
+[*]Full champion name and ability description translations are included for German, Spanish, French, Korean, Brazilian Portuguese, Russian, Vietnamese, Simplified Chinese, and Traditional Chinese.
+[*]Japanese, Dutch, Polish, and Turkish currently use English fallback text.
+[*]Translation corrections are welcome in the comments.
+[/list]
+
+[hr][/hr]
+
+[h2]Credits[/h2]
+
+[b]Mod by:[/b] Silverbear
+
+Special thanks to everyone who tested, reported bugs, gave feedback, or helped with sprites, translations, and kit ideas.
+
+[b]Yan[/b] made the base Vayne, Fiddlesticks, and Ezreal sprites used for the mod. Thank you, Yan.
+
+[b]Schon Rose[/b] made the Azir and Fizz sprite assets. Thank you, Schon Rose.
+
+[b]墨泽z[/b] helped with translations and contributed to the Fizz sprite. Thank you, 墨泽z.
+
+[b]Yuuroo[/b] provided constant feedback and testing for this mod and the broader Workshop modding scene. Thank you, Yuuroo.
+
+[hr][/hr]
+
+[h2]Feedback[/h2]
+
+Please leave bug reports, balance notes, translation corrections, and champion requests in the comments. If a game update breaks the mod, I will try to fix it as soon as possible.

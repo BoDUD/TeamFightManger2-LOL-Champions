@@ -1,0 +1,338 @@
+{
+  "id": "test_mod_veigar",
+  "category": "Magician",
+  "tags": [
+    "AP",
+    "Range",
+    "Magic"
+  ],
+  "sprite": "asset/test_mod/aseprite_resources/champions/veigar",
+  "skill_icons": [
+    "asset/test_mod/icons/veigar_skill",
+    "asset/test_mod/icons/veigar_skill2",
+    "asset/test_mod/icons/veigar_ult"
+  ],
+  "stat": {
+    "attack": 55,
+    "magic_power": 65,
+    "hp": 900,
+    "defence": 20,
+    "magic_resistance": 30,
+    "move_speed": 900,
+    "hp_regen": 2,
+    "stack": 0,
+    "crit_chance": 0
+  },
+  "growth": {
+    "attack": 3,
+    "magic_power": 7,
+    "hp": 63,
+    "defence": 3,
+    "magic_resistance": 3,
+    "move_speed": 6,
+    "hp_regen": 0,
+    "stack": 0,
+    "crit_chance": 0
+  },
+  "attack": {
+    "action_name": "attack",
+    "description": "#asset/base/text/champion?description.test_mod_veigar.attack",
+    "duration": 18,
+    "cooltime": 60,
+    "start_timing": 10,
+    "cancelable": true,
+    "range": 52000,
+    "casting_type": "Targeting",
+    "casting_target": "Enemy",
+    "attack_type": "BaseAttack",
+    "effect": {
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "Sfx",
+          "name": "test_mod_veigar_attack_cast"
+        },
+        {
+          "type": "TargetProjectile",
+          "speed": 3500,
+          "name": "test_mod_veigar_attack",
+          "applied_target": "Enemy",
+          "applied_effects": [
+            {
+              "effect": {
+                "type": "Attack",
+                "damage": 0,
+                "attack_ratio": 100
+              },
+              "casting_type": "Targeting"
+            },
+            {
+              "effect": {
+                "type": "TargetSfx",
+                "name": "test_mod_veigar_attack_hit"
+              },
+              "casting_type": "Targeting"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "skill": {
+    "action_name": "skill",
+    "description": "#asset/base/text/champion?description.test_mod_veigar.skill",
+    "duration": 42,
+    "cooltime": 420,
+    "start_timing": 12,
+    "range": 93500,
+    "casting_type": "Position",
+    "casting_target": "EnemyWithoutTower",
+    "attack_type": "Skill",
+    "effect": {
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "Sfx",
+          "name": "test_mod_veigar_skill1_cast"
+        },
+        {
+          "type": "ParabolicProjectile",
+          "name": "test_mod_veigar_skill1_damage",
+          "travel_time": 34,
+          "range": 93500,
+          "range_effect_name": "test_mod_veigar_skill1_warning",
+          "shape": {
+            "Circle": {
+              "radius": 30000
+            }
+          },
+          "applied_target": "EnemyWithoutTower",
+          "applied_effects": [
+            {
+              "effect": {
+                "type": "ApAttack",
+                "damage": 25,
+                "attack_ratio": 90
+              },
+              "casting_type": "Targeting"
+            }
+          ],
+          "end_effects": [
+            {
+              "type": "ViewEffect",
+              "name": "test_mod_veigar_skill1_impact"
+            }
+          ]
+        },
+        {
+          "type": "ParabolicProjectile",
+          "name": "test_mod_veigar_skill1_champion_bonus_damage",
+          "travel_time": 34,
+          "range": 93500,
+          "range_effect_name": "",
+          "shape": {
+            "Circle": {
+              "radius": 30000
+            }
+          },
+          "applied_target": "EnemyChampion",
+          "applied_effects": [
+            {
+              "effect": {
+                "type": "ApAttack",
+                "damage": 25,
+                "attack_ratio": 90
+              },
+              "casting_type": "Targeting"
+            },
+            {
+              "effect": {
+                "type": "TargetSfx",
+                "name": "test_mod_veigar_skill1_hit"
+              },
+              "casting_type": "Targeting"
+            }
+          ],
+          "end_effects": []
+        },
+        {
+          "type": "ParabolicProjectile",
+          "name": "test_mod_veigar_skill1_ap_stack",
+          "travel_time": 34,
+          "range": 93500,
+          "range_effect_name": "",
+          "shape": {
+            "Circle": {
+              "radius": 30000
+            }
+          },
+          "applied_target": "EnemyChampion",
+          "applied_effects": [
+            {
+              "effect": {
+                "type": "AddCasterBuff",
+                "only_to_enemy": true,
+                "buff_state": {
+                  "name": "test_mod_veigar_skill1_ap_stack",
+                  "duration": "Permanent",
+                  "magic_power": 22
+                }
+              },
+              "casting_type": "Targeting"
+            }
+          ],
+          "end_effects": []
+        }
+      ]
+    }
+  },
+  "skill2": {
+    "action_name": "skill2",
+    "description": "#asset/base/text/champion?description.test_mod_veigar.skill2",
+    "duration": 30,
+    "cooltime": 720,
+    "start_timing": 12,
+    "range": 70000,
+    "casting_type": "Position",
+    "casting_target": "EnemyWithoutTower",
+    "attack_type": "Skill",
+    "effect": {
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "ViewEffect",
+          "name": "test_mod_veigar_cage"
+        },
+        {
+          "type": "Sfx",
+          "name": "test_mod_veigar_cage_cast"
+        },
+        {
+          "type": "ApplyInProjectile",
+          "name": "test_mod_veigar_cage_delayed_stun",
+          "follow_caster": false,
+          "tick": 60,
+          "shape": {
+            "Circle": {
+              "radius": 36000
+            }
+          },
+          "applied_target": "EnemyChampion",
+          "applied_effects": [
+            {
+              "effect": {
+                "type": "Stun",
+                "duration": 90
+              },
+              "casting_type": "Targeting"
+            },
+            {
+              "effect": {
+                "type": "TargetSfx",
+                "name": "test_mod_veigar_cage_stun"
+              },
+              "casting_type": "Targeting"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "ult": {
+    "action_name": "ult",
+    "description": "#asset/base/text/champion?description.test_mod_veigar.ult",
+    "duration": 25,
+    "cooltime": 3600,
+    "start_timing": 12,
+    "range": 52000,
+    "casting_type": "Targeting",
+    "casting_target": "EnemyChampion",
+    "attack_type": "Skill",
+    "effect": {
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "Sfx",
+          "name": "test_mod_veigar_ult_cast"
+        },
+        {
+          "type": "TargetProjectile",
+          "speed": 5000,
+          "name": "test_mod_veigar_ult_projectile",
+          "applied_target": "EnemyChampion",
+          "applied_effects": [
+            {
+              "effect": {
+                "type": "ApAttack",
+                "damage": 150,
+                "attack_ratio": 200
+              },
+              "casting_type": "Targeting"
+            },
+            {
+              "effect": {
+                "type": "TargetSfx",
+                "name": "test_mod_veigar_ult_hit"
+              },
+              "casting_type": "Targeting"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "view_projectiles": [
+    {
+      "type": "Animated",
+      "name": "test_mod_veigar_attack",
+      "anim": "asset/test_mod/aseprite_resources/effects/veigar_attack_projectile",
+      "tag": "projectile",
+      "z": 1,
+      "repeat": true
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_veigar_ult_projectile",
+      "anim": "asset/test_mod/aseprite_resources/effects/veigar_ult_projectile",
+      "tag": "projectile",
+      "z": 1,
+      "repeat": true
+    }
+  ],
+  "view_buffs": [],
+  "anim_prefix": "",
+  "view_effects": [
+    {
+      "type": "Animation",
+      "name": "test_mod_veigar_skill1_warning",
+      "anim": "asset/test_mod/aseprite_resources/effects/veigar_skill1",
+      "tag": "warning",
+      "z": -1,
+      "is_follow": false
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_veigar_skill1_impact",
+      "anim": "asset/test_mod/aseprite_resources/effects/veigar_skill1",
+      "tag": "impact",
+      "z": 1,
+      "is_follow": false
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_veigar_cage",
+      "anim": "asset/test_mod/aseprite_resources/effects/veigar_cage",
+      "tag": "cage",
+      "z": -1,
+      "is_follow": false
+    }
+  ],
+  "skill_icon": {
+    "source": "asset/test_mod/aseprite_resources/UI_aseprite/test_mod_skill_icons",
+    "tags": [
+      "test_mod_veigar_skill",
+      "test_mod_veigar_skill2",
+      "test_mod_veigar_ult"
+    ]
+  }
+}

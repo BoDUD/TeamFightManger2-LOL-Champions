@@ -1,0 +1,759 @@
+{
+  "id": "test_mod_fiddlesticks",
+  "category": "Magician",
+  "tags": [
+    "AP",
+    "Range",
+    "Magic",
+    "CC",
+    "Heal"
+  ],
+  "sprite": "asset/test_mod/aseprite_resources/champions/fiddlesticks",
+  "anim_prefix": "",
+  "skill_icons": [
+    "asset/test_mod/icons/fiddlesticks_skill",
+    "asset/test_mod/icons/fiddlesticks_skill2",
+    "asset/test_mod/icons/fiddlesticks_ult"
+  ],
+  "stat": {
+    "attack": 52,
+    "magic_power": 70,
+    "hp": 820,
+    "defence": 18,
+    "magic_resistance": 30,
+    "move_speed": 920,
+    "hp_regen": 2,
+    "stack": 0,
+    "crit_chance": 0
+  },
+  "growth": {
+    "attack": 3,
+    "magic_power": 18,
+    "hp": 76,
+    "defence": 4,
+    "magic_resistance": 5,
+    "move_speed": 5,
+    "hp_regen": 1,
+    "stack": 0,
+    "crit_chance": 0
+  },
+  "attack": {
+    "action_name": "attack",
+    "description": "#asset/base/text/champion?description.test_mod_fiddlesticks.attack",
+    "duration": 30,
+    "cooltime": 66,
+    "start_timing": 18,
+    "cancelable": true,
+    "range": 50000,
+    "casting_type": "Targeting",
+    "casting_target": "Enemy",
+    "attack_type": "BaseAttack",
+    "effect": {
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "Sfx",
+          "name": "test_mod_fiddlesticks_attack_cast"
+        },
+        {
+          "type": "TargetProjectile",
+          "speed": 4300,
+          "name": "test_mod_fiddlesticks_attack_projectile",
+          "applied_target": "Enemy",
+          "applied_effects": [
+            {
+              "effect": {
+                "type": "ApAttack",
+                "damage": 0,
+                "attack_ratio": 75
+              },
+              "casting_type": "Targeting"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "skill": {
+    "action_name": "skill",
+    "description": "#asset/base/text/champion?description.test_mod_fiddlesticks.skill",
+    "duration": 36,
+    "cooltime": 540,
+    "start_timing": 24,
+    "range": 65000,
+    "casting_type": "Targeting",
+    "casting_target": "EnemyChampion",
+    "attack_type": "Skill",
+    "effect": {
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "Sfx",
+          "name": "test_mod_fiddlesticks_fear_cast"
+        },
+        {
+          "type": "TargetProjectile",
+          "speed": 5000,
+          "name": "test_mod_fiddlesticks_fear_projectile",
+          "applied_target": "EnemyChampion",
+          "applied_effects": [
+            {
+              "effect": {
+                "type": "Combine",
+                "effects": [
+                  {
+                    "type": "ApAttack",
+                    "damage": 45,
+                    "attack_ratio": 70
+                  },
+                  {
+                    "type": "Fear",
+                    "tick": 75
+                  }
+                ]
+              },
+              "casting_type": "Targeting"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "skill2": {
+    "action_name": "skill2",
+    "description": "#asset/base/text/champion?description.test_mod_fiddlesticks.skill2",
+    "duration": 72,
+    "cooltime": 720,
+    "start_timing": 18,
+    "range": 36000,
+    "casting_type": "Targeting",
+    "casting_target": "EnemyWithoutTower",
+    "attack_type": "Skill",
+    "effect": {
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "Sfx",
+          "name": "test_mod_fiddlesticks_harvest_cast"
+        },
+        {
+          "type": "AddCasterBuff",
+          "buff_state": {
+            "name": "test_mod_fiddlesticks_drain_active",
+            "duration": {
+              "Time": {
+                "tick": 72
+              }
+            },
+            "move_speed_mult": -100
+          }
+        },
+        {
+          "type": "WithSelf",
+          "effects": [
+            {
+              "type": "Bind",
+              "duration": 72
+            }
+          ]
+        },
+        {
+          "type": "CasterViewEffect",
+          "name": "test_mod_fiddlesticks_drain"
+        },
+        {
+          "type": "SwitchByBuff",
+          "buff_name": "test_mod_fiddlesticks_drain_active",
+          "effect_none": {
+            "type": "RemoveCasterBuff",
+            "name": "test_mod_fiddlesticks_drain_noop"
+          },
+          "effect_buff": {
+            "type": "Combine",
+            "effects": [
+              {
+                "type": "RangeEffect",
+                "shape": {
+                  "Circle": {
+                    "radius": 36000
+                  }
+                },
+                "target": "EnemyWithoutTower",
+                "apply_type": "AroundCaster",
+                "effects": [
+                  {
+                    "type": "ApAttack",
+                    "damage": 18,
+                    "attack_ratio": 25
+                  },
+                  {
+                    "type": "Heal",
+                    "amount": 30,
+                    "attack_ratio": 0,
+                    "ap_ratio": 8,
+                    "heal_type": "Caster"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "Delayed",
+          "tick": 12,
+          "effects": [
+            {
+              "type": "SwitchByBuff",
+              "buff_name": "test_mod_fiddlesticks_drain_active",
+              "effect_none": {
+                "type": "RemoveCasterBuff",
+                "name": "test_mod_fiddlesticks_drain_noop"
+              },
+              "effect_buff": {
+                "type": "Combine",
+                "effects": [
+                  {
+                    "type": "RangeEffect",
+                    "shape": {
+                      "Circle": {
+                        "radius": 36000
+                      }
+                    },
+                    "target": "EnemyWithoutTower",
+                    "apply_type": "AroundCaster",
+                    "effects": [
+                      {
+                        "type": "ApAttack",
+                        "damage": 18,
+                        "attack_ratio": 25
+                      },
+                      {
+                        "type": "Heal",
+                        "amount": 30,
+                        "attack_ratio": 0,
+                        "ap_ratio": 8,
+                        "heal_type": "Caster"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Delayed",
+          "tick": 24,
+          "effects": [
+            {
+              "type": "SwitchByBuff",
+              "buff_name": "test_mod_fiddlesticks_drain_active",
+              "effect_none": {
+                "type": "RemoveCasterBuff",
+                "name": "test_mod_fiddlesticks_drain_noop"
+              },
+              "effect_buff": {
+                "type": "Combine",
+                "effects": [
+                  {
+                    "type": "RangeEffect",
+                    "shape": {
+                      "Circle": {
+                        "radius": 36000
+                      }
+                    },
+                    "target": "EnemyWithoutTower",
+                    "apply_type": "AroundCaster",
+                    "effects": [
+                      {
+                        "type": "ApAttack",
+                        "damage": 18,
+                        "attack_ratio": 25
+                      },
+                      {
+                        "type": "Heal",
+                        "amount": 30,
+                        "attack_ratio": 0,
+                        "ap_ratio": 8,
+                        "heal_type": "Caster"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Delayed",
+          "tick": 36,
+          "effects": [
+            {
+              "type": "SwitchByBuff",
+              "buff_name": "test_mod_fiddlesticks_drain_active",
+              "effect_none": {
+                "type": "RemoveCasterBuff",
+                "name": "test_mod_fiddlesticks_drain_noop"
+              },
+              "effect_buff": {
+                "type": "Combine",
+                "effects": [
+                  {
+                    "type": "RangeEffect",
+                    "shape": {
+                      "Circle": {
+                        "radius": 36000
+                      }
+                    },
+                    "target": "EnemyWithoutTower",
+                    "apply_type": "AroundCaster",
+                    "effects": [
+                      {
+                        "type": "ApAttack",
+                        "damage": 18,
+                        "attack_ratio": 25
+                      },
+                      {
+                        "type": "Heal",
+                        "amount": 30,
+                        "attack_ratio": 0,
+                        "ap_ratio": 8,
+                        "heal_type": "Caster"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Delayed",
+          "tick": 48,
+          "effects": [
+            {
+              "type": "SwitchByBuff",
+              "buff_name": "test_mod_fiddlesticks_drain_active",
+              "effect_none": {
+                "type": "RemoveCasterBuff",
+                "name": "test_mod_fiddlesticks_drain_noop"
+              },
+              "effect_buff": {
+                "type": "Combine",
+                "effects": [
+                  {
+                    "type": "RangeEffect",
+                    "shape": {
+                      "Circle": {
+                        "radius": 36000
+                      }
+                    },
+                    "target": "EnemyWithoutTower",
+                    "apply_type": "AroundCaster",
+                    "effects": [
+                      {
+                        "type": "ApAttack",
+                        "damage": 18,
+                        "attack_ratio": 25
+                      },
+                      {
+                        "type": "Heal",
+                        "amount": 30,
+                        "attack_ratio": 0,
+                        "ap_ratio": 8,
+                        "heal_type": "Caster"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Delayed",
+          "tick": 60,
+          "effects": [
+            {
+              "type": "SwitchByBuff",
+              "buff_name": "test_mod_fiddlesticks_drain_active",
+              "effect_none": {
+                "type": "RemoveCasterBuff",
+                "name": "test_mod_fiddlesticks_drain_noop"
+              },
+              "effect_buff": {
+                "type": "Combine",
+                "effects": [
+                  {
+                    "type": "RangeEffect",
+                    "shape": {
+                      "Circle": {
+                        "radius": 36000
+                      }
+                    },
+                    "target": "EnemyWithoutTower",
+                    "apply_type": "AroundCaster",
+                    "effects": [
+                      {
+                        "type": "ApAttack",
+                        "damage": 18,
+                        "attack_ratio": 25
+                      },
+                      {
+                        "type": "Heal",
+                        "amount": 30,
+                        "attack_ratio": 0,
+                        "ap_ratio": 8,
+                        "heal_type": "Caster"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "cancelable": true,
+    "can_use_with_move": false
+  },
+  "ult": {
+    "action_name": "ult",
+    "description": "#asset/base/text/champion?description.test_mod_fiddlesticks.ult",
+    "duration": 72,
+    "cooltime": 1800,
+    "start_timing": 66,
+    "range": 72000,
+    "casting_type": "Targeting",
+    "casting_target": "EnemyChampion",
+    "attack_type": "Skill",
+    "effect": {
+      "type": "Combine",
+      "effects": [
+      {
+        "type": "Teleport"
+      },
+      {
+        "type": "Sfx",
+        "name": "test_mod_fiddlesticks_ult_screech"
+      },
+      {
+        "type": "AddCasterBuff",
+        "buff_state": {
+            "name": "test_mod_fiddlesticks_crowstorm_active",
+            "duration": {
+              "Time": {
+                "tick": 120
+              }
+            }
+          }
+        },
+        {
+          "type": "RangeEffect",
+          "shape": {
+            "Circle": {
+              "radius": 48000
+            }
+          },
+          "target": "EnemyChampion",
+          "apply_type": "AroundCaster",
+          "effects": [
+            {
+              "type": "Fear",
+              "tick": 12
+            }
+          ]
+        },
+        {
+          "type": "RangeEffect",
+          "shape": {
+            "Circle": {
+              "radius": 48000
+            }
+          },
+          "target": "EnemyWithoutTower",
+          "apply_type": "AroundCaster",
+          "effects": [
+            {
+              "type": "ApAttack",
+              "damage": 26,
+              "attack_ratio": 30
+            }
+          ]
+        },
+        {
+          "type": "Delayed",
+          "tick": 12,
+          "effects": [
+            {
+              "type": "RangeEffect",
+              "shape": {
+                "Circle": {
+                  "radius": 48000
+                }
+              },
+              "target": "EnemyWithoutTower",
+              "apply_type": "AroundCaster",
+              "effects": [
+                {
+                  "type": "ApAttack",
+                  "damage": 26,
+                  "attack_ratio": 30
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Delayed",
+          "tick": 24,
+          "effects": [
+            {
+              "type": "RangeEffect",
+              "shape": {
+                "Circle": {
+                  "radius": 48000
+                }
+              },
+              "target": "EnemyWithoutTower",
+              "apply_type": "AroundCaster",
+              "effects": [
+                {
+                  "type": "ApAttack",
+                  "damage": 26,
+                  "attack_ratio": 30
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Delayed",
+          "tick": 36,
+          "effects": [
+            {
+              "type": "RangeEffect",
+              "shape": {
+                "Circle": {
+                  "radius": 48000
+                }
+              },
+              "target": "EnemyWithoutTower",
+              "apply_type": "AroundCaster",
+              "effects": [
+                {
+                  "type": "ApAttack",
+                  "damage": 26,
+                  "attack_ratio": 30
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Delayed",
+          "tick": 48,
+          "effects": [
+            {
+              "type": "RangeEffect",
+              "shape": {
+                "Circle": {
+                  "radius": 48000
+                }
+              },
+              "target": "EnemyWithoutTower",
+              "apply_type": "AroundCaster",
+              "effects": [
+                {
+                  "type": "ApAttack",
+                  "damage": 26,
+                  "attack_ratio": 30
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Delayed",
+          "tick": 60,
+          "effects": [
+            {
+              "type": "RangeEffect",
+              "shape": {
+                "Circle": {
+                  "radius": 48000
+                }
+              },
+              "target": "EnemyWithoutTower",
+              "apply_type": "AroundCaster",
+              "effects": [
+                {
+                  "type": "ApAttack",
+                  "damage": 26,
+                  "attack_ratio": 30
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Delayed",
+          "tick": 72,
+          "effects": [
+            {
+              "type": "RangeEffect",
+              "shape": {
+                "Circle": {
+                  "radius": 48000
+                }
+              },
+              "target": "EnemyWithoutTower",
+              "apply_type": "AroundCaster",
+              "effects": [
+                {
+                  "type": "ApAttack",
+                  "damage": 26,
+                  "attack_ratio": 30
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Delayed",
+          "tick": 84,
+          "effects": [
+            {
+              "type": "RangeEffect",
+              "shape": {
+                "Circle": {
+                  "radius": 48000
+                }
+              },
+              "target": "EnemyWithoutTower",
+              "apply_type": "AroundCaster",
+              "effects": [
+                {
+                  "type": "ApAttack",
+                  "damage": 26,
+                  "attack_ratio": 30
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Delayed",
+          "tick": 96,
+          "effects": [
+            {
+              "type": "RangeEffect",
+              "shape": {
+                "Circle": {
+                  "radius": 48000
+                }
+              },
+              "target": "EnemyWithoutTower",
+              "apply_type": "AroundCaster",
+              "effects": [
+                {
+                  "type": "ApAttack",
+                  "damage": 26,
+                  "attack_ratio": 30
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Delayed",
+          "tick": 108,
+          "effects": [
+            {
+              "type": "RangeEffect",
+              "shape": {
+                "Circle": {
+                  "radius": 48000
+                }
+              },
+              "target": "EnemyWithoutTower",
+              "apply_type": "AroundCaster",
+              "effects": [
+                {
+                  "type": "ApAttack",
+                  "damage": 26,
+                  "attack_ratio": 30
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "cancelable": false,
+    "can_use_with_move": false
+  },
+  "view_projectiles": [
+    {
+      "type": "Animated",
+      "name": "test_mod_fiddlesticks_attack_projectile",
+      "anim": "asset/test_mod/aseprite_resources/effects/fiddlesticks_attack_projectile",
+      "tag": "projectile",
+      "z": 1,
+      "repeat": true
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_fiddlesticks_fear_projectile",
+      "anim": "asset/test_mod/aseprite_resources/effects/fiddlesticks_fear_projectile",
+      "tag": "projectile",
+      "z": 1,
+      "repeat": true
+    }
+  ],
+  "view_buffs": [
+    {
+      "type": "Animated",
+      "name": "test_mod_fiddlesticks_drain_active",
+      "anim": "asset/test_mod/aseprite_resources/effects/fiddlesticks_drain",
+      "tag": "drain",
+      "z": -1,
+      "repeat": true
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_fiddlesticks_crowstorm_active",
+      "anim": "asset/test_mod/aseprite_resources/effects/fiddlesticks_crowstorm",
+      "tag": "storm",
+      "z": -1,
+      "repeat": true
+    }
+  ],
+  "view_effects": [
+    {
+      "type": "Animation",
+      "name": "test_mod_fiddlesticks_drain",
+      "anim": "asset/test_mod/aseprite_resources/effects/fiddlesticks_drain",
+      "tag": "drain",
+      "z": -1,
+      "is_follow": true
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_fiddlesticks_crowstorm",
+      "anim": "asset/test_mod/aseprite_resources/effects/fiddlesticks_crowstorm",
+      "tag": "storm",
+      "z": -1,
+      "is_follow": true
+    }
+  ],
+  "skill_icon": {
+    "source": "asset/test_mod/aseprite_resources/UI_aseprite/test_mod_skill_icons",
+    "tags": [
+      "test_mod_fiddlesticks_skill",
+      "test_mod_fiddlesticks_skill2",
+      "test_mod_fiddlesticks_ult"
+    ]
+  }
+}

@@ -1,0 +1,448 @@
+{
+  "id": "test_mod_viktor",
+  "category": "Magician",
+  "tags": [
+    "AP",
+    "Range",
+    "Magic"
+  ],
+  "sprite": "asset/test_mod/aseprite_resources/champions/viktor",
+  "anim_prefix": "",
+  "skill_icons": [
+    "asset/test_mod/icons/viktor_skill",
+    "asset/test_mod/icons/viktor_skill2",
+    "asset/test_mod/icons/viktor_ult"
+  ],
+  "stat": {
+    "attack": 65,
+    "magic_power": 15,
+    "hp": 765,
+    "defence": 20,
+    "magic_resistance": 25,
+    "move_speed": 1000,
+    "hp_regen": 0,
+    "stack": 0,
+    "crit_chance": 0
+  },
+  "growth": {
+    "attack": 6,
+    "magic_power": 28,
+    "hp": 99,
+    "defence": 6,
+    "magic_resistance": 5,
+    "move_speed": 6,
+    "hp_regen": 0,
+    "stack": 0,
+    "crit_chance": 0
+  },
+  "attack": {
+    "action_name": "attack",
+    "description": "#asset/base/text/champion?description.test_mod_viktor.attack",
+    "duration": 24,
+    "cooltime": 66,
+    "start_timing": 14,
+    "cancelable": true,
+    "range": 60000,
+    "casting_type": "Targeting",
+    "casting_target": "Enemy",
+    "attack_type": "BaseAttack",
+    "effect": {
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "Sfx",
+          "name": "test_mod_viktor_attack_cast"
+        },
+        {
+          "type": "TargetProjectile",
+          "speed": 4500,
+          "name": "test_mod_viktor_attack_projectile",
+          "y_offset": 0,
+          "applied_target": "Enemy",
+          "applied_effects": [
+            {
+              "effect": {
+                "type": "Attack",
+                "damage": 0,
+                "attack_ratio": 100
+              },
+              "casting_type": "Targeting"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "skill": {
+    "action_name": "skill",
+    "description": "#asset/base/text/champion?description.test_mod_viktor.skill",
+    "duration": 66,
+    "cooltime": 360,
+    "start_timing": 40,
+    "range": 65000,
+    "casting_type": "Direction",
+    "casting_target": "EnemyWithoutTower",
+    "attack_type": "Skill",
+    "effect": {
+      "type": "SwitchByBuff",
+      "buff_name": "test_mod_viktor_augmented_laser",
+      "effect_none": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "LineRangeProjectile",
+            "width": 15000,
+            "length": 85000,
+            "delay": 19,
+            "apply": 19,
+            "name": "test_mod_viktor_laser",
+            "applied_target": "EnemyWithoutTower",
+            "applied_effects": [
+              {
+                "effect": {
+                  "type": "ApAttack",
+                  "damage": 20,
+                  "attack_ratio": 40
+                },
+                "casting_type": "Targeting"
+              },
+              {
+                "effect": {
+                  "type": "TargetSfx",
+                  "name": "test_mod_viktor_laser_hit"
+                },
+                "casting_type": "Targeting"
+              }
+            ]
+          },
+          {
+            "type": "LineRangeProjectile",
+            "width": 15000,
+            "length": 85000,
+            "delay": 19,
+            "apply": 19,
+            "name": "test_mod_viktor_laser_champion_bonus",
+            "applied_target": "EnemyChampion",
+            "applied_effects": [
+              {
+                "effect": {
+                  "type": "ApAttack",
+                  "damage": 80,
+                  "attack_ratio": 60
+                },
+                "casting_type": "Targeting"
+              }
+            ]
+          },
+          {
+            "type": "Sfx",
+            "name": "test_mod_viktor_laser_cast"
+          }
+        ]
+      },
+      "effect_buff": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "LineRangeProjectile",
+            "width": 15000,
+            "length": 85000,
+            "delay": 19,
+            "apply": 19,
+            "name": "test_mod_viktor_laser",
+            "applied_target": "EnemyWithoutTower",
+            "applied_effects": [
+              {
+                "effect": {
+                  "type": "ApAttack",
+                  "damage": 20,
+                  "attack_ratio": 40
+                },
+                "casting_type": "Targeting"
+              },
+              {
+                "effect": {
+                  "type": "TargetSfx",
+                  "name": "test_mod_viktor_laser_hit"
+                },
+                "casting_type": "Targeting"
+              }
+            ]
+          },
+          {
+            "type": "LineRangeProjectile",
+            "width": 15000,
+            "length": 85000,
+            "delay": 19,
+            "apply": 19,
+            "name": "test_mod_viktor_laser_champion_bonus",
+            "applied_target": "EnemyChampion",
+            "applied_effects": [
+              {
+                "effect": {
+                  "type": "ApAttack",
+                  "damage": 80,
+                  "attack_ratio": 60
+                },
+                "casting_type": "Targeting"
+              }
+            ]
+          },
+          {
+            "type": "Delayed",
+            "tick": 30,
+            "effects": [
+              {
+                "type": "LineRangeProjectile",
+                "width": 15000,
+                "length": 85000,
+                "name": "test_mod_viktor_laser_aftershock",
+                "delay": 49,
+                "apply": 19,
+                "applied_target": "EnemyWithoutTower",
+                "applied_effects": [
+                  {
+                    "effect": {
+                      "type": "ApAttack",
+                      "damage": 30,
+                      "attack_ratio": 45
+                    },
+                    "casting_type": "Targeting"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "Delayed",
+            "tick": 79,
+            "effects": [
+              {
+                "type": "Sfx",
+                "name": "test_mod_viktor_laser_aftershock_hit"
+              }
+            ]
+          },
+          {
+            "type": "Delayed",
+            "tick": 30,
+            "effects": [
+              {
+                "type": "LineRangeProjectile",
+                "width": 15000,
+                "length": 85000,
+                "name": "test_mod_viktor_laser_aftershock_champion_bonus",
+                "delay": 49,
+                "apply": 19,
+                "applied_target": "EnemyChampion",
+                "applied_effects": [
+                  {
+                    "effect": {
+                      "type": "ApAttack",
+                      "damage": 30,
+                      "attack_ratio": 45
+                    },
+                    "casting_type": "Targeting"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "Sfx",
+            "name": "test_mod_viktor_laser_cast"
+          }
+        ]
+      }
+    }
+  },
+  "skill2": {
+    "action_name": "skill2",
+    "description": "#asset/base/text/champion?description.test_mod_viktor.skill2",
+    "duration": 36,
+    "cooltime": 840,
+    "start_timing": 16,
+    "range": 70000,
+    "casting_type": "Position",
+    "casting_target": "EnemyChampion",
+    "attack_type": "Skill",
+    "effect": {
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "ViewEffect",
+          "name": "test_mod_viktor_gravity_field"
+        },
+        {
+          "type": "Sfx",
+          "name": "test_mod_viktor_gravity_field_cast"
+        },
+        {
+          "type": "RangePeriodProjectile",
+          "name": "test_mod_viktor_gravity_field",
+          "tick": 210,
+          "period": 15,
+          "first_delay": 0,
+          "shape": {
+            "Circle": {
+              "radius": 35333
+            }
+          },
+          "applied_target": "EnemyChampion",
+          "applied_effects": [
+            {
+              "effect": {
+                "type": "AddBuff",
+                "buff_state": {
+                  "name": "test_mod_viktor_gravity_field_slow",
+                  "duration": {
+                    "Time": {
+                      "tick": 20
+                    }
+                  },
+                  "move_speed_mult": -40
+                }
+              },
+              "casting_type": "Targeting"
+            }
+          ],
+          "end_effects": [
+            {
+              "effect": {
+                "type": "Stun",
+                "duration": 120
+              },
+              "casting_type": "Targeting"
+            },
+            {
+              "effect": {
+                "type": "TargetSfx",
+                "name": "test_mod_viktor_gravity_field_slow"
+              },
+              "casting_type": "Targeting"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "ult": {
+    "action_name": "ult",
+    "description": "#asset/base/text/champion?description.test_mod_viktor.ult",
+    "duration": 36,
+    "cooltime": 4200,
+    "start_timing": 16,
+    "range": 80000,
+    "casting_type": "Position",
+    "casting_target": "EnemyWithoutTower",
+    "attack_type": "Skill",
+    "effect": {
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "ViewEffect",
+          "name": "test_mod_viktor_chaos_storm"
+        },
+        {
+          "type": "Sfx",
+          "name": "test_mod_viktor_chaos_storm_cast"
+        },
+        {
+          "type": "AddCasterBuff",
+          "buff_state": {
+            "name": "test_mod_viktor_augmented_laser",
+            "duration": {
+              "Time": {
+                "tick": 54000
+              }
+            }
+          }
+        },
+        {
+          "type": "RangePeriodProjectile",
+          "name": "test_mod_viktor_chaos_storm",
+          "tick": 240,
+          "period": 30,
+          "first_delay": 0,
+          "shape": {
+            "Circle": {
+              "radius": 35100
+            }
+          },
+          "applied_target": "EnemyWithoutTower",
+          "applied_effects": [
+            {
+              "effect": {
+                "type": "ApAttack",
+                "damage": 40,
+                "attack_ratio": 40
+              },
+              "casting_type": "Targeting"
+            },
+            {
+              "effect": {
+                "type": "BlockSkill",
+                "tick": 15
+              },
+              "casting_type": "Targeting"
+            }
+          ],
+          "end_effects": []
+        }
+      ]
+    }
+  },
+  "view_projectiles": [
+    {
+      "type": "Animated",
+      "name": "test_mod_viktor_attack_projectile",
+      "anim": "asset/test_mod/aseprite_resources/effects/viktor_attack_projectile",
+      "tag": "projectile",
+      "z": 1,
+      "repeat": true
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_viktor_laser",
+      "anim": "asset/test_mod/aseprite_resources/effects/viktor_laser",
+      "tag": "laser",
+      "z": -1,
+      "repeat": false
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_viktor_laser_aftershock",
+      "anim": "asset/test_mod/aseprite_resources/effects/viktor_laser_aftershock",
+      "tag": "burn",
+      "z": -2,
+      "repeat": false
+    }
+  ],
+  "view_buffs": [],
+  "view_effects": [
+    {
+      "type": "Animation",
+      "name": "test_mod_viktor_gravity_field",
+      "anim": "asset/test_mod/aseprite_resources/effects/viktor_gravity_field",
+      "tag": "gravity_field",
+      "z": -1,
+      "is_follow": false
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_viktor_chaos_storm",
+      "anim": "asset/test_mod/aseprite_resources/effects/viktor_chaos_storm",
+      "tag": "chaos_storm",
+      "z": -1,
+      "is_follow": false
+    }
+  ],
+  "skill_icon": {
+    "source": "asset/test_mod/aseprite_resources/UI_aseprite/test_mod_skill_icons",
+    "tags": [
+      "test_mod_viktor_skill",
+      "test_mod_viktor_skill2",
+      "test_mod_viktor_ult"
+    ]
+  }
+}

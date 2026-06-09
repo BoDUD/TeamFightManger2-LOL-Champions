@@ -1,0 +1,14 @@
+{
+  "plays": [
+    {
+      "delay": 0.0,
+      "clip": "test_mod_aatrox_dash_voice_clip",
+      "volume": 0.44
+    },
+    {
+      "delay": 0.15,
+      "clip": "test_mod_aatrox_dash_effect_clip",
+      "volume": 0.40
+    }
+  ]
+}

@@ -1,0 +1,940 @@
+{
+  "ko": {
+    "description": {
+      "test_mod_aatrox": {
+        "name": "아트록스",
+        "attack": "무거운 검으로 대상을 공격해 <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>공격력의 100%<>만큼 <#ff9028ff>물리 피해<>를 입힙니다.",
+        "skill": "전방으로 강력한 참격을 날려 <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>공격력의 200%<>만큼 <#ff9028ff>물리 피해<>를 입히고, 적을 <#ef5350ff>0.6초 동안 공중에 띄웁니다<>.",
+        "skill2": "적에게 돌진하고 <#ffb900ff>5.0초<> 동안 <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>방어력 50<>과 <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>마법 저항력 50<>을 얻습니다.",
+        "ult": "<#ffb900ff>10.0초<> 동안 피의 광분 상태가 되어 <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>공격력 75<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>방어력 25<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>마법 저항력 25<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>공격 속도 45%<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>이동 속도 20%<> 및 <#6aff55ff>흡혈 40%<>를 얻습니다."
+      },
+      "test_mod_viktor": {
+        "name": "빅토르",
+        "attack": "마법 탄환을 발사해 대상에게 <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>공격력의 100%<>만큼 <#ff9028ff>물리 피해<>를 입힙니다.",
+        "skill": "일직선으로 레이저를 발사해 적중한 적 챔피언에게 <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력의 100%<>만큼 <#a974ffff>마법 피해<>를 입힙니다. 미니언과 몬스터는 감소된 피해를 받습니다. 강화된 상태에서는 레이저가 여진을 남겨 <#ffb900ff>1.0초<> 후 다시 적중합니다.",
+        "skill2": "<#ffb900ff>4.0초<> 동안 유지되는 중력장을 생성해 내부의 적 챔피언을 <#ef5350ff>40% 둔화<>시킵니다. 중력장이 사라질 때 내부에 남아 있는 적 챔피언은 <#ef5350ff>2.0초 동안 기절<>합니다.",
+        "ult": "<#ffb900ff>4.0초<> 동안 혼돈의 폭풍을 소환해 35 범위 안의 적에게 <#ffb900ff>0.50초<>마다 <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력의 40%<>만큼 <#a974ffff>마법 피해<>를 입히고, 적의 스킬을 잠시 방해합니다. 혼돈의 폭풍은 빅토르의 레이저도 진화시킵니다."
+      },
+      "test_mod_veigar": {
+        "name": "베이가",
+        "attack": "마법 탄환을 발사해 대상에게 <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>공격력의 100%<>만큼 <#ff9028ff>물리 피해<>를 입힙니다.",
+        "skill": "짧은 지연 후 지정한 위치에 암흑 물질을 떨어뜨려 <#ffb900ff>35 범위<> 안의 적에게 <#a974ffff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력의 180%<>만큼 <#a974ffff>마법 피해<>를 입힙니다. 적 챔피언에게 적중하면 사망할 때까지 <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력 22<>를 얻고, 미니언은 절반의 피해를 받습니다.",
+        "skill2": "사건의 지평선 우리를 생성합니다. <#ffb900ff>1.0초<> 후 내부의 적 챔피언을 <#ef5350ff>1.5초 동안 기절<>시키고 우리는 사라집니다.",
+        "ult": "적 챔피언에게 암흑 마법을 발사해 <#a974ffff>150<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력의 200%<>만큼 <#a974ffff>마법 피해<>를 입힙니다."
+      },
+      "test_mod_jhin": {
+        "name": "진",
+        "attack": "대상에게 총을 발사해 <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>공격력의 100%<>만큼 <#ff9028ff>물리 피해<>를 입힙니다. 네 번째 기본 공격마다 붉은 투사체를 사용해 <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>공격력의 200%<>만큼 피해를 입힙니다. 네 번째 공격 후 진은 다음 공격 전까지 재장전하며 공격 속도가 크게 감소합니다.",
+        "skill": "춤추는 유탄: 사거리 내 적에게 튕기는 수류탄을 던집니다. 수류탄은 근처의 다른 적에게 튕길 수 있으며, 적중 시 <#ff9028ff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>공격력의 75%<>만큼 <#ff9028ff>물리 피해<>를 입힙니다.",
+        "skill2": "살상연희: 긴 직선 사격을 발사합니다. 적 챔피언에게 <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>공격력의 70%<>만큼 <#ff9028ff>물리 피해<>를 입히고, 미니언에게는 <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>공격력의 30%<>만큼 피해를 입힙니다. 적중한 적 챔피언은 <#ef5350ff>0.5초 동안 기절<>합니다.",
+        "ult": "커튼 콜: 진이 제자리에 고정되어 선택한 방향으로 챔피언 전용 탄환 4발을 발사합니다. 각 탄환은 처음 적중한 적 챔피언에게서 멈춥니다. 첫 세 발은 <#ff9028ff>300<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>공격력의 150%<>만큼 <#ff9028ff>물리 피해<>를 입히며, 더 큰 붉은 네 번째 탄환은 <#ff9028ff>300<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>공격력의 300%<>만큼 피해를 입힙니다."
+      },
+      "test_mod_vayne": {
+        "name": "베인",
+        "attack": "쇠뇌 화살을 발사해 대상에게 <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>공격력의 100%<>만큼 <#ff9028ff>물리 피해<>를 입힙니다. 세 번째 기본 공격마다 은화살이 발동해 <#f5f5f5ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>공격력의 35%<> + <#f5f5f5ff>대상 최대 체력의 4%<>만큼 <#f5f5f5ff>고정 피해<>를 입힙니다.",
+        "skill": "구르기: 선택한 방향으로 짧게 구르고 다음 기본 공격이 <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>공격력의 150%<>만큼 피해를 입히도록 강화됩니다. 결전의 시간이 지속 중이면 더 멀리 구르고 베인이 <#ffb900ff>1.5초 동안 은신<>합니다.",
+        "skill2": "은화살: 1레벨부터 항상 활성화되는 지속 효과입니다. 세 번째 기본 공격마다 추가 <#f5f5f5ff>고정 피해<>를 입힙니다.",
+        "ult": "결전의 시간: <#ffb900ff>10.0초<> 동안 베인이 <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>공격력 50<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>이동 속도 20%<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>공격 속도 20%<> 및 더 빠른 스킬 재사용 대기시간 회복을 얻습니다. 지속 중 구르기는 은신을 부여합니다."
+      },
+      "test_mod_fiddlesticks": {
+        "name": "피들스틱",
+        "attack": "까마귀 모양 투사체를 던져 대상에게 <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력의 75%<>만큼 <#a974ffff>마법 피해<>를 입힙니다.",
+        "skill": "공포: 적 챔피언에게 악몽 투사체를 발사해 <#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력의 70%<>만큼 <#a974ffff>마법 피해<>를 입히고 1.25초 동안 공포에 빠뜨립니다.",
+        "skill2": "풍작: 잠시 주변 적을 흡수해 반복적으로 <#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력의 25%<>만큼 <#a974ffff>마법 피해<>를 입히고, 적중한 적 하나당 피들스틱이 <#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>주문력의 8%<>만큼 회복합니다.",
+        "ult": "까마귀 폭풍: 적 챔피언에게 순간이동해 주변 적 챔피언을 잠시 공포에 빠뜨리고, 2초 동안 피들스틱을 폭풍으로 감싸 주변 적에게 반복적으로 <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력의 30%<>만큼 <#a974ffff>마법 피해<>를 입힙니다."
+      },
+      "test_mod_azir": {
+        "name": "아지르",
+        "attack": "아지르가 모래 마법으로 대상을 공격해 <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력의 75%<>만큼 <#a974ffff>마법 피해<>를 입히고, 때때로 모래 병사를 소환해 전투에 합류시킵니다.",
+        "skill": "일어나라!: 모래 병사를 지정한 위치로 보내 지나가는 적에게 <#a974ffff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력의 60%<>만큼 <#a974ffff>마법 피해<>를 입힙니다. 도착한 병사는 남아서 주변 적을 공격하며, 챔피언에게 적중할 때마다 <#a974ffff>15<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력의 70%<>만큼 <#a974ffff>마법 피해<>를 입힙니다.",
+        "skill2": "신기루: 모래 병사를 소환하고 그 위치로 돌진하며, <#ffb900ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력의 45%<>만큼 보호막을 얻습니다. 아지르가 지나간 적은 <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력의 45%<>만큼 <#a974ffff>마법 피해<>를 받습니다. 병사는 돌진 후에도 남습니다.",
+        "ult": "황제의 진영: 병사의 벽을 전방으로 보내 경로상의 적에게 <#a974ffff>120<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력의 100%<>만큼 <#a974ffff>마법 피해<>를 입히고 밀어내며, <#ef5350ff>잠시 공중에 띄웁니다<>. 벽은 잠시 남아 통과하려는 움직임을 방해합니다."
+      },
+      "test_mod_fizz": {
+        "name": "피즈",
+        "attack": "대상을 근접 공격하여 <#a974ffff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력 100%<>의 <#a974ffff>마법 피해<>를 줍니다. 성게 찌르기 이후에는 기본 공격 적중 시 잠시 독을 적용합니다.",
+        "skill": "성게 찌르기: 대상을 관통해 돌진한 뒤 뒤쪽에 착지하여 <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력 55%<>의 <#a974ffff>마법 피해<>를 주고 <#ffb900ff>3.0초<> 동안 중독시킵니다. 적중 후 <#ffb900ff>4.0초<> 동안 피즈의 기본 공격은 적중 시 약한 독을 적용합니다.",
+        "skill2": "장난치기 / 재간둥이: 선택한 적 또는 아군 방향으로 뛰어올라 장대 위에서 잠시 멈추며 <#ffb900ff>2.4초 동안 투명, 피해 감소, 군중 제어 면역<> 상태가 됩니다. 이후 짧게 내려찍어 <#a974ffff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력 65%<>의 <#a974ffff>마법 피해<>를 주고 주변 적을 <#ef5350ff>0.5초 동안 둔화<>시킵니다.",
+        "ult": "미끼 뿌리기: 지정한 방향으로 긴 사거리의 물고기를 던집니다. 물고기는 처음 적중한 적 챔피언에게 붙어 <#ef5350ff>2.5초 동안 강하게 둔화<>시키며, 빗나가면 최대 사거리까지 이동합니다. 둔화 중 상어가 나타난 뒤 솟구쳐 <#a974ffff>240<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력 140%<>의 <#a974ffff>마법 피해<>를 주고 적을 <#ef5350ff>공중에 띄웁니다<>."
+      },
+      "test_mod_ezreal": {
+        "name": "에즈리얼",
+        "attack": "대상에게 에너지 탄환을 발사해 <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>공격력의 100%<>만큼 <#ff9028ff>물리 피해<>를 입힙니다.",
+        "skill": "신비한 화살: 선택한 방향으로 빠른 논타겟 화살을 발사합니다. 처음 적중한 적에게서 멈추며, 챔피언에게 <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>공격력의 110%<>만큼 <#ff9028ff>물리 피해<>를 입힙니다. 미니언은 절반의 피해를 받습니다.",
+        "skill2": "비전 이동: 선택한 방향으로 짧은 거리를 순간이동합니다.",
+        "ult": "정조준 일격: 적 방향으로 사거리 제한 없는 공격을 발사해, 적중한 적에게 <#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>공격력의 110%<>만큼 <#ff9028ff>물리 피해<>를 주고, 추가로 <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력의 70%<>만큼 <#a974ffff>마법 피해<>를 줍니다."
+      }
+    }
+  },
+  "en": {
+    "description": {
+      "test_mod_aatrox": {
+        "name": "Aatrox",
+        "attack": "Strikes the target with a heavy blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Sends a brutal cleave forward, dealing <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% attack damage<> as <#ff9028ff>physical damage<> and <#ef5350ff>knocking enemies airborne for 0.6s<>.",
+        "skill2": "Dashes to an enemy, gaining <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50 armor<> and <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50 magic resist<> for <#ffb900ff>5.0s<>.",
+        "ult": "Enters a blood-fueled frenzy for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25 armor<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25 magic resist<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45% attack speed<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>40% vamp<>."
+      },
+      "test_mod_viktor": {
+        "name": "Viktor",
+        "attack": "Fires a magic bolt at a target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Fires a laser in a straight line, dealing <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>magic damage<> to enemy champions hit. Minions and monsters take reduced damage. While Augmented, the laser leaves an aftershock that hits again after <#ffb900ff>1.0s<>.",
+        "skill2": "Creates a gravity field lasting <#ffb900ff>4.0s<> that <#ef5350ff>slows enemy champions by 40%<>. Enemy champions still inside when it collapses are <#ef5350ff>stunned for 2.0s<>.",
+        "ult": "Summons a chaos storm for <#ffb900ff>4.0s<>, dealing <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>40% AP<> <#a974ffff>magic damage<> every <#ffb900ff>0.50s<> within 35 range and briefly disrupting enemy skills. Chaos Storm also evolves Viktor's laser."
+      },
+      "test_mod_veigar": {
+        "name": "Veigar",
+        "attack": "Fires a magic bolt at a target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Calls down dark matter at a target location after a short delay, dealing <#a974ffff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>180% AP<> <#a974ffff>magic damage<> within <#ffb900ff>35 range<>. Enemy champion hits grant <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>22 AP until death<>; minions take half damage.",
+        "skill2": "Creates an Event Horizon cage. After <#ffb900ff>1.0s<>, enemy champions inside are <#ef5350ff>stunned for 1.5s<> and the cage disappears.",
+        "ult": "Fires a burst of dark magic at an enemy champion, dealing <#a974ffff>150<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>200% AP<> <#a974ffff>magic damage<>."
+      },
+      "test_mod_jhin": {
+        "name": "Jhin",
+        "attack": "Fires a shot at the target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>. Every fourth attack uses a red projectile and deals <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% attack damage<>. After the fourth shot, Jhin reloads with heavily reduced attack speed until his next attack.",
+        "skill": "Dancing Grenade: throws a bouncing grenade at an enemy within range. The grenade can jump to another nearby enemy and deals <#ff9028ff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75% attack damage<> as <#ff9028ff>physical damage<> on hit.",
+        "skill2": "Deadly Flourish: fires a long line shot, dealing <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>70% attack damage<> as <#ff9028ff>physical damage<> to enemy champions and <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>30% attack damage<> to minions. Enemy champions hit are <#ef5350ff>stunned for 0.5s<>.",
+        "ult": "Curtain Call: roots Jhin in place and fires four champion-only bullets in the chosen direction. Each bullet stops on the first enemy champion hit. The first three shots deal <#ff9028ff>300<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>150% attack damage<> as <#ff9028ff>physical damage<>; the larger red fourth shot deals <#ff9028ff>300<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>300% attack damage<>."
+      },
+      "test_mod_vayne": {
+        "name": "Vayne",
+        "attack": "Fires a crossbow bolt at the target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>. Every third basic attack triggers Silver Bolts, dealing <#f5f5f5ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>35% attack damage<> + <#f5f5f5ff>4% target max HP<> as <#f5f5f5ff>fixed damage<>.",
+        "skill": "Tumble: rolls a short distance in the chosen direction and empowers the next basic attack to deal <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>150% attack damage<>. During Final Hour, Tumble travels farther and makes Vayne <#ffb900ff>invisible for 1.5s<>.",
+        "skill2": "Silver Bolts: passive, available at level 1 and always active. Every third basic attack deals bonus <#f5f5f5ff>fixed damage<>.",
+        "ult": "Final Hour: for <#ffb900ff>10.0s<>, Vayne gains <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>50 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>20% attack speed<>, and faster skill cooldown recovery. While active, Tumble grants invisibility."
+      },
+      "test_mod_fiddlesticks": {
+        "name": "Fiddlesticks",
+        "attack": "Hurls a crow-shaped bolt at the target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% AP<> as <#a974ffff>magic damage<>.",
+        "skill": "Terrify: sends a nightmare projectile at an enemy champion, dealing <#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> <#a974ffff>magic damage<> and fearing them for 1.25 seconds.",
+        "skill2": "Bountiful Harvest: briefly drains nearby enemies, repeatedly dealing <#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>25% AP<> <#a974ffff>magic damage<> and healing Fiddlesticks for <#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>8% AP<> per enemy hit.",
+        "ult": "Crowstorm: blinks to an enemy champion, briefly fears nearby enemy champions, and surrounds Fiddlesticks with a storm for 2 seconds, repeatedly dealing <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>magic damage<> to nearby enemies."
+      },
+      "test_mod_azir": {
+        "name": "Azir",
+        "attack": "Azir commands sand magic at the target, dealing 75% AP magic damage and occasionally spawning sand soldiers to join the fight.",
+        "skill": "Arise!: sends a sand soldier to a target location, dealing 30 + 60% AP magic damage to enemies it passes through. When it arrives, the soldier remains and attacks nearby enemies, dealing 15 + 70% AP magic damage per strike to champions.",
+        "skill2": "Shifting Sands: summons a sand soldier and dashes to it, gaining a 70 + 45% AP shield. Enemies Azir passes through take 40 + 45% AP magic damage. The soldier remains after the dash.",
+        "ult": "Emperor's Divide: sends a wall of soldiers forward, dealing 120 + 100% AP magic damage to enemies in its path, knocking them back, and briefly knocking them airborne. The wall briefly remains, disrupting movement through it."
+      },
+      "test_mod_fizz": {
+        "name": "Fizz",
+        "attack": "Strikes the target in melee, dealing <#a974ffff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>magic damage<>. After Urchin Strike, basic attacks briefly apply poison on hit.",
+        "skill": "Urchin Strike: dashes through the target and lands behind them, dealing <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>55% AP<> <#a974ffff>magic damage<> and poisoning them for <#ffb900ff>3.0s<>. For <#ffb900ff>4.0s<> after hitting, Fizz basic attacks apply a lighter poison on hit.",
+        "skill2": "Playful / Trickster: vaults toward a chosen enemy or ally direction, pausing briefly on the pole while <#ffb900ff>invisible, damage-reduced, and crowd-control immune for 2.4s<>, then makes a short descent movement and splashes down to deal <#a974ffff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>65% AP<> <#a974ffff>magic damage<> and <#ef5350ff>slow nearby enemies for 0.5s<>.",
+        "ult": "Chum the Waters: throws a long-range fish in the chosen direction. The fish stops on the first enemy champion hit, <#ef5350ff>heavily slowing them for 2.5s<>; if it misses, it reaches the end of its path. A shark appears during the slow, then erupts to deal <#a974ffff>240<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>140% AP<> <#a974ffff>magic damage<> and <#ef5350ff>knock enemies airborne<>."
+      },
+      "test_mod_ezreal": {
+        "name": "Ezreal",
+        "attack": "Fires an energy bolt at the target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Mystic Shot: fires a fast skillshot in the chosen direction, stopping on the first enemy hit and dealing <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as <#ff9028ff>physical damage<> to champions. Minions take half damage.",
+        "skill2": "Arcane Shift: blinks a short distance in the chosen direction.",
+        "ult": "Trueshot Barrage: fires an unlimited-range attack toward enemies, dealing <#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as <#ff9028ff>physical damage<>, plus <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> as <#a974ffff>magic damage<> to enemies hit."
+      }
+    }
+  },
+  "ja": {
+    "description": {
+      "test_mod_aatrox": {
+        "name": "Aatrox",
+        "attack": "Strikes the target with a heavy blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Sends a brutal cleave forward, dealing <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% attack damage<> as <#ff9028ff>physical damage<> and <#ef5350ff>knocking enemies airborne for 0.6s<>.",
+        "skill2": "Dashes to an enemy, gaining <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50 armor<> and <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50 magic resist<> for <#ffb900ff>5.0s<>.",
+        "ult": "Enters a blood-fueled frenzy for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25 armor<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25 magic resist<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45% attack speed<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>40% vamp<>."
+      },
+      "test_mod_viktor": {
+        "name": "Viktor",
+        "attack": "Fires a magic bolt at a target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Fires a laser in a straight line, dealing <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>magic damage<> to enemy champions hit. Minions and monsters take reduced damage. While Augmented, the laser leaves an aftershock that hits again after <#ffb900ff>1.0s<>.",
+        "skill2": "Creates a gravity field lasting <#ffb900ff>4.0s<> that <#ef5350ff>slows enemy champions by 40%<>. Enemy champions still inside when it collapses are <#ef5350ff>stunned for 2.0s<>.",
+        "ult": "Summons a chaos storm for <#ffb900ff>4.0s<>, dealing <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>40% AP<> <#a974ffff>magic damage<> every <#ffb900ff>0.50s<> within 35 range and briefly disrupting enemy skills. Chaos Storm also evolves Viktor's laser."
+      },
+      "test_mod_veigar": {
+        "name": "Veigar",
+        "attack": "Fires a magic bolt at a target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Calls down dark matter at a target location after a short delay, dealing <#a974ffff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>180% AP<> <#a974ffff>magic damage<> within <#ffb900ff>35 range<>. Enemy champion hits grant <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>22 AP until death<>; minions take half damage.",
+        "skill2": "Creates an Event Horizon cage. After <#ffb900ff>1.0s<>, enemy champions inside are <#ef5350ff>stunned for 1.5s<> and the cage disappears.",
+        "ult": "Fires a burst of dark magic at an enemy champion, dealing <#a974ffff>150<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>200% AP<> <#a974ffff>magic damage<>."
+      },
+      "test_mod_jhin": {
+        "name": "Jhin",
+        "attack": "Fires a shot at the target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>. Every fourth attack uses a red projectile and deals <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% attack damage<>. After the fourth shot, Jhin reloads with heavily reduced attack speed until his next attack.",
+        "skill": "Dancing Grenade: throws a bouncing grenade at an enemy within range. The grenade can jump to another nearby enemy and deals <#ff9028ff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75% attack damage<> as <#ff9028ff>physical damage<> on hit.",
+        "skill2": "Deadly Flourish: fires a long line shot, dealing <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>70% attack damage<> as <#ff9028ff>physical damage<> to enemy champions and <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>30% attack damage<> to minions. Enemy champions hit are <#ef5350ff>stunned for 0.5s<>.",
+        "ult": "Curtain Call: roots Jhin in place and fires four champion-only bullets in the chosen direction. Each bullet stops on the first enemy champion hit. The first three shots deal <#ff9028ff>300<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>150% attack damage<> as <#ff9028ff>physical damage<>; the larger red fourth shot deals <#ff9028ff>300<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>300% attack damage<>."
+      },
+      "test_mod_vayne": {
+        "name": "Vayne",
+        "attack": "Fires a crossbow bolt at the target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>. Every third basic attack triggers Silver Bolts, dealing <#f5f5f5ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>35% attack damage<> + <#f5f5f5ff>4% target max HP<> as <#f5f5f5ff>fixed damage<>.",
+        "skill": "Tumble: rolls a short distance in the chosen direction and empowers the next basic attack to deal <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>150% attack damage<>. During Final Hour, Tumble travels farther and makes Vayne <#ffb900ff>invisible for 1.5s<>.",
+        "skill2": "Silver Bolts: passive, available at level 1 and always active. Every third basic attack deals bonus <#f5f5f5ff>fixed damage<>.",
+        "ult": "Final Hour: for <#ffb900ff>10.0s<>, Vayne gains <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>50 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>20% attack speed<>, and faster skill cooldown recovery. While active, Tumble grants invisibility."
+      },
+      "test_mod_fiddlesticks": {
+        "name": "Fiddlesticks",
+        "attack": "Hurls a crow-shaped bolt at the target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% AP<> as <#a974ffff>magic damage<>.",
+        "skill": "Terrify: sends a nightmare projectile at an enemy champion, dealing <#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> <#a974ffff>magic damage<> and fearing them for 1.25 seconds.",
+        "skill2": "Bountiful Harvest: briefly drains nearby enemies, repeatedly dealing <#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>25% AP<> <#a974ffff>magic damage<> and healing Fiddlesticks for <#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>8% AP<> per enemy hit.",
+        "ult": "Crowstorm: blinks to an enemy champion, briefly fears nearby enemy champions, and surrounds Fiddlesticks with a storm for 2 seconds, repeatedly dealing <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>magic damage<> to nearby enemies."
+      },
+      "test_mod_azir": {
+        "name": "Azir",
+        "attack": "Azir commands sand magic at the target, dealing 75% AP magic damage and occasionally spawning sand soldiers to join the fight.",
+        "skill": "Arise!: sends a sand soldier to a target location, dealing 30 + 60% AP magic damage to enemies it passes through. When it arrives, the soldier remains and attacks nearby enemies, dealing 15 + 70% AP magic damage per strike to champions.",
+        "skill2": "Shifting Sands: summons a sand soldier and dashes to it, gaining a 70 + 45% AP shield. Enemies Azir passes through take 40 + 45% AP magic damage. The soldier remains after the dash.",
+        "ult": "Emperor's Divide: sends a wall of soldiers forward, dealing 120 + 100% AP magic damage to enemies in its path, knocking them back, and briefly knocking them airborne. The wall briefly remains, disrupting movement through it."
+      },
+      "test_mod_fizz": {
+        "name": "Fizz",
+        "attack": "Strikes the target in melee, dealing <#a974ffff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>magic damage<>. After Urchin Strike, basic attacks briefly apply poison on hit.",
+        "skill": "Urchin Strike: dashes through the target and lands behind them, dealing <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>55% AP<> <#a974ffff>magic damage<> and poisoning them for <#ffb900ff>3.0s<>. For <#ffb900ff>4.0s<> after hitting, Fizz basic attacks apply a lighter poison on hit.",
+        "skill2": "Playful / Trickster: vaults toward a chosen enemy or ally direction, pausing briefly on the pole while <#ffb900ff>invisible, damage-reduced, and crowd-control immune for 2.4s<>, then makes a short descent movement and splashes down to deal <#a974ffff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>65% AP<> <#a974ffff>magic damage<> and <#ef5350ff>slow nearby enemies for 0.5s<>.",
+        "ult": "Chum the Waters: throws a long-range fish in the chosen direction. The fish stops on the first enemy champion hit, <#ef5350ff>heavily slowing them for 2.5s<>; if it misses, it reaches the end of its path. A shark appears during the slow, then erupts to deal <#a974ffff>240<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>140% AP<> <#a974ffff>magic damage<> and <#ef5350ff>knock enemies airborne<>."
+      },
+      "test_mod_ezreal": {
+        "name": "Ezreal",
+        "attack": "Fires an energy bolt at the target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Mystic Shot: fires a fast skillshot in the chosen direction, stopping on the first enemy hit and dealing <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as <#ff9028ff>physical damage<> to champions. Minions take half damage.",
+        "skill2": "Arcane Shift: blinks a short distance in the chosen direction.",
+        "ult": "Trueshot Barrage: fires an unlimited-range attack toward enemies, dealing <#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as <#ff9028ff>physical damage<>, plus <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> as <#a974ffff>magic damage<> to enemies hit."
+      }
+    }
+  },
+  "de": {
+    "description": {
+      "test_mod_aatrox": {
+        "name": "Aatrox",
+        "attack": "Trifft das Ziel mit einer schweren Klinge und verursacht <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% Angriffsschaden<> als <#ff9028ff>physischen Schaden<>.",
+        "skill": "Schickt einen brutalen Hieb nach vorne, der <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% Angriffsschaden<> als <#ff9028ff>physischen Schaden<> verursacht und Gegner <#ef5350ff>0.6s lang hochschleudert<>.",
+        "skill2": "Stürmt zu einem Gegner und erhält <#ffb900ff>5.0s<> lang <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50 Rüstung<> und <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50 Magieresistenz<>.",
+        "ult": "Verfällt <#ffb900ff>10.0s<> lang in blutgetriebene Raserei und erhält <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 Angriffsschaden<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25 Rüstung<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25 Magieresistenz<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45% Angriffstempo<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% Lauftempo<> und <#6aff55ff>40% Lebensraub<>."
+      },
+      "test_mod_viktor": {
+        "name": "Viktor",
+        "attack": "Feuert ein magisches Geschoss auf ein Ziel ab und verursacht <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% Angriffsschaden<> als <#ff9028ff>physischen Schaden<>.",
+        "skill": "Feuert einen Laser in gerader Linie ab und verursacht an getroffenen gegnerischen Champions <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>magischen Schaden<>. Vasallen und Monster erleiden verringerten Schaden. Im verstärkten Zustand hinterlässt der Laser ein Nachbeben, das nach <#ffb900ff>1.0s<> erneut trifft.",
+        "skill2": "Erzeugt ein Gravitationsfeld für <#ffb900ff>4.0s<>, das <#ef5350ff>gegnerische Champions um 40% verlangsamt<>. Gegnerische Champions, die beim Zusammenbruch noch darin stehen, werden <#ef5350ff>2.0s lang betäubt<>.",
+        "ult": "Beschwört <#ffb900ff>4.0s<> lang einen Chaossturm, der alle <#ffb900ff>0.50s<> im Umkreis von 35 <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>40% AP<> <#a974ffff>magischen Schaden<> verursacht und gegnerische Fähigkeiten kurz unterbricht. Chaossturm entwickelt außerdem Viktors Laser weiter."
+      },
+      "test_mod_veigar": {
+        "name": "Veigar",
+        "attack": "Feuert ein magisches Geschoss auf ein Ziel ab und verursacht <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% Angriffsschaden<> als <#ff9028ff>physischen Schaden<>.",
+        "skill": "Lässt nach kurzer Verzögerung dunkle Materie an einem Zielort herabfallen und verursacht im <#ffb900ff>35er Radius<> <#a974ffff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>180% AP<> <#a974ffff>magischen Schaden<>. Treffer gegen gegnerische Champions gewähren bis zum Tod <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>22 AP<>; Vasallen erleiden halben Schaden.",
+        "skill2": "Erschafft einen Ereignishorizont-Käfig. Nach <#ffb900ff>1.0s<> werden gegnerische Champions darin <#ef5350ff>1.5s lang betäubt<> und der Käfig verschwindet.",
+        "ult": "Feuert einen Ausbruch dunkler Magie auf einen gegnerischen Champion und verursacht <#a974ffff>150<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>200% AP<> <#a974ffff>magischen Schaden<>."
+      },
+      "test_mod_jhin": {
+        "name": "Jhin",
+        "attack": "Feuert einen Schuss auf das Ziel und verursacht <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% Angriffsschaden<> als <#ff9028ff>physischen Schaden<>. Jeder vierte Angriff nutzt ein rotes Projektil und verursacht <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% Angriffsschaden<>. Nach dem vierten Schuss lädt Jhin nach und hat stark verringertes Angriffstempo bis zu seinem nächsten Angriff.",
+        "skill": "Tanzende Granate: wirft eine springende Granate auf einen Gegner in Reichweite. Die Granate kann auf einen weiteren nahen Gegner überspringen und verursacht beim Treffer <#ff9028ff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75% Angriffsschaden<> als <#ff9028ff>physischen Schaden<>.",
+        "skill2": "Tödliche Finesse: feuert einen langen Linienschuss ab, der gegnerischen Champions <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>70% Angriffsschaden<> als <#ff9028ff>physischen Schaden<> und Vasallen <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>30% Angriffsschaden<> zufügt. Getroffene gegnerische Champions werden <#ef5350ff>0.5s lang betäubt<>.",
+        "ult": "Letzter Vorhang: Jhin wird an Ort und Stelle festgesetzt und feuert vier nur Champions treffende Kugeln in die gewählte Richtung. Jede Kugel stoppt beim ersten getroffenen gegnerischen Champion. Die ersten drei Schüsse verursachen <#ff9028ff>300<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>150% Angriffsschaden<> als <#ff9028ff>physischen Schaden<>; der größere rote vierte Schuss verursacht <#ff9028ff>300<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>300% Angriffsschaden<>."
+      },
+      "test_mod_vayne": {
+        "name": "Vayne",
+        "attack": "Feuert einen Armbrustbolzen auf das Ziel und verursacht <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% Angriffsschaden<> als <#ff9028ff>physischen Schaden<>. Jeder dritte normale Angriff löst Silberbolzen aus und verursacht zusätzlich <#f5f5f5ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>35% Angriffsschaden<> + <#f5f5f5ff>4% des maximalen Lebens des Ziels<> als <#f5f5f5ff>absoluten Schaden<>.",
+        "skill": "Hechtrolle: rollt eine kurze Distanz in die gewählte Richtung und verstärkt den nächsten normalen Angriff, sodass er <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>150% Angriffsschaden<> verursacht. Während Letzte Stunde reist Hechtrolle weiter und macht Vayne <#ffb900ff>1.5s lang unsichtbar<>.",
+        "skill2": "Silberbolzen: passive Fähigkeit, ab Stufe 1 verfügbar und immer aktiv. Jeder dritte normale Angriff verursacht zusätzlichen <#f5f5f5ff>absoluten Schaden<>.",
+        "ult": "Letzte Stunde: Vayne erhält <#ffb900ff>10.0s<> lang <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>50 Angriffsschaden<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% Lauftempo<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>20% Angriffstempo<> und schnellere Abklingzeit-Erholung für Fähigkeiten. Währenddessen gewährt Hechtrolle Unsichtbarkeit."
+      },
+      "test_mod_fiddlesticks": {
+        "name": "Fiddlesticks",
+        "attack": "Schleudert ein krähenförmiges Geschoss auf das Ziel und verursacht <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% AP<> als <#a974ffff>magischen Schaden<>.",
+        "skill": "Furcht: schickt ein Alptraumprojektil auf einen gegnerischen Champion, verursacht <#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> <#a974ffff>magischen Schaden<> und versetzt ihn 1.25 Sekunden lang in Furcht.",
+        "skill2": "Reiche Ernte: entzieht nahen Gegnern kurzzeitig Energie, verursacht wiederholt <#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>25% AP<> <#a974ffff>magischen Schaden<> und heilt Fiddlesticks für jeden getroffenen Gegner um <#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>8% AP<>.",
+        "ult": "Krähenschwarm: blinkt zu einem gegnerischen Champion, versetzt nahe gegnerische Champions kurz in Furcht und umgibt Fiddlesticks 2 Sekunden lang mit einem Sturm, der nahen Gegnern wiederholt <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>magischen Schaden<> zufügt."
+      },
+      "test_mod_azir": {
+        "name": "Azir",
+        "attack": "Azir befiehlt Sandmagie gegen das Ziel, verursacht 75% AP magischen Schaden und beschwört gelegentlich Sandsoldaten, die sich dem Kampf anschließen.",
+        "skill": "Erhebt Euch!: schickt einen Sandsoldaten zu einem Zielort und verursacht an Gegnern, die er durchquert, 30 + 60% AP magischen Schaden. Bei Ankunft bleibt der Soldat bestehen und greift nahe Gegner an, wobei jeder Schlag gegen Champions 15 + 70% AP magischen Schaden verursacht.",
+        "skill2": "Treibsand: beschwört einen Sandsoldaten und stürmt zu ihm, wodurch Azir einen Schild von 70 + 45% AP erhält. Gegner, die Azir durchquert, erleiden 40 + 45% AP magischen Schaden. Der Soldat bleibt nach dem Ansturm bestehen.",
+        "ult": "Imperiale Phalanx: schickt eine Mauer aus Soldaten nach vorne, verursacht an Gegnern auf ihrem Weg 120 + 100% AP magischen Schaden, stößt sie zurück und schleudert sie kurz hoch. Die Mauer bleibt kurz bestehen und behindert Bewegung durch sie hindurch."
+      },
+      "test_mod_fizz": {
+        "name": "Fizz",
+        "attack": "Trifft das Ziel im Nahkampf und verursacht <#a974ffff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>magischen Schaden<>. Nach Seeigelstoß vergiften normale Angriffe das Ziel kurz beim Treffer.",
+        "skill": "Seeigelstoß: stürmt durch das Ziel und landet hinter ihm, verursacht <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>55% AP<> <#a974ffff>magischen Schaden<> und vergiftet es <#ffb900ff>3.0s<> lang. Für <#ffb900ff>4.0s<> nach einem Treffer wenden Fizz' normale Angriffe beim Treffer ein leichteres Gift an.",
+        "skill2": "Verspielt / Täuscher: springt in eine gewählte gegnerische oder verbündete Richtung, verharrt kurz auf dem Stab und ist dabei <#ffb900ff>2.4s lang unsichtbar, erleidet verringerten Schaden und ist immun gegen Massenkontrolle<>, bevor er kurz herabfällt und beim Aufprall <#a974ffff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>65% AP<> <#a974ffff>magischen Schaden<> verursacht und nahe Gegner <#ef5350ff>0.5s lang verlangsamt<>.",
+        "ult": "Köder auswerfen: wirft einen Fisch mit hoher Reichweite in die gewählte Richtung. Der Fisch stoppt beim ersten getroffenen gegnerischen Champion und <#ef5350ff>verlangsamt ihn 2.5s lang stark<>; wenn er verfehlt, erreicht er das Ende seiner Flugbahn. Während der Verlangsamung erscheint ein Hai und bricht hervor, verursacht <#a974ffff>240<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>140% AP<> <#a974ffff>magischen Schaden<> und <#ef5350ff>schleudert Gegner hoch<>."
+      },
+      "test_mod_ezreal": {
+        "name": "Ezreal",
+        "attack": "Feuert ein Energiegeschoss auf das Ziel und verursacht <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% Angriffsschaden<> als <#ff9028ff>physischen Schaden<>.",
+        "skill": "Mystischer Schuss: feuert einen schnellen Fähigkeitsschuss in die gewählte Richtung, stoppt beim ersten getroffenen Gegner und verursacht an Champions <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% Angriffsschaden<> als <#ff9028ff>physischen Schaden<>. Vasallen erleiden halben Schaden.",
+        "skill2": "Arkaner Sprung: blinkt eine kurze Distanz in die gewählte Richtung.",
+        "ult": "Trueshot-Sperrfeuer: feuert einen Angriff mit unbegrenzter Reichweite in Richtung der Gegner und verursacht an getroffenen Gegnern <#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% Angriffsschaden<> als <#ff9028ff>physischen Schaden<> plus <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> als <#a974ffff>magischen Schaden<>."
+      }
+    }
+  },
+  "vi": {
+    "description": {
+      "test_mod_aatrox": {
+        "name": "Aatrox",
+        "attack": "Chém mục tiêu bằng lưỡi kiếm nặng, gây <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% sức mạnh công kích<> thành <#ff9028ff>sát thương vật lý<>.",
+        "skill": "Vung một nhát chém tàn bạo về phía trước, gây <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% sức mạnh công kích<> thành <#ff9028ff>sát thương vật lý<> và <#ef5350ff>hất tung kẻ địch trong 0.6 giây<>.",
+        "skill2": "Lao tới một kẻ địch, nhận <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50 giáp<> và <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50 kháng phép<> trong <#ffb900ff>5.0 giây<>.",
+        "ult": "Rơi vào cơn cuồng nộ khát máu trong <#ffb900ff>10.0 giây<>, nhận <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 sức mạnh công kích<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25 giáp<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25 kháng phép<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45% tốc độ đánh<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% tốc độ di chuyển<> và <#6aff55ff>40% hút máu<>."
+      },
+      "test_mod_viktor": {
+        "name": "Viktor",
+        "attack": "Bắn một tia ma thuật vào mục tiêu, gây <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% sức mạnh công kích<> thành <#ff9028ff>sát thương vật lý<>.",
+        "skill": "Bắn một tia laser theo đường thẳng, gây <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>sát thương phép<> lên tướng địch trúng chiêu. Lính và quái chịu ít sát thương hơn. Khi được Nâng Cấp, tia laser để lại dư chấn đánh trúng lần nữa sau <#ffb900ff>1.0 giây<>.",
+        "skill2": "Tạo một trường trọng lực tồn tại <#ffb900ff>4.0 giây<> và <#ef5350ff>làm chậm tướng địch 40%<>. Tướng địch còn ở bên trong khi trường sụp đổ sẽ bị <#ef5350ff>choáng trong 2.0 giây<>.",
+        "ult": "Triệu hồi một cơn bão hỗn loạn trong <#ffb900ff>4.0 giây<>, gây <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>40% AP<> <#a974ffff>sát thương phép<> mỗi <#ffb900ff>0.50 giây<> trong phạm vi 35 và gián đoạn ngắn kỹ năng của kẻ địch. Bão Hỗn Loạn cũng tiến hóa tia laser của Viktor."
+      },
+      "test_mod_veigar": {
+        "name": "Veigar",
+        "attack": "Bắn một tia ma thuật vào mục tiêu, gây <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% sức mạnh công kích<> thành <#ff9028ff>sát thương vật lý<>.",
+        "skill": "Gọi Vật Chất Tối xuống vị trí chỉ định sau một thoáng trễ, gây <#a974ffff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>180% AP<> <#a974ffff>sát thương phép<> trong <#ffb900ff>phạm vi 35<>. Trúng tướng địch cho <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>22 AP cho đến khi chết<>; lính chịu nửa sát thương.",
+        "skill2": "Tạo một lồng Bẻ Cong Không Gian. Sau <#ffb900ff>1.0 giây<>, tướng địch bên trong bị <#ef5350ff>choáng trong 1.5 giây<> rồi lồng biến mất.",
+        "ult": "Bắn một luồng ma thuật hắc ám vào tướng địch, gây <#a974ffff>150<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>200% AP<> <#a974ffff>sát thương phép<>."
+      },
+      "test_mod_jhin": {
+        "name": "Jhin",
+        "attack": "Bắn mục tiêu, gây <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% sức mạnh công kích<> thành <#ff9028ff>sát thương vật lý<>. Mỗi đòn đánh thứ tư dùng đạn đỏ và gây <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% sức mạnh công kích<>. Sau phát bắn thứ tư, Jhin nạp đạn với tốc độ đánh giảm mạnh cho đến đòn đánh kế tiếp.",
+        "skill": "Lựu Đạn Nhảy Múa: ném một quả lựu đạn nảy vào kẻ địch trong tầm. Lựu đạn có thể nảy sang một kẻ địch gần đó và gây <#ff9028ff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75% sức mạnh công kích<> thành <#ff9028ff>sát thương vật lý<> khi trúng.",
+        "skill2": "Nét Vẽ Chết Chóc: bắn một phát đạn dài theo đường thẳng, gây <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>70% sức mạnh công kích<> thành <#ff9028ff>sát thương vật lý<> lên tướng địch và <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>30% sức mạnh công kích<> lên lính. Tướng địch trúng chiêu bị <#ef5350ff>choáng trong 0.5 giây<>.",
+        "ult": "Sân Khấu Tử Thần: trói chân Jhin tại chỗ và bắn bốn viên đạn chỉ trúng tướng theo hướng đã chọn. Mỗi viên dừng lại khi trúng tướng địch đầu tiên. Ba phát đầu gây <#ff9028ff>300<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>150% sức mạnh công kích<> thành <#ff9028ff>sát thương vật lý<>; phát đỏ thứ tư lớn hơn gây <#ff9028ff>300<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>300% sức mạnh công kích<>."
+      },
+      "test_mod_vayne": {
+        "name": "Vayne",
+        "attack": "Bắn một mũi tên nỏ vào mục tiêu, gây <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% sức mạnh công kích<> thành <#ff9028ff>sát thương vật lý<>. Mỗi đòn đánh thường thứ ba kích hoạt Mũi Tên Bạc, gây <#f5f5f5ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>35% sức mạnh công kích<> + <#f5f5f5ff>4% máu tối đa của mục tiêu<> thành <#f5f5f5ff>sát thương chuẩn<>.",
+        "skill": "Nhào Lộn: lăn một đoạn ngắn theo hướng đã chọn và cường hóa đòn đánh thường kế tiếp để gây <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>150% sức mạnh công kích<>. Trong Giờ Khắc Cuối Cùng, Nhào Lộn đi xa hơn và khiến Vayne <#ffb900ff>tàng hình trong 1.5 giây<>.",
+        "skill2": "Mũi Tên Bạc: nội tại, có từ cấp 1 và luôn hoạt động. Mỗi đòn đánh thường thứ ba gây thêm <#f5f5f5ff>sát thương chuẩn<>.",
+        "ult": "Giờ Khắc Cuối Cùng: trong <#ffb900ff>10.0 giây<>, Vayne nhận <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>50 sức mạnh công kích<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% tốc độ di chuyển<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>20% tốc độ đánh<> và hồi chiêu kỹ năng nhanh hơn. Khi còn hiệu lực, Nhào Lộn cho tàng hình."
+      },
+      "test_mod_fiddlesticks": {
+        "name": "Fiddlesticks",
+        "attack": "Ném một tia hình quạ vào mục tiêu, gây <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% AP<> thành <#a974ffff>sát thương phép<>.",
+        "skill": "Kinh Hãi: phóng một ác mộng vào tướng địch, gây <#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> <#a974ffff>sát thương phép<> và khiến chúng hoảng sợ trong 1.25 giây.",
+        "skill2": "Gặt Hái Dồi Dào: hút cạn kẻ địch gần đó trong thời gian ngắn, liên tục gây <#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>25% AP<> <#a974ffff>sát thương phép<> và hồi cho Fiddlesticks <#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>8% AP<> với mỗi kẻ địch trúng.",
+        "ult": "Bão Quạ: dịch chuyển tới một tướng địch, khiến tướng địch gần đó hoảng sợ trong thời gian ngắn, rồi bao quanh Fiddlesticks bằng cơn bão trong 2 giây, liên tục gây <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>sát thương phép<> lên kẻ địch gần đó."
+      },
+      "test_mod_azir": {
+        "name": "Azir",
+        "attack": "Azir điều khiển cát ma thuật tấn công mục tiêu, gây 75% AP sát thương phép và đôi khi triệu hồi lính cát tham chiến.",
+        "skill": "Trỗi Dậy!: đưa một lính cát tới vị trí mục tiêu, gây 30 + 60% AP sát thương phép lên kẻ địch nó đi xuyên qua. Khi tới nơi, lính cát ở lại và tấn công kẻ địch gần đó, gây 15 + 70% AP sát thương phép mỗi đòn lên tướng.",
+        "skill2": "Cát Lưu Động: triệu hồi một lính cát rồi lao tới nó, nhận lá chắn 70 + 45% AP. Kẻ địch Azir đi xuyên qua chịu 40 + 45% AP sát thương phép. Lính cát ở lại sau cú lao.",
+        "ult": "Phân Chia Hoàng Đế: đưa một bức tường lính cát tiến về phía trước, gây 120 + 100% AP sát thương phép lên kẻ địch trên đường đi, đẩy lùi và hất tung chúng trong thời gian ngắn. Bức tường tồn tại thêm một lúc, cản trở di chuyển xuyên qua nó."
+      },
+      "test_mod_fizz": {
+        "name": "Fizz",
+        "attack": "Đánh cận chiến mục tiêu, gây <#a974ffff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>sát thương phép<>. Sau Đâm Lao, đòn đánh thường sẽ tạm thời gây độc khi trúng.",
+        "skill": "Đâm Lao: lao xuyên qua mục tiêu và đáp xuống phía sau, gây <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>55% AP<> <#a974ffff>sát thương phép<> và đầu độc chúng trong <#ffb900ff>3.0 giây<>. Trong <#ffb900ff>4.0 giây<> sau khi trúng, đòn đánh thường của Fizz gây một độc nhẹ hơn khi trúng.",
+        "skill2": "Tung Tăng / Nhảy Múa: phóng về hướng kẻ địch hoặc đồng minh đã chọn, tạm dừng trên cây đinh ba trong khi <#ffb900ff>tàng hình, giảm sát thương nhận vào và miễn nhiễm khống chế trong 2.4 giây<>, rồi rơi xuống một đoạn ngắn và văng nước, gây <#a974ffff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>65% AP<> <#a974ffff>sát thương phép<> và <#ef5350ff>làm chậm kẻ địch gần đó trong 0.5 giây<>.",
+        "ult": "Triệu Hồi Thủy Quái: ném một con cá tầm xa theo hướng đã chọn. Cá dừng lại khi trúng tướng địch đầu tiên, <#ef5350ff>làm chậm mạnh chúng trong 2.5 giây<>; nếu trượt, nó đi tới cuối đường bay. Một con cá mập xuất hiện trong lúc làm chậm, rồi trồi lên gây <#a974ffff>240<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>140% AP<> <#a974ffff>sát thương phép<> và <#ef5350ff>hất tung kẻ địch<>."
+      },
+      "test_mod_ezreal": {
+        "name": "Ezreal",
+        "attack": "Bắn một tia năng lượng vào mục tiêu, gây <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% sức mạnh công kích<> thành <#ff9028ff>sát thương vật lý<>.",
+        "skill": "Phát Bắn Thần Bí: bắn một phát kỹ năng nhanh theo hướng đã chọn, dừng lại khi trúng kẻ địch đầu tiên và gây <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% sức mạnh công kích<> thành <#ff9028ff>sát thương vật lý<> lên tướng. Lính chịu một nửa sát thương.",
+        "skill2": "Dịch Chuyển Cổ Học: dịch chuyển một đoạn ngắn theo hướng đã chọn.",
+        "ult": "Cung Ánh Sáng Tối Thượng: bắn một đòn tấn công không giới hạn tầm về phía kẻ địch, gây <#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% sức mạnh công kích<> thành <#ff9028ff>sát thương vật lý<>, cộng thêm <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> thành <#a974ffff>sát thương phép<> lên kẻ địch trúng đòn."
+      }
+    }
+  },
+  "pt-BR": {
+    "description": {
+      "test_mod_aatrox": {
+        "name": "Aatrox",
+        "attack": "Golpeia o alvo com uma lâmina pesada, causando <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% do dano de ataque<> como <#ff9028ff>dano físico<>.",
+        "skill": "Envia um corte brutal para a frente, causando <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% do dano de ataque<> como <#ff9028ff>dano físico<> e <#ef5350ff>arremessando inimigos ao ar por 0.6s<>.",
+        "skill2": "Avança até um inimigo, recebendo <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50 de armadura<> e <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50 de resistência mágica<> por <#ffb900ff>5.0s<>.",
+        "ult": "Entra em um frenesi sanguinário por <#ffb900ff>10.0s<>, recebendo <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 de dano de ataque<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25 de armadura<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25 de resistência mágica<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45% de velocidade de ataque<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% de velocidade de movimento<> e <#6aff55ff>40% de vampirismo<>."
+      },
+      "test_mod_viktor": {
+        "name": "Viktor",
+        "attack": "Dispara um projétil mágico contra um alvo, causando <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% do dano de ataque<> como <#ff9028ff>dano físico<>.",
+        "skill": "Dispara um laser em linha reta, causando <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% de AP<> de <#a974ffff>dano mágico<> aos campeões inimigos atingidos. Tropas e monstros sofrem dano reduzido. Enquanto Aprimorado, o laser deixa um tremor residual que acerta novamente após <#ffb900ff>1.0s<>.",
+        "skill2": "Cria um campo gravitacional que dura <#ffb900ff>4.0s<> e <#ef5350ff>reduz a velocidade dos campeões inimigos em 40%<>. Campeões inimigos ainda dentro do campo quando ele colapsa ficam <#ef5350ff>atordoados por 2.0s<>.",
+        "ult": "Invoca uma tempestade do caos por <#ffb900ff>4.0s<>, causando <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>40% de AP<> de <#a974ffff>dano mágico<> a cada <#ffb900ff>0.50s<> em 35 de alcance e interrompendo brevemente habilidades inimigas. Tempestade do Caos também evolui o laser de Viktor."
+      },
+      "test_mod_veigar": {
+        "name": "Veigar",
+        "attack": "Dispara um projétil mágico contra um alvo, causando <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% do dano de ataque<> como <#ff9028ff>dano físico<>.",
+        "skill": "Invoca matéria escura em um local-alvo após um curto atraso, causando <#a974ffff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>180% de AP<> de <#a974ffff>dano mágico<> em <#ffb900ff>35 de alcance<>. Acertos em campeões inimigos concedem <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>22 de AP até a morte<>; tropas sofrem metade do dano.",
+        "skill2": "Cria uma jaula de Horizonte de Eventos. Após <#ffb900ff>1.0s<>, campeões inimigos dentro dela ficam <#ef5350ff>atordoados por 1.5s<> e a jaula desaparece.",
+        "ult": "Dispara uma explosão de magia sombria contra um campeão inimigo, causando <#a974ffff>150<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>200% de AP<> de <#a974ffff>dano mágico<>."
+      },
+      "test_mod_jhin": {
+        "name": "Jhin",
+        "attack": "Dispara um tiro contra o alvo, causando <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% do dano de ataque<> como <#ff9028ff>dano físico<>. A cada quarto ataque, usa um projétil vermelho e causa <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% do dano de ataque<>. Após o quarto tiro, Jhin recarrega com velocidade de ataque muito reduzida até seu próximo ataque.",
+        "skill": "Granada Dançante: arremessa uma granada saltitante em um inimigo dentro do alcance. A granada pode saltar para outro inimigo próximo e causa <#ff9028ff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75% do dano de ataque<> como <#ff9028ff>dano físico<> ao atingir.",
+        "skill2": "Florescer Mortal: dispara um tiro longo em linha reta, causando <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>70% do dano de ataque<> como <#ff9028ff>dano físico<> a campeões inimigos e <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>30% do dano de ataque<> a tropas. Campeões inimigos atingidos ficam <#ef5350ff>atordoados por 0.5s<>.",
+        "ult": "Aclamação: enraíza Jhin no lugar e dispara quatro projéteis que atingem apenas campeões na direção escolhida. Cada projétil para no primeiro campeão inimigo atingido. Os três primeiros tiros causam <#ff9028ff>300<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>150% do dano de ataque<> como <#ff9028ff>dano físico<>; o quarto tiro vermelho, maior, causa <#ff9028ff>300<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>300% do dano de ataque<>."
+      },
+      "test_mod_vayne": {
+        "name": "Vayne",
+        "attack": "Dispara um virote de besta contra o alvo, causando <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% do dano de ataque<> como <#ff9028ff>dano físico<>. A cada terceiro ataque básico, ativa Dardos de Prata, causando <#f5f5f5ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>35% do dano de ataque<> + <#f5f5f5ff>4% da Vida máxima do alvo<> como <#f5f5f5ff>dano fixo<>.",
+        "skill": "Rolamento: rola uma curta distância na direção escolhida e fortalece o próximo ataque básico para causar <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>150% do dano de ataque<>. Durante Hora Final, Rolamento percorre uma distância maior e deixa Vayne <#ffb900ff>invisível por 1.5s<>.",
+        "skill2": "Dardos de Prata: passiva, disponível no nível 1 e sempre ativa. A cada terceiro ataque básico, causa <#f5f5f5ff>dano fixo<> adicional.",
+        "ult": "Hora Final: por <#ffb900ff>10.0s<>, Vayne recebe <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>50 de dano de ataque<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% de velocidade de movimento<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>20% de velocidade de ataque<> e recuperação de habilidades mais rápida. Enquanto ativa, Rolamento concede invisibilidade."
+      },
+      "test_mod_fiddlesticks": {
+        "name": "Fiddlesticks",
+        "attack": "Arremessa um projétil em forma de corvo contra o alvo, causando <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% de AP<> como <#a974ffff>dano mágico<>.",
+        "skill": "Aterrorizar: envia um projétil de pesadelo contra um campeão inimigo, causando <#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% de AP<> de <#a974ffff>dano mágico<> e amedrontando-o por 1.25 segundos.",
+        "skill2": "Colheita Farta: drena brevemente inimigos próximos, causando repetidamente <#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>25% de AP<> de <#a974ffff>dano mágico<> e curando Fiddlesticks em <#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>8% de AP<> por inimigo atingido.",
+        "ult": "Tempestade de Corvos: desloca-se instantaneamente até um campeão inimigo, amedronta brevemente campeões inimigos próximos e envolve Fiddlesticks em uma tempestade por 2 segundos, causando repetidamente <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% de AP<> de <#a974ffff>dano mágico<> a inimigos próximos."
+      },
+      "test_mod_azir": {
+        "name": "Azir",
+        "attack": "Azir comanda magia de areia contra o alvo, causando 75% de AP como dano mágico e ocasionalmente invocando soldados de areia para entrar na luta.",
+        "skill": "Surja!: envia um soldado de areia a um local-alvo, causando 30 + 60% de AP como dano mágico aos inimigos atravessados. Ao chegar, o soldado permanece e ataca inimigos próximos, causando 15 + 70% de AP como dano mágico por golpe contra campeões.",
+        "skill2": "Areias Oscilantes: invoca um soldado de areia e avança até ele, recebendo um escudo de 70 + 45% de AP. Inimigos atravessados por Azir sofrem 40 + 45% de AP como dano mágico. O soldado permanece após o avanço.",
+        "ult": "Decreto do Imperador: envia uma parede de soldados para a frente, causando 120 + 100% de AP como dano mágico aos inimigos em seu caminho, empurrando-os para trás e arremessando-os brevemente ao ar. A parede permanece por pouco tempo, atrapalhando o movimento através dela."
+      },
+      "test_mod_fizz": {
+        "name": "Fizz",
+        "attack": "Golpeia o alvo corpo a corpo, causando <#a974ffff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% de AP<> de <#a974ffff>dano mágico<>. Após Ataque do Ouriço, ataques básicos aplicam veneno brevemente ao atingir.",
+        "skill": "Ataque do Ouriço: avança através do alvo e aterrissa atrás dele, causando <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>55% de AP<> de <#a974ffff>dano mágico<> e envenenando-o por <#ffb900ff>3.0s<>. Por <#ffb900ff>4.0s<> após atingir, os ataques básicos de Fizz aplicam um veneno mais fraco ao acertar.",
+        "skill2": "Brincalhão / Trapaceiro: salta na direção de um inimigo ou aliado escolhido, pausa brevemente sobre o tridente enquanto fica <#ffb900ff>invisível, com dano reduzido e imune a controle de grupo por 2.4s<>, depois faz uma curta descida e cai causando <#a974ffff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>65% de AP<> de <#a974ffff>dano mágico<> e <#ef5350ff>lentidão em inimigos próximos por 0.5s<>.",
+        "ult": "Lançar Isca: arremessa um peixe de longo alcance na direção escolhida. O peixe para no primeiro campeão inimigo atingido, <#ef5350ff>aplicando forte lentidão por 2.5s<>; se errar, chega ao fim do percurso. Um tubarão aparece durante a lentidão e então emerge para causar <#a974ffff>240<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>140% de AP<> de <#a974ffff>dano mágico<> e <#ef5350ff>arremessar inimigos ao ar<>."
+      },
+      "test_mod_ezreal": {
+        "name": "Ezreal",
+        "attack": "Dispara um projétil de energia contra o alvo, causando <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% do dano de ataque<> como <#ff9028ff>dano físico<>.",
+        "skill": "Disparo Místico: dispara um tiro de precisão rápido na direção escolhida, parando no primeiro inimigo atingido e causando <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% do dano de ataque<> como <#ff9028ff>dano físico<> a campeões. Tropas sofrem metade do dano.",
+        "skill2": "Fluxo Arcano: teleporta-se por uma curta distância na direção escolhida.",
+        "ult": "Barragem Incendiária: dispara um ataque de alcance ilimitado na direção dos inimigos, causando <#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% do dano de ataque<> como <#ff9028ff>dano físico<>, mais <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> como <#a974ffff>dano mágico<> aos inimigos atingidos."
+      }
+    }
+  },
+  "tr": {
+    "description": {
+      "test_mod_aatrox": {
+        "name": "Aatrox",
+        "attack": "Strikes the target with a heavy blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Sends a brutal cleave forward, dealing <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% attack damage<> as <#ff9028ff>physical damage<> and <#ef5350ff>knocking enemies airborne for 0.6s<>.",
+        "skill2": "Dashes to an enemy, gaining <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50 armor<> and <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50 magic resist<> for <#ffb900ff>5.0s<>.",
+        "ult": "Enters a blood-fueled frenzy for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25 armor<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25 magic resist<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45% attack speed<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>40% vamp<>."
+      },
+      "test_mod_viktor": {
+        "name": "Viktor",
+        "attack": "Fires a magic bolt at a target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Fires a laser in a straight line, dealing <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>magic damage<> to enemy champions hit. Minions and monsters take reduced damage. While Augmented, the laser leaves an aftershock that hits again after <#ffb900ff>1.0s<>.",
+        "skill2": "Creates a gravity field lasting <#ffb900ff>4.0s<> that <#ef5350ff>slows enemy champions by 40%<>. Enemy champions still inside when it collapses are <#ef5350ff>stunned for 2.0s<>.",
+        "ult": "Summons a chaos storm for <#ffb900ff>4.0s<>, dealing <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>40% AP<> <#a974ffff>magic damage<> every <#ffb900ff>0.50s<> within 35 range and briefly disrupting enemy skills. Chaos Storm also evolves Viktor's laser."
+      },
+      "test_mod_veigar": {
+        "name": "Veigar",
+        "attack": "Fires a magic bolt at a target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Calls down dark matter at a target location after a short delay, dealing <#a974ffff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>180% AP<> <#a974ffff>magic damage<> within <#ffb900ff>35 range<>. Enemy champion hits grant <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>22 AP until death<>; minions take half damage.",
+        "skill2": "Creates an Event Horizon cage. After <#ffb900ff>1.0s<>, enemy champions inside are <#ef5350ff>stunned for 1.5s<> and the cage disappears.",
+        "ult": "Fires a burst of dark magic at an enemy champion, dealing <#a974ffff>150<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>200% AP<> <#a974ffff>magic damage<>."
+      },
+      "test_mod_jhin": {
+        "name": "Jhin",
+        "attack": "Fires a shot at the target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>. Every fourth attack uses a red projectile and deals <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% attack damage<>. After the fourth shot, Jhin reloads with heavily reduced attack speed until his next attack.",
+        "skill": "Dancing Grenade: throws a bouncing grenade at an enemy within range. The grenade can jump to another nearby enemy and deals <#ff9028ff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75% attack damage<> as <#ff9028ff>physical damage<> on hit.",
+        "skill2": "Deadly Flourish: fires a long line shot, dealing <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>70% attack damage<> as <#ff9028ff>physical damage<> to enemy champions and <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>30% attack damage<> to minions. Enemy champions hit are <#ef5350ff>stunned for 0.5s<>.",
+        "ult": "Curtain Call: roots Jhin in place and fires four champion-only bullets in the chosen direction. Each bullet stops on the first enemy champion hit. The first three shots deal <#ff9028ff>300<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>150% attack damage<> as <#ff9028ff>physical damage<>; the larger red fourth shot deals <#ff9028ff>300<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>300% attack damage<>."
+      },
+      "test_mod_vayne": {
+        "name": "Vayne",
+        "attack": "Fires a crossbow bolt at the target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>. Every third basic attack triggers Silver Bolts, dealing <#f5f5f5ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>35% attack damage<> + <#f5f5f5ff>4% target max HP<> as <#f5f5f5ff>fixed damage<>.",
+        "skill": "Tumble: rolls a short distance in the chosen direction and empowers the next basic attack to deal <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>150% attack damage<>. During Final Hour, Tumble travels farther and makes Vayne <#ffb900ff>invisible for 1.5s<>.",
+        "skill2": "Silver Bolts: passive, available at level 1 and always active. Every third basic attack deals bonus <#f5f5f5ff>fixed damage<>.",
+        "ult": "Final Hour: for <#ffb900ff>10.0s<>, Vayne gains <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>50 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>20% attack speed<>, and faster skill cooldown recovery. While active, Tumble grants invisibility."
+      },
+      "test_mod_fiddlesticks": {
+        "name": "Fiddlesticks",
+        "attack": "Hurls a crow-shaped bolt at the target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% AP<> as <#a974ffff>magic damage<>.",
+        "skill": "Terrify: sends a nightmare projectile at an enemy champion, dealing <#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> <#a974ffff>magic damage<> and fearing them for 1.25 seconds.",
+        "skill2": "Bountiful Harvest: briefly drains nearby enemies, repeatedly dealing <#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>25% AP<> <#a974ffff>magic damage<> and healing Fiddlesticks for <#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>8% AP<> per enemy hit.",
+        "ult": "Crowstorm: blinks to an enemy champion, briefly fears nearby enemy champions, and surrounds Fiddlesticks with a storm for 2 seconds, repeatedly dealing <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>magic damage<> to nearby enemies."
+      },
+      "test_mod_azir": {
+        "name": "Azir",
+        "attack": "Azir commands sand magic at the target, dealing 75% AP magic damage and occasionally spawning sand soldiers to join the fight.",
+        "skill": "Arise!: sends a sand soldier to a target location, dealing 30 + 60% AP magic damage to enemies it passes through. When it arrives, the soldier remains and attacks nearby enemies, dealing 15 + 70% AP magic damage per strike to champions.",
+        "skill2": "Shifting Sands: summons a sand soldier and dashes to it, gaining a 70 + 45% AP shield. Enemies Azir passes through take 40 + 45% AP magic damage. The soldier remains after the dash.",
+        "ult": "Emperor's Divide: sends a wall of soldiers forward, dealing 120 + 100% AP magic damage to enemies in its path, knocking them back, and briefly knocking them airborne. The wall briefly remains, disrupting movement through it."
+      },
+      "test_mod_fizz": {
+        "name": "Fizz",
+        "attack": "Strikes the target in melee, dealing <#a974ffff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>magic damage<>. After Urchin Strike, basic attacks briefly apply poison on hit.",
+        "skill": "Urchin Strike: dashes through the target and lands behind them, dealing <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>55% AP<> <#a974ffff>magic damage<> and poisoning them for <#ffb900ff>3.0s<>. For <#ffb900ff>4.0s<> after hitting, Fizz basic attacks apply a lighter poison on hit.",
+        "skill2": "Playful / Trickster: vaults toward a chosen enemy or ally direction, pausing briefly on the pole while <#ffb900ff>invisible, damage-reduced, and crowd-control immune for 2.4s<>, then makes a short descent movement and splashes down to deal <#a974ffff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>65% AP<> <#a974ffff>magic damage<> and <#ef5350ff>slow nearby enemies for 0.5s<>.",
+        "ult": "Chum the Waters: throws a long-range fish in the chosen direction. The fish stops on the first enemy champion hit, <#ef5350ff>heavily slowing them for 2.5s<>; if it misses, it reaches the end of its path. A shark appears during the slow, then erupts to deal <#a974ffff>240<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>140% AP<> <#a974ffff>magic damage<> and <#ef5350ff>knock enemies airborne<>."
+      },
+      "test_mod_ezreal": {
+        "name": "Ezreal",
+        "attack": "Fires an energy bolt at the target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Mystic Shot: fires a fast skillshot in the chosen direction, stopping on the first enemy hit and dealing <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as <#ff9028ff>physical damage<> to champions. Minions take half damage.",
+        "skill2": "Arcane Shift: blinks a short distance in the chosen direction.",
+        "ult": "Trueshot Barrage: fires an unlimited-range attack toward enemies, dealing <#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as <#ff9028ff>physical damage<>, plus <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> as <#a974ffff>magic damage<> to enemies hit."
+      }
+    }
+  },
+  "nl": {
+    "description": {
+      "test_mod_aatrox": {
+        "name": "Aatrox",
+        "attack": "Strikes the target with a heavy blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Sends a brutal cleave forward, dealing <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% attack damage<> as <#ff9028ff>physical damage<> and <#ef5350ff>knocking enemies airborne for 0.6s<>.",
+        "skill2": "Dashes to an enemy, gaining <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50 armor<> and <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50 magic resist<> for <#ffb900ff>5.0s<>.",
+        "ult": "Enters a blood-fueled frenzy for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25 armor<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25 magic resist<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45% attack speed<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>40% vamp<>."
+      },
+      "test_mod_viktor": {
+        "name": "Viktor",
+        "attack": "Fires a magic bolt at a target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Fires a laser in a straight line, dealing <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>magic damage<> to enemy champions hit. Minions and monsters take reduced damage. While Augmented, the laser leaves an aftershock that hits again after <#ffb900ff>1.0s<>.",
+        "skill2": "Creates a gravity field lasting <#ffb900ff>4.0s<> that <#ef5350ff>slows enemy champions by 40%<>. Enemy champions still inside when it collapses are <#ef5350ff>stunned for 2.0s<>.",
+        "ult": "Summons a chaos storm for <#ffb900ff>4.0s<>, dealing <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>40% AP<> <#a974ffff>magic damage<> every <#ffb900ff>0.50s<> within 35 range and briefly disrupting enemy skills. Chaos Storm also evolves Viktor's laser."
+      },
+      "test_mod_veigar": {
+        "name": "Veigar",
+        "attack": "Fires a magic bolt at a target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Calls down dark matter at a target location after a short delay, dealing <#a974ffff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>180% AP<> <#a974ffff>magic damage<> within <#ffb900ff>35 range<>. Enemy champion hits grant <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>22 AP until death<>; minions take half damage.",
+        "skill2": "Creates an Event Horizon cage. After <#ffb900ff>1.0s<>, enemy champions inside are <#ef5350ff>stunned for 1.5s<> and the cage disappears.",
+        "ult": "Fires a burst of dark magic at an enemy champion, dealing <#a974ffff>150<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>200% AP<> <#a974ffff>magic damage<>."
+      },
+      "test_mod_jhin": {
+        "name": "Jhin",
+        "attack": "Fires a shot at the target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>. Every fourth attack uses a red projectile and deals <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% attack damage<>. After the fourth shot, Jhin reloads with heavily reduced attack speed until his next attack.",
+        "skill": "Dancing Grenade: throws a bouncing grenade at an enemy within range. The grenade can jump to another nearby enemy and deals <#ff9028ff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75% attack damage<> as <#ff9028ff>physical damage<> on hit.",
+        "skill2": "Deadly Flourish: fires a long line shot, dealing <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>70% attack damage<> as <#ff9028ff>physical damage<> to enemy champions and <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>30% attack damage<> to minions. Enemy champions hit are <#ef5350ff>stunned for 0.5s<>.",
+        "ult": "Curtain Call: roots Jhin in place and fires four champion-only bullets in the chosen direction. Each bullet stops on the first enemy champion hit. The first three shots deal <#ff9028ff>300<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>150% attack damage<> as <#ff9028ff>physical damage<>; the larger red fourth shot deals <#ff9028ff>300<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>300% attack damage<>."
+      },
+      "test_mod_vayne": {
+        "name": "Vayne",
+        "attack": "Fires a crossbow bolt at the target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>. Every third basic attack triggers Silver Bolts, dealing <#f5f5f5ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>35% attack damage<> + <#f5f5f5ff>4% target max HP<> as <#f5f5f5ff>fixed damage<>.",
+        "skill": "Tumble: rolls a short distance in the chosen direction and empowers the next basic attack to deal <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>150% attack damage<>. During Final Hour, Tumble travels farther and makes Vayne <#ffb900ff>invisible for 1.5s<>.",
+        "skill2": "Silver Bolts: passive, available at level 1 and always active. Every third basic attack deals bonus <#f5f5f5ff>fixed damage<>.",
+        "ult": "Final Hour: for <#ffb900ff>10.0s<>, Vayne gains <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>50 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>20% attack speed<>, and faster skill cooldown recovery. While active, Tumble grants invisibility."
+      },
+      "test_mod_fiddlesticks": {
+        "name": "Fiddlesticks",
+        "attack": "Hurls a crow-shaped bolt at the target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% AP<> as <#a974ffff>magic damage<>.",
+        "skill": "Terrify: sends a nightmare projectile at an enemy champion, dealing <#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> <#a974ffff>magic damage<> and fearing them for 1.25 seconds.",
+        "skill2": "Bountiful Harvest: briefly drains nearby enemies, repeatedly dealing <#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>25% AP<> <#a974ffff>magic damage<> and healing Fiddlesticks for <#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>8% AP<> per enemy hit.",
+        "ult": "Crowstorm: blinks to an enemy champion, briefly fears nearby enemy champions, and surrounds Fiddlesticks with a storm for 2 seconds, repeatedly dealing <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>magic damage<> to nearby enemies."
+      },
+      "test_mod_azir": {
+        "name": "Azir",
+        "attack": "Azir commands sand magic at the target, dealing 75% AP magic damage and occasionally spawning sand soldiers to join the fight.",
+        "skill": "Arise!: sends a sand soldier to a target location, dealing 30 + 60% AP magic damage to enemies it passes through. When it arrives, the soldier remains and attacks nearby enemies, dealing 15 + 70% AP magic damage per strike to champions.",
+        "skill2": "Shifting Sands: summons a sand soldier and dashes to it, gaining a 70 + 45% AP shield. Enemies Azir passes through take 40 + 45% AP magic damage. The soldier remains after the dash.",
+        "ult": "Emperor's Divide: sends a wall of soldiers forward, dealing 120 + 100% AP magic damage to enemies in its path, knocking them back, and briefly knocking them airborne. The wall briefly remains, disrupting movement through it."
+      },
+      "test_mod_fizz": {
+        "name": "Fizz",
+        "attack": "Strikes the target in melee, dealing <#a974ffff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>magic damage<>. After Urchin Strike, basic attacks briefly apply poison on hit.",
+        "skill": "Urchin Strike: dashes through the target and lands behind them, dealing <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>55% AP<> <#a974ffff>magic damage<> and poisoning them for <#ffb900ff>3.0s<>. For <#ffb900ff>4.0s<> after hitting, Fizz basic attacks apply a lighter poison on hit.",
+        "skill2": "Playful / Trickster: vaults toward a chosen enemy or ally direction, pausing briefly on the pole while <#ffb900ff>invisible, damage-reduced, and crowd-control immune for 2.4s<>, then makes a short descent movement and splashes down to deal <#a974ffff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>65% AP<> <#a974ffff>magic damage<> and <#ef5350ff>slow nearby enemies for 0.5s<>.",
+        "ult": "Chum the Waters: throws a long-range fish in the chosen direction. The fish stops on the first enemy champion hit, <#ef5350ff>heavily slowing them for 2.5s<>; if it misses, it reaches the end of its path. A shark appears during the slow, then erupts to deal <#a974ffff>240<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>140% AP<> <#a974ffff>magic damage<> and <#ef5350ff>knock enemies airborne<>."
+      },
+      "test_mod_ezreal": {
+        "name": "Ezreal",
+        "attack": "Fires an energy bolt at the target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Mystic Shot: fires a fast skillshot in the chosen direction, stopping on the first enemy hit and dealing <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as <#ff9028ff>physical damage<> to champions. Minions take half damage.",
+        "skill2": "Arcane Shift: blinks a short distance in the chosen direction.",
+        "ult": "Trueshot Barrage: fires an unlimited-range attack toward enemies, dealing <#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as <#ff9028ff>physical damage<>, plus <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> as <#a974ffff>magic damage<> to enemies hit."
+      }
+    }
+  },
+  "ru": {
+    "description": {
+      "test_mod_aatrox": {
+        "name": "Аатрокс",
+        "attack": "Бьет цель тяжелым клинком, нанося <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% силы атаки<> в виде <#ff9028ff>физического урона<>.",
+        "skill": "Посылает вперед жестокий рассекающий удар, нанося <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% силы атаки<> в виде <#ff9028ff>физического урона<> и <#ef5350ff>подбрасывая врагов на 0.6 сек.<>.",
+        "skill2": "Совершает рывок к врагу и получает <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50 брони<> и <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50 сопротивления магии<> на <#ffb900ff>5.0 сек.<>.",
+        "ult": "Впадает в кровавое неистовство на <#ffb900ff>10.0 сек.<>, получая <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 силы атаки<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25 брони<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25 сопротивления магии<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45% скорости атаки<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% скорости передвижения<> и <#6aff55ff>40% вампиризма<>."
+      },
+      "test_mod_viktor": {
+        "name": "Виктор",
+        "attack": "Выпускает магический снаряд в цель, нанося <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% силы атаки<> в виде <#ff9028ff>физического урона<>.",
+        "skill": "Выпускает лазер по прямой линии, нанося пораженным вражеским чемпионам <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>магического урона<>. Миньоны и монстры получают уменьшенный урон. В усиленном состоянии лазер оставляет послевсплеск, который срабатывает снова через <#ffb900ff>1.0 сек.<>.",
+        "skill2": "Создает гравитационное поле на <#ffb900ff>4.0 сек.<>, которое <#ef5350ff>замедляет вражеских чемпионов на 40%<>. Вражеские чемпионы, оставшиеся внутри при схлопывании, <#ef5350ff>оглушаются на 2.0 сек.<>.",
+        "ult": "Призывает бурю хаоса на <#ffb900ff>4.0 сек.<>, нанося <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>40% AP<> <#a974ffff>магического урона<> каждые <#ffb900ff>0.50 сек.<> в радиусе 35 и ненадолго прерывая умения врагов. Буря хаоса также улучшает лазер Виктора."
+      },
+      "test_mod_veigar": {
+        "name": "Вейгар",
+        "attack": "Выпускает магический снаряд в цель, нанося <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% силы атаки<> в виде <#ff9028ff>физического урона<>.",
+        "skill": "После короткой задержки обрушивает темную материю в выбранную точку, нанося <#a974ffff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>180% AP<> <#a974ffff>магического урона<> в <#ffb900ff>радиусе 35<>. Попадание по вражескому чемпиону дает <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>22 AP до смерти<>; миньоны получают половину урона.",
+        "skill2": "Создает клетку Горизонта событий. Через <#ffb900ff>1.0 сек.<> вражеские чемпионы внутри <#ef5350ff>оглушаются на 1.5 сек.<> и клетка исчезает.",
+        "ult": "Выпускает сгусток темной магии во вражеского чемпиона, нанося <#a974ffff>150<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>200% AP<> <#a974ffff>магического урона<>."
+      },
+      "test_mod_jhin": {
+        "name": "Джин",
+        "attack": "Стреляет в цель, нанося <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% силы атаки<> в виде <#ff9028ff>физического урона<>. Каждая четвертая атака использует красный снаряд и наносит <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% силы атаки<>. После четвертого выстрела Джин перезаряжается с сильно сниженной скоростью атаки до следующей атаки.",
+        "skill": "Танцующая граната: бросает отскакивающую гранату во врага в пределах дальности. Граната может перескочить на другого ближайшего врага и при попадании наносит <#ff9028ff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75% силы атаки<> в виде <#ff9028ff>физического урона<>.",
+        "skill2": "Смертельный блеск: выпускает длинный линейный выстрел, нанося вражеским чемпионам <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>70% силы атаки<> в виде <#ff9028ff>физического урона<> и миньонам <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>30% силы атаки<>. Попавшие вражеские чемпионы <#ef5350ff>оглушаются на 0.5 сек.<>.",
+        "ult": "Последний поклон: приковывает Джина к месту и выпускает четыре пули, действующие только на чемпионов, в выбранном направлении. Каждая пуля останавливается при попадании в первого вражеского чемпиона. Первые три выстрела наносят <#ff9028ff>300<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>150% силы атаки<> в виде <#ff9028ff>физического урона<>; более крупный красный четвертый выстрел наносит <#ff9028ff>300<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>300% силы атаки<>."
+      },
+      "test_mod_vayne": {
+        "name": "Вейн",
+        "attack": "Стреляет в цель арбалетным болтом, нанося <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% силы атаки<> в виде <#ff9028ff>физического урона<>. Каждая третья базовая атака активирует Серебряные болты, нанося <#f5f5f5ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>35% силы атаки<> + <#f5f5f5ff>4% от максимального здоровья цели<> в виде <#f5f5f5ff>фиксированного урона<>.",
+        "skill": "Кувырок: перекатывается на короткое расстояние в выбранном направлении и усиливает следующую базовую атаку, чтобы она нанесла <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>150% силы атаки<>. Во время Последнего часа Кувырок проходит дальше и делает Вейн <#ffb900ff>невидимой на 1.5 сек.<>.",
+        "skill2": "Серебряные болты: пассивное умение, доступно с 1 уровня и всегда активно. Каждая третья базовая атака наносит дополнительный <#f5f5f5ff>фиксированный урон<>.",
+        "ult": "Последний час: на <#ffb900ff>10.0 сек.<> Вейн получает <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>50 силы атаки<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% скорости передвижения<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>20% скорости атаки<> и ускоренное восстановление умений. Пока эффект активен, Кувырок дает невидимость."
+      },
+      "test_mod_fiddlesticks": {
+        "name": "Фиддлстикс",
+        "attack": "Бросает в цель снаряд в форме ворона, нанося <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% AP<> в виде <#a974ffff>магического урона<>.",
+        "skill": "Устрашение: посылает кошмарный снаряд во вражеского чемпиона, нанося <#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> <#a974ffff>магического урона<> и пугая его на 1.25 секунды.",
+        "skill2": "Обильная жатва: ненадолго высасывает силы из ближайших врагов, многократно нанося <#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>25% AP<> <#a974ffff>магического урона<> и исцеляя Фиддлстикса на <#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>8% AP<> за каждого пораженного врага.",
+        "ult": "Воронья буря: переносится к вражескому чемпиону, ненадолго пугает ближайших вражеских чемпионов и окружает Фиддлстикса бурей на 2 секунды, многократно нанося ближайшим врагам <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>магического урона<>."
+      },
+      "test_mod_azir": {
+        "name": "Азир",
+        "attack": "Азир направляет песчаную магию в цель, нанося 75% AP магического урона и иногда призывая песчаных солдат, которые вступают в бой.",
+        "skill": "Восстаньте!: отправляет песчаного солдата в выбранную точку, нанося 30 + 60% AP магического урона врагам, через которых он проходит. Прибыв, солдат остается и атакует ближайших врагов, нанося чемпионам 15 + 70% AP магического урона за удар.",
+        "skill2": "Зыбучие пески: призывает песчаного солдата и совершает рывок к нему, получая щит 70 + 45% AP. Враги, через которых проходит Азир, получают 40 + 45% AP магического урона. Солдат остается после рывка.",
+        "ult": "Императорский раздел: посылает стену солдат вперед, нанося врагам на пути 120 + 100% AP магического урона, отталкивая их и ненадолго подбрасывая. Стена недолго остается и мешает проходить через нее."
+      },
+      "test_mod_fizz": {
+        "name": "Физз",
+        "attack": "Бьет цель в ближнем бою, нанося <#a974ffff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>магического урона<>. После Удара морского ежа базовые атаки ненадолго накладывают яд при попадании.",
+        "skill": "Удар морского ежа: проносится сквозь цель и приземляется за ней, нанося <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>55% AP<> <#a974ffff>магического урона<> и отравляя ее на <#ffb900ff>3.0 сек.<>. В течение <#ffb900ff>4.0 сек.<> после попадания базовые атаки Физза накладывают более слабый яд при попадании.",
+        "skill2": "Игривый / Обманщик: прыгает в выбранном направлении к врагу или союзнику, ненадолго задерживаясь на шесте, пока он <#ffb900ff>невидим, получает сниженный урон и невосприимчив к контролю на 2.4 сек.<>, затем делает короткий спуск и падает, нанося <#a974ffff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>65% AP<> <#a974ffff>магического урона<> и <#ef5350ff>замедляя ближайших врагов на 0.5 сек.<>.",
+        "ult": "Наживка для акулы: бросает дальнобойную рыбу в выбранном направлении. Рыба останавливается на первом пораженном вражеском чемпионе и <#ef5350ff>сильно замедляет его на 2.5 сек.<>; если промахивается, достигает конца пути. Во время замедления появляется акула, затем вырывается наружу, нанося <#a974ffff>240<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>140% AP<> <#a974ffff>магического урона<> и <#ef5350ff>подбрасывая врагов<>."
+      },
+      "test_mod_ezreal": {
+        "name": "Эзреаль",
+        "attack": "Выпускает энергетический снаряд в цель, нанося <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% силы атаки<> в виде <#ff9028ff>физического урона<>.",
+        "skill": "Мистический выстрел: выпускает быстрый скиллшот в выбранном направлении, останавливается на первом пораженном враге и наносит чемпионам <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% силы атаки<> в виде <#ff9028ff>физического урона<>. Миньоны получают половину урона.",
+        "skill2": "Магический сдвиг: переносится на короткое расстояние в выбранном направлении.",
+        "ult": "Точный залп: выпускает атаку с неограниченной дальностью в сторону врагов, нанося пораженным врагам <#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% силы атаки<> в виде <#ff9028ff>физического урона<>, плюс <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> в виде <#a974ffff>магического урона<>."
+      }
+    }
+  },
+  "es-ES": {
+    "description": {
+      "test_mod_aatrox": {
+        "name": "Aatrox",
+        "attack": "Golpea al objetivo con una espada pesada e inflige <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% de daño de ataque<> como <#ff9028ff>daño físico<>.",
+        "skill": "Lanza un tajo brutal hacia delante que inflige <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% de daño de ataque<> como <#ff9028ff>daño físico<> y <#ef5350ff>lanza por los aires a los enemigos durante 0.6 s<>.",
+        "skill2": "Se abalanza sobre un enemigo y obtiene <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50 de armadura<> y <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50 de resistencia mágica<> durante <#ffb900ff>5.0 s<>.",
+        "ult": "Entra en un frenesí sangriento durante <#ffb900ff>10.0 s<>, obtiene <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 de daño de ataque<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25 de armadura<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25 de resistencia mágica<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45% de velocidad de ataque<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% de velocidad de movimiento<> y <#6aff55ff>40% de vampirismo<>."
+      },
+      "test_mod_viktor": {
+        "name": "Viktor",
+        "attack": "Dispara un proyectil mágico al objetivo e inflige <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% de daño de ataque<> como <#ff9028ff>daño físico<>.",
+        "skill": "Dispara un láser en línea recta que inflige <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% de AP<> como <#a974ffff>daño mágico<> a los campeones enemigos alcanzados. Los súbditos y monstruos reciben daño reducido. Al estar Mejorado, el láser deja una réplica que golpea de nuevo tras <#ffb900ff>1.0 s<>.",
+        "skill2": "Crea un campo gravitatorio que dura <#ffb900ff>4.0 s<> y <#ef5350ff>ralentiza un 40% a los campeones enemigos<>. Los campeones enemigos que sigan dentro al colapsar quedan <#ef5350ff>aturdidos durante 2.0 s<>.",
+        "ult": "Invoca una tormenta del caos durante <#ffb900ff>4.0 s<>, inflige <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>40% de AP<> como <#a974ffff>daño mágico<> cada <#ffb900ff>0.50 s<> en un alcance de 35 e interrumpe brevemente las habilidades enemigas. Tormenta del Caos también evoluciona el láser de Viktor."
+      },
+      "test_mod_veigar": {
+        "name": "Veigar",
+        "attack": "Dispara un proyectil mágico al objetivo e inflige <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% de daño de ataque<> como <#ff9028ff>daño físico<>.",
+        "skill": "Hace caer materia oscura en la ubicación objetivo tras un breve retraso, inflige <#a974ffff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>180% de AP<> como <#a974ffff>daño mágico<> en <#ffb900ff>35 de alcance<>. Golpear campeones enemigos otorga <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>22 de AP hasta morir<>; los súbditos reciben la mitad de daño.",
+        "skill2": "Crea una jaula de Horizonte de Sucesos. Tras <#ffb900ff>1.0 s<>, los campeones enemigos dentro quedan <#ef5350ff>aturdidos durante 1.5 s<> y la jaula desaparece.",
+        "ult": "Dispara una ráfaga de magia oscura a un campeón enemigo e inflige <#a974ffff>150<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>200% de AP<> como <#a974ffff>daño mágico<>."
+      },
+      "test_mod_jhin": {
+        "name": "Jhin",
+        "attack": "Dispara al objetivo e inflige <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% de daño de ataque<> como <#ff9028ff>daño físico<>. Cada cuarto ataque usa un proyectil rojo e inflige <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% de daño de ataque<>. Tras el cuarto disparo, Jhin recarga con velocidad de ataque muy reducida hasta su siguiente ataque.",
+        "skill": "Granada Danzante: lanza una granada que rebota a un enemigo dentro del alcance. La granada puede saltar a otro enemigo cercano e inflige <#ff9028ff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75% de daño de ataque<> como <#ff9028ff>daño físico<> al impactar.",
+        "skill2": "Florecer Mortal: dispara una línea larga que inflige <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>70% de daño de ataque<> como <#ff9028ff>daño físico<> a campeones enemigos y <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>30% de daño de ataque<> a súbditos. Los campeones enemigos alcanzados quedan <#ef5350ff>aturdidos durante 0.5 s<>.",
+        "ult": "Llamada del Telón: inmoviliza a Jhin y dispara cuatro balas que solo afectan a campeones en la dirección elegida. Cada bala se detiene en el primer campeón enemigo alcanzado. Los tres primeros disparos infligen <#ff9028ff>300<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>150% de daño de ataque<> como <#ff9028ff>daño físico<>; el cuarto disparo rojo más grande inflige <#ff9028ff>300<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>300% de daño de ataque<>."
+      },
+      "test_mod_vayne": {
+        "name": "Vayne",
+        "attack": "Dispara un virote de ballesta al objetivo e inflige <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% de daño de ataque<> como <#ff9028ff>daño físico<>. Cada tercer ataque básico activa Proyectiles de Plata, inflige <#f5f5f5ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>35% de daño de ataque<> + <#f5f5f5ff>4% de la vida máxima del objetivo<> como <#f5f5f5ff>daño fijo<>.",
+        "skill": "Voltereta: rueda una corta distancia en la dirección elegida y potencia el siguiente ataque básico para que inflija <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>150% de daño de ataque<>. Durante Hora Final, Voltereta llega más lejos y vuelve a Vayne <#ffb900ff>invisible durante 1.5 s<>.",
+        "skill2": "Proyectiles de Plata: pasiva, disponible desde el nivel 1 y siempre activa. Cada tercer ataque básico inflige <#f5f5f5ff>daño fijo<> adicional.",
+        "ult": "Hora Final: durante <#ffb900ff>10.0 s<>, Vayne obtiene <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>50 de daño de ataque<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% de velocidad de movimiento<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>20% de velocidad de ataque<> y recuperación de enfriamiento de habilidades más rápida. Mientras está activa, Voltereta otorga invisibilidad."
+      },
+      "test_mod_fiddlesticks": {
+        "name": "Fiddlesticks",
+        "attack": "Lanza un proyectil con forma de cuervo al objetivo e inflige <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% de AP<> como <#a974ffff>daño mágico<>.",
+        "skill": "Aterrorizar: envía un proyectil de pesadilla a un campeón enemigo, inflige <#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% de AP<> como <#a974ffff>daño mágico<> y lo aterroriza durante 1.25 segundos.",
+        "skill2": "Cosecha Abundante: drena brevemente a enemigos cercanos, inflige repetidamente <#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>25% de AP<> como <#a974ffff>daño mágico<> y cura a Fiddlesticks <#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>8% de AP<> por cada enemigo alcanzado.",
+        "ult": "Tormenta de Cuervos: se teleporta a un campeón enemigo, aterroriza brevemente a los campeones enemigos cercanos y rodea a Fiddlesticks con una tormenta durante 2 segundos, infligiendo repetidamente <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% de AP<> como <#a974ffff>daño mágico<> a enemigos cercanos."
+      },
+      "test_mod_azir": {
+        "name": "Azir",
+        "attack": "Azir ordena magia de arena contra el objetivo, inflige 75% de AP como daño mágico y ocasionalmente invoca soldados de arena para unirse al combate.",
+        "skill": "¡Alzaos!: envía un soldado de arena a una ubicación objetivo, inflige 30 + 60% de AP como daño mágico a los enemigos que atraviesa. Al llegar, el soldado permanece y ataca a enemigos cercanos, infligiendo 15 + 70% de AP como daño mágico por golpe a campeones.",
+        "skill2": "Arenas Movedizas: invoca un soldado de arena y se desliza hasta él, obteniendo un escudo de 70 + 45% de AP. Los enemigos atravesados por Azir reciben 40 + 45% de AP como daño mágico. El soldado permanece después del desplazamiento.",
+        "ult": "Falange Imperial: envía un muro de soldados hacia delante, inflige 120 + 100% de AP como daño mágico a los enemigos en su trayectoria, los empuja hacia atrás y los lanza brevemente por los aires. El muro permanece brevemente y dificulta el movimiento a través de él."
+      },
+      "test_mod_fizz": {
+        "name": "Fizz",
+        "attack": "Golpea al objetivo cuerpo a cuerpo e inflige <#a974ffff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% de AP<> como <#a974ffff>daño mágico<>. Después de Golpe de Erizo, los ataques básicos aplican brevemente veneno al impactar.",
+        "skill": "Golpe de Erizo: se desliza a través del objetivo y aterriza detrás de él, inflige <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>55% de AP<> como <#a974ffff>daño mágico<> y lo envenena durante <#ffb900ff>3.0 s<>. Durante <#ffb900ff>4.0 s<> tras acertar, los ataques básicos de Fizz aplican un veneno más débil al impactar.",
+        "skill2": "Juguetón / Bromista: salta hacia una dirección elegida de enemigo o aliado, se detiene brevemente sobre el tridente mientras está <#ffb900ff>invisible, con daño reducido e inmune al control durante 2.4 s<>, luego desciende una corta distancia y cae salpicando para infligir <#a974ffff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>65% de AP<> como <#a974ffff>daño mágico<> y <#ef5350ff>ralentizar a enemigos cercanos durante 0.5 s<>.",
+        "ult": "Carnada para Tiburones: lanza un pez de largo alcance en la dirección elegida. El pez se detiene en el primer campeón enemigo alcanzado y lo <#ef5350ff>ralentiza fuertemente durante 2.5 s<>; si falla, llega al final de su trayectoria. Un tiburón aparece durante la ralentización y luego emerge para infligir <#a974ffff>240<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>140% de AP<> como <#a974ffff>daño mágico<> y <#ef5350ff>lanzar por los aires a los enemigos<>."
+      },
+      "test_mod_ezreal": {
+        "name": "Ezreal",
+        "attack": "Dispara un proyectil de energía al objetivo e inflige <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% de daño de ataque<> como <#ff9028ff>daño físico<>.",
+        "skill": "Disparo Místico: dispara un tiro de habilidad rápido en la dirección elegida, se detiene en el primer enemigo alcanzado e inflige <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% de daño de ataque<> como <#ff9028ff>daño físico<> a campeones. Los súbditos reciben la mitad de daño.",
+        "skill2": "Alteración Arcana: parpadea una corta distancia en la dirección elegida.",
+        "ult": "Andanada Certera: dispara un ataque de alcance ilimitado hacia los enemigos, inflige <#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% de daño de ataque<> como <#ff9028ff>daño físico<>, más <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% de AP<> como <#a974ffff>daño mágico<> a los enemigos alcanzados."
+      }
+    }
+  },
+  "fr": {
+    "description": {
+      "test_mod_aatrox": {
+        "name": "Aatrox",
+        "attack": "Frappe la cible avec une lourde lame, infligeant <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% des dégâts d'attaque<> en <#ff9028ff>dégâts physiques<>.",
+        "skill": "Envoie un violent coup de lame vers l'avant, infligeant <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% des dégâts d'attaque<> en <#ff9028ff>dégâts physiques<> et <#ef5350ff>projetant les ennemis dans les airs pendant 0.6s<>.",
+        "skill2": "Se rue sur un ennemi et gagne <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50 d'armure<> et <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50 de résistance magique<> pendant <#ffb900ff>5.0s<>.",
+        "ult": "Entre dans une frénésie sanguinaire pendant <#ffb900ff>10.0s<>, gagnant <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 dégâts d'attaque<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25 armure<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25 résistance magique<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45% vitesse d'attaque<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% vitesse de déplacement<> et <#6aff55ff>40% vampirisme<>."
+      },
+      "test_mod_viktor": {
+        "name": "Viktor",
+        "attack": "Tire un projectile magique sur une cible, infligeant <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% des dégâts d'attaque<> en <#ff9028ff>dégâts physiques<>.",
+        "skill": "Tire un laser en ligne droite, infligeant <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>dégâts magiques<> aux champions ennemis touchés. Les sbires et monstres subissent des dégâts réduits. Une fois Augmenté, le laser laisse une réplique qui frappe à nouveau après <#ffb900ff>1.0s<>.",
+        "skill2": "Crée un champ gravitationnel durant <#ffb900ff>4.0s<> qui <#ef5350ff>ralentit les champions ennemis de 40%<>. Les champions ennemis encore à l'intérieur lorsqu'il s'effondre sont <#ef5350ff>étourdis pendant 2.0s<>.",
+        "ult": "Invoque une tempête du chaos pendant <#ffb900ff>4.0s<>, infligeant <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>40% AP<> <#a974ffff>dégâts magiques<> toutes les <#ffb900ff>0.50s<> dans un rayon de 35 et perturbant brièvement les compétences ennemies. Tempête du chaos fait aussi évoluer le laser de Viktor."
+      },
+      "test_mod_veigar": {
+        "name": "Veigar",
+        "attack": "Tire un projectile magique sur une cible, infligeant <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% des dégâts d'attaque<> en <#ff9028ff>dégâts physiques<>.",
+        "skill": "Fait tomber de la matière noire sur une zone ciblée après un court délai, infligeant <#a974ffff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>180% AP<> <#a974ffff>dégâts magiques<> dans un <#ffb900ff>rayon de 35<>. Toucher un champion ennemi confère <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>22 AP jusqu'à la mort<>; les sbires subissent la moitié des dégâts.",
+        "skill2": "Crée une cage d'Horizon des événements. Après <#ffb900ff>1.0s<>, les champions ennemis à l'intérieur sont <#ef5350ff>étourdis pendant 1.5s<> puis la cage disparaît.",
+        "ult": "Projette une salve de magie noire sur un champion ennemi, infligeant <#a974ffff>150<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>200% AP<> <#a974ffff>dégâts magiques<>."
+      },
+      "test_mod_jhin": {
+        "name": "Jhin",
+        "attack": "Tire sur la cible, infligeant <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% des dégâts d'attaque<> en <#ff9028ff>dégâts physiques<>. Chaque quatrième attaque utilise un projectile rouge et inflige <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% des dégâts d'attaque<>. Après le quatrième tir, Jhin recharge avec une vitesse d'attaque fortement réduite jusqu'à sa prochaine attaque.",
+        "skill": "Grenade dansante : lance une grenade rebondissante sur un ennemi à portée. La grenade peut sauter vers un autre ennemi proche et inflige <#ff9028ff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75% des dégâts d'attaque<> en <#ff9028ff>dégâts physiques<> à l'impact.",
+        "skill2": "Floraison mortelle : tire une longue ligne, infligeant <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>70% des dégâts d'attaque<> en <#ff9028ff>dégâts physiques<> aux champions ennemis et <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>30% des dégâts d'attaque<> aux sbires. Les champions ennemis touchés sont <#ef5350ff>étourdis pendant 0.5s<>.",
+        "ult": "Rappel de rideau : immobilise Jhin sur place et tire quatre balles ne touchant que les champions dans la direction choisie. Chaque balle s'arrête au premier champion ennemi touché. Les trois premiers tirs infligent <#ff9028ff>300<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>150% des dégâts d'attaque<> en <#ff9028ff>dégâts physiques<>; le quatrième tir rouge, plus grand, inflige <#ff9028ff>300<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>300% des dégâts d'attaque<>."
+      },
+      "test_mod_vayne": {
+        "name": "Vayne",
+        "attack": "Tire un carreau d'arbalète sur la cible, infligeant <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% des dégâts d'attaque<> en <#ff9028ff>dégâts physiques<>. Chaque troisième attaque de base déclenche Carreaux d'argent, infligeant <#f5f5f5ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>35% des dégâts d'attaque<> + <#f5f5f5ff>4% des PV max de la cible<> en <#f5f5f5ff>dégâts fixes<>.",
+        "skill": "Roulade : roule sur une courte distance dans la direction choisie et renforce la prochaine attaque de base pour infliger <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>150% des dégâts d'attaque<>. Pendant Combat ultime, Roulade va plus loin et rend Vayne <#ffb900ff>invisible pendant 1.5s<>.",
+        "skill2": "Carreaux d'argent : passif, disponible au niveau 1 et toujours actif. Chaque troisième attaque de base inflige des <#f5f5f5ff>dégâts fixes<> supplémentaires.",
+        "ult": "Combat ultime : pendant <#ffb900ff>10.0s<>, Vayne gagne <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>50 dégâts d'attaque<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% vitesse de déplacement<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>20% vitesse d'attaque<> et une récupération de compétence plus rapide. Tant que l'effet est actif, Roulade confère l'invisibilité."
+      },
+      "test_mod_fiddlesticks": {
+        "name": "Fiddlesticks",
+        "attack": "Lance un projectile en forme de corbeau sur la cible, infligeant <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% AP<> en <#a974ffff>dégâts magiques<>.",
+        "skill": "Terreur : envoie un projectile cauchemardesque sur un champion ennemi, infligeant <#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> <#a974ffff>dégâts magiques<> et l'effrayant pendant 1.25 seconde.",
+        "skill2": "Moisson fructueuse : draine brièvement les ennemis proches, infligeant plusieurs fois <#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>25% AP<> <#a974ffff>dégâts magiques<> et soignant Fiddlesticks de <#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>8% AP<> par ennemi touché.",
+        "ult": "Rafale de corbeaux : se téléporte sur un champion ennemi, effraie brièvement les champions ennemis proches et entoure Fiddlesticks d'une tempête pendant 2 secondes, infligeant plusieurs fois <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>dégâts magiques<> aux ennemis proches."
+      },
+      "test_mod_azir": {
+        "name": "Azir",
+        "attack": "Azir dirige la magie du sable vers la cible, infligeant 75% AP dégâts magiques et faisant parfois apparaître des soldats de sable pour rejoindre le combat.",
+        "skill": "Dresse-toi ! : envoie un soldat de sable vers une zone ciblée, infligeant 30 + 60% AP dégâts magiques aux ennemis traversés. À l'arrivée, le soldat reste sur place et attaque les ennemis proches, infligeant 15 + 70% AP dégâts magiques par frappe aux champions.",
+        "skill2": "Sables mouvants : invoque un soldat de sable et fonce vers lui, gagnant un bouclier de 70 + 45% AP. Les ennemis traversés par Azir subissent 40 + 45% AP dégâts magiques. Le soldat reste après la ruée.",
+        "ult": "Partition impériale : envoie un mur de soldats vers l'avant, infligeant 120 + 100% AP dégâts magiques aux ennemis sur sa trajectoire, les repoussant et les projetant brièvement dans les airs. Le mur reste un court instant et gêne les déplacements à travers lui."
+      },
+      "test_mod_fizz": {
+        "name": "Fizz",
+        "attack": "Frappe la cible au corps à corps, infligeant <#a974ffff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>dégâts magiques<>. Après Frappe de l'oursin, les attaques de base appliquent brièvement du poison à l'impact.",
+        "skill": "Frappe de l'oursin : traverse la cible et atterrit derrière elle, infligeant <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>55% AP<> <#a974ffff>dégâts magiques<> et l'empoisonnant pendant <#ffb900ff>3.0s<>. Pendant <#ffb900ff>4.0s<> après l'impact, les attaques de base de Fizz appliquent un poison plus léger à l'impact.",
+        "skill2": "Joueur / Filou : bondit vers une direction ennemie ou alliée choisie, reste brièvement sur sa perche en étant <#ffb900ff>invisible, avec dégâts réduits et immunité aux contrôles pendant 2.4s<>, puis redescend sur une courte distance et éclabousse la zone pour infliger <#a974ffff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>65% AP<> <#a974ffff>dégâts magiques<> et <#ef5350ff>ralentir les ennemis proches pendant 0.5s<>.",
+        "ult": "Pêche au gros : lance un poisson à longue portée dans la direction choisie. Le poisson s'arrête sur le premier champion ennemi touché et le <#ef5350ff>ralentit fortement pendant 2.5s<>; s'il rate, il atteint la fin de sa trajectoire. Un requin apparaît pendant le ralentissement, puis surgit pour infliger <#a974ffff>240<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>140% AP<> <#a974ffff>dégâts magiques<> et <#ef5350ff>projeter les ennemis dans les airs<>."
+      },
+      "test_mod_ezreal": {
+        "name": "Ezreal",
+        "attack": "Tire un projectile énergétique sur la cible, infligeant <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% des dégâts d’attaque<> en <#ff9028ff>dégâts physiques<>.",
+        "skill": "Tir mystique : tire un projectile rapide dans la direction choisie, s’arrêtant au premier ennemi touché et infligeant <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% des dégâts d’attaque<> en <#ff9028ff>dégâts physiques<> aux champions. Les sbires subissent la moitié des dégâts.",
+        "skill2": "Transfert arcanique : se téléporte sur une courte distance dans la direction choisie.",
+        "ult": "Barrage térébrant : tire une attaque à portée illimitée vers les ennemis, infligeant <#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% des dégâts d’attaque<> en <#ff9028ff>dégâts physiques<>, plus <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> en <#a974ffff>dégâts magiques<> aux ennemis touchés."
+      }
+    }
+  },
+  "zh-hans": {
+    "description": {
+      "test_mod_aatrox": {
+        "name": "亚托克斯",
+        "attack": "使用巨剑攻击目标，造成<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力的100%<>的<#ff9028ff>物理伤害<>。",
+        "skill": "向前方挥出一记凶猛的横扫，造成<#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力的200%<>的<#ff9028ff>物理伤害<>，并<#ef5350ff>将敌人击飞0.6秒<>。",
+        "skill2": "冲向一名敌人，在<#ffb900ff>5.0秒<>内获得<i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50点护甲<>和<i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50点魔法抗性<>。",
+        "ult": "进入血怒状态，持续<#ffb900ff>10.0秒<>，获得<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75点攻击力<>、<i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25点护甲<>、<i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25点魔法抗性<>、<i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45%攻击速度<>、<i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20%移动速度<>以及<#6aff55ff>40%吸血<>。"
+      },
+      "test_mod_viktor": {
+        "name": "奥术先驱",
+        "attack": "向目标发射一枚魔法弹，造成<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力的100%<>的<#ff9028ff>物理伤害<>。",
+        "skill": "沿直线发射一道激光，对命中的敌方英雄造成<#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法术强度的100%<>的<#a974ffff>魔法伤害<>。小兵和野怪受到的伤害降低。强化后，激光会留下余波，并在<#ffb900ff>1.0秒<>后再次命中。",
+        "skill2": "生成一片引力领域，持续<#ffb900ff>4.0秒<>，<#ef5350ff>使范围内敌方英雄减速40%<>。领域消失时仍在其中的敌方英雄会被<#ef5350ff>晕眩2.0秒<>。",
+        "ult": "召唤混乱风暴，持续<#ffb900ff>4.0秒<>，每<#ffb900ff>0.50秒<>对35范围内的敌人造成<#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法术强度的40%<>的<#a974ffff>魔法伤害<>，并短暂打断敌人的技能。混乱风暴还会进化维克托的激光。"
+      },
+      "test_mod_veigar": {
+        "name": "维迦",
+        "attack": "向目标发射一枚魔法弹，造成<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力的100%<>的<#ff9028ff>物理伤害<>。",
+        "skill": "短暂延迟后召唤暗物质从天而降，对<#ffb900ff>35范围<>内的敌人造成<#a974ffff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法术强度的180%<>的<#a974ffff>魔法伤害<>。命中敌方英雄可获得<i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>22点法术强度，直到死亡<>；小兵受到的伤害减半。",
+        "skill2": "扭曲空间边缘，创造视界牢笼。<#ffb900ff>1.0秒<>后，牢笼内的敌方英雄被<#ef5350ff>晕眩1.5秒<>，随后牢笼消失。",
+        "ult": "向一名敌方英雄释放一团暗黑魔法，造成<#a974ffff>150<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法术强度的200%<>的<#a974ffff>魔法伤害<>。"
+      },
+      "test_mod_jhin": {
+        "name": "烬",
+        "attack": "向目标射出一发子弹，造成<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力的100%<>的<#ff9028ff>物理伤害<>。每第四次攻击会使用红色子弹，造成<#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力的200%<>的伤害。射出第四发后，烬会装填弹药，在下一次攻击前攻击速度大幅降低。",
+        "skill": "曼舞手雷：向范围内的一名敌人投掷一枚会弹跳的手雷。手雷可跳向附近另一名敌人，命中时造成<#ff9028ff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力的75%<>的<#ff9028ff>物理伤害<>。",
+        "skill2": "致命华彩：进行一次远程直线射击，对敌方英雄造成<#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力的70%<>的<#ff9028ff>物理伤害<>，对小兵造成<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力的30%<>的伤害。被命中的敌方英雄被<#ef5350ff>晕眩0.5秒<>。",
+        "ult": "完美谢幕：烬架好武器，将自己固定在原地，向指定方向射出四发只对英雄生效的子弹。每发子弹在命中第一个敌方英雄时停下。前三发各造成<#ff9028ff>300<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力的150%<>的<#ff9028ff>物理伤害<>；威力更强的红色第四发子弹造成<#ff9028ff>300<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力的300%<>的伤害。"
+      },
+      "test_mod_vayne": {
+        "name": "薇恩",
+        "attack": "向目标射出一支弩箭，造成<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力的100%<>的<#ff9028ff>物理伤害<>。每第三次普通攻击会触发圣银弩箭，造成<#f5f5f5ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力的35%<> + <#f5f5f5ff>目标最大生命值的4%<>的<#f5f5f5ff>固定伤害<>。",
+        "skill": "闪避突袭：向指定方向滚动一小段距离，并强化下一次普通攻击，使其造成<#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力的150%<>的伤害。在终极时刻期间，闪避突袭移动距离更远，并使薇恩<#ffb900ff>隐身1.5秒<>。",
+        "skill2": "圣银弩箭：被动技能，1级即可使用且始终生效。每第三次普通攻击造成额外的<#f5f5f5ff>固定伤害<>。",
+        "ult": "终极时刻：在<#ffb900ff>10.0秒<>内，薇恩获得<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>50点攻击力<>、<i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20%移动速度<>、<i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>20%攻击速度<>，以及更快的技能冷却回复。终极时刻期间，闪避突袭会提供隐身。"
+      },
+      "test_mod_fiddlesticks": {
+        "name": "费德提克",
+        "attack": "向目标掷出鸦形弹体，造成<i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法术强度的75%<>的<#a974ffff>魔法伤害<>。",
+        "skill": "恐惧：向一名敌方英雄发射噩梦弹体，造成<#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法术强度的70%<>的<#a974ffff>魔法伤害<>，并使其恐惧1.25秒。",
+        "skill2": "五骨丰登：短暂汲取附近敌人，持续造成<#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法术强度的25%<>的<#a974ffff>魔法伤害<>，每命中一名敌人就为费德提克回复<#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>法术强度的8%<>生命值。",
+        "ult": "群鸦风暴：瞬移至一名敌方英雄身边，短暂恐惧附近敌方英雄，并使费德提克被风暴环绕2秒，持续对附近敌人造成<#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法术强度的30%<>的<#a974ffff>魔法伤害<>。"
+      },
+      "test_mod_azir": {
+        "name": "阿兹尔",
+        "attack": "阿兹尔以沙之魔法攻击目标，造成<i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法术强度的75%<>的<#a974ffff>魔法伤害<>，并偶尔召唤沙兵加入战斗。",
+        "skill": "沙兵现身：将一名沙兵派往目标位置，对经过的敌人造成<#a974ffff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法术强度的60%<>的<#a974ffff>魔法伤害<>。抵达后，沙兵会留下并攻击附近敌人，每次命中英雄造成<#a974ffff>15<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法术强度的70%<>的<#a974ffff>魔法伤害<>。",
+        "skill2": "流沙移形：召唤一名沙兵并冲向它，获得<#ffb900ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法术强度的45%<>护盾。阿兹尔穿过的敌人受到<#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法术强度的45%<>的<#a974ffff>魔法伤害<>。沙兵会在冲刺后留下。",
+        "ult": "禁军之墙：向前方派出一道沙兵之墙，对路径上的敌人造成<#a974ffff>120<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法术强度的100%<>的<#a974ffff>魔法伤害<>，将其击退并短暂击飞。墙体会短暂留下，阻碍敌人穿过。"
+      },
+      "test_mod_fizz": {
+        "name": "菲兹",
+        "attack": "近战攻击目标，造成<#a974ffff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100%法术强度<>的<#a974ffff>魔法伤害<>。使用淘气打击后，普通攻击命中时会短暂施加毒素。",
+        "skill": "淘气打击：冲过目标并落到其身后，造成<#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>55%法术强度<>的<#a974ffff>魔法伤害<>，并使其<#ffb900ff>中毒3.0秒<>。命中后的<#ffb900ff>4.0秒<>内，菲兹的普通攻击命中时会施加较弱的毒素。",
+        "skill2": "古灵 / 精怪：朝选定的敌方或友方方向撑杆跃起，在杆上短暂停留，期间<#ffb900ff>隐形、减免伤害并免疫控制2.4秒<>，随后短距离落下并溅击，造成<#a974ffff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>65%法术强度<>的<#a974ffff>魔法伤害<>，并使附近敌人<#ef5350ff>减速0.5秒<>。",
+        "ult": "巨鲨强袭：向指定方向投出一条远距离小鱼。小鱼会停在命中的第一个敌方英雄身上，使其<#ef5350ff>严重减速2.5秒<>；若未命中，则会飞到路径终点。减速期间鲨鱼出现，随后跃出造成<#a974ffff>240<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>140%法术强度<>的<#a974ffff>魔法伤害<>，并将敌人<#ef5350ff>击飞<>。"
+      },
+      "test_mod_ezreal": {
+        "name": "伊泽瑞尔",
+        "attack": "向目标发射能量弹，造成<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力的100%<>的<#ff9028ff>物理伤害<>。",
+        "skill": "秘术射击：向指定方向发射快速技能弹，在命中的第一个敌人处停止，并对英雄造成<#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力的110%<>的<#ff9028ff>物理伤害<>。小兵受到一半伤害。",
+        "skill2": "奥术跃迁：向指定方向闪现一小段距离。",
+        "ult": "精准弹幕：向敌人方向发射无限距离攻击，对命中的敌人造成<#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力的110%<>的<#ff9028ff>物理伤害<>，并额外造成<i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法术强度的70%<>的<#a974ffff>魔法伤害<>。"
+      }
+    }
+  },
+  "zh-hant": {
+    "description": {
+      "test_mod_aatrox": {
+        "name": "厄薩斯",
+        "attack": "使用巨劍攻擊目標，造成<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力的100%<>的<#ff9028ff>物理傷害<>。",
+        "skill": "向前方揮出一記兇猛的橫掃，造成<#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力的200%<>的<#ff9028ff>物理傷害<>，並<#ef5350ff>將敵人擊飛0.6秒<>。",
+        "skill2": "衝向一名敵人，在<#ffb900ff>5.0秒<>內獲得<i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50點護甲<>和<i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50點魔法抗性<>。",
+        "ult": "進入血怒狀態，持續<#ffb900ff>10.0秒<>，獲得<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75點攻擊力<>、<i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25點護甲<>、<i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25點魔法抗性<>、<i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45%攻擊速度<>、<i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20%移動速度<>以及<#6aff55ff>40%吸血<>。"
+      },
+      "test_mod_viktor": {
+        "name": "奧術先驅",
+        "attack": "向目標發射一枚魔法彈，造成<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力的100%<>的<#ff9028ff>物理傷害<>。",
+        "skill": "沿直線發射一道雷射，對命中的敵方英雄造成<#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法術強度的100%<>的<#a974ffff>魔法傷害<>。小兵和野怪受到的傷害降低。強化後，雷射會留下餘波，並在<#ffb900ff>1.0秒<>後再次命中。",
+        "skill2": "生成一片引力領域，持續<#ffb900ff>4.0秒<>，<#ef5350ff>使範圍內敵方英雄減速40%<>。領域消失時仍在其中的敵方英雄會被<#ef5350ff>暈眩2.0秒<>。",
+        "ult": "召喚混亂風暴，持續<#ffb900ff>4.0秒<>，每<#ffb900ff>0.50秒<>對35範圍內的敵人造成<#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法術強度的40%<>的<#a974ffff>魔法傷害<>，並短暫打斷敵人的技能。混亂風暴還會進化維克特的雷射。"
+      },
+      "test_mod_veigar": {
+        "name": "維迦",
+        "attack": "向目標發射一枚魔法彈，造成<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力的100%<>的<#ff9028ff>物理傷害<>。",
+        "skill": "短暫延遲後召喚暗物質從天而降，對<#ffb900ff>35範圍<>內的敵人造成<#a974ffff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法術強度的180%<>的<#a974ffff>魔法傷害<>。命中敵方英雄可獲得<i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>22點法術強度，直到死亡<>；小兵受到的傷害減半。",
+        "skill2": "扭曲空間邊緣，創造視界牢籠。<#ffb900ff>1.0秒<>後，牢籠內的敵方英雄被<#ef5350ff>暈眩1.5秒<>，隨後牢籠消失。",
+        "ult": "向一名敵方英雄釋放一團暗黑魔法，造成<#a974ffff>150<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法術強度的200%<>的<#a974ffff>魔法傷害<>。"
+      },
+      "test_mod_jhin": {
+        "name": "燼",
+        "attack": "向目標射出一發子彈，造成<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力的100%<>的<#ff9028ff>物理傷害<>。每第四次攻擊會使用紅色子彈，造成<#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力的200%<>的傷害。射出第四發後，燼會裝填彈藥，在下一次攻擊前攻擊速度大幅降低。",
+        "skill": "曼舞手雷：向範圍內的一名敵人投擲一枚會彈跳的手雷。手雷可跳向附近另一名敵人，命中時造成<#ff9028ff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力的75%<>的<#ff9028ff>物理傷害<>。",
+        "skill2": "致命華彩：進行一次遠程直線射擊，對敵方英雄造成<#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力的70%<>的<#ff9028ff>物理傷害<>，對小兵造成<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力的30%<>的傷害。被命中的敵方英雄被<#ef5350ff>暈眩0.5秒<>。",
+        "ult": "完美謝幕：燼架好武器，將自己固定在原地，向指定方向射出四發只對英雄生效的子彈。每發子彈在命中第一個敵方英雄時停下。前三發各造成<#ff9028ff>300<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力的150%<>的<#ff9028ff>物理傷害<>；威力更強的紅色第四發子彈造成<#ff9028ff>300<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力的300%<>的傷害。"
+      },
+      "test_mod_vayne": {
+        "name": "薇恩",
+        "attack": "向目標射出一支弩箭，造成<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力的100%<>的<#ff9028ff>物理傷害<>。每第三次普通攻擊會觸發聖銀弩箭，造成<#f5f5f5ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力的35%<> + <#f5f5f5ff>目標最大生命值的4%<>的<#f5f5f5ff>固定傷害<>。",
+        "skill": "閃避突襲：向指定方向滾動一小段距離，並強化下一次普通攻擊，使其造成<#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力的150%<>的傷害。在終極時刻期間，閃避突襲移動距離更遠，並使薇恩<#ffb900ff>隱身1.5秒<>。",
+        "skill2": "聖銀弩箭：被動技能，1級即可使用且始終生效。每第三次普通攻擊造成額外的<#f5f5f5ff>固定傷害<>。",
+        "ult": "終極時刻：在<#ffb900ff>10.0秒<>內，薇恩獲得<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>50點攻擊力<>、<i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20%移動速度<>、<i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>20%攻擊速度<>，以及更快的技能冷卻回復。終極時刻期間，閃避突襲會提供隱身。"
+      },
+      "test_mod_fiddlesticks": {
+        "name": "費德提克",
+        "attack": "向目標擲出鴉形彈體，造成<i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法術強度的75%<>的<#a974ffff>魔法傷害<>。",
+        "skill": "恐懼：向一名敵方英雄發射噩夢彈體，造成<#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法術強度的70%<>的<#a974ffff>魔法傷害<>，並使其恐懼1.25秒。",
+        "skill2": "五骨豐登：短暫汲取附近敵人，持續造成<#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法術強度的25%<>的<#a974ffff>魔法傷害<>，每命中一名敵人就為費德提克回復<#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>法術強度的8%<>生命值。",
+        "ult": "群鴉風暴：瞬移至一名敵方英雄身邊，短暫恐懼附近敵方英雄，並使費德提克被風暴環繞2秒，持續對附近敵人造成<#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法術強度的30%<>的<#a974ffff>魔法傷害<>。"
+      },
+      "test_mod_azir": {
+        "name": "阿祈爾",
+        "attack": "阿祈爾以沙之魔法攻擊目標，造成<i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法術強度的75%<>的<#a974ffff>魔法傷害<>，並偶爾召喚沙兵加入戰鬥。",
+        "skill": "沙兵現身：將一名沙兵派往目標位置，對經過的敵人造成<#a974ffff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法術強度的60%<>的<#a974ffff>魔法傷害<>。抵達後，沙兵會留下並攻擊附近敵人，每次命中英雄造成<#a974ffff>15<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法術強度的70%<>的<#a974ffff>魔法傷害<>。",
+        "skill2": "流沙移形：召喚一名沙兵並衝向它，獲得<#ffb900ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法術強度的45%<>護盾。阿祈爾穿過的敵人受到<#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法術強度的45%<>的<#a974ffff>魔法傷害<>。沙兵會在衝刺後留下。",
+        "ult": "禁軍之牆：向前方派出一道沙兵之牆，對路徑上的敵人造成<#a974ffff>120<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法術強度的100%<>的<#a974ffff>魔法傷害<>，將其擊退並短暫擊飛。牆體會短暫留下，阻礙敵人穿過。"
+      },
+      "test_mod_fizz": {
+        "name": "飛斯",
+        "attack": "近戰攻擊目標，造成<#a974ffff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100%魔法攻擊<>的<#a974ffff>魔法傷害<>。使用淘氣打擊後，普攻命中時會短暫施加毒素。",
+        "skill": "淘氣打擊：衝過目標並落到其身後，造成<#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>55%魔法攻擊<>的<#a974ffff>魔法傷害<>，並使其<#ffb900ff>中毒3.0秒<>。命中後的<#ffb900ff>4.0秒<>內，飛斯的普攻命中時會施加較弱的毒素。",
+        "skill2": "愛玩小飛 / 調皮小飛：朝選定的敵方或友方方向撐竿躍起，在竿上短暫停留，期間<#ffb900ff>隱形、減免傷害並免疫控制2.4秒<>，接著短距離落下並濺擊，造成<#a974ffff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>65%魔法攻擊<>的<#a974ffff>魔法傷害<>，並使附近敵人<#ef5350ff>緩速0.5秒<>。",
+        "ult": "海之霸主：朝指定方向丟出一條遠距離小魚。小魚會停在命中的第一個敵方英雄身上，使其<#ef5350ff>嚴重緩速2.5秒<>；若未命中，則會飛到路徑終點。緩速期間鯊魚現身，隨後竄出造成<#a974ffff>240<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>140%魔法攻擊<>的<#a974ffff>魔法傷害<>，並將敵人<#ef5350ff>擊飛<>。"
+      },
+      "test_mod_ezreal": {
+        "name": "伊澤瑞爾",
+        "attack": "向目標發射能量彈，造成<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力的100%<>的<#ff9028ff>物理傷害<>。",
+        "skill": "秘術射擊：向指定方向發射快速技能彈，在命中的第一個敵人處停止，並對英雄造成<#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力的110%<>的<#ff9028ff>物理傷害<>。小兵受到一半傷害。",
+        "skill2": "奧術躍遷：向指定方向閃現一小段距離。",
+        "ult": "精準彈幕：向敵人方向發射無限距離攻擊，對命中的敵人造成<#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力的110%<>的<#ff9028ff>物理傷害<>，並額外造成<i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>魔法攻擊的70%<>的<#a974ffff>魔法傷害<>。"
+      }
+    }
+  },
+  "pl": {
+    "description": {
+      "test_mod_aatrox": {
+        "name": "Aatrox",
+        "attack": "Strikes the target with a heavy blade, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Sends a brutal cleave forward, dealing <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% attack damage<> as <#ff9028ff>physical damage<> and <#ef5350ff>knocking enemies airborne for 0.6s<>.",
+        "skill2": "Dashes to an enemy, gaining <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>50 armor<> and <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>50 magic resist<> for <#ffb900ff>5.0s<>.",
+        "ult": "Enters a blood-fueled frenzy for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:armor_0><#ffdd8eff>25 armor<>, <i#asset/base/ui/banpick/champion_stat_icon:magic resistance_0><#88ccffff>25 magic resist<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>45% attack speed<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>40% vamp<>."
+      },
+      "test_mod_viktor": {
+        "name": "Viktor",
+        "attack": "Fires a magic bolt at a target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Fires a laser in a straight line, dealing <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>magic damage<> to enemy champions hit. Minions and monsters take reduced damage. While Augmented, the laser leaves an aftershock that hits again after <#ffb900ff>1.0s<>.",
+        "skill2": "Creates a gravity field lasting <#ffb900ff>4.0s<> that <#ef5350ff>slows enemy champions by 40%<>. Enemy champions still inside when it collapses are <#ef5350ff>stunned for 2.0s<>.",
+        "ult": "Summons a chaos storm for <#ffb900ff>4.0s<>, dealing <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>40% AP<> <#a974ffff>magic damage<> every <#ffb900ff>0.50s<> within 35 range and briefly disrupting enemy skills. Chaos Storm also evolves Viktor's laser."
+      },
+      "test_mod_veigar": {
+        "name": "Veigar",
+        "attack": "Fires a magic bolt at a target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Calls down dark matter at a target location after a short delay, dealing <#a974ffff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>180% AP<> <#a974ffff>magic damage<> within <#ffb900ff>35 range<>. Enemy champion hits grant <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>22 AP until death<>; minions take half damage.",
+        "skill2": "Creates an Event Horizon cage. After <#ffb900ff>1.0s<>, enemy champions inside are <#ef5350ff>stunned for 1.5s<> and the cage disappears.",
+        "ult": "Fires a burst of dark magic at an enemy champion, dealing <#a974ffff>150<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>200% AP<> <#a974ffff>magic damage<>."
+      },
+      "test_mod_jhin": {
+        "name": "Jhin",
+        "attack": "Fires a shot at the target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>. Every fourth attack uses a red projectile and deals <#ff9028ff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>200% attack damage<>. After the fourth shot, Jhin reloads with heavily reduced attack speed until his next attack.",
+        "skill": "Dancing Grenade: throws a bouncing grenade at an enemy within range. The grenade can jump to another nearby enemy and deals <#ff9028ff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75% attack damage<> as <#ff9028ff>physical damage<> on hit.",
+        "skill2": "Deadly Flourish: fires a long line shot, dealing <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>70% attack damage<> as <#ff9028ff>physical damage<> to enemy champions and <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>30% attack damage<> to minions. Enemy champions hit are <#ef5350ff>stunned for 0.5s<>.",
+        "ult": "Curtain Call: roots Jhin in place and fires four champion-only bullets in the chosen direction. Each bullet stops on the first enemy champion hit. The first three shots deal <#ff9028ff>300<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>150% attack damage<> as <#ff9028ff>physical damage<>; the larger red fourth shot deals <#ff9028ff>300<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>300% attack damage<>."
+      },
+      "test_mod_vayne": {
+        "name": "Vayne",
+        "attack": "Fires a crossbow bolt at the target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>. Every third basic attack triggers Silver Bolts, dealing <#f5f5f5ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>35% attack damage<> + <#f5f5f5ff>4% target max HP<> as <#f5f5f5ff>fixed damage<>.",
+        "skill": "Tumble: rolls a short distance in the chosen direction and empowers the next basic attack to deal <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>150% attack damage<>. During Final Hour, Tumble travels farther and makes Vayne <#ffb900ff>invisible for 1.5s<>.",
+        "skill2": "Silver Bolts: passive, available at level 1 and always active. Every third basic attack deals bonus <#f5f5f5ff>fixed damage<>.",
+        "ult": "Final Hour: for <#ffb900ff>10.0s<>, Vayne gains <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>50 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<>, <i#asset/base/ui/banpick/champion_stat_icon:attack_speed_0><#ceff99ff>20% attack speed<>, and faster skill cooldown recovery. While active, Tumble grants invisibility."
+      },
+      "test_mod_fiddlesticks": {
+        "name": "Fiddlesticks",
+        "attack": "Hurls a crow-shaped bolt at the target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% AP<> as <#a974ffff>magic damage<>.",
+        "skill": "Terrify: sends a nightmare projectile at an enemy champion, dealing <#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> <#a974ffff>magic damage<> and fearing them for 1.25 seconds.",
+        "skill2": "Bountiful Harvest: briefly drains nearby enemies, repeatedly dealing <#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>25% AP<> <#a974ffff>magic damage<> and healing Fiddlesticks for <#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>8% AP<> per enemy hit.",
+        "ult": "Crowstorm: blinks to an enemy champion, briefly fears nearby enemy champions, and surrounds Fiddlesticks with a storm for 2 seconds, repeatedly dealing <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>magic damage<> to nearby enemies."
+      },
+      "test_mod_azir": {
+        "name": "Azir",
+        "attack": "Azir commands sand magic at the target, dealing 75% AP magic damage and occasionally spawning sand soldiers to join the fight.",
+        "skill": "Arise!: sends a sand soldier to a target location, dealing 30 + 60% AP magic damage to enemies it passes through. When it arrives, the soldier remains and attacks nearby enemies, dealing 15 + 70% AP magic damage per strike to champions.",
+        "skill2": "Shifting Sands: summons a sand soldier and dashes to it, gaining a 70 + 45% AP shield. Enemies Azir passes through take 40 + 45% AP magic damage. The soldier remains after the dash.",
+        "ult": "Emperor's Divide: sends a wall of soldiers forward, dealing 120 + 100% AP magic damage to enemies in its path, knocking them back, and briefly knocking them airborne. The wall briefly remains, disrupting movement through it."
+      },
+      "test_mod_fizz": {
+        "name": "Fizz",
+        "attack": "Strikes the target in melee, dealing <#a974ffff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>magic damage<>. After Urchin Strike, basic attacks briefly apply poison on hit.",
+        "skill": "Urchin Strike: dashes through the target and lands behind them, dealing <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>55% AP<> <#a974ffff>magic damage<> and poisoning them for <#ffb900ff>3.0s<>. For <#ffb900ff>4.0s<> after hitting, Fizz basic attacks apply a lighter poison on hit.",
+        "skill2": "Playful / Trickster: vaults toward a chosen enemy or ally direction, pausing briefly on the pole while <#ffb900ff>invisible, damage-reduced, and crowd-control immune for 2.4s<>, then makes a short descent movement and splashes down to deal <#a974ffff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>65% AP<> <#a974ffff>magic damage<> and <#ef5350ff>slow nearby enemies for 0.5s<>.",
+        "ult": "Chum the Waters: throws a long-range fish in the chosen direction. The fish stops on the first enemy champion hit, <#ef5350ff>heavily slowing them for 2.5s<>; if it misses, it reaches the end of its path. A shark appears during the slow, then erupts to deal <#a974ffff>240<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>140% AP<> <#a974ffff>magic damage<> and <#ef5350ff>knock enemies airborne<>."
+      },
+      "test_mod_ezreal": {
+        "name": "Ezreal",
+        "attack": "Fires an energy bolt at the target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
+        "skill": "Mystic Shot: fires a fast skillshot in the chosen direction, stopping on the first enemy hit and dealing <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as <#ff9028ff>physical damage<> to champions. Minions take half damage.",
+        "skill2": "Arcane Shift: blinks a short distance in the chosen direction.",
+        "ult": "Trueshot Barrage: fires an unlimited-range attack toward enemies, dealing <#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as <#ff9028ff>physical damage<>, plus <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> as <#a974ffff>magic damage<> to enemies hit."
+      }
+    }
+  }
+}

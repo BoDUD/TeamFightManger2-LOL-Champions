@@ -1,0 +1,602 @@
+{
+  "id": "test_mod_jhin",
+  "category": "Range",
+  "tags": [
+    "AD",
+    "Range"
+  ],
+  "sprite": "asset/test_mod/aseprite_resources/champions/jhin",
+  "anim_prefix": "",
+  "skill_icons": [
+    "asset/test_mod/icons/jhin_skill",
+    "asset/test_mod/icons/jhin_skill2",
+    "asset/test_mod/icons/jhin_ult"
+  ],
+  "stat": {
+    "attack": 100,
+    "magic_power": 65,
+    "hp": 900,
+    "defence": 20,
+    "magic_resistance": 15,
+    "move_speed": 900,
+    "hp_regen": 2,
+    "stack": 0,
+    "crit_chance": 0
+  },
+  "growth": {
+    "attack": 25,
+    "magic_power": 7,
+    "hp": 90,
+    "defence": 7,
+    "magic_resistance": 5,
+    "move_speed": 9,
+    "hp_regen": 1,
+    "stack": 0,
+    "crit_chance": 0
+  },
+  "attack": {
+    "action_name": "attack",
+    "description": "#asset/base/text/champion?description.test_mod_jhin.attack",
+    "duration": 18,
+    "cooltime": 78,
+    "start_timing": 10,
+    "cancelable": true,
+    "range": 66000,
+    "casting_type": "Targeting",
+    "casting_target": "Enemy",
+    "attack_type": "BaseAttack",
+    "effect": {
+      "type": "SwitchByBuff",
+      "buff_name": "test_mod_jhin_aa_3",
+      "effect_none": {
+        "type": "SwitchByBuff",
+        "buff_name": "test_mod_jhin_aa_2",
+        "effect_none": {
+          "type": "SwitchByBuff",
+          "buff_name": "test_mod_jhin_aa_1",
+          "effect_none": {
+            "type": "Combine",
+            "effects": [
+              {
+                "type": "Sfx",
+                "name": "test_mod_jhin_attack_1"
+              },
+              {
+                "type": "TargetProjectile",
+                "speed": 4500,
+                "name": "test_mod_jhin_attack_shot",
+                "applied_target": "Enemy",
+                "applied_effects": [
+                  {
+                    "effect": {
+                      "type": "Attack",
+                      "damage": 0,
+                      "attack_ratio": 100
+                    },
+                    "casting_type": "Targeting"
+                  }
+                ]
+              },
+              {
+                "type": "RemoveCasterBuff",
+                "name": "test_mod_jhin_aa_2"
+              },
+              {
+                "type": "RemoveCasterBuff",
+                "name": "test_mod_jhin_aa_3"
+              },
+              {
+                "type": "RemoveCasterBuff",
+                "name": "test_mod_jhin_reload"
+              },
+              {
+                "type": "AddCasterBuff",
+                "buff_state": {
+                  "name": "test_mod_jhin_aa_1"
+                }
+              }
+            ]
+          },
+          "effect_buff": {
+            "type": "Combine",
+            "effects": [
+              {
+                "type": "Sfx",
+                "name": "test_mod_jhin_attack_2"
+              },
+              {
+                "type": "TargetProjectile",
+                "speed": 4500,
+                "name": "test_mod_jhin_attack_shot",
+                "applied_target": "Enemy",
+                "applied_effects": [
+                  {
+                    "effect": {
+                      "type": "Attack",
+                      "damage": 0,
+                      "attack_ratio": 100
+                    },
+                    "casting_type": "Targeting"
+                  }
+                ]
+              },
+              {
+                "type": "RemoveCasterBuff",
+                "name": "test_mod_jhin_aa_1"
+              },
+              {
+                "type": "RemoveCasterBuff",
+                "name": "test_mod_jhin_aa_3"
+              },
+              {
+                "type": "RemoveCasterBuff",
+                "name": "test_mod_jhin_reload"
+              },
+              {
+                "type": "AddCasterBuff",
+                "buff_state": {
+                  "name": "test_mod_jhin_aa_2"
+                }
+              }
+            ]
+          }
+        },
+      "effect_buff": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "Sfx",
+            "name": "test_mod_jhin_attack_3"
+          },
+          {
+            "type": "TargetProjectile",
+            "speed": 4500,
+            "name": "test_mod_jhin_attack_shot",
+              "applied_target": "Enemy",
+              "applied_effects": [
+                {
+                  "effect": {
+                    "type": "Attack",
+                    "damage": 0,
+                    "attack_ratio": 100
+                  },
+                  "casting_type": "Targeting"
+                }
+              ]
+            },
+            {
+              "type": "RemoveCasterBuff",
+              "name": "test_mod_jhin_aa_1"
+            },
+            {
+              "type": "RemoveCasterBuff",
+              "name": "test_mod_jhin_aa_2"
+            },
+            {
+              "type": "RemoveCasterBuff",
+              "name": "test_mod_jhin_reload"
+            },
+          {
+            "type": "AddCasterBuff",
+            "buff_state": {
+              "name": "test_mod_jhin_aa_3"
+            }
+          }
+        ]
+      }
+      },
+      "effect_buff": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "Sfx",
+            "name": "test_mod_jhin_attack_4"
+          },
+          {
+            "type": "TargetProjectile",
+            "speed": 4500,
+            "name": "test_mod_jhin_attack_shot_4",
+            "applied_target": "Enemy",
+            "applied_effects": [
+              {
+                "effect": {
+                  "type": "Attack",
+                  "damage": 100,
+                  "attack_ratio": 200
+                },
+                "casting_type": "Targeting"
+              }
+            ]
+          },
+          {
+            "type": "RemoveCasterBuff",
+            "name": "test_mod_jhin_aa_1"
+          },
+          {
+            "type": "RemoveCasterBuff",
+            "name": "test_mod_jhin_aa_2"
+          },
+          {
+            "type": "RemoveCasterBuff",
+            "name": "test_mod_jhin_aa_3"
+          },
+          {
+            "type": "AddCasterBuff",
+            "buff_state": {
+              "name": "test_mod_jhin_reload",
+              "attack_speed_mult": -80
+            }
+          },
+          {
+            "type": "AddCasterBuff",
+            "buff_state": {
+              "name": "test_mod_jhin_reload_visual",
+              "duration": {
+                "Time": {
+                  "tick": 60
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "skill": {
+    "action_name": "skill",
+    "description": "#asset/base/text/champion?description.test_mod_jhin.skill",
+    "duration": 32,
+    "cooltime": 480,
+    "start_timing": 14,
+    "range": 65000,
+    "casting_type": "Targeting",
+    "casting_target": "EnemyWithoutTower",
+    "attack_type": "Skill",
+    "effect": {
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "Sfx",
+          "name": "test_mod_jhin_grenade_cast"
+        },
+        {
+          "type": "TargetSplashProjectile",
+          "speed": 4200,
+          "range": 28000,
+          "name": "test_mod_jhin_grenade",
+          "y_offset": 0,
+          "applied_target": "EnemyWithoutTower",
+          "applied_effects": [
+            {
+              "effect": {
+                "type": "Attack",
+                "damage": 40,
+                "attack_ratio": 75
+              },
+              "casting_type": "Targeting"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "skill2": {
+    "action_name": "skill2",
+    "description": "#asset/base/text/champion?description.test_mod_jhin.skill2",
+    "duration": 66,
+    "cooltime": 360,
+    "start_timing": 40,
+    "range": 104000,
+    "casting_type": "Direction",
+    "casting_target": "EnemyWithoutTower",
+    "attack_type": "Skill",
+    "effect": {
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "Sfx",
+          "name": "test_mod_jhin_deadly_flourish_cast"
+        },
+        {
+          "type": "LineRangeProjectile",
+          "width": 5000,
+          "length": 130000,
+          "delay": 19,
+          "apply": 19,
+          "name": "test_mod_jhin_deadly_flourish",
+          "applied_target": "EnemyWithoutTower",
+          "applied_effects": [
+            {
+              "effect": {
+                "type": "Attack",
+                "damage": 0,
+                "attack_ratio": 30
+              },
+              "casting_type": "Targeting"
+            }
+          ]
+        },
+        {
+          "type": "LineRangeProjectile",
+          "width": 5000,
+          "length": 130000,
+          "delay": 19,
+          "apply": 19,
+          "name": "test_mod_jhin_deadly_flourish_champion_bonus",
+          "applied_target": "EnemyChampion",
+          "applied_effects": [
+            {
+              "effect": {
+                "type": "Attack",
+                "damage": 70,
+                "attack_ratio": 40
+              },
+              "casting_type": "Targeting"
+            },
+            {
+              "effect": {
+                "type": "Stun",
+                "duration": 30
+              },
+              "casting_type": "Targeting"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "ult": {
+    "action_name": "ult",
+    "description": "#asset/base/text/champion?description.test_mod_jhin.ult",
+    "duration": 150,
+    "cooltime": 3600,
+    "start_timing": 1,
+    "range": 194000,
+    "casting_type": "Direction",
+    "casting_target": "EnemyChampion",
+    "attack_type": "Skill",
+    "effect": {
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "Sfx",
+          "name": "test_mod_jhin_ult_cast"
+        },
+        {
+          "type": "AddCasterBuff",
+          "buff_state": {
+            "name": "test_mod_jhin_curtain_call_channel",
+            "duration": {
+              "Time": {
+                "tick": 150
+              }
+            },
+            "move_speed_mult": -100
+          }
+        },
+        {
+          "type": "WithSelf",
+          "effects": [
+            {
+              "type": "Bind",
+              "duration": 150
+            }
+          ]
+        },
+        {
+          "type": "Combine",
+          "effects": [
+            {
+              "type": "LinearProjectile",
+              "penetrate": false,
+              "speed": 9000,
+              "range": 195000,
+              "name": "test_mod_jhin_curtain_call_shot",
+              "shape": {
+                "Circle": {
+                  "radius": 6000
+                }
+              },
+              "applied_target": "EnemyChampion",
+              "applied_effects": [
+                {
+                  "effect": {
+                    "type": "Attack",
+                    "damage": 300,
+                    "attack_ratio": 150
+                  },
+                  "casting_type": "Targeting"
+                }
+              ],
+              "end_effects": []
+            }
+          ]
+        },
+        {
+          "type": "Delayed",
+          "tick": 35,
+          "effects": [
+            {
+              "type": "Combine",
+              "effects": [
+                {
+                  "type": "LinearProjectile",
+                  "penetrate": false,
+                  "speed": 9000,
+                  "range": 195000,
+                  "name": "test_mod_jhin_curtain_call_shot",
+                  "shape": {
+                    "Circle": {
+                      "radius": 6000
+                    }
+                  },
+                  "applied_target": "EnemyChampion",
+                  "applied_effects": [
+                    {
+                      "effect": {
+                        "type": "Attack",
+                        "damage": 300,
+                        "attack_ratio": 150
+                      },
+                      "casting_type": "Targeting"
+                    }
+                  ],
+                  "end_effects": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Delayed",
+          "tick": 70,
+          "effects": [
+            {
+              "type": "Combine",
+              "effects": [
+                {
+                  "type": "LinearProjectile",
+                  "penetrate": false,
+                  "speed": 9000,
+                  "range": 195000,
+                  "name": "test_mod_jhin_curtain_call_shot",
+                  "shape": {
+                    "Circle": {
+                      "radius": 6000
+                    }
+                  },
+                  "applied_target": "EnemyChampion",
+                  "applied_effects": [
+                    {
+                      "effect": {
+                        "type": "Attack",
+                        "damage": 300,
+                        "attack_ratio": 150
+                      },
+                      "casting_type": "Targeting"
+                    }
+                  ],
+                  "end_effects": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Delayed",
+          "tick": 105,
+          "effects": [
+            {
+              "type": "Combine",
+              "effects": [
+                {
+                  "type": "LinearProjectile",
+                  "penetrate": false,
+                  "speed": 9000,
+                  "range": 195000,
+                  "name": "test_mod_jhin_curtain_call_shot_4",
+                  "shape": {
+                    "Circle": {
+                      "radius": 6000
+                    }
+                  },
+                  "applied_target": "EnemyChampion",
+                  "applied_effects": [
+                    {
+                      "effect": {
+                        "type": "Attack",
+                        "damage": 300,
+                        "attack_ratio": 300
+                      },
+                      "casting_type": "Targeting"
+                    }
+                  ],
+                  "end_effects": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "view_projectiles": [
+    {
+      "type": "Sprite",
+      "name": "test_mod_jhin_attack",
+      "sprite": "asset/base/sprite/arrow"
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_jhin_deadly_flourish",
+      "anim": "asset/test_mod/aseprite_resources/effects/jhin_deadly_flourish",
+      "tag": "line",
+      "z": -1,
+      "repeat": false
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_jhin_curtain_call_shot",
+      "anim": "asset/test_mod/aseprite_resources/effects/jhin_curtain_call_shot",
+      "tag": "projectile",
+      "z": 1,
+      "repeat": true
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_jhin_curtain_call_shot_4",
+      "anim": "asset/test_mod/aseprite_resources/effects/jhin_curtain_call_shot_4",
+      "tag": "projectile",
+      "z": 1,
+      "repeat": true
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_jhin_grenade",
+      "anim": "asset/test_mod/aseprite_resources/effects/jhin_grenade",
+      "tag": "projectile",
+      "z": 1,
+      "repeat": true
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_jhin_attack_shot",
+      "anim": "asset/test_mod/aseprite_resources/effects/jhin_attack_shot",
+      "tag": "projectile",
+      "z": 1,
+      "repeat": true
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_jhin_attack_shot_4",
+      "anim": "asset/test_mod/aseprite_resources/effects/jhin_attack_shot_4",
+      "tag": "projectile",
+      "z": 1,
+      "repeat": true
+    }
+  ],
+  "view_buffs": [
+    {
+      "type": "Animated",
+      "name": "test_mod_jhin_aa_3",
+      "anim": "asset/test_mod/aseprite_resources/effects/jhin_fourth_shot_ready",
+      "tag": "loop",
+      "z": 4
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_jhin_reload_visual",
+      "anim": "asset/test_mod/aseprite_resources/effects/jhin_reload_circle",
+      "tag": "loop",
+      "z": 5
+    }
+  ],
+  "skill_icon": {
+    "source": "asset/test_mod/aseprite_resources/UI_aseprite/test_mod_skill_icons",
+    "tags": [
+      "test_mod_jhin_skill",
+      "test_mod_jhin_skill2",
+      "test_mod_jhin_ult"
+    ]
+  }
+}

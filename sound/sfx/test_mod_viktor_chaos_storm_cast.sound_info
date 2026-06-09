@@ -1,0 +1,14 @@
+{
+  "plays": [
+    {
+      "delay": 0.0,
+      "clip": "test_mod_viktor_chaos_storm_cast_clip",
+      "volume": 0.50
+    },
+    {
+      "delay": 0.1,
+      "clip": "test_mod_viktor_chaos_storm_duration_clip",
+      "volume": 0.22
+    }
+  ]
+}

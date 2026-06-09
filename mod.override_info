@@ -1,0 +1,398 @@
+{
+  "asset/base/text/champion": {
+    "remapping": "asset/test_mod/text/champion",
+    "type": "merge"
+  },
+  "asset/base/style/champion_view": {
+    "remapping": "asset/test_mod/style/champion_view",
+    "type": "merge"
+  },
+  "asset/base/sound/sfx/test_mod_viktor_attack_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_viktor_attack_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_viktor_attack_cast_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_viktor_attack_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_viktor_laser_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_viktor_laser_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_viktor_laser_cast_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_viktor_laser_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_viktor_laser_hit": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_viktor_laser_hit",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_viktor_laser_hit_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_viktor_laser_hit_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_viktor_laser_aftershock_hit": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_viktor_laser_aftershock_hit",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_viktor_laser_aftershock_hit_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_viktor_laser_aftershock_hit_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_viktor_gravity_field_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_viktor_gravity_field_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_viktor_gravity_field_cast_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_viktor_gravity_field_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_viktor_gravity_field_slow": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_viktor_gravity_field_slow",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_viktor_gravity_field_slow_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_viktor_gravity_field_slow_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_viktor_chaos_storm_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_viktor_chaos_storm_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_viktor_chaos_storm_cast_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_viktor_chaos_storm_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_viktor_chaos_storm_duration_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_viktor_chaos_storm_duration_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_veigar_attack_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_veigar_attack_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_veigar_attack_cast_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_veigar_attack_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_veigar_attack_hit": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_veigar_attack_hit",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_veigar_attack_hit_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_veigar_attack_hit_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_veigar_skill1_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_veigar_skill1_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_veigar_skill1_cast_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_veigar_skill1_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_veigar_skill1_hit": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_veigar_skill1_hit",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_veigar_skill1_hit_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_veigar_skill1_hit_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_veigar_cage_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_veigar_cage_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_veigar_cage_cast_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_veigar_cage_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_veigar_cage_stun": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_veigar_cage_stun",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_veigar_cage_stun_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_veigar_cage_stun_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_veigar_ult_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_veigar_ult_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_veigar_ult_cast_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_veigar_ult_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_veigar_ult_hit": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_veigar_ult_hit",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_veigar_ult_hit_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_veigar_ult_hit_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_jhin_attack_1": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_jhin_attack_1",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_jhin_attack_1_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_jhin_attack_1_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_jhin_attack_2": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_jhin_attack_2",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_jhin_attack_2_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_jhin_attack_2_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_jhin_attack_3": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_jhin_attack_3",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_jhin_attack_3_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_jhin_attack_3_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_jhin_attack_4": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_jhin_attack_4",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_jhin_attack_4_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_jhin_attack_4_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_jhin_grenade_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_jhin_grenade_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_jhin_grenade_cast_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_jhin_grenade_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_jhin_deadly_flourish_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_jhin_deadly_flourish_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_jhin_deadly_flourish_cast_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_jhin_deadly_flourish_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_jhin_ult_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_jhin_ult_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_jhin_ult_cast_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_jhin_ult_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_vayne_tumble_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_vayne_tumble_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_vayne_attack_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_vayne_attack_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_vayne_tumble_cast_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_vayne_tumble_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_vayne_ult_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_vayne_ult_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_vayne_ult_cast_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_vayne_ult_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_aatrox_attack_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_aatrox_attack_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_aatrox_attack_cast_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_aatrox_attack_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_aatrox_attack_hit": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_aatrox_attack_hit",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_aatrox_attack_hit_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_aatrox_attack_hit_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_aatrox_cleave_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_aatrox_cleave_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_aatrox_cleave_cast_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_aatrox_cleave_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_aatrox_cleave_hit": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_aatrox_cleave_hit",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_aatrox_cleave_hit_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_aatrox_cleave_hit_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_aatrox_dash_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_aatrox_dash_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_aatrox_dash_voice_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_aatrox_dash_voice_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_aatrox_dash_effect_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_aatrox_dash_effect_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_aatrox_ult_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_aatrox_ult_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_aatrox_ult_cast_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_aatrox_ult_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_fiddlesticks_attack_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_fiddlesticks_attack_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_fiddlesticks_attack_cast_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_fiddlesticks_attack_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_fiddlesticks_fear_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_fiddlesticks_fear_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_fiddlesticks_fear_cast_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_fiddlesticks_fear_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_fiddlesticks_harvest_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_fiddlesticks_harvest_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_fiddlesticks_harvest_cast_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_fiddlesticks_harvest_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_fiddlesticks_ult_screech": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_fiddlesticks_ult_screech",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_fiddlesticks_ult_screech_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_fiddlesticks_ult_screech_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_azir_attack_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_azir_attack_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_azir_attack_cast_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_azir_attack_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_azir_w_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_azir_w_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_azir_w_cast_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_azir_w_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_azir_e_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_azir_e_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_azir_e_cast_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_azir_e_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_azir_r_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_azir_r_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_azir_r_cast_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_azir_r_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_azir_soldier_spawn_auto_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_azir_soldier_spawn_auto_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_azir_soldier_spawn_auto_cast_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_azir_soldier_spawn_auto_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_fizz_attack_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_fizz_attack_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_fizz_attack_cast_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_fizz_attack_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_fizz_q_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_fizz_q_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_fizz_q_cast_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_fizz_q_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_fizz_e_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_fizz_e_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_fizz_e_cast_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_fizz_e_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_fizz_r_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_fizz_r_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_fizz_r_cast_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_fizz_r_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_ezreal_attack_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_ezreal_attack_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_ezreal_attack_cast_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_ezreal_attack_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_ezreal_q_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_ezreal_q_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_ezreal_q_cast_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_ezreal_q_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_ezreal_e_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_ezreal_e_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_ezreal_e_cast_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_ezreal_e_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_ezreal_r_cast": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_ezreal_r_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_ezreal_r_cast_clip": {
+    "remapping": "asset/test_mod/sound/sfx/test_mod_ezreal_r_cast_clip",
+    "type": "override"
+  }
+}
