@@ -1,5 +1,5 @@
 asset_type,output,source,contract
-actor,aseprite_resources\champions\aatrox#sheet.png,"local image-gen actor source, not committed after rebuild","Viktor-like 57x54 core actor frames, smaller-than-Viktor 34-35 px visual body, compact 8-frame run cross-step, at least 16 px bottom label safety, no idle/run flames"
+actor,aseprite_resources\champions\aatrox#sheet.png,"accepted local image-gen actor sheet plus existing Aatrox action-frame lower-body pixels; process images not committed after rebuild","Viktor-like 57x54 core actor frames, smaller-than-Viktor 34-35 px visual body, one mirrored-by-engine 8-frame run action with compact cross-step, at least 16 px bottom label safety, no idle/run flames, no code-drawn thin legs"
 icons,icons/aatrox_skill.png;icons/aatrox_skill2.png;icons/aatrox_ult.png,"local image-gen LoL ability source, not committed after rebuild",24x24 outputs cropped from refined image-gen Q Darkin Blade / W Infernal Chains / R World Ender source
 vfx,aseprite_resources\effects\aatrox_attack_slash#sheet.png,"local image-gen LoL ability source, not committed after rebuild",4 frame caster-follow basic attack slash cropped from refined image-gen LoL ability sheet
 vfx,aseprite_resources\effects\aatrox_q1_cleave#sheet.png,"local image-gen LoL ability source, not committed after rebuild",6 frame The Darkin Blade narrow thrust and ground crack

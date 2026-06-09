@@ -56,8 +56,10 @@ AATROX_CORE_ACTIONS = ("idle", "run", "attack", "skill", "skill2", "hit", "dead"
 AATROX_VIKTOR_FRAME_SIZE = (57.0, 54.0)
 AATROX_MIN_BOTTOM_SAFE_PIXELS = 16
 AATROX_MAX_CORE_BODY_HEIGHT = 36
-AATROX_MIN_RUN_FOOT_CENTER_RANGE = 3.0
+AATROX_MIN_RUN_FOOT_CENTER_RANGE = 0.9
 AATROX_MIN_RUN_FOOT_SHAPES = 6
+AATROX_MIN_RUN_FOOT_PIXELS = 80
+AATROX_MIN_RUN_LOWER_PIXELS = 110
 
 
 def fail(message: str) -> None:
@@ -392,6 +394,12 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
         y = int(round(float(data["y"])))
         w = int(round(float(data["w"])))
         local_points: list[tuple[int, int]] = []
+        lower_points: list[tuple[int, int]] = []
+        for local_y in range(30, 38):
+            row_start = (y + local_y) * sheet_width
+            for local_x in range(18, min(45, w)):
+                if sheet_alpha[row_start + x + local_x] != 0:
+                    lower_points.append((local_x, local_y))
         for local_y in range(31, 38):
             row_start = (y + local_y) * sheet_width
             for local_x in range(20, min(42, w)):
@@ -399,6 +407,16 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
                     local_points.append((local_x, local_y))
         if not local_points:
             fail(f"Aatrox run frame {index} has no readable foot pixels")
+        if len(local_points) < AATROX_MIN_RUN_FOOT_PIXELS:
+            fail(
+                f"Aatrox run frame {index} has only {len(local_points)} foot pixels; "
+                "do not replace the model with thin drawn legs"
+            )
+        if len(lower_points) < AATROX_MIN_RUN_LOWER_PIXELS:
+            fail(
+                f"Aatrox run frame {index} has only {len(lower_points)} lower-body pixels; "
+                "the run cycle must keep the accepted compact model density"
+            )
         foot_centers.append(sum(point[0] for point in local_points) / len(local_points))
         foot_shapes.add(tuple(local_points))
     if max(foot_centers) - min(foot_centers) < AATROX_MIN_RUN_FOOT_CENTER_RANGE:
