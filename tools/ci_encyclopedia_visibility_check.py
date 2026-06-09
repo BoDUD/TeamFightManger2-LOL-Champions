@@ -56,6 +56,8 @@ AATROX_CORE_ACTIONS = ("idle", "run", "attack", "skill", "skill2", "hit", "dead"
 AATROX_VIKTOR_FRAME_SIZE = (57.0, 54.0)
 AATROX_MIN_BOTTOM_SAFE_PIXELS = 16
 AATROX_MAX_CORE_BODY_HEIGHT = 36
+AATROX_MIN_RUN_FOOT_CENTER_RANGE = 3.0
+AATROX_MIN_RUN_FOOT_SHAPES = 6
 
 
 def fail(message: str) -> None:
@@ -381,6 +383,28 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
             fail(f"Aatrox {action} uses a thinner display-only model than the run/action body")
         if max(abs(height - run_heights[0]) for height in heights) > 2:
             fail(f"Aatrox {action} model height must stay in the same scale class as run")
+
+    foot_centers: list[float] = []
+    foot_shapes: set[tuple[tuple[int, int], ...]] = set()
+    for index, frame in enumerate(run_frames):
+        data = frame["data"]
+        x = int(round(float(data["x"])))
+        y = int(round(float(data["y"])))
+        w = int(round(float(data["w"])))
+        local_points: list[tuple[int, int]] = []
+        for local_y in range(31, 38):
+            row_start = (y + local_y) * sheet_width
+            for local_x in range(20, min(42, w)):
+                if sheet_alpha[row_start + x + local_x] != 0:
+                    local_points.append((local_x, local_y))
+        if not local_points:
+            fail(f"Aatrox run frame {index} has no readable foot pixels")
+        foot_centers.append(sum(point[0] for point in local_points) / len(local_points))
+        foot_shapes.add(tuple(local_points))
+    if max(foot_centers) - min(foot_centers) < AATROX_MIN_RUN_FOOT_CENTER_RANGE:
+        fail("Aatrox run must have Viktor-like alternating foot motion, not a zombie shuffle")
+    if len(foot_shapes) < AATROX_MIN_RUN_FOOT_SHAPES:
+        fail("Aatrox run must vary foot shapes across the eight-frame cycle")
 
     aatrox = load_json(ROOT / "champion" / "aatrox.data_champion")
     projectile_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in aatrox.get("view_projectiles", [])}
