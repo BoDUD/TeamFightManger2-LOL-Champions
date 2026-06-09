@@ -22,6 +22,35 @@ EXPECTED_CHAMPIONS = {
 REQUIRED_DESCRIPTION_KEYS = ("name", "attack", "skill", "skill2", "ult")
 PROCESS_IMAGE_ROOTS = ("source", "qa")
 PROCESS_IMAGE_SUFFIXES = {".png", ".jpg", ".jpeg", ".webp"}
+AATROX_IDS = ("bo_league_champions_aatrox", "test_mod_aatrox")
+AATROX_EFFECT_REFS = {
+    "test_mod_aatrox_q1": (
+        "asset/bo_league_champions/aseprite_resources/effects/aatrox_q1_cleave",
+        "q1",
+    ),
+    "test_mod_aatrox_q2": (
+        "asset/bo_league_champions/aseprite_resources/effects/aatrox_q2_cleave",
+        "q2",
+    ),
+    "test_mod_aatrox_q3": (
+        "asset/bo_league_champions/aseprite_resources/effects/aatrox_q3_cleave",
+        "q3",
+    ),
+    "test_mod_aatrox_infernal_chains": (
+        "asset/bo_league_champions/aseprite_resources/effects/aatrox_w_chain",
+        "chain",
+    ),
+    "test_mod_aatrox_infernal_chains_snap": (
+        "asset/bo_league_champions/aseprite_resources/effects/aatrox_w_chain_snap",
+        "snap",
+    ),
+}
+AATROX_BUFF_REFS = {
+    "test_mod_aatrox_world_ender": (
+        "asset/bo_league_champions/aseprite_resources/effects/aatrox_world_ender_aura",
+        "loop",
+    ),
+}
 
 
 def fail(message: str) -> None:
@@ -143,6 +172,75 @@ def check_no_process_images() -> None:
         fail(f"process/source images must not be committed after rebuild: {offenders}")
 
 
+def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
+    expected_names = {
+        "zh-hans": "\u4e9a\u6258\u514b\u65af",
+        "zh-hant": "\u4e9e\u6258\u514b\u65af",
+        "ko": "\uc544\ud2b8\ub85d\uc2a4",
+    }
+    expected_terms = {
+        "zh-hans": (
+            "\u6697\u88d4\u5229\u5203",
+            "\u6076\u706b\u675f\u94fe",
+            "\u5927\u706d",
+        ),
+        "zh-hant": (
+            "\u51a5\u8840\u90aa\u528d",
+            "\u60e1\u706b\u675f\u93c8",
+            "World Ender",
+        ),
+    }
+    for locale, expected_name in expected_names.items():
+        descriptions = text.get(locale, {}).get("description")
+        if not isinstance(descriptions, dict):
+            fail(f"text/champion.i18n locale {locale} missing description object")
+        for aatrox_id in AATROX_IDS:
+            row = descriptions.get(aatrox_id)
+            if not isinstance(row, dict):
+                fail(f"text/champion.i18n locale {locale} missing {aatrox_id}")
+            if row.get("name") != expected_name:
+                fail(f"text/champion.i18n locale {locale} {aatrox_id}.name must be {expected_name!r}")
+            for key in REQUIRED_DESCRIPTION_KEYS:
+                value = str(row.get(key, ""))
+                if "??" in value or "�" in value:
+                    fail(f"text/champion.i18n locale {locale} {aatrox_id}.{key} still contains corrupted text")
+            for term in expected_terms.get(locale, ()):
+                if not any(term in str(row.get(key, "")) for key in ("skill", "skill2", "ult")):
+                    fail(f"text/champion.i18n locale {locale} {aatrox_id} missing term {term!r}")
+
+    for aatrox_id in AATROX_IDS:
+        view = entries.get(aatrox_id)
+        if not isinstance(view, dict):
+            fail(f"style/champion_view.champion_view missing entries.{aatrox_id}")
+        face_y = view.get("face", {}).get("y")
+        center_y = view.get("center", {}).get("y")
+        if not isinstance(face_y, (int, float)) or face_y > -30:
+            fail(f"style entry {aatrox_id}.face.y must keep the portrait focused on the head/torso")
+        if not isinstance(center_y, (int, float)) or not -20 <= center_y <= -8:
+            fail(f"style entry {aatrox_id}.center.y must keep the full-body display centered")
+
+    fanim = load_json(ROOT / "aseprite_resources" / "champions" / "aatrox#anim.fanim")
+    idle_frames = fanim.get("anims", {}).get("idle", {}).get("frames")
+    if not isinstance(idle_frames, list) or len(idle_frames) < 6:
+        fail("Aatrox idle animation must have at least six stable display frames")
+    for index, frame in enumerate(idle_frames):
+        data = frame.get("data") if isinstance(frame, dict) else None
+        if not isinstance(data, dict):
+            fail(f"Aatrox idle frame {index} missing frame data")
+        if data.get("w") != 64.0 or data.get("h") != 72.0:
+            fail(f"Aatrox idle frame {index} must use the stable 64x72 display frame")
+
+    aatrox = load_json(ROOT / "champion" / "aatrox.data_champion")
+    projectile_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in aatrox.get("view_projectiles", [])}
+    for name, expected in AATROX_EFFECT_REFS.items():
+        if projectile_refs.get(name) != expected:
+            fail(f"champion/aatrox.data_champion projectile {name} must reference {expected}")
+    buff_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in aatrox.get("view_buffs", [])}
+    for name, expected in AATROX_BUFF_REFS.items():
+        if buff_refs.get(name) != expected:
+            fail(f"champion/aatrox.data_champion buff {name} must reference {expected}")
+
+
 def check_champion_visibility() -> None:
     text = load_json(ROOT / "text" / "champion.i18n")
     style = load_json(ROOT / "style" / "champion_view.champion_view")
@@ -214,6 +312,7 @@ def check_champion_visibility() -> None:
 
     if f"{MOD_ID}_aatrox" not in ids:
         fail("Aatrox encyclopedia chain is missing bo_league_champions_aatrox")
+    check_aatrox_rework_contract(text, entries)
 
 
 def main() -> int:

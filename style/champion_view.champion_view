@@ -3,21 +3,21 @@
     "test_mod_aatrox": {
       "face": {
         "x": 0,
-        "y": -15
+        "y": -34
       },
       "center": {
         "x": 0,
-        "y": -15
+        "y": -13
       }
     },
     "bo_league_champions_aatrox": {
       "face": {
         "x": 0,
-        "y": -15
+        "y": -34
       },
       "center": {
         "x": 0,
-        "y": -15
+        "y": -13
       }
     },
     "test_mod_viktor": {
