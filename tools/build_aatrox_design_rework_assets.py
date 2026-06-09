@@ -3,6 +3,7 @@ from __future__ import annotations
 import csv
 import json
 import math
+import os
 import random
 import wave
 from dataclasses import dataclass
@@ -14,9 +15,8 @@ from PIL import Image, ImageDraw, ImageEnhance
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "source" / "aatrox_design_rework"
 
-ACTOR_SOURCE = SOURCE / "imagegen_actor_stable_cross_step_source.png"
-ICON_SOURCE = SOURCE / "imagegen_icons_design_source.png"
-VFX_SOURCE = SOURCE / "imagegen_vfx_design_source.png"
+ACTOR_SOURCE = SOURCE / "imagegen_actor_refined_front_sword_source.png"
+VFX_SOURCE = SOURCE / "imagegen_vfx_lol_abilities_source.png"
 
 ACTOR_SHEET = ROOT / "aseprite_resources" / "champions" / "aatrox#sheet.png"
 ACTOR_ANIM = ROOT / "aseprite_resources" / "champions" / "aatrox#anim.fanim"
@@ -26,12 +26,15 @@ ATTACK_SLASH_SHEET = ROOT / "aseprite_resources" / "effects" / "aatrox_attack_sl
 ATTACK_SLASH_ANIM = ROOT / "aseprite_resources" / "effects" / "aatrox_attack_slash#anim.fanim"
 ULT_AURA_SHEET = ROOT / "aseprite_resources" / "effects" / "aatrox_ult_aura#sheet.png"
 ULT_AURA_ANIM = ROOT / "aseprite_resources" / "effects" / "aatrox_ult_aura#anim.fanim"
+CHAIN_SHEET = ROOT / "aseprite_resources" / "effects" / "aatrox_infernal_chains#sheet.png"
+CHAIN_ANIM = ROOT / "aseprite_resources" / "effects" / "aatrox_infernal_chains#anim.fanim"
 
 CONTACT_SHEET = SOURCE / "aatrox_design_actor_contact.png"
 ICON_CONTACT = SOURCE / "aatrox_design_icon_contact.png"
 VFX_CONTACT = SOURCE / "aatrox_design_vfx_contact.png"
 QA_MATRIX = ROOT / "qa" / "aatrox_design_rework_asset_matrix.csv"
 SFX_DIR = ROOT / "sound" / "sfx"
+GENERATE_CONTACTS = os.environ.get("AATROX_DEBUG_CONTACTS") == "1"
 
 
 @dataclass(frozen=True)
@@ -60,6 +63,7 @@ ACTOR_POSES = {
     "attack": PoseCell(0, 2, 0.03, 0.06, 0.97, 0.96),
     "cleave": PoseCell(1, 2, 0.02, 0.06, 0.98, 0.96),
     "dash": PoseCell(2, 2, 0.02, 0.06, 0.98, 0.96),
+    "ult_pose": PoseCell(3, 2, 0.05, 0.06, 0.95, 0.96),
 }
 
 NORMAL_RUNTIME_POSES = {"idle_a", "idle_b"}
@@ -119,8 +123,12 @@ def remove_green(image: Image.Image) -> Image.Image:
             chroma_green = g > 170 and r < 150 and b < 150
             dark_green_fringe = saturated and g > 35 and r < 120 and g >= r - 5 and g > b + 10
             near_key = g > 130 and r < 120 and b < 120
-            if green_dominant or chroma_green or dark_green_fringe or near_key:
+            yellow_key_fringe = g > 130 and g >= r and b < 95 and g - b > 45
+            soft_key_fringe = g > 90 and g > r * 1.12 and g > b * 1.35
+            if green_dominant or chroma_green or dark_green_fringe or near_key or yellow_key_fringe or soft_key_fringe:
                 px[x, y] = (0, 0, 0, 0)
+            elif g > r * 0.70 and g > b * 1.15:
+                px[x, y] = (r, min(g, round(max(r, b) * 0.48)), b, a)
     return image
 
 
@@ -234,18 +242,6 @@ def normalized_crop(image: Image.Image, left: float, top: float, right: float, b
     ))
 
 
-def vfx_row_crop(image: Image.Image, row: str, cols: int, index: int, *, pad: float = 0.01) -> Image.Image:
-    bands = {
-        "q": (0.00, 0.34),
-        "dash": (0.30, 0.59),
-        "aura": (0.55, 0.99),
-    }
-    top, bottom = bands[row]
-    left = max(0.0, index / cols - pad)
-    right = min(1.0, (index + 1) / cols + pad)
-    return normalized_crop(image, left, top, right, bottom)
-
-
 def fit_sprite(
     image: Image.Image,
     *,
@@ -292,8 +288,8 @@ def pose_sequence(action: str, count: int) -> list[str]:
         "run": ["run_0", "run_1", "run_2", "run_3", "run_4", "run_5", "run_6", "run_1"],
         "attack": ["idle_b", "attack", "attack", "cleave", "cleave", "attack", "attack", "idle_b", "idle_b"],
         "skill": ["idle_b", "attack", "cleave", "cleave", "cleave", "attack", "idle_b", "idle_b"],
-        "skill2": ["idle_b", "run_1", "run_2", "run_3", "run_4", "run_5", "idle_b"],
-        "ult": ["idle_a"],
+        "skill2": ["idle_b", "dash", "dash", "dash", "attack", "idle_b", "idle_b"],
+        "ult": ["ult_pose"],
         "hit": ["idle_a"],
         "dead": ["idle_a"],
     }
@@ -305,7 +301,7 @@ def pose_sequence(action: str, count: int) -> list[str]:
 
 def frame_offsets(action: str, count: int) -> list[tuple[int, int]]:
     if action == "idle":
-        pattern = [(0, 0), (0, -1), (0, -1), (0, 0), (0, 0), (0, -1), (0, -1), (0, 0), (0, 0)]
+        pattern = [(0, 0), (0, 0), (1, -1), (1, -1), (0, 0), (0, 0), (-1, -1), (-1, -1), (0, 0)]
         return pattern[:count]
     if action == "run":
         pattern = [(-1, 0), (0, -1), (1, -1), (0, 0), (-1, 0), (0, -1), (1, -1), (0, 0)]
@@ -335,31 +331,33 @@ def actor_frame(
             crop,
             frame_w=frame_w,
             frame_h=frame_h,
-            target_h=41,
-            max_w=46,
-            baseline=frame_h - 4,
+            target_h=48,
+            max_w=54,
+            baseline=frame_h - 2,
             center_x=frame_w // 2,
             x_offset=x_offset,
             y_offset=y_offset,
         )
 
     if pose.startswith("run_"):
-        target_h, max_w = 40, 48
+        target_h, max_w = 50, 64
     elif pose == "cleave":
-        target_h, max_w = 43, 72
+        target_h, max_w = 51, 86
     elif pose == "dash":
-        target_h, max_w = 40, 66
+        target_h, max_w = 50, 78
     elif pose == "attack":
-        target_h, max_w = 41, 64
+        target_h, max_w = 50, 82
+    elif pose == "ult_pose":
+        target_h, max_w = 50, 66
     else:
-        target_h, max_w = 40, 48
+        target_h, max_w = 50, 64
     return fit_sprite(
         crop,
         frame_w=frame_w,
         frame_h=frame_h,
         target_h=target_h,
         max_w=max_w,
-        baseline=frame_h - 7,
+        baseline=frame_h - 4,
         center_x=43,
         x_offset=x_offset,
         y_offset=y_offset,
@@ -368,7 +366,6 @@ def actor_frame(
 
 def build_actor_sheet() -> None:
     source = load_rgba(ACTOR_SOURCE)
-    vfx_source = load_rgba(VFX_SOURCE)
     rendered: list[tuple[str, int, float, Image.Image]] = []
     for action in ("skill", "skill2", "run", "attack", "idle", "hit", "dead", "ult"):
         durations = ACTION_DURATIONS[action]
@@ -377,8 +374,6 @@ def build_actor_sheet() -> None:
         dims = ACTION_FRAME_DIMS[action]
         for index, (duration, pose, (x_offset, y_offset), (frame_w, frame_h)) in enumerate(zip(durations, poses, offsets, dims)):
             frame = actor_frame(source, action, pose, frame_w=frame_w, frame_h=frame_h, x_offset=x_offset, y_offset=y_offset)
-            if action == "skill2" and 0 < index < len(durations) - 1:
-                frame = compose_dash_body_frame(vfx_source, frame, index)
             rendered.append((action, index, duration, frame))
 
     sheet = Image.new("RGBA", SILVERBEAR_SHEET_SIZE, (0, 0, 0, 0))
@@ -418,8 +413,8 @@ def build_actor_contact() -> None:
         ("run 6", "run", "run_6", 96, 72),
         ("attack body", "attack", "attack", 96, 72),
         ("skill body", "skill", "cleave", 96, 72),
-        ("dash body", "skill2", "run_2", 96, 72),
-        ("ult body", "ult", "idle_a", 54, 50),
+        ("chain cast", "skill2", "dash", 96, 72),
+        ("ult body", "ult", "ult_pose", 54, 50),
     ]
     cell_w, cell_h = 112, 104
     contact = Image.new("RGBA", (cell_w * 6, cell_h * 2), (22, 24, 32, 255))
@@ -431,18 +426,11 @@ def build_actor_contact() -> None:
         oy = row * cell_h
         draw.rectangle([ox, oy, ox + cell_w - 1, oy + cell_h - 1], outline=(72, 80, 94, 255))
         packed = actor_frame(source, action, pose, frame_w=frame_w, frame_h=frame_h, x_offset=0)
-        if action == "skill2":
-            packed = compose_dash_body_frame(load_rgba(VFX_SOURCE), packed, 2)
         contact.alpha_composite(packed, (ox + (cell_w - packed.width) // 2, oy + 10))
         draw.text((ox + 8, oy + 78), label, fill=(220, 230, 235, 255))
         draw.text((ox + 8, oy + 91), f"{packed.width}x{packed.height}", fill=(150, 165, 178, 255))
     CONTACT_SHEET.parent.mkdir(parents=True, exist_ok=True)
     contact.save(CONTACT_SHEET)
-
-
-def crop_icon(source: Image.Image, index: int) -> Image.Image:
-    cell = source.width // 3
-    return source.crop((index * cell, 0, (index + 1) * cell, cell))
 
 
 def polish_icon(icon: Image.Image) -> Image.Image:
@@ -461,17 +449,28 @@ def polish_icon(icon: Image.Image) -> Image.Image:
 
 
 def build_icons() -> None:
-    source = load_rgba(ICON_SOURCE)
+    source = load_rgba(VFX_SOURCE)
     names = ["aatrox_skill.png", "aatrox_skill2.png", "aatrox_ult.png"]
-    contact = Image.new("RGBA", (64 * 3, 64), (0, 0, 0, 0))
+    contact = Image.new("RGBA", (64 * 3, 64), (0, 0, 0, 0)) if GENERATE_CONTACTS else None
     for index, name in enumerate(names):
-        polished = polish_icon(crop_icon(source, index))
+        polished = polish_icon(crop_generated_icon(source, index))
         icon = polished.resize((24, 24), Image.Resampling.LANCZOS).convert("RGBA")
         (ROOT / "icons").mkdir(parents=True, exist_ok=True)
         icon.save(ROOT / "icons" / name)
-        contact.alpha_composite(polished, (index * 64, 0))
-    ICON_CONTACT.parent.mkdir(parents=True, exist_ok=True)
-    contact.save(ICON_CONTACT)
+        if contact is not None:
+            contact.alpha_composite(polished, (index * 64, 0))
+    if contact is not None:
+        ICON_CONTACT.parent.mkdir(parents=True, exist_ok=True)
+        contact.save(ICON_CONTACT)
+
+
+def crop_generated_icon(source: Image.Image, index: int) -> Image.Image:
+    boxes = (
+        (0.20, 0.755, 0.36, 0.965),
+        (0.42, 0.755, 0.58, 0.965),
+        (0.63, 0.755, 0.80, 0.965),
+    )
+    return normalized_crop(source, *boxes[index])
 
 
 def fit_effect(
@@ -482,6 +481,7 @@ def fit_effect(
     max_scale: float = 0.94,
     alpha_mult: float = 1.0,
     y_offset: int = 0,
+    min_pixels: int = 12,
 ) -> Image.Image:
     sprite = trim_alpha(remove_green(image.copy()))
     if sprite.getchannel("A").getbbox() is None:
@@ -493,121 +493,64 @@ def fit_effect(
     sprite = hard_alpha(sprite, threshold=24)
     canvas = Image.new("RGBA", (frame_w, frame_h), (0, 0, 0, 0))
     canvas.alpha_composite(sprite, ((frame_w - new_w) // 2, (frame_h - new_h) // 2 + y_offset))
-    result = quantize_rgba(remove_tiny_components(canvas, min_pixels=6), 96)
+    result = quantize_rgba(remove_tiny_components(canvas, min_pixels=min_pixels), 96)
     if alpha_mult < 1.0:
         alpha = result.getchannel("A").point(lambda value: round(value * alpha_mult) if value else 0)
         result.putalpha(alpha)
     return result
 
 
-def compose_dash_body_frame(vfx_source: Image.Image, body: Image.Image, index: int) -> Image.Image:
-    trail = draw_dash_trail_frame(body.width, body.height, index)
-    canvas = Image.new("RGBA", body.size, (0, 0, 0, 0))
-    canvas.alpha_composite(trail, (0, 0))
-    canvas.alpha_composite(body, (0, 0))
-    return quantize_rgba(canvas, 96)
+def crop_generated_vfx(source: Image.Image, row: str, index: int) -> Image.Image:
+    specs = {
+        "q": (0.035, 0.275, 6),
+        "chain": (0.305, 0.485, 5),
+        "aura": (0.545, 0.735, 4),
+    }
+    top, bottom, columns = specs[row]
+    left = index / columns
+    right = (index + 1) / columns
+    pad = 0.012
+    return normalized_crop(
+        source,
+        max(0.0, left - pad),
+        top,
+        min(1.0, right + pad),
+        bottom,
+    )
 
 
-def draw_dash_trail_frame(frame_w: int, frame_h: int, index: int) -> Image.Image:
-    canvas = Image.new("RGBA", (frame_w, frame_h), (0, 0, 0, 0))
-    draw = ImageDraw.Draw(canvas)
-    strength = max(0, min(4, index - 1))
-    alpha = 40 + strength * 18
-    y = frame_h - 26
-    for offset, width, color in (
-        (0, 4, (86, 2, 18, alpha)),
-        (7, 2, (205, 22, 36, max(20, alpha - 20))),
-        (14, 1, (255, 118, 72, max(14, alpha - 36))),
-    ):
-        draw.line([(18 - offset, y + offset // 2), (48 - offset, y - 5), (66 - offset, y - 2)], fill=color, width=width)
-    return canvas
-
-
-def draw_attack_slash_frame(frame_w: int, frame_h: int, index: int, total: int) -> Image.Image:
-    canvas = Image.new("RGBA", (frame_w, frame_h), (0, 0, 0, 0))
-    draw = ImageDraw.Draw(canvas)
-    t = index / max(1, total - 1)
-    alpha = round(230 * (1.0 - t * 0.45))
-    bbox = [8 + round(t * 7), 4 + round(t * 5), frame_w - 6, frame_h - 5]
-    for width, color in (
-        (9, (28, 0, 8, round(alpha * 0.75))),
-        (6, (150, 12, 24, alpha)),
-        (3, (255, 72, 48, alpha)),
-        (1, (255, 200, 118, round(alpha * 0.88))),
-    ):
-        draw.arc(bbox, start=292, end=52, fill=color, width=width)
-    hit_x = frame_w - 25 + round(t * 6)
-    hit_y = 32 + round(math.sin(t * math.pi) * 4)
-    draw.polygon([(hit_x, hit_y - 8), (hit_x + 4, hit_y), (hit_x, hit_y + 8), (hit_x - 4, hit_y)], fill=(255, 84, 48, round(alpha * 0.86)))
-    rng = random.Random(900 + index)
-    for _ in range(9 - index):
-        x = rng.randint(20, frame_w - 16)
-        y = rng.randint(22, frame_h - 10)
-        r = rng.choice([1, 1, 2])
-        draw.ellipse([x - r, y - r, x + r, y + r], fill=(100, 6, 18, round(alpha * 0.55)))
-    return quantize_rgba(canvas, 80)
-
-
-def draw_q_ground_crack_frame(frame_w: int, frame_h: int, index: int, total: int) -> Image.Image:
-    canvas = Image.new("RGBA", (frame_w, frame_h), (0, 0, 0, 0))
-    draw = ImageDraw.Draw(canvas)
-    t = index / max(1, total - 1)
-    start_x = 20
-    end_x = round(70 + t * 94)
-    base_y = 58
-    alpha = round(230 * (1.0 - t * 0.35))
-    pts = []
-    rng = random.Random(1200 + index)
-    x = start_x
-    while x <= end_x:
-        pts.append((x, base_y + rng.choice([-3, -2, -1, 0, 1, 2])))
-        x += rng.randint(12, 18)
-    if len(pts) >= 2:
-        draw.line(pts, fill=(42, 0, 6, round(alpha * 0.95)), width=7)
-        draw.line(pts, fill=(150, 8, 22, alpha), width=4)
-        draw.line(pts, fill=(255, 82, 46, round(alpha * 0.82)), width=2)
-    for px, py in pts[1:-1]:
-        length = rng.randint(9, 18)
-        side = rng.choice([-1, 1])
-        branch = [(px, py), (px + length, py + side * rng.randint(5, 12))]
-        draw.line(branch, fill=(82, 0, 12, round(alpha * 0.78)), width=3)
-        draw.line(branch, fill=(230, 42, 32, round(alpha * 0.58)), width=1)
-    shock_x = min(end_x, start_x + round(t * 118))
-    draw.arc([shock_x - 24, base_y - 24, shock_x + 18, base_y + 14], start=205, end=330, fill=(255, 118, 62, round(alpha * 0.55)), width=2)
-    return quantize_rgba(remove_tiny_components(canvas, min_pixels=4), 80)
-
-
-def draw_ult_aura_frame(frame_w: int, frame_h: int, index: int, total: int) -> Image.Image:
-    canvas = Image.new("RGBA", (frame_w, frame_h), (0, 0, 0, 0))
-    draw = ImageDraw.Draw(canvas)
-    t = index / max(1, total)
-    pulse = 0.5 + 0.5 * math.sin(t * math.tau)
-    cx, cy = frame_w // 2, frame_h // 2 + 10
-    alpha = round(62 + pulse * 28)
-    wing = [
-        (cx - 8, cy - 8),
-        (cx - 35, cy - 28),
-        (cx - 44, cy - 4),
-        (cx - 27, cy + 3),
-    ]
-    right = [(frame_w - x, y) for x, y in wing]
-    draw.polygon(wing, fill=(86, 0, 18, alpha))
-    draw.polygon(right, fill=(86, 0, 18, alpha))
-    draw.arc([cx - 38, cy - 34, cx + 38, cy + 28], start=210, end=330, fill=(210, 20, 36, round(alpha * 0.70)), width=3)
-    draw.arc([cx - 25, cy - 20, cx + 25, cy + 25], start=215, end=325, fill=(255, 104, 62, round(alpha * 0.42)), width=2)
-    return quantize_rgba(remove_tiny_components(canvas, min_pixels=4), 80)
+def chain_anim() -> dict[str, dict[str, list[dict[str, object]]]]:
+    frames = []
+    for index, duration in enumerate((0.08, 0.08, 0.09, 0.1, 0.12)):
+        frames.append(
+            {
+                "duration": duration,
+                "data": {
+                    "x": float(index * 192),
+                    "y": 0.0,
+                    "w": 192.0,
+                    "h": 96.0,
+                },
+            }
+        )
+    return {"anims": {"chain": {"frames": frames}}}
 
 
 def build_vfx() -> None:
+    source = load_rgba(VFX_SOURCE)
     q_anim = json.loads(Q_IMPACT_ANIM.read_text(encoding="utf-8"))
     attack_anim = json.loads(ATTACK_SLASH_ANIM.read_text(encoding="utf-8"))
     aura_anim = json.loads(ULT_AURA_ANIM.read_text(encoding="utf-8"))
+    chain_anim_data = chain_anim()
 
     attack_frames = attack_anim["anims"]["slash"]["frames"]
     attack_sheet = Image.new("RGBA", (96 * len(attack_frames), 72), (0, 0, 0, 0))
     for out_index, frame in enumerate(attack_frames):
         _, _, w, h = frame_box(frame)
-        attack_sheet.alpha_composite(draw_attack_slash_frame(w, h, out_index, len(attack_frames)), (out_index * w, 0))
+        attack_sheet.alpha_composite(
+            fit_effect(crop_generated_vfx(source, "q", min(out_index + 1, 5)), w, h, max_scale=0.92, min_pixels=16),
+            (out_index * w, 0),
+        )
     ATTACK_SLASH_SHEET.parent.mkdir(parents=True, exist_ok=True)
     attack_sheet.save(ATTACK_SLASH_SHEET)
 
@@ -615,7 +558,10 @@ def build_vfx() -> None:
     q_sheet = Image.new("RGBA", (192 * len(q_frames), 96), (0, 0, 0, 0))
     for out_index, frame in enumerate(q_frames):
         _, _, w, h = frame_box(frame)
-        q_sheet.alpha_composite(draw_q_ground_crack_frame(w, h, out_index, len(q_frames)), (out_index * w, 0))
+        q_sheet.alpha_composite(
+            fit_effect(crop_generated_vfx(source, "q", out_index), w, h, max_scale=0.95, min_pixels=16),
+            (out_index * w, 0),
+        )
     Q_IMPACT_SHEET.parent.mkdir(parents=True, exist_ok=True)
     q_sheet.save(Q_IMPACT_SHEET)
 
@@ -623,18 +569,35 @@ def build_vfx() -> None:
     aura_sheet = Image.new("RGBA", (96 * len(aura_frames), 96), (0, 0, 0, 0))
     for out_index, frame in enumerate(aura_frames):
         _, _, w, h = frame_box(frame)
-        aura_sheet.alpha_composite(draw_ult_aura_frame(w, h, out_index, len(aura_frames)), (out_index * w, 0))
+        aura_sheet.alpha_composite(
+            fit_effect(crop_generated_vfx(source, "aura", out_index), w, h, max_scale=0.98, alpha_mult=0.9, min_pixels=16),
+            (out_index * w, 0),
+        )
     ULT_AURA_SHEET.parent.mkdir(parents=True, exist_ok=True)
     aura_sheet.save(ULT_AURA_SHEET)
+    CHAIN_ANIM.write_text(json.dumps(chain_anim_data, separators=(",", ":")), encoding="utf-8")
 
-    contact_w = max(attack_sheet.width, q_sheet.width, aura_sheet.width)
-    contact_h = attack_sheet.height + q_sheet.height + aura_sheet.height
-    contact = Image.new("RGBA", (contact_w, contact_h), (22, 24, 32, 255))
-    contact.alpha_composite(attack_sheet, (0, 0))
-    contact.alpha_composite(q_sheet, (0, attack_sheet.height))
-    contact.alpha_composite(aura_sheet, (0, attack_sheet.height + q_sheet.height))
-    VFX_CONTACT.parent.mkdir(parents=True, exist_ok=True)
-    contact.save(VFX_CONTACT)
+    chain_frames = chain_anim_data["anims"]["chain"]["frames"]
+    chain_sheet = Image.new("RGBA", (192 * len(chain_frames), 96), (0, 0, 0, 0))
+    for out_index, frame in enumerate(chain_frames):
+        _, _, w, h = frame_box(frame)
+        chain_sheet.alpha_composite(
+            fit_effect(crop_generated_vfx(source, "chain", out_index), w, h, max_scale=0.96, min_pixels=5),
+            (out_index * w, 0),
+        )
+    CHAIN_SHEET.parent.mkdir(parents=True, exist_ok=True)
+    chain_sheet.save(CHAIN_SHEET)
+
+    if GENERATE_CONTACTS:
+        contact_w = max(attack_sheet.width, q_sheet.width, aura_sheet.width, chain_sheet.width)
+        contact_h = attack_sheet.height + q_sheet.height + aura_sheet.height + chain_sheet.height
+        contact = Image.new("RGBA", (contact_w, contact_h), (22, 24, 32, 255))
+        contact.alpha_composite(attack_sheet, (0, 0))
+        contact.alpha_composite(q_sheet, (0, attack_sheet.height))
+        contact.alpha_composite(aura_sheet, (0, attack_sheet.height + q_sheet.height))
+        contact.alpha_composite(chain_sheet, (0, attack_sheet.height + q_sheet.height + aura_sheet.height))
+        VFX_CONTACT.parent.mkdir(parents=True, exist_ok=True)
+        contact.save(VFX_CONTACT)
 
 
 def envelope(t: float, duration: float, attack: float = 0.02, release: float = 0.12) -> float:
@@ -729,14 +692,14 @@ def build_sfx() -> None:
 
 def write_qa_matrix() -> None:
     rows = [
-        ("actor", str(ACTOR_SHEET.relative_to(ROOT)), str(ACTOR_SOURCE.relative_to(ROOT)), "stable cross-step rebuild: compact upright demon body, no idle/run flames, Viktor-style run stability, existing frame contract"),
-        ("icons", "icons/aatrox_skill.png;icons/aatrox_skill2.png;icons/aatrox_ult.png", str(ICON_SOURCE.relative_to(ROOT)), "green removed, dark framed, 24x24 outputs with Q slash / E dash / R transform reads"),
-        ("vfx", str(ATTACK_SLASH_SHEET.relative_to(ROOT)), "procedural compact red-black slash", "4 frame caster-follow basic attack slash, 96x72 per frame"),
-        ("vfx", str(Q_IMPACT_SHEET.relative_to(ROOT)), "procedural forward ground crack", "6 frame readable line cleave, 192x96 per frame, not a circular explosion"),
-        ("vfx", "skill2 body frames", "procedural low-opacity dash trail", "upright cross-step dash body with subtle trail, no horizontal crawl pose"),
-        ("vfx", str(ULT_AURA_SHEET.relative_to(ROOT)), "procedural low-opacity wing aura", "4 frame world-ender aura loop, separate from clean idle/run body"),
+        ("actor", str(ACTOR_SHEET.relative_to(ROOT)), "local image-gen actor source, not committed after rebuild", "front/side greatsword rebuild: compact upright demon body, diagonal held sword, no idle/run flames, Viktor-style run stability, existing frame contract"),
+        ("icons", "icons/aatrox_skill.png;icons/aatrox_skill2.png;icons/aatrox_ult.png", "local image-gen LoL ability source, not committed after rebuild", "24x24 outputs cropped from refined image-gen Q Darkin Blade / W Infernal Chains / R World Ender source"),
+        ("vfx", str(ATTACK_SLASH_SHEET.relative_to(ROOT)), "local image-gen LoL ability source, not committed after rebuild", "4 frame caster-follow basic attack slash cropped from refined image-gen LoL ability sheet"),
+        ("vfx", str(Q_IMPACT_SHEET.relative_to(ROOT)), "local image-gen LoL ability source, not committed after rebuild", "6 frame The Darkin Blade ground slam cropped from refined image-gen LoL ability sheet"),
+        ("vfx", str(CHAIN_SHEET.relative_to(ROOT)), "local image-gen LoL ability source, not committed after rebuild", "5 frame Infernal Chains hooked chain cropped from refined image-gen LoL ability sheet"),
+        ("vfx", str(ULT_AURA_SHEET.relative_to(ROOT)), "local image-gen LoL ability source, not committed after rebuild", "4 frame World Ender aura cropped from refined image-gen LoL ability sheet, separate from clean idle/run body"),
         ("sfx", "sound/sfx/test_mod_aatrox_*_clip.wav", "existing workshop package", "event names and audio files preserved"),
-        ("view", "style/champion_view.champion_view", "existing tuned offsets", "face x=0 y=-20 and center x=0 y=-15 preserved"),
+        ("view", "style/champion_view.champion_view", "tuned refined actor offsets", "face x=-4 y=-34 and center x=0 y=-15 for compact portrait/full-body surfaces"),
     ]
     QA_MATRIX.parent.mkdir(parents=True, exist_ok=True)
     with QA_MATRIX.open("w", newline="", encoding="utf-8") as out:
@@ -747,10 +710,11 @@ def write_qa_matrix() -> None:
 
 def main() -> int:
     build_actor_sheet()
-    build_actor_contact()
     build_icons()
     build_vfx()
     write_qa_matrix()
+    if GENERATE_CONTACTS:
+        build_actor_contact()
     print("aatrox_design_rework_assets=ok")
     return 0
 

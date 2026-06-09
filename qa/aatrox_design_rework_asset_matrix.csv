@@ -1,9 +1,9 @@
 asset_type,output,source,contract
-actor,aseprite_resources\champions\aatrox#sheet.png,source\aatrox_design_rework\imagegen_actor_stable_cross_step_source.png,"stable cross-step rebuild: compact upright demon body, no idle/run flames, Viktor-style run stability, existing frame contract"
-icons,icons/aatrox_skill.png;icons/aatrox_skill2.png;icons/aatrox_ult.png,source\aatrox_design_rework\imagegen_icons_design_source.png,"green removed, dark framed, 24x24 outputs with Q slash / E dash / R transform reads"
-vfx,aseprite_resources\effects\aatrox_attack_slash#sheet.png,procedural compact red-black slash,"4 frame caster-follow basic attack slash, 96x72 per frame"
-vfx,aseprite_resources\effects\aatrox_q_impact#sheet.png,procedural forward ground crack,"6 frame readable line cleave, 192x96 per frame, not a circular explosion"
-vfx,skill2 body frames,procedural low-opacity dash trail,"upright cross-step dash body with subtle trail, no horizontal crawl pose"
-vfx,aseprite_resources\effects\aatrox_ult_aura#sheet.png,procedural low-opacity wing aura,"4 frame world-ender aura loop, separate from clean idle/run body"
+actor,aseprite_resources\champions\aatrox#sheet.png,"local image-gen actor source, not committed after rebuild","front/side greatsword rebuild: compact upright demon body, diagonal held sword, no idle/run flames, Viktor-style run stability, existing frame contract"
+icons,icons/aatrox_skill.png;icons/aatrox_skill2.png;icons/aatrox_ult.png,"local image-gen LoL ability source, not committed after rebuild",24x24 outputs cropped from refined image-gen Q Darkin Blade / W Infernal Chains / R World Ender source
+vfx,aseprite_resources\effects\aatrox_attack_slash#sheet.png,"local image-gen LoL ability source, not committed after rebuild",4 frame caster-follow basic attack slash cropped from refined image-gen LoL ability sheet
+vfx,aseprite_resources\effects\aatrox_q_impact#sheet.png,"local image-gen LoL ability source, not committed after rebuild",6 frame The Darkin Blade ground slam cropped from refined image-gen LoL ability sheet
+vfx,aseprite_resources\effects\aatrox_infernal_chains#sheet.png,"local image-gen LoL ability source, not committed after rebuild",5 frame Infernal Chains hooked chain cropped from refined image-gen LoL ability sheet
+vfx,aseprite_resources\effects\aatrox_ult_aura#sheet.png,"local image-gen LoL ability source, not committed after rebuild","4 frame World Ender aura cropped from refined image-gen LoL ability sheet, separate from clean idle/run body"
 sfx,sound/sfx/test_mod_aatrox_*_clip.wav,existing workshop package,event names and audio files preserved
-view,style/champion_view.champion_view,existing tuned offsets,face x=0 y=-20 and center x=0 y=-15 preserved
+view,style/champion_view.champion_view,tuned refined actor offsets,face x=-4 y=-34 and center x=0 y=-15 for compact portrait/full-body surfaces
