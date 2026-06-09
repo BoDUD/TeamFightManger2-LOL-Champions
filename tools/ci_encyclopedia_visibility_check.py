@@ -332,10 +332,12 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
     if not isinstance(run_frames, list) or len(run_frames) != 8:
         fail("Aatrox run must preserve its native eight-frame contract")
 
+    action_bboxes: dict[str, list[tuple[int, int, int, int]]] = {}
     for action in AATROX_CORE_ACTIONS:
         frames = fanim.get("anims", {}).get(action, {}).get("frames")
         if not isinstance(frames, list) or not frames:
             fail(f"Aatrox {action} animation missing frames")
+        action_bboxes[action] = []
         for index, frame in enumerate(frames):
             data = frame.get("data") if isinstance(frame, dict) else None
             if not isinstance(data, dict):
@@ -354,6 +356,7 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
             bbox = alpha_bbox_in_rect(sheet_alpha, sheet_width, (x, y, w, h))
             if bbox is None:
                 fail(f"Aatrox {action} frame {index} is blank")
+            action_bboxes[action].append(bbox)
             body_height = bbox[3] - bbox[1]
             bottom_safe = h - bbox[3]
             if body_height > AATROX_MAX_CORE_BODY_HEIGHT:
@@ -368,6 +371,16 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
                 )
             if action == "run" and frame.get("duration") != 0.065:
                 fail(f"Aatrox run frame {index} must keep Viktor-like 0.065s timing")
+
+    run_widths = [bbox[2] - bbox[0] for bbox in action_bboxes["run"]]
+    run_heights = [bbox[3] - bbox[1] for bbox in action_bboxes["run"]]
+    for action in ("idle", "hit", "dead", "ult"):
+        widths = [bbox[2] - bbox[0] for bbox in action_bboxes[action]]
+        heights = [bbox[3] - bbox[1] for bbox in action_bboxes[action]]
+        if max(widths) + 2 < min(run_widths):
+            fail(f"Aatrox {action} uses a thinner display-only model than the run/action body")
+        if max(abs(height - run_heights[0]) for height in heights) > 2:
+            fail(f"Aatrox {action} model height must stay in the same scale class as run")
 
     aatrox = load_json(ROOT / "champion" / "aatrox.data_champion")
     projectile_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in aatrox.get("view_projectiles", [])}

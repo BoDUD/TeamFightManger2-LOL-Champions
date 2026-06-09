@@ -51,7 +51,7 @@ CI also fails if `source/` or `qa/` contains committed PNG/JPG/WebP process imag
 - E / Umbral Dash: TFM2 has only three visible active skill slots, so E is not presented as a fake fourth button. Aatrox's sustain identity is represented by World Ender's vamp window.
 - R / `ult`: World Ender grants attack damage, movement speed, and vamp; it briefly fears nearby enemies on cast. It no longer gives unrelated armor, magic resist, or attack-speed padding.
 - R VFX: World Ender buff uses a restrained 64x64 wing/rune aura rendered behind the actor; idle, run, hit, dead, and the encyclopedia body stay clean.
-- Hit/dead/ult: these reuse the stable refined idle body in the same 57x54 frame class so card, side-list, battle HUD, and exchange surfaces do not show the previous noisy red blob or a different actor scale.
+- Hit/dead/ult: these reuse the same action-model base pose as the middle battle rows in the same 57x54 frame class, so card, side-list, battle HUD, and exchange surfaces do not show a thinner display-only model or a different actor scale.
 - Text: zh-hans and zh-hant Aatrox rows are readable Chinese, with CI blocking `??` corruption for both the new id and the legacy `test_mod_aatrox` alias.
 - Icons: Q/W/R icons are rebuilt from the refined LoL ability image-gen source, green-key removed, dark framed, and exported at the existing 24x24 contract.
 
