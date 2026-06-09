@@ -14,7 +14,7 @@ from PIL import Image, ImageDraw, ImageEnhance
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "source" / "aatrox_design_rework"
 
-ACTOR_SOURCE = SOURCE / "imagegen_actor_design_source.png"
+ACTOR_SOURCE = SOURCE / "imagegen_actor_stable_cross_step_source.png"
 ICON_SOURCE = SOURCE / "imagegen_icons_design_source.png"
 VFX_SOURCE = SOURCE / "imagegen_vfx_design_source.png"
 
@@ -44,17 +44,22 @@ class PoseCell:
     crop_bottom: float = 1.0
 
 
+ACTOR_SOURCE_COLS = 4
+ACTOR_SOURCE_ROWS = 3
+
 ACTOR_POSES = {
-    "idle_a": PoseCell(0, 0, 0.00, 0.02, 1.00, 0.98),
-    "idle_b": PoseCell(1, 0, 0.00, 0.02, 1.00, 0.98),
-    "run_a": PoseCell(2, 0, 0.00, 0.03, 1.00, 0.98),
-    "run_b": PoseCell(3, 0, 0.00, 0.03, 1.00, 0.98),
-    "attack": PoseCell(4, 0, 0.00, 0.02, 1.00, 0.98),
-    "cleave": PoseCell(0, 1, 0.00, 0.02, 1.00, 0.98),
-    "dash": PoseCell(1, 1, 0.00, 0.08, 1.00, 0.92),
-    "ult": PoseCell(2, 1, 0.02, 0.00, 0.98, 0.98),
-    "hit": PoseCell(3, 1, 0.03, 0.04, 0.96, 0.96),
-    "dead": PoseCell(4, 1, 0.00, 0.10, 1.00, 0.92),
+    "idle_a": PoseCell(0, 0, 0.05, 0.06, 0.95, 0.96),
+    "idle_b": PoseCell(0, 0, 0.05, 0.06, 0.95, 0.96),
+    "run_0": PoseCell(1, 0, 0.05, 0.06, 0.95, 0.96),
+    "run_1": PoseCell(2, 0, 0.05, 0.06, 0.95, 0.96),
+    "run_2": PoseCell(3, 0, 0.05, 0.06, 0.95, 0.96),
+    "run_3": PoseCell(0, 1, 0.05, 0.06, 0.95, 0.96),
+    "run_4": PoseCell(1, 1, 0.05, 0.06, 0.95, 0.96),
+    "run_5": PoseCell(2, 1, 0.05, 0.06, 0.95, 0.96),
+    "run_6": PoseCell(3, 1, 0.05, 0.06, 0.95, 0.96),
+    "attack": PoseCell(0, 2, 0.03, 0.06, 0.97, 0.96),
+    "cleave": PoseCell(1, 2, 0.02, 0.06, 0.98, 0.96),
+    "dash": PoseCell(2, 2, 0.02, 0.06, 0.98, 0.96),
 }
 
 NORMAL_RUNTIME_POSES = {"idle_a", "idle_b"}
@@ -283,14 +288,14 @@ def frame_box(frame: dict) -> tuple[int, int, int, int]:
 
 def pose_sequence(action: str, count: int) -> list[str]:
     sequences = {
-        "idle": ["idle_a", "idle_a", "idle_b", "idle_b", "idle_b", "idle_a", "idle_a", "idle_b", "idle_a"],
-        "run": ["run_a", "run_b", "run_a", "run_b", "run_a", "run_b", "run_a", "run_b"],
-        "attack": ["idle_b", "attack", "attack", "attack", "attack", "attack", "attack", "idle_b", "idle_b"],
-        "skill": ["idle_b", "cleave", "cleave", "cleave", "cleave", "cleave", "cleave", "idle_b"],
-        "skill2": ["idle_b", "dash", "dash", "dash", "dash", "dash", "idle_b"],
-        "ult": ["ult"],
-        "hit": ["hit"],
-        "dead": ["dead"],
+        "idle": ["idle_a", "idle_a", "idle_b", "idle_b", "idle_a", "idle_a", "idle_b", "idle_b", "idle_a"],
+        "run": ["run_0", "run_1", "run_2", "run_3", "run_4", "run_5", "run_6", "run_1"],
+        "attack": ["idle_b", "attack", "attack", "cleave", "cleave", "attack", "attack", "idle_b", "idle_b"],
+        "skill": ["idle_b", "attack", "cleave", "cleave", "cleave", "attack", "idle_b", "idle_b"],
+        "skill2": ["idle_b", "run_1", "run_2", "run_3", "run_4", "run_5", "idle_b"],
+        "ult": ["idle_a"],
+        "hit": ["idle_a"],
+        "dead": ["idle_a"],
     }
     sequence = sequences[action]
     if len(sequence) < count:
@@ -300,10 +305,10 @@ def pose_sequence(action: str, count: int) -> list[str]:
 
 def frame_offsets(action: str, count: int) -> list[tuple[int, int]]:
     if action == "idle":
-        pattern = [(0, 0), (1, -1), (1, -1), (0, 0), (0, 1), (-1, 0), (0, 0), (1, 0), (0, 0)]
+        pattern = [(0, 0), (0, -1), (0, -1), (0, 0), (0, 0), (0, -1), (0, -1), (0, 0), (0, 0)]
         return pattern[:count]
     if action == "run":
-        pattern = [(-2, 1), (2, -2), (-1, 1), (3, -2)]
+        pattern = [(-1, 0), (0, -1), (1, -1), (0, 0), (-1, 0), (0, -1), (1, -1), (0, 0)]
         return [pattern[index % len(pattern)] for index in range(count)]
     if action in {"attack", "skill", "skill2"}:
         pattern = [(-1, 0), (0, 0), (1, 0), (0, 0)]
@@ -324,37 +329,37 @@ def actor_frame(
     x_offset: int,
     y_offset: int = 0,
 ) -> Image.Image:
-    crop = grid_crop(source, 5, 2, ACTOR_POSES[pose])
+    crop = grid_crop(source, ACTOR_SOURCE_COLS, ACTOR_SOURCE_ROWS, ACTOR_POSES[pose])
     if frame_w <= 60:
         return fit_sprite(
             crop,
             frame_w=frame_w,
             frame_h=frame_h,
-            target_h=45,
-            max_w=frame_w,
-            baseline=frame_h - 5,
+            target_h=41,
+            max_w=46,
+            baseline=frame_h - 4,
             center_x=frame_w // 2,
             x_offset=x_offset,
             y_offset=y_offset,
         )
 
-    if pose in {"run_a", "run_b"}:
-        target_h, max_w = 49, 88
+    if pose.startswith("run_"):
+        target_h, max_w = 40, 48
     elif pose == "cleave":
-        target_h, max_w = 62, 94
+        target_h, max_w = 43, 72
     elif pose == "dash":
-        target_h, max_w = 53, 91
+        target_h, max_w = 40, 66
     elif pose == "attack":
-        target_h, max_w = 49, 92
+        target_h, max_w = 41, 64
     else:
-        target_h, max_w = 46, 80
+        target_h, max_w = 40, 48
     return fit_sprite(
         crop,
         frame_w=frame_w,
         frame_h=frame_h,
         target_h=target_h,
         max_w=max_w,
-        baseline=frame_h - 8,
+        baseline=frame_h - 7,
         center_x=43,
         x_offset=x_offset,
         y_offset=y_offset,
@@ -372,7 +377,7 @@ def build_actor_sheet() -> None:
         dims = ACTION_FRAME_DIMS[action]
         for index, (duration, pose, (x_offset, y_offset), (frame_w, frame_h)) in enumerate(zip(durations, poses, offsets, dims)):
             frame = actor_frame(source, action, pose, frame_w=frame_w, frame_h=frame_h, x_offset=x_offset, y_offset=y_offset)
-            if action == "skill2" and pose == "dash":
+            if action == "skill2" and 0 < index < len(durations) - 1:
                 frame = compose_dash_body_frame(vfx_source, frame, index)
             rendered.append((action, index, duration, frame))
 
@@ -404,26 +409,29 @@ def build_actor_contact() -> None:
     samples = [
         ("idle", "idle", "idle_a", 54, 50),
         ("idle_b", "idle", "idle_b", 54, 50),
-        ("run step A", "run", "run_a", 96, 72),
-        ("run step B", "run", "run_b", 96, 72),
+        ("run 0", "run", "run_0", 96, 72),
+        ("run 1", "run", "run_1", 96, 72),
+        ("run 2", "run", "run_2", 96, 72),
+        ("run 3", "run", "run_3", 96, 72),
+        ("run 4", "run", "run_4", 96, 72),
+        ("run 5", "run", "run_5", 96, 72),
+        ("run 6", "run", "run_6", 96, 72),
         ("attack body", "attack", "attack", 96, 72),
         ("skill body", "skill", "cleave", 96, 72),
-        ("dash body", "skill2", "dash", 96, 72),
-        ("ult cast body", "ult", "ult", 54, 50),
-        ("hit body", "hit", "hit", 54, 50),
-        ("dead body", "dead", "dead", 54, 50),
+        ("dash body", "skill2", "run_2", 96, 72),
+        ("ult body", "ult", "idle_a", 54, 50),
     ]
     cell_w, cell_h = 112, 104
-    contact = Image.new("RGBA", (cell_w * 5, cell_h * 2), (22, 24, 32, 255))
+    contact = Image.new("RGBA", (cell_w * 6, cell_h * 2), (22, 24, 32, 255))
     draw = ImageDraw.Draw(contact)
     for index, (label, action, pose, frame_w, frame_h) in enumerate(samples):
-        col = index % 5
-        row = index // 5
+        col = index % 6
+        row = index // 6
         ox = col * cell_w
         oy = row * cell_h
         draw.rectangle([ox, oy, ox + cell_w - 1, oy + cell_h - 1], outline=(72, 80, 94, 255))
         packed = actor_frame(source, action, pose, frame_w=frame_w, frame_h=frame_h, x_offset=0)
-        if action == "skill2" and pose == "dash":
+        if action == "skill2":
             packed = compose_dash_body_frame(load_rgba(VFX_SOURCE), packed, 2)
         contact.alpha_composite(packed, (ox + (cell_w - packed.width) // 2, oy + 10))
         draw.text((ox + 8, oy + 78), label, fill=(220, 230, 235, 255))
@@ -493,13 +501,26 @@ def fit_effect(
 
 
 def compose_dash_body_frame(vfx_source: Image.Image, body: Image.Image, index: int) -> Image.Image:
-    trail_index = max(0, min(3, index - 1))
-    trail_crop = vfx_row_crop(vfx_source, "dash", 4, trail_index, pad=0.02)
-    trail = fit_effect(trail_crop, body.width, body.height, max_scale=0.92, alpha_mult=0.50, y_offset=3)
+    trail = draw_dash_trail_frame(body.width, body.height, index)
     canvas = Image.new("RGBA", body.size, (0, 0, 0, 0))
     canvas.alpha_composite(trail, (0, 0))
     canvas.alpha_composite(body, (0, 0))
     return quantize_rgba(canvas, 96)
+
+
+def draw_dash_trail_frame(frame_w: int, frame_h: int, index: int) -> Image.Image:
+    canvas = Image.new("RGBA", (frame_w, frame_h), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(canvas)
+    strength = max(0, min(4, index - 1))
+    alpha = 40 + strength * 18
+    y = frame_h - 26
+    for offset, width, color in (
+        (0, 4, (86, 2, 18, alpha)),
+        (7, 2, (205, 22, 36, max(20, alpha - 20))),
+        (14, 1, (255, 118, 72, max(14, alpha - 36))),
+    ):
+        draw.line([(18 - offset, y + offset // 2), (48 - offset, y - 5), (66 - offset, y - 2)], fill=color, width=width)
+    return canvas
 
 
 def draw_attack_slash_frame(frame_w: int, frame_h: int, index: int, total: int) -> Image.Image:
@@ -527,8 +548,57 @@ def draw_attack_slash_frame(frame_w: int, frame_h: int, index: int, total: int) 
     return quantize_rgba(canvas, 80)
 
 
+def draw_q_ground_crack_frame(frame_w: int, frame_h: int, index: int, total: int) -> Image.Image:
+    canvas = Image.new("RGBA", (frame_w, frame_h), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(canvas)
+    t = index / max(1, total - 1)
+    start_x = 20
+    end_x = round(70 + t * 94)
+    base_y = 58
+    alpha = round(230 * (1.0 - t * 0.35))
+    pts = []
+    rng = random.Random(1200 + index)
+    x = start_x
+    while x <= end_x:
+        pts.append((x, base_y + rng.choice([-3, -2, -1, 0, 1, 2])))
+        x += rng.randint(12, 18)
+    if len(pts) >= 2:
+        draw.line(pts, fill=(42, 0, 6, round(alpha * 0.95)), width=7)
+        draw.line(pts, fill=(150, 8, 22, alpha), width=4)
+        draw.line(pts, fill=(255, 82, 46, round(alpha * 0.82)), width=2)
+    for px, py in pts[1:-1]:
+        length = rng.randint(9, 18)
+        side = rng.choice([-1, 1])
+        branch = [(px, py), (px + length, py + side * rng.randint(5, 12))]
+        draw.line(branch, fill=(82, 0, 12, round(alpha * 0.78)), width=3)
+        draw.line(branch, fill=(230, 42, 32, round(alpha * 0.58)), width=1)
+    shock_x = min(end_x, start_x + round(t * 118))
+    draw.arc([shock_x - 24, base_y - 24, shock_x + 18, base_y + 14], start=205, end=330, fill=(255, 118, 62, round(alpha * 0.55)), width=2)
+    return quantize_rgba(remove_tiny_components(canvas, min_pixels=4), 80)
+
+
+def draw_ult_aura_frame(frame_w: int, frame_h: int, index: int, total: int) -> Image.Image:
+    canvas = Image.new("RGBA", (frame_w, frame_h), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(canvas)
+    t = index / max(1, total)
+    pulse = 0.5 + 0.5 * math.sin(t * math.tau)
+    cx, cy = frame_w // 2, frame_h // 2 + 10
+    alpha = round(62 + pulse * 28)
+    wing = [
+        (cx - 8, cy - 8),
+        (cx - 35, cy - 28),
+        (cx - 44, cy - 4),
+        (cx - 27, cy + 3),
+    ]
+    right = [(frame_w - x, y) for x, y in wing]
+    draw.polygon(wing, fill=(86, 0, 18, alpha))
+    draw.polygon(right, fill=(86, 0, 18, alpha))
+    draw.arc([cx - 38, cy - 34, cx + 38, cy + 28], start=210, end=330, fill=(210, 20, 36, round(alpha * 0.70)), width=3)
+    draw.arc([cx - 25, cy - 20, cx + 25, cy + 25], start=215, end=325, fill=(255, 104, 62, round(alpha * 0.42)), width=2)
+    return quantize_rgba(remove_tiny_components(canvas, min_pixels=4), 80)
+
+
 def build_vfx() -> None:
-    source = load_rgba(VFX_SOURCE)
     q_anim = json.loads(Q_IMPACT_ANIM.read_text(encoding="utf-8"))
     attack_anim = json.loads(ATTACK_SLASH_ANIM.read_text(encoding="utf-8"))
     aura_anim = json.loads(ULT_AURA_ANIM.read_text(encoding="utf-8"))
@@ -545,8 +615,7 @@ def build_vfx() -> None:
     q_sheet = Image.new("RGBA", (192 * len(q_frames), 96), (0, 0, 0, 0))
     for out_index, frame in enumerate(q_frames):
         _, _, w, h = frame_box(frame)
-        crop = vfx_row_crop(source, "q", 6, out_index, pad=0.01)
-        q_sheet.alpha_composite(fit_effect(crop, w, h, max_scale=0.94, alpha_mult=0.94, y_offset=2), (out_index * w, 0))
+        q_sheet.alpha_composite(draw_q_ground_crack_frame(w, h, out_index, len(q_frames)), (out_index * w, 0))
     Q_IMPACT_SHEET.parent.mkdir(parents=True, exist_ok=True)
     q_sheet.save(Q_IMPACT_SHEET)
 
@@ -554,8 +623,7 @@ def build_vfx() -> None:
     aura_sheet = Image.new("RGBA", (96 * len(aura_frames), 96), (0, 0, 0, 0))
     for out_index, frame in enumerate(aura_frames):
         _, _, w, h = frame_box(frame)
-        crop = vfx_row_crop(source, "aura", 4, out_index, pad=0.015)
-        aura_sheet.alpha_composite(fit_effect(crop, w, h, max_scale=0.86, alpha_mult=0.58, y_offset=6), (out_index * w, 0))
+        aura_sheet.alpha_composite(draw_ult_aura_frame(w, h, out_index, len(aura_frames)), (out_index * w, 0))
     ULT_AURA_SHEET.parent.mkdir(parents=True, exist_ok=True)
     aura_sheet.save(ULT_AURA_SHEET)
 
@@ -661,12 +729,12 @@ def build_sfx() -> None:
 
 def write_qa_matrix() -> None:
     rows = [
-        ("actor", str(ACTOR_SHEET.relative_to(ROOT)), str(ACTOR_SOURCE.relative_to(ROOT)), "design-book rebuild: larger compact demon silhouette, stronger run poses, stable existing frame contract"),
+        ("actor", str(ACTOR_SHEET.relative_to(ROOT)), str(ACTOR_SOURCE.relative_to(ROOT)), "stable cross-step rebuild: compact upright demon body, no idle/run flames, Viktor-style run stability, existing frame contract"),
         ("icons", "icons/aatrox_skill.png;icons/aatrox_skill2.png;icons/aatrox_ult.png", str(ICON_SOURCE.relative_to(ROOT)), "green removed, dark framed, 24x24 outputs with Q slash / E dash / R transform reads"),
         ("vfx", str(ATTACK_SLASH_SHEET.relative_to(ROOT)), "procedural compact red-black slash", "4 frame caster-follow basic attack slash, 96x72 per frame"),
-        ("vfx", str(Q_IMPACT_SHEET.relative_to(ROOT)), str(VFX_SOURCE.relative_to(ROOT)), "6 frame long ground-crack cleave, 192x96 per frame, not a circular explosion"),
-        ("vfx", "skill2 body frames", str(VFX_SOURCE.relative_to(ROOT)), "dash trail composited into existing skill2 actor frames without changing champion data"),
-        ("vfx", str(ULT_AURA_SHEET.relative_to(ROOT)), str(VFX_SOURCE.relative_to(ROOT)), "4 frame low-opacity world-ender aura loop, 96x96 per frame, reduced face/body obstruction"),
+        ("vfx", str(Q_IMPACT_SHEET.relative_to(ROOT)), "procedural forward ground crack", "6 frame readable line cleave, 192x96 per frame, not a circular explosion"),
+        ("vfx", "skill2 body frames", "procedural low-opacity dash trail", "upright cross-step dash body with subtle trail, no horizontal crawl pose"),
+        ("vfx", str(ULT_AURA_SHEET.relative_to(ROOT)), "procedural low-opacity wing aura", "4 frame world-ender aura loop, separate from clean idle/run body"),
         ("sfx", "sound/sfx/test_mod_aatrox_*_clip.wav", "existing workshop package", "event names and audio files preserved"),
         ("view", "style/champion_view.champion_view", "existing tuned offsets", "face x=0 y=-20 and center x=0 y=-15 preserved"),
     ]
