@@ -1,5 +1,5 @@
 asset_type,output,source,contract
-actor,aseprite_resources\champions\aatrox#sheet.png,"local image-gen actor source, not committed after rebuild","refined 64x72 idle display frames, stable existing run/attack frames, no idle/run flames"
+actor,aseprite_resources\champions\aatrox#sheet.png,"local image-gen actor source, not committed after rebuild","Viktor-like 54x50 idle display frames, stable existing run/attack frames, no idle/run flames"
 icons,icons/aatrox_skill.png;icons/aatrox_skill2.png;icons/aatrox_ult.png,"local image-gen LoL ability source, not committed after rebuild",24x24 outputs cropped from refined image-gen Q Darkin Blade / W Infernal Chains / R World Ender source
 vfx,aseprite_resources\effects\aatrox_attack_slash#sheet.png,"local image-gen LoL ability source, not committed after rebuild",4 frame caster-follow basic attack slash cropped from refined image-gen LoL ability sheet
 vfx,aseprite_resources\effects\aatrox_q1_cleave#sheet.png,"local image-gen LoL ability source, not committed after rebuild",6 frame The Darkin Blade narrow thrust and ground crack
@@ -7,7 +7,7 @@ vfx,aseprite_resources\effects\aatrox_q2_cleave#sheet.png,"local image-gen LoL a
 vfx,aseprite_resources\effects\aatrox_q3_cleave#sheet.png,"local image-gen LoL ability source, not committed after rebuild",6 frame The Darkin Blade heavy smash crater and shock crack
 vfx,aseprite_resources\effects\aatrox_w_chain#sheet.png,"local image-gen LoL ability source, not committed after rebuild",6 frame Infernal Chains launch projectile
 vfx,aseprite_resources\effects\aatrox_w_chain_snap#sheet.png,"local image-gen LoL ability source, not committed after rebuild",6 frame Infernal Chains delayed snap and snare mark
-vfx,aseprite_resources\effects\aatrox_world_ender_aura#sheet.png,"local image-gen LoL ability source, not committed after rebuild","6 frame World Ender wing/rune aura, separate from clean idle/run body"
+vfx,aseprite_resources\effects\aatrox_world_ender_aura#sheet.png,"local image-gen LoL ability source, not committed after rebuild","6 frame 64x64 restrained World Ender wing/rune aura rendered behind the actor"
 sfx,sound/sfx/test_mod_aatrox_*_clip.wav,existing workshop package,event names and audio files preserved
 view,style/champion_view.champion_view,tuned refined actor offsets,face x=0 y=-34 for portrait and center x=0 y=-13 for full-body display
 text,text\champion.i18n,manual localized rows,zh-hans/zh-hant Aatrox text is readable and CI blocks question-mark corruption
