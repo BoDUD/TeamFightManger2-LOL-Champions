@@ -103,100 +103,101 @@
     "casting_target": "EnemyWithoutTower",
     "attack_type": "Skill",
     "effect": {
-      "type": "SwitchByBuff",
-      "buff_name": "test_mod_kayn_darkin_ascension",
-      "effect_none": {
-        "type": "Combine",
-        "effects": [
-          {
-            "type": "Sfx",
-            "name": "test_mod_kayn_q_cast"
-          },
-          {
-            "type": "RushTime",
-            "speed": 2400,
-            "tick": 16,
-            "range": 0,
-            "casting_target": "EnemyWithoutTower",
-            "penetrate": true,
-            "applied_effects": []
-          },
-          {
-            "type": "LineRangeProjectile",
-            "width": 13000,
-            "length": 46000,
-            "delay": 5,
-            "apply": 14,
-            "name": "test_mod_kayn_q_slash",
-            "applied_target": "EnemyWithoutTower",
-            "applied_effects": [
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "Sfx",
+          "name": "test_mod_kayn_q_cast"
+        },
+        {
+          "type": "SwitchByBuff",
+          "buff_name": "test_mod_kayn_darkin_ascension",
+          "effect_none": {
+            "type": "Combine",
+            "effects": [
               {
-                "effect": {
-                  "type": "Combine",
-                  "effects": [
-                    {
-                      "type": "Attack",
-                      "damage": 45,
-                      "attack_ratio": 85
+                "type": "RushTime",
+                "speed": 2400,
+                "tick": 16,
+                "range": 0,
+                "casting_target": "EnemyWithoutTower",
+                "penetrate": true,
+                "applied_effects": []
+              },
+              {
+                "type": "LineRangeProjectile",
+                "width": 13000,
+                "length": 46000,
+                "delay": 5,
+                "apply": 14,
+                "name": "test_mod_kayn_q_slash",
+                "applied_target": "EnemyWithoutTower",
+                "applied_effects": [
+                  {
+                    "effect": {
+                      "type": "Combine",
+                      "effects": [
+                        {
+                          "type": "Attack",
+                          "damage": 45,
+                          "attack_ratio": 85
+                        },
+                        {
+                          "type": "TargetSfx",
+                          "name": "test_mod_kayn_q_hit"
+                        }
+                      ]
                     },
-                    {
-                      "type": "TargetSfx",
-                      "name": "test_mod_kayn_q_hit"
-                    }
-                  ]
-                },
-                "casting_type": "Targeting"
+                    "casting_type": "Targeting"
+                  }
+                ]
+              }
+            ]
+          },
+          "effect_buff": {
+            "type": "Combine",
+            "effects": [
+              {
+                "type": "RushTime",
+                "speed": 2200,
+                "tick": 16,
+                "range": 0,
+                "casting_target": "EnemyWithoutTower",
+                "penetrate": true,
+                "applied_effects": []
+              },
+              {
+                "type": "LineRangeProjectile",
+                "width": 13000,
+                "length": 46000,
+                "delay": 5,
+                "apply": 14,
+                "name": "test_mod_kayn_q_slash",
+                "applied_target": "EnemyWithoutTower",
+                "applied_effects": [
+                  {
+                    "effect": {
+                      "type": "Combine",
+                      "effects": [
+                        {
+                          "type": "Attack",
+                          "damage": 65,
+                          "attack_ratio": 100
+                        },
+                        {
+                          "type": "TargetSfx",
+                          "name": "test_mod_kayn_q_hit"
+                        }
+                      ]
+                    },
+                    "casting_type": "Targeting"
+                  }
+                ]
               }
             ]
           }
-        ]
-      },
-      "effect_buff": {
-        "type": "Combine",
-        "effects": [
-          {
-            "type": "Sfx",
-            "name": "test_mod_kayn_q_cast"
-          },
-          {
-            "type": "RushTime",
-            "speed": 2200,
-            "tick": 16,
-            "range": 0,
-            "casting_target": "EnemyWithoutTower",
-            "penetrate": true,
-            "applied_effects": []
-          },
-          {
-            "type": "LineRangeProjectile",
-            "width": 13000,
-            "length": 46000,
-            "delay": 5,
-            "apply": 14,
-            "name": "test_mod_kayn_q_slash",
-            "applied_target": "EnemyWithoutTower",
-            "applied_effects": [
-              {
-                "effect": {
-                  "type": "Combine",
-                  "effects": [
-                    {
-                      "type": "Attack",
-                      "damage": 65,
-                      "attack_ratio": 100
-                    },
-                    {
-                      "type": "TargetSfx",
-                      "name": "test_mod_kayn_q_hit"
-                    }
-                  ]
-                },
-                "casting_type": "Targeting"
-              }
-            ]
-          }
-        ]
-      }
+        }
+      ]
     },
     "cancelable": false,
     "can_use_with_move": false
@@ -212,114 +213,115 @@
     "casting_target": "EnemyWithoutTower",
     "attack_type": "Skill",
     "effect": {
-      "type": "SwitchByBuff",
-      "buff_name": "test_mod_kayn_darkin_ascension",
-      "effect_none": {
-        "type": "Combine",
-        "effects": [
-          {
-            "type": "Sfx",
-            "name": "test_mod_kayn_w_cast"
-          },
-          {
-            "type": "LineRangeProjectile",
-            "width": 12000,
-            "length": 76000,
-            "delay": 14,
-            "apply": 18,
-            "name": "test_mod_kayn_w_blade_reach",
-            "applied_target": "EnemyWithoutTower",
-            "applied_effects": [
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "Sfx",
+          "name": "test_mod_kayn_w_cast"
+        },
+        {
+          "type": "SwitchByBuff",
+          "buff_name": "test_mod_kayn_darkin_ascension",
+          "effect_none": {
+            "type": "Combine",
+            "effects": [
               {
-                "effect": {
-                  "type": "Combine",
-                  "effects": [
-                    {
-                      "type": "Attack",
-                      "damage": 70,
-                      "attack_ratio": 95
-                    },
-                    {
-                      "type": "AddBuff",
-                      "buff_state": {
-                        "name": "test_mod_kayn_blades_reach_slow",
-                        "duration": {
-                          "Time": {
-                            "tick": 60
+                "type": "LineRangeProjectile",
+                "width": 12000,
+                "length": 76000,
+                "delay": 14,
+                "apply": 18,
+                "name": "test_mod_kayn_w_blade_reach",
+                "applied_target": "EnemyWithoutTower",
+                "applied_effects": [
+                  {
+                    "effect": {
+                      "type": "Combine",
+                      "effects": [
+                        {
+                          "type": "Attack",
+                          "damage": 70,
+                          "attack_ratio": 95
+                        },
+                        {
+                          "type": "AddBuff",
+                          "buff_state": {
+                            "name": "test_mod_kayn_blades_reach_slow",
+                            "duration": {
+                              "Time": {
+                                "tick": 60
+                              }
+                            },
+                            "move_speed_mult": -35
                           }
                         },
-                        "move_speed_mult": -35
-                      }
+                        {
+                          "type": "TargetSfx",
+                          "name": "test_mod_kayn_w_hit"
+                        }
+                      ]
                     },
-                    {
-                      "type": "TargetSfx",
-                      "name": "test_mod_kayn_w_hit"
-                    }
-                  ]
-                },
-                "casting_type": "Targeting"
+                    "casting_type": "Targeting"
+                  }
+                ]
+              }
+            ]
+          },
+          "effect_buff": {
+            "type": "Combine",
+            "effects": [
+              {
+                "type": "LineRangeProjectile",
+                "width": 15000,
+                "length": 76000,
+                "delay": 14,
+                "apply": 18,
+                "name": "test_mod_kayn_w_blade_reach",
+                "applied_target": "EnemyWithoutTower",
+                "applied_effects": [
+                  {
+                    "effect": {
+                      "type": "Combine",
+                      "effects": [
+                        {
+                          "type": "Attack",
+                          "damage": 85,
+                          "attack_ratio": 105
+                        },
+                        {
+                          "type": "Airborne",
+                          "duration": 18
+                        },
+                        {
+                          "type": "Stun",
+                          "duration": 12
+                        },
+                        {
+                          "type": "AddBuff",
+                          "buff_state": {
+                            "name": "test_mod_kayn_blades_reach_slow",
+                            "duration": {
+                              "Time": {
+                                "tick": 60
+                              }
+                            },
+                            "move_speed_mult": -35
+                          }
+                        },
+                        {
+                          "type": "TargetSfx",
+                          "name": "test_mod_kayn_w_hit"
+                        }
+                      ]
+                    },
+                    "casting_type": "Targeting"
+                  }
+                ]
               }
             ]
           }
-        ]
-      },
-      "effect_buff": {
-        "type": "Combine",
-        "effects": [
-          {
-            "type": "Sfx",
-            "name": "test_mod_kayn_w_cast"
-          },
-          {
-            "type": "LineRangeProjectile",
-            "width": 15000,
-            "length": 76000,
-            "delay": 14,
-            "apply": 18,
-            "name": "test_mod_kayn_w_blade_reach",
-            "applied_target": "EnemyWithoutTower",
-            "applied_effects": [
-              {
-                "effect": {
-                  "type": "Combine",
-                  "effects": [
-                    {
-                      "type": "Attack",
-                      "damage": 85,
-                      "attack_ratio": 105
-                    },
-                    {
-                      "type": "Airborne",
-                      "duration": 18
-                    },
-                    {
-                      "type": "Stun",
-                      "duration": 12
-                    },
-                    {
-                      "type": "AddBuff",
-                      "buff_state": {
-                        "name": "test_mod_kayn_blades_reach_slow",
-                        "duration": {
-                          "Time": {
-                            "tick": 60
-                          }
-                        },
-                        "move_speed_mult": -35
-                      }
-                    },
-                    {
-                      "type": "TargetSfx",
-                      "name": "test_mod_kayn_w_hit"
-                    }
-                  ]
-                },
-                "casting_type": "Targeting"
-              }
-            ]
-          }
-        ]
-      }
+        }
+      ]
     },
     "cancelable": false,
     "can_use_with_move": false
