@@ -3,8 +3,8 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.8.0",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version adds Kayn with League-style scythe mobility, official Kayn base SFX extracted from the local League client, and Aatrox run-animation regression hardening.",
+  "version": "0.8.1",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version polishes Aatrox compact portraits, restores visible attack and cast motion, forces three visible Q segments, and raises Kayn official skill SFX feedback.",
   "last_updated": "2026-06-10",
   "dependencies": [
     {

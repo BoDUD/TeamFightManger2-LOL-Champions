@@ -84,6 +84,10 @@
           "name": "test_mod_aatrox_cleave_cast"
         },
         {
+          "type": "CasterViewEffect",
+          "name": "test_mod_aatrox_q1_cast_vfx"
+        },
+        {
           "type": "LineRangeProjectile",
           "width": 10500,
           "length": 28000,
@@ -113,6 +117,14 @@
           "type": "Delayed",
           "tick": 18,
           "effects": [
+            {
+              "type": "Sfx",
+              "name": "test_mod_aatrox_cleave_cast"
+            },
+            {
+              "type": "CasterViewEffect",
+              "name": "test_mod_aatrox_q2_cast_vfx"
+            },
             {
               "type": "LineRangeProjectile",
               "width": 12500,
@@ -145,6 +157,14 @@
           "type": "Delayed",
           "tick": 38,
           "effects": [
+            {
+              "type": "Sfx",
+              "name": "test_mod_aatrox_cleave_cast"
+            },
+            {
+              "type": "CasterViewEffect",
+              "name": "test_mod_aatrox_q3_cast_vfx"
+            },
             {
               "type": "LineRangeProjectile",
               "width": 15500,
@@ -366,7 +386,7 @@
       "name": "test_mod_aatrox_q1",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/aatrox_q1_cleave",
       "tag": "q1",
-      "z": -1,
+      "z": 1,
       "repeat": false
     },
     {
@@ -374,7 +394,7 @@
       "name": "test_mod_aatrox_q2",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/aatrox_q2_cleave",
       "tag": "q2",
-      "z": -1,
+      "z": 1,
       "repeat": false
     },
     {
@@ -382,7 +402,7 @@
       "name": "test_mod_aatrox_q3",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/aatrox_q3_cleave",
       "tag": "q3",
-      "z": -1,
+      "z": 1,
       "repeat": false
     },
     {
@@ -418,5 +438,31 @@
       "test_mod_aatrox_skill2",
       "test_mod_aatrox_ult"
     ]
-  }
+  },
+  "view_effects": [
+    {
+      "type": "Animation",
+      "name": "test_mod_aatrox_q1_cast_vfx",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/aatrox_q1_cleave",
+      "tag": "q1",
+      "z": 2,
+      "is_follow": true
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_aatrox_q2_cast_vfx",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/aatrox_q2_cleave",
+      "tag": "q2",
+      "z": 2,
+      "is_follow": true
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_aatrox_q3_cast_vfx",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/aatrox_q3_cleave",
+      "tag": "q3",
+      "z": 2,
+      "is_follow": true
+    }
+  ]
 }

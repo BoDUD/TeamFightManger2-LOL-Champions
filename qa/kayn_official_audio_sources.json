@@ -18,37 +18,37 @@
       "media_id": "16234722",
       "event_group": "0446",
       "state": "kayn=base",
-      "volume": 0.48
+      "volume": 0.82
     },
     "test_mod_kayn_q_hit": {
       "media_id": "249093668",
       "event_group": "0453",
       "state": "kayn=base",
-      "volume": 0.42
+      "volume": 0.72
     },
     "test_mod_kayn_w_cast": {
       "media_id": "533812089",
       "event_group": "0449",
       "state": "kayn=base",
-      "volume": 0.42
+      "volume": 0.84
     },
     "test_mod_kayn_w_hit": {
       "media_id": "800215479",
       "event_group": "0461",
       "state": "kayn=base;3532398821=1181096339",
-      "volume": 0.4
+      "volume": 0.74
     },
     "test_mod_kayn_r_cast": {
       "media_id": "49181076",
       "event_group": "0516",
       "state": "kayn=base",
-      "volume": 0.44
+      "volume": 0.86
     },
     "test_mod_kayn_r_hit": {
       "media_id": "710731227",
       "event_group": "0525",
       "state": "kayn=base",
-      "volume": 0.46
+      "volume": 0.78
     }
   }
 }

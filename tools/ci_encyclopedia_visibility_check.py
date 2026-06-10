@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import sys
 import zlib
 from pathlib import Path
@@ -61,6 +62,26 @@ AATROX_MIN_RUN_FOOT_CENTER_RANGE = 0.9
 AATROX_MIN_RUN_FOOT_SHAPES = 5
 AATROX_MIN_RUN_FOOT_PIXELS = 24
 AATROX_MIN_RUN_LOWER_PIXELS = 40
+AATROX_ACCEPTED_MODEL_FRAME_X = 4224
+AATROX_IDLE_FRAME_XS = (AATROX_ACCEPTED_MODEL_FRAME_X,) * 9
+AATROX_RETIRED_MODEL_FRAME_XS = (5868, 5964, 6060, 6156, 6252, 6348, 6444, 6540, 6636)
+AATROX_ATTACK_FRAME_XS = (4992, 5088, 5184, 5280, 5376, 5472, 5568, 5664, 5760)
+AATROX_SKILL_FRAME_XS = (2784, 2880, 2976, 3072, 3168, 3264, 3360, 3456)
+AATROX_SKILL2_FRAME_XS = (3552, 3648, 3744, 3840, 3936, 4032, 4128)
+AATROX_Q_CAST_EFFECT_REFS = {
+    "test_mod_aatrox_q1_cast_vfx": (
+        "asset/bo_league_champions/aseprite_resources/effects/aatrox_q1_cleave",
+        "q1",
+    ),
+    "test_mod_aatrox_q2_cast_vfx": (
+        "asset/bo_league_champions/aseprite_resources/effects/aatrox_q2_cleave",
+        "q2",
+    ),
+    "test_mod_aatrox_q3_cast_vfx": (
+        "asset/bo_league_champions/aseprite_resources/effects/aatrox_q3_cleave",
+        "q3",
+    ),
+}
 KAYN_IDS = ("bo_league_champions_kayn", "test_mod_kayn")
 KAYN_EFFECT_REFS = {
     "test_mod_kayn_q_slash": (
@@ -98,6 +119,15 @@ KAYN_SOUND_MEDIA_IDS = {
     "test_mod_kayn_r_cast": "49181076",
     "test_mod_kayn_r_hit": "710731227",
 }
+KAYN_SKILL_SOUND_EVENTS = {
+    "test_mod_kayn_q_cast",
+    "test_mod_kayn_q_hit",
+    "test_mod_kayn_w_cast",
+    "test_mod_kayn_w_hit",
+    "test_mod_kayn_r_cast",
+    "test_mod_kayn_r_hit",
+}
+KAYN_SKILL_SOUND_VOLUME_FLOOR = 0.72
 KAYN_CORE_ACTIONS = ("idle", "run", "attack", "skill", "skill2", "hit", "dead", "ult")
 KAYN_FRAME_SIZE = (57.0, 54.0)
 
@@ -213,6 +243,15 @@ def alpha_bbox_in_rect(
     return min_x, min_y, max_x, max_y
 
 
+def alpha_frame_hash(alpha: bytes, image_width: int, rect: tuple[int, int, int, int]) -> str:
+    x0, y0, w, h = rect
+    digest = hashlib.sha1()
+    for y in range(y0, y0 + h):
+        start = y * image_width + x0
+        digest.update(alpha[start : start + w])
+    return digest.hexdigest()
+
+
 def count_green_residue(path: Path) -> int:
     width, height, rgba = load_rgba(path)
     offenders = 0
@@ -254,7 +293,7 @@ def require_png_asset(asset: str) -> None:
     require_file(local_asset_path(asset).with_suffix(".png"))
 
 
-def require_wave_asset(event_name: str) -> None:
+def require_wave_asset(event_name: str) -> dict[str, Any]:
     sound_info = ROOT / "sound" / "sfx" / f"{event_name}.sound_info"
     clip = ROOT / "sound" / "sfx" / f"{event_name}_clip.wav"
     require_file(sound_info)
@@ -273,6 +312,7 @@ def require_wave_asset(event_name: str) -> None:
     payload = clip.read_bytes()
     if len(payload) < 1000 or not payload.startswith(b"RIFF") or payload[8:12] != b"WAVE":
         fail(f"{clip.relative_to(ROOT)} must be a decoded official wav clip")
+    return info
 
 
 def walk_strings(node: Any) -> list[str]:
@@ -406,17 +446,22 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
         view = entries.get(aatrox_id)
         if not isinstance(view, dict):
             fail(f"style/champion_view.champion_view missing entries.{aatrox_id}")
+        face_x = view.get("face", {}).get("x")
         face_y = view.get("face", {}).get("y")
         center_y = view.get("center", {}).get("y")
-        if not isinstance(face_y, (int, float)) or face_y > -30:
-            fail(f"style entry {aatrox_id}.face.y must keep the portrait focused on the head/torso")
-        if not isinstance(center_y, (int, float)) or not -20 <= center_y <= -8:
-            fail(f"style entry {aatrox_id}.center.y must keep the full-body display centered")
+        if face_x != 0 or face_y != -34:
+            fail(f"style entry {aatrox_id}.face must keep Aatrox's compact portrait at x=0,y=-34")
+        if center_y != -12:
+            fail(f"style entry {aatrox_id}.center.y must keep Aatrox full-body display at -12")
 
     fanim = load_json(ROOT / "aseprite_resources" / "champions" / "aatrox#anim.fanim")
     sheet_width, sheet_height, sheet_alpha = load_rgba_alpha(
         ROOT / "aseprite_resources" / "champions" / "aatrox#sheet.png"
     )
+    for x in AATROX_RETIRED_MODEL_FRAME_XS:
+        bbox = alpha_bbox_in_rect(sheet_alpha, sheet_width, (x, 0, 57, 54))
+        if bbox is not None:
+            fail(f"Aatrox retired old-model frame slot at x={x} must stay blank")
     idle_frames = fanim.get("anims", {}).get("idle", {}).get("frames")
     if not isinstance(idle_frames, list) or len(idle_frames) < 6:
         fail("Aatrox idle animation must have at least six stable display frames")
@@ -424,12 +469,28 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
     if not isinstance(run_frames, list) or len(run_frames) != 8:
         fail("Aatrox run must preserve its native eight-frame contract")
 
+    expected_frame_xs = {
+        "idle": AATROX_IDLE_FRAME_XS,
+        "attack": AATROX_ATTACK_FRAME_XS,
+        "skill": AATROX_SKILL_FRAME_XS,
+        "skill2": AATROX_SKILL2_FRAME_XS,
+        "hit": (AATROX_ACCEPTED_MODEL_FRAME_X,),
+        "dead": (AATROX_ACCEPTED_MODEL_FRAME_X,),
+        "ult": (AATROX_ACCEPTED_MODEL_FRAME_X,),
+    }
     action_bboxes: dict[str, list[tuple[int, int, int, int]]] = {}
+    action_hashes: dict[str, list[str]] = {}
     for action in AATROX_CORE_ACTIONS:
         frames = fanim.get("anims", {}).get(action, {}).get("frames")
         if not isinstance(frames, list) or not frames:
             fail(f"Aatrox {action} animation missing frames")
+        expected_xs = expected_frame_xs.get(action)
+        if expected_xs is not None:
+            actual_xs = tuple(int(round(float(frame.get("data", {}).get("x", -1)))) for frame in frames)
+            if actual_xs != expected_xs:
+                fail(f"Aatrox {action} must use its own accepted action/portrait frame slots, got {actual_xs}")
         action_bboxes[action] = []
+        action_hashes[action] = []
         for index, frame in enumerate(frames):
             data = frame.get("data") if isinstance(frame, dict) else None
             if not isinstance(data, dict):
@@ -445,10 +506,13 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
             h = int(round(float(data.get("h", 0))))
             if x < 0 or y < 0 or x + w > sheet_width or y + h > sheet_height:
                 fail(f"Aatrox {action} frame {index} points outside aatrox#sheet.png")
+            if x in AATROX_RETIRED_MODEL_FRAME_XS:
+                fail(f"Aatrox {action} frame {index} must not reference retired old-model slot x={x}")
             bbox = alpha_bbox_in_rect(sheet_alpha, sheet_width, (x, y, w, h))
             if bbox is None:
                 fail(f"Aatrox {action} frame {index} is blank")
             action_bboxes[action].append(bbox)
+            action_hashes[action].append(alpha_frame_hash(sheet_alpha, sheet_width, (x, y, w, h)))
             body_height = bbox[3] - bbox[1]
             bottom_safe = h - bbox[3]
             if body_height > AATROX_MAX_CORE_BODY_HEIGHT:
@@ -468,13 +532,21 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
     run_heights = [bbox[3] - bbox[1] for bbox in action_bboxes["run"]]
     if max(run_widths) - min(run_widths) > 6:
         fail("Aatrox run frame widths must stay stable to avoid animation jitter")
-    for action in ("idle", "attack", "skill", "skill2", "hit", "dead", "ult"):
+    for action in ("attack", "skill", "skill2"):
         widths = [bbox[2] - bbox[0] for bbox in action_bboxes[action]]
         heights = [bbox[3] - bbox[1] for bbox in action_bboxes[action]]
-        if min(widths) + 4 < min(run_widths):
+        if min(widths) + 6 < min(run_widths):
             fail(f"Aatrox {action} must keep the accepted compact run/body posture instead of swapping model")
-        if max(abs(height - run_heights[0]) for height in heights) > 1:
+        if max(abs(height - run_heights[0]) for height in heights) > 2:
             fail(f"Aatrox {action} model height must stay locked to the compact run scale")
+        if len(set(action_hashes[action])) < min(4, len(action_hashes[action])):
+            fail(f"Aatrox {action} must have visible body/weapon motion, not repeated static frames")
+        if tuple(action_hashes[action][: len(action_hashes["run"])]) == tuple(action_hashes["run"][: len(action_hashes[action])]):
+            fail(f"Aatrox {action} must not be a direct copy of the run cycle")
+    for action in ("idle", "hit", "dead", "ult"):
+        heights = [bbox[3] - bbox[1] for bbox in action_bboxes[action]]
+        if max(abs(height - run_heights[0]) for height in heights) > 2:
+            fail(f"Aatrox {action} model height must stay in the same scale class as run")
 
     foot_centers: list[float] = []
     foot_shapes: set[tuple[tuple[int, int], ...]] = set()
@@ -519,6 +591,26 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
     for name, expected in AATROX_EFFECT_REFS.items():
         if projectile_refs.get(name) != expected:
             fail(f"champion/aatrox.data_champion projectile {name} must reference {expected}")
+    projectile_z = {item.get("name"): item.get("z") for item in aatrox.get("view_projectiles", [])}
+    for name in ("test_mod_aatrox_q1", "test_mod_aatrox_q2", "test_mod_aatrox_q3"):
+        if projectile_z.get(name) != 1:
+            fail(f"champion/aatrox.data_champion projectile {name} must render visibly above terrain at z=1")
+    view_effect_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in aatrox.get("view_effects", [])}
+    for name, expected in AATROX_Q_CAST_EFFECT_REFS.items():
+        if view_effect_refs.get(name) != expected:
+            fail(f"champion/aatrox.data_champion view_effect {name} must reference {expected}")
+    skill_effects = aatrox.get("skill", {}).get("effect", {}).get("effects", [])
+    if not isinstance(skill_effects, list):
+        fail("Aatrox Q skill must use a Combine effects list")
+    if not any(item.get("type") == "CasterViewEffect" and item.get("name") == "test_mod_aatrox_q1_cast_vfx" for item in skill_effects if isinstance(item, dict)):
+        fail("Aatrox Q1 must have an immediate visible caster-follow effect")
+    delayed = {item.get("tick"): item.get("effects", []) for item in skill_effects if isinstance(item, dict) and item.get("type") == "Delayed"}
+    for tick, name in ((18, "test_mod_aatrox_q2_cast_vfx"), (38, "test_mod_aatrox_q3_cast_vfx")):
+        effects = delayed.get(tick)
+        if not isinstance(effects, list) or not any(
+            item.get("type") == "CasterViewEffect" and item.get("name") == name for item in effects if isinstance(item, dict)
+        ):
+            fail(f"Aatrox delayed Q at tick {tick} must have visible effect {name}")
     buff_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in aatrox.get("view_buffs", [])}
     for name, expected in AATROX_BUFF_REFS.items():
         if buff_refs.get(name) != expected:
@@ -576,8 +668,8 @@ def check_kayn_rework_contract(text: dict[str, Any], entries: dict[str, Any]) ->
         center_y = view.get("center", {}).get("y")
         if face_x != 4:
             fail(f"style entry {kayn_id}.face.x must keep Kayn's compact portrait centered")
-        if not isinstance(face_y, (int, float)) or face_y > -30:
-            fail(f"style entry {kayn_id}.face.y must keep the portrait on the head/torso")
+        if face_y != -36:
+            fail(f"style entry {kayn_id}.face.y must keep Kayn's compact portrait at -36")
         if not isinstance(center_y, (int, float)) or not -20 <= center_y <= -8:
             fail(f"style entry {kayn_id}.center.y must keep the full-body display above the name")
 
@@ -678,7 +770,11 @@ def check_kayn_rework_contract(text: dict[str, Any], entries: dict[str, Any]) ->
     ):
         if required not in strings:
             fail(f"champion/kayn.data_champion must include LoL Kayn mechanic token {required}")
-    for action, sfx_name in (("skill", "test_mod_kayn_q_cast"), ("skill2", "test_mod_kayn_w_cast")):
+    for action, sfx_name in (
+        ("skill", "test_mod_kayn_q_cast"),
+        ("skill2", "test_mod_kayn_w_cast"),
+        ("ult", "test_mod_kayn_r_cast"),
+    ):
         effect = kayn.get(action, {}).get("effect")
         effects = effect.get("effects") if isinstance(effect, dict) else None
         if (
@@ -687,10 +783,10 @@ def check_kayn_rework_contract(text: dict[str, Any], entries: dict[str, Any]) ->
             or not isinstance(effects, list)
             or len(effects) < 2
             or effects[0] != {"type": "Sfx", "name": sfx_name}
-            or not isinstance(effects[1], dict)
-            or effects[1].get("type") != "SwitchByBuff"
         ):
-            fail(f"Kayn {action} must play {sfx_name} at the top-level cast effect before branch logic")
+            fail(f"Kayn {action} must play {sfx_name} as the first top-level cast effect")
+        if action in {"skill", "skill2"} and (not isinstance(effects[1], dict) or effects[1].get("type") != "SwitchByBuff"):
+            fail(f"Kayn {action} must keep its form branch logic after the top-level cast SFX")
     projectile_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in kayn.get("view_projectiles", [])}
     for name, expected in KAYN_EFFECT_REFS.items():
         if projectile_refs.get(name) != expected:
@@ -722,7 +818,14 @@ def check_kayn_rework_contract(text: dict[str, Any], entries: dict[str, Any]) ->
         row = events.get(event_name)
         if not isinstance(row, dict) or str(row.get("media_id")) != media_id:
             fail(f"official Kayn audio event {event_name} must document media_id {media_id}")
-        require_wave_asset(event_name)
+        sound_info = require_wave_asset(event_name)
+        plays = sound_info.get("plays")
+        volume = plays[0].get("volume") if isinstance(plays, list) and plays and isinstance(plays[0], dict) else None
+        if event_name in KAYN_SKILL_SOUND_EVENTS:
+            if not isinstance(volume, (int, float)) or volume < KAYN_SKILL_SOUND_VOLUME_FLOOR:
+                fail(f"{event_name}.sound_info volume must be at least {KAYN_SKILL_SOUND_VOLUME_FLOOR} for audible skill feedback")
+            if abs(float(row.get("volume")) - float(volume)) > 0.001:
+                fail(f"qa/kayn_official_audio_sources.json volume for {event_name} must match sound_info volume")
         for suffix in ("", "_clip"):
             key = f"asset/base/sound/sfx/{event_name}{suffix}"
             expected_remap = f"asset/bo_league_champions/sound/sfx/{event_name}{suffix}"
