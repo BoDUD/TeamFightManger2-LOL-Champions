@@ -3,9 +3,9 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.10.6",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version removes Jinx actor-attached weapon and Get Excited overlays, enlarges her ultimate rocket and explosion as independent VFX, restores Kayn Q visibility with a small attack slash, and disables Aatrox's oversized basic-attack slash.",
-  "last_updated": "2026-06-10",
+  "version": "0.10.7",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version adds Thresh as a Chain Warden control support with Death Sentence, Dark Passage/Flay, The Box, official LoL audio coverage, encyclopedia CI gates, and a sharper, larger Aatrox model plus a harder Q3 control check.",
+  "last_updated": "2026-06-11",
   "dependencies": [
     {
       "mod_id": "base",
