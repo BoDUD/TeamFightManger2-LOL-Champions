@@ -55,6 +55,10 @@
           "name": "test_mod_aatrox_attack_cast"
         },
         {
+          "type": "CasterViewEffect",
+          "name": "test_mod_aatrox_attack_slash_vfx"
+        },
+        {
           "type": "Attack",
           "damage": 18,
           "attack_ratio": 112
@@ -492,6 +496,14 @@
     ]
   },
   "view_effects": [
+    {
+      "type": "Animation",
+      "name": "test_mod_aatrox_attack_slash_vfx",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/aatrox_attack_slash",
+      "tag": "slash",
+      "z": 2,
+      "is_follow": true
+    },
     {
       "type": "Animation",
       "name": "test_mod_aatrox_q1_cast_vfx",

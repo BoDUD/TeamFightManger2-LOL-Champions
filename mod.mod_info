@@ -3,8 +3,8 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.8.2",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version gives Aatrox same-model attack/cast body motion, changes Q into one staged strike per cast, retunes Aatrox compact portraits, and adds Kayn search aliases plus CI/runtime checks.",
+  "version": "0.8.3",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version rebuilds Aatrox actor frames from the approved final contact sheet, keeps Q as one staged strike per cast, adds basic-attack slash VFX, and extends CI to block old-model residue, green-screen source leaks, and mixed action bodies.",
   "last_updated": "2026-06-10",
   "dependencies": [
     {
