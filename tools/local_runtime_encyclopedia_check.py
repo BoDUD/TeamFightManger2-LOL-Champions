@@ -224,6 +224,7 @@ def check_runtime_copy(game_root: Path) -> None:
         "qa/kayn_official_audio_sources.json",
         "qa/yasuo_official_audio_sources.json",
         "qa/jinx_official_audio_sources.json",
+        "qa/roster_visibility_coverage.json",
     ]
     for event_name in AATROX_SOUND_EVENTS:
         critical_files.append(f"sound/sfx/{event_name}.sound_info")

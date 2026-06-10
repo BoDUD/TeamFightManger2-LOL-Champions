@@ -35,3 +35,5 @@ python tools\local_runtime_encyclopedia_check.py
 ```
 
 This local check verifies that `mods/bo_league_champions` matches the repository, only `bo_league_champions` is enabled, and a stale AppData `custom_database.tfm2db` is not enabled while missing `bo_league_champions_aatrox`.
+
+Roster visibility coverage is tracked in `qa/roster_visibility_coverage.json`. Native Teamfight Manager 2 heroes must either be covered by a League replacement or remain in the staged retirement queue until a verified hide/disable path is proven.

@@ -395,88 +395,77 @@
   "skill": {
     "action_name": "skill",
     "description": "#asset/base/text/champion?description.bo_league_champions_jinx.skill",
-    "duration": 24,
-    "cooltime": 90,
-    "start_timing": 9,
-    "range": 0,
-    "casting_type": "None",
-    "casting_target": "AllyOnlySelf",
+    "duration": 22,
+    "cooltime": 420,
+    "start_timing": 8,
+    "range": 74000,
+    "casting_type": "Targeting",
+    "casting_target": "Enemy",
     "attack_type": "Skill",
     "effect": {
-      "type": "SwitchByBuff",
-      "buff_name": "test_mod_jinx_fishbones_mode",
-      "effect_none": {
-        "type": "Combine",
-        "effects": [
-          {
-            "type": "Sfx",
-            "name": "test_mod_jinx_switch_to_rocket"
-          },
-          {
-            "type": "CasterViewEffect",
-            "name": "test_mod_jinx_switcheroo_vfx"
-          },
-          {
-            "type": "AddCasterBuff",
-            "buff_state": {
-              "name": "test_mod_jinx_fishbones_mode",
-              "duration": {
-                "Time": {
-                  "tick": 54000
-                }
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "Sfx",
+          "name": "test_mod_jinx_switch_to_rocket"
+        },
+        {
+          "type": "CasterViewEffect",
+          "name": "test_mod_jinx_switcheroo_vfx"
+        },
+        {
+          "type": "AddCasterBuff",
+          "buff_state": {
+            "name": "test_mod_jinx_fishbones_mode",
+            "duration": {
+              "Time": {
+                "tick": 210
               }
             }
-          },
-          {
-            "type": "AddCasterBuff",
-            "buff_state": {
-              "name": "test_mod_jinx_fishbones_visual",
-              "duration": {
-                "Time": {
-                  "tick": 54000
-                }
+          }
+        },
+        {
+          "type": "AddCasterBuff",
+          "buff_state": {
+            "name": "test_mod_jinx_fishbones_visual",
+            "duration": {
+              "Time": {
+                "tick": 210
               }
             }
-          },
-          {
-            "type": "RemoveCasterBuff",
-            "name": "test_mod_jinx_powpow_1"
-          },
-          {
-            "type": "RemoveCasterBuff",
-            "name": "test_mod_jinx_powpow_2"
-          },
-          {
-            "type": "RemoveCasterBuff",
-            "name": "test_mod_jinx_powpow_3"
-          },
-          {
-            "type": "RemoveCasterBuff",
-            "name": "test_mod_jinx_powpow_visual"
           }
-        ]
-      },
-      "effect_buff": {
-        "type": "Combine",
-        "effects": [
-          {
-            "type": "Sfx",
-            "name": "test_mod_jinx_switch_to_minigun"
-          },
-          {
-            "type": "CasterViewEffect",
-            "name": "test_mod_jinx_switcheroo_vfx"
-          },
-          {
-            "type": "RemoveCasterBuff",
-            "name": "test_mod_jinx_fishbones_mode"
-          },
-          {
-            "type": "RemoveCasterBuff",
-            "name": "test_mod_jinx_fishbones_visual"
-          }
-        ]
-      }
+        },
+        {
+          "type": "RemoveCasterBuff",
+          "name": "test_mod_jinx_powpow_1"
+        },
+        {
+          "type": "RemoveCasterBuff",
+          "name": "test_mod_jinx_powpow_2"
+        },
+        {
+          "type": "RemoveCasterBuff",
+          "name": "test_mod_jinx_powpow_3"
+        },
+        {
+          "type": "RemoveCasterBuff",
+          "name": "test_mod_jinx_powpow_visual"
+        },
+        {
+          "type": "Delayed",
+          "tick": 210,
+          "effects": [
+            {
+              "type": "Sfx",
+              "name": "test_mod_jinx_switch_to_minigun"
+            },
+            {
+              "type": "CasterViewEffect",
+              "name": "test_mod_jinx_switcheroo_vfx"
+            }
+          ]
+        }
+      ]
     }
   },
   "skill2": {
