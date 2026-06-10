@@ -3,8 +3,8 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.10.4",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version fixes Jinx Fishbones form to use a compact held-weapon overlay, removes the obsolete Pow-Pow body loop, and gates against rocket or smoke aura regressions.",
+  "version": "0.10.5",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version shrinks Jinx's Fishbones overlay so cannon form does not cover the actor body, refines Aatrox Q1 into a Darkin Blade ground cleave, and cleans Kayn skill VFX so slash and ultimate effects do not include duplicate actor bodies.",
   "last_updated": "2026-06-10",
   "dependencies": [
     {
