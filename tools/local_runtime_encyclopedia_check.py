@@ -9,7 +9,20 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 MOD_ID = "bo_league_champions"
-CHAMPION_ID = f"{MOD_ID}_aatrox"
+CHAMPION_IDS = (
+    f"{MOD_ID}_aatrox",
+    f"{MOD_ID}_kayn",
+)
+KAYN_SOUND_EVENTS = (
+    "test_mod_kayn_attack_cast",
+    "test_mod_kayn_attack_hit",
+    "test_mod_kayn_q_cast",
+    "test_mod_kayn_q_hit",
+    "test_mod_kayn_w_cast",
+    "test_mod_kayn_w_hit",
+    "test_mod_kayn_r_cast",
+    "test_mod_kayn_r_hit",
+)
 
 
 def fail(message: str) -> None:
@@ -55,13 +68,35 @@ def check_runtime_copy(game_root: Path) -> None:
     if not runtime_root.is_dir():
         fail(f"installed runtime mod folder is missing: {runtime_root}")
 
-    critical_files = (
+    critical_files = [
         "mod.mod_info",
         "mod.override_info",
         "champion/aatrox.data_champion",
+        "champion/kayn.data_champion",
         "text/champion.i18n",
         "style/champion_view.champion_view",
-    )
+        "aseprite_resources/champions/aatrox#sheet.png",
+        "aseprite_resources/champions/aatrox#anim.fanim",
+        "aseprite_resources/champions/kayn#sheet.png",
+        "aseprite_resources/champions/kayn#anim.fanim",
+        "aseprite_resources/effects/kayn_q_slash#sheet.png",
+        "aseprite_resources/effects/kayn_q_slash#anim.fanim",
+        "aseprite_resources/effects/kayn_w_blade_reach#sheet.png",
+        "aseprite_resources/effects/kayn_w_blade_reach#anim.fanim",
+        "aseprite_resources/effects/kayn_r_entry#sheet.png",
+        "aseprite_resources/effects/kayn_r_entry#anim.fanim",
+        "aseprite_resources/effects/kayn_r_exit#sheet.png",
+        "aseprite_resources/effects/kayn_r_exit#anim.fanim",
+        "aseprite_resources/effects/kayn_darkin_aura#sheet.png",
+        "aseprite_resources/effects/kayn_darkin_aura#anim.fanim",
+        "icons/kayn_skill.png",
+        "icons/kayn_skill2.png",
+        "icons/kayn_ult.png",
+        "qa/kayn_official_audio_sources.json",
+    ]
+    for event_name in KAYN_SOUND_EVENTS:
+        critical_files.append(f"sound/sfx/{event_name}.sound_info")
+        critical_files.append(f"sound/sfx/{event_name}_clip.wav")
     for relative in critical_files:
         repo_file = ROOT / relative
         runtime_file = runtime_root / relative
@@ -74,16 +109,27 @@ def check_runtime_copy(game_root: Path) -> None:
     if not isinstance(style, dict):
         fail("runtime champion_view must contain a JSON object")
     entries = style.get("entries")
-    if not isinstance(entries, dict) or CHAMPION_ID not in entries:
-        fail(f"runtime champion_view missing entries.{CHAMPION_ID}")
+    if not isinstance(entries, dict):
+        fail("runtime champion_view missing entries object")
+    for champion_id in CHAMPION_IDS:
+        if champion_id not in entries:
+            fail(f"runtime champion_view missing entries.{champion_id}")
 
     text = load_json(runtime_root / "text" / "champion.i18n")
     if not isinstance(text, dict):
         fail("runtime champion text must contain a JSON object")
     for locale, payload in text.items():
         descriptions = payload.get("description") if isinstance(payload, dict) else None
-        if not isinstance(descriptions, dict) or CHAMPION_ID not in descriptions:
-            fail(f"runtime text locale {locale} missing description.{CHAMPION_ID}")
+        if not isinstance(descriptions, dict):
+            fail(f"runtime text locale {locale} missing description object")
+        for champion_id in CHAMPION_IDS:
+            if champion_id not in descriptions:
+                fail(f"runtime text locale {locale} missing description.{champion_id}")
+            row = descriptions[champion_id]
+            if champion_id.endswith("_kayn") and locale in {"zh-hans", "zh-hant"}:
+                payload_text = json.dumps(row, ensure_ascii=False)
+                if "??" in payload_text:
+                    fail(f"runtime text locale {locale} description.{champion_id} still contains corrupted question marks")
 
 
 def check_custom_database_state() -> None:
@@ -96,11 +142,11 @@ def check_custom_database_state() -> None:
         fail(f"{flag} exists but {custom_db} is missing")
 
     payload = custom_db.read_bytes()
-    needle = CHAMPION_ID.encode("utf-8")
-    if needle not in payload:
+    missing = [champion_id for champion_id in CHAMPION_IDS if champion_id.encode("utf-8") not in payload]
+    if missing:
         fail(
             "custom_database.tfm2db is enabled but does not contain "
-            f"{CHAMPION_ID}; disable or regenerate the stale custom database before judging encyclopedia visibility"
+            f"{missing}; disable or regenerate the stale custom database before judging encyclopedia visibility"
         )
 
 

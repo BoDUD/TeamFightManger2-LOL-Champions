@@ -1,0 +1,472 @@
+{
+  "id": "bo_league_champions_kayn",
+  "category": "Assassin",
+  "tags": [
+    "AD",
+    "Melee",
+    "CC"
+  ],
+  "sprite": "asset/bo_league_champions/aseprite_resources/champions/kayn",
+  "anim_prefix": "",
+  "skill_icons": [
+    "asset/bo_league_champions/icons/kayn_skill",
+    "asset/bo_league_champions/icons/kayn_skill2",
+    "asset/bo_league_champions/icons/kayn_ult"
+  ],
+  "stat": {
+    "attack": 84,
+    "magic_power": 0,
+    "hp": 900,
+    "defence": 24,
+    "magic_resistance": 20,
+    "move_speed": 1080,
+    "hp_regen": 4,
+    "stack": 0,
+    "crit_chance": 0
+  },
+  "growth": {
+    "attack": 24,
+    "magic_power": 0,
+    "hp": 95,
+    "defence": 5,
+    "magic_resistance": 4,
+    "move_speed": 10,
+    "hp_regen": 1,
+    "stack": 0,
+    "crit_chance": 0
+  },
+  "attack": {
+    "action_name": "attack",
+    "description": "#asset/base/text/champion?description.bo_league_champions_kayn.attack",
+    "duration": 22,
+    "cooltime": 62,
+    "start_timing": 12,
+    "cancelable": true,
+    "range": 28000,
+    "casting_type": "Targeting",
+    "casting_target": "Enemy",
+    "attack_type": "BaseAttack",
+    "effect": {
+      "type": "SwitchByBuff",
+      "buff_name": "test_mod_kayn_darkin_ascension",
+      "effect_none": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "Sfx",
+            "name": "test_mod_kayn_attack_cast"
+          },
+          {
+            "type": "Attack",
+            "damage": 10,
+            "attack_ratio": 105
+          },
+          {
+            "type": "TargetSfx",
+            "name": "test_mod_kayn_attack_hit"
+          }
+        ]
+      },
+      "effect_buff": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "Sfx",
+            "name": "test_mod_kayn_attack_cast"
+          },
+          {
+            "type": "Attack",
+            "damage": 15,
+            "attack_ratio": 115
+          },
+          {
+            "type": "Heal",
+            "damage": 20,
+            "attack_ratio": 15
+          },
+          {
+            "type": "TargetSfx",
+            "name": "test_mod_kayn_attack_hit"
+          }
+        ]
+      }
+    }
+  },
+  "skill": {
+    "action_name": "skill",
+    "description": "#asset/base/text/champion?description.bo_league_champions_kayn.skill",
+    "duration": 36,
+    "cooltime": 360,
+    "start_timing": 6,
+    "range": 46000,
+    "casting_type": "Direction",
+    "casting_target": "EnemyWithoutTower",
+    "attack_type": "Skill",
+    "effect": {
+      "type": "SwitchByBuff",
+      "buff_name": "test_mod_kayn_darkin_ascension",
+      "effect_none": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "Sfx",
+            "name": "test_mod_kayn_q_cast"
+          },
+          {
+            "type": "RushTime",
+            "speed": 2400,
+            "tick": 16,
+            "range": 0,
+            "casting_target": "EnemyWithoutTower",
+            "penetrate": true,
+            "applied_effects": []
+          },
+          {
+            "type": "LineRangeProjectile",
+            "width": 13000,
+            "length": 46000,
+            "delay": 5,
+            "apply": 14,
+            "name": "test_mod_kayn_q_slash",
+            "applied_target": "EnemyWithoutTower",
+            "applied_effects": [
+              {
+                "effect": {
+                  "type": "Combine",
+                  "effects": [
+                    {
+                      "type": "Attack",
+                      "damage": 45,
+                      "attack_ratio": 85
+                    },
+                    {
+                      "type": "TargetSfx",
+                      "name": "test_mod_kayn_q_hit"
+                    }
+                  ]
+                },
+                "casting_type": "Targeting"
+              }
+            ]
+          }
+        ]
+      },
+      "effect_buff": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "Sfx",
+            "name": "test_mod_kayn_q_cast"
+          },
+          {
+            "type": "RushTime",
+            "speed": 2200,
+            "tick": 16,
+            "range": 0,
+            "casting_target": "EnemyWithoutTower",
+            "penetrate": true,
+            "applied_effects": []
+          },
+          {
+            "type": "LineRangeProjectile",
+            "width": 13000,
+            "length": 46000,
+            "delay": 5,
+            "apply": 14,
+            "name": "test_mod_kayn_q_slash",
+            "applied_target": "EnemyWithoutTower",
+            "applied_effects": [
+              {
+                "effect": {
+                  "type": "Combine",
+                  "effects": [
+                    {
+                      "type": "Attack",
+                      "damage": 65,
+                      "attack_ratio": 100
+                    },
+                    {
+                      "type": "TargetSfx",
+                      "name": "test_mod_kayn_q_hit"
+                    }
+                  ]
+                },
+                "casting_type": "Targeting"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "cancelable": false,
+    "can_use_with_move": false
+  },
+  "skill2": {
+    "action_name": "skill2",
+    "description": "#asset/base/text/champion?description.bo_league_champions_kayn.skill2",
+    "duration": 54,
+    "cooltime": 600,
+    "start_timing": 18,
+    "range": 76000,
+    "casting_type": "Direction",
+    "casting_target": "EnemyWithoutTower",
+    "attack_type": "Skill",
+    "effect": {
+      "type": "SwitchByBuff",
+      "buff_name": "test_mod_kayn_darkin_ascension",
+      "effect_none": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "Sfx",
+            "name": "test_mod_kayn_w_cast"
+          },
+          {
+            "type": "LineRangeProjectile",
+            "width": 12000,
+            "length": 76000,
+            "delay": 14,
+            "apply": 18,
+            "name": "test_mod_kayn_w_blade_reach",
+            "applied_target": "EnemyWithoutTower",
+            "applied_effects": [
+              {
+                "effect": {
+                  "type": "Combine",
+                  "effects": [
+                    {
+                      "type": "Attack",
+                      "damage": 70,
+                      "attack_ratio": 95
+                    },
+                    {
+                      "type": "AddBuff",
+                      "buff_state": {
+                        "name": "test_mod_kayn_blades_reach_slow",
+                        "duration": {
+                          "Time": {
+                            "tick": 60
+                          }
+                        },
+                        "move_speed_mult": -35
+                      }
+                    },
+                    {
+                      "type": "TargetSfx",
+                      "name": "test_mod_kayn_w_hit"
+                    }
+                  ]
+                },
+                "casting_type": "Targeting"
+              }
+            ]
+          }
+        ]
+      },
+      "effect_buff": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "Sfx",
+            "name": "test_mod_kayn_w_cast"
+          },
+          {
+            "type": "LineRangeProjectile",
+            "width": 15000,
+            "length": 76000,
+            "delay": 14,
+            "apply": 18,
+            "name": "test_mod_kayn_w_blade_reach",
+            "applied_target": "EnemyWithoutTower",
+            "applied_effects": [
+              {
+                "effect": {
+                  "type": "Combine",
+                  "effects": [
+                    {
+                      "type": "Attack",
+                      "damage": 85,
+                      "attack_ratio": 105
+                    },
+                    {
+                      "type": "Airborne",
+                      "duration": 18
+                    },
+                    {
+                      "type": "Stun",
+                      "duration": 12
+                    },
+                    {
+                      "type": "AddBuff",
+                      "buff_state": {
+                        "name": "test_mod_kayn_blades_reach_slow",
+                        "duration": {
+                          "Time": {
+                            "tick": 60
+                          }
+                        },
+                        "move_speed_mult": -35
+                      }
+                    },
+                    {
+                      "type": "TargetSfx",
+                      "name": "test_mod_kayn_w_hit"
+                    }
+                  ]
+                },
+                "casting_type": "Targeting"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "cancelable": false,
+    "can_use_with_move": false
+  },
+  "ult": {
+    "action_name": "ult",
+    "description": "#asset/base/text/champion?description.bo_league_champions_kayn.ult",
+    "duration": 72,
+    "cooltime": 4200,
+    "start_timing": 12,
+    "range": 70000,
+    "casting_type": "Targeting",
+    "casting_target": "EnemyChampion",
+    "attack_type": "Skill",
+    "effect": {
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "Sfx",
+          "name": "test_mod_kayn_r_cast"
+        },
+        {
+          "type": "CasterViewEffect",
+          "name": "test_mod_kayn_r_entry"
+        },
+        {
+          "type": "WithSelf",
+          "effects": [
+            {
+              "type": "Invisible",
+              "tick": 48
+            },
+            {
+              "type": "AddCasterBuff",
+              "buff_state": {
+                "name": "test_mod_kayn_umbral_trespass_stasis",
+                "duration": {
+                  "Time": {
+                    "tick": 48
+                  }
+                },
+                "damaged_reduce": 100,
+                "cc_immune": true
+              }
+            }
+          ]
+        },
+        {
+          "type": "Delayed",
+          "tick": 48,
+          "effects": [
+            {
+              "type": "RushMoveToBack",
+              "speed": 3600,
+              "applied_effects": [
+                {
+                  "type": "Combine",
+                  "effects": [
+                    {
+                      "type": "Attack",
+                      "damage": 180,
+                      "attack_ratio": 160
+                    },
+                    {
+                      "type": "TargetSfx",
+                      "name": "test_mod_kayn_r_hit"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "ViewEffect",
+              "name": "test_mod_kayn_r_exit"
+            },
+            {
+              "type": "AddCasterBuff",
+              "buff_state": {
+                "name": "test_mod_kayn_darkin_ascension",
+                "duration": {
+                  "Time": {
+                    "tick": 600
+                  }
+                },
+                "attack": 35,
+                "move_speed_mult": 15,
+                "vamp": 30
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "cancelable": false,
+    "can_use_with_move": false
+  },
+  "view_projectiles": [
+    {
+      "type": "Animated",
+      "name": "test_mod_kayn_q_slash",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/kayn_q_slash",
+      "tag": "slash",
+      "z": 1,
+      "repeat": false
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_kayn_w_blade_reach",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/kayn_w_blade_reach",
+      "tag": "blade",
+      "z": 1,
+      "repeat": false
+    }
+  ],
+  "view_buffs": [
+    {
+      "type": "Animated",
+      "name": "test_mod_kayn_darkin_ascension",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/kayn_darkin_aura",
+      "tag": "loop",
+      "z": -1
+    }
+  ],
+  "view_effects": [
+    {
+      "type": "Animation",
+      "name": "test_mod_kayn_r_entry",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/kayn_r_entry",
+      "tag": "entry",
+      "z": -1,
+      "is_follow": true
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_kayn_r_exit",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/kayn_r_exit",
+      "tag": "exit",
+      "z": 1,
+      "is_follow": false
+    }
+  ],
+  "skill_icon": {
+    "source": "asset/bo_league_champions/aseprite_resources/UI_aseprite/test_mod_skill_icons",
+    "tags": [
+      "test_mod_kayn_skill",
+      "test_mod_kayn_skill2",
+      "test_mod_kayn_ult"
+    ]
+  }
+}
