@@ -14,6 +14,7 @@ CHAMPION_IDS = (
     f"{MOD_ID}_kayn",
     f"{MOD_ID}_yasuo",
     f"{MOD_ID}_jinx",
+    f"{MOD_ID}_thresh",
 )
 AATROX_SOUND_EVENTS = (
     "test_mod_aatrox_attack_cast",
@@ -22,6 +23,7 @@ AATROX_SOUND_EVENTS = (
     "test_mod_aatrox_cleave_hit",
     "test_mod_aatrox_dash_cast",
     "test_mod_aatrox_ult_cast",
+    "test_mod_aatrox_ult_voice",
 )
 KAYN_SOUND_EVENTS = (
     "test_mod_kayn_attack_cast",
@@ -32,6 +34,7 @@ KAYN_SOUND_EVENTS = (
     "test_mod_kayn_w_hit",
     "test_mod_kayn_r_cast",
     "test_mod_kayn_r_hit",
+    "test_mod_kayn_ult_voice",
 )
 YASUO_SOUND_EVENTS = (
     "test_mod_yasuo_attack_cast",
@@ -45,6 +48,7 @@ YASUO_SOUND_EVENTS = (
     "test_mod_yasuo_wind_wall_cast",
     "test_mod_yasuo_r_cast",
     "test_mod_yasuo_r_hit",
+    "test_mod_yasuo_ult_voice",
 )
 JINX_SOUND_EVENTS = (
     "test_mod_jinx_minigun_cast",
@@ -61,6 +65,21 @@ JINX_SOUND_EVENTS = (
     "test_mod_jinx_r_hit",
     "test_mod_jinx_get_excited",
     "test_mod_jinx_ult_voice",
+)
+THRESH_SOUND_EVENTS = (
+    "test_mod_thresh_attack_cast",
+    "test_mod_thresh_attack_hit",
+    "test_mod_thresh_attack_empowered_hit",
+    "test_mod_thresh_q_cast",
+    "test_mod_thresh_q_hit",
+    "test_mod_thresh_lantern_cast",
+    "test_mod_thresh_lantern_shield",
+    "test_mod_thresh_e_cast",
+    "test_mod_thresh_e_hit",
+    "test_mod_thresh_r_cast",
+    "test_mod_thresh_r_hit",
+    "test_mod_thresh_soul_gain",
+    "test_mod_thresh_ult_voice",
 )
 REQUIRED_DESCRIPTION_KEYS = ("name", "attack", "skill", "skill2", "ult")
 REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS: dict[str, dict[str, tuple[str, ...]]] = {
@@ -83,6 +102,11 @@ REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS: dict[str, dict[str, tuple[str, ...]]] = {
         "en": ("Jinx", "Loose Cannon"),
         "zh-hans": ("暴走萝莉", "金克丝"),
         "zh-hant": ("暴走蘿莉", "金克絲"),
+    },
+    f"{MOD_ID}_thresh": {
+        "en": ("Thresh", "Chain Warden"),
+        "zh-hans": ("魂锁典狱长", "锤石"),
+        "zh-hant": ("魂鎖典獄長", "瑟雷西"),
     },
 }
 
@@ -155,6 +179,7 @@ def check_runtime_copy(game_root: Path) -> None:
         "champion/kayn.data_champion",
         "champion/yasuo.data_champion",
         "champion/jinx.data_champion",
+        "champion/thresh.data_champion",
         "text/champion.i18n",
         "style/champion_view.champion_view",
         "aseprite_resources/champions/aatrox#sheet.png",
@@ -165,6 +190,8 @@ def check_runtime_copy(game_root: Path) -> None:
         "aseprite_resources/champions/yasuo#anim.fanim",
         "aseprite_resources/champions/jinx#sheet.png",
         "aseprite_resources/champions/jinx#anim.fanim",
+        "aseprite_resources/champions/thresh#sheet.png",
+        "aseprite_resources/champions/thresh#anim.fanim",
         "aseprite_resources/effects/kayn_q_slash#sheet.png",
         "aseprite_resources/effects/kayn_q_slash#anim.fanim",
         "aseprite_resources/effects/kayn_w_blade_reach#sheet.png",
@@ -207,6 +234,22 @@ def check_runtime_copy(game_root: Path) -> None:
         "aseprite_resources/effects/jinx_rocket_explosion#anim.fanim",
         "aseprite_resources/effects/kayn_attack_slash#sheet.png",
         "aseprite_resources/effects/kayn_attack_slash#anim.fanim",
+        "aseprite_resources/effects/thresh_attack_chain#sheet.png",
+        "aseprite_resources/effects/thresh_attack_chain#anim.fanim",
+        "aseprite_resources/effects/thresh_attack_empowered#sheet.png",
+        "aseprite_resources/effects/thresh_attack_empowered#anim.fanim",
+        "aseprite_resources/effects/thresh_death_sentence_chain#sheet.png",
+        "aseprite_resources/effects/thresh_death_sentence_chain#anim.fanim",
+        "aseprite_resources/effects/thresh_death_sentence_hit#sheet.png",
+        "aseprite_resources/effects/thresh_death_sentence_hit#anim.fanim",
+        "aseprite_resources/effects/thresh_lantern#sheet.png",
+        "aseprite_resources/effects/thresh_lantern#anim.fanim",
+        "aseprite_resources/effects/thresh_flay_sweep#sheet.png",
+        "aseprite_resources/effects/thresh_flay_sweep#anim.fanim",
+        "aseprite_resources/effects/thresh_box#sheet.png",
+        "aseprite_resources/effects/thresh_box#anim.fanim",
+        "aseprite_resources/effects/thresh_soul_stack#sheet.png",
+        "aseprite_resources/effects/thresh_soul_stack#anim.fanim",
         "icons/kayn_skill.png",
         "icons/kayn_skill2.png",
         "icons/kayn_ult.png",
@@ -216,10 +259,14 @@ def check_runtime_copy(game_root: Path) -> None:
         "icons/jinx_skill.png",
         "icons/jinx_skill2.png",
         "icons/jinx_ult.png",
+        "icons/thresh_skill.png",
+        "icons/thresh_skill2.png",
+        "icons/thresh_ult.png",
         "qa/aatrox_official_audio_sources.json",
         "qa/kayn_official_audio_sources.json",
         "qa/yasuo_official_audio_sources.json",
         "qa/jinx_official_audio_sources.json",
+        "qa/thresh_official_audio_sources.json",
         "qa/roster_visibility_coverage.json",
     ]
     for event_name in AATROX_SOUND_EVENTS:
@@ -236,6 +283,9 @@ def check_runtime_copy(game_root: Path) -> None:
         critical_files.append(f"sound/sfx/{event_name}.sound_info")
         critical_files.append(f"sound/sfx/{event_name}_clip.wav")
     for event_name in JINX_SOUND_EVENTS:
+        critical_files.append(f"sound/sfx/{event_name}.sound_info")
+        critical_files.append(f"sound/sfx/{event_name}_clip.wav")
+    for event_name in THRESH_SOUND_EVENTS:
         critical_files.append(f"sound/sfx/{event_name}.sound_info")
         critical_files.append(f"sound/sfx/{event_name}_clip.wav")
     for relative in critical_files:
@@ -296,6 +346,10 @@ def check_runtime_copy(game_root: Path) -> None:
                         "zh-hans": "暴走萝莉",
                         "zh-hant": "暴走蘿莉",
                     },
+                    f"{MOD_ID}_thresh": {
+                        "zh-hans": "魂锁典狱长",
+                        "zh-hant": "魂鎖典獄長",
+                    },
                 }
                 display_by_locale = expected_display_names.get(champion_id)
                 if display_by_locale:
@@ -306,7 +360,20 @@ def check_runtime_copy(game_root: Path) -> None:
                             f"runtime text locale {locale} description.{champion_id}.name "
                             f"must be short display name {expected_name!r}, got {actual_name!r}"
                         )
-                    forbidden_aliases = ("Kayn", "Yasuo", "Jinx", "凯隐", "慨影", "亚索", "犽宿", "金克丝", "金克絲")
+                    forbidden_aliases = (
+                        "Kayn",
+                        "Yasuo",
+                        "Jinx",
+                        "Thresh",
+                        "凯隐",
+                        "慨影",
+                        "亚索",
+                        "犽宿",
+                        "金克丝",
+                        "金克絲",
+                        "锤石",
+                        "瑟雷西",
+                    )
                     if any(alias in actual_name for alias in forbidden_aliases):
                         fail(f"runtime text locale {locale} description.{champion_id}.name contains search alias")
                 required_terms_by_champion = {
@@ -321,6 +388,10 @@ def check_runtime_copy(game_root: Path) -> None:
                     f"{MOD_ID}_jinx": {
                         "zh-hans": ("暴走萝莉", "砰砰枪", "鱼骨头", "枪炮交响曲", "嚼火者", "超究极死神飞弹"),
                         "zh-hant": ("暴走蘿莉", "砰砰槍", "魚骨頭", "槍炮交響曲", "嚼火者", "超究極死神飛彈"),
+                    },
+                    f"{MOD_ID}_thresh": {
+                        "zh-hans": ("锤石", "魂锁典狱长", "死亡判决", "魂引之灯", "厄运钟摆", "幽冥监牢"),
+                        "zh-hant": ("瑟雷西", "魂鎖典獄長", "死亡判決", "冥燈引路", "厄運鐘擺", "幽冥監牢"),
                     },
                 }
                 required_by_locale = required_terms_by_champion.get(champion_id)

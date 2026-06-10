@@ -19,6 +19,7 @@ EXPECTED_CHAMPIONS = {
     "jhin",
     "jinx",
     "kayn",
+    "thresh",
     "vayne",
     "veigar",
     "viktor",
@@ -59,10 +60,11 @@ AATROX_BUFF_REFS = {
 }
 AATROX_CORE_ACTIONS = ("idle", "run", "attack", "skill", "skill2", "hit", "dead", "ult")
 AATROX_VIKTOR_FRAME_SIZE = (57.0, 54.0)
-AATROX_MIN_DISPLAY_BOTTOM_SAFE_PIXELS = 14
-AATROX_MIN_ACTION_BOTTOM_SAFE_PIXELS = 7
-AATROX_MAX_DISPLAY_BODY_HEIGHT = 36
-AATROX_MAX_ACTION_BODY_HEIGHT = 45
+AATROX_MIN_DISPLAY_BOTTOM_SAFE_PIXELS = 5
+AATROX_MIN_ACTION_BOTTOM_SAFE_PIXELS = 5
+AATROX_MIN_DISPLAY_BODY_HEIGHT = 40
+AATROX_MAX_DISPLAY_BODY_HEIGHT = 44
+AATROX_MAX_ACTION_BODY_HEIGHT = 50
 AATROX_MIN_RUN_FOOT_CENTER_RANGE = 0.9
 AATROX_MIN_RUN_FOOT_SHAPES = 5
 AATROX_MIN_RUN_FOOT_PIXELS = 24
@@ -309,6 +311,87 @@ JINX_SKILL_SOUND_EVENTS = {
     "test_mod_jinx_ult_voice",
 }
 JINX_SKILL_SOUND_VOLUME_FLOOR = 0.84
+THRESH_IDS = ("bo_league_champions_thresh", "test_mod_thresh")
+THRESH_FRAME_SIZE = (57.0, 54.0)
+THRESH_CORE_ACTIONS = ("idle", "run", "attack", "skill", "skill2", "hit", "dead", "ult")
+THRESH_EFFECT_REFS = {
+    "test_mod_thresh_attack_chain": (
+        "asset/bo_league_champions/aseprite_resources/effects/thresh_attack_chain",
+        "chain",
+    ),
+    "test_mod_thresh_attack_empowered": (
+        "asset/bo_league_champions/aseprite_resources/effects/thresh_attack_empowered",
+        "burst",
+    ),
+    "test_mod_thresh_death_sentence_chain": (
+        "asset/bo_league_champions/aseprite_resources/effects/thresh_death_sentence_chain",
+        "chain",
+    ),
+    "test_mod_thresh_flay_sweep": (
+        "asset/bo_league_champions/aseprite_resources/effects/thresh_flay_sweep",
+        "sweep",
+    ),
+}
+THRESH_VIEW_EFFECT_REFS = {
+    "test_mod_thresh_q_hit_vfx": (
+        "asset/bo_league_champions/aseprite_resources/effects/thresh_death_sentence_hit",
+        "hit",
+    ),
+    "test_mod_thresh_lantern_cast_vfx": (
+        "asset/bo_league_champions/aseprite_resources/effects/thresh_lantern",
+        "loop",
+    ),
+    "test_mod_thresh_flay_cast_vfx": (
+        "asset/bo_league_champions/aseprite_resources/effects/thresh_flay_sweep",
+        "sweep",
+    ),
+    "test_mod_thresh_box": (
+        "asset/bo_league_champions/aseprite_resources/effects/thresh_box",
+        "box",
+    ),
+    "test_mod_thresh_box_cast_vfx": (
+        "asset/bo_league_champions/aseprite_resources/effects/thresh_box",
+        "box",
+    ),
+    "test_mod_thresh_box_field": (
+        "asset/bo_league_champions/aseprite_resources/effects/thresh_box",
+        "box",
+    ),
+}
+THRESH_BUFF_REFS = {
+    "test_mod_thresh_lantern_visual": (
+        "asset/bo_league_champions/aseprite_resources/effects/thresh_lantern",
+        "loop",
+    ),
+}
+THRESH_SOUND_MEDIA_IDS = {
+    "test_mod_thresh_attack_cast": "682908905",
+    "test_mod_thresh_attack_hit": "571119671",
+    "test_mod_thresh_attack_empowered_hit": "930660182",
+    "test_mod_thresh_q_cast": "1056922765",
+    "test_mod_thresh_q_hit": "46212495",
+    "test_mod_thresh_lantern_cast": "490224665",
+    "test_mod_thresh_lantern_shield": "546270553",
+    "test_mod_thresh_e_cast": "415529881",
+    "test_mod_thresh_e_hit": "1064069440",
+    "test_mod_thresh_r_cast": "37758497",
+    "test_mod_thresh_r_hit": "127153748",
+    "test_mod_thresh_soul_gain": "662125189",
+    "test_mod_thresh_ult_voice": "offset_86766",
+}
+THRESH_SKILL_SOUND_EVENTS = {
+    "test_mod_thresh_q_cast",
+    "test_mod_thresh_q_hit",
+    "test_mod_thresh_lantern_cast",
+    "test_mod_thresh_lantern_shield",
+    "test_mod_thresh_e_cast",
+    "test_mod_thresh_e_hit",
+    "test_mod_thresh_r_cast",
+    "test_mod_thresh_r_hit",
+    "test_mod_thresh_soul_gain",
+    "test_mod_thresh_ult_voice",
+}
+THRESH_SKILL_SOUND_VOLUME_FLOOR = 0.84
 REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS: dict[str, dict[str, tuple[str, ...]]] = {}
 for _champion_id in AATROX_IDS:
     REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS[_champion_id] = {
@@ -333,6 +416,12 @@ for _champion_id in JINX_IDS:
         "en": ("Jinx", "Loose Cannon"),
         "zh-hans": ("\u66b4\u8d70\u841d\u8389", "\u91d1\u514b\u4e1d"),
         "zh-hant": ("\u66b4\u8d70\u863f\u8389", "\u91d1\u514b\u7d72"),
+    }
+for _champion_id in THRESH_IDS:
+    REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS[_champion_id] = {
+        "en": ("Thresh", "Chain Warden"),
+        "zh-hans": ("\u9b42\u9501\u5178\u72f1\u957f", "\u9524\u77f3"),
+        "zh-hant": ("\u9b42\u9396\u5178\u7344\u9577", "\u745f\u96f7\u897f"),
     }
 AATROX_SOUND_MEDIA_IDS = {
     "test_mod_aatrox_attack_cast": ("29529616",),
@@ -1046,6 +1135,11 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
                     f"Aatrox {action} frame {index} body height {body_height}px exceeds "
                     f"{max_body_height}px, causing model-size jumps"
                 )
+            if action in ("idle", "run", "hit", "ult") and body_height < AATROX_MIN_DISPLAY_BODY_HEIGHT:
+                fail(
+                    f"Aatrox {action} frame {index} body height {body_height}px is too small; "
+                    "the accepted Darkin model must stay imposing like the current enlarged source"
+                )
             if bottom_safe < min_bottom_safe:
                 fail(
                     f"Aatrox {action} frame {index} leaves only {bottom_safe}px bottom safety; "
@@ -1154,6 +1248,10 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
             fail("Aatrox Q2 must arm the Q3 recast window")
         if label == "Q3" and ("test_mod_aatrox_q2_ready" not in branch_strings or "test_mod_aatrox_q3_ready" not in branch_strings):
             fail("Aatrox Q3 must clear staged Q recast buffs")
+        if label == "Q3":
+            for required in ("Airborne", "Stun", "BlockMoveSkill"):
+                if required not in branch_strings:
+                    fail(f"Aatrox Q3 must include {required} for the heavy third Darkin Blade impact")
 
     assert_q_stage(q2_switch.get("effect_none"), "Q1", "test_mod_aatrox_q1", "test_mod_aatrox_q1_cast_vfx")
     assert_q_stage(q2_switch.get("effect_buff"), "Q2", "test_mod_aatrox_q2", "test_mod_aatrox_q2_cast_vfx")
@@ -1874,6 +1972,193 @@ def check_jinx_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
         fail("Jinx ult voice source must document the official Jinx.en_US.wad.client")
 
 
+def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
+    expected_display_names = {
+        "en": "Thresh (Chain Warden)",
+        "zh-hans": "\u9b42\u9501\u5178\u72f1\u957f",
+        "zh-hant": "\u9b42\u9396\u5178\u7344\u9577",
+        "ko": "\uc4f0\ub808\uc26c",
+    }
+    expected_terms = {
+        "en": ("Damnation", "Death Sentence", "Dark Passage", "Flay", "The Box"),
+        "zh-hans": ("\u9524\u77f3", "\u5730\u72f1\u8bc5\u5492", "\u6b7b\u4ea1\u5224\u51b3", "\u9b42\u5f15\u4e4b\u706f", "\u5384\u8fd0\u949f\u6446", "\u5e7d\u51a5\u76d1\u7262"),
+        "zh-hant": ("\u745f\u96f7\u897f", "\u5730\u7344\u8a5b\u5492", "\u6b7b\u4ea1\u5224\u6c7a", "\u51a5\u71c8\u5f15\u8def", "\u5384\u904b\u9418\u64fa", "\u5e7d\u51a5\u76e3\u7262"),
+    }
+    for locale, expected_name in expected_display_names.items():
+        descriptions = text.get(locale, {}).get("description")
+        if not isinstance(descriptions, dict):
+            fail(f"text/champion.i18n locale {locale} missing description object")
+        for thresh_id in THRESH_IDS:
+            row = descriptions.get(thresh_id)
+            if not isinstance(row, dict):
+                fail(f"text/champion.i18n locale {locale} missing {thresh_id}")
+            name = str(row.get("name", ""))
+            if name != expected_name:
+                fail(f"text/champion.i18n locale {locale} {thresh_id}.name must be short display name {expected_name!r}")
+            if locale in {"zh-hans", "zh-hant"} and any(alias in name for alias in ("Thresh", "\u9524\u77f3", "\u745f\u96f7\u897f")):
+                fail(f"text/champion.i18n locale {locale} {thresh_id}.name must not include search aliases")
+            for key in REQUIRED_DESCRIPTION_KEYS:
+                value = str(row.get(key, ""))
+                if "??" in value or "\ufffd" in value or "\u7e5d" in value:
+                    fail(f"text/champion.i18n locale {locale} {thresh_id}.{key} still contains corrupted text")
+            for term in expected_terms.get(locale, ()):
+                if not any(term in str(row.get(key, "")) for key in ("attack", "skill", "skill2", "ult")):
+                    fail(f"text/champion.i18n locale {locale} {thresh_id} missing term {term!r}")
+
+    for thresh_id in THRESH_IDS:
+        view = entries.get(thresh_id)
+        if not isinstance(view, dict):
+            fail(f"style/champion_view.champion_view missing entries.{thresh_id}")
+        if view.get("face", {}).get("x") != 2 or view.get("face", {}).get("y") != -35:
+            fail(f"style entry {thresh_id}.face must keep Thresh compact portrait aligned at x=2,y=-35")
+        if view.get("center", {}).get("y") != -14:
+            fail(f"style entry {thresh_id}.center.y must keep Thresh full-body display above the name at y=-14")
+
+    for path in (
+        ROOT / "champion" / "thresh.data_champion",
+        ROOT / "aseprite_resources" / "champions" / "thresh#sheet.png",
+        ROOT / "aseprite_resources" / "champions" / "thresh#anim.fanim",
+        ROOT / "icons" / "thresh_skill.png",
+        ROOT / "icons" / "thresh_skill2.png",
+        ROOT / "icons" / "thresh_ult.png",
+        ROOT / "qa" / "thresh_official_audio_sources.json",
+    ):
+        require_file(path)
+
+    for effect_name in (
+        "thresh_attack_chain",
+        "thresh_attack_empowered",
+        "thresh_death_sentence_chain",
+        "thresh_death_sentence_hit",
+        "thresh_lantern",
+        "thresh_flay_sweep",
+        "thresh_box",
+        "thresh_soul_stack",
+    ):
+        require_file(ROOT / "aseprite_resources" / "effects" / f"{effect_name}#sheet.png")
+        require_file(ROOT / "aseprite_resources" / "effects" / f"{effect_name}#anim.fanim")
+
+    fanim = load_json(ROOT / "aseprite_resources" / "champions" / "thresh#anim.fanim")
+    sheet_width, sheet_height, sheet_alpha = load_rgba_alpha(
+        ROOT / "aseprite_resources" / "champions" / "thresh#sheet.png"
+    )
+    expected_counts = {
+        "idle": 8,
+        "run": 10,
+        "attack": 8,
+        "skill": 8,
+        "skill2": 8,
+        "ult": 6,
+        "hit": 1,
+        "dead": 1,
+    }
+    action_hashes: dict[str, list[str]] = {}
+    action_bboxes: dict[str, list[tuple[int, int, int, int]]] = {}
+    for action in THRESH_CORE_ACTIONS:
+        frames = fanim.get("anims", {}).get(action, {}).get("frames")
+        if not isinstance(frames, list) or len(frames) != expected_counts[action]:
+            fail(f"Thresh {action} animation must have {expected_counts[action]} frames")
+        action_hashes[action] = []
+        action_bboxes[action] = []
+        for index, frame in enumerate(frames):
+            data = frame.get("data") if isinstance(frame, dict) else None
+            if not isinstance(data, dict):
+                fail(f"Thresh {action} frame {index} missing frame data")
+            if (data.get("w"), data.get("h")) != THRESH_FRAME_SIZE:
+                fail(f"Thresh {action} frame {index} must use the 57x54 actor frame")
+            x = int(round(float(data.get("x", -1))))
+            y = int(round(float(data.get("y", -1))))
+            w = int(round(float(data.get("w", 0))))
+            h = int(round(float(data.get("h", 0))))
+            if x < 0 or y < 0 or x + w > sheet_width or y + h > sheet_height:
+                fail(f"Thresh {action} frame {index} points outside thresh#sheet.png")
+            bbox = alpha_bbox_in_rect(sheet_alpha, sheet_width, (x, y, w, h))
+            if bbox is None:
+                fail(f"Thresh {action} frame {index} is blank")
+            action_bboxes[action].append(bbox)
+            action_hashes[action].append(alpha_frame_hash(sheet_alpha, sheet_width, (x, y, w, h)))
+            body_height = bbox[3] - bbox[1]
+            bottom_safe = h - bbox[3]
+            if action != "dead" and body_height > 45:
+                fail(f"Thresh {action} frame {index} body height {body_height}px is too large for UI/battle labels")
+            if action != "dead" and body_height < 40:
+                fail(f"Thresh {action} frame {index} body height {body_height}px is too small for readable Chain Warden silhouette")
+            if bottom_safe < 5:
+                fail(f"Thresh {action} frame {index} leaves only {bottom_safe}px bottom safety above labels")
+            if action == "run" and frame.get("duration") != 0.095:
+                fail("Thresh run must use steady 0.095s walking timing")
+        if action in {"attack", "skill", "skill2", "ult"} and len(set(action_hashes[action])) < min(4, len(action_hashes[action])):
+            fail(f"Thresh {action} must have real action motion, not repeated idle frames")
+
+    for action in ("attack", "skill", "skill2", "ult", "hit"):
+        if tuple(action_hashes[action][: len(action_hashes["idle"])]) == tuple(action_hashes["idle"][: len(action_hashes[action])]):
+            fail(f"Thresh {action} must not be a direct copy of idle")
+
+    thresh = load_json(ROOT / "champion" / "thresh.data_champion")
+    strings = set(walk_strings(thresh))
+    for required in (
+        "SwitchByBuff",
+        "LinearProjectile",
+        "RangeEffect",
+        "RangePeriodProjectile",
+        "Shield",
+        "Stun",
+        "Knockback",
+        "BlockMoveSkill",
+        "Permanent",
+        "test_mod_thresh_death_sentence_chain",
+        "test_mod_thresh_lantern_visual",
+        "test_mod_thresh_flay_sweep",
+        "test_mod_thresh_box_field",
+        "test_mod_thresh_soul_stack",
+        "test_mod_thresh_soul_gain",
+        "test_mod_thresh_ult_voice",
+    ):
+        if required not in strings:
+            fail(f"champion/thresh.data_champion must include LoL Thresh mechanic token {required}")
+
+    skill_effect = thresh.get("skill", {}).get("effect")
+    if not isinstance(skill_effect, dict) or skill_effect.get("type") != "Combine":
+        fail("Thresh Q must be a single Death Sentence combine, not a copied skill template")
+    q_strings = set(walk_strings(skill_effect))
+    if "RushMoveToBack" in q_strings:
+        fail("Thresh Q first version must not auto-recast/dash after hook impact")
+    if "test_mod_thresh_q_cast" not in q_strings or "test_mod_thresh_q_hit" not in q_strings:
+        fail("Thresh Q must trigger official cast and hit sound events")
+
+    projectile_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in thresh.get("view_projectiles", [])}
+    for name, expected in THRESH_EFFECT_REFS.items():
+        if projectile_refs.get(name) != expected:
+            fail(f"champion/thresh.data_champion projectile {name} must reference {expected}")
+    view_effect_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in thresh.get("view_effects", [])}
+    for name, expected in THRESH_VIEW_EFFECT_REFS.items():
+        if view_effect_refs.get(name) != expected:
+            fail(f"champion/thresh.data_champion view_effect {name} must reference {expected}")
+    buff_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in thresh.get("view_buffs", [])}
+    for name, expected in THRESH_BUFF_REFS.items():
+        if buff_refs.get(name) != expected:
+            fail(f"champion/thresh.data_champion buff {name} must reference {expected}")
+
+    for action, sfx_names in (
+        ("skill", {"test_mod_thresh_q_cast", "test_mod_thresh_q_hit"}),
+        ("skill2", {"test_mod_thresh_lantern_cast", "test_mod_thresh_lantern_shield", "test_mod_thresh_e_cast", "test_mod_thresh_e_hit"}),
+        ("ult", {"test_mod_thresh_r_cast", "test_mod_thresh_r_hit", "test_mod_thresh_ult_voice"}),
+    ):
+        action_strings = set(walk_strings(thresh.get(action, {})))
+        missing = sfx_names - action_strings
+        if missing:
+            fail(f"Thresh {action} must trigger sound events {sorted(missing)}")
+
+    assert_official_audio_sources(
+        "thresh",
+        "Thresh.wad.client",
+        "thresh_base_sfx_audio.bnk",
+        THRESH_SOUND_MEDIA_IDS,
+        THRESH_SKILL_SOUND_EVENTS,
+        THRESH_SKILL_SOUND_VOLUME_FLOOR,
+    )
+
+
 def check_champion_visibility() -> None:
     text = load_json(ROOT / "text" / "champion.i18n")
     style = load_json(ROOT / "style" / "champion_view.champion_view")
@@ -1956,11 +2241,14 @@ def check_champion_visibility() -> None:
         fail("Yasuo encyclopedia chain is missing bo_league_champions_yasuo")
     if f"{MOD_ID}_jinx" not in ids:
         fail("Jinx encyclopedia chain is missing bo_league_champions_jinx")
+    if f"{MOD_ID}_thresh" not in ids:
+        fail("Thresh encyclopedia chain is missing bo_league_champions_thresh")
     check_encyclopedia_search_terms(text)
     check_aatrox_rework_contract(text, entries)
     check_kayn_rework_contract(text, entries)
     check_yasuo_contract(text, entries)
     check_jinx_contract(text, entries)
+    check_thresh_contract(text, entries)
 
 
 def main() -> int:

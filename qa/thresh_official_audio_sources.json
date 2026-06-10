@@ -1,0 +1,152 @@
+{
+  "source": "League of Legends Game/DATA/FINAL/Champions/Thresh.wad.client + Thresh.en_US.wad.client",
+  "bank": "assets/sounds/wwise2016/sfx/characters/thresh/skins/base/thresh_base_sfx_audio.bnk + Thresh.en_US.wad.client RIFF voice chunks",
+  "events_bank": "assets/sounds/wwise2016/sfx/characters/thresh/skins/base/thresh_base_sfx_events.bnk (event names unavailable by path; clips selected from official Thresh WAD media IDs and en_US voice offsets)",
+  "extracted_with": "WAD BKHD/DIDX/DATA scan + RIFF voice split + vgmstream-cli",
+  "events": {
+    "test_mod_thresh_attack_cast": {
+      "clip": "test_mod_thresh_attack_cast_clip",
+      "volume": 0.86,
+      "duration": 0.415,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 0.99,
+      "rms": 0.3131,
+      "media_id": "682908905",
+      "source_file": "Thresh.wad.client"
+    },
+    "test_mod_thresh_attack_hit": {
+      "clip": "test_mod_thresh_attack_hit_clip",
+      "volume": 0.86,
+      "duration": 0.467,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 0.99,
+      "rms": 0.2767,
+      "media_id": "571119671",
+      "source_file": "Thresh.wad.client"
+    },
+    "test_mod_thresh_attack_empowered_hit": {
+      "clip": "test_mod_thresh_attack_empowered_hit_clip",
+      "volume": 0.88,
+      "duration": 0.55,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 0.99,
+      "rms": 0.1455,
+      "media_id": "930660182",
+      "source_file": "Thresh.wad.client"
+    },
+    "test_mod_thresh_q_cast": {
+      "clip": "test_mod_thresh_q_cast_clip",
+      "volume": 0.92,
+      "duration": 1.222,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 0.99,
+      "rms": 0.1968,
+      "media_id": "1056922765",
+      "source_file": "Thresh.wad.client"
+    },
+    "test_mod_thresh_q_hit": {
+      "clip": "test_mod_thresh_q_hit_clip",
+      "volume": 0.9,
+      "duration": 0.589,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 0.99,
+      "rms": 0.3136,
+      "media_id": "46212495",
+      "source_file": "Thresh.wad.client"
+    },
+    "test_mod_thresh_lantern_cast": {
+      "clip": "test_mod_thresh_lantern_cast_clip",
+      "volume": 0.9,
+      "duration": 0.622,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 0.99,
+      "rms": 0.2735,
+      "media_id": "490224665",
+      "source_file": "Thresh.wad.client"
+    },
+    "test_mod_thresh_lantern_shield": {
+      "clip": "test_mod_thresh_lantern_shield_clip",
+      "volume": 0.88,
+      "duration": 1.285,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 0.99,
+      "rms": 0.147,
+      "media_id": "546270553",
+      "source_file": "Thresh.wad.client"
+    },
+    "test_mod_thresh_e_cast": {
+      "clip": "test_mod_thresh_e_cast_clip",
+      "volume": 0.9,
+      "duration": 0.547,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 0.99,
+      "rms": 0.2302,
+      "media_id": "415529881",
+      "source_file": "Thresh.wad.client"
+    },
+    "test_mod_thresh_e_hit": {
+      "clip": "test_mod_thresh_e_hit_clip",
+      "volume": 0.9,
+      "duration": 0.531,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 0.99,
+      "rms": 0.1582,
+      "media_id": "1064069440",
+      "source_file": "Thresh.wad.client"
+    },
+    "test_mod_thresh_r_cast": {
+      "clip": "test_mod_thresh_r_cast_clip",
+      "volume": 0.94,
+      "duration": 2.236,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 0.99,
+      "rms": 0.3317,
+      "media_id": "37758497",
+      "source_file": "Thresh.wad.client"
+    },
+    "test_mod_thresh_r_hit": {
+      "clip": "test_mod_thresh_r_hit_clip",
+      "volume": 0.92,
+      "duration": 1.294,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 0.99,
+      "rms": 0.1512,
+      "media_id": "127153748",
+      "source_file": "Thresh.wad.client"
+    },
+    "test_mod_thresh_soul_gain": {
+      "clip": "test_mod_thresh_soul_gain_clip",
+      "volume": 0.86,
+      "duration": 0.482,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 0.99,
+      "rms": 0.2968,
+      "media_id": "662125189",
+      "source_file": "Thresh.wad.client"
+    },
+    "test_mod_thresh_ult_voice": {
+      "clip": "test_mod_thresh_ult_voice_clip",
+      "volume": 0.96,
+      "duration": 2.325,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 0.99,
+      "rms": 0.1095,
+      "media_id": "offset_86766",
+      "source_file": "Thresh.en_US.wad.client",
+      "source_type": "fixed_official_vo_riff_offset"
+    }
+  }
+}

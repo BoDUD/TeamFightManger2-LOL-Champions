@@ -168,6 +168,20 @@
         "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot, then drops chompers to stun and burn enemies.",
         "ult": "Super Mega Death Rocket!: launches a giant shark rocket that explodes on champions and triggers Get Excited."
+      },
+      "bo_league_champions_thresh": {
+        "name": "쓰레쉬",
+        "attack": "Damnation / Flay chain: Thresh lashes with his chain scythe for physical damage and a small magic burn. Every third basic attack becomes an empowered soul lash that slows the target.",
+        "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain. The first enemy hit takes magic damage, is stunned, heavily slowed, and briefly loses movement skills. Champion hits grant a permanent soul stack.",
+        "skill2": "W/E - Dark Passage / Flay: Thresh lights the lantern for a shield, then sweeps the chain scythe forward to push and slow enemies. Champion hits grant a permanent soul stack.",
+        "ult": "R - The Box: Thresh creates spectral prison walls around himself, damaging enemies, strongly slowing them, and briefly blocking movement skills. Champion hits grant permanent souls."
+      },
+      "test_mod_thresh": {
+        "name": "쓰레쉬",
+        "attack": "Damnation / Flay chain: Thresh lashes with his chain scythe for physical damage and a small magic burn. Every third basic attack becomes an empowered soul lash that slows the target.",
+        "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain. The first enemy hit takes magic damage, is stunned, heavily slowed, and briefly loses movement skills. Champion hits grant a permanent soul stack.",
+        "skill2": "W/E - Dark Passage / Flay: Thresh lights the lantern for a shield, then sweeps the chain scythe forward to push and slow enemies. Champion hits grant a permanent soul stack.",
+        "ult": "R - The Box: Thresh creates spectral prison walls around himself, damaging enemies, strongly slowing them, and briefly blocking movement skills. Champion hits grant permanent souls."
       }
     }
   },
@@ -340,6 +354,20 @@
         "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
+      },
+      "bo_league_champions_thresh": {
+        "name": "Thresh (Chain Warden)",
+        "attack": "Damnation / Flay chain: Thresh lashes with his chain scythe for <#ff9028ff>physical damage<> and a small <#a974ffff>magic burn<>. Every third basic attack becomes an empowered soul lash that slows the target and resets the chain-charge cycle.",
+        "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
+        "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
+        "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
+      },
+      "test_mod_thresh": {
+        "name": "Thresh (Chain Warden)",
+        "attack": "Damnation / Flay chain: Thresh lashes with his chain scythe for <#ff9028ff>physical damage<> and a small <#a974ffff>magic burn<>. Every third basic attack becomes an empowered soul lash that slows the target and resets the chain-charge cycle.",
+        "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
+        "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
+        "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
       }
     }
   },
@@ -512,6 +540,20 @@
         "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
+      },
+      "bo_league_champions_thresh": {
+        "name": "Thresh (Chain Warden)",
+        "attack": "Damnation / Flay chain: Thresh lashes with his chain scythe for <#ff9028ff>physical damage<> and a small <#a974ffff>magic burn<>. Every third basic attack becomes an empowered soul lash that slows the target and resets the chain-charge cycle.",
+        "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
+        "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
+        "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
+      },
+      "test_mod_thresh": {
+        "name": "Thresh (Chain Warden)",
+        "attack": "Damnation / Flay chain: Thresh lashes with his chain scythe for <#ff9028ff>physical damage<> and a small <#a974ffff>magic burn<>. Every third basic attack becomes an empowered soul lash that slows the target and resets the chain-charge cycle.",
+        "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
+        "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
+        "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
       }
     }
   },
@@ -684,6 +726,20 @@
         "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
+      },
+      "bo_league_champions_thresh": {
+        "name": "Thresh (Chain Warden)",
+        "attack": "Damnation / Flay chain: Thresh lashes with his chain scythe for <#ff9028ff>physical damage<> and a small <#a974ffff>magic burn<>. Every third basic attack becomes an empowered soul lash that slows the target and resets the chain-charge cycle.",
+        "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
+        "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
+        "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
+      },
+      "test_mod_thresh": {
+        "name": "Thresh (Chain Warden)",
+        "attack": "Damnation / Flay chain: Thresh lashes with his chain scythe for <#ff9028ff>physical damage<> and a small <#a974ffff>magic burn<>. Every third basic attack becomes an empowered soul lash that slows the target and resets the chain-charge cycle.",
+        "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
+        "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
+        "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
       }
     }
   },
@@ -856,6 +912,20 @@
         "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
+      },
+      "bo_league_champions_thresh": {
+        "name": "Thresh (Chain Warden)",
+        "attack": "Damnation / Flay chain: Thresh lashes with his chain scythe for <#ff9028ff>physical damage<> and a small <#a974ffff>magic burn<>. Every third basic attack becomes an empowered soul lash that slows the target and resets the chain-charge cycle.",
+        "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
+        "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
+        "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
+      },
+      "test_mod_thresh": {
+        "name": "Thresh (Chain Warden)",
+        "attack": "Damnation / Flay chain: Thresh lashes with his chain scythe for <#ff9028ff>physical damage<> and a small <#a974ffff>magic burn<>. Every third basic attack becomes an empowered soul lash that slows the target and resets the chain-charge cycle.",
+        "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
+        "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
+        "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
       }
     }
   },
@@ -1028,6 +1098,20 @@
         "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
+      },
+      "bo_league_champions_thresh": {
+        "name": "Thresh (Chain Warden)",
+        "attack": "Damnation / Flay chain: Thresh lashes with his chain scythe for <#ff9028ff>physical damage<> and a small <#a974ffff>magic burn<>. Every third basic attack becomes an empowered soul lash that slows the target and resets the chain-charge cycle.",
+        "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
+        "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
+        "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
+      },
+      "test_mod_thresh": {
+        "name": "Thresh (Chain Warden)",
+        "attack": "Damnation / Flay chain: Thresh lashes with his chain scythe for <#ff9028ff>physical damage<> and a small <#a974ffff>magic burn<>. Every third basic attack becomes an empowered soul lash that slows the target and resets the chain-charge cycle.",
+        "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
+        "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
+        "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
       }
     }
   },
@@ -1200,6 +1284,20 @@
         "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
+      },
+      "bo_league_champions_thresh": {
+        "name": "Thresh (Chain Warden)",
+        "attack": "Damnation / Flay chain: Thresh lashes with his chain scythe for <#ff9028ff>physical damage<> and a small <#a974ffff>magic burn<>. Every third basic attack becomes an empowered soul lash that slows the target and resets the chain-charge cycle.",
+        "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
+        "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
+        "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
+      },
+      "test_mod_thresh": {
+        "name": "Thresh (Chain Warden)",
+        "attack": "Damnation / Flay chain: Thresh lashes with his chain scythe for <#ff9028ff>physical damage<> and a small <#a974ffff>magic burn<>. Every third basic attack becomes an empowered soul lash that slows the target and resets the chain-charge cycle.",
+        "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
+        "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
+        "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
       }
     }
   },
@@ -1372,6 +1470,20 @@
         "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
+      },
+      "bo_league_champions_thresh": {
+        "name": "Thresh (Chain Warden)",
+        "attack": "Damnation / Flay chain: Thresh lashes with his chain scythe for <#ff9028ff>physical damage<> and a small <#a974ffff>magic burn<>. Every third basic attack becomes an empowered soul lash that slows the target and resets the chain-charge cycle.",
+        "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
+        "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
+        "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
+      },
+      "test_mod_thresh": {
+        "name": "Thresh (Chain Warden)",
+        "attack": "Damnation / Flay chain: Thresh lashes with his chain scythe for <#ff9028ff>physical damage<> and a small <#a974ffff>magic burn<>. Every third basic attack becomes an empowered soul lash that slows the target and resets the chain-charge cycle.",
+        "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
+        "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
+        "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
       }
     }
   },
@@ -1544,6 +1656,20 @@
         "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
+      },
+      "bo_league_champions_thresh": {
+        "name": "Thresh (Chain Warden)",
+        "attack": "Damnation / Flay chain: Thresh lashes with his chain scythe for <#ff9028ff>physical damage<> and a small <#a974ffff>magic burn<>. Every third basic attack becomes an empowered soul lash that slows the target and resets the chain-charge cycle.",
+        "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
+        "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
+        "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
+      },
+      "test_mod_thresh": {
+        "name": "Thresh (Chain Warden)",
+        "attack": "Damnation / Flay chain: Thresh lashes with his chain scythe for <#ff9028ff>physical damage<> and a small <#a974ffff>magic burn<>. Every third basic attack becomes an empowered soul lash that slows the target and resets the chain-charge cycle.",
+        "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
+        "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
+        "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
       }
     }
   },
@@ -1716,6 +1842,20 @@
         "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
+      },
+      "bo_league_champions_thresh": {
+        "name": "Thresh (Chain Warden)",
+        "attack": "Damnation / Flay chain: Thresh lashes with his chain scythe for <#ff9028ff>physical damage<> and a small <#a974ffff>magic burn<>. Every third basic attack becomes an empowered soul lash that slows the target and resets the chain-charge cycle.",
+        "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
+        "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
+        "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
+      },
+      "test_mod_thresh": {
+        "name": "Thresh (Chain Warden)",
+        "attack": "Damnation / Flay chain: Thresh lashes with his chain scythe for <#ff9028ff>physical damage<> and a small <#a974ffff>magic burn<>. Every third basic attack becomes an empowered soul lash that slows the target and resets the chain-charge cycle.",
+        "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
+        "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
+        "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
       }
     }
   },
@@ -1888,6 +2028,20 @@
         "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
+      },
+      "bo_league_champions_thresh": {
+        "name": "Thresh (Chain Warden)",
+        "attack": "Damnation / Flay chain: Thresh lashes with his chain scythe for <#ff9028ff>physical damage<> and a small <#a974ffff>magic burn<>. Every third basic attack becomes an empowered soul lash that slows the target and resets the chain-charge cycle.",
+        "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
+        "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
+        "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
+      },
+      "test_mod_thresh": {
+        "name": "Thresh (Chain Warden)",
+        "attack": "Damnation / Flay chain: Thresh lashes with his chain scythe for <#ff9028ff>physical damage<> and a small <#a974ffff>magic burn<>. Every third basic attack becomes an empowered soul lash that slows the target and resets the chain-charge cycle.",
+        "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
+        "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
+        "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
       }
     }
   },
@@ -2060,6 +2214,20 @@
         "skill": "枪炮交响曲：有敌方目标时，金克丝会短暂切到鱼骨头进行范围火箭攻击，窗口结束后自动回到砰砰枪。",
         "skill2": "震荡电磁波 + 嚼火者手雷：向前射出长距离电击，造成物理伤害并减速；随后投出嚼火者，在前方咬住、眩晕并灼烧敌人。",
         "ult": "超究极死神飞弹：发射一枚横贯战场的巨型鲨鱼火箭。命中英雄时爆炸造成高额物理伤害，并触发罪恶快感，获得移动速度和攻击速度。"
+      },
+      "bo_league_champions_thresh": {
+        "name": "魂锁典狱长",
+        "attack": "被动 - 地狱诅咒 / 厄运钟摆链击：锤石（Thresh）挥动锁链镰刀，造成<#ff9028ff>物理伤害<>并附带少量<#a974ffff>魔法灼烧<>。每第三次普攻强化为灵魂链击，减速目标并重置链击层数。",
+        "skill": "Q - 死亡判决：锤石向前投出不可穿透的钩锁。命中的第一个敌人受到<#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75%法术强度<>的魔法伤害，被眩晕、重度减速，并短暂无法使用位移技能。命中英雄会获得永久地狱诅咒灵魂层数。",
+        "skill2": "W/E - 魂引之灯 / 厄运钟摆：锤石点亮魂灯为自己提供护盾，随后向前横扫锁链镰刀。敌人受到魔法伤害、被击退并减速；命中英雄会获得永久灵魂层数。",
+        "ult": "R - 幽冥监牢：锤石在自身周围召唤幽绿色灵魂墙。范围内敌人受到高额魔法伤害、强烈减速，并短暂无法使用位移技能。监牢会短暂残留为减速力场，命中英雄获得永久灵魂。"
+      },
+      "test_mod_thresh": {
+        "name": "魂锁典狱长",
+        "attack": "被动 - 地狱诅咒 / 厄运钟摆链击：锤石（Thresh）挥动锁链镰刀，造成<#ff9028ff>物理伤害<>并附带少量<#a974ffff>魔法灼烧<>。每第三次普攻强化为灵魂链击，减速目标并重置链击层数。",
+        "skill": "Q - 死亡判决：锤石向前投出不可穿透的钩锁。命中的第一个敌人受到<#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75%法术强度<>的魔法伤害，被眩晕、重度减速，并短暂无法使用位移技能。命中英雄会获得永久地狱诅咒灵魂层数。",
+        "skill2": "W/E - 魂引之灯 / 厄运钟摆：锤石点亮魂灯为自己提供护盾，随后向前横扫锁链镰刀。敌人受到魔法伤害、被击退并减速；命中英雄会获得永久灵魂层数。",
+        "ult": "R - 幽冥监牢：锤石在自身周围召唤幽绿色灵魂墙。范围内敌人受到高额魔法伤害、强烈减速，并短暂无法使用位移技能。监牢会短暂残留为减速力场，命中英雄获得永久灵魂。"
       }
     }
   },
@@ -2232,6 +2400,20 @@
         "skill": "槍炮交響曲：有敵方目標時，金克絲會短暫切到魚骨頭進行範圍火箭攻擊，窗口結束後自動回到砰砰槍。",
         "skill2": "震盪電磁波 + 嚼火者手雷：向前射出長距離電擊，造成物理傷害並減速；隨後投出嚼火者，在前方咬住、暈眩並灼燒敵人。",
         "ult": "超究極死神飛彈：發射一枚橫貫戰場的巨型鯊魚火箭。命中英雄時爆炸造成高額物理傷害，並觸發罪惡快感，獲得移動速度和攻擊速度。"
+      },
+      "bo_league_champions_thresh": {
+        "name": "魂鎖典獄長",
+        "attack": "被動 - 地獄詛咒 / 厄運鐘擺鏈擊：瑟雷西（Thresh）揮動鎖鏈鐮刀，造成<#ff9028ff>物理傷害<>並附帶少量<#a974ffff>魔法灼燒<>。每第三次普攻強化為靈魂鏈擊，緩速目標並重置鏈擊層數。",
+        "skill": "Q - 死亡判決：瑟雷西向前投出不可穿透的鉤鎖。命中的第一個敌人受到<#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75%魔法攻擊<>的魔法傷害，被暈眩、重度緩速，並短暫無法使用位移技能。命中英雄會獲得永久地獄詛咒靈魂層數。",
+        "skill2": "W/E - 冥燈引路 / 厄運鐘擺：瑟雷西點亮冥燈為自己提供護盾，隨後向前橫掃鎖鏈鐮刀。敌人受到魔法傷害、被擊退並緩速；命中英雄會獲得永久靈魂層數。",
+        "ult": "R - 幽冥監牢：瑟雷西在自身周圍召喚幽綠色靈魂牆。範圍內敌人受到高額魔法傷害、強烈緩速，並短暫無法使用位移技能。監牢會短暫殘留為緩速力場，命中英雄獲得永久靈魂。"
+      },
+      "test_mod_thresh": {
+        "name": "魂鎖典獄長",
+        "attack": "被動 - 地獄詛咒 / 厄運鐘擺鏈擊：瑟雷西（Thresh）揮動鎖鏈鐮刀，造成<#ff9028ff>物理傷害<>並附帶少量<#a974ffff>魔法灼燒<>。每第三次普攻強化為靈魂鏈擊，緩速目標並重置鏈擊層數。",
+        "skill": "Q - 死亡判決：瑟雷西向前投出不可穿透的鉤鎖。命中的第一個敌人受到<#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75%魔法攻擊<>的魔法傷害，被暈眩、重度緩速，並短暫無法使用位移技能。命中英雄會獲得永久地獄詛咒靈魂層數。",
+        "skill2": "W/E - 冥燈引路 / 厄運鐘擺：瑟雷西點亮冥燈為自己提供護盾，隨後向前橫掃鎖鏈鐮刀。敌人受到魔法傷害、被擊退並緩速；命中英雄會獲得永久靈魂層數。",
+        "ult": "R - 幽冥監牢：瑟雷西在自身周圍召喚幽綠色靈魂牆。範圍內敌人受到高額魔法傷害、強烈緩速，並短暫無法使用位移技能。監牢會短暫殘留為緩速力場，命中英雄獲得永久靈魂。"
       }
     }
   },
@@ -2404,6 +2586,20 @@
         "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
+      },
+      "bo_league_champions_thresh": {
+        "name": "Thresh (Chain Warden)",
+        "attack": "Damnation / Flay chain: Thresh lashes with his chain scythe for <#ff9028ff>physical damage<> and a small <#a974ffff>magic burn<>. Every third basic attack becomes an empowered soul lash that slows the target and resets the chain-charge cycle.",
+        "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
+        "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
+        "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
+      },
+      "test_mod_thresh": {
+        "name": "Thresh (Chain Warden)",
+        "attack": "Damnation / Flay chain: Thresh lashes with his chain scythe for <#ff9028ff>physical damage<> and a small <#a974ffff>magic burn<>. Every third basic attack becomes an empowered soul lash that slows the target and resets the chain-charge cycle.",
+        "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
+        "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
+        "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
       }
     }
   }
