@@ -186,14 +186,36 @@ def check_runtime_copy(game_root: Path) -> None:
                 payload_text = json.dumps(row, ensure_ascii=False)
                 if "??" in payload_text:
                     fail(f"runtime text locale {locale} description.{champion_id} still contains corrupted question marks")
-                required_terms_by_champion = {
+                expected_display_names = {
                     f"{MOD_ID}_kayn": {
-                        "zh-hans": ("凯隐", "Kayn", "影流之镰"),
-                        "zh-hant": ("慨影", "Kayn", "影流之鐮"),
+                        "zh-hans": "影流之镰",
+                        "zh-hant": "影流之鐮",
                     },
                     f"{MOD_ID}_yasuo": {
-                        "zh-hans": ("亚索", "Yasuo", "疾风剑豪", "斩钢闪"),
-                        "zh-hant": ("犽宿", "Yasuo", "斬鋼閃"),
+                        "zh-hans": "疾风剑豪",
+                        "zh-hant": "疾風劍豪",
+                    },
+                }
+                display_by_locale = expected_display_names.get(champion_id)
+                if display_by_locale:
+                    expected_name = display_by_locale[locale]
+                    actual_name = str(row.get("name", ""))
+                    if actual_name != expected_name:
+                        fail(
+                            f"runtime text locale {locale} description.{champion_id}.name "
+                            f"must be short display name {expected_name!r}, got {actual_name!r}"
+                        )
+                    forbidden_aliases = ("Kayn", "Yasuo", "凯隐", "慨影", "亚索", "犽宿")
+                    if any(alias in actual_name for alias in forbidden_aliases):
+                        fail(f"runtime text locale {locale} description.{champion_id}.name contains search alias")
+                required_terms_by_champion = {
+                    f"{MOD_ID}_kayn": {
+                        "zh-hans": ("凯隐", "影流之镰", "巨镰横扫", "利刃纵贯", "裂舍影"),
+                        "zh-hant": ("慨影", "影流之鐮", "巨鐮橫掃", "利刃縱貫", "裂舍影"),
+                    },
+                    f"{MOD_ID}_yasuo": {
+                        "zh-hans": ("亚索", "疾风剑豪", "斩钢闪", "踏前斩", "狂风绝息斩"),
+                        "zh-hant": ("犽宿", "疾風劍豪", "斬鋼閃", "風牆", "奪命氣息"),
                     },
                 }
                 required_by_locale = required_terms_by_champion.get(champion_id)
