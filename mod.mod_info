@@ -3,8 +3,8 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.12.0",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version adds Darius as a Hand of Noxus juggernaut with Hemorrhage momentum, Decimate healing, Apprehend/Crippling Strike control, Noxian Guillotine execution pressure, official LoL audio coverage, and encyclopedia/roster CI gates.",
+  "version": "0.12.1",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version reworks Viktor as the Herald of the Arcane with a new model, official audio coverage, AP Arcane Pulse attacks, visible Glorious Evolution stages, Siphon Power shielding, evolved Hextech Ray aftershocks, Gravity Field control, and redesigned Arcane Storm gameplay.",
   "last_updated": "2026-06-11",
   "dependencies": [
     {

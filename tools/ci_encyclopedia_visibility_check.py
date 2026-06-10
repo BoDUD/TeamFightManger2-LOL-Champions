@@ -459,6 +459,90 @@ THRESH_SKILL_SOUND_EVENTS = {
     "test_mod_thresh_ult_voice",
 }
 THRESH_SKILL_SOUND_VOLUME_FLOOR = 0.84
+VIKTOR_IDS = ("bo_league_champions_viktor", "test_mod_viktor")
+VIKTOR_FRAME_SIZE = (57.0, 54.0)
+VIKTOR_CORE_ACTIONS = ("idle", "run", "attack", "skill", "skill2", "hit", "dead", "ult")
+VIKTOR_EFFECT_REFS = {
+    "test_mod_viktor_attack_projectile": (
+        "asset/bo_league_champions/aseprite_resources/effects/viktor_attack_projectile",
+        "projectile",
+    ),
+    "test_mod_viktor_laser": (
+        "asset/bo_league_champions/aseprite_resources/effects/viktor_laser",
+        "laser",
+    ),
+    "test_mod_viktor_laser_aftershock": (
+        "asset/bo_league_champions/aseprite_resources/effects/viktor_laser_aftershock",
+        "burn",
+    ),
+}
+VIKTOR_VIEW_EFFECT_REFS = {
+    "test_mod_viktor_siphon_shield": (
+        "asset/bo_league_champions/aseprite_resources/effects/viktor_siphon_shield",
+        "shield",
+    ),
+    "test_mod_viktor_gravity_field": (
+        "asset/bo_league_champions/aseprite_resources/effects/viktor_gravity_field",
+        "gravity_field",
+    ),
+    "test_mod_viktor_chaos_storm": (
+        "asset/bo_league_champions/aseprite_resources/effects/viktor_chaos_storm",
+        "chaos_storm",
+    ),
+    "test_mod_viktor_storm_impact": (
+        "asset/bo_league_champions/aseprite_resources/effects/viktor_storm_impact",
+        "impact",
+    ),
+}
+VIKTOR_BUFF_REFS = {
+    "test_mod_viktor_siphon_empower": (
+        "asset/bo_league_champions/aseprite_resources/effects/viktor_siphon_shield",
+        "shield",
+    ),
+    "test_mod_viktor_evolved_ray": (
+        "asset/bo_league_champions/aseprite_resources/effects/viktor_evolution_aura",
+        "ray",
+    ),
+    "test_mod_viktor_evolved_field": (
+        "asset/bo_league_champions/aseprite_resources/effects/viktor_evolution_aura",
+        "field",
+    ),
+    "test_mod_viktor_evolved_storm": (
+        "asset/bo_league_champions/aseprite_resources/effects/viktor_evolution_aura",
+        "storm",
+    ),
+}
+VIKTOR_SOUND_MEDIA_IDS = {
+    "test_mod_viktor_attack_cast": "366956455",
+    "test_mod_viktor_attack_hit": "638215974",
+    "test_mod_viktor_siphon_cast": "718200240",
+    "test_mod_viktor_siphon_empower_hit": "492941568",
+    "test_mod_viktor_laser_cast": "265099124",
+    "test_mod_viktor_laser_hit": "531075080",
+    "test_mod_viktor_laser_aftershock_hit": "748611133",
+    "test_mod_viktor_gravity_field_cast": "626995735",
+    "test_mod_viktor_gravity_field_slow": "526229873",
+    "test_mod_viktor_chaos_storm_cast": "648540030",
+    "test_mod_viktor_chaos_storm_duration": "90156452",
+    "test_mod_viktor_storm_impact": "103931219",
+    "test_mod_viktor_evolution": "760600724",
+    "test_mod_viktor_ult_voice": "offset_85528",
+}
+VIKTOR_SKILL_SOUND_EVENTS = {
+    "test_mod_viktor_siphon_cast",
+    "test_mod_viktor_siphon_empower_hit",
+    "test_mod_viktor_laser_cast",
+    "test_mod_viktor_laser_hit",
+    "test_mod_viktor_laser_aftershock_hit",
+    "test_mod_viktor_gravity_field_cast",
+    "test_mod_viktor_gravity_field_slow",
+    "test_mod_viktor_chaos_storm_cast",
+    "test_mod_viktor_chaos_storm_duration",
+    "test_mod_viktor_storm_impact",
+    "test_mod_viktor_evolution",
+    "test_mod_viktor_ult_voice",
+}
+VIKTOR_SKILL_SOUND_VOLUME_FLOOR = 0.84
 REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS: dict[str, dict[str, tuple[str, ...]]] = {}
 for _champion_id in AATROX_IDS:
     REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS[_champion_id] = {
@@ -495,6 +579,12 @@ for _champion_id in THRESH_IDS:
         "en": ("Thresh", "Chain Warden"),
         "zh-hans": ("\u9b42\u9501\u5178\u72f1\u957f", "\u9524\u77f3"),
         "zh-hant": ("\u9b42\u9396\u5178\u7344\u9577", "\u745f\u96f7\u897f"),
+    }
+for _champion_id in VIKTOR_IDS:
+    REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS[_champion_id] = {
+        "en": ("Viktor", "Herald of the Arcane", "Glorious Evolution", "Hextech Ray", "Gravity Field", "Arcane Storm"),
+        "zh-hans": ("\u7ef4\u514b\u6258", "\u5965\u672f\u5148\u9a71", "\u5149\u8363\u8fdb\u5316", "\u6d77\u514b\u65af\u5c04\u7ebf", "\u91cd\u529b\u573a", "\u5965\u672f\u98ce\u66b4"),
+        "zh-hant": ("\u7dad\u514b\u7279", "\u5967\u8853\u5148\u9a45", "\u5149\u69ae\u9032\u5316", "\u6d77\u514b\u65af\u5c04\u7dda", "\u91cd\u529b\u5834", "\u5967\u8853\u98a8\u66b4"),
     }
 AATROX_SOUND_MEDIA_IDS = {
     "test_mod_aatrox_attack_cast": ("29529616",),
@@ -2511,6 +2601,269 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
     )
 
 
+def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
+    expected_display_names = {
+        "en": "Viktor",
+        "zh-hans": "\u7ef4\u514b\u6258",
+        "zh-hant": "\u7dad\u514b\u7279",
+        "ko": "Viktor",
+        "ja": "Viktor",
+    }
+    expected_terms = {
+        "en": ("Herald of the Arcane", "Glorious Evolution", "Hextech Ray", "Gravity Field", "Arcane Storm"),
+        "zh-hans": ("\u5965\u672f\u5148\u9a71", "\u5149\u8363\u8fdb\u5316", "\u6d77\u514b\u65af\u5c04\u7ebf", "\u91cd\u529b\u573a", "\u5965\u672f\u98ce\u66b4"),
+        "zh-hant": ("\u5967\u8853\u5148\u9a45", "\u5149\u69ae\u9032\u5316", "\u6d77\u514b\u65af\u5c04\u7dda", "\u91cd\u529b\u5834", "\u5967\u8853\u98a8\u66b4"),
+    }
+    for locale, expected_name in expected_display_names.items():
+        descriptions = text.get(locale, {}).get("description")
+        if not isinstance(descriptions, dict):
+            fail(f"text/champion.i18n locale {locale} missing description object")
+        for viktor_id in VIKTOR_IDS:
+            row = descriptions.get(viktor_id)
+            if not isinstance(row, dict):
+                fail(f"text/champion.i18n locale {locale} missing {viktor_id}")
+            name = str(row.get("name", ""))
+            if name != expected_name:
+                fail(f"text/champion.i18n locale {locale} {viktor_id}.name must be short display name {expected_name!r}")
+            if locale in {"zh-hans", "zh-hant"} and any(alias in name for alias in ("Viktor", "\u5965\u672f", "\u5967\u8853")):
+                fail(f"text/champion.i18n locale {locale} {viktor_id}.name must not include search aliases")
+            for key in REQUIRED_DESCRIPTION_KEYS:
+                value = str(row.get(key, ""))
+                if "??" in value or "\ufffd" in value or "\u7e5d" in value:
+                    fail(f"text/champion.i18n locale {locale} {viktor_id}.{key} still contains corrupted text")
+            for term in expected_terms.get(locale, ()):
+                if not any(term in str(row.get(key, "")) for key in ("attack", "skill", "skill2", "ult")):
+                    fail(f"text/champion.i18n locale {locale} {viktor_id} missing term {term!r}")
+
+    for viktor_id in VIKTOR_IDS:
+        view = entries.get(viktor_id)
+        if not isinstance(view, dict):
+            fail(f"style/champion_view.champion_view missing entries.{viktor_id}")
+        if view.get("face", {}).get("x") != 0 or view.get("face", {}).get("y") != -35:
+            fail(f"style entry {viktor_id}.face must keep Viktor compact portrait aligned at x=0,y=-35")
+        if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -12:
+            fail(f"style entry {viktor_id}.center must keep Viktor full-body display above the name at x=0,y=-12")
+
+    for path in (
+        ROOT / "champion" / "viktor.data_champion",
+        ROOT / "aseprite_resources" / "champions" / "viktor#sheet.png",
+        ROOT / "aseprite_resources" / "champions" / "viktor#anim.fanim",
+        ROOT / "icons" / "viktor_skill.png",
+        ROOT / "icons" / "viktor_skill2.png",
+        ROOT / "icons" / "viktor_ult.png",
+        ROOT / "qa" / "viktor_official_audio_sources.json",
+    ):
+        require_file(path)
+        if path.suffix == ".png":
+            require_no_green_residue(path)
+
+    effect_tags = {
+        "viktor_attack_projectile": "projectile",
+        "viktor_laser": "laser",
+        "viktor_laser_aftershock": "burn",
+        "viktor_gravity_field": "gravity_field",
+        "viktor_chaos_storm": "chaos_storm",
+        "viktor_siphon_shield": "shield",
+        "viktor_evolution_aura": "ray",
+        "viktor_storm_impact": "impact",
+    }
+    for effect_name, required_tag in effect_tags.items():
+        sheet = ROOT / "aseprite_resources" / "effects" / f"{effect_name}#sheet.png"
+        fanim_path = ROOT / "aseprite_resources" / "effects" / f"{effect_name}#anim.fanim"
+        require_file(sheet)
+        require_file(fanim_path)
+        require_no_green_residue(sheet)
+        fanim_effect = load_json(fanim_path)
+        frames = fanim_effect.get("anims", {}).get(required_tag, {}).get("frames") if isinstance(fanim_effect, dict) else None
+        if not isinstance(frames, list) or len(frames) < 4:
+            fail(f"{fanim_path.relative_to(ROOT)} must expose tag {required_tag!r} with at least four readable frames")
+        width, height, rgba = load_rgba(sheet)
+        visible_pixels = 0
+        arcane_pixels = 0
+        for i in range(width * height):
+            r = rgba[i * 4]
+            g = rgba[i * 4 + 1]
+            b = rgba[i * 4 + 2]
+            a = rgba[i * 4 + 3]
+            if not a:
+                continue
+            visible_pixels += 1
+            if b > 85 and (g > 70 or r > 110):
+                arcane_pixels += 1
+        if visible_pixels < 24:
+            fail(f"{sheet.relative_to(ROOT)} must contain a visible Viktor VFX silhouette")
+        if arcane_pixels < max(8, visible_pixels // 12):
+            fail(f"{sheet.relative_to(ROOT)} must keep Viktor's blue-white arcane palette readable")
+
+    fanim = load_json(ROOT / "aseprite_resources" / "champions" / "viktor#anim.fanim")
+    anims = fanim.get("anims") if isinstance(fanim, dict) else None
+    if not isinstance(anims, dict):
+        fail("aseprite_resources/champions/viktor#anim.fanim must contain anims")
+    for retired in ("attackOld", "attackOld2", "skillOld", "skill2Old", "ultOld"):
+        if retired in anims:
+            fail(f"Viktor actor sheet must not keep retired action tag {retired}")
+
+    sheet_width, _sheet_height, sheet_alpha = load_rgba_alpha(
+        ROOT / "aseprite_resources" / "champions" / "viktor#sheet.png"
+    )
+    expected_counts = {
+        "idle": 6,
+        "run": 10,
+        "attack": 6,
+        "skill": 6,
+        "skill2": 7,
+        "ult": 7,
+        "hit": 1,
+        "dead": 1,
+    }
+    expected_durations = {
+        "idle": (0.11,) * 6,
+        "run": (0.065,) * 10,
+        "attack": (0.05, 0.05, 0.055, 0.055, 0.06, 0.08),
+        "skill": (0.07, 0.08, 0.09, 0.11, 0.18, 0.22),
+        "skill2": (0.055, 0.055, 0.06, 0.075, 0.09, 0.105, 0.11),
+        "ult": (0.06, 0.06, 0.07, 0.085, 0.105, 0.13, 0.15),
+        "hit": (0.1,),
+        "dead": (0.2,),
+    }
+    action_hashes: dict[str, list[str]] = {}
+    action_bboxes: dict[str, list[tuple[int, int, int, int]]] = {}
+    for action in VIKTOR_CORE_ACTIONS:
+        frames = anims.get(action, {}).get("frames") if isinstance(anims.get(action), dict) else None
+        if not isinstance(frames, list) or len(frames) != expected_counts[action]:
+            fail(f"Viktor {action} animation must have {expected_counts[action]} frames")
+        action_hashes[action] = []
+        action_bboxes[action] = []
+        for index, frame in enumerate(frames):
+            data = frame.get("data") if isinstance(frame, dict) else None
+            if not isinstance(data, dict):
+                fail(f"Viktor {action} frame {index} missing frame data")
+            if (data.get("w"), data.get("h")) != VIKTOR_FRAME_SIZE:
+                fail(f"Viktor {action} frame {index} must use the 57x54 actor frame")
+            if frame.get("duration") != expected_durations[action][index]:
+                fail(f"Viktor {action} frame {index} must keep duration {expected_durations[action][index]}")
+            x = int(round(float(data.get("x", -1))))
+            y = int(round(float(data.get("y", -1))))
+            w = int(round(float(data.get("w", 0))))
+            h = int(round(float(data.get("h", 0))))
+            bbox = alpha_bbox_in_rect(sheet_alpha, sheet_width, (x, y, w, h))
+            if bbox is None:
+                fail(f"Viktor {action} frame {index} is blank")
+            action_bboxes[action].append(bbox)
+            action_hashes[action].append(alpha_frame_hash(sheet_alpha, sheet_width, (x, y, w, h)))
+            body_height = bbox[3] - bbox[1]
+            bottom_safe = h - bbox[3]
+            if action != "dead" and body_height > 51:
+                fail(f"Viktor {action} frame {index} body height {body_height}px is too large for UI/battle labels")
+            if action != "dead" and body_height < 42:
+                fail(f"Viktor {action} frame {index} body height {body_height}px is too small for Herald silhouette")
+            if action != "dead" and bottom_safe < 2:
+                fail(f"Viktor {action} frame {index} leaves only {bottom_safe}px bottom safety above labels")
+        if action in {"attack", "skill", "skill2", "ult"} and len(set(action_hashes[action])) < min(4, len(action_hashes[action])):
+            fail(f"Viktor {action} must have real action motion, not repeated idle frames")
+
+    for action in ("attack", "skill", "skill2", "ult", "hit"):
+        if tuple(action_hashes[action][: len(action_hashes["idle"])]) == tuple(action_hashes["idle"][: len(action_hashes[action])]):
+            fail(f"Viktor {action} must not be a direct copy of idle")
+
+    run_frames = anims.get("run", {}).get("frames")
+    assert isinstance(run_frames, list)
+    foot_centers: list[float] = []
+    lower_shapes: set[tuple[tuple[int, int], ...]] = set()
+    for index, frame in enumerate(run_frames):
+        data = frame["data"]
+        x = int(round(float(data["x"])))
+        y = int(round(float(data["y"])))
+        w = int(round(float(data["w"])))
+        h = int(round(float(data["h"])))
+        bbox = action_bboxes["run"][index]
+        lower_points: list[tuple[int, int]] = []
+        for local_y in range(max(25, bbox[1] + (bbox[3] - bbox[1]) // 2), min(h, bbox[3])):
+            row_start = (y + local_y) * sheet_width
+            for local_x in range(bbox[0], bbox[2]):
+                if 0 <= local_x < w and sheet_alpha[row_start + x + local_x] != 0:
+                    lower_points.append((local_x, local_y))
+        if len(lower_points) < 220:
+            fail(f"Viktor run frame {index} has only {len(lower_points)} lower-body pixels; keep the full crossed walk visible")
+        foot_centers.append(sum(point[0] for point in lower_points) / len(lower_points))
+        lower_shapes.add(tuple(lower_points))
+    if max(foot_centers) - min(foot_centers) < 0.85:
+        fail("Viktor run must keep the original crossed-step rhythm, not a sliding/zombie step")
+    if len(lower_shapes) < 7:
+        fail("Viktor run must vary lower-body shapes across the ten-frame walk cycle")
+
+    viktor = load_json(ROOT / "champion" / "viktor.data_champion")
+    strings = set(walk_strings(viktor))
+    for required in (
+        "ApAttack",
+        "SwitchByBuff",
+        "Shield",
+        "Stun",
+        "BlockMoveSkill",
+        "LineRangeProjectile",
+        "RangePeriodProjectile",
+        "test_mod_viktor_siphon_empower",
+        "test_mod_viktor_evolved_ray",
+        "test_mod_viktor_evolved_field",
+        "test_mod_viktor_evolved_storm",
+        "test_mod_viktor_laser_aftershock",
+        "test_mod_viktor_gravity_field",
+        "test_mod_viktor_chaos_storm",
+        "test_mod_viktor_chaos_storm_duration",
+        "test_mod_viktor_storm_impact",
+        "test_mod_viktor_evolution",
+        "test_mod_viktor_ult_voice",
+    ):
+        if required not in strings:
+            fail(f"champion/viktor.data_champion must include LoL Viktor mechanic token {required}")
+    if "Attack" in set(walk_strings(viktor.get("attack", {}))):
+        fail("Viktor basic attack must use AP Arcane Pulse, not physical Attack")
+    if viktor.get("category") != "Magician":
+        fail(f"champion/viktor.data_champion category must remain Magician, got {viktor.get('category')!r}")
+    tags = set(viktor.get("tags", []))
+    for tag in ("AP", "Range", "Magic"):
+        if tag not in tags:
+            fail(f"champion/viktor.data_champion tags must include {tag}")
+    if "only_to_enemy" in json.dumps(viktor.get("ult", {}), ensure_ascii=False):
+        fail("Viktor R must advance Glorious Evolution on cast and must not keep only_to_enemy gates")
+
+    projectile_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in viktor.get("view_projectiles", [])}
+    for name, expected in VIKTOR_EFFECT_REFS.items():
+        if projectile_refs.get(name) != expected:
+            fail(f"champion/viktor.data_champion projectile {name} must reference {expected}")
+    view_effect_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in viktor.get("view_effects", [])}
+    for name, expected in VIKTOR_VIEW_EFFECT_REFS.items():
+        if view_effect_refs.get(name) != expected:
+            fail(f"champion/viktor.data_champion view_effect {name} must reference {expected}")
+    buff_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in viktor.get("view_buffs", [])}
+    for name, expected in VIKTOR_BUFF_REFS.items():
+        if buff_refs.get(name) != expected:
+            fail(f"champion/viktor.data_champion buff {name} must reference {expected}")
+
+    for action, sfx_names in (
+        ("attack", {"test_mod_viktor_attack_cast", "test_mod_viktor_attack_hit", "test_mod_viktor_siphon_empower_hit"}),
+        ("skill", {"test_mod_viktor_laser_cast", "test_mod_viktor_laser_hit", "test_mod_viktor_laser_aftershock_hit", "test_mod_viktor_evolution"}),
+        ("skill2", {"test_mod_viktor_siphon_cast", "test_mod_viktor_gravity_field_cast", "test_mod_viktor_gravity_field_slow", "test_mod_viktor_evolution"}),
+        ("ult", {"test_mod_viktor_chaos_storm_cast", "test_mod_viktor_chaos_storm_duration", "test_mod_viktor_storm_impact", "test_mod_viktor_ult_voice", "test_mod_viktor_evolution"}),
+    ):
+        action_strings = set(walk_strings(viktor.get(action, {})))
+        missing = sfx_names - action_strings
+        if missing:
+            fail(f"Viktor {action} must trigger sound events {sorted(missing)}")
+
+    assert_official_audio_sources(
+        "viktor",
+        "Viktor.wad.client",
+        "viktor_base_sfx_audio.bnk",
+        VIKTOR_SOUND_MEDIA_IDS,
+        VIKTOR_SKILL_SOUND_EVENTS,
+        VIKTOR_SKILL_SOUND_VOLUME_FLOOR,
+    )
+    official = load_json(ROOT / "qa" / "viktor_official_audio_sources.json")
+    if "Viktor.en_US.wad.client" not in str(official.get("voice_source", "")):
+        fail("Viktor ult voice source must document the official Viktor.en_US.wad.client")
+
+
 def check_champion_visibility() -> None:
     text = load_json(ROOT / "text" / "champion.i18n")
     style = load_json(ROOT / "style" / "champion_view.champion_view")
@@ -2597,6 +2950,8 @@ def check_champion_visibility() -> None:
         fail("Jinx encyclopedia chain is missing bo_league_champions_jinx")
     if f"{MOD_ID}_thresh" not in ids:
         fail("Thresh encyclopedia chain is missing bo_league_champions_thresh")
+    if f"{MOD_ID}_viktor" not in ids:
+        fail("Viktor encyclopedia chain is missing bo_league_champions_viktor")
     check_encyclopedia_search_terms(text)
     check_aatrox_rework_contract(text, entries)
     check_darius_contract(text, entries)
@@ -2604,6 +2959,7 @@ def check_champion_visibility() -> None:
     check_yasuo_contract(text, entries)
     check_jinx_contract(text, entries)
     check_thresh_contract(text, entries)
+    check_viktor_contract(text, entries)
 
 
 def main() -> int:

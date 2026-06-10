@@ -14,23 +14,23 @@
     "asset/bo_league_champions/icons/viktor_ult"
   ],
   "stat": {
-    "attack": 65,
-    "magic_power": 15,
-    "hp": 765,
-    "defence": 20,
-    "magic_resistance": 25,
-    "move_speed": 1000,
-    "hp_regen": 0,
+    "attack": 52,
+    "magic_power": 32,
+    "hp": 780,
+    "defence": 18,
+    "magic_resistance": 24,
+    "move_speed": 960,
+    "hp_regen": 1,
     "stack": 0,
     "crit_chance": 0
   },
   "growth": {
-    "attack": 6,
-    "magic_power": 28,
-    "hp": 99,
-    "defence": 6,
+    "attack": 4,
+    "magic_power": 30,
+    "hp": 95,
+    "defence": 5,
     "magic_resistance": 5,
-    "move_speed": 6,
+    "move_speed": 5,
     "hp_regen": 0,
     "stack": 0,
     "crit_chance": 0
@@ -38,105 +38,47 @@
   "attack": {
     "action_name": "attack",
     "description": "#asset/base/text/champion?description.bo_league_champions_viktor.attack",
-    "duration": 24,
-    "cooltime": 66,
-    "start_timing": 14,
+    "duration": 22,
+    "cooltime": 64,
+    "start_timing": 12,
     "cancelable": true,
-    "range": 60000,
+    "range": 61000,
     "casting_type": "Targeting",
     "casting_target": "Enemy",
     "attack_type": "BaseAttack",
     "effect": {
-      "type": "Combine",
-      "effects": [
-        {
-          "type": "Sfx",
-          "name": "test_mod_viktor_attack_cast"
-        },
-        {
-          "type": "TargetProjectile",
-          "speed": 4500,
-          "name": "test_mod_viktor_attack_projectile",
-          "y_offset": 0,
-          "applied_target": "Enemy",
-          "applied_effects": [
-            {
-              "effect": {
-                "type": "Attack",
-                "damage": 0,
-                "attack_ratio": 100
-              },
-              "casting_type": "Targeting"
-            }
-          ]
-        }
-      ]
-    }
-  },
-  "skill": {
-    "action_name": "skill",
-    "description": "#asset/base/text/champion?description.bo_league_champions_viktor.skill",
-    "duration": 66,
-    "cooltime": 360,
-    "start_timing": 40,
-    "range": 65000,
-    "casting_type": "Direction",
-    "casting_target": "EnemyWithoutTower",
-    "attack_type": "Skill",
-    "effect": {
       "type": "SwitchByBuff",
-      "buff_name": "test_mod_viktor_augmented_laser",
+      "buff_name": "test_mod_viktor_siphon_empower",
       "effect_none": {
         "type": "Combine",
         "effects": [
           {
-            "type": "LineRangeProjectile",
-            "width": 15000,
-            "length": 85000,
-            "delay": 19,
-            "apply": 19,
-            "name": "test_mod_viktor_laser",
-            "applied_target": "EnemyWithoutTower",
+            "type": "Sfx",
+            "name": "test_mod_viktor_attack_cast"
+          },
+          {
+            "type": "TargetProjectile",
+            "speed": 4700,
+            "name": "test_mod_viktor_attack_projectile",
+            "y_offset": 0,
+            "applied_target": "Enemy",
             "applied_effects": [
               {
                 "effect": {
                   "type": "ApAttack",
-                  "damage": 20,
-                  "attack_ratio": 40
+                  "damage": 12,
+                  "attack_ratio": 75
                 },
                 "casting_type": "Targeting"
               },
               {
                 "effect": {
                   "type": "TargetSfx",
-                  "name": "test_mod_viktor_laser_hit"
+                  "name": "test_mod_viktor_attack_hit"
                 },
                 "casting_type": "Targeting"
               }
             ]
-          },
-          {
-            "type": "LineRangeProjectile",
-            "width": 15000,
-            "length": 85000,
-            "delay": 19,
-            "apply": 19,
-            "name": "test_mod_viktor_laser_champion_bonus",
-            "applied_target": "EnemyChampion",
-            "applied_effects": [
-              {
-                "effect": {
-                  "type": "ApAttack",
-                  "damage": 80,
-                  "attack_ratio": 60
-                },
-                "casting_type": "Targeting"
-              }
-            ]
-          },
-          {
-            "type": "Sfx",
-            "name": "test_mod_viktor_laser_cast"
           }
         ]
       },
@@ -144,19 +86,92 @@
         "type": "Combine",
         "effects": [
           {
+            "type": "Sfx",
+            "name": "test_mod_viktor_siphon_empower_hit"
+          },
+          {
+            "type": "CasterViewEffect",
+            "name": "test_mod_viktor_siphon_shield"
+          },
+          {
+            "type": "WithSelf",
+            "effects": [
+              {
+                "type": "Shield",
+                "amount": 70,
+                "ap_ratio": 30,
+                "tick": 120
+              }
+            ]
+          },
+          {
+            "type": "TargetProjectile",
+            "speed": 4700,
+            "name": "test_mod_viktor_attack_projectile",
+            "y_offset": 0,
+            "applied_target": "Enemy",
+            "applied_effects": [
+              {
+                "effect": {
+                  "type": "ApAttack",
+                  "damage": 35,
+                  "attack_ratio": 115
+                },
+                "casting_type": "Targeting"
+              },
+              {
+                "effect": {
+                  "type": "TargetSfx",
+                  "name": "test_mod_viktor_attack_hit"
+                },
+                "casting_type": "Targeting"
+              }
+            ]
+          },
+          {
+            "type": "RemoveCasterBuff",
+            "name": "test_mod_viktor_siphon_empower"
+          }
+        ]
+      }
+    }
+  },
+  "skill": {
+    "action_name": "skill",
+    "description": "#asset/base/text/champion?description.bo_league_champions_viktor.skill",
+    "duration": 48,
+    "cooltime": 390,
+    "start_timing": 18,
+    "cancelable": false,
+    "can_use_with_move": false,
+    "range": 88000,
+    "casting_type": "Direction",
+    "casting_target": "EnemyWithoutTower",
+    "attack_type": "Skill",
+    "effect": {
+      "type": "SwitchByBuff",
+      "buff_name": "test_mod_viktor_evolved_ray",
+      "effect_none": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "Sfx",
+            "name": "test_mod_viktor_laser_cast"
+          },
+          {
             "type": "LineRangeProjectile",
-            "width": 15000,
-            "length": 85000,
-            "delay": 19,
-            "apply": 19,
+            "width": 12000,
+            "length": 90000,
+            "delay": 10,
+            "apply": 16,
             "name": "test_mod_viktor_laser",
             "applied_target": "EnemyWithoutTower",
             "applied_effects": [
               {
                 "effect": {
                   "type": "ApAttack",
-                  "damage": 20,
-                  "attack_ratio": 40
+                  "damage": 35,
+                  "attack_ratio": 45
                 },
                 "casting_type": "Targeting"
               },
@@ -171,18 +186,212 @@
           },
           {
             "type": "LineRangeProjectile",
-            "width": 15000,
-            "length": 85000,
-            "delay": 19,
-            "apply": 19,
+            "width": 12000,
+            "length": 90000,
+            "delay": 10,
+            "apply": 16,
             "name": "test_mod_viktor_laser_champion_bonus",
             "applied_target": "EnemyChampion",
             "applied_effects": [
               {
                 "effect": {
                   "type": "ApAttack",
-                  "damage": 80,
-                  "attack_ratio": 60
+                  "damage": 65,
+                  "attack_ratio": 70
+                },
+                "casting_type": "Targeting"
+              },
+              {
+                "effect": {
+                  "type": "SwitchByBuff",
+                  "buff_name": "test_mod_viktor_evolved_storm",
+                  "effect_buff": {
+                    "type": "Combine",
+                    "effects": []
+                  },
+                  "effect_none": {
+                    "type": "SwitchByBuff",
+                    "buff_name": "test_mod_viktor_evolved_field",
+                    "effect_buff": {
+                      "type": "Combine",
+                      "effects": [
+                        {
+                          "type": "AddCasterBuff",
+                          "only_to_enemy": true,
+                          "buff_state": {
+                            "name": "test_mod_viktor_evolved_storm",
+                            "duration": "Permanent"
+                          }
+                        },
+                        {
+                          "type": "Sfx",
+                          "name": "test_mod_viktor_evolution"
+                        }
+                      ]
+                    },
+                    "effect_none": {
+                      "type": "SwitchByBuff",
+                      "buff_name": "test_mod_viktor_evolved_ray",
+                      "effect_buff": {
+                        "type": "Combine",
+                        "effects": [
+                          {
+                            "type": "AddCasterBuff",
+                            "only_to_enemy": true,
+                            "buff_state": {
+                              "name": "test_mod_viktor_evolved_field",
+                              "duration": "Permanent"
+                            }
+                          },
+                          {
+                            "type": "Sfx",
+                            "name": "test_mod_viktor_evolution"
+                          }
+                        ]
+                      },
+                      "effect_none": {
+                        "type": "Combine",
+                        "effects": [
+                          {
+                            "type": "AddCasterBuff",
+                            "only_to_enemy": true,
+                            "buff_state": {
+                              "name": "test_mod_viktor_evolved_ray",
+                              "duration": "Permanent"
+                            }
+                          },
+                          {
+                            "type": "Sfx",
+                            "name": "test_mod_viktor_evolution"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                "casting_type": "Targeting"
+              }
+            ]
+          }
+        ]
+      },
+      "effect_buff": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "Sfx",
+            "name": "test_mod_viktor_laser_cast"
+          },
+          {
+            "type": "LineRangeProjectile",
+            "width": 12000,
+            "length": 90000,
+            "delay": 10,
+            "apply": 16,
+            "name": "test_mod_viktor_laser",
+            "applied_target": "EnemyWithoutTower",
+            "applied_effects": [
+              {
+                "effect": {
+                  "type": "ApAttack",
+                  "damage": 35,
+                  "attack_ratio": 45
+                },
+                "casting_type": "Targeting"
+              },
+              {
+                "effect": {
+                  "type": "TargetSfx",
+                  "name": "test_mod_viktor_laser_hit"
+                },
+                "casting_type": "Targeting"
+              }
+            ]
+          },
+          {
+            "type": "LineRangeProjectile",
+            "width": 12000,
+            "length": 90000,
+            "delay": 10,
+            "apply": 16,
+            "name": "test_mod_viktor_laser_champion_bonus",
+            "applied_target": "EnemyChampion",
+            "applied_effects": [
+              {
+                "effect": {
+                  "type": "ApAttack",
+                  "damage": 65,
+                  "attack_ratio": 70
+                },
+                "casting_type": "Targeting"
+              },
+              {
+                "effect": {
+                  "type": "SwitchByBuff",
+                  "buff_name": "test_mod_viktor_evolved_storm",
+                  "effect_buff": {
+                    "type": "Combine",
+                    "effects": []
+                  },
+                  "effect_none": {
+                    "type": "SwitchByBuff",
+                    "buff_name": "test_mod_viktor_evolved_field",
+                    "effect_buff": {
+                      "type": "Combine",
+                      "effects": [
+                        {
+                          "type": "AddCasterBuff",
+                          "only_to_enemy": true,
+                          "buff_state": {
+                            "name": "test_mod_viktor_evolved_storm",
+                            "duration": "Permanent"
+                          }
+                        },
+                        {
+                          "type": "Sfx",
+                          "name": "test_mod_viktor_evolution"
+                        }
+                      ]
+                    },
+                    "effect_none": {
+                      "type": "SwitchByBuff",
+                      "buff_name": "test_mod_viktor_evolved_ray",
+                      "effect_buff": {
+                        "type": "Combine",
+                        "effects": [
+                          {
+                            "type": "AddCasterBuff",
+                            "only_to_enemy": true,
+                            "buff_state": {
+                              "name": "test_mod_viktor_evolved_field",
+                              "duration": "Permanent"
+                            }
+                          },
+                          {
+                            "type": "Sfx",
+                            "name": "test_mod_viktor_evolution"
+                          }
+                        ]
+                      },
+                      "effect_none": {
+                        "type": "Combine",
+                        "effects": [
+                          {
+                            "type": "AddCasterBuff",
+                            "only_to_enemy": true,
+                            "buff_state": {
+                              "name": "test_mod_viktor_evolved_ray",
+                              "duration": "Permanent"
+                            }
+                          },
+                          {
+                            "type": "Sfx",
+                            "name": "test_mod_viktor_evolution"
+                          }
+                        ]
+                      }
+                    }
+                  }
                 },
                 "casting_type": "Targeting"
               }
@@ -190,67 +399,50 @@
           },
           {
             "type": "Delayed",
-            "tick": 30,
+            "tick": 24,
             "effects": [
               {
                 "type": "LineRangeProjectile",
-                "width": 15000,
-                "length": 85000,
+                "width": 14000,
+                "length": 90000,
+                "delay": 0,
+                "apply": 12,
                 "name": "test_mod_viktor_laser_aftershock",
-                "delay": 49,
-                "apply": 19,
                 "applied_target": "EnemyWithoutTower",
                 "applied_effects": [
                   {
                     "effect": {
                       "type": "ApAttack",
-                      "damage": 30,
-                      "attack_ratio": 45
+                      "damage": 45,
+                      "attack_ratio": 55
                     },
                     "casting_type": "Targeting"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "Delayed",
-            "tick": 79,
-            "effects": [
-              {
-                "type": "Sfx",
-                "name": "test_mod_viktor_laser_aftershock_hit"
-              }
-            ]
-          },
-          {
-            "type": "Delayed",
-            "tick": 30,
-            "effects": [
-              {
-                "type": "LineRangeProjectile",
-                "width": 15000,
-                "length": 85000,
-                "name": "test_mod_viktor_laser_aftershock_champion_bonus",
-                "delay": 49,
-                "apply": 19,
-                "applied_target": "EnemyChampion",
-                "applied_effects": [
+                  },
                   {
                     "effect": {
-                      "type": "ApAttack",
-                      "damage": 30,
-                      "attack_ratio": 45
+                      "type": "AddBuff",
+                      "buff_state": {
+                        "name": "test_mod_viktor_laser_aftershock_slow",
+                        "duration": {
+                          "Time": {
+                            "tick": 30
+                          }
+                        },
+                        "move_speed_mult": -20
+                      }
+                    },
+                    "casting_type": "Targeting"
+                  },
+                  {
+                    "effect": {
+                      "type": "TargetSfx",
+                      "name": "test_mod_viktor_laser_aftershock_hit"
                     },
                     "casting_type": "Targeting"
                   }
                 ]
               }
             ]
-          },
-          {
-            "type": "Sfx",
-            "name": "test_mod_viktor_laser_cast"
           }
         ]
       }
@@ -259,10 +451,12 @@
   "skill2": {
     "action_name": "skill2",
     "description": "#asset/base/text/champion?description.bo_league_champions_viktor.skill2",
-    "duration": 36,
-    "cooltime": 840,
-    "start_timing": 16,
-    "range": 70000,
+    "duration": 42,
+    "cooltime": 780,
+    "start_timing": 10,
+    "cancelable": false,
+    "can_use_with_move": false,
+    "range": 72000,
     "casting_type": "Position",
     "casting_target": "EnemyChampion",
     "attack_type": "Skill",
@@ -270,58 +464,285 @@
       "type": "Combine",
       "effects": [
         {
-          "type": "ViewEffect",
-          "name": "test_mod_viktor_gravity_field"
+          "type": "Sfx",
+          "name": "test_mod_viktor_siphon_cast"
+        },
+        {
+          "type": "CasterViewEffect",
+          "name": "test_mod_viktor_siphon_shield"
+        },
+        {
+          "type": "WithSelf",
+          "effects": [
+            {
+              "type": "Shield",
+              "amount": 80,
+              "ap_ratio": 35,
+              "tick": 135
+            }
+          ]
+        },
+        {
+          "type": "AddCasterBuff",
+          "buff_state": {
+            "name": "test_mod_viktor_siphon_empower",
+            "duration": {
+              "Time": {
+                "tick": 240
+              }
+            }
+          }
         },
         {
           "type": "Sfx",
           "name": "test_mod_viktor_gravity_field_cast"
         },
         {
-          "type": "RangePeriodProjectile",
-          "name": "test_mod_viktor_gravity_field",
-          "tick": 210,
-          "period": 15,
-          "first_delay": 0,
-          "shape": {
-            "Circle": {
-              "radius": 35333
-            }
-          },
-          "applied_target": "EnemyChampion",
-          "applied_effects": [
-            {
-              "effect": {
-                "type": "AddBuff",
-                "buff_state": {
-                  "name": "test_mod_viktor_gravity_field_slow",
-                  "duration": {
-                    "Time": {
-                      "tick": 20
-                    }
-                  },
-                  "move_speed_mult": -40
-                }
-              },
-              "casting_type": "Targeting"
-            }
-          ],
-          "end_effects": [
-            {
-              "effect": {
-                "type": "Stun",
-                "duration": 120
-              },
-              "casting_type": "Targeting"
+          "type": "ViewEffect",
+          "name": "test_mod_viktor_gravity_field"
+        },
+        {
+          "type": "SwitchByBuff",
+          "buff_name": "test_mod_viktor_evolved_field",
+          "effect_none": {
+            "type": "RangePeriodProjectile",
+            "name": "test_mod_viktor_gravity_field",
+            "tick": 165,
+            "period": 15,
+            "first_delay": 0,
+            "shape": {
+              "Circle": {
+                "radius": 35000
+              }
             },
-            {
-              "effect": {
-                "type": "TargetSfx",
-                "name": "test_mod_viktor_gravity_field_slow"
+            "applied_target": "EnemyChampion",
+            "applied_effects": [
+              {
+                "effect": {
+                  "type": "AddBuff",
+                  "buff_state": {
+                    "name": "test_mod_viktor_gravity_field_slow",
+                    "duration": {
+                      "Time": {
+                        "tick": 20
+                      }
+                    },
+                    "move_speed_mult": -35
+                  }
+                },
+                "casting_type": "Targeting"
+              }
+            ],
+            "end_effects": [
+              {
+                "effect": {
+                  "type": "Stun",
+                  "duration": 60
+                },
+                "casting_type": "Targeting"
               },
-              "casting_type": "Targeting"
-            }
-          ]
+              {
+                "effect": {
+                  "type": "TargetSfx",
+                  "name": "test_mod_viktor_gravity_field_slow"
+                },
+                "casting_type": "Targeting"
+              },
+              {
+                "effect": {
+                  "type": "SwitchByBuff",
+                  "buff_name": "test_mod_viktor_evolved_storm",
+                  "effect_buff": {
+                    "type": "Combine",
+                    "effects": []
+                  },
+                  "effect_none": {
+                    "type": "SwitchByBuff",
+                    "buff_name": "test_mod_viktor_evolved_field",
+                    "effect_buff": {
+                      "type": "Combine",
+                      "effects": [
+                        {
+                          "type": "AddCasterBuff",
+                          "only_to_enemy": true,
+                          "buff_state": {
+                            "name": "test_mod_viktor_evolved_storm",
+                            "duration": "Permanent"
+                          }
+                        },
+                        {
+                          "type": "Sfx",
+                          "name": "test_mod_viktor_evolution"
+                        }
+                      ]
+                    },
+                    "effect_none": {
+                      "type": "SwitchByBuff",
+                      "buff_name": "test_mod_viktor_evolved_ray",
+                      "effect_buff": {
+                        "type": "Combine",
+                        "effects": [
+                          {
+                            "type": "AddCasterBuff",
+                            "only_to_enemy": true,
+                            "buff_state": {
+                              "name": "test_mod_viktor_evolved_field",
+                              "duration": "Permanent"
+                            }
+                          },
+                          {
+                            "type": "Sfx",
+                            "name": "test_mod_viktor_evolution"
+                          }
+                        ]
+                      },
+                      "effect_none": {
+                        "type": "Combine",
+                        "effects": [
+                          {
+                            "type": "AddCasterBuff",
+                            "only_to_enemy": true,
+                            "buff_state": {
+                              "name": "test_mod_viktor_evolved_ray",
+                              "duration": "Permanent"
+                            }
+                          },
+                          {
+                            "type": "Sfx",
+                            "name": "test_mod_viktor_evolution"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                "casting_type": "Targeting"
+              }
+            ]
+          },
+          "effect_buff": {
+            "type": "RangePeriodProjectile",
+            "name": "test_mod_viktor_gravity_field",
+            "tick": 195,
+            "period": 15,
+            "first_delay": 0,
+            "shape": {
+              "Circle": {
+                "radius": 37000
+              }
+            },
+            "applied_target": "EnemyChampion",
+            "applied_effects": [
+              {
+                "effect": {
+                  "type": "AddBuff",
+                  "buff_state": {
+                    "name": "test_mod_viktor_gravity_field_slow",
+                    "duration": {
+                      "Time": {
+                        "tick": 20
+                      }
+                    },
+                    "move_speed_mult": -35
+                  }
+                },
+                "casting_type": "Targeting"
+              },
+              {
+                "effect": {
+                  "type": "BlockMoveSkill",
+                  "tick": 8
+                },
+                "casting_type": "Targeting"
+              }
+            ],
+            "end_effects": [
+              {
+                "effect": {
+                  "type": "Stun",
+                  "duration": 72
+                },
+                "casting_type": "Targeting"
+              },
+              {
+                "effect": {
+                  "type": "TargetSfx",
+                  "name": "test_mod_viktor_gravity_field_slow"
+                },
+                "casting_type": "Targeting"
+              },
+              {
+                "effect": {
+                  "type": "SwitchByBuff",
+                  "buff_name": "test_mod_viktor_evolved_storm",
+                  "effect_buff": {
+                    "type": "Combine",
+                    "effects": []
+                  },
+                  "effect_none": {
+                    "type": "SwitchByBuff",
+                    "buff_name": "test_mod_viktor_evolved_field",
+                    "effect_buff": {
+                      "type": "Combine",
+                      "effects": [
+                        {
+                          "type": "AddCasterBuff",
+                          "only_to_enemy": true,
+                          "buff_state": {
+                            "name": "test_mod_viktor_evolved_storm",
+                            "duration": "Permanent"
+                          }
+                        },
+                        {
+                          "type": "Sfx",
+                          "name": "test_mod_viktor_evolution"
+                        }
+                      ]
+                    },
+                    "effect_none": {
+                      "type": "SwitchByBuff",
+                      "buff_name": "test_mod_viktor_evolved_ray",
+                      "effect_buff": {
+                        "type": "Combine",
+                        "effects": [
+                          {
+                            "type": "AddCasterBuff",
+                            "only_to_enemy": true,
+                            "buff_state": {
+                              "name": "test_mod_viktor_evolved_field",
+                              "duration": "Permanent"
+                            }
+                          },
+                          {
+                            "type": "Sfx",
+                            "name": "test_mod_viktor_evolution"
+                          }
+                        ]
+                      },
+                      "effect_none": {
+                        "type": "Combine",
+                        "effects": [
+                          {
+                            "type": "AddCasterBuff",
+                            "only_to_enemy": true,
+                            "buff_state": {
+                              "name": "test_mod_viktor_evolved_ray",
+                              "duration": "Permanent"
+                            }
+                          },
+                          {
+                            "type": "Sfx",
+                            "name": "test_mod_viktor_evolution"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                "casting_type": "Targeting"
+              }
+            ]
+          }
         }
       ]
     }
@@ -329,67 +750,346 @@
   "ult": {
     "action_name": "ult",
     "description": "#asset/base/text/champion?description.bo_league_champions_viktor.ult",
-    "duration": 36,
+    "duration": 52,
     "cooltime": 4200,
-    "start_timing": 16,
-    "range": 80000,
+    "start_timing": 14,
+    "cancelable": false,
+    "can_use_with_move": false,
+    "range": 85000,
     "casting_type": "Position",
     "casting_target": "EnemyWithoutTower",
     "attack_type": "Skill",
     "effect": {
-      "type": "Combine",
-      "effects": [
-        {
-          "type": "ViewEffect",
-          "name": "test_mod_viktor_chaos_storm"
-        },
-        {
-          "type": "Sfx",
-          "name": "test_mod_viktor_chaos_storm_cast"
-        },
-        {
-          "type": "AddCasterBuff",
-          "buff_state": {
-            "name": "test_mod_viktor_augmented_laser",
-            "duration": {
-              "Time": {
-                "tick": 54000
+      "type": "SwitchByBuff",
+      "buff_name": "test_mod_viktor_evolved_storm",
+      "effect_none": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "Sfx",
+            "name": "test_mod_viktor_chaos_storm_cast"
+          },
+          {
+            "type": "Sfx",
+            "name": "test_mod_viktor_ult_voice"
+          },
+          {
+            "type": "ViewEffect",
+            "name": "test_mod_viktor_storm_impact"
+          },
+          {
+            "type": "ViewEffect",
+            "name": "test_mod_viktor_chaos_storm"
+          },
+          {
+            "type": "SwitchByBuff",
+            "buff_name": "test_mod_viktor_evolved_storm",
+            "effect_buff": {
+              "type": "Combine",
+              "effects": []
+            },
+            "effect_none": {
+              "type": "SwitchByBuff",
+              "buff_name": "test_mod_viktor_evolved_field",
+              "effect_buff": {
+                "type": "Combine",
+                "effects": [
+                  {
+                    "type": "AddCasterBuff",
+                    "buff_state": {
+                      "name": "test_mod_viktor_evolved_storm",
+                      "duration": "Permanent"
+                    }
+                  },
+                  {
+                    "type": "Sfx",
+                    "name": "test_mod_viktor_evolution"
+                  }
+                ]
+              },
+              "effect_none": {
+                "type": "SwitchByBuff",
+                "buff_name": "test_mod_viktor_evolved_ray",
+                "effect_buff": {
+                  "type": "Combine",
+                  "effects": [
+                    {
+                      "type": "AddCasterBuff",
+                      "buff_state": {
+                        "name": "test_mod_viktor_evolved_field",
+                        "duration": "Permanent"
+                      }
+                    },
+                    {
+                      "type": "Sfx",
+                      "name": "test_mod_viktor_evolution"
+                    }
+                  ]
+                },
+                "effect_none": {
+                  "type": "Combine",
+                  "effects": [
+                    {
+                      "type": "AddCasterBuff",
+                      "buff_state": {
+                        "name": "test_mod_viktor_evolved_ray",
+                        "duration": "Permanent"
+                      }
+                    },
+                    {
+                      "type": "Sfx",
+                      "name": "test_mod_viktor_evolution"
+                    }
+                  ]
+                }
               }
             }
+          },
+          {
+            "type": "RangePeriodProjectile",
+            "name": "test_mod_viktor_storm_impact",
+            "tick": 1,
+            "period": 1,
+            "first_delay": 0,
+            "shape": {
+              "Circle": {
+                "radius": 36000
+              }
+            },
+            "applied_target": "EnemyWithoutTower",
+            "applied_effects": [
+              {
+                "effect": {
+                  "type": "ApAttack",
+                  "damage": 90,
+                  "attack_ratio": 80
+                },
+                "casting_type": "Targeting"
+              },
+              {
+                "effect": {
+                  "type": "BlockSkill",
+                  "tick": 20
+                },
+                "casting_type": "Targeting"
+              },
+              {
+                "effect": {
+                  "type": "TargetSfx",
+                  "name": "test_mod_viktor_storm_impact"
+                },
+                "casting_type": "Targeting"
+              }
+            ],
+            "end_effects": []
+          },
+          {
+            "type": "Delayed",
+            "tick": 20,
+            "effects": [
+              {
+                "type": "Sfx",
+                "name": "test_mod_viktor_chaos_storm_duration"
+              }
+            ]
+          },
+          {
+            "type": "RangePeriodProjectile",
+            "name": "test_mod_viktor_chaos_storm",
+            "tick": 240,
+            "period": 30,
+            "first_delay": 20,
+            "shape": {
+              "Circle": {
+                "radius": 36000
+              }
+            },
+            "applied_target": "EnemyWithoutTower",
+            "applied_effects": [
+              {
+                "effect": {
+                  "type": "ApAttack",
+                  "damage": 34,
+                  "attack_ratio": 30
+                },
+                "casting_type": "Targeting"
+              },
+              {
+                "effect": {
+                  "type": "BlockSkill",
+                  "tick": 12
+                },
+                "casting_type": "Targeting"
+              }
+            ],
+            "end_effects": []
           }
-        },
-        {
-          "type": "RangePeriodProjectile",
-          "name": "test_mod_viktor_chaos_storm",
-          "tick": 240,
-          "period": 30,
-          "first_delay": 0,
-          "shape": {
-            "Circle": {
-              "radius": 35100
+        ]
+      },
+      "effect_buff": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "Sfx",
+            "name": "test_mod_viktor_chaos_storm_cast"
+          },
+          {
+            "type": "Sfx",
+            "name": "test_mod_viktor_ult_voice"
+          },
+          {
+            "type": "ViewEffect",
+            "name": "test_mod_viktor_storm_impact"
+          },
+          {
+            "type": "ViewEffect",
+            "name": "test_mod_viktor_chaos_storm"
+          },
+          {
+            "type": "SwitchByBuff",
+            "buff_name": "test_mod_viktor_evolved_storm",
+            "effect_buff": {
+              "type": "Combine",
+              "effects": []
+            },
+            "effect_none": {
+              "type": "SwitchByBuff",
+              "buff_name": "test_mod_viktor_evolved_field",
+              "effect_buff": {
+                "type": "Combine",
+                "effects": [
+                  {
+                    "type": "AddCasterBuff",
+                    "buff_state": {
+                      "name": "test_mod_viktor_evolved_storm",
+                      "duration": "Permanent"
+                    }
+                  },
+                  {
+                    "type": "Sfx",
+                    "name": "test_mod_viktor_evolution"
+                  }
+                ]
+              },
+              "effect_none": {
+                "type": "SwitchByBuff",
+                "buff_name": "test_mod_viktor_evolved_ray",
+                "effect_buff": {
+                  "type": "Combine",
+                  "effects": [
+                    {
+                      "type": "AddCasterBuff",
+                      "buff_state": {
+                        "name": "test_mod_viktor_evolved_field",
+                        "duration": "Permanent"
+                      }
+                    },
+                    {
+                      "type": "Sfx",
+                      "name": "test_mod_viktor_evolution"
+                    }
+                  ]
+                },
+                "effect_none": {
+                  "type": "Combine",
+                  "effects": [
+                    {
+                      "type": "AddCasterBuff",
+                      "buff_state": {
+                        "name": "test_mod_viktor_evolved_ray",
+                        "duration": "Permanent"
+                      }
+                    },
+                    {
+                      "type": "Sfx",
+                      "name": "test_mod_viktor_evolution"
+                    }
+                  ]
+                }
+              }
             }
           },
-          "applied_target": "EnemyWithoutTower",
-          "applied_effects": [
-            {
-              "effect": {
-                "type": "ApAttack",
-                "damage": 40,
-                "attack_ratio": 40
-              },
-              "casting_type": "Targeting"
+          {
+            "type": "RangePeriodProjectile",
+            "name": "test_mod_viktor_storm_impact",
+            "tick": 1,
+            "period": 1,
+            "first_delay": 0,
+            "shape": {
+              "Circle": {
+                "radius": 42000
+              }
             },
-            {
-              "effect": {
-                "type": "BlockSkill",
-                "tick": 15
+            "applied_target": "EnemyWithoutTower",
+            "applied_effects": [
+              {
+                "effect": {
+                  "type": "ApAttack",
+                  "damage": 110,
+                  "attack_ratio": 90
+                },
+                "casting_type": "Targeting"
               },
-              "casting_type": "Targeting"
-            }
-          ],
-          "end_effects": []
-        }
-      ]
+              {
+                "effect": {
+                  "type": "BlockSkill",
+                  "tick": 20
+                },
+                "casting_type": "Targeting"
+              },
+              {
+                "effect": {
+                  "type": "TargetSfx",
+                  "name": "test_mod_viktor_storm_impact"
+                },
+                "casting_type": "Targeting"
+              }
+            ],
+            "end_effects": []
+          },
+          {
+            "type": "Delayed",
+            "tick": 20,
+            "effects": [
+              {
+                "type": "Sfx",
+                "name": "test_mod_viktor_chaos_storm_duration"
+              }
+            ]
+          },
+          {
+            "type": "RangePeriodProjectile",
+            "name": "test_mod_viktor_chaos_storm",
+            "tick": 300,
+            "period": 25,
+            "first_delay": 20,
+            "shape": {
+              "Circle": {
+                "radius": 42000
+              }
+            },
+            "applied_target": "EnemyWithoutTower",
+            "applied_effects": [
+              {
+                "effect": {
+                  "type": "ApAttack",
+                  "damage": 38,
+                  "attack_ratio": 35
+                },
+                "casting_type": "Targeting"
+              },
+              {
+                "effect": {
+                  "type": "BlockSkill",
+                  "tick": 15
+                },
+                "casting_type": "Targeting"
+              }
+            ],
+            "end_effects": []
+          }
+        ]
+      }
     }
   },
   "view_projectiles": [
@@ -418,8 +1118,45 @@
       "repeat": false
     }
   ],
-  "view_buffs": [],
+  "view_buffs": [
+    {
+      "type": "Animated",
+      "name": "test_mod_viktor_siphon_empower",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/viktor_siphon_shield",
+      "tag": "shield",
+      "z": 4
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_viktor_evolved_ray",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/viktor_evolution_aura",
+      "tag": "ray",
+      "z": 3
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_viktor_evolved_field",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/viktor_evolution_aura",
+      "tag": "field",
+      "z": 3
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_viktor_evolved_storm",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/viktor_evolution_aura",
+      "tag": "storm",
+      "z": 3
+    }
+  ],
   "view_effects": [
+    {
+      "type": "Animation",
+      "name": "test_mod_viktor_siphon_shield",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/viktor_siphon_shield",
+      "tag": "shield",
+      "z": 3,
+      "is_follow": true
+    },
     {
       "type": "Animation",
       "name": "test_mod_viktor_gravity_field",
@@ -434,6 +1171,14 @@
       "anim": "asset/bo_league_champions/aseprite_resources/effects/viktor_chaos_storm",
       "tag": "chaos_storm",
       "z": -1,
+      "is_follow": false
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_viktor_storm_impact",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/viktor_storm_impact",
+      "tag": "impact",
+      "z": 2,
       "is_follow": false
     }
   ],
