@@ -157,15 +157,15 @@
       },
       "bo_league_champions_jinx": {
         "name": "징크스",
-        "attack": "Pow-Pow / Fishbones: basic attacks build minigun attack speed, or splash with Fishbones rockets after Switcheroo.",
-        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher.",
+        "attack": "Pow-Pow / Fishbones: basic attacks default to Pow-Pow and build minigun attack speed. During the short Fishbones window, attacks become splash rockets and clear Pow-Pow stacks.",
+        "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot, then drops chompers to stun and burn enemies.",
         "ult": "Super Mega Death Rocket!: launches a giant shark rocket that explodes on champions and triggers Get Excited."
       },
       "test_mod_jinx": {
         "name": "징크스",
-        "attack": "Pow-Pow / Fishbones: basic attacks build minigun attack speed, or splash with Fishbones rockets after Switcheroo.",
-        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher.",
+        "attack": "Pow-Pow / Fishbones: basic attacks default to Pow-Pow and build minigun attack speed. During the short Fishbones window, attacks become splash rockets and clear Pow-Pow stacks.",
+        "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot, then drops chompers to stun and burn enemies.",
         "ult": "Super Mega Death Rocket!: launches a giant shark rocket that explodes on champions and triggers Get Excited."
       }
@@ -329,15 +329,15 @@
       },
       "bo_league_champions_jinx": {
         "name": "Jinx (Loose Cannon)",
-        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
-        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "attack": "Pow-Pow / Fishbones: basic attacks default to Pow-Pow and build minigun attack speed. During the short Fishbones window, attacks become splash rockets and clear Pow-Pow stacks.",
+        "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       },
       "test_mod_jinx": {
         "name": "Jinx (Loose Cannon)",
-        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
-        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "attack": "Pow-Pow / Fishbones: basic attacks default to Pow-Pow and build minigun attack speed. During the short Fishbones window, attacks become splash rockets and clear Pow-Pow stacks.",
+        "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       }
@@ -501,15 +501,15 @@
       },
       "bo_league_champions_jinx": {
         "name": "Jinx (Loose Cannon)",
-        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
-        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "attack": "Pow-Pow / Fishbones: basic attacks default to Pow-Pow and build minigun attack speed. During the short Fishbones window, attacks become splash rockets and clear Pow-Pow stacks.",
+        "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       },
       "test_mod_jinx": {
         "name": "Jinx (Loose Cannon)",
-        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
-        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "attack": "Pow-Pow / Fishbones: basic attacks default to Pow-Pow and build minigun attack speed. During the short Fishbones window, attacks become splash rockets and clear Pow-Pow stacks.",
+        "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       }
@@ -673,15 +673,15 @@
       },
       "bo_league_champions_jinx": {
         "name": "Jinx (Loose Cannon)",
-        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
-        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "attack": "Pow-Pow / Fishbones: basic attacks default to Pow-Pow and build minigun attack speed. During the short Fishbones window, attacks become splash rockets and clear Pow-Pow stacks.",
+        "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       },
       "test_mod_jinx": {
         "name": "Jinx (Loose Cannon)",
-        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
-        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "attack": "Pow-Pow / Fishbones: basic attacks default to Pow-Pow and build minigun attack speed. During the short Fishbones window, attacks become splash rockets and clear Pow-Pow stacks.",
+        "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       }
@@ -845,15 +845,15 @@
       },
       "bo_league_champions_jinx": {
         "name": "Jinx (Loose Cannon)",
-        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
-        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "attack": "Pow-Pow / Fishbones: basic attacks default to Pow-Pow and build minigun attack speed. During the short Fishbones window, attacks become splash rockets and clear Pow-Pow stacks.",
+        "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       },
       "test_mod_jinx": {
         "name": "Jinx (Loose Cannon)",
-        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
-        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "attack": "Pow-Pow / Fishbones: basic attacks default to Pow-Pow and build minigun attack speed. During the short Fishbones window, attacks become splash rockets and clear Pow-Pow stacks.",
+        "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       }
@@ -1017,15 +1017,15 @@
       },
       "bo_league_champions_jinx": {
         "name": "Jinx (Loose Cannon)",
-        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
-        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "attack": "Pow-Pow / Fishbones: basic attacks default to Pow-Pow and build minigun attack speed. During the short Fishbones window, attacks become splash rockets and clear Pow-Pow stacks.",
+        "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       },
       "test_mod_jinx": {
         "name": "Jinx (Loose Cannon)",
-        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
-        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "attack": "Pow-Pow / Fishbones: basic attacks default to Pow-Pow and build minigun attack speed. During the short Fishbones window, attacks become splash rockets and clear Pow-Pow stacks.",
+        "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       }
@@ -1189,15 +1189,15 @@
       },
       "bo_league_champions_jinx": {
         "name": "Jinx (Loose Cannon)",
-        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
-        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "attack": "Pow-Pow / Fishbones: basic attacks default to Pow-Pow and build minigun attack speed. During the short Fishbones window, attacks become splash rockets and clear Pow-Pow stacks.",
+        "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       },
       "test_mod_jinx": {
         "name": "Jinx (Loose Cannon)",
-        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
-        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "attack": "Pow-Pow / Fishbones: basic attacks default to Pow-Pow and build minigun attack speed. During the short Fishbones window, attacks become splash rockets and clear Pow-Pow stacks.",
+        "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       }
@@ -1361,15 +1361,15 @@
       },
       "bo_league_champions_jinx": {
         "name": "Jinx (Loose Cannon)",
-        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
-        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "attack": "Pow-Pow / Fishbones: basic attacks default to Pow-Pow and build minigun attack speed. During the short Fishbones window, attacks become splash rockets and clear Pow-Pow stacks.",
+        "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       },
       "test_mod_jinx": {
         "name": "Jinx (Loose Cannon)",
-        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
-        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "attack": "Pow-Pow / Fishbones: basic attacks default to Pow-Pow and build minigun attack speed. During the short Fishbones window, attacks become splash rockets and clear Pow-Pow stacks.",
+        "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       }
@@ -1533,15 +1533,15 @@
       },
       "bo_league_champions_jinx": {
         "name": "Jinx (Loose Cannon)",
-        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
-        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "attack": "Pow-Pow / Fishbones: basic attacks default to Pow-Pow and build minigun attack speed. During the short Fishbones window, attacks become splash rockets and clear Pow-Pow stacks.",
+        "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       },
       "test_mod_jinx": {
         "name": "Jinx (Loose Cannon)",
-        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
-        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "attack": "Pow-Pow / Fishbones: basic attacks default to Pow-Pow and build minigun attack speed. During the short Fishbones window, attacks become splash rockets and clear Pow-Pow stacks.",
+        "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       }
@@ -1705,15 +1705,15 @@
       },
       "bo_league_champions_jinx": {
         "name": "Jinx (Loose Cannon)",
-        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
-        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "attack": "Pow-Pow / Fishbones: basic attacks default to Pow-Pow and build minigun attack speed. During the short Fishbones window, attacks become splash rockets and clear Pow-Pow stacks.",
+        "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       },
       "test_mod_jinx": {
         "name": "Jinx (Loose Cannon)",
-        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
-        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "attack": "Pow-Pow / Fishbones: basic attacks default to Pow-Pow and build minigun attack speed. During the short Fishbones window, attacks become splash rockets and clear Pow-Pow stacks.",
+        "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       }
@@ -1877,15 +1877,15 @@
       },
       "bo_league_champions_jinx": {
         "name": "Jinx (Loose Cannon)",
-        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
-        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "attack": "Pow-Pow / Fishbones: basic attacks default to Pow-Pow and build minigun attack speed. During the short Fishbones window, attacks become splash rockets and clear Pow-Pow stacks.",
+        "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       },
       "test_mod_jinx": {
         "name": "Jinx (Loose Cannon)",
-        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
-        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "attack": "Pow-Pow / Fishbones: basic attacks default to Pow-Pow and build minigun attack speed. During the short Fishbones window, attacks become splash rockets and clear Pow-Pow stacks.",
+        "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       }
@@ -2049,15 +2049,15 @@
       },
       "bo_league_champions_jinx": {
         "name": "暴走萝莉",
-        "attack": "暴走萝莉（金克丝）使用砰砰枪 / 鱼骨头：普攻默认使用砰砰枪，连续攻击会叠加攻击速度。切到鱼骨头后普攻变成溅射火箭，并清除砰砰枪层数。",
-        "skill": "枪炮交响曲：在砰砰枪和鱼骨头之间切换。鱼骨头提供溅射火箭普攻；切回砰砰枪后恢复叠攻速节奏。",
+        "attack": "暴走萝莉：普通攻击默认使用砰砰枪并叠加攻击速度；短暂进入鱼骨头窗口时，普攻会变成范围火箭并清除砰砰枪层数。金克丝会在需要爆发射程时使用枪炮交响曲。",
+        "skill": "枪炮交响曲：有敌方目标时，金克丝会短暂切到鱼骨头进行范围火箭攻击，窗口结束后自动回到砰砰枪。",
         "skill2": "震荡电磁波 + 嚼火者手雷：向前射出长距离电击，造成物理伤害并减速；随后投出嚼火者，在前方咬住、眩晕并灼烧敌人。",
         "ult": "超究极死神飞弹：发射一枚横贯战场的巨型鲨鱼火箭。命中英雄时爆炸造成高额物理伤害，并触发罪恶快感，获得移动速度和攻击速度。"
       },
       "test_mod_jinx": {
         "name": "暴走萝莉",
-        "attack": "暴走萝莉（金克丝）使用砰砰枪 / 鱼骨头：普攻默认使用砰砰枪，连续攻击会叠加攻击速度。切到鱼骨头后普攻变成溅射火箭，并清除砰砰枪层数。",
-        "skill": "枪炮交响曲：在砰砰枪和鱼骨头之间切换。鱼骨头提供溅射火箭普攻；切回砰砰枪后恢复叠攻速节奏。",
+        "attack": "暴走萝莉：普通攻击默认使用砰砰枪并叠加攻击速度；短暂进入鱼骨头窗口时，普攻会变成范围火箭并清除砰砰枪层数。金克丝会在需要爆发射程时使用枪炮交响曲。",
+        "skill": "枪炮交响曲：有敌方目标时，金克丝会短暂切到鱼骨头进行范围火箭攻击，窗口结束后自动回到砰砰枪。",
         "skill2": "震荡电磁波 + 嚼火者手雷：向前射出长距离电击，造成物理伤害并减速；随后投出嚼火者，在前方咬住、眩晕并灼烧敌人。",
         "ult": "超究极死神飞弹：发射一枚横贯战场的巨型鲨鱼火箭。命中英雄时爆炸造成高额物理伤害，并触发罪恶快感，获得移动速度和攻击速度。"
       }
@@ -2221,15 +2221,15 @@
       },
       "bo_league_champions_jinx": {
         "name": "暴走蘿莉",
-        "attack": "暴走蘿莉（金克絲）使用砰砰槍 / 魚骨頭：普攻預設使用砰砰槍，連續攻擊會疊加攻擊速度。切到魚骨頭後普攻變成濺射火箭，並清除砰砰槍層數。",
-        "skill": "槍炮交響曲：在砰砰槍和魚骨頭之間切換。魚骨頭提供濺射火箭普攻；切回砰砰槍後恢復疊攻速節奏。",
+        "attack": "暴走蘿莉：普通攻擊預設使用砰砰槍並疊加攻擊速度；短暫進入魚骨頭窗口時，普攻會變成範圍火箭並清除砰砰槍層數。金克絲會在需要爆發射程時使用槍炮交響曲。",
+        "skill": "槍炮交響曲：有敵方目標時，金克絲會短暫切到魚骨頭進行範圍火箭攻擊，窗口結束後自動回到砰砰槍。",
         "skill2": "震盪電磁波 + 嚼火者手雷：向前射出長距離電擊，造成物理傷害並減速；隨後投出嚼火者，在前方咬住、暈眩並灼燒敵人。",
         "ult": "超究極死神飛彈：發射一枚橫貫戰場的巨型鯊魚火箭。命中英雄時爆炸造成高額物理傷害，並觸發罪惡快感，獲得移動速度和攻擊速度。"
       },
       "test_mod_jinx": {
         "name": "暴走蘿莉",
-        "attack": "暴走蘿莉（金克絲）使用砰砰槍 / 魚骨頭：普攻預設使用砰砰槍，連續攻擊會疊加攻擊速度。切到魚骨頭後普攻變成濺射火箭，並清除砰砰槍層數。",
-        "skill": "槍炮交響曲：在砰砰槍和魚骨頭之間切換。魚骨頭提供濺射火箭普攻；切回砰砰槍後恢復疊攻速節奏。",
+        "attack": "暴走蘿莉：普通攻擊預設使用砰砰槍並疊加攻擊速度；短暫進入魚骨頭窗口時，普攻會變成範圍火箭並清除砰砰槍層數。金克絲會在需要爆發射程時使用槍炮交響曲。",
+        "skill": "槍炮交響曲：有敵方目標時，金克絲會短暫切到魚骨頭進行範圍火箭攻擊，窗口結束後自動回到砰砰槍。",
         "skill2": "震盪電磁波 + 嚼火者手雷：向前射出長距離電擊，造成物理傷害並減速；隨後投出嚼火者，在前方咬住、暈眩並灼燒敵人。",
         "ult": "超究極死神飛彈：發射一枚橫貫戰場的巨型鯊魚火箭。命中英雄時爆炸造成高額物理傷害，並觸發罪惡快感，獲得移動速度和攻擊速度。"
       }
@@ -2393,15 +2393,15 @@
       },
       "bo_league_champions_jinx": {
         "name": "Jinx (Loose Cannon)",
-        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
-        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "attack": "Pow-Pow / Fishbones: basic attacks default to Pow-Pow and build minigun attack speed. During the short Fishbones window, attacks become splash rockets and clear Pow-Pow stacks.",
+        "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       },
       "test_mod_jinx": {
         "name": "Jinx (Loose Cannon)",
-        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
-        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "attack": "Pow-Pow / Fishbones: basic attacks default to Pow-Pow and build minigun attack speed. During the short Fishbones window, attacks become splash rockets and clear Pow-Pow stacks.",
+        "skill": "Switcheroo!: when an enemy target is available, Jinx briefly swaps to Fishbones for splash rocket attacks, then automatically returns to Pow-Pow.",
         "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       }

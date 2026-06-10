@@ -27,6 +27,7 @@ EXPECTED_CHAMPIONS = {
 REQUIRED_DESCRIPTION_KEYS = ("name", "attack", "skill", "skill2", "ult")
 PROCESS_IMAGE_ROOTS = ("source", "qa")
 PROCESS_IMAGE_SUFFIXES = {".png", ".jpg", ".jpeg", ".webp"}
+ROSTER_VISIBILITY_COVERAGE_PATH = ROOT / "qa" / "roster_visibility_coverage.json"
 AATROX_IDS = ("bo_league_champions_aatrox", "test_mod_aatrox")
 AATROX_EFFECT_REFS = {
     "test_mod_aatrox_q1": (
@@ -753,6 +754,38 @@ def check_no_process_images() -> None:
                 offenders.append(str(path.relative_to(ROOT)))
     if offenders:
         fail(f"process/source images must not be committed after rebuild: {offenders}")
+
+
+def check_roster_visibility_coverage() -> None:
+    coverage = load_json(ROSTER_VISIBILITY_COVERAGE_PATH)
+    if not isinstance(coverage, dict):
+        fail("qa/roster_visibility_coverage.json must contain a JSON object")
+    if coverage.get("native_retirement_mode") != "coverage-gated-staged-retirement":
+        fail("roster visibility coverage must use coverage-gated-staged-retirement mode")
+    if coverage.get("verified_hide_path") is not False:
+        fail("roster visibility coverage must not claim native heroes are hidden until a verified path exists")
+    champions = coverage.get("league_champions")
+    if sorted(champions or []) != sorted(EXPECTED_CHAMPIONS):
+        fail(
+            "qa/roster_visibility_coverage.json league_champions must match champion/*.data_champion "
+            f"{sorted(EXPECTED_CHAMPIONS)}"
+        )
+    visible_policy = coverage.get("visible_native_policy")
+    if not isinstance(visible_policy, dict):
+        fail("roster visibility coverage must define visible_native_policy")
+    if visible_policy.get("new_untracked_native_leftovers") != "blocked":
+        fail("new native leftovers must be blocked by roster visibility policy")
+    accepted = visible_policy.get("accepted_statuses")
+    if accepted != ["covered_by_league", "retire_pending_verified_hide_path"]:
+        fail("roster visibility accepted statuses changed; update CI before changing native retirement semantics")
+    queue = coverage.get("native_retirement_queue")
+    if not isinstance(queue, list) or not queue:
+        fail("native_retirement_queue must track currently visible native heroes until a hide path is proven")
+    for index, row in enumerate(queue):
+        if not isinstance(row, dict):
+            fail(f"native_retirement_queue[{index}] must be an object")
+        if row.get("status") not in accepted:
+            fail(f"native_retirement_queue[{index}] has unsupported status {row.get('status')!r}")
 
 
 def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
@@ -1502,10 +1535,10 @@ def check_jinx_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
         view = entries.get(jinx_id)
         if not isinstance(view, dict):
             fail(f"style/champion_view.champion_view missing entries.{jinx_id}")
-        if view.get("face", {}).get("x") != -2 or view.get("face", {}).get("y") != -34:
-            fail(f"style entry {jinx_id}.face must keep Jinx compact portrait aligned at x=-2,y=-34")
-        if view.get("center", {}).get("y") != -12:
-            fail(f"style entry {jinx_id}.center.y must keep the full model above the name")
+        if view.get("face", {}).get("x") != -2 or view.get("face", {}).get("y") != -37:
+            fail(f"style entry {jinx_id}.face must keep Jinx compact portrait aligned at x=-2,y=-37")
+        if view.get("center", {}).get("y") != -16:
+            fail(f"style entry {jinx_id}.center.y must keep the full model above the name at y=-16")
 
     for path in (
         ROOT / "aseprite_resources" / "champions" / "jinx#sheet.png",
@@ -1593,10 +1626,10 @@ def check_jinx_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
             bottom_safe = h - bbox[3]
             if action != "dead" and body_height > 45:
                 fail(f"Jinx {action} frame {index} body height {body_height}px is too large for UI/battle labels")
-            if action != "dead" and bottom_safe < 6:
+            if action != "dead" and bottom_safe < 9:
                 fail(f"Jinx {action} frame {index} leaves only {bottom_safe}px bottom safety above labels")
-            if action == "run" and frame.get("duration") != 0.095:
-                fail("Jinx run must use the slower 0.095s crossed-walk timing, not a sprint")
+            if action == "run" and frame.get("duration") != 0.115:
+                fail("Jinx run must use the slower 0.115s crossed-walk timing, not a sprint")
         if action in {"attack", "skill", "skill2", "ult"} and len(set(action_hashes[action])) < min(4, len(action_hashes[action])):
             fail(f"Jinx {action} must have real action motion, not repeated idle frames")
 
@@ -1647,6 +1680,40 @@ def check_jinx_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
     ):
         if required not in strings:
             fail(f"champion/jinx.data_champion must include LoL Jinx mechanic token {required}")
+    skill = jinx.get("skill", {})
+    if not isinstance(skill, dict):
+        fail("Jinx skill must be a JSON object")
+    if skill.get("casting_type") != "Targeting" or skill.get("casting_target") != "Enemy":
+        fail("Jinx Switcheroo must be AI-targeted at an enemy, not a no-target manual toggle")
+    if int(skill.get("range", 0)) < int(jinx.get("attack", {}).get("range", 0)):
+        fail("Jinx Switcheroo target range must cover her basic attack range")
+    skill_strings = set(walk_strings(skill))
+    if "SwitchByBuff" in skill_strings:
+        fail("Jinx Switcheroo skill must be a short AI-targeted Fishbones window, not a permanent toggle")
+    if "test_mod_jinx_fishbones_mode" not in skill_strings or "test_mod_jinx_switch_to_minigun" not in skill_strings:
+        fail("Jinx Switcheroo must add Fishbones briefly and schedule a return-to-minigun sound")
+
+    def find_named_buff_ticks(node: Any, buff_name: str) -> list[int]:
+        ticks: list[int] = []
+        if isinstance(node, dict):
+            state = node.get("buff_state")
+            if isinstance(state, dict) and state.get("name") == buff_name:
+                duration = state.get("duration", {})
+                if isinstance(duration, dict):
+                    time = duration.get("Time")
+                    if isinstance(time, dict) and isinstance(time.get("tick"), int):
+                        ticks.append(time["tick"])
+            for value in node.values():
+                ticks.extend(find_named_buff_ticks(value, buff_name))
+        elif isinstance(node, list):
+            for value in node:
+                ticks.extend(find_named_buff_ticks(value, buff_name))
+        return ticks
+
+    fishbones_ticks = find_named_buff_ticks(skill, "test_mod_jinx_fishbones_mode")
+    if fishbones_ticks != [210]:
+        fail(f"Jinx Switcheroo must use one 210-tick Fishbones window, got {fishbones_ticks}")
+
     for action, sfx_names in (
         ("skill", {"test_mod_jinx_switch_to_minigun", "test_mod_jinx_switch_to_rocket"}),
         ("skill2", {"test_mod_jinx_zap_cast", "test_mod_jinx_chompers_cast"}),
@@ -1780,6 +1847,7 @@ def main() -> int:
     try:
         check_mod_metadata()
         check_no_process_images()
+        check_roster_visibility_coverage()
         check_champion_visibility()
     except AssertionError as exc:
         print(f"encyclopedia_visibility_check=fail: {exc}", file=sys.stderr)

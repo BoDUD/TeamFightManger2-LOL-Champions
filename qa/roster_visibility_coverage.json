@@ -1,0 +1,36 @@
+{
+  "policy_version": 1,
+  "goal": "As BO-League Champions grows, native Teamfight Manager 2 heroes must either be replaced by a complete League identity or retired from public roster/encyclopedia surfaces through a verified runtime path.",
+  "native_retirement_mode": "coverage-gated-staged-retirement",
+  "verified_hide_path": false,
+  "current_stage": "Gate native visibility before claiming a complete League roster; do not hide base heroes until the mod has a proven safe data/runtime path.",
+  "league_champions": [
+    "aatrox",
+    "azir",
+    "ezreal",
+    "fiddlesticks",
+    "fizz",
+    "jhin",
+    "jinx",
+    "kayn",
+    "vayne",
+    "veigar",
+    "viktor",
+    "yasuo"
+  ],
+  "visible_native_policy": {
+    "new_untracked_native_leftovers": "blocked",
+    "accepted_statuses": [
+      "covered_by_league",
+      "retire_pending_verified_hide_path"
+    ],
+    "require_ci_update_when_league_roster_changes": true
+  },
+  "native_retirement_queue": [
+    {
+      "surface": "ban_pick_and_encyclopedia",
+      "status": "retire_pending_verified_hide_path",
+      "reason": "Base-game heroes are still visible beside additive League champions; retire them only after a safe hide/disable path is proven from game data or runtime logs."
+    }
+  ]
+}
