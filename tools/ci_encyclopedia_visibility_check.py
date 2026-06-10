@@ -449,8 +449,8 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
         face_x = view.get("face", {}).get("x")
         face_y = view.get("face", {}).get("y")
         center_y = view.get("center", {}).get("y")
-        if face_x != 0 or face_y != -34:
-            fail(f"style entry {aatrox_id}.face must keep Aatrox's compact portrait at x=0,y=-34")
+        if face_x != 0 or face_y != -24:
+            fail(f"style entry {aatrox_id}.face must keep Aatrox's compact portrait at x=0,y=-24")
         if center_y != -12:
             fail(f"style entry {aatrox_id}.center.y must keep Aatrox full-body display at -12")
 
@@ -599,18 +599,39 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
     for name, expected in AATROX_Q_CAST_EFFECT_REFS.items():
         if view_effect_refs.get(name) != expected:
             fail(f"champion/aatrox.data_champion view_effect {name} must reference {expected}")
-    skill_effects = aatrox.get("skill", {}).get("effect", {}).get("effects", [])
-    if not isinstance(skill_effects, list):
-        fail("Aatrox Q skill must use a Combine effects list")
-    if not any(item.get("type") == "CasterViewEffect" and item.get("name") == "test_mod_aatrox_q1_cast_vfx" for item in skill_effects if isinstance(item, dict)):
-        fail("Aatrox Q1 must have an immediate visible caster-follow effect")
-    delayed = {item.get("tick"): item.get("effects", []) for item in skill_effects if isinstance(item, dict) and item.get("type") == "Delayed"}
-    for tick, name in ((18, "test_mod_aatrox_q2_cast_vfx"), (38, "test_mod_aatrox_q3_cast_vfx")):
-        effects = delayed.get(tick)
-        if not isinstance(effects, list) or not any(
-            item.get("type") == "CasterViewEffect" and item.get("name") == name for item in effects if isinstance(item, dict)
-        ):
-            fail(f"Aatrox delayed Q at tick {tick} must have visible effect {name}")
+    skill_effect = aatrox.get("skill", {}).get("effect")
+    if not isinstance(skill_effect, dict) or skill_effect.get("type") != "SwitchByBuff":
+        fail("Aatrox Q must use staged SwitchByBuff recasts instead of firing all three Qs at once")
+    if skill_effect.get("buff_name") != "test_mod_aatrox_q3_ready":
+        fail("Aatrox Q top-level stage must branch on test_mod_aatrox_q3_ready")
+    q2_switch = skill_effect.get("effect_none")
+    if not isinstance(q2_switch, dict) or q2_switch.get("type") != "SwitchByBuff":
+        fail("Aatrox Q must branch Q1/Q2 through test_mod_aatrox_q2_ready")
+    if q2_switch.get("buff_name") != "test_mod_aatrox_q2_ready":
+        fail("Aatrox Q second stage must branch on test_mod_aatrox_q2_ready")
+
+    def assert_q_stage(branch: object, label: str, expected_projectile: str, expected_vfx: str) -> None:
+        if not isinstance(branch, dict) or branch.get("type") != "Combine":
+            fail(f"Aatrox {label} must be a single Combine branch")
+        branch_strings = set(walk_strings(branch))
+        if "Delayed" in branch_strings:
+            fail(f"Aatrox {label} must not contain Delayed chained Q segments")
+        for projectile in ("test_mod_aatrox_q1", "test_mod_aatrox_q2", "test_mod_aatrox_q3"):
+            if (projectile == expected_projectile) != (projectile in branch_strings):
+                fail(f"Aatrox {label} must contain only {expected_projectile}, got projectile refs {sorted(branch_strings & {'test_mod_aatrox_q1', 'test_mod_aatrox_q2', 'test_mod_aatrox_q3'})}")
+        for vfx in ("test_mod_aatrox_q1_cast_vfx", "test_mod_aatrox_q2_cast_vfx", "test_mod_aatrox_q3_cast_vfx"):
+            if (vfx == expected_vfx) != (vfx in branch_strings):
+                fail(f"Aatrox {label} must contain only {expected_vfx}, got cast VFX refs {sorted(branch_strings & {'test_mod_aatrox_q1_cast_vfx', 'test_mod_aatrox_q2_cast_vfx', 'test_mod_aatrox_q3_cast_vfx'})}")
+        if label == "Q1" and "test_mod_aatrox_q2_ready" not in branch_strings:
+            fail("Aatrox Q1 must arm the Q2 recast window")
+        if label == "Q2" and "test_mod_aatrox_q3_ready" not in branch_strings:
+            fail("Aatrox Q2 must arm the Q3 recast window")
+        if label == "Q3" and ("test_mod_aatrox_q2_ready" not in branch_strings or "test_mod_aatrox_q3_ready" not in branch_strings):
+            fail("Aatrox Q3 must clear staged Q recast buffs")
+
+    assert_q_stage(q2_switch.get("effect_none"), "Q1", "test_mod_aatrox_q1", "test_mod_aatrox_q1_cast_vfx")
+    assert_q_stage(q2_switch.get("effect_buff"), "Q2", "test_mod_aatrox_q2", "test_mod_aatrox_q2_cast_vfx")
+    assert_q_stage(skill_effect.get("effect_buff"), "Q3", "test_mod_aatrox_q3", "test_mod_aatrox_q3_cast_vfx")
     buff_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in aatrox.get("view_buffs", [])}
     for name, expected in AATROX_BUFF_REFS.items():
         if buff_refs.get(name) != expected:
@@ -631,13 +652,14 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
 
 def check_kayn_rework_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
     expected_names = {
-        "en": ("Kayn",),
-        "zh-hans": ("\u51ef\u9690",),
-        "zh-hant": ("\u6168\u5f71",),
+        "en": ("Kayn", "Shadow Reaper"),
+        "zh-hans": ("\u51ef\u9690", "Kayn"),
+        "zh-hant": ("\u6168\u5f71", "Kayn"),
     }
     expected_terms = {
-        "zh-hans": ("\u5de8\u9570\u6a2a\u626b", "\u5229\u5203\u7eb5\u8d2f", "\u88c2\u820d\u5f71", "\u6697\u88d4\u5347\u534e"),
-        "zh-hant": ("\u5de8\u9430\u6a6b\u6383", "\u5229\u5203\u7e31\u8cab", "\u88c2\u820d\u5f71", "\u51a5\u8840\u5347\u83ef"),
+        "en": ("Shadow Reaper", "Darkin Scythe", "Darkin Ascension"),
+        "zh-hans": ("\u5f71\u6d41\u4e4b\u9570", "\u5de8\u9570\u6a2a\u626b", "\u5229\u5203\u7eb5\u8d2f", "\u88c2\u820d\u5f71", "\u6697\u88d4\u5347\u534e"),
+        "zh-hant": ("\u5f71\u6d41\u4e4b\u942e", "\u5de8\u942e\u6a6b\u6383", "\u5229\u5203\u7e31\u8cab", "\u88c2\u820d\u5f71", "\u51a5\u8840\u5347\u83ef"),
     }
     for locale, expected_name_terms in expected_names.items():
         descriptions = text.get(locale, {}).get("description")
@@ -656,7 +678,7 @@ def check_kayn_rework_contract(text: dict[str, Any], entries: dict[str, Any]) ->
                 if "??" in value or "・ｽ" in value:
                     fail(f"text/champion.i18n locale {locale} {kayn_id}.{key} still contains corrupted text")
             for term in expected_terms.get(locale, ()):
-                if not any(term in str(row.get(key, "")) for key in ("skill", "skill2", "ult")):
+                if not any(term in str(row.get(key, "")) for key in ("attack", "skill", "skill2", "ult")):
                     fail(f"text/champion.i18n locale {locale} {kayn_id} missing term {term!r}")
 
     for kayn_id in KAYN_IDS:
