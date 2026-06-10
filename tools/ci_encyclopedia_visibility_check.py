@@ -684,6 +684,21 @@ def description_refs(champion: dict[str, Any]) -> set[tuple[str, str]]:
     return refs
 
 
+def check_view_effect_types(path: Path, champion: dict[str, Any]) -> None:
+    # view_projectiles accepts "Animated"; view_effects does not in this game build.
+    # A bad view_effect enum rejects the whole data_champion at startup, which hides it from encyclopedia search.
+    allowed = {"Animation", "LoopAnimation"}
+    for index, effect in enumerate(champion.get("view_effects", [])):
+        if not isinstance(effect, dict):
+            fail(f"{path.relative_to(ROOT)} view_effects[{index}] must be an object")
+        effect_type = effect.get("type")
+        if effect_type not in allowed:
+            fail(
+                f"{path.relative_to(ROOT)} view_effects[{index}].type must be one of "
+                f"{sorted(allowed)}, got {effect_type!r}"
+            )
+
+
 def check_effect_shapes(path: Path, node: Any) -> None:
     if isinstance(node, dict):
         for key, value in node.items():
@@ -1688,6 +1703,7 @@ def check_champion_visibility() -> None:
     for path in champion_files:
         data = load_json(path)
         check_effect_shapes(path, data)
+        check_view_effect_types(path, data)
         champion_name = path.stem
         champion_id = data.get("id")
         expected_id = f"{MOD_ID}_{champion_name}"
