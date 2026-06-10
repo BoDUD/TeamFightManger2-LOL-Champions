@@ -12,6 +12,15 @@ MOD_ID = "bo_league_champions"
 CHAMPION_IDS = (
     f"{MOD_ID}_aatrox",
     f"{MOD_ID}_kayn",
+    f"{MOD_ID}_yasuo",
+)
+AATROX_SOUND_EVENTS = (
+    "test_mod_aatrox_attack_cast",
+    "test_mod_aatrox_attack_hit",
+    "test_mod_aatrox_cleave_cast",
+    "test_mod_aatrox_cleave_hit",
+    "test_mod_aatrox_dash_cast",
+    "test_mod_aatrox_ult_cast",
 )
 KAYN_SOUND_EVENTS = (
     "test_mod_kayn_attack_cast",
@@ -22,6 +31,19 @@ KAYN_SOUND_EVENTS = (
     "test_mod_kayn_w_hit",
     "test_mod_kayn_r_cast",
     "test_mod_kayn_r_hit",
+)
+YASUO_SOUND_EVENTS = (
+    "test_mod_yasuo_attack_cast",
+    "test_mod_yasuo_attack_hit",
+    "test_mod_yasuo_q_cast",
+    "test_mod_yasuo_q_hit",
+    "test_mod_yasuo_q_tornado_cast",
+    "test_mod_yasuo_q_tornado_hit",
+    "test_mod_yasuo_dash_cast",
+    "test_mod_yasuo_dash_hit",
+    "test_mod_yasuo_wind_wall_cast",
+    "test_mod_yasuo_r_cast",
+    "test_mod_yasuo_r_hit",
 )
 
 
@@ -73,12 +95,15 @@ def check_runtime_copy(game_root: Path) -> None:
         "mod.override_info",
         "champion/aatrox.data_champion",
         "champion/kayn.data_champion",
+        "champion/yasuo.data_champion",
         "text/champion.i18n",
         "style/champion_view.champion_view",
         "aseprite_resources/champions/aatrox#sheet.png",
         "aseprite_resources/champions/aatrox#anim.fanim",
         "aseprite_resources/champions/kayn#sheet.png",
         "aseprite_resources/champions/kayn#anim.fanim",
+        "aseprite_resources/champions/yasuo#sheet.png",
+        "aseprite_resources/champions/yasuo#anim.fanim",
         "aseprite_resources/effects/kayn_q_slash#sheet.png",
         "aseprite_resources/effects/kayn_q_slash#anim.fanim",
         "aseprite_resources/effects/kayn_w_blade_reach#sheet.png",
@@ -89,12 +114,43 @@ def check_runtime_copy(game_root: Path) -> None:
         "aseprite_resources/effects/kayn_r_exit#anim.fanim",
         "aseprite_resources/effects/kayn_darkin_aura#sheet.png",
         "aseprite_resources/effects/kayn_darkin_aura#anim.fanim",
+        "aseprite_resources/effects/yasuo_attack_slash#sheet.png",
+        "aseprite_resources/effects/yasuo_attack_slash#anim.fanim",
+        "aseprite_resources/effects/yasuo_q_stab#sheet.png",
+        "aseprite_resources/effects/yasuo_q_stab#anim.fanim",
+        "aseprite_resources/effects/yasuo_q_tornado#sheet.png",
+        "aseprite_resources/effects/yasuo_q_tornado#anim.fanim",
+        "aseprite_resources/effects/yasuo_sweeping_blade#sheet.png",
+        "aseprite_resources/effects/yasuo_sweeping_blade#anim.fanim",
+        "aseprite_resources/effects/yasuo_wind_wall#sheet.png",
+        "aseprite_resources/effects/yasuo_wind_wall#anim.fanim",
+        "aseprite_resources/effects/yasuo_last_breath#sheet.png",
+        "aseprite_resources/effects/yasuo_last_breath#anim.fanim",
+        "aseprite_resources/effects/yasuo_flow_shield#sheet.png",
+        "aseprite_resources/effects/yasuo_flow_shield#anim.fanim",
+        "aseprite_resources/effects/yasuo_after_breath_aura#sheet.png",
+        "aseprite_resources/effects/yasuo_after_breath_aura#anim.fanim",
         "icons/kayn_skill.png",
         "icons/kayn_skill2.png",
         "icons/kayn_ult.png",
+        "icons/yasuo_skill.png",
+        "icons/yasuo_skill2.png",
+        "icons/yasuo_ult.png",
+        "qa/aatrox_official_audio_sources.json",
         "qa/kayn_official_audio_sources.json",
+        "qa/yasuo_official_audio_sources.json",
     ]
+    for event_name in AATROX_SOUND_EVENTS:
+        critical_files.append(f"sound/sfx/{event_name}.sound_info")
+        if event_name == "test_mod_aatrox_dash_cast":
+            critical_files.append("sound/sfx/test_mod_aatrox_dash_voice_clip.wav")
+            critical_files.append("sound/sfx/test_mod_aatrox_dash_effect_clip.wav")
+        else:
+            critical_files.append(f"sound/sfx/{event_name}_clip.wav")
     for event_name in KAYN_SOUND_EVENTS:
+        critical_files.append(f"sound/sfx/{event_name}.sound_info")
+        critical_files.append(f"sound/sfx/{event_name}_clip.wav")
+    for event_name in YASUO_SOUND_EVENTS:
         critical_files.append(f"sound/sfx/{event_name}.sound_info")
         critical_files.append(f"sound/sfx/{event_name}_clip.wav")
     for relative in critical_files:
@@ -126,34 +182,42 @@ def check_runtime_copy(game_root: Path) -> None:
             if champion_id not in descriptions:
                 fail(f"runtime text locale {locale} missing description.{champion_id}")
             row = descriptions[champion_id]
-            if champion_id.endswith("_kayn") and locale in {"zh-hans", "zh-hant"}:
+            if locale in {"zh-hans", "zh-hant"}:
                 payload_text = json.dumps(row, ensure_ascii=False)
                 if "??" in payload_text:
                     fail(f"runtime text locale {locale} description.{champion_id} still contains corrupted question marks")
-                required_terms = {
-                    "zh-hans": ("Kayn", "影流之镰", "暗裔升华"),
-                    "zh-hant": ("Kayn", "影流之鐮", "冥血升華"),
-                }[locale]
-                missing = [term for term in required_terms if term not in payload_text]
-                if missing:
-                    fail(f"runtime text locale {locale} description.{champion_id} missing search aliases {missing}")
+                required_terms_by_champion = {
+                    f"{MOD_ID}_kayn": {
+                        "zh-hans": ("凯隐", "Kayn", "影流之镰"),
+                        "zh-hant": ("慨影", "Kayn", "影流之鐮"),
+                    },
+                    f"{MOD_ID}_yasuo": {
+                        "zh-hans": ("亚索", "Yasuo", "疾风剑豪", "斩钢闪"),
+                        "zh-hant": ("犽宿", "Yasuo", "斬鋼閃"),
+                    },
+                }
+                required_by_locale = required_terms_by_champion.get(champion_id)
+                if required_by_locale:
+                    required_terms = required_by_locale[locale]
+                    missing = [term for term in required_terms if term not in payload_text]
+                    if missing:
+                        fail(f"runtime text locale {locale} description.{champion_id} missing search aliases {missing}")
 
 
 def check_custom_database_state() -> None:
     data_dir = appdata_data_dir()
     flag = data_dir / "custom_db_enabled.flag"
     custom_db = data_dir / "custom_database.tfm2db"
-    if not flag.exists():
-        return
     if not custom_db.exists():
-        fail(f"{flag} exists but {custom_db} is missing")
+        return
 
     payload = custom_db.read_bytes()
     missing = [champion_id for champion_id in CHAMPION_IDS if champion_id.encode("utf-8") not in payload]
     if missing:
+        state = "enabled" if flag.exists() else "present"
         fail(
-            "custom_database.tfm2db is enabled but does not contain "
-            f"{missing}; disable or regenerate the stale custom database before judging encyclopedia visibility"
+            f"custom_database.tfm2db is {state} but does not contain {missing}; "
+            "archive or regenerate the stale custom database before judging encyclopedia visibility"
         )
 
 

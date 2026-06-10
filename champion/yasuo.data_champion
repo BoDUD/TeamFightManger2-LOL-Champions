@@ -1,0 +1,792 @@
+{
+  "id": "bo_league_champions_yasuo",
+  "category": "Assassin",
+  "tags": [
+    "AD",
+    "Melee",
+    "CC"
+  ],
+  "sprite": "asset/bo_league_champions/aseprite_resources/champions/yasuo",
+  "anim_prefix": "",
+  "skill_icons": [
+    "asset/bo_league_champions/icons/yasuo_skill",
+    "asset/bo_league_champions/icons/yasuo_skill2",
+    "asset/bo_league_champions/icons/yasuo_ult"
+  ],
+  "stat": {
+    "attack": 76,
+    "magic_power": 0,
+    "hp": 860,
+    "defence": 22,
+    "magic_resistance": 20,
+    "move_speed": 1120,
+    "hp_regen": 3,
+    "stack": 0,
+    "crit_chance": 15
+  },
+  "growth": {
+    "attack": 22,
+    "magic_power": 0,
+    "hp": 88,
+    "defence": 5,
+    "magic_resistance": 4,
+    "move_speed": 10,
+    "hp_regen": 1,
+    "stack": 0,
+    "crit_chance": 0
+  },
+  "attack": {
+    "action_name": "attack",
+    "description": "#asset/base/text/champion?description.bo_league_champions_yasuo.attack",
+    "duration": 18,
+    "cooltime": 56,
+    "start_timing": 9,
+    "cancelable": true,
+    "range": 26000,
+    "casting_type": "Targeting",
+    "casting_target": "Enemy",
+    "attack_type": "BaseAttack",
+    "effect": {
+      "type": "SwitchByBuff",
+      "buff_name": "test_mod_yasuo_flow_2",
+      "effect_none": {
+        "type": "SwitchByBuff",
+        "buff_name": "test_mod_yasuo_flow_1",
+        "effect_none": {
+          "type": "Combine",
+          "effects": [
+            {
+              "type": "Sfx",
+              "name": "test_mod_yasuo_attack_cast"
+            },
+            {
+              "type": "CasterViewEffect",
+              "name": "test_mod_yasuo_attack_slash_vfx"
+            },
+            {
+              "type": "Attack",
+              "damage": 8,
+              "attack_ratio": 100
+            },
+            {
+              "type": "TargetSfx",
+              "name": "test_mod_yasuo_attack_hit"
+            },
+            {
+              "type": "RemoveCasterBuff",
+              "name": "test_mod_yasuo_flow_1"
+            },
+            {
+              "type": "RemoveCasterBuff",
+              "name": "test_mod_yasuo_flow_2"
+            },
+            {
+              "type": "AddCasterBuff",
+              "buff_state": {
+                "name": "test_mod_yasuo_flow_1"
+              }
+            }
+          ]
+        },
+        "effect_buff": {
+          "type": "Combine",
+          "effects": [
+            {
+              "type": "Sfx",
+              "name": "test_mod_yasuo_attack_cast"
+            },
+            {
+              "type": "CasterViewEffect",
+              "name": "test_mod_yasuo_attack_slash_vfx"
+            },
+            {
+              "type": "Attack",
+              "damage": 8,
+              "attack_ratio": 100
+            },
+            {
+              "type": "TargetSfx",
+              "name": "test_mod_yasuo_attack_hit"
+            },
+            {
+              "type": "RemoveCasterBuff",
+              "name": "test_mod_yasuo_flow_1"
+            },
+            {
+              "type": "RemoveCasterBuff",
+              "name": "test_mod_yasuo_flow_2"
+            },
+            {
+              "type": "AddCasterBuff",
+              "buff_state": {
+                "name": "test_mod_yasuo_flow_2"
+              }
+            }
+          ]
+        }
+      },
+      "effect_buff": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "Sfx",
+            "name": "test_mod_yasuo_attack_cast"
+          },
+          {
+            "type": "CasterViewEffect",
+            "name": "test_mod_yasuo_attack_slash_vfx"
+          },
+          {
+            "type": "Attack",
+            "damage": 8,
+            "attack_ratio": 100
+          },
+          {
+            "type": "TargetSfx",
+            "name": "test_mod_yasuo_attack_hit"
+          },
+          {
+            "type": "WithSelf",
+            "effects": [
+              {
+                "type": "Shield",
+                "amount": 80,
+                "attack_ratio": 25,
+                "tick": 120
+              }
+            ]
+          },
+          {
+            "type": "AddCasterBuff",
+            "buff_state": {
+              "name": "test_mod_yasuo_flow_shield_visual",
+              "duration": {
+                "Time": {
+                  "tick": 120
+                }
+              }
+            }
+          },
+          {
+            "type": "RemoveCasterBuff",
+            "name": "test_mod_yasuo_flow_1"
+          },
+          {
+            "type": "RemoveCasterBuff",
+            "name": "test_mod_yasuo_flow_2"
+          }
+        ]
+      }
+    }
+  },
+  "skill": {
+    "action_name": "skill",
+    "description": "#asset/base/text/champion?description.bo_league_champions_yasuo.skill",
+    "duration": 24,
+    "cooltime": 210,
+    "start_timing": 8,
+    "cancelable": true,
+    "range": 56000,
+    "casting_type": "Direction",
+    "casting_target": "EnemyWithoutTower",
+    "attack_type": "Skill",
+    "can_use_with_move": true,
+    "effect": {
+      "type": "SwitchByBuff",
+      "buff_name": "test_mod_yasuo_q_stack_2",
+      "effect_none": {
+        "type": "SwitchByBuff",
+        "buff_name": "test_mod_yasuo_q_stack_1",
+        "effect_none": {
+          "type": "Combine",
+          "effects": [
+            {
+              "type": "Sfx",
+              "name": "test_mod_yasuo_q_cast"
+            },
+            {
+              "type": "CasterViewEffect",
+              "name": "test_mod_yasuo_q_stab_cast_vfx"
+            },
+            {
+              "type": "LineRangeProjectile",
+              "width": 8500,
+              "length": 56000,
+              "delay": 3,
+              "apply": 10,
+              "name": "test_mod_yasuo_q_stab",
+              "applied_target": "EnemyWithoutTower",
+              "applied_effects": [
+                {
+                  "effect": {
+                    "type": "Combine",
+                    "effects": [
+                      {
+                        "type": "Attack",
+                        "damage": 30,
+                        "attack_ratio": 70
+                      },
+                      {
+                        "type": "TargetSfx",
+                        "name": "test_mod_yasuo_q_hit"
+                      }
+                    ]
+                  },
+                  "casting_type": "Targeting"
+                }
+              ]
+            },
+            {
+              "type": "RemoveCasterBuff",
+              "name": "test_mod_yasuo_q_stack_1"
+            },
+            {
+              "type": "RemoveCasterBuff",
+              "name": "test_mod_yasuo_q_stack_2"
+            },
+            {
+              "type": "AddCasterBuff",
+              "buff_state": {
+                "name": "test_mod_yasuo_q_stack_1",
+                "duration": {
+                  "Time": {
+                    "tick": 360
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "effect_buff": {
+          "type": "Combine",
+          "effects": [
+            {
+              "type": "Sfx",
+              "name": "test_mod_yasuo_q_cast"
+            },
+            {
+              "type": "CasterViewEffect",
+              "name": "test_mod_yasuo_q_stab_cast_vfx"
+            },
+            {
+              "type": "LineRangeProjectile",
+              "width": 10500,
+              "length": 60000,
+              "delay": 3,
+              "apply": 10,
+              "name": "test_mod_yasuo_q_stab",
+              "applied_target": "EnemyWithoutTower",
+              "applied_effects": [
+                {
+                  "effect": {
+                    "type": "Combine",
+                    "effects": [
+                      {
+                        "type": "Attack",
+                        "damage": 35,
+                        "attack_ratio": 75
+                      },
+                      {
+                        "type": "TargetSfx",
+                        "name": "test_mod_yasuo_q_hit"
+                      }
+                    ]
+                  },
+                  "casting_type": "Targeting"
+                }
+              ]
+            },
+            {
+              "type": "RemoveCasterBuff",
+              "name": "test_mod_yasuo_q_stack_1"
+            },
+            {
+              "type": "RemoveCasterBuff",
+              "name": "test_mod_yasuo_q_stack_2"
+            },
+            {
+              "type": "AddCasterBuff",
+              "buff_state": {
+                "name": "test_mod_yasuo_q_stack_2",
+                "duration": {
+                  "Time": {
+                    "tick": 360
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "effect_buff": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "Sfx",
+            "name": "test_mod_yasuo_q_tornado_cast"
+          },
+          {
+            "type": "CasterViewEffect",
+            "name": "test_mod_yasuo_q_tornado_cast_vfx"
+          },
+          {
+            "type": "LinearProjectile",
+            "penetrate": true,
+            "speed": 3300,
+            "range": 90000,
+            "name": "test_mod_yasuo_q_tornado",
+            "shape": {
+              "Circle": {
+                "radius": 10000
+              }
+            },
+            "applied_target": "EnemyWithoutTower",
+            "applied_effects": [
+              {
+                "effect": {
+                  "type": "Combine",
+                  "effects": [
+                    {
+                      "type": "Attack",
+                      "damage": 55,
+                      "attack_ratio": 90
+                    },
+                    {
+                      "type": "Airborne",
+                      "duration": 24
+                    },
+                    {
+                      "type": "Stun",
+                      "duration": 8
+                    },
+                    {
+                      "type": "TargetSfx",
+                      "name": "test_mod_yasuo_q_tornado_hit"
+                    }
+                  ]
+                },
+                "casting_type": "Targeting"
+              }
+            ],
+            "end_effects": []
+          },
+          {
+            "type": "RemoveCasterBuff",
+            "name": "test_mod_yasuo_q_stack_1"
+          },
+          {
+            "type": "RemoveCasterBuff",
+            "name": "test_mod_yasuo_q_stack_2"
+          },
+          {
+            "type": "AddCasterBuff",
+            "buff_state": {
+              "name": "test_mod_yasuo_last_breath_ready",
+              "duration": {
+                "Time": {
+                  "tick": 180
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "skill2": {
+    "action_name": "skill2",
+    "description": "#asset/base/text/champion?description.bo_league_champions_yasuo.skill2",
+    "duration": 42,
+    "cooltime": 720,
+    "start_timing": 1,
+    "cancelable": false,
+    "range": 52000,
+    "casting_type": "Direction",
+    "casting_target": "BothWithoutTower",
+    "attack_type": "Skill",
+    "can_use_with_move": false,
+    "effect": {
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "Sfx",
+          "name": "test_mod_yasuo_dash_cast"
+        },
+        {
+          "type": "CasterViewEffect",
+          "name": "test_mod_yasuo_sweeping_blade_cast_vfx"
+        },
+        {
+          "type": "RushTime",
+          "speed": 3200,
+          "tick": 16,
+          "range": 0,
+          "casting_target": "EnemyWithoutTower",
+          "penetrate": true,
+          "applied_effects": []
+        },
+        {
+          "type": "LineRangeProjectile",
+          "width": 14000,
+          "length": 52000,
+          "delay": 1,
+          "apply": 12,
+          "name": "test_mod_yasuo_sweeping_blade",
+          "applied_target": "EnemyWithoutTower",
+          "applied_effects": [
+            {
+              "effect": {
+                "type": "Combine",
+                "effects": [
+                  {
+                    "type": "Attack",
+                    "damage": 35,
+                    "attack_ratio": 55
+                  },
+                  {
+                    "type": "AddBuff",
+                    "buff_state": {
+                      "name": "test_mod_yasuo_sweeping_blade_slow",
+                      "duration": {
+                        "Time": {
+                          "tick": 30
+                        }
+                      },
+                      "move_speed_mult": -25
+                    }
+                  },
+                  {
+                    "type": "TargetSfx",
+                    "name": "test_mod_yasuo_dash_hit"
+                  }
+                ]
+              },
+              "casting_type": "Targeting"
+            }
+          ]
+        },
+        {
+          "type": "WithSelf",
+          "effects": [
+            {
+              "type": "Shield",
+              "amount": 70,
+              "attack_ratio": 20,
+              "tick": 120
+            }
+          ]
+        },
+        {
+          "type": "Delayed",
+          "tick": 14,
+          "effects": [
+            {
+              "type": "Sfx",
+              "name": "test_mod_yasuo_wind_wall_cast"
+            },
+            {
+              "type": "CasterViewEffect",
+              "name": "test_mod_yasuo_wind_wall_vfx"
+            },
+            {
+              "type": "LineRangeProjectile",
+              "width": 18000,
+              "length": 52000,
+              "delay": 0,
+              "apply": 150,
+              "name": "test_mod_yasuo_wind_wall_barrier",
+              "applied_target": "EnemyWithoutTower",
+              "applied_effects": [
+                {
+                  "effect": {
+                    "type": "BlockMoveSkill",
+                    "tick": 12
+                  },
+                  "casting_type": "Targeting"
+                },
+                {
+                  "effect": {
+                    "type": "Knockback",
+                    "speed": 700,
+                    "tick": 4
+                  },
+                  "casting_type": "Targeting"
+                },
+                {
+                  "effect": {
+                    "type": "AddBuff",
+                    "buff_state": {
+                      "name": "test_mod_yasuo_wind_wall_slow",
+                      "duration": {
+                        "Time": {
+                          "tick": 20
+                        }
+                      },
+                      "move_speed_mult": -20
+                    }
+                  },
+                  "casting_type": "Targeting"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "ult": {
+    "action_name": "ult",
+    "description": "#asset/base/text/champion?description.bo_league_champions_yasuo.ult",
+    "duration": 60,
+    "cooltime": 3600,
+    "start_timing": 12,
+    "cancelable": false,
+    "range": 72000,
+    "casting_type": "Targeting",
+    "casting_target": "EnemyChampion",
+    "attack_type": "Skill",
+    "can_use_with_move": false,
+    "effect": {
+      "type": "SwitchByBuff",
+      "buff_name": "test_mod_yasuo_last_breath_ready",
+      "effect_none": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "Sfx",
+            "name": "test_mod_yasuo_r_cast"
+          },
+          {
+            "type": "CasterViewEffect",
+            "name": "test_mod_yasuo_last_breath_burst"
+          },
+          {
+            "type": "RushMoveToBack",
+            "speed": 3600,
+            "applied_effects": [
+              {
+                "type": "Combine",
+                "effects": [
+                  {
+                    "type": "Attack",
+                    "damage": 110,
+                    "attack_ratio": 120
+                  },
+                  {
+                    "type": "Stun",
+                    "duration": 12
+                  },
+                  {
+                    "type": "TargetSfx",
+                    "name": "test_mod_yasuo_r_hit"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "AddCasterBuff",
+            "buff_state": {
+              "name": "test_mod_yasuo_after_breath",
+              "duration": {
+                "Time": {
+                  "tick": 240
+                }
+              },
+              "attack": 25,
+              "move_speed_mult": 10
+            }
+          }
+        ]
+      },
+      "effect_buff": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "RemoveCasterBuff",
+            "name": "test_mod_yasuo_last_breath_ready"
+          },
+          {
+            "type": "Sfx",
+            "name": "test_mod_yasuo_r_cast"
+          },
+          {
+            "type": "CasterViewEffect",
+            "name": "test_mod_yasuo_last_breath_burst"
+          },
+          {
+            "type": "RushMoveToBack",
+            "speed": 4200,
+            "applied_effects": [
+              {
+                "type": "Combine",
+                "effects": [
+                  {
+                    "type": "Attack",
+                    "damage": 210,
+                    "attack_ratio": 170
+                  },
+                  {
+                    "type": "Airborne",
+                    "duration": 24
+                  },
+                  {
+                    "type": "Stun",
+                    "duration": 18
+                  },
+                  {
+                    "type": "TargetSfx",
+                    "name": "test_mod_yasuo_r_hit"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "RangeEffect",
+            "shape": {
+              "Circle": {
+                "radius": 32000
+              }
+            },
+            "target": "EnemyWithoutTower",
+            "apply_type": "AroundCaster",
+            "effects": [
+              {
+                "type": "Attack",
+                "damage": 80,
+                "attack_ratio": 70
+              },
+              {
+                "type": "Airborne",
+                "duration": 18
+              }
+            ]
+          },
+          {
+            "type": "AddCasterBuff",
+            "buff_state": {
+              "name": "test_mod_yasuo_after_breath",
+              "duration": {
+                "Time": {
+                  "tick": 360
+                }
+              },
+              "attack": 45,
+              "attack_speed_mult": 20,
+              "move_speed_mult": 10
+            }
+          }
+        ]
+      }
+    }
+  },
+  "view_projectiles": [
+    {
+      "type": "Animated",
+      "name": "test_mod_yasuo_q_stab",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/yasuo_q_stab",
+      "tag": "stab",
+      "z": 1,
+      "repeat": false
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_yasuo_q_tornado",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/yasuo_q_tornado",
+      "tag": "tornado",
+      "z": 1,
+      "repeat": false
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_yasuo_sweeping_blade",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/yasuo_sweeping_blade",
+      "tag": "dash",
+      "z": 1,
+      "repeat": false
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_yasuo_wind_wall_barrier",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/yasuo_wind_wall",
+      "tag": "wall",
+      "z": 1,
+      "repeat": false
+    }
+  ],
+  "view_effects": [
+    {
+      "type": "Animation",
+      "name": "test_mod_yasuo_attack_slash_vfx",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/yasuo_attack_slash",
+      "tag": "slash",
+      "z": 2,
+      "is_follow": true
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_yasuo_q_stab_cast_vfx",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/yasuo_q_stab",
+      "tag": "stab",
+      "z": 2,
+      "is_follow": true
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_yasuo_q_tornado_cast_vfx",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/yasuo_q_tornado",
+      "tag": "tornado",
+      "z": 2,
+      "is_follow": true
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_yasuo_sweeping_blade_cast_vfx",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/yasuo_sweeping_blade",
+      "tag": "dash",
+      "z": 2,
+      "is_follow": true
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_yasuo_wind_wall_vfx",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/yasuo_wind_wall",
+      "tag": "wall",
+      "z": 1,
+      "is_follow": true
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_yasuo_last_breath_burst",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/yasuo_last_breath",
+      "tag": "burst",
+      "z": 2,
+      "is_follow": true
+    }
+  ],
+  "view_buffs": [
+    {
+      "type": "Animated",
+      "name": "test_mod_yasuo_flow_shield_visual",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/yasuo_flow_shield",
+      "tag": "loop",
+      "z": -1
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_yasuo_after_breath",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/yasuo_after_breath_aura",
+      "tag": "loop",
+      "z": -1
+    }
+  ],
+  "skill_icon": {
+    "source": "asset/bo_league_champions/aseprite_resources/UI_aseprite/test_mod_skill_icons",
+    "tags": [
+      "test_mod_yasuo_skill",
+      "test_mod_yasuo_skill2",
+      "test_mod_yasuo_ult"
+    ]
+  }
+}

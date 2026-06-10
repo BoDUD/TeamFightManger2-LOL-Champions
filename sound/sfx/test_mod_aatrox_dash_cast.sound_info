@@ -3,12 +3,12 @@
     {
       "delay": 0.0,
       "clip": "test_mod_aatrox_dash_voice_clip",
-      "volume": 0.44
+      "volume": 0.82
     },
     {
-      "delay": 0.15,
+      "delay": 0.12,
       "clip": "test_mod_aatrox_dash_effect_clip",
-      "volume": 0.40
+      "volume": 0.82
     }
   ]
 }
