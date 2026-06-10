@@ -102,6 +102,24 @@ def load_json(path: Path) -> object:
         raise AssertionError(f"{path} is not valid JSON: {exc}") from exc
 
 
+def check_view_effect_types(path: Path, champion: object) -> None:
+    if not isinstance(champion, dict):
+        fail(f"{path} must contain a JSON object")
+    effects = champion.get("view_effects", [])
+    if not isinstance(effects, list):
+        fail(f"{path} view_effects must be a list")
+    allowed = {"Animation", "LoopAnimation"}
+    for index, effect in enumerate(effects):
+        if not isinstance(effect, dict):
+            fail(f"{path} view_effects[{index}] must be an object")
+        effect_type = effect.get("type")
+        if effect_type not in allowed:
+            fail(
+                f"{path} view_effects[{index}].type must be one of "
+                f"{sorted(allowed)}, got {effect_type!r}"
+            )
+
+
 def default_game_root() -> Path:
     if ROOT.parent.name.lower() == "github_publish":
         return ROOT.parent.parent
@@ -231,6 +249,9 @@ def check_runtime_copy(game_root: Path) -> None:
         if sha256(repo_file) != sha256(runtime_file):
             fail(f"runtime mod file is stale or differs from repo: {runtime_file}")
 
+    for data_path in sorted((runtime_root / "champion").glob("*.data_champion")):
+        check_view_effect_types(data_path, load_json(data_path))
+
     style = load_json(runtime_root / "style" / "champion_view.champion_view")
     if not isinstance(style, dict):
         fail("runtime champion_view must contain a JSON object")
@@ -343,12 +364,28 @@ def check_custom_database_state() -> None:
         )
 
 
+def check_latest_startup_log() -> None:
+    log_path = appdata_data_dir() / "log.log"
+    if not log_path.exists():
+        return
+
+    text = log_path.read_text(encoding="utf-8", errors="replace")
+    marker = "game start.."
+    latest_startup = text.rsplit(marker, 1)[-1] if marker in text else text
+    if "data_champion load error" in latest_startup:
+        fail(
+            "latest startup log contains data_champion load error; "
+            "fix runtime registration before judging encyclopedia visibility"
+        )
+
+
 def main() -> int:
     game_root = Path(os.environ.get("TFM2_GAME_ROOT", default_game_root()))
     try:
         check_enabled_mod(game_root)
         check_runtime_copy(game_root)
         check_custom_database_state()
+        check_latest_startup_log()
     except AssertionError as exc:
         print(f"local_runtime_encyclopedia_check=fail: {exc}", file=sys.stderr)
         return 1

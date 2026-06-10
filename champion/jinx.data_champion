@@ -728,20 +728,20 @@
   ],
   "view_effects": [
     {
-      "type": "Animated",
+      "type": "Animation",
       "name": "test_mod_jinx_switcheroo_vfx",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/jinx_switcheroo",
       "tag": "switch",
       "z": 1,
-      "repeat": false
+      "is_follow": true
     },
     {
-      "type": "Animated",
+      "type": "Animation",
       "name": "test_mod_jinx_rocket_explosion_vfx",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/jinx_rocket_explosion",
       "tag": "burst",
       "z": 1,
-      "repeat": false
+      "is_follow": true
     }
   ],
   "view_buffs": [
