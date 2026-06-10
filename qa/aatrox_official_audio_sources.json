@@ -1,0 +1,89 @@
+{
+  "source": "League of Legends Game/DATA/FINAL/Champions/Aatrox.wad.client",
+  "bank": "assets/sounds/wwise2016/sfx/characters/aatrox/skins/base/aatrox_base_sfx_audio.bnk",
+  "events_bank": "assets/sounds/wwise2016/sfx/characters/aatrox/skins/base/aatrox_base_sfx_events.bnk",
+  "extracted_with": "lol-wad-parser + wwiser bnkextr + vgmstream-cli",
+  "events": {
+    "test_mod_aatrox_attack_cast": {
+      "media_id": "29529616",
+      "clip": "test_mod_aatrox_attack_cast_clip",
+      "volume": 0.82,
+      "delay": 0.0,
+      "duration": 0.974,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 1.0,
+      "rms": 0.3341
+    },
+    "test_mod_aatrox_attack_hit": {
+      "media_id": "780778749",
+      "clip": "test_mod_aatrox_attack_hit_clip",
+      "volume": 0.82,
+      "delay": 0.0,
+      "duration": 0.986,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 1.0,
+      "rms": 0.3321
+    },
+    "test_mod_aatrox_cleave_cast": {
+      "media_id": "500087760",
+      "clip": "test_mod_aatrox_cleave_cast_clip",
+      "volume": 0.86,
+      "delay": 0.0,
+      "duration": 1.105,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 1.0,
+      "rms": 0.2977
+    },
+    "test_mod_aatrox_cleave_hit": {
+      "media_id": "711456995",
+      "clip": "test_mod_aatrox_cleave_hit_clip",
+      "volume": 0.84,
+      "delay": 0.0,
+      "duration": 1.25,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 1.0,
+      "rms": 0.2882
+    },
+    "test_mod_aatrox_dash_cast": {
+      "clips": [
+        {
+          "media_id": "243486348",
+          "clip": "test_mod_aatrox_dash_voice_clip",
+          "volume": 0.82,
+          "delay": 0.0,
+          "duration": 0.93,
+          "sample_rate": 44100,
+          "channels": 1,
+          "peak": 1.0,
+          "rms": 0.2828
+        },
+        {
+          "media_id": "19360160",
+          "clip": "test_mod_aatrox_dash_effect_clip",
+          "volume": 0.82,
+          "delay": 0.12,
+          "duration": 0.779,
+          "sample_rate": 44100,
+          "channels": 1,
+          "peak": 1.0,
+          "rms": 0.2665
+        }
+      ]
+    },
+    "test_mod_aatrox_ult_cast": {
+      "media_id": "544373583",
+      "clip": "test_mod_aatrox_ult_cast_clip",
+      "volume": 0.88,
+      "delay": 0.0,
+      "duration": 3.751,
+      "sample_rate": 44100,
+      "channels": 2,
+      "peak": 1.0,
+      "rms": 0.3121
+    }
+  }
+}

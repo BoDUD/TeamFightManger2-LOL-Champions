@@ -1,0 +1,118 @@
+{
+  "source": "League of Legends Game/DATA/FINAL/Champions/Yasuo.wad.client",
+  "bank": "assets/sounds/wwise2016/sfx/characters/yasuo/skins/base/yasuo_base_sfx_audio.bnk",
+  "events_bank": "assets/sounds/wwise2016/sfx/characters/yasuo/skins/base/yasuo_base_sfx_events.bnk",
+  "extracted_with": "lol-wad-parser + wwiser bnkextr + vgmstream-cli",
+  "events": {
+    "test_mod_yasuo_attack_cast": {
+      "media_id": "846111995",
+      "clip": "test_mod_yasuo_attack_cast_clip",
+      "volume": 0.82,
+      "duration": 0.795,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 1.0,
+      "rms": 0.1933
+    },
+    "test_mod_yasuo_attack_hit": {
+      "media_id": "316775153",
+      "clip": "test_mod_yasuo_attack_hit_clip",
+      "volume": 0.8,
+      "duration": 0.957,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 1.0,
+      "rms": 0.1854
+    },
+    "test_mod_yasuo_q_cast": {
+      "media_id": "406877763",
+      "clip": "test_mod_yasuo_q_cast_clip",
+      "volume": 0.88,
+      "duration": 1.222,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 1.0,
+      "rms": 0.189
+    },
+    "test_mod_yasuo_q_hit": {
+      "media_id": "274810394",
+      "clip": "test_mod_yasuo_q_hit_clip",
+      "volume": 0.84,
+      "duration": 1.246,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 1.0,
+      "rms": 0.1781
+    },
+    "test_mod_yasuo_q_tornado_cast": {
+      "media_id": "153026395",
+      "clip": "test_mod_yasuo_q_tornado_cast_clip",
+      "volume": 0.88,
+      "duration": 2.433,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 1.0,
+      "rms": 0.2517
+    },
+    "test_mod_yasuo_q_tornado_hit": {
+      "media_id": "270102972",
+      "clip": "test_mod_yasuo_q_tornado_hit_clip",
+      "volume": 0.84,
+      "duration": 2.848,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 1.0,
+      "rms": 0.2244
+    },
+    "test_mod_yasuo_dash_cast": {
+      "media_id": "136033610",
+      "clip": "test_mod_yasuo_dash_cast_clip",
+      "volume": 0.86,
+      "duration": 1.389,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 1.0,
+      "rms": 0.1785
+    },
+    "test_mod_yasuo_dash_hit": {
+      "media_id": "620318014",
+      "clip": "test_mod_yasuo_dash_hit_clip",
+      "volume": 0.82,
+      "duration": 1.915,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 1.0,
+      "rms": 0.1759
+    },
+    "test_mod_yasuo_wind_wall_cast": {
+      "media_id": "663920909",
+      "clip": "test_mod_yasuo_wind_wall_cast_clip",
+      "volume": 0.86,
+      "duration": 3.301,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 1.0,
+      "rms": 0.2175
+    },
+    "test_mod_yasuo_r_cast": {
+      "media_id": "122167141",
+      "clip": "test_mod_yasuo_r_cast_clip",
+      "volume": 0.88,
+      "duration": 3.098,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 1.0,
+      "rms": 0.1967
+    },
+    "test_mod_yasuo_r_hit": {
+      "media_id": "706858599",
+      "clip": "test_mod_yasuo_r_hit_clip",
+      "volume": 0.84,
+      "duration": 3.076,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 1.0,
+      "rms": 0.1855
+    }
+  }
+}

@@ -21,6 +21,7 @@ EXPECTED_CHAMPIONS = {
     "vayne",
     "veigar",
     "viktor",
+    "yasuo",
 }
 REQUIRED_DESCRIPTION_KEYS = ("name", "attack", "skill", "skill2", "ult")
 PROCESS_IMAGE_ROOTS = ("source", "qa")
@@ -150,9 +151,100 @@ KAYN_SKILL_SOUND_EVENTS = {
     "test_mod_kayn_r_cast",
     "test_mod_kayn_r_hit",
 }
-KAYN_SKILL_SOUND_VOLUME_FLOOR = 0.72
+KAYN_SKILL_SOUND_VOLUME_FLOOR = 0.78
 KAYN_CORE_ACTIONS = ("idle", "run", "attack", "skill", "skill2", "hit", "dead", "ult")
 KAYN_FRAME_SIZE = (57.0, 54.0)
+YASUO_IDS = ("bo_league_champions_yasuo", "test_mod_yasuo")
+YASUO_FRAME_SIZE = (57.0, 54.0)
+YASUO_CORE_ACTIONS = ("idle", "run", "attack", "skill", "skill2", "hit", "dead", "ult")
+YASUO_EFFECT_REFS = {
+    "test_mod_yasuo_q_stab": (
+        "asset/bo_league_champions/aseprite_resources/effects/yasuo_q_stab",
+        "stab",
+    ),
+    "test_mod_yasuo_q_tornado": (
+        "asset/bo_league_champions/aseprite_resources/effects/yasuo_q_tornado",
+        "tornado",
+    ),
+    "test_mod_yasuo_sweeping_blade": (
+        "asset/bo_league_champions/aseprite_resources/effects/yasuo_sweeping_blade",
+        "dash",
+    ),
+    "test_mod_yasuo_wind_wall_barrier": (
+        "asset/bo_league_champions/aseprite_resources/effects/yasuo_wind_wall",
+        "wall",
+    ),
+}
+YASUO_VIEW_EFFECT_REFS = {
+    "test_mod_yasuo_attack_slash_vfx": (
+        "asset/bo_league_champions/aseprite_resources/effects/yasuo_attack_slash",
+        "slash",
+    ),
+    "test_mod_yasuo_q_stab_cast_vfx": (
+        "asset/bo_league_champions/aseprite_resources/effects/yasuo_q_stab",
+        "stab",
+    ),
+    "test_mod_yasuo_q_tornado_cast_vfx": (
+        "asset/bo_league_champions/aseprite_resources/effects/yasuo_q_tornado",
+        "tornado",
+    ),
+    "test_mod_yasuo_sweeping_blade_cast_vfx": (
+        "asset/bo_league_champions/aseprite_resources/effects/yasuo_sweeping_blade",
+        "dash",
+    ),
+    "test_mod_yasuo_wind_wall_vfx": (
+        "asset/bo_league_champions/aseprite_resources/effects/yasuo_wind_wall",
+        "wall",
+    ),
+    "test_mod_yasuo_last_breath_burst": (
+        "asset/bo_league_champions/aseprite_resources/effects/yasuo_last_breath",
+        "burst",
+    ),
+}
+YASUO_BUFF_REFS = {
+    "test_mod_yasuo_flow_shield_visual": (
+        "asset/bo_league_champions/aseprite_resources/effects/yasuo_flow_shield",
+        "loop",
+    ),
+    "test_mod_yasuo_after_breath": (
+        "asset/bo_league_champions/aseprite_resources/effects/yasuo_after_breath_aura",
+        "loop",
+    ),
+}
+YASUO_SOUND_MEDIA_IDS = {
+    "test_mod_yasuo_attack_cast": "846111995",
+    "test_mod_yasuo_attack_hit": "316775153",
+    "test_mod_yasuo_q_cast": "406877763",
+    "test_mod_yasuo_q_hit": "274810394",
+    "test_mod_yasuo_q_tornado_cast": "153026395",
+    "test_mod_yasuo_q_tornado_hit": "270102972",
+    "test_mod_yasuo_dash_cast": "136033610",
+    "test_mod_yasuo_dash_hit": "620318014",
+    "test_mod_yasuo_wind_wall_cast": "663920909",
+    "test_mod_yasuo_r_cast": "122167141",
+    "test_mod_yasuo_r_hit": "706858599",
+}
+YASUO_SKILL_SOUND_EVENTS = {
+    "test_mod_yasuo_q_cast",
+    "test_mod_yasuo_q_hit",
+    "test_mod_yasuo_q_tornado_cast",
+    "test_mod_yasuo_q_tornado_hit",
+    "test_mod_yasuo_dash_cast",
+    "test_mod_yasuo_dash_hit",
+    "test_mod_yasuo_wind_wall_cast",
+    "test_mod_yasuo_r_cast",
+    "test_mod_yasuo_r_hit",
+}
+YASUO_SKILL_SOUND_VOLUME_FLOOR = 0.80
+AATROX_SOUND_MEDIA_IDS = {
+    "test_mod_aatrox_attack_cast": ("29529616",),
+    "test_mod_aatrox_attack_hit": ("780778749",),
+    "test_mod_aatrox_cleave_cast": ("500087760",),
+    "test_mod_aatrox_cleave_hit": ("711456995",),
+    "test_mod_aatrox_dash_cast": ("243486348", "19360160"),
+    "test_mod_aatrox_ult_cast": ("544373583",),
+}
+AATROX_SKILL_SOUND_VOLUME_FLOOR = 0.80
 
 
 def fail(message: str) -> None:
@@ -294,6 +386,25 @@ def require_no_green_residue(path: Path) -> None:
         fail(f"{path.relative_to(ROOT)} still contains {offenders} green-screen residue pixels")
 
 
+def count_aatrox_green_spill(path: Path) -> int:
+    width, height, rgba = load_rgba(path)
+    offenders = 0
+    for i in range(width * height):
+        r = rgba[i * 4]
+        g = rgba[i * 4 + 1]
+        b = rgba[i * 4 + 2]
+        a = rgba[i * 4 + 3]
+        if a and g > 45 and g > b * 1.25 and g > r * 0.65:
+            offenders += 1
+    return offenders
+
+
+def require_no_aatrox_green_spill(path: Path) -> None:
+    offenders = count_aatrox_green_spill(path)
+    if offenders:
+        fail(f"{path.relative_to(ROOT)} has {offenders} green/cyan spill pixels in Aatrox red-black VFX")
+
+
 def local_asset_path(asset: str) -> Path:
     prefix = f"asset/{MOD_ID}/"
     if not asset.startswith(prefix):
@@ -336,6 +447,84 @@ def require_wave_asset(event_name: str) -> dict[str, Any]:
     if len(payload) < 1000 or not payload.startswith(b"RIFF") or payload[8:12] != b"WAVE":
         fail(f"{clip.relative_to(ROOT)} must be a decoded official wav clip")
     return info
+
+
+def require_sound_info_assets(event_name: str) -> dict[str, Any]:
+    sound_info = ROOT / "sound" / "sfx" / f"{event_name}.sound_info"
+    require_file(sound_info)
+    info = load_json(sound_info)
+    if not isinstance(info, dict):
+        fail(f"{sound_info.relative_to(ROOT)} must contain a JSON object")
+    plays = info.get("plays")
+    if not isinstance(plays, list) or not plays:
+        fail(f"{sound_info.relative_to(ROOT)} must contain at least one play")
+    for index, play in enumerate(plays):
+        if not isinstance(play, dict):
+            fail(f"{sound_info.relative_to(ROOT)} plays[{index}] must be an object")
+        clip_name = play.get("clip")
+        if not isinstance(clip_name, str) or not clip_name:
+            fail(f"{sound_info.relative_to(ROOT)} plays[{index}] must name a clip")
+        clip = ROOT / "sound" / "sfx" / f"{clip_name}.wav"
+        require_file(clip)
+        payload = clip.read_bytes()
+        if len(payload) < 1000 or not payload.startswith(b"RIFF") or payload[8:12] != b"WAVE":
+            fail(f"{clip.relative_to(ROOT)} must be a decoded official wav clip")
+        volume = play.get("volume")
+        if not isinstance(volume, (int, float)) or volume <= 0:
+            fail(f"{sound_info.relative_to(ROOT)} plays[{index}] must set a positive volume")
+    return info
+
+
+def assert_official_audio_sources(
+    champion_name: str,
+    source_file: str,
+    bank_file: str,
+    event_media_ids: dict[str, str] | dict[str, tuple[str, ...]],
+    skill_events: set[str],
+    volume_floor: float,
+) -> None:
+    official = load_json(ROOT / "qa" / f"{champion_name}_official_audio_sources.json")
+    if not isinstance(official, dict):
+        fail(f"qa/{champion_name}_official_audio_sources.json must contain a JSON object")
+    if source_file not in str(official.get("source", "")):
+        fail(f"{champion_name} audio source must document official {source_file}")
+    if bank_file not in str(official.get("bank", "")):
+        fail(f"{champion_name} audio source must document official {bank_file}")
+    events = official.get("events")
+    if not isinstance(events, dict):
+        fail(f"qa/{champion_name}_official_audio_sources.json missing events object")
+    overrides = load_json(ROOT / "mod.override_info")
+    for event_name, expected_media in event_media_ids.items():
+        row = events.get(event_name)
+        if not isinstance(row, dict):
+            fail(f"official {champion_name} audio event {event_name} is missing")
+        sound_info = require_sound_info_assets(event_name)
+        plays = sound_info.get("plays")
+        assert isinstance(plays, list)
+        expected_ids = expected_media if isinstance(expected_media, tuple) else (expected_media,)
+        if len(expected_ids) == 1:
+            if str(row.get("media_id")) != expected_ids[0]:
+                fail(f"official {champion_name} audio event {event_name} must document media_id {expected_ids[0]}")
+        else:
+            clips = row.get("clips")
+            if not isinstance(clips, list):
+                fail(f"official {champion_name} audio event {event_name} must document clip media IDs")
+            got_ids = tuple(str(item.get("media_id")) for item in clips if isinstance(item, dict))
+            if got_ids != expected_ids:
+                fail(f"official {champion_name} audio event {event_name} media IDs must be {expected_ids}, got {got_ids}")
+        for suffix in ("", "_clip"):
+            key = f"asset/base/sound/sfx/{event_name}{suffix}"
+            if suffix == "_clip" and not (ROOT / "sound" / "sfx" / f"{event_name}_clip.wav").is_file():
+                continue
+            expected_remap = f"asset/bo_league_champions/sound/sfx/{event_name}{suffix}"
+            override = overrides.get(key)
+            if not isinstance(override, dict) or override.get("remapping") != expected_remap or override.get("type") != "override":
+                fail(f"mod.override_info must override {key} to {expected_remap}")
+        if event_name in skill_events:
+            for index, play in enumerate(plays):
+                volume = play.get("volume") if isinstance(play, dict) else None
+                if not isinstance(volume, (int, float)) or volume < volume_floor:
+                    fail(f"{event_name}.sound_info plays[{index}] volume must be at least {volume_floor}")
 
 
 def walk_strings(node: Any) -> list[str]:
@@ -489,6 +678,8 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
     ):
         require_file(path)
         require_no_green_residue(path)
+        if path.parent.name == "effects":
+            require_no_aatrox_green_spill(path)
 
     fanim = load_json(ROOT / "aseprite_resources" / "champions" / "aatrox#anim.fanim")
     sheet_width, sheet_height, sheet_alpha = load_rgba_alpha(
@@ -709,6 +900,27 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
         if not isinstance(data, dict) or data.get("w") != 64.0 or data.get("h") != 64.0:
             fail(f"Aatrox World Ender aura frame {index} must stay within 64x64")
 
+    assert_official_audio_sources(
+        "aatrox",
+        "Aatrox.wad.client",
+        "aatrox_base_sfx_audio.bnk",
+        AATROX_SOUND_MEDIA_IDS,
+        {
+            "test_mod_aatrox_cleave_cast",
+            "test_mod_aatrox_cleave_hit",
+            "test_mod_aatrox_dash_cast",
+            "test_mod_aatrox_ult_cast",
+        },
+        AATROX_SKILL_SOUND_VOLUME_FLOOR,
+    )
+    overrides = load_json(ROOT / "mod.override_info")
+    for clip_name in ("test_mod_aatrox_dash_voice_clip", "test_mod_aatrox_dash_effect_clip"):
+        key = f"asset/base/sound/sfx/{clip_name}"
+        expected_remap = f"asset/bo_league_champions/sound/sfx/{clip_name}"
+        override = overrides.get(key)
+        if not isinstance(override, dict) or override.get("remapping") != expected_remap or override.get("type") != "override":
+            fail(f"mod.override_info must override {key} to {expected_remap}")
+
 
 def check_kayn_rework_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
     expected_names = {
@@ -916,6 +1128,192 @@ def check_kayn_rework_contract(text: dict[str, Any], entries: dict[str, Any]) ->
                 fail(f"mod.override_info must override {key} to {expected_remap}")
 
 
+def check_yasuo_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
+    expected_names = {
+        "en": ("Yasuo", "Unforgiven"),
+        "zh-hans": ("\u4e9a\u7d22", "Yasuo", "\u75be\u98ce\u5251\u8c6a"),
+        "zh-hant": ("\u72bd\u5bbf", "Yasuo"),
+    }
+    expected_terms = {
+        "en": ("Steel Tempest", "Sweeping Blade", "Wind Wall", "Last Breath"),
+        "zh-hans": ("\u65a9\u94a2\u95ea", "\u8e0f\u524d\u65a9", "\u98ce\u4e4b\u969c\u58c1", "\u72c2\u98ce\u7edd\u606f\u65a9"),
+        "zh-hant": ("\u65ac\u92fc\u9583", "\u98a8\u7246", "\u596a\u547d\u6c23\u606f"),
+    }
+    for locale, expected_name_terms in expected_names.items():
+        descriptions = text.get(locale, {}).get("description")
+        if not isinstance(descriptions, dict):
+            fail(f"text/champion.i18n locale {locale} missing description object")
+        for yasuo_id in YASUO_IDS:
+            row = descriptions.get(yasuo_id)
+            if not isinstance(row, dict):
+                fail(f"text/champion.i18n locale {locale} missing {yasuo_id}")
+            name = str(row.get("name", ""))
+            for expected_name_term in expected_name_terms:
+                if expected_name_term not in name:
+                    fail(f"text/champion.i18n locale {locale} {yasuo_id}.name must include {expected_name_term!r}")
+            for key in REQUIRED_DESCRIPTION_KEYS:
+                value = str(row.get(key, ""))
+                if "??" in value or "繝ｻ・ｽ" in value:
+                    fail(f"text/champion.i18n locale {locale} {yasuo_id}.{key} still contains corrupted text")
+            for term in expected_terms.get(locale, ()):
+                if not any(term in str(row.get(key, "")) for key in ("attack", "skill", "skill2", "ult")):
+                    fail(f"text/champion.i18n locale {locale} {yasuo_id} missing term {term!r}")
+
+    for yasuo_id in YASUO_IDS:
+        view = entries.get(yasuo_id)
+        if not isinstance(view, dict):
+            fail(f"style/champion_view.champion_view missing entries.{yasuo_id}")
+        if view.get("face", {}).get("y") != -34:
+            fail(f"style entry {yasuo_id}.face.y must keep Yasuo compact portrait aligned at -34")
+        if view.get("center", {}).get("y") != -12:
+            fail(f"style entry {yasuo_id}.center.y must place the full model above the name")
+
+    for path in (
+        ROOT / "aseprite_resources" / "champions" / "yasuo#sheet.png",
+        ROOT / "icons" / "yasuo_skill.png",
+        ROOT / "icons" / "yasuo_skill2.png",
+        ROOT / "icons" / "yasuo_ult.png",
+    ):
+        require_file(path)
+        require_no_green_residue(path)
+    for effect_name in (
+        "yasuo_attack_slash",
+        "yasuo_q_stab",
+        "yasuo_q_tornado",
+        "yasuo_sweeping_blade",
+        "yasuo_wind_wall",
+        "yasuo_last_breath",
+        "yasuo_flow_shield",
+        "yasuo_after_breath_aura",
+    ):
+        sheet = ROOT / "aseprite_resources" / "effects" / f"{effect_name}#sheet.png"
+        fanim = ROOT / "aseprite_resources" / "effects" / f"{effect_name}#anim.fanim"
+        require_file(sheet)
+        require_file(fanim)
+        require_no_green_residue(sheet)
+        width, height, rgba = load_rgba(sheet)
+        wind_pixels = 0
+        off_palette_pixels = 0
+        for i in range(width * height):
+            r = rgba[i * 4]
+            g = rgba[i * 4 + 1]
+            b = rgba[i * 4 + 2]
+            a = rgba[i * 4 + 3]
+            if not a:
+                continue
+            wind_pixels += 1
+            if not (b >= r + 12 and g >= r - 8 and (b >= 90 or g >= 90)):
+                off_palette_pixels += 1
+        if wind_pixels < 20:
+            fail(f"{sheet.relative_to(ROOT)} must contain a visible generated wind/sword effect")
+        if off_palette_pixels > max(25, wind_pixels // 8):
+            fail(f"{sheet.relative_to(ROOT)} contains actor/body-colored pixels; effects must not include a duplicate champion body")
+
+    fanim = load_json(ROOT / "aseprite_resources" / "champions" / "yasuo#anim.fanim")
+    sheet_width, sheet_height, sheet_alpha = load_rgba_alpha(
+        ROOT / "aseprite_resources" / "champions" / "yasuo#sheet.png"
+    )
+    expected_counts = {
+        "idle": 6,
+        "run": 10,
+        "attack": 6,
+        "skill": 6,
+        "skill2": 7,
+        "ult": 6,
+        "hit": 1,
+        "dead": 1,
+    }
+    action_hashes: dict[str, list[str]] = {}
+    for action in YASUO_CORE_ACTIONS:
+        frames = fanim.get("anims", {}).get(action, {}).get("frames")
+        if not isinstance(frames, list) or len(frames) != expected_counts[action]:
+            fail(f"Yasuo {action} animation must have {expected_counts[action]} frames")
+        action_hashes[action] = []
+        for index, frame in enumerate(frames):
+            data = frame.get("data") if isinstance(frame, dict) else None
+            if not isinstance(data, dict):
+                fail(f"Yasuo {action} frame {index} missing frame data")
+            if (data.get("w"), data.get("h")) != YASUO_FRAME_SIZE:
+                fail(f"Yasuo {action} frame {index} must use the 57x54 actor frame")
+            x = int(round(float(data.get("x", -1))))
+            y = int(round(float(data.get("y", -1))))
+            w = int(round(float(data.get("w", 0))))
+            h = int(round(float(data.get("h", 0))))
+            if x < 0 or y < 0 or x + w > sheet_width or y + h > sheet_height:
+                fail(f"Yasuo {action} frame {index} points outside yasuo#sheet.png")
+            bbox = alpha_bbox_in_rect(sheet_alpha, sheet_width, (x, y, w, h))
+            if bbox is None:
+                fail(f"Yasuo {action} frame {index} is blank")
+            body_height = bbox[3] - bbox[1]
+            bottom_safe = h - bbox[3]
+            if body_height > 45:
+                fail(f"Yasuo {action} frame {index} body height {body_height}px is too large for UI/battle labels")
+            if bottom_safe < 6:
+                fail(f"Yasuo {action} frame {index} leaves only {bottom_safe}px bottom safety above labels")
+            if action == "run" and frame.get("duration") != 0.065:
+                fail(f"Yasuo run frame {index} must keep stable 0.065s timing")
+            action_hashes[action].append(alpha_frame_hash(sheet_alpha, sheet_width, (x, y, w, h)))
+        if action in {"attack", "skill", "skill2", "ult"} and len(set(action_hashes[action])) < min(4, len(action_hashes[action])):
+            fail(f"Yasuo {action} must have real action motion, not repeated idle frames")
+    if tuple(action_hashes["attack"][: len(action_hashes["idle"])]) == tuple(action_hashes["idle"]):
+        fail("Yasuo attack must not be a direct copy of idle")
+
+    yasuo = load_json(ROOT / "champion" / "yasuo.data_champion")
+    strings = set(walk_strings(yasuo))
+    for required in (
+        "test_mod_yasuo_q_stack_1",
+        "test_mod_yasuo_q_stack_2",
+        "test_mod_yasuo_last_breath_ready",
+        "test_mod_yasuo_flow_shield_visual",
+        "RushTime",
+        "BlockMoveSkill",
+        "Knockback",
+        "LinearProjectile",
+        "RushMoveToBack",
+        "Airborne",
+    ):
+        if required not in strings:
+            fail(f"champion/yasuo.data_champion must include LoL Yasuo mechanic token {required}")
+    skill_effect = yasuo.get("skill", {}).get("effect")
+    if not isinstance(skill_effect, dict) or skill_effect.get("type") != "SwitchByBuff":
+        fail("Yasuo Q must use staged SwitchByBuff recasts")
+    if skill_effect.get("buff_name") != "test_mod_yasuo_q_stack_2":
+        fail("Yasuo Q top-level stage must branch on test_mod_yasuo_q_stack_2")
+    q1_q2_switch = skill_effect.get("effect_none")
+    if not isinstance(q1_q2_switch, dict) or q1_q2_switch.get("buff_name") != "test_mod_yasuo_q_stack_1":
+        fail("Yasuo Q must branch Q1/Q2 through test_mod_yasuo_q_stack_1")
+
+    projectile_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in yasuo.get("view_projectiles", [])}
+    for name, expected in YASUO_EFFECT_REFS.items():
+        if projectile_refs.get(name) != expected:
+            fail(f"champion/yasuo.data_champion projectile {name} must reference {expected}")
+    view_effect_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in yasuo.get("view_effects", [])}
+    for name, expected in YASUO_VIEW_EFFECT_REFS.items():
+        if view_effect_refs.get(name) != expected:
+            fail(f"champion/yasuo.data_champion view_effect {name} must reference {expected}")
+    buff_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in yasuo.get("view_buffs", [])}
+    for name, expected in YASUO_BUFF_REFS.items():
+        if buff_refs.get(name) != expected:
+            fail(f"champion/yasuo.data_champion buff {name} must reference {expected}")
+
+    for action, sfx_name in (
+        ("skill", "test_mod_yasuo_q_cast"),
+        ("skill2", "test_mod_yasuo_dash_cast"),
+        ("ult", "test_mod_yasuo_r_cast"),
+    ):
+        if sfx_name not in set(walk_strings(yasuo.get(action, {}))):
+            fail(f"Yasuo {action} must trigger {sfx_name}")
+
+    assert_official_audio_sources(
+        "yasuo",
+        "Yasuo.wad.client",
+        "yasuo_base_sfx_audio.bnk",
+        YASUO_SOUND_MEDIA_IDS,
+        YASUO_SKILL_SOUND_EVENTS,
+        YASUO_SKILL_SOUND_VOLUME_FLOOR,
+    )
+
+
 def check_champion_visibility() -> None:
     text = load_json(ROOT / "text" / "champion.i18n")
     style = load_json(ROOT / "style" / "champion_view.champion_view")
@@ -993,8 +1391,11 @@ def check_champion_visibility() -> None:
         fail("Aatrox encyclopedia chain is missing bo_league_champions_aatrox")
     if f"{MOD_ID}_kayn" not in ids:
         fail("Kayn encyclopedia chain is missing bo_league_champions_kayn")
+    if f"{MOD_ID}_yasuo" not in ids:
+        fail("Yasuo encyclopedia chain is missing bo_league_champions_yasuo")
     check_aatrox_rework_contract(text, entries)
     check_kayn_rework_contract(text, entries)
+    check_yasuo_contract(text, entries)
 
 
 def main() -> int:

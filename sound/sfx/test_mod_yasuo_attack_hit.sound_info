@@ -1,0 +1,9 @@
+{
+  "plays": [
+    {
+      "delay": 0.0,
+      "clip": "test_mod_yasuo_attack_hit_clip",
+      "volume": 0.8
+    }
+  ]
+}
