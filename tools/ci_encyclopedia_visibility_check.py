@@ -536,12 +536,12 @@ def assert_jinx_fishbones_held_overlay() -> None:
             fail(f"Jinx Fishbones held overlay frame {frame_index} is empty")
         bw = bbox[2] - bbox[0]
         bh = bbox[3] - bbox[1]
-        if bw > 44 or bh > 32:
+        if bw > 30 or bh > 20:
             fail(
                 f"Jinx Fishbones frame {frame_index} must be a compact held weapon, "
                 f"not a rocket/smoke aura; bbox is {bw}x{bh}"
             )
-        if bbox[0] < 16 or bbox[1] < 14 or bbox[3] > 50:
+        if bbox[0] < 28 or bbox[1] < 18 or bbox[3] > 44:
             fail(
                 f"Jinx Fishbones frame {frame_index} must stay near the hand/shoulder weapon area; "
                 f"bbox is {bbox}"
@@ -560,13 +560,84 @@ def assert_jinx_fishbones_held_overlay() -> None:
                 visible += 1
                 if r > 180 and g > 70 and b < 80:
                     flame_pixels += 1
-        if visible < 120:
+        if visible < 100:
             fail(f"Jinx Fishbones held overlay frame {frame_index} is too sparse to read as a weapon")
         if flame_pixels:
             fail(
                 f"Jinx Fishbones held overlay frame {frame_index} still contains muzzle flame; "
                 "fire and smoke belong in projectile/hit effects, not the actor buff"
             )
+
+
+def effect_frame_bboxes(path: Path, frame_w: int, frame_h: int) -> list[tuple[int, int, int, int]]:
+    width, height, alpha = load_rgba_alpha(path)
+    if height != frame_h or width % frame_w:
+        fail(f"{path.relative_to(ROOT)} must use {frame_w}x{frame_h} effect frames")
+    bboxes: list[tuple[int, int, int, int]] = []
+    for frame_index in range(width // frame_w):
+        bbox = alpha_bbox_in_rect(alpha, width, (frame_index * frame_w, 0, frame_w, frame_h))
+        if bbox is None:
+            fail(f"{path.relative_to(ROOT)} frame {frame_index} is empty")
+        bboxes.append(bbox)
+    return bboxes
+
+
+def assert_aatrox_darkin_blade_vfx_identity() -> None:
+    q1 = effect_frame_bboxes(ROOT / "aseprite_resources" / "effects" / "aatrox_q1_cleave#sheet.png", 192, 96)
+    q2 = effect_frame_bboxes(ROOT / "aseprite_resources" / "effects" / "aatrox_q2_cleave#sheet.png", 192, 96)
+    q3 = effect_frame_bboxes(ROOT / "aseprite_resources" / "effects" / "aatrox_q3_cleave#sheet.png", 192, 96)
+    q1_widths = [bbox[2] - bbox[0] for bbox in q1[:5]]
+    q1_heights = [bbox[3] - bbox[1] for bbox in q1[:5]]
+    q2_widths = [bbox[2] - bbox[0] for bbox in q2[:5]]
+    q3_heights = [bbox[3] - bbox[1] for bbox in q3[:4]]
+    if max(q1_widths) > 135:
+        fail(f"Aatrox Q1 VFX must read as a compact ground cleave, not a long spear projectile; widths={q1_widths}")
+    if min(q1_heights[:3]) < 55:
+        fail(f"Aatrox Q1 VFX must keep a visible vertical sword-impact core; heights={q1_heights}")
+    if max(q2_widths) < 165:
+        fail(f"Aatrox Q2 VFX must remain the wider side sweep; widths={q2_widths}")
+    if max(q2_widths) - max(q1_widths) < 30:
+        fail("Aatrox Q1 and Q2 VFX must have visibly different hit-shape width")
+    if max(q3_heights) < 90:
+        fail(f"Aatrox Q3 VFX must read as a vertical slam/impact burst; heights={q3_heights}")
+
+
+def assert_kayn_skill_vfx_no_actor_body() -> None:
+    for name, frame_w, frame_h in (
+        ("kayn_r_entry", 192, 96),
+        ("kayn_r_exit", 192, 96),
+        ("kayn_darkin_aura", 64, 64),
+    ):
+        path = ROOT / "aseprite_resources" / "effects" / f"{name}#sheet.png"
+        width, height, rgba = load_rgba(path)
+        if height != frame_h or width % frame_w:
+            fail(f"{path.relative_to(ROOT)} must use {frame_w}x{frame_h} frames")
+        for frame_index in range(width // frame_w):
+            bodylike_pixels = 0
+            for y in range(frame_h):
+                for x in range(frame_w):
+                    pixel_index = ((y * width) + frame_index * frame_w + x) * 4
+                    r = rgba[pixel_index]
+                    g = rgba[pixel_index + 1]
+                    b = rgba[pixel_index + 2]
+                    a = rgba[pixel_index + 3]
+                    if not a:
+                        continue
+                    purple = b > 115 and r > 65 and g < 110
+                    red = r > 130 and g < 95 and b < 155
+                    blue = b > 130 and g > 70 and r < 125
+                    neutral_or_white = max(r, g, b) < 130 or (r > 145 and g > 140 and b > 130)
+                    if frame_w == 64:
+                        in_body_zone = 18 <= x <= 46 and 4 <= y <= 62
+                    else:
+                        in_body_zone = 58 <= x <= 134 and 4 <= y <= 92
+                    if in_body_zone and neutral_or_white and not (purple or red or blue):
+                        bodylike_pixels += 1
+            if bodylike_pixels:
+                fail(
+                    f"{path.relative_to(ROOT)} frame {frame_index} contains {bodylike_pixels} "
+                    "neutral actor-body pixels; Kayn skill VFX must be aura/slash only"
+                )
 
 
 def require_aseprite_asset(asset: str) -> None:
@@ -897,6 +968,7 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
         require_no_green_residue(path)
         if path.parent.name == "effects":
             require_no_aatrox_green_spill(path)
+    assert_aatrox_darkin_blade_vfx_identity()
 
     fanim = load_json(ROOT / "aseprite_resources" / "champions" / "aatrox#anim.fanim")
     sheet_width, sheet_height, sheet_alpha = load_rgba_alpha(
@@ -1201,6 +1273,7 @@ def check_kayn_rework_contract(text: dict[str, Any], entries: dict[str, Any]) ->
     ):
         require_file(path)
         require_no_green_residue(path)
+    assert_kayn_skill_vfx_no_actor_body()
 
     fanim = load_json(ROOT / "aseprite_resources" / "champions" / "kayn#anim.fanim")
     sheet_width, sheet_height, sheet_alpha = load_rgba_alpha(
