@@ -4,7 +4,7 @@
       "bo_league_champions_aatrox": {
         "name": "아트록스",
         "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Q - The Darkin Blade: Aatrox strikes forward three times: a narrow thrust, a wide cleave, then a heavy smash. Each hit deals <#ff9028ff>physical damage<>; the final strike hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill": "Q - The Darkin Blade: each cast releases one strike of Aatrox's three-part blade combo. Q1 is a narrow thrust, Q2 is a wide cleave, and Q3 is a heavy smash that hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>. Casting Q again advances to the next strike instead of firing all three at once.",
         "skill2": "W - Infernal Chains: Aatrox fires a demonic chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps back, dealing damage again and briefly locking enemies caught in the path.",
         "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
@@ -67,7 +67,7 @@
       "test_mod_aatrox": {
         "name": "아트록스",
         "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Q - The Darkin Blade: Aatrox strikes forward three times: a narrow thrust, a wide cleave, then a heavy smash. Each hit deals <#ff9028ff>physical damage<>; the final strike hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill": "Q - The Darkin Blade: each cast releases one strike of Aatrox's three-part blade combo. Q1 is a narrow thrust, Q2 is a wide cleave, and Q3 is a heavy smash that hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>. Casting Q again advances to the next strike instead of firing all three at once.",
         "skill2": "W - Infernal Chains: Aatrox fires a demonic chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps back, dealing damage again and briefly locking enemies caught in the path.",
         "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
@@ -128,18 +128,18 @@
         "ult": "정조준 일격: 적 방향으로 사거리 제한 없는 공격을 발사해, 적중한 적에게 <#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>공격력의 110%<>만큼 <#ff9028ff>물리 피해<>를 주고, 추가로 <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력의 70%<>만큼 <#a974ffff>마법 피해<>를 줍니다."
       },
       "bo_league_champions_kayn": {
-        "name": "Kayn",
-        "attack": "Darkin Scythe: Kayn strikes with his scythe for physical damage. Darkin Ascension empowers the hit and heals Kayn.",
-        "skill": "Q - Reaping Slash: Kayn dashes forward and slashes enemies in front of him. Darkin Ascension empowers the slash.",
-        "skill2": "W - Blade's Reach: Kayn cuts a long line with his scythe, slowing enemies. Darkin Ascension widens it and briefly knocks enemies airborne.",
-        "ult": "R - Umbral Trespass: Kayn enters an enemy champion, becomes briefly untargetable, bursts out for physical damage, and gains Darkin Ascension."
+        "name": "Kayn (Shadow Reaper)",
+        "attack": "Shadow Reaper - Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
+        "skill": "Q - Reaping Slash: Kayn dashes a short distance and slashes in front of him, dealing <#ff9028ff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>85% attack damage<> physical damage. Darkin Ascension empowers the slash.",
+        "skill2": "W - Blade's Reach: Kayn carves a long line with his scythe, dealing <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> physical damage and <#ffb900ff>slowing enemies for 1.0s<>. In Darkin Ascension it is wider and briefly knocks enemies airborne.",
+        "ult": "R - Umbral Trespass: Kayn enters an enemy champion, becoming untargetable for a short moment, then bursts out to deal <#ff9028ff>180<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>160% attack damage<> physical damage and gains Darkin Ascension for <#ffb900ff>10.0s<>."
       },
       "test_mod_kayn": {
-        "name": "Kayn",
-        "attack": "Darkin Scythe: Kayn strikes with his scythe for physical damage. Darkin Ascension empowers the hit and heals Kayn.",
-        "skill": "Q - Reaping Slash: Kayn dashes forward and slashes enemies in front of him. Darkin Ascension empowers the slash.",
-        "skill2": "W - Blade's Reach: Kayn cuts a long line with his scythe, slowing enemies. Darkin Ascension widens it and briefly knocks enemies airborne.",
-        "ult": "R - Umbral Trespass: Kayn enters an enemy champion, becomes briefly untargetable, bursts out for physical damage, and gains Darkin Ascension."
+        "name": "Kayn (Shadow Reaper)",
+        "attack": "Shadow Reaper - Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
+        "skill": "Q - Reaping Slash: Kayn dashes a short distance and slashes in front of him, dealing <#ff9028ff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>85% attack damage<> physical damage. Darkin Ascension empowers the slash.",
+        "skill2": "W - Blade's Reach: Kayn carves a long line with his scythe, dealing <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> physical damage and <#ffb900ff>slowing enemies for 1.0s<>. In Darkin Ascension it is wider and briefly knocks enemies airborne.",
+        "ult": "R - Umbral Trespass: Kayn enters an enemy champion, becoming untargetable for a short moment, then bursts out to deal <#ff9028ff>180<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>160% attack damage<> physical damage and gains Darkin Ascension for <#ffb900ff>10.0s<>."
       }
     }
   },
@@ -148,7 +148,7 @@
       "bo_league_champions_aatrox": {
         "name": "Aatrox",
         "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Q - The Darkin Blade: Aatrox strikes forward three times: a narrow thrust, a wide cleave, then a heavy smash. Each hit deals <#ff9028ff>physical damage<>; the final strike hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill": "Q - The Darkin Blade: each cast releases one strike of Aatrox's three-part blade combo. Q1 is a narrow thrust, Q2 is a wide cleave, and Q3 is a heavy smash that hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>. Casting Q again advances to the next strike instead of firing all three at once.",
         "skill2": "W - Infernal Chains: Aatrox fires a demonic chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps back, dealing damage again and briefly locking enemies caught in the path.",
         "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
@@ -211,7 +211,7 @@
       "test_mod_aatrox": {
         "name": "Aatrox",
         "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Q - The Darkin Blade: Aatrox strikes forward three times: a narrow thrust, a wide cleave, then a heavy smash. Each hit deals <#ff9028ff>physical damage<>; the final strike hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill": "Q - The Darkin Blade: each cast releases one strike of Aatrox's three-part blade combo. Q1 is a narrow thrust, Q2 is a wide cleave, and Q3 is a heavy smash that hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>. Casting Q again advances to the next strike instead of firing all three at once.",
         "skill2": "W - Infernal Chains: Aatrox fires a demonic chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps back, dealing damage again and briefly locking enemies caught in the path.",
         "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
@@ -272,15 +272,15 @@
         "ult": "Trueshot Barrage: fires an unlimited-range attack toward enemies, dealing <#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as <#ff9028ff>physical damage<>, plus <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> as <#a974ffff>magic damage<> to enemies hit."
       },
       "bo_league_champions_kayn": {
-        "name": "Kayn",
-        "attack": "Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
+        "name": "Kayn (Shadow Reaper)",
+        "attack": "Shadow Reaper - Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
         "skill": "Q - Reaping Slash: Kayn dashes a short distance and slashes in front of him, dealing <#ff9028ff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>85% attack damage<> physical damage. Darkin Ascension empowers the slash.",
         "skill2": "W - Blade's Reach: Kayn carves a long line with his scythe, dealing <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> physical damage and <#ffb900ff>slowing enemies for 1.0s<>. In Darkin Ascension it is wider and briefly knocks enemies airborne.",
         "ult": "R - Umbral Trespass: Kayn enters an enemy champion, becoming untargetable for a short moment, then bursts out to deal <#ff9028ff>180<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>160% attack damage<> physical damage and gains Darkin Ascension for <#ffb900ff>10.0s<>."
       },
       "test_mod_kayn": {
-        "name": "Kayn",
-        "attack": "Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
+        "name": "Kayn (Shadow Reaper)",
+        "attack": "Shadow Reaper - Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
         "skill": "Q - Reaping Slash: Kayn dashes a short distance and slashes in front of him, dealing <#ff9028ff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>85% attack damage<> physical damage. Darkin Ascension empowers the slash.",
         "skill2": "W - Blade's Reach: Kayn carves a long line with his scythe, dealing <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> physical damage and <#ffb900ff>slowing enemies for 1.0s<>. In Darkin Ascension it is wider and briefly knocks enemies airborne.",
         "ult": "R - Umbral Trespass: Kayn enters an enemy champion, becoming untargetable for a short moment, then bursts out to deal <#ff9028ff>180<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>160% attack damage<> physical damage and gains Darkin Ascension for <#ffb900ff>10.0s<>."
@@ -292,7 +292,7 @@
       "bo_league_champions_aatrox": {
         "name": "Aatrox",
         "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Q - The Darkin Blade: Aatrox strikes forward three times: a narrow thrust, a wide cleave, then a heavy smash. Each hit deals <#ff9028ff>physical damage<>; the final strike hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill": "Q - The Darkin Blade: each cast releases one strike of Aatrox's three-part blade combo. Q1 is a narrow thrust, Q2 is a wide cleave, and Q3 is a heavy smash that hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>. Casting Q again advances to the next strike instead of firing all three at once.",
         "skill2": "W - Infernal Chains: Aatrox fires a demonic chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps back, dealing damage again and briefly locking enemies caught in the path.",
         "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
@@ -355,7 +355,7 @@
       "test_mod_aatrox": {
         "name": "Aatrox",
         "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Q - The Darkin Blade: Aatrox strikes forward three times: a narrow thrust, a wide cleave, then a heavy smash. Each hit deals <#ff9028ff>physical damage<>; the final strike hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill": "Q - The Darkin Blade: each cast releases one strike of Aatrox's three-part blade combo. Q1 is a narrow thrust, Q2 is a wide cleave, and Q3 is a heavy smash that hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>. Casting Q again advances to the next strike instead of firing all three at once.",
         "skill2": "W - Infernal Chains: Aatrox fires a demonic chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps back, dealing damage again and briefly locking enemies caught in the path.",
         "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
@@ -416,15 +416,15 @@
         "ult": "Trueshot Barrage: fires an unlimited-range attack toward enemies, dealing <#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as <#ff9028ff>physical damage<>, plus <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> as <#a974ffff>magic damage<> to enemies hit."
       },
       "bo_league_champions_kayn": {
-        "name": "Kayn",
-        "attack": "Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
+        "name": "Kayn (Shadow Reaper)",
+        "attack": "Shadow Reaper - Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
         "skill": "Q - Reaping Slash: Kayn dashes a short distance and slashes in front of him, dealing <#ff9028ff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>85% attack damage<> physical damage. Darkin Ascension empowers the slash.",
         "skill2": "W - Blade's Reach: Kayn carves a long line with his scythe, dealing <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> physical damage and <#ffb900ff>slowing enemies for 1.0s<>. In Darkin Ascension it is wider and briefly knocks enemies airborne.",
         "ult": "R - Umbral Trespass: Kayn enters an enemy champion, becoming untargetable for a short moment, then bursts out to deal <#ff9028ff>180<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>160% attack damage<> physical damage and gains Darkin Ascension for <#ffb900ff>10.0s<>."
       },
       "test_mod_kayn": {
-        "name": "Kayn",
-        "attack": "Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
+        "name": "Kayn (Shadow Reaper)",
+        "attack": "Shadow Reaper - Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
         "skill": "Q - Reaping Slash: Kayn dashes a short distance and slashes in front of him, dealing <#ff9028ff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>85% attack damage<> physical damage. Darkin Ascension empowers the slash.",
         "skill2": "W - Blade's Reach: Kayn carves a long line with his scythe, dealing <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> physical damage and <#ffb900ff>slowing enemies for 1.0s<>. In Darkin Ascension it is wider and briefly knocks enemies airborne.",
         "ult": "R - Umbral Trespass: Kayn enters an enemy champion, becoming untargetable for a short moment, then bursts out to deal <#ff9028ff>180<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>160% attack damage<> physical damage and gains Darkin Ascension for <#ffb900ff>10.0s<>."
@@ -436,7 +436,7 @@
       "bo_league_champions_aatrox": {
         "name": "Aatrox",
         "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Q - The Darkin Blade: Aatrox strikes forward three times: a narrow thrust, a wide cleave, then a heavy smash. Each hit deals <#ff9028ff>physical damage<>; the final strike hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill": "Q - The Darkin Blade: each cast releases one strike of Aatrox's three-part blade combo. Q1 is a narrow thrust, Q2 is a wide cleave, and Q3 is a heavy smash that hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>. Casting Q again advances to the next strike instead of firing all three at once.",
         "skill2": "W - Infernal Chains: Aatrox fires a demonic chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps back, dealing damage again and briefly locking enemies caught in the path.",
         "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
@@ -499,7 +499,7 @@
       "test_mod_aatrox": {
         "name": "Aatrox",
         "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Q - The Darkin Blade: Aatrox strikes forward three times: a narrow thrust, a wide cleave, then a heavy smash. Each hit deals <#ff9028ff>physical damage<>; the final strike hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill": "Q - The Darkin Blade: each cast releases one strike of Aatrox's three-part blade combo. Q1 is a narrow thrust, Q2 is a wide cleave, and Q3 is a heavy smash that hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>. Casting Q again advances to the next strike instead of firing all three at once.",
         "skill2": "W - Infernal Chains: Aatrox fires a demonic chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps back, dealing damage again and briefly locking enemies caught in the path.",
         "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
@@ -560,15 +560,15 @@
         "ult": "Trueshot-Sperrfeuer: feuert einen Angriff mit unbegrenzter Reichweite in Richtung der Gegner und verursacht an getroffenen Gegnern <#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% Angriffsschaden<> als <#ff9028ff>physischen Schaden<> plus <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> als <#a974ffff>magischen Schaden<>."
       },
       "bo_league_champions_kayn": {
-        "name": "Kayn",
-        "attack": "Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
+        "name": "Kayn (Shadow Reaper)",
+        "attack": "Shadow Reaper - Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
         "skill": "Q - Reaping Slash: Kayn dashes a short distance and slashes in front of him, dealing <#ff9028ff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>85% attack damage<> physical damage. Darkin Ascension empowers the slash.",
         "skill2": "W - Blade's Reach: Kayn carves a long line with his scythe, dealing <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> physical damage and <#ffb900ff>slowing enemies for 1.0s<>. In Darkin Ascension it is wider and briefly knocks enemies airborne.",
         "ult": "R - Umbral Trespass: Kayn enters an enemy champion, becoming untargetable for a short moment, then bursts out to deal <#ff9028ff>180<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>160% attack damage<> physical damage and gains Darkin Ascension for <#ffb900ff>10.0s<>."
       },
       "test_mod_kayn": {
-        "name": "Kayn",
-        "attack": "Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
+        "name": "Kayn (Shadow Reaper)",
+        "attack": "Shadow Reaper - Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
         "skill": "Q - Reaping Slash: Kayn dashes a short distance and slashes in front of him, dealing <#ff9028ff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>85% attack damage<> physical damage. Darkin Ascension empowers the slash.",
         "skill2": "W - Blade's Reach: Kayn carves a long line with his scythe, dealing <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> physical damage and <#ffb900ff>slowing enemies for 1.0s<>. In Darkin Ascension it is wider and briefly knocks enemies airborne.",
         "ult": "R - Umbral Trespass: Kayn enters an enemy champion, becoming untargetable for a short moment, then bursts out to deal <#ff9028ff>180<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>160% attack damage<> physical damage and gains Darkin Ascension for <#ffb900ff>10.0s<>."
@@ -580,7 +580,7 @@
       "bo_league_champions_aatrox": {
         "name": "Aatrox",
         "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Q - The Darkin Blade: Aatrox strikes forward three times: a narrow thrust, a wide cleave, then a heavy smash. Each hit deals <#ff9028ff>physical damage<>; the final strike hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill": "Q - The Darkin Blade: each cast releases one strike of Aatrox's three-part blade combo. Q1 is a narrow thrust, Q2 is a wide cleave, and Q3 is a heavy smash that hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>. Casting Q again advances to the next strike instead of firing all three at once.",
         "skill2": "W - Infernal Chains: Aatrox fires a demonic chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps back, dealing damage again and briefly locking enemies caught in the path.",
         "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
@@ -643,7 +643,7 @@
       "test_mod_aatrox": {
         "name": "Aatrox",
         "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Q - The Darkin Blade: Aatrox strikes forward three times: a narrow thrust, a wide cleave, then a heavy smash. Each hit deals <#ff9028ff>physical damage<>; the final strike hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill": "Q - The Darkin Blade: each cast releases one strike of Aatrox's three-part blade combo. Q1 is a narrow thrust, Q2 is a wide cleave, and Q3 is a heavy smash that hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>. Casting Q again advances to the next strike instead of firing all three at once.",
         "skill2": "W - Infernal Chains: Aatrox fires a demonic chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps back, dealing damage again and briefly locking enemies caught in the path.",
         "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
@@ -704,15 +704,15 @@
         "ult": "Cung Ánh Sáng Tối Thượng: bắn một đòn tấn công không giới hạn tầm về phía kẻ địch, gây <#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% sức mạnh công kích<> thành <#ff9028ff>sát thương vật lý<>, cộng thêm <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> thành <#a974ffff>sát thương phép<> lên kẻ địch trúng đòn."
       },
       "bo_league_champions_kayn": {
-        "name": "Kayn",
-        "attack": "Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
+        "name": "Kayn (Shadow Reaper)",
+        "attack": "Shadow Reaper - Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
         "skill": "Q - Reaping Slash: Kayn dashes a short distance and slashes in front of him, dealing <#ff9028ff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>85% attack damage<> physical damage. Darkin Ascension empowers the slash.",
         "skill2": "W - Blade's Reach: Kayn carves a long line with his scythe, dealing <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> physical damage and <#ffb900ff>slowing enemies for 1.0s<>. In Darkin Ascension it is wider and briefly knocks enemies airborne.",
         "ult": "R - Umbral Trespass: Kayn enters an enemy champion, becoming untargetable for a short moment, then bursts out to deal <#ff9028ff>180<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>160% attack damage<> physical damage and gains Darkin Ascension for <#ffb900ff>10.0s<>."
       },
       "test_mod_kayn": {
-        "name": "Kayn",
-        "attack": "Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
+        "name": "Kayn (Shadow Reaper)",
+        "attack": "Shadow Reaper - Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
         "skill": "Q - Reaping Slash: Kayn dashes a short distance and slashes in front of him, dealing <#ff9028ff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>85% attack damage<> physical damage. Darkin Ascension empowers the slash.",
         "skill2": "W - Blade's Reach: Kayn carves a long line with his scythe, dealing <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> physical damage and <#ffb900ff>slowing enemies for 1.0s<>. In Darkin Ascension it is wider and briefly knocks enemies airborne.",
         "ult": "R - Umbral Trespass: Kayn enters an enemy champion, becoming untargetable for a short moment, then bursts out to deal <#ff9028ff>180<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>160% attack damage<> physical damage and gains Darkin Ascension for <#ffb900ff>10.0s<>."
@@ -724,7 +724,7 @@
       "bo_league_champions_aatrox": {
         "name": "Aatrox",
         "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Q - The Darkin Blade: Aatrox strikes forward three times: a narrow thrust, a wide cleave, then a heavy smash. Each hit deals <#ff9028ff>physical damage<>; the final strike hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill": "Q - The Darkin Blade: each cast releases one strike of Aatrox's three-part blade combo. Q1 is a narrow thrust, Q2 is a wide cleave, and Q3 is a heavy smash that hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>. Casting Q again advances to the next strike instead of firing all three at once.",
         "skill2": "W - Infernal Chains: Aatrox fires a demonic chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps back, dealing damage again and briefly locking enemies caught in the path.",
         "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
@@ -787,7 +787,7 @@
       "test_mod_aatrox": {
         "name": "Aatrox",
         "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Q - The Darkin Blade: Aatrox strikes forward three times: a narrow thrust, a wide cleave, then a heavy smash. Each hit deals <#ff9028ff>physical damage<>; the final strike hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill": "Q - The Darkin Blade: each cast releases one strike of Aatrox's three-part blade combo. Q1 is a narrow thrust, Q2 is a wide cleave, and Q3 is a heavy smash that hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>. Casting Q again advances to the next strike instead of firing all three at once.",
         "skill2": "W - Infernal Chains: Aatrox fires a demonic chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps back, dealing damage again and briefly locking enemies caught in the path.",
         "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
@@ -848,15 +848,15 @@
         "ult": "Barragem Incendiária: dispara um ataque de alcance ilimitado na direção dos inimigos, causando <#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% do dano de ataque<> como <#ff9028ff>dano físico<>, mais <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> como <#a974ffff>dano mágico<> aos inimigos atingidos."
       },
       "bo_league_champions_kayn": {
-        "name": "Kayn",
-        "attack": "Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
+        "name": "Kayn (Shadow Reaper)",
+        "attack": "Shadow Reaper - Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
         "skill": "Q - Reaping Slash: Kayn dashes a short distance and slashes in front of him, dealing <#ff9028ff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>85% attack damage<> physical damage. Darkin Ascension empowers the slash.",
         "skill2": "W - Blade's Reach: Kayn carves a long line with his scythe, dealing <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> physical damage and <#ffb900ff>slowing enemies for 1.0s<>. In Darkin Ascension it is wider and briefly knocks enemies airborne.",
         "ult": "R - Umbral Trespass: Kayn enters an enemy champion, becoming untargetable for a short moment, then bursts out to deal <#ff9028ff>180<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>160% attack damage<> physical damage and gains Darkin Ascension for <#ffb900ff>10.0s<>."
       },
       "test_mod_kayn": {
-        "name": "Kayn",
-        "attack": "Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
+        "name": "Kayn (Shadow Reaper)",
+        "attack": "Shadow Reaper - Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
         "skill": "Q - Reaping Slash: Kayn dashes a short distance and slashes in front of him, dealing <#ff9028ff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>85% attack damage<> physical damage. Darkin Ascension empowers the slash.",
         "skill2": "W - Blade's Reach: Kayn carves a long line with his scythe, dealing <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> physical damage and <#ffb900ff>slowing enemies for 1.0s<>. In Darkin Ascension it is wider and briefly knocks enemies airborne.",
         "ult": "R - Umbral Trespass: Kayn enters an enemy champion, becoming untargetable for a short moment, then bursts out to deal <#ff9028ff>180<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>160% attack damage<> physical damage and gains Darkin Ascension for <#ffb900ff>10.0s<>."
@@ -868,7 +868,7 @@
       "bo_league_champions_aatrox": {
         "name": "Aatrox",
         "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Q - The Darkin Blade: Aatrox strikes forward three times: a narrow thrust, a wide cleave, then a heavy smash. Each hit deals <#ff9028ff>physical damage<>; the final strike hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill": "Q - The Darkin Blade: each cast releases one strike of Aatrox's three-part blade combo. Q1 is a narrow thrust, Q2 is a wide cleave, and Q3 is a heavy smash that hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>. Casting Q again advances to the next strike instead of firing all three at once.",
         "skill2": "W - Infernal Chains: Aatrox fires a demonic chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps back, dealing damage again and briefly locking enemies caught in the path.",
         "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
@@ -931,7 +931,7 @@
       "test_mod_aatrox": {
         "name": "Aatrox",
         "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Q - The Darkin Blade: Aatrox strikes forward three times: a narrow thrust, a wide cleave, then a heavy smash. Each hit deals <#ff9028ff>physical damage<>; the final strike hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill": "Q - The Darkin Blade: each cast releases one strike of Aatrox's three-part blade combo. Q1 is a narrow thrust, Q2 is a wide cleave, and Q3 is a heavy smash that hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>. Casting Q again advances to the next strike instead of firing all three at once.",
         "skill2": "W - Infernal Chains: Aatrox fires a demonic chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps back, dealing damage again and briefly locking enemies caught in the path.",
         "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
@@ -992,15 +992,15 @@
         "ult": "Trueshot Barrage: fires an unlimited-range attack toward enemies, dealing <#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as <#ff9028ff>physical damage<>, plus <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> as <#a974ffff>magic damage<> to enemies hit."
       },
       "bo_league_champions_kayn": {
-        "name": "Kayn",
-        "attack": "Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
+        "name": "Kayn (Shadow Reaper)",
+        "attack": "Shadow Reaper - Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
         "skill": "Q - Reaping Slash: Kayn dashes a short distance and slashes in front of him, dealing <#ff9028ff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>85% attack damage<> physical damage. Darkin Ascension empowers the slash.",
         "skill2": "W - Blade's Reach: Kayn carves a long line with his scythe, dealing <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> physical damage and <#ffb900ff>slowing enemies for 1.0s<>. In Darkin Ascension it is wider and briefly knocks enemies airborne.",
         "ult": "R - Umbral Trespass: Kayn enters an enemy champion, becoming untargetable for a short moment, then bursts out to deal <#ff9028ff>180<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>160% attack damage<> physical damage and gains Darkin Ascension for <#ffb900ff>10.0s<>."
       },
       "test_mod_kayn": {
-        "name": "Kayn",
-        "attack": "Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
+        "name": "Kayn (Shadow Reaper)",
+        "attack": "Shadow Reaper - Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
         "skill": "Q - Reaping Slash: Kayn dashes a short distance and slashes in front of him, dealing <#ff9028ff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>85% attack damage<> physical damage. Darkin Ascension empowers the slash.",
         "skill2": "W - Blade's Reach: Kayn carves a long line with his scythe, dealing <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> physical damage and <#ffb900ff>slowing enemies for 1.0s<>. In Darkin Ascension it is wider and briefly knocks enemies airborne.",
         "ult": "R - Umbral Trespass: Kayn enters an enemy champion, becoming untargetable for a short moment, then bursts out to deal <#ff9028ff>180<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>160% attack damage<> physical damage and gains Darkin Ascension for <#ffb900ff>10.0s<>."
@@ -1012,7 +1012,7 @@
       "bo_league_champions_aatrox": {
         "name": "Aatrox",
         "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Q - The Darkin Blade: Aatrox strikes forward three times: a narrow thrust, a wide cleave, then a heavy smash. Each hit deals <#ff9028ff>physical damage<>; the final strike hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill": "Q - The Darkin Blade: each cast releases one strike of Aatrox's three-part blade combo. Q1 is a narrow thrust, Q2 is a wide cleave, and Q3 is a heavy smash that hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>. Casting Q again advances to the next strike instead of firing all three at once.",
         "skill2": "W - Infernal Chains: Aatrox fires a demonic chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps back, dealing damage again and briefly locking enemies caught in the path.",
         "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
@@ -1075,7 +1075,7 @@
       "test_mod_aatrox": {
         "name": "Aatrox",
         "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Q - The Darkin Blade: Aatrox strikes forward three times: a narrow thrust, a wide cleave, then a heavy smash. Each hit deals <#ff9028ff>physical damage<>; the final strike hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill": "Q - The Darkin Blade: each cast releases one strike of Aatrox's three-part blade combo. Q1 is a narrow thrust, Q2 is a wide cleave, and Q3 is a heavy smash that hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>. Casting Q again advances to the next strike instead of firing all three at once.",
         "skill2": "W - Infernal Chains: Aatrox fires a demonic chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps back, dealing damage again and briefly locking enemies caught in the path.",
         "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
@@ -1136,15 +1136,15 @@
         "ult": "Trueshot Barrage: fires an unlimited-range attack toward enemies, dealing <#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as <#ff9028ff>physical damage<>, plus <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> as <#a974ffff>magic damage<> to enemies hit."
       },
       "bo_league_champions_kayn": {
-        "name": "Kayn",
-        "attack": "Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
+        "name": "Kayn (Shadow Reaper)",
+        "attack": "Shadow Reaper - Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
         "skill": "Q - Reaping Slash: Kayn dashes a short distance and slashes in front of him, dealing <#ff9028ff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>85% attack damage<> physical damage. Darkin Ascension empowers the slash.",
         "skill2": "W - Blade's Reach: Kayn carves a long line with his scythe, dealing <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> physical damage and <#ffb900ff>slowing enemies for 1.0s<>. In Darkin Ascension it is wider and briefly knocks enemies airborne.",
         "ult": "R - Umbral Trespass: Kayn enters an enemy champion, becoming untargetable for a short moment, then bursts out to deal <#ff9028ff>180<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>160% attack damage<> physical damage and gains Darkin Ascension for <#ffb900ff>10.0s<>."
       },
       "test_mod_kayn": {
-        "name": "Kayn",
-        "attack": "Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
+        "name": "Kayn (Shadow Reaper)",
+        "attack": "Shadow Reaper - Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
         "skill": "Q - Reaping Slash: Kayn dashes a short distance and slashes in front of him, dealing <#ff9028ff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>85% attack damage<> physical damage. Darkin Ascension empowers the slash.",
         "skill2": "W - Blade's Reach: Kayn carves a long line with his scythe, dealing <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> physical damage and <#ffb900ff>slowing enemies for 1.0s<>. In Darkin Ascension it is wider and briefly knocks enemies airborne.",
         "ult": "R - Umbral Trespass: Kayn enters an enemy champion, becoming untargetable for a short moment, then bursts out to deal <#ff9028ff>180<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>160% attack damage<> physical damage and gains Darkin Ascension for <#ffb900ff>10.0s<>."
@@ -1156,7 +1156,7 @@
       "bo_league_champions_aatrox": {
         "name": "Aatrox",
         "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Q - The Darkin Blade: Aatrox strikes forward three times: a narrow thrust, a wide cleave, then a heavy smash. Each hit deals <#ff9028ff>physical damage<>; the final strike hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill": "Q - The Darkin Blade: each cast releases one strike of Aatrox's three-part blade combo. Q1 is a narrow thrust, Q2 is a wide cleave, and Q3 is a heavy smash that hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>. Casting Q again advances to the next strike instead of firing all three at once.",
         "skill2": "W - Infernal Chains: Aatrox fires a demonic chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps back, dealing damage again and briefly locking enemies caught in the path.",
         "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
@@ -1219,7 +1219,7 @@
       "test_mod_aatrox": {
         "name": "Aatrox",
         "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Q - The Darkin Blade: Aatrox strikes forward three times: a narrow thrust, a wide cleave, then a heavy smash. Each hit deals <#ff9028ff>physical damage<>; the final strike hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill": "Q - The Darkin Blade: each cast releases one strike of Aatrox's three-part blade combo. Q1 is a narrow thrust, Q2 is a wide cleave, and Q3 is a heavy smash that hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>. Casting Q again advances to the next strike instead of firing all three at once.",
         "skill2": "W - Infernal Chains: Aatrox fires a demonic chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps back, dealing damage again and briefly locking enemies caught in the path.",
         "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
@@ -1280,15 +1280,15 @@
         "ult": "Точный залп: выпускает атаку с неограниченной дальностью в сторону врагов, нанося пораженным врагам <#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% силы атаки<> в виде <#ff9028ff>физического урона<>, плюс <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> в виде <#a974ffff>магического урона<>."
       },
       "bo_league_champions_kayn": {
-        "name": "Kayn",
-        "attack": "Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
+        "name": "Kayn (Shadow Reaper)",
+        "attack": "Shadow Reaper - Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
         "skill": "Q - Reaping Slash: Kayn dashes a short distance and slashes in front of him, dealing <#ff9028ff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>85% attack damage<> physical damage. Darkin Ascension empowers the slash.",
         "skill2": "W - Blade's Reach: Kayn carves a long line with his scythe, dealing <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> physical damage and <#ffb900ff>slowing enemies for 1.0s<>. In Darkin Ascension it is wider and briefly knocks enemies airborne.",
         "ult": "R - Umbral Trespass: Kayn enters an enemy champion, becoming untargetable for a short moment, then bursts out to deal <#ff9028ff>180<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>160% attack damage<> physical damage and gains Darkin Ascension for <#ffb900ff>10.0s<>."
       },
       "test_mod_kayn": {
-        "name": "Kayn",
-        "attack": "Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
+        "name": "Kayn (Shadow Reaper)",
+        "attack": "Shadow Reaper - Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
         "skill": "Q - Reaping Slash: Kayn dashes a short distance and slashes in front of him, dealing <#ff9028ff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>85% attack damage<> physical damage. Darkin Ascension empowers the slash.",
         "skill2": "W - Blade's Reach: Kayn carves a long line with his scythe, dealing <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> physical damage and <#ffb900ff>slowing enemies for 1.0s<>. In Darkin Ascension it is wider and briefly knocks enemies airborne.",
         "ult": "R - Umbral Trespass: Kayn enters an enemy champion, becoming untargetable for a short moment, then bursts out to deal <#ff9028ff>180<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>160% attack damage<> physical damage and gains Darkin Ascension for <#ffb900ff>10.0s<>."
@@ -1300,7 +1300,7 @@
       "bo_league_champions_aatrox": {
         "name": "Aatrox",
         "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Q - The Darkin Blade: Aatrox strikes forward three times: a narrow thrust, a wide cleave, then a heavy smash. Each hit deals <#ff9028ff>physical damage<>; the final strike hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill": "Q - The Darkin Blade: each cast releases one strike of Aatrox's three-part blade combo. Q1 is a narrow thrust, Q2 is a wide cleave, and Q3 is a heavy smash that hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>. Casting Q again advances to the next strike instead of firing all three at once.",
         "skill2": "W - Infernal Chains: Aatrox fires a demonic chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps back, dealing damage again and briefly locking enemies caught in the path.",
         "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
@@ -1363,7 +1363,7 @@
       "test_mod_aatrox": {
         "name": "Aatrox",
         "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Q - The Darkin Blade: Aatrox strikes forward three times: a narrow thrust, a wide cleave, then a heavy smash. Each hit deals <#ff9028ff>physical damage<>; the final strike hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill": "Q - The Darkin Blade: each cast releases one strike of Aatrox's three-part blade combo. Q1 is a narrow thrust, Q2 is a wide cleave, and Q3 is a heavy smash that hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>. Casting Q again advances to the next strike instead of firing all three at once.",
         "skill2": "W - Infernal Chains: Aatrox fires a demonic chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps back, dealing damage again and briefly locking enemies caught in the path.",
         "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
@@ -1424,15 +1424,15 @@
         "ult": "Andanada Certera: dispara un ataque de alcance ilimitado hacia los enemigos, inflige <#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% de daño de ataque<> como <#ff9028ff>daño físico<>, más <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% de AP<> como <#a974ffff>daño mágico<> a los enemigos alcanzados."
       },
       "bo_league_champions_kayn": {
-        "name": "Kayn",
-        "attack": "Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
+        "name": "Kayn (Shadow Reaper)",
+        "attack": "Shadow Reaper - Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
         "skill": "Q - Reaping Slash: Kayn dashes a short distance and slashes in front of him, dealing <#ff9028ff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>85% attack damage<> physical damage. Darkin Ascension empowers the slash.",
         "skill2": "W - Blade's Reach: Kayn carves a long line with his scythe, dealing <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> physical damage and <#ffb900ff>slowing enemies for 1.0s<>. In Darkin Ascension it is wider and briefly knocks enemies airborne.",
         "ult": "R - Umbral Trespass: Kayn enters an enemy champion, becoming untargetable for a short moment, then bursts out to deal <#ff9028ff>180<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>160% attack damage<> physical damage and gains Darkin Ascension for <#ffb900ff>10.0s<>."
       },
       "test_mod_kayn": {
-        "name": "Kayn",
-        "attack": "Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
+        "name": "Kayn (Shadow Reaper)",
+        "attack": "Shadow Reaper - Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
         "skill": "Q - Reaping Slash: Kayn dashes a short distance and slashes in front of him, dealing <#ff9028ff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>85% attack damage<> physical damage. Darkin Ascension empowers the slash.",
         "skill2": "W - Blade's Reach: Kayn carves a long line with his scythe, dealing <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> physical damage and <#ffb900ff>slowing enemies for 1.0s<>. In Darkin Ascension it is wider and briefly knocks enemies airborne.",
         "ult": "R - Umbral Trespass: Kayn enters an enemy champion, becoming untargetable for a short moment, then bursts out to deal <#ff9028ff>180<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>160% attack damage<> physical damage and gains Darkin Ascension for <#ffb900ff>10.0s<>."
@@ -1444,7 +1444,7 @@
       "bo_league_champions_aatrox": {
         "name": "Aatrox",
         "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Q - The Darkin Blade: Aatrox strikes forward three times: a narrow thrust, a wide cleave, then a heavy smash. Each hit deals <#ff9028ff>physical damage<>; the final strike hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill": "Q - The Darkin Blade: each cast releases one strike of Aatrox's three-part blade combo. Q1 is a narrow thrust, Q2 is a wide cleave, and Q3 is a heavy smash that hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>. Casting Q again advances to the next strike instead of firing all three at once.",
         "skill2": "W - Infernal Chains: Aatrox fires a demonic chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps back, dealing damage again and briefly locking enemies caught in the path.",
         "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
@@ -1507,7 +1507,7 @@
       "test_mod_aatrox": {
         "name": "Aatrox",
         "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Q - The Darkin Blade: Aatrox strikes forward three times: a narrow thrust, a wide cleave, then a heavy smash. Each hit deals <#ff9028ff>physical damage<>; the final strike hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill": "Q - The Darkin Blade: each cast releases one strike of Aatrox's three-part blade combo. Q1 is a narrow thrust, Q2 is a wide cleave, and Q3 is a heavy smash that hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>. Casting Q again advances to the next strike instead of firing all three at once.",
         "skill2": "W - Infernal Chains: Aatrox fires a demonic chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps back, dealing damage again and briefly locking enemies caught in the path.",
         "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
@@ -1568,15 +1568,15 @@
         "ult": "Barrage térébrant : tire une attaque à portée illimitée vers les ennemis, infligeant <#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% des dégâts d’attaque<> en <#ff9028ff>dégâts physiques<>, plus <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> en <#a974ffff>dégâts magiques<> aux ennemis touchés."
       },
       "bo_league_champions_kayn": {
-        "name": "Kayn",
-        "attack": "Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
+        "name": "Kayn (Shadow Reaper)",
+        "attack": "Shadow Reaper - Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
         "skill": "Q - Reaping Slash: Kayn dashes a short distance and slashes in front of him, dealing <#ff9028ff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>85% attack damage<> physical damage. Darkin Ascension empowers the slash.",
         "skill2": "W - Blade's Reach: Kayn carves a long line with his scythe, dealing <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> physical damage and <#ffb900ff>slowing enemies for 1.0s<>. In Darkin Ascension it is wider and briefly knocks enemies airborne.",
         "ult": "R - Umbral Trespass: Kayn enters an enemy champion, becoming untargetable for a short moment, then bursts out to deal <#ff9028ff>180<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>160% attack damage<> physical damage and gains Darkin Ascension for <#ffb900ff>10.0s<>."
       },
       "test_mod_kayn": {
-        "name": "Kayn",
-        "attack": "Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
+        "name": "Kayn (Shadow Reaper)",
+        "attack": "Shadow Reaper - Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
         "skill": "Q - Reaping Slash: Kayn dashes a short distance and slashes in front of him, dealing <#ff9028ff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>85% attack damage<> physical damage. Darkin Ascension empowers the slash.",
         "skill2": "W - Blade's Reach: Kayn carves a long line with his scythe, dealing <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> physical damage and <#ffb900ff>slowing enemies for 1.0s<>. In Darkin Ascension it is wider and briefly knocks enemies airborne.",
         "ult": "R - Umbral Trespass: Kayn enters an enemy champion, becoming untargetable for a short moment, then bursts out to deal <#ff9028ff>180<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>160% attack damage<> physical damage and gains Darkin Ascension for <#ffb900ff>10.0s<>."
@@ -1588,7 +1588,7 @@
       "bo_league_champions_aatrox": {
         "name": "亚托克斯",
         "attack": "赐死剑气：强化下一次巨剑攻击，造成<#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力112%<>的<#ff9028ff>物理伤害<>。",
-        "skill": "Q - 暗裔利刃：亚托克斯连续三段向前挥剑：窄幅前刺、横向宽扫、最后重砸。每段造成<#ff9028ff>物理伤害<>；第三段伤害更高，并将敌人<#ef5350ff>击飞0.5秒<>。",
+        "skill": "Q - 暗裔利刃：每次施放只挥出一段剑招：第一段窄幅前刺，第二段横向宽扫，第三段重砸伤害更高并将敌人击飞<#ef5350ff>0.5秒<>。再次施放Q才会进入下一段，不会一次打出三段。",
         "skill2": "W - 恶火束链：亚托克斯向前发射恶火锁链，命中敌方英雄时造成伤害并<#ffb900ff>减速<>。短暂延迟后锁链收束，再次造成伤害并短暂束缚路径上的敌人。",
         "ult": "R - 大灭：亚托克斯释放恶魔形态，持续<#ffb900ff>10.0秒<>，获得<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75攻击力<>、<i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20%移动速度<>和<#6aff55ff>50%吸血<>。施放时短暂恐惧附近敌人。"
       },
@@ -1651,7 +1651,7 @@
       "test_mod_aatrox": {
         "name": "亚托克斯",
         "attack": "赐死剑气：强化下一次巨剑攻击，造成<#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力112%<>的<#ff9028ff>物理伤害<>。",
-        "skill": "Q - 暗裔利刃：亚托克斯连续三段向前挥剑：窄幅前刺、横向宽扫、最后重砸。每段造成<#ff9028ff>物理伤害<>；第三段伤害更高，并将敌人<#ef5350ff>击飞0.5秒<>。",
+        "skill": "Q - 暗裔利刃：每次施放只挥出一段剑招：第一段窄幅前刺，第二段横向宽扫，第三段重砸伤害更高并将敌人击飞<#ef5350ff>0.5秒<>。再次施放Q才会进入下一段，不会一次打出三段。",
         "skill2": "W - 恶火束链：亚托克斯向前发射恶火锁链，命中敌方英雄时造成伤害并<#ffb900ff>减速<>。短暂延迟后锁链收束，再次造成伤害并短暂束缚路径上的敌人。",
         "ult": "R - 大灭：亚托克斯释放恶魔形态，持续<#ffb900ff>10.0秒<>，获得<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75攻击力<>、<i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20%移动速度<>和<#6aff55ff>50%吸血<>。施放时短暂恐惧附近敌人。"
       },
@@ -1712,17 +1712,17 @@
         "ult": "精准弹幕：向敌人方向发射无限距离攻击，对命中的敌人造成<#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力的110%<>的<#ff9028ff>物理伤害<>，并额外造成<i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法术强度的70%<>的<#a974ffff>魔法伤害<>。"
       },
       "bo_league_champions_kayn": {
-        "name": "凯隐",
-        "attack": "暗裔巨镰：凯隐挥动巨镰，造成<#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105%攻击力<>的物理伤害。处于暗裔升华时，攻击更重并治疗凯隐。",
-        "skill": "Q - 巨镰横扫：凯隐向前突进一小段距离，并横扫前方敌人，造成<#ff9028ff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>85%攻击力<>的物理伤害。暗裔升华会强化这次横扫。",
-        "skill2": "W - 利刃纵贯：凯隐用巨镰劈出一道长线，造成<#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95%攻击力<>的物理伤害，并使敌人<#ffb900ff>减速1.0秒<>。暗裔升华时范围更宽，并短暂击飞敌人。",
+        "name": "凯隐 / Kayn",
+        "attack": "影流之镰 / 暗裔巨镰：凯隐挥动巨镰，造成<#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105%攻击力<>的物理伤害。处于暗裔升华时，攻击更重并治疗凯隐。",
+        "skill": "Q - 利刃纵贯：凯隐向前突进一小段距离，并横扫前方敌人，造成<#ff9028ff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>85%攻击力<>的物理伤害。暗裔升华会强化这次横扫。",
+        "skill2": "W - 巨镰横扫：凯隐用巨镰劈出一道长线，造成<#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95%攻击力<>的物理伤害，并使敌人<#ffb900ff>减速1.0秒<>。暗裔升华时范围更宽，并短暂击飞敌人。",
         "ult": "R - 裂舍影：凯隐进入一名敌方英雄体内，短暂不可选取，随后破体而出，造成<#ff9028ff>180<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>160%攻击力<>的物理伤害，并获得<#ffb900ff>10.0秒<>暗裔升华。"
       },
       "test_mod_kayn": {
-        "name": "凯隐",
-        "attack": "暗裔巨镰：凯隐挥动巨镰，造成<#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105%攻击力<>的物理伤害。处于暗裔升华时，攻击更重并治疗凯隐。",
-        "skill": "Q - 巨镰横扫：凯隐向前突进一小段距离，并横扫前方敌人，造成<#ff9028ff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>85%攻击力<>的物理伤害。暗裔升华会强化这次横扫。",
-        "skill2": "W - 利刃纵贯：凯隐用巨镰劈出一道长线，造成<#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95%攻击力<>的物理伤害，并使敌人<#ffb900ff>减速1.0秒<>。暗裔升华时范围更宽，并短暂击飞敌人。",
+        "name": "凯隐 / Kayn",
+        "attack": "影流之镰 / 暗裔巨镰：凯隐挥动巨镰，造成<#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105%攻击力<>的物理伤害。处于暗裔升华时，攻击更重并治疗凯隐。",
+        "skill": "Q - 利刃纵贯：凯隐向前突进一小段距离，并横扫前方敌人，造成<#ff9028ff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>85%攻击力<>的物理伤害。暗裔升华会强化这次横扫。",
+        "skill2": "W - 巨镰横扫：凯隐用巨镰劈出一道长线，造成<#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95%攻击力<>的物理伤害，并使敌人<#ffb900ff>减速1.0秒<>。暗裔升华时范围更宽，并短暂击飞敌人。",
         "ult": "R - 裂舍影：凯隐进入一名敌方英雄体内，短暂不可选取，随后破体而出，造成<#ff9028ff>180<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>160%攻击力<>的物理伤害，并获得<#ffb900ff>10.0秒<>暗裔升华。"
       }
     }
@@ -1732,7 +1732,7 @@
       "bo_league_champions_aatrox": {
         "name": "亞托克斯",
         "attack": "賜死劍氣：強化下一次巨劍攻擊，造成<#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力112%<>的<#ff9028ff>物理傷害<>。",
-        "skill": "Q - 冥血邪劍：亞托克斯連續三段向前揮劍：窄幅前刺、橫向寬掃、最後重砸。每段造成<#ff9028ff>物理傷害<>；第三段傷害更高，並將敵人<#ef5350ff>擊飛0.5秒<>。",
+        "skill": "Q - 冥血邪劍：每次施放只揮出一段劍招：第一段窄幅前刺，第二段橫向寬掃，第三段重砸傷害更高並將敵人擊飛<#ef5350ff>0.5秒<>。再次施放Q才會進入下一段，不會一次打出三段。",
         "skill2": "W - 惡火束鏈：亞托克斯向前發射惡火鎖鏈，命中敵方英雄時造成傷害並<#ffb900ff>減速<>。短暫延遲後鎖鏈收束，再次造成傷害並短暫束縛路徑上的敵人。",
         "ult": "R - World Ender：亞托克斯釋放惡魔形態，持續<#ffb900ff>10.0秒<>，獲得<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75攻擊力<>、<i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20%移動速度<>和<#6aff55ff>50%吸血<>。施放時短暫恐懼附近敵人。"
       },
@@ -1795,7 +1795,7 @@
       "test_mod_aatrox": {
         "name": "亞托克斯",
         "attack": "賜死劍氣：強化下一次巨劍攻擊，造成<#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力112%<>的<#ff9028ff>物理傷害<>。",
-        "skill": "Q - 冥血邪劍：亞托克斯連續三段向前揮劍：窄幅前刺、橫向寬掃、最後重砸。每段造成<#ff9028ff>物理傷害<>；第三段傷害更高，並將敵人<#ef5350ff>擊飛0.5秒<>。",
+        "skill": "Q - 冥血邪劍：每次施放只揮出一段劍招：第一段窄幅前刺，第二段橫向寬掃，第三段重砸傷害更高並將敵人擊飛<#ef5350ff>0.5秒<>。再次施放Q才會進入下一段，不會一次打出三段。",
         "skill2": "W - 惡火束鏈：亞托克斯向前發射惡火鎖鏈，命中敵方英雄時造成傷害並<#ffb900ff>減速<>。短暫延遲後鎖鏈收束，再次造成傷害並短暫束縛路徑上的敵人。",
         "ult": "R - World Ender：亞托克斯釋放惡魔形態，持續<#ffb900ff>10.0秒<>，獲得<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75攻擊力<>、<i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20%移動速度<>和<#6aff55ff>50%吸血<>。施放時短暫恐懼附近敵人。"
       },
@@ -1856,17 +1856,17 @@
         "ult": "精準彈幕：向敵人方向發射無限距離攻擊，對命中的敵人造成<#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力的110%<>的<#ff9028ff>物理傷害<>，並額外造成<i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>魔法攻擊的70%<>的<#a974ffff>魔法傷害<>。"
       },
       "bo_league_champions_kayn": {
-        "name": "慨影",
-        "attack": "冥血巨鐰：慨影揮動巨鐰，造成<#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105%攻擊力<>的物理傷害。處於冥血升華時，攻擊更重並治療慨影。",
-        "skill": "Q - 巨鐰橫掃：慨影向前突進一小段距離，並橫掃前方敵人，造成<#ff9028ff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>85%攻擊力<>的物理傷害。冥血升華會強化這次橫掃。",
-        "skill2": "W - 利刃縱貫：慨影用巨鐰劈出一道長線，造成<#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95%攻擊力<>的物理傷害，並使敵人<#ffb900ff>減速1.0秒<>。冥血升華時範圍更寬，並短暫擊飛敵人。",
+        "name": "慨影 / Kayn",
+        "attack": "影流之鐮 / 冥血巨鐮：慨影揮動巨鐮，造成<#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105%攻擊力<>的物理傷害。處於冥血升華時，攻擊更重並治療慨影。",
+        "skill": "Q - 利刃縱貫：慨影向前突進一小段距離，並橫掃前方敵人，造成<#ff9028ff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>85%攻擊力<>的物理傷害。冥血升華會強化這次橫掃。",
+        "skill2": "W - 巨鐮橫掃：慨影用巨鐮劈出一道長線，造成<#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95%攻擊力<>的物理傷害，並使敵人<#ffb900ff>減速1.0秒<>。冥血升華時範圍更寬，並短暫擊飛敵人。",
         "ult": "R - 裂舍影：慨影進入一名敵方英雄體內，短暫不可選取，隨後破體而出，造成<#ff9028ff>180<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>160%攻擊力<>的物理傷害，並獲得<#ffb900ff>10.0秒<>冥血升華。"
       },
       "test_mod_kayn": {
-        "name": "慨影",
-        "attack": "冥血巨鐰：慨影揮動巨鐰，造成<#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105%攻擊力<>的物理傷害。處於冥血升華時，攻擊更重並治療慨影。",
-        "skill": "Q - 巨鐰橫掃：慨影向前突進一小段距離，並橫掃前方敵人，造成<#ff9028ff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>85%攻擊力<>的物理傷害。冥血升華會強化這次橫掃。",
-        "skill2": "W - 利刃縱貫：慨影用巨鐰劈出一道長線，造成<#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95%攻擊力<>的物理傷害，並使敵人<#ffb900ff>減速1.0秒<>。冥血升華時範圍更寬，並短暫擊飛敵人。",
+        "name": "慨影 / Kayn",
+        "attack": "影流之鐮 / 冥血巨鐮：慨影揮動巨鐮，造成<#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105%攻擊力<>的物理傷害。處於冥血升華時，攻擊更重並治療慨影。",
+        "skill": "Q - 利刃縱貫：慨影向前突進一小段距離，並橫掃前方敵人，造成<#ff9028ff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>85%攻擊力<>的物理傷害。冥血升華會強化這次橫掃。",
+        "skill2": "W - 巨鐮橫掃：慨影用巨鐮劈出一道長線，造成<#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95%攻擊力<>的物理傷害，並使敵人<#ffb900ff>減速1.0秒<>。冥血升華時範圍更寬，並短暫擊飛敵人。",
         "ult": "R - 裂舍影：慨影進入一名敵方英雄體內，短暫不可選取，隨後破體而出，造成<#ff9028ff>180<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>160%攻擊力<>的物理傷害，並獲得<#ffb900ff>10.0秒<>冥血升華。"
       }
     }
@@ -1876,7 +1876,7 @@
       "bo_league_champions_aatrox": {
         "name": "Aatrox",
         "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Q - The Darkin Blade: Aatrox strikes forward three times: a narrow thrust, a wide cleave, then a heavy smash. Each hit deals <#ff9028ff>physical damage<>; the final strike hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill": "Q - The Darkin Blade: each cast releases one strike of Aatrox's three-part blade combo. Q1 is a narrow thrust, Q2 is a wide cleave, and Q3 is a heavy smash that hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>. Casting Q again advances to the next strike instead of firing all three at once.",
         "skill2": "W - Infernal Chains: Aatrox fires a demonic chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps back, dealing damage again and briefly locking enemies caught in the path.",
         "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
@@ -1939,7 +1939,7 @@
       "test_mod_aatrox": {
         "name": "Aatrox",
         "attack": "Deathbringer Stance: empowers the next greatsword strike, dealing <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>112% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Q - The Darkin Blade: Aatrox strikes forward three times: a narrow thrust, a wide cleave, then a heavy smash. Each hit deals <#ff9028ff>physical damage<>; the final strike hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>.",
+        "skill": "Q - The Darkin Blade: each cast releases one strike of Aatrox's three-part blade combo. Q1 is a narrow thrust, Q2 is a wide cleave, and Q3 is a heavy smash that hits hardest and <#ef5350ff>knocks enemies airborne for 0.5s<>. Casting Q again advances to the next strike instead of firing all three at once.",
         "skill2": "W - Infernal Chains: Aatrox fires a demonic chain in a line, damaging and <#ffb900ff>slowing<> enemy champions hit. After a short delay the chain snaps back, dealing damage again and briefly locking enemies caught in the path.",
         "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
@@ -2000,15 +2000,15 @@
         "ult": "Trueshot Barrage: fires an unlimited-range attack toward enemies, dealing <#ff9028ff>220<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as <#ff9028ff>physical damage<>, plus <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> as <#a974ffff>magic damage<> to enemies hit."
       },
       "bo_league_champions_kayn": {
-        "name": "Kayn",
-        "attack": "Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
+        "name": "Kayn (Shadow Reaper)",
+        "attack": "Shadow Reaper - Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
         "skill": "Q - Reaping Slash: Kayn dashes a short distance and slashes in front of him, dealing <#ff9028ff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>85% attack damage<> physical damage. Darkin Ascension empowers the slash.",
         "skill2": "W - Blade's Reach: Kayn carves a long line with his scythe, dealing <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> physical damage and <#ffb900ff>slowing enemies for 1.0s<>. In Darkin Ascension it is wider and briefly knocks enemies airborne.",
         "ult": "R - Umbral Trespass: Kayn enters an enemy champion, becoming untargetable for a short moment, then bursts out to deal <#ff9028ff>180<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>160% attack damage<> physical damage and gains Darkin Ascension for <#ffb900ff>10.0s<>."
       },
       "test_mod_kayn": {
-        "name": "Kayn",
-        "attack": "Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
+        "name": "Kayn (Shadow Reaper)",
+        "attack": "Shadow Reaper - Darkin Scythe: Kayn sweeps with his scythe, dealing <#ff9028ff>10<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>105% attack damage<> as physical damage. While Darkin Ascension is active, the strike hits harder and heals Kayn.",
         "skill": "Q - Reaping Slash: Kayn dashes a short distance and slashes in front of him, dealing <#ff9028ff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>85% attack damage<> physical damage. Darkin Ascension empowers the slash.",
         "skill2": "W - Blade's Reach: Kayn carves a long line with his scythe, dealing <#ff9028ff>70<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> physical damage and <#ffb900ff>slowing enemies for 1.0s<>. In Darkin Ascension it is wider and briefly knocks enemies airborne.",
         "ult": "R - Umbral Trespass: Kayn enters an enemy champion, becoming untargetable for a short moment, then bursts out to deal <#ff9028ff>180<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>160% attack damage<> physical damage and gains Darkin Ascension for <#ffb900ff>10.0s<>."

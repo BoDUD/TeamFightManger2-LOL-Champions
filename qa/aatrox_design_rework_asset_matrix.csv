@@ -1,5 +1,5 @@
 asset_type,output,source,contract
-actor,aseprite_resources\champions\aatrox#sheet.png,"accepted local image-gen actor sheet plus existing Aatrox action-frame lower-body pixels; process images not committed after rebuild","Viktor-like 57x54 core actor frames, smaller-than-Viktor 34-35 px visual body, one mirrored-by-engine 8-frame run action with compact cross-step, at least 16 px bottom label safety, no idle/run flames, no code-drawn thin legs"
+actor,aseprite_resources\champions\aatrox#sheet.png,"accepted local image-gen actor sheet plus same-model generated action poses; process images not committed after rebuild","Viktor-like 57x54 core actor frames, smaller-than-Viktor 34 px visual body, one mirrored-by-engine 8-frame run action with compact cross-step, at least 16 px bottom label safety, no idle/run flames, no code-drawn thin legs, attack/skill/skill2 body frames keep the accepted model scale"
 icons,icons/aatrox_skill.png;icons/aatrox_skill2.png;icons/aatrox_ult.png,"local image-gen LoL ability source, not committed after rebuild",24x24 outputs cropped from refined image-gen Q Darkin Blade / W Infernal Chains / R World Ender source
 vfx,aseprite_resources\effects\aatrox_attack_slash#sheet.png,"local image-gen LoL ability source, not committed after rebuild",4 frame caster-follow basic attack slash cropped from refined image-gen LoL ability sheet
 vfx,aseprite_resources\effects\aatrox_q1_cleave#sheet.png,"local image-gen LoL ability source, not committed after rebuild",6 frame The Darkin Blade narrow thrust and ground crack
@@ -9,5 +9,6 @@ vfx,aseprite_resources\effects\aatrox_w_chain#sheet.png,"local image-gen LoL abi
 vfx,aseprite_resources\effects\aatrox_w_chain_snap#sheet.png,"local image-gen LoL ability source, not committed after rebuild",6 frame Infernal Chains delayed snap and snare mark
 vfx,aseprite_resources\effects\aatrox_world_ender_aura#sheet.png,"local image-gen LoL ability source, not committed after rebuild","6 frame 64x64 restrained World Ender wing/rune aura rendered behind the actor"
 sfx,sound/sfx/test_mod_aatrox_*_clip.wav,existing workshop package,event names and audio files preserved
-view,style/champion_view.champion_view,tuned refined actor offsets,face x=0 y=-34 for portrait and center x=0 y=-12 for full-body display
-text,text\champion.i18n,manual localized rows,zh-hans/zh-hant Aatrox text is readable and CI blocks question-mark corruption
+logic,champion\aatrox.data_champion,manual staged-Q data pass,"The Darkin Blade uses SwitchByBuff recast stages: Q1 arms Q2, Q2 arms Q3, Q3 clears the stage buffs; no single cast may fire Q1/Q2/Q3 together"
+view,style/champion_view.champion_view,tuned refined actor offsets,face x=0 y=-24 for compact portrait and center x=0 y=-12 for full-body display
+text,text\champion.i18n,manual localized rows,zh-hans/zh-hant Aatrox text is readable and CI blocks question-mark corruption; Q text explicitly says one strike per cast

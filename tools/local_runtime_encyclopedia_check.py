@@ -130,6 +130,13 @@ def check_runtime_copy(game_root: Path) -> None:
                 payload_text = json.dumps(row, ensure_ascii=False)
                 if "??" in payload_text:
                     fail(f"runtime text locale {locale} description.{champion_id} still contains corrupted question marks")
+                required_terms = {
+                    "zh-hans": ("Kayn", "影流之镰", "暗裔升华"),
+                    "zh-hant": ("Kayn", "影流之鐮", "冥血升華"),
+                }[locale]
+                missing = [term for term in required_terms if term not in payload_text]
+                if missing:
+                    fail(f"runtime text locale {locale} description.{champion_id} missing search aliases {missing}")
 
 
 def check_custom_database_state() -> None:

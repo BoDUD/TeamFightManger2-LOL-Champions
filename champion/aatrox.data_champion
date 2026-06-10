@@ -69,53 +69,79 @@
   "skill": {
     "action_name": "skill",
     "description": "#asset/base/text/champion?description.bo_league_champions_aatrox.skill",
-    "duration": 72,
-    "cooltime": 420,
+    "duration": 36,
+    "cooltime": 150,
     "start_timing": 12,
     "range": 38000,
     "casting_type": "Direction",
     "casting_target": "EnemyWithoutTower",
     "attack_type": "Skill",
     "effect": {
-      "type": "Combine",
-      "effects": [
-        {
-          "type": "Sfx",
-          "name": "test_mod_aatrox_cleave_cast"
-        },
-        {
-          "type": "CasterViewEffect",
-          "name": "test_mod_aatrox_q1_cast_vfx"
-        },
-        {
-          "type": "LineRangeProjectile",
-          "width": 10500,
-          "length": 28000,
-          "delay": 8,
-          "apply": 14,
-          "name": "test_mod_aatrox_q1",
-          "applied_target": "EnemyWithoutTower",
-          "applied_effects": [
+      "type": "SwitchByBuff",
+      "buff_name": "test_mod_aatrox_q3_ready",
+      "effect_none": {
+        "type": "SwitchByBuff",
+        "buff_name": "test_mod_aatrox_q2_ready",
+        "effect_none": {
+          "type": "Combine",
+          "effects": [
             {
-              "effect": {
-                "type": "Attack",
-                "damage": 35,
-                "attack_ratio": 90
-              },
-              "casting_type": "Targeting"
+              "type": "Sfx",
+              "name": "test_mod_aatrox_cleave_cast"
             },
             {
-              "effect": {
-                "type": "TargetSfx",
-                "name": "test_mod_aatrox_cleave_hit"
-              },
-              "casting_type": "Targeting"
+              "type": "CasterViewEffect",
+              "name": "test_mod_aatrox_q1_cast_vfx"
+            },
+            {
+              "type": "LineRangeProjectile",
+              "width": 10500,
+              "length": 28000,
+              "delay": 8,
+              "apply": 14,
+              "name": "test_mod_aatrox_q1",
+              "applied_target": "EnemyWithoutTower",
+              "applied_effects": [
+                {
+                  "effect": {
+                    "type": "Attack",
+                    "damage": 35,
+                    "attack_ratio": 90
+                  },
+                  "casting_type": "Targeting"
+                },
+                {
+                  "effect": {
+                    "type": "TargetSfx",
+                    "name": "test_mod_aatrox_cleave_hit"
+                  },
+                  "casting_type": "Targeting"
+                }
+              ]
+            },
+            {
+              "type": "RemoveCasterBuff",
+              "name": "test_mod_aatrox_q2_ready"
+            },
+            {
+              "type": "RemoveCasterBuff",
+              "name": "test_mod_aatrox_q3_ready"
+            },
+            {
+              "type": "AddCasterBuff",
+              "buff_state": {
+                "name": "test_mod_aatrox_q2_ready",
+                "duration": {
+                  "Time": {
+                    "tick": 600
+                  }
+                }
+              }
             }
           ]
         },
-        {
-          "type": "Delayed",
-          "tick": 18,
+        "effect_buff": {
+          "type": "Combine",
           "effects": [
             {
               "type": "Sfx",
@@ -150,57 +176,83 @@
                   "casting_type": "Targeting"
                 }
               ]
-            }
-          ]
-        },
-        {
-          "type": "Delayed",
-          "tick": 38,
-          "effects": [
-            {
-              "type": "Sfx",
-              "name": "test_mod_aatrox_cleave_cast"
             },
             {
-              "type": "CasterViewEffect",
-              "name": "test_mod_aatrox_q3_cast_vfx"
+              "type": "RemoveCasterBuff",
+              "name": "test_mod_aatrox_q2_ready"
             },
             {
-              "type": "LineRangeProjectile",
-              "width": 15500,
-              "length": 38000,
-              "delay": 8,
-              "apply": 14,
-              "name": "test_mod_aatrox_q3",
-              "applied_target": "EnemyWithoutTower",
-              "applied_effects": [
-                {
-                  "effect": {
-                    "type": "Attack",
-                    "damage": 65,
-                    "attack_ratio": 125
-                  },
-                  "casting_type": "Targeting"
-                },
-                {
-                  "effect": {
-                    "type": "Airborne",
-                    "duration": 32
-                  },
-                  "casting_type": "Targeting"
-                },
-                {
-                  "effect": {
-                    "type": "TargetSfx",
-                    "name": "test_mod_aatrox_cleave_hit"
-                  },
-                  "casting_type": "Targeting"
+              "type": "RemoveCasterBuff",
+              "name": "test_mod_aatrox_q3_ready"
+            },
+            {
+              "type": "AddCasterBuff",
+              "buff_state": {
+                "name": "test_mod_aatrox_q3_ready",
+                "duration": {
+                  "Time": {
+                    "tick": 600
+                  }
                 }
-              ]
+              }
             }
           ]
         }
-      ]
+      },
+      "effect_buff": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "Sfx",
+            "name": "test_mod_aatrox_cleave_cast"
+          },
+          {
+            "type": "CasterViewEffect",
+            "name": "test_mod_aatrox_q3_cast_vfx"
+          },
+          {
+            "type": "LineRangeProjectile",
+            "width": 15500,
+            "length": 38000,
+            "delay": 8,
+            "apply": 14,
+            "name": "test_mod_aatrox_q3",
+            "applied_target": "EnemyWithoutTower",
+            "applied_effects": [
+              {
+                "effect": {
+                  "type": "Attack",
+                  "damage": 65,
+                  "attack_ratio": 125
+                },
+                "casting_type": "Targeting"
+              },
+              {
+                "effect": {
+                  "type": "Airborne",
+                  "duration": 32
+                },
+                "casting_type": "Targeting"
+              },
+              {
+                "effect": {
+                  "type": "TargetSfx",
+                  "name": "test_mod_aatrox_cleave_hit"
+                },
+                "casting_type": "Targeting"
+              }
+            ]
+          },
+          {
+            "type": "RemoveCasterBuff",
+            "name": "test_mod_aatrox_q2_ready"
+          },
+          {
+            "type": "RemoveCasterBuff",
+            "name": "test_mod_aatrox_q3_ready"
+          }
+        ]
+      }
     },
     "cancelable": false
   },
