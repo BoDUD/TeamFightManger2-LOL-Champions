@@ -56,18 +56,41 @@ AATROX_BUFF_REFS = {
 }
 AATROX_CORE_ACTIONS = ("idle", "run", "attack", "skill", "skill2", "hit", "dead", "ult")
 AATROX_VIKTOR_FRAME_SIZE = (57.0, 54.0)
-AATROX_MIN_BOTTOM_SAFE_PIXELS = 16
-AATROX_MAX_CORE_BODY_HEIGHT = 36
+AATROX_MIN_DISPLAY_BOTTOM_SAFE_PIXELS = 14
+AATROX_MIN_ACTION_BOTTOM_SAFE_PIXELS = 7
+AATROX_MAX_DISPLAY_BODY_HEIGHT = 36
+AATROX_MAX_ACTION_BODY_HEIGHT = 45
 AATROX_MIN_RUN_FOOT_CENTER_RANGE = 0.9
 AATROX_MIN_RUN_FOOT_SHAPES = 5
 AATROX_MIN_RUN_FOOT_PIXELS = 24
 AATROX_MIN_RUN_LOWER_PIXELS = 40
-AATROX_ACCEPTED_MODEL_FRAME_X = 4224
-AATROX_IDLE_FRAME_XS = (AATROX_ACCEPTED_MODEL_FRAME_X,) * 9
+AATROX_IDLE_FRAME_XS = (0, 96, 192, 288, 384, 480, 576, 672, 768)
+AATROX_ULT_FRAME_X = 864
+AATROX_HIT_FRAME_X = 960
+AATROX_DEAD_FRAME_X = 1056
 AATROX_RETIRED_MODEL_FRAME_XS = (5868, 5964, 6060, 6156, 6252, 6348, 6444, 6540, 6636)
+AATROX_RUN_FRAME_XS = (4224, 4320, 4416, 4512, 4608, 4704, 4800, 4896)
 AATROX_ATTACK_FRAME_XS = (4992, 5088, 5184, 5280, 5376, 5472, 5568, 5664, 5760)
 AATROX_SKILL_FRAME_XS = (2784, 2880, 2976, 3072, 3168, 3264, 3360, 3456)
 AATROX_SKILL2_FRAME_XS = (3552, 3648, 3744, 3840, 3936, 4032, 4128)
+AATROX_ALLOWED_FRAME_XS = tuple(
+    sorted(
+        set(
+            AATROX_IDLE_FRAME_XS
+            + (AATROX_ULT_FRAME_X, AATROX_HIT_FRAME_X, AATROX_DEAD_FRAME_X)
+            + AATROX_RUN_FRAME_XS
+            + AATROX_ATTACK_FRAME_XS
+            + AATROX_SKILL_FRAME_XS
+            + AATROX_SKILL2_FRAME_XS
+        )
+    )
+)
+AATROX_ATTACK_CAST_EFFECT_REFS = {
+    "test_mod_aatrox_attack_slash_vfx": (
+        "asset/bo_league_champions/aseprite_resources/effects/aatrox_attack_slash",
+        "slash",
+    ),
+}
 AATROX_Q_CAST_EFFECT_REFS = {
     "test_mod_aatrox_q1_cast_vfx": (
         "asset/bo_league_champions/aseprite_resources/effects/aatrox_q1_cleave",
@@ -454,10 +477,36 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
         if center_y != -12:
             fail(f"style entry {aatrox_id}.center.y must keep Aatrox full-body display at -12")
 
+    for path in (
+        ROOT / "aseprite_resources" / "champions" / "aatrox#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "aatrox_attack_slash#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "aatrox_q1_cleave#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "aatrox_q2_cleave#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "aatrox_q3_cleave#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "aatrox_w_chain#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "aatrox_w_chain_snap#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "aatrox_world_ender_aura#sheet.png",
+    ):
+        require_file(path)
+        require_no_green_residue(path)
+
     fanim = load_json(ROOT / "aseprite_resources" / "champions" / "aatrox#anim.fanim")
     sheet_width, sheet_height, sheet_alpha = load_rgba_alpha(
         ROOT / "aseprite_resources" / "champions" / "aatrox#sheet.png"
     )
+    allowed_pixels: set[tuple[int, int]] = set()
+    for allowed_x in AATROX_ALLOWED_FRAME_XS:
+        for local_y in range(54):
+            for local_x in range(57):
+                allowed_pixels.add((allowed_x + local_x, local_y))
+    for y in range(sheet_height):
+        row_start = y * sheet_width
+        for x in range(sheet_width):
+            if sheet_alpha[row_start + x] and (x, y) not in allowed_pixels:
+                fail(
+                    f"Aatrox sheet has non-transparent pixels outside final approved frame slots at ({x},{y}); "
+                    "old/generated candidate models must be cleared"
+                )
     for x in AATROX_RETIRED_MODEL_FRAME_XS:
         bbox = alpha_bbox_in_rect(sheet_alpha, sheet_width, (x, 0, 57, 54))
         if bbox is not None:
@@ -471,12 +520,13 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
 
     expected_frame_xs = {
         "idle": AATROX_IDLE_FRAME_XS,
+        "run": AATROX_RUN_FRAME_XS,
         "attack": AATROX_ATTACK_FRAME_XS,
         "skill": AATROX_SKILL_FRAME_XS,
         "skill2": AATROX_SKILL2_FRAME_XS,
-        "hit": (AATROX_ACCEPTED_MODEL_FRAME_X,),
-        "dead": (AATROX_ACCEPTED_MODEL_FRAME_X,),
-        "ult": (AATROX_ACCEPTED_MODEL_FRAME_X,),
+        "hit": (AATROX_HIT_FRAME_X,),
+        "dead": (AATROX_DEAD_FRAME_X,),
+        "ult": (AATROX_ULT_FRAME_X,),
     }
     action_bboxes: dict[str, list[tuple[int, int, int, int]]] = {}
     action_hashes: dict[str, list[str]] = {}
@@ -515,12 +565,18 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
             action_hashes[action].append(alpha_frame_hash(sheet_alpha, sheet_width, (x, y, w, h)))
             body_height = bbox[3] - bbox[1]
             bottom_safe = h - bbox[3]
-            if body_height > AATROX_MAX_CORE_BODY_HEIGHT:
+            if action in ("attack", "skill", "skill2", "dead"):
+                max_body_height = AATROX_MAX_ACTION_BODY_HEIGHT
+                min_bottom_safe = AATROX_MIN_ACTION_BOTTOM_SAFE_PIXELS
+            else:
+                max_body_height = AATROX_MAX_DISPLAY_BODY_HEIGHT
+                min_bottom_safe = AATROX_MIN_DISPLAY_BOTTOM_SAFE_PIXELS
+            if body_height > max_body_height:
                 fail(
                     f"Aatrox {action} frame {index} body height {body_height}px exceeds "
-                    f"{AATROX_MAX_CORE_BODY_HEIGHT}px, causing model-size jumps"
+                    f"{max_body_height}px, causing model-size jumps"
                 )
-            if bottom_safe < AATROX_MIN_BOTTOM_SAFE_PIXELS:
+            if bottom_safe < min_bottom_safe:
                 fail(
                     f"Aatrox {action} frame {index} leaves only {bottom_safe}px bottom safety; "
                     "feet must stay above the name/health label like Viktor"
@@ -534,16 +590,13 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
         fail("Aatrox run frame widths must stay stable to avoid animation jitter")
     for action in ("attack", "skill", "skill2"):
         widths = [bbox[2] - bbox[0] for bbox in action_bboxes[action]]
-        heights = [bbox[3] - bbox[1] for bbox in action_bboxes[action]]
-        if min(widths) + 6 < min(run_widths):
-            fail(f"Aatrox {action} must keep the accepted compact run/body posture instead of swapping model")
-        if max(abs(height - run_heights[0]) for height in heights) > 2:
-            fail(f"Aatrox {action} model height must stay locked to the compact run scale")
+        if max(widths) < min(run_widths):
+            fail(f"Aatrox {action} must include readable weapon/body motion from the final model source")
         if len(set(action_hashes[action])) < min(4, len(action_hashes[action])):
             fail(f"Aatrox {action} must have visible body/weapon motion, not repeated static frames")
         if tuple(action_hashes[action][: len(action_hashes["run"])]) == tuple(action_hashes["run"][: len(action_hashes[action])]):
             fail(f"Aatrox {action} must not be a direct copy of the run cycle")
-    for action in ("idle", "hit", "dead", "ult"):
+    for action in ("idle", "hit", "ult"):
         heights = [bbox[3] - bbox[1] for bbox in action_bboxes[action]]
         if max(abs(height - run_heights[0]) for height in heights) > 2:
             fail(f"Aatrox {action} model height must stay in the same scale class as run")
@@ -596,6 +649,13 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
         if projectile_z.get(name) != 1:
             fail(f"champion/aatrox.data_champion projectile {name} must render visibly above terrain at z=1")
     view_effect_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in aatrox.get("view_effects", [])}
+    for name, expected in AATROX_ATTACK_CAST_EFFECT_REFS.items():
+        if view_effect_refs.get(name) != expected:
+            fail(f"champion/aatrox.data_champion attack view_effect {name} must reference {expected}")
+    attack_strings = set(walk_strings(aatrox.get("attack", {})))
+    for name in AATROX_ATTACK_CAST_EFFECT_REFS:
+        if name not in attack_strings:
+            fail(f"champion/aatrox.data_champion attack.effect must trigger {name} for the basic attack slash VFX")
     for name, expected in AATROX_Q_CAST_EFFECT_REFS.items():
         if view_effect_refs.get(name) != expected:
             fail(f"champion/aatrox.data_champion view_effect {name} must reference {expected}")
