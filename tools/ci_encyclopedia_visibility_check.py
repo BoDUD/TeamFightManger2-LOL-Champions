@@ -468,10 +468,13 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
     run_heights = [bbox[3] - bbox[1] for bbox in action_bboxes["run"]]
     if max(run_widths) - min(run_widths) > 6:
         fail("Aatrox run frame widths must stay stable to avoid animation jitter")
-    for action in ("idle", "hit", "dead", "ult"):
+    for action in ("idle", "attack", "skill", "skill2", "hit", "dead", "ult"):
+        widths = [bbox[2] - bbox[0] for bbox in action_bboxes[action]]
         heights = [bbox[3] - bbox[1] for bbox in action_bboxes[action]]
-        if max(abs(height - run_heights[0]) for height in heights) > 2:
-            fail(f"Aatrox {action} model height must stay in the same scale class as run")
+        if min(widths) + 4 < min(run_widths):
+            fail(f"Aatrox {action} must keep the accepted compact run/body posture instead of swapping model")
+        if max(abs(height - run_heights[0]) for height in heights) > 1:
+            fail(f"Aatrox {action} model height must stay locked to the compact run scale")
 
     foot_centers: list[float] = []
     foot_shapes: set[tuple[tuple[int, int], ...]] = set()
@@ -568,8 +571,11 @@ def check_kayn_rework_contract(text: dict[str, Any], entries: dict[str, Any]) ->
         view = entries.get(kayn_id)
         if not isinstance(view, dict):
             fail(f"style/champion_view.champion_view missing entries.{kayn_id}")
+        face_x = view.get("face", {}).get("x")
         face_y = view.get("face", {}).get("y")
         center_y = view.get("center", {}).get("y")
+        if face_x != 4:
+            fail(f"style entry {kayn_id}.face.x must keep Kayn's compact portrait centered")
         if not isinstance(face_y, (int, float)) or face_y > -30:
             fail(f"style entry {kayn_id}.face.y must keep the portrait on the head/torso")
         if not isinstance(center_y, (int, float)) or not -20 <= center_y <= -8:
@@ -672,6 +678,19 @@ def check_kayn_rework_contract(text: dict[str, Any], entries: dict[str, Any]) ->
     ):
         if required not in strings:
             fail(f"champion/kayn.data_champion must include LoL Kayn mechanic token {required}")
+    for action, sfx_name in (("skill", "test_mod_kayn_q_cast"), ("skill2", "test_mod_kayn_w_cast")):
+        effect = kayn.get(action, {}).get("effect")
+        effects = effect.get("effects") if isinstance(effect, dict) else None
+        if (
+            not isinstance(effect, dict)
+            or effect.get("type") != "Combine"
+            or not isinstance(effects, list)
+            or len(effects) < 2
+            or effects[0] != {"type": "Sfx", "name": sfx_name}
+            or not isinstance(effects[1], dict)
+            or effects[1].get("type") != "SwitchByBuff"
+        ):
+            fail(f"Kayn {action} must play {sfx_name} at the top-level cast effect before branch logic")
     projectile_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in kayn.get("view_projectiles", [])}
     for name, expected in KAYN_EFFECT_REFS.items():
         if projectile_refs.get(name) != expected:
