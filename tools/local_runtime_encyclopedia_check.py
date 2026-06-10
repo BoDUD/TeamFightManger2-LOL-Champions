@@ -13,6 +13,7 @@ CHAMPION_IDS = (
     f"{MOD_ID}_aatrox",
     f"{MOD_ID}_kayn",
     f"{MOD_ID}_yasuo",
+    f"{MOD_ID}_jinx",
 )
 AATROX_SOUND_EVENTS = (
     "test_mod_aatrox_attack_cast",
@@ -44,6 +45,22 @@ YASUO_SOUND_EVENTS = (
     "test_mod_yasuo_wind_wall_cast",
     "test_mod_yasuo_r_cast",
     "test_mod_yasuo_r_hit",
+)
+JINX_SOUND_EVENTS = (
+    "test_mod_jinx_minigun_cast",
+    "test_mod_jinx_minigun_hit",
+    "test_mod_jinx_rocket_cast",
+    "test_mod_jinx_rocket_hit",
+    "test_mod_jinx_switch_to_minigun",
+    "test_mod_jinx_switch_to_rocket",
+    "test_mod_jinx_zap_cast",
+    "test_mod_jinx_zap_hit",
+    "test_mod_jinx_chompers_cast",
+    "test_mod_jinx_chompers_trigger",
+    "test_mod_jinx_r_cast",
+    "test_mod_jinx_r_hit",
+    "test_mod_jinx_get_excited",
+    "test_mod_jinx_ult_voice",
 )
 
 
@@ -96,6 +113,7 @@ def check_runtime_copy(game_root: Path) -> None:
         "champion/aatrox.data_champion",
         "champion/kayn.data_champion",
         "champion/yasuo.data_champion",
+        "champion/jinx.data_champion",
         "text/champion.i18n",
         "style/champion_view.champion_view",
         "aseprite_resources/champions/aatrox#sheet.png",
@@ -104,6 +122,8 @@ def check_runtime_copy(game_root: Path) -> None:
         "aseprite_resources/champions/kayn#anim.fanim",
         "aseprite_resources/champions/yasuo#sheet.png",
         "aseprite_resources/champions/yasuo#anim.fanim",
+        "aseprite_resources/champions/jinx#sheet.png",
+        "aseprite_resources/champions/jinx#anim.fanim",
         "aseprite_resources/effects/kayn_q_slash#sheet.png",
         "aseprite_resources/effects/kayn_q_slash#anim.fanim",
         "aseprite_resources/effects/kayn_w_blade_reach#sheet.png",
@@ -130,15 +150,39 @@ def check_runtime_copy(game_root: Path) -> None:
         "aseprite_resources/effects/yasuo_flow_shield#anim.fanim",
         "aseprite_resources/effects/yasuo_after_breath_aura#sheet.png",
         "aseprite_resources/effects/yasuo_after_breath_aura#anim.fanim",
+        "aseprite_resources/effects/jinx_minigun_bullet#sheet.png",
+        "aseprite_resources/effects/jinx_minigun_bullet#anim.fanim",
+        "aseprite_resources/effects/jinx_rocket_attack#sheet.png",
+        "aseprite_resources/effects/jinx_rocket_attack#anim.fanim",
+        "aseprite_resources/effects/jinx_zap#sheet.png",
+        "aseprite_resources/effects/jinx_zap#anim.fanim",
+        "aseprite_resources/effects/jinx_flame_chompers#sheet.png",
+        "aseprite_resources/effects/jinx_flame_chompers#anim.fanim",
+        "aseprite_resources/effects/jinx_super_mega_death_rocket#sheet.png",
+        "aseprite_resources/effects/jinx_super_mega_death_rocket#anim.fanim",
+        "aseprite_resources/effects/jinx_switcheroo#sheet.png",
+        "aseprite_resources/effects/jinx_switcheroo#anim.fanim",
+        "aseprite_resources/effects/jinx_rocket_explosion#sheet.png",
+        "aseprite_resources/effects/jinx_rocket_explosion#anim.fanim",
+        "aseprite_resources/effects/jinx_get_excited_aura#sheet.png",
+        "aseprite_resources/effects/jinx_get_excited_aura#anim.fanim",
+        "aseprite_resources/effects/jinx_fishbones_mode_aura#sheet.png",
+        "aseprite_resources/effects/jinx_fishbones_mode_aura#anim.fanim",
+        "aseprite_resources/effects/jinx_powpow_ready#sheet.png",
+        "aseprite_resources/effects/jinx_powpow_ready#anim.fanim",
         "icons/kayn_skill.png",
         "icons/kayn_skill2.png",
         "icons/kayn_ult.png",
         "icons/yasuo_skill.png",
         "icons/yasuo_skill2.png",
         "icons/yasuo_ult.png",
+        "icons/jinx_skill.png",
+        "icons/jinx_skill2.png",
+        "icons/jinx_ult.png",
         "qa/aatrox_official_audio_sources.json",
         "qa/kayn_official_audio_sources.json",
         "qa/yasuo_official_audio_sources.json",
+        "qa/jinx_official_audio_sources.json",
     ]
     for event_name in AATROX_SOUND_EVENTS:
         critical_files.append(f"sound/sfx/{event_name}.sound_info")
@@ -151,6 +195,9 @@ def check_runtime_copy(game_root: Path) -> None:
         critical_files.append(f"sound/sfx/{event_name}.sound_info")
         critical_files.append(f"sound/sfx/{event_name}_clip.wav")
     for event_name in YASUO_SOUND_EVENTS:
+        critical_files.append(f"sound/sfx/{event_name}.sound_info")
+        critical_files.append(f"sound/sfx/{event_name}_clip.wav")
+    for event_name in JINX_SOUND_EVENTS:
         critical_files.append(f"sound/sfx/{event_name}.sound_info")
         critical_files.append(f"sound/sfx/{event_name}_clip.wav")
     for relative in critical_files:
@@ -195,6 +242,10 @@ def check_runtime_copy(game_root: Path) -> None:
                         "zh-hans": "疾风剑豪",
                         "zh-hant": "疾風劍豪",
                     },
+                    f"{MOD_ID}_jinx": {
+                        "zh-hans": "暴走萝莉",
+                        "zh-hant": "暴走蘿莉",
+                    },
                 }
                 display_by_locale = expected_display_names.get(champion_id)
                 if display_by_locale:
@@ -205,7 +256,7 @@ def check_runtime_copy(game_root: Path) -> None:
                             f"runtime text locale {locale} description.{champion_id}.name "
                             f"must be short display name {expected_name!r}, got {actual_name!r}"
                         )
-                    forbidden_aliases = ("Kayn", "Yasuo", "凯隐", "慨影", "亚索", "犽宿")
+                    forbidden_aliases = ("Kayn", "Yasuo", "Jinx", "凯隐", "慨影", "亚索", "犽宿", "金克丝", "金克絲")
                     if any(alias in actual_name for alias in forbidden_aliases):
                         fail(f"runtime text locale {locale} description.{champion_id}.name contains search alias")
                 required_terms_by_champion = {
@@ -216,6 +267,10 @@ def check_runtime_copy(game_root: Path) -> None:
                     f"{MOD_ID}_yasuo": {
                         "zh-hans": ("亚索", "疾风剑豪", "斩钢闪", "踏前斩", "狂风绝息斩"),
                         "zh-hant": ("犽宿", "疾風劍豪", "斬鋼閃", "風牆", "奪命氣息"),
+                    },
+                    f"{MOD_ID}_jinx": {
+                        "zh-hans": ("暴走萝莉", "砰砰枪", "鱼骨头", "枪炮交响曲", "嚼火者", "超究极死神飞弹"),
+                        "zh-hant": ("暴走蘿莉", "砰砰槍", "魚骨頭", "槍炮交響曲", "嚼火者", "超究極死神飛彈"),
                     },
                 }
                 required_by_locale = required_terms_by_champion.get(champion_id)

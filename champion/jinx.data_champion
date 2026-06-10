@@ -1,0 +1,773 @@
+{
+  "id": "bo_league_champions_jinx",
+  "category": "Range",
+  "tags": [
+    "AD",
+    "Range",
+    "CC"
+  ],
+  "sprite": "asset/bo_league_champions/aseprite_resources/champions/jinx",
+  "anim_prefix": "",
+  "skill_icons": [
+    "asset/bo_league_champions/icons/jinx_skill",
+    "asset/bo_league_champions/icons/jinx_skill2",
+    "asset/bo_league_champions/icons/jinx_ult"
+  ],
+  "stat": {
+    "attack": 78,
+    "magic_power": 0,
+    "hp": 790,
+    "defence": 17,
+    "magic_resistance": 19,
+    "move_speed": 940,
+    "hp_regen": 2,
+    "stack": 0,
+    "crit_chance": 0
+  },
+  "growth": {
+    "attack": 22,
+    "magic_power": 0,
+    "hp": 82,
+    "defence": 4,
+    "magic_resistance": 4,
+    "move_speed": 8,
+    "hp_regen": 1,
+    "stack": 0,
+    "crit_chance": 0
+  },
+  "attack": {
+    "action_name": "attack",
+    "description": "#asset/base/text/champion?description.bo_league_champions_jinx.attack",
+    "duration": 18,
+    "cooltime": 58,
+    "start_timing": 9,
+    "cancelable": true,
+    "range": 62000,
+    "casting_type": "Targeting",
+    "casting_target": "Enemy",
+    "attack_type": "BaseAttack",
+    "effect": {
+      "type": "SwitchByBuff",
+      "buff_name": "test_mod_jinx_fishbones_mode",
+      "effect_none": {
+        "type": "SwitchByBuff",
+        "buff_name": "test_mod_jinx_powpow_3",
+        "effect_none": {
+          "type": "SwitchByBuff",
+          "buff_name": "test_mod_jinx_powpow_2",
+          "effect_none": {
+            "type": "SwitchByBuff",
+            "buff_name": "test_mod_jinx_powpow_1",
+            "effect_none": {
+              "type": "Combine",
+              "effects": [
+                {
+                  "type": "Sfx",
+                  "name": "test_mod_jinx_minigun_cast"
+                },
+                {
+                  "type": "TargetProjectile",
+                  "speed": 5200,
+                  "name": "test_mod_jinx_minigun_bullet",
+                  "y_offset": 0,
+                  "applied_target": "Enemy",
+                  "applied_effects": [
+                    {
+                      "effect": {
+                        "type": "Attack",
+                        "damage": 0,
+                        "attack_ratio": 100
+                      },
+                      "casting_type": "Targeting"
+                    },
+                    {
+                      "effect": {
+                        "type": "TargetSfx",
+                        "name": "test_mod_jinx_minigun_hit"
+                      },
+                      "casting_type": "Targeting"
+                    }
+                  ]
+                },
+                {
+                  "type": "RemoveCasterBuff",
+                  "name": "test_mod_jinx_powpow_1"
+                },
+                {
+                  "type": "RemoveCasterBuff",
+                  "name": "test_mod_jinx_powpow_2"
+                },
+                {
+                  "type": "RemoveCasterBuff",
+                  "name": "test_mod_jinx_powpow_3"
+                },
+                {
+                  "type": "AddCasterBuff",
+                  "buff_state": {
+                    "name": "test_mod_jinx_powpow_1",
+                    "duration": {
+                      "Time": {
+                        "tick": 150
+                      }
+                    },
+                    "attack_speed_mult": 10
+                  }
+                },
+                {
+                  "type": "AddCasterBuff",
+                  "buff_state": {
+                    "name": "test_mod_jinx_powpow_visual",
+                    "duration": {
+                      "Time": {
+                        "tick": 150
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "effect_buff": {
+              "type": "Combine",
+              "effects": [
+                {
+                  "type": "Sfx",
+                  "name": "test_mod_jinx_minigun_cast"
+                },
+                {
+                  "type": "TargetProjectile",
+                  "speed": 5200,
+                  "name": "test_mod_jinx_minigun_bullet",
+                  "y_offset": 0,
+                  "applied_target": "Enemy",
+                  "applied_effects": [
+                    {
+                      "effect": {
+                        "type": "Attack",
+                        "damage": 0,
+                        "attack_ratio": 100
+                      },
+                      "casting_type": "Targeting"
+                    },
+                    {
+                      "effect": {
+                        "type": "TargetSfx",
+                        "name": "test_mod_jinx_minigun_hit"
+                      },
+                      "casting_type": "Targeting"
+                    }
+                  ]
+                },
+                {
+                  "type": "RemoveCasterBuff",
+                  "name": "test_mod_jinx_powpow_1"
+                },
+                {
+                  "type": "RemoveCasterBuff",
+                  "name": "test_mod_jinx_powpow_2"
+                },
+                {
+                  "type": "RemoveCasterBuff",
+                  "name": "test_mod_jinx_powpow_3"
+                },
+                {
+                  "type": "AddCasterBuff",
+                  "buff_state": {
+                    "name": "test_mod_jinx_powpow_2",
+                    "duration": {
+                      "Time": {
+                        "tick": 150
+                      }
+                    },
+                    "attack_speed_mult": 20
+                  }
+                },
+                {
+                  "type": "AddCasterBuff",
+                  "buff_state": {
+                    "name": "test_mod_jinx_powpow_visual",
+                    "duration": {
+                      "Time": {
+                        "tick": 150
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "effect_buff": {
+            "type": "Combine",
+            "effects": [
+              {
+                "type": "Sfx",
+                "name": "test_mod_jinx_minigun_cast"
+              },
+              {
+                "type": "TargetProjectile",
+                "speed": 5200,
+                "name": "test_mod_jinx_minigun_bullet",
+                "y_offset": 0,
+                "applied_target": "Enemy",
+                "applied_effects": [
+                  {
+                    "effect": {
+                      "type": "Attack",
+                      "damage": 0,
+                      "attack_ratio": 100
+                    },
+                    "casting_type": "Targeting"
+                  },
+                  {
+                    "effect": {
+                      "type": "TargetSfx",
+                      "name": "test_mod_jinx_minigun_hit"
+                    },
+                    "casting_type": "Targeting"
+                  }
+                ]
+              },
+              {
+                "type": "RemoveCasterBuff",
+                "name": "test_mod_jinx_powpow_1"
+              },
+              {
+                "type": "RemoveCasterBuff",
+                "name": "test_mod_jinx_powpow_2"
+              },
+              {
+                "type": "RemoveCasterBuff",
+                "name": "test_mod_jinx_powpow_3"
+              },
+              {
+                "type": "AddCasterBuff",
+                "buff_state": {
+                  "name": "test_mod_jinx_powpow_3",
+                  "duration": {
+                    "Time": {
+                      "tick": 150
+                    }
+                  },
+                  "attack_speed_mult": 30
+                }
+              },
+              {
+                "type": "AddCasterBuff",
+                "buff_state": {
+                  "name": "test_mod_jinx_powpow_visual",
+                  "duration": {
+                    "Time": {
+                      "tick": 150
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "effect_buff": {
+          "type": "Combine",
+          "effects": [
+            {
+              "type": "Sfx",
+              "name": "test_mod_jinx_minigun_cast"
+            },
+            {
+              "type": "TargetProjectile",
+              "speed": 5200,
+              "name": "test_mod_jinx_minigun_bullet",
+              "y_offset": 0,
+              "applied_target": "Enemy",
+              "applied_effects": [
+                {
+                  "effect": {
+                    "type": "Attack",
+                    "damage": 0,
+                    "attack_ratio": 100
+                  },
+                  "casting_type": "Targeting"
+                },
+                {
+                  "effect": {
+                    "type": "TargetSfx",
+                    "name": "test_mod_jinx_minigun_hit"
+                  },
+                  "casting_type": "Targeting"
+                }
+              ]
+            },
+            {
+              "type": "RemoveCasterBuff",
+              "name": "test_mod_jinx_powpow_1"
+            },
+            {
+              "type": "RemoveCasterBuff",
+              "name": "test_mod_jinx_powpow_2"
+            },
+            {
+              "type": "RemoveCasterBuff",
+              "name": "test_mod_jinx_powpow_3"
+            },
+            {
+              "type": "AddCasterBuff",
+              "buff_state": {
+                "name": "test_mod_jinx_powpow_3",
+                "duration": {
+                  "Time": {
+                    "tick": 150
+                  }
+                },
+                "attack_speed_mult": 30
+              }
+            },
+            {
+              "type": "AddCasterBuff",
+              "buff_state": {
+                "name": "test_mod_jinx_powpow_visual",
+                "duration": {
+                  "Time": {
+                    "tick": 150
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "effect_buff": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "Sfx",
+            "name": "test_mod_jinx_rocket_cast"
+          },
+          {
+            "type": "TargetSplashProjectile",
+            "speed": 4200,
+            "range": 25000,
+            "name": "test_mod_jinx_rocket_attack",
+            "y_offset": 0,
+            "applied_target": "Enemy",
+            "applied_effects": [
+              {
+                "effect": {
+                  "type": "Attack",
+                  "damage": 25,
+                  "attack_ratio": 110
+                },
+                "casting_type": "Targeting"
+              },
+              {
+                "effect": {
+                  "type": "TargetSfx",
+                  "name": "test_mod_jinx_rocket_hit"
+                },
+                "casting_type": "Targeting"
+              },
+              {
+                "effect": {
+                  "type": "ViewEffect",
+                  "name": "test_mod_jinx_rocket_explosion_vfx"
+                },
+                "casting_type": "Targeting"
+              }
+            ]
+          },
+          {
+            "type": "RemoveCasterBuff",
+            "name": "test_mod_jinx_powpow_1"
+          },
+          {
+            "type": "RemoveCasterBuff",
+            "name": "test_mod_jinx_powpow_2"
+          },
+          {
+            "type": "RemoveCasterBuff",
+            "name": "test_mod_jinx_powpow_3"
+          },
+          {
+            "type": "RemoveCasterBuff",
+            "name": "test_mod_jinx_powpow_visual"
+          }
+        ]
+      }
+    }
+  },
+  "skill": {
+    "action_name": "skill",
+    "description": "#asset/base/text/champion?description.bo_league_champions_jinx.skill",
+    "duration": 24,
+    "cooltime": 90,
+    "start_timing": 9,
+    "range": 0,
+    "casting_type": "None",
+    "casting_target": "AllyOnlySelf",
+    "attack_type": "Skill",
+    "effect": {
+      "type": "SwitchByBuff",
+      "buff_name": "test_mod_jinx_fishbones_mode",
+      "effect_none": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "Sfx",
+            "name": "test_mod_jinx_switch_to_rocket"
+          },
+          {
+            "type": "CasterViewEffect",
+            "name": "test_mod_jinx_switcheroo_vfx"
+          },
+          {
+            "type": "AddCasterBuff",
+            "buff_state": {
+              "name": "test_mod_jinx_fishbones_mode",
+              "duration": {
+                "Time": {
+                  "tick": 54000
+                }
+              }
+            }
+          },
+          {
+            "type": "AddCasterBuff",
+            "buff_state": {
+              "name": "test_mod_jinx_fishbones_visual",
+              "duration": {
+                "Time": {
+                  "tick": 54000
+                }
+              }
+            }
+          },
+          {
+            "type": "RemoveCasterBuff",
+            "name": "test_mod_jinx_powpow_1"
+          },
+          {
+            "type": "RemoveCasterBuff",
+            "name": "test_mod_jinx_powpow_2"
+          },
+          {
+            "type": "RemoveCasterBuff",
+            "name": "test_mod_jinx_powpow_3"
+          },
+          {
+            "type": "RemoveCasterBuff",
+            "name": "test_mod_jinx_powpow_visual"
+          }
+        ]
+      },
+      "effect_buff": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "Sfx",
+            "name": "test_mod_jinx_switch_to_minigun"
+          },
+          {
+            "type": "CasterViewEffect",
+            "name": "test_mod_jinx_switcheroo_vfx"
+          },
+          {
+            "type": "RemoveCasterBuff",
+            "name": "test_mod_jinx_fishbones_mode"
+          },
+          {
+            "type": "RemoveCasterBuff",
+            "name": "test_mod_jinx_fishbones_visual"
+          }
+        ]
+      }
+    }
+  },
+  "skill2": {
+    "action_name": "skill2",
+    "description": "#asset/base/text/champion?description.bo_league_champions_jinx.skill2",
+    "duration": 58,
+    "cooltime": 720,
+    "start_timing": 18,
+    "range": 98000,
+    "casting_type": "Direction",
+    "casting_target": "EnemyWithoutTower",
+    "attack_type": "Skill",
+    "effect": {
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "Sfx",
+          "name": "test_mod_jinx_zap_cast"
+        },
+        {
+          "type": "LineRangeProjectile",
+          "width": 7000,
+          "length": 98000,
+          "delay": 18,
+          "apply": 18,
+          "name": "test_mod_jinx_zap",
+          "applied_target": "EnemyWithoutTower",
+          "applied_effects": [
+            {
+              "effect": {
+                "type": "Attack",
+                "damage": 45,
+                "attack_ratio": 115
+              },
+              "casting_type": "Targeting"
+            },
+            {
+              "effect": {
+                "type": "AddBuff",
+                "buff_state": {
+                  "name": "test_mod_jinx_zap_slow",
+                  "duration": {
+                    "Time": {
+                      "tick": 90
+                    }
+                  },
+                  "move_speed_mult": -45
+                }
+              },
+              "casting_type": "Targeting"
+            },
+            {
+              "effect": {
+                "type": "TargetSfx",
+                "name": "test_mod_jinx_zap_hit"
+              },
+              "casting_type": "Targeting"
+            }
+          ]
+        },
+        {
+          "type": "Delayed",
+          "tick": 20,
+          "effects": [
+            {
+              "type": "Sfx",
+              "name": "test_mod_jinx_chompers_cast"
+            },
+            {
+              "type": "LineRangeProjectile",
+              "width": 18000,
+              "length": 62000,
+              "delay": 8,
+              "apply": 48,
+              "name": "test_mod_jinx_flame_chompers",
+              "applied_target": "EnemyWithoutTower",
+              "applied_effects": [
+                {
+                  "effect": {
+                    "type": "Attack",
+                    "damage": 35,
+                    "attack_ratio": 55
+                  },
+                  "casting_type": "Targeting"
+                },
+                {
+                  "effect": {
+                    "type": "Stun",
+                    "duration": 36
+                  },
+                  "casting_type": "Targeting"
+                },
+                {
+                  "effect": {
+                    "type": "AddBuff",
+                    "buff_state": {
+                      "name": "test_mod_jinx_chompers_burn",
+                      "duration": {
+                        "Time": {
+                          "tick": 60
+                        }
+                      }
+                    }
+                  },
+                  "casting_type": "Targeting"
+                },
+                {
+                  "effect": {
+                    "type": "TargetSfx",
+                    "name": "test_mod_jinx_chompers_trigger"
+                  },
+                  "casting_type": "Targeting"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "ult": {
+    "action_name": "ult",
+    "description": "#asset/base/text/champion?description.bo_league_champions_jinx.ult",
+    "duration": 58,
+    "cooltime": 3600,
+    "start_timing": 36,
+    "range": 900000,
+    "casting_type": "Direction",
+    "casting_target": "EnemyChampion",
+    "attack_type": "Skill",
+    "effect": {
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "Sfx",
+          "name": "test_mod_jinx_r_cast"
+        },
+        {
+          "type": "Sfx",
+          "name": "test_mod_jinx_ult_voice"
+        },
+        {
+          "type": "LinearProjectile",
+          "penetrate": false,
+          "speed": 7600,
+          "range": 900000,
+          "name": "test_mod_jinx_super_mega_death_rocket",
+          "shape": {
+            "Circle": {
+              "radius": 12000
+            }
+          },
+          "applied_target": "EnemyChampion",
+          "applied_effects": [
+            {
+              "effect": {
+                "type": "Attack",
+                "damage": 160,
+                "attack_ratio": 170
+              },
+              "casting_type": "Targeting"
+            },
+            {
+              "effect": {
+                "type": "TargetSfx",
+                "name": "test_mod_jinx_r_hit"
+              },
+              "casting_type": "Targeting"
+            },
+            {
+              "effect": {
+                "type": "ViewEffect",
+                "name": "test_mod_jinx_rocket_explosion_vfx"
+              },
+              "casting_type": "Targeting"
+            },
+            {
+              "effect": {
+                "type": "AddCasterBuff",
+                "buff_state": {
+                  "name": "test_mod_jinx_get_excited",
+                  "duration": {
+                    "Time": {
+                      "tick": 180
+                    }
+                  },
+                  "attack_speed_mult": 35,
+                  "move_speed_mult": 35
+                }
+              },
+              "casting_type": "Targeting"
+            }
+          ]
+        },
+        {
+          "type": "Delayed",
+          "tick": 38,
+          "effects": [
+            {
+              "type": "Sfx",
+              "name": "test_mod_jinx_get_excited"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "view_projectiles": [
+    {
+      "type": "Animated",
+      "name": "test_mod_jinx_minigun_bullet",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/jinx_minigun_bullet",
+      "tag": "projectile",
+      "z": 1,
+      "repeat": false
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_jinx_rocket_attack",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/jinx_rocket_attack",
+      "tag": "projectile",
+      "z": 1,
+      "repeat": false
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_jinx_zap",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/jinx_zap",
+      "tag": "beam",
+      "z": 1,
+      "repeat": false
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_jinx_flame_chompers",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/jinx_flame_chompers",
+      "tag": "trap",
+      "z": 0,
+      "repeat": false
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_jinx_super_mega_death_rocket",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/jinx_super_mega_death_rocket",
+      "tag": "rocket",
+      "z": 1,
+      "repeat": false
+    }
+  ],
+  "view_effects": [
+    {
+      "type": "Animated",
+      "name": "test_mod_jinx_switcheroo_vfx",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/jinx_switcheroo",
+      "tag": "switch",
+      "z": 1,
+      "repeat": false
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_jinx_rocket_explosion_vfx",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/jinx_rocket_explosion",
+      "tag": "burst",
+      "z": 1,
+      "repeat": false
+    }
+  ],
+  "view_buffs": [
+    {
+      "type": "Animated",
+      "name": "test_mod_jinx_get_excited",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/jinx_get_excited_aura",
+      "tag": "loop",
+      "z": -1,
+      "repeat": true
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_jinx_fishbones_visual",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/jinx_fishbones_mode_aura",
+      "tag": "loop",
+      "z": -1,
+      "repeat": true
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_jinx_powpow_visual",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/jinx_powpow_ready",
+      "tag": "loop",
+      "z": -1,
+      "repeat": true
+    }
+  ]
+}

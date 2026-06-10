@@ -154,6 +154,20 @@
         "skill": "Q - Steel Tempest: each cast thrusts a wind blade forward, dealing <#ff9028ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>70% attack damage<>. The second Q is stronger. The third Q fires a tornado that knocks enemies airborne and readies Last Breath.",
         "skill2": "W/E - Sweeping Blade + Wind Wall: Yasuo dashes through the chosen direction, slicing enemies for <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>55% attack damage<>, gaining a small shield, then raises a wind wall that blocks movement skills and pushes enemies back.",
         "ult": "R - Last Breath: Yasuo blinks behind an enemy champion and strikes for <#ff9028ff>110<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>120% attack damage<>. If Steel Tempest tornado recently hit, Last Breath becomes empowered, dealing higher damage in an area and knocking enemies airborne."
+      },
+      "bo_league_champions_jinx": {
+        "name": "징크스",
+        "attack": "Pow-Pow / Fishbones: basic attacks build minigun attack speed, or splash with Fishbones rockets after Switcheroo.",
+        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher.",
+        "skill2": "Zap! + Flame Chompers!: fires a long electric shot, then drops chompers to stun and burn enemies.",
+        "ult": "Super Mega Death Rocket!: launches a giant shark rocket that explodes on champions and triggers Get Excited."
+      },
+      "test_mod_jinx": {
+        "name": "징크스",
+        "attack": "Pow-Pow / Fishbones: basic attacks build minigun attack speed, or splash with Fishbones rockets after Switcheroo.",
+        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher.",
+        "skill2": "Zap! + Flame Chompers!: fires a long electric shot, then drops chompers to stun and burn enemies.",
+        "ult": "Super Mega Death Rocket!: launches a giant shark rocket that explodes on champions and triggers Get Excited."
       }
     }
   },
@@ -312,6 +326,20 @@
         "skill": "Q - Steel Tempest: each cast thrusts a wind blade forward, dealing <#ff9028ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>70% attack damage<>. The second Q is stronger. The third Q fires a tornado that knocks enemies airborne and readies Last Breath.",
         "skill2": "W/E - Sweeping Blade + Wind Wall: Yasuo dashes through the chosen direction, slicing enemies for <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>55% attack damage<>, gaining a small shield, then raises a wind wall that blocks movement skills and pushes enemies back.",
         "ult": "R - Last Breath: Yasuo blinks behind an enemy champion and strikes for <#ff9028ff>110<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>120% attack damage<>. If Steel Tempest tornado recently hit, Last Breath becomes empowered, dealing higher damage in an area and knocking enemies airborne."
+      },
+      "bo_league_champions_jinx": {
+        "name": "Jinx (Loose Cannon)",
+        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
+        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
+        "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
+      },
+      "test_mod_jinx": {
+        "name": "Jinx (Loose Cannon)",
+        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
+        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
+        "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       }
     }
   },
@@ -470,6 +498,20 @@
         "skill": "Q - Steel Tempest: each cast thrusts a wind blade forward, dealing <#ff9028ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>70% attack damage<>. The second Q is stronger. The third Q fires a tornado that knocks enemies airborne and readies Last Breath.",
         "skill2": "W/E - Sweeping Blade + Wind Wall: Yasuo dashes through the chosen direction, slicing enemies for <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>55% attack damage<>, gaining a small shield, then raises a wind wall that blocks movement skills and pushes enemies back.",
         "ult": "R - Last Breath: Yasuo blinks behind an enemy champion and strikes for <#ff9028ff>110<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>120% attack damage<>. If Steel Tempest tornado recently hit, Last Breath becomes empowered, dealing higher damage in an area and knocking enemies airborne."
+      },
+      "bo_league_champions_jinx": {
+        "name": "Jinx (Loose Cannon)",
+        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
+        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
+        "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
+      },
+      "test_mod_jinx": {
+        "name": "Jinx (Loose Cannon)",
+        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
+        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
+        "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       }
     }
   },
@@ -628,6 +670,20 @@
         "skill": "Q - Steel Tempest: each cast thrusts a wind blade forward, dealing <#ff9028ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>70% attack damage<>. The second Q is stronger. The third Q fires a tornado that knocks enemies airborne and readies Last Breath.",
         "skill2": "W/E - Sweeping Blade + Wind Wall: Yasuo dashes through the chosen direction, slicing enemies for <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>55% attack damage<>, gaining a small shield, then raises a wind wall that blocks movement skills and pushes enemies back.",
         "ult": "R - Last Breath: Yasuo blinks behind an enemy champion and strikes for <#ff9028ff>110<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>120% attack damage<>. If Steel Tempest tornado recently hit, Last Breath becomes empowered, dealing higher damage in an area and knocking enemies airborne."
+      },
+      "bo_league_champions_jinx": {
+        "name": "Jinx (Loose Cannon)",
+        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
+        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
+        "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
+      },
+      "test_mod_jinx": {
+        "name": "Jinx (Loose Cannon)",
+        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
+        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
+        "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       }
     }
   },
@@ -786,6 +842,20 @@
         "skill": "Q - Steel Tempest: each cast thrusts a wind blade forward, dealing <#ff9028ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>70% attack damage<>. The second Q is stronger. The third Q fires a tornado that knocks enemies airborne and readies Last Breath.",
         "skill2": "W/E - Sweeping Blade + Wind Wall: Yasuo dashes through the chosen direction, slicing enemies for <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>55% attack damage<>, gaining a small shield, then raises a wind wall that blocks movement skills and pushes enemies back.",
         "ult": "R - Last Breath: Yasuo blinks behind an enemy champion and strikes for <#ff9028ff>110<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>120% attack damage<>. If Steel Tempest tornado recently hit, Last Breath becomes empowered, dealing higher damage in an area and knocking enemies airborne."
+      },
+      "bo_league_champions_jinx": {
+        "name": "Jinx (Loose Cannon)",
+        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
+        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
+        "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
+      },
+      "test_mod_jinx": {
+        "name": "Jinx (Loose Cannon)",
+        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
+        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
+        "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       }
     }
   },
@@ -944,6 +1014,20 @@
         "skill": "Q - Steel Tempest: each cast thrusts a wind blade forward, dealing <#ff9028ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>70% attack damage<>. The second Q is stronger. The third Q fires a tornado that knocks enemies airborne and readies Last Breath.",
         "skill2": "W/E - Sweeping Blade + Wind Wall: Yasuo dashes through the chosen direction, slicing enemies for <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>55% attack damage<>, gaining a small shield, then raises a wind wall that blocks movement skills and pushes enemies back.",
         "ult": "R - Last Breath: Yasuo blinks behind an enemy champion and strikes for <#ff9028ff>110<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>120% attack damage<>. If Steel Tempest tornado recently hit, Last Breath becomes empowered, dealing higher damage in an area and knocking enemies airborne."
+      },
+      "bo_league_champions_jinx": {
+        "name": "Jinx (Loose Cannon)",
+        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
+        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
+        "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
+      },
+      "test_mod_jinx": {
+        "name": "Jinx (Loose Cannon)",
+        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
+        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
+        "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       }
     }
   },
@@ -1102,6 +1186,20 @@
         "skill": "Q - Steel Tempest: each cast thrusts a wind blade forward, dealing <#ff9028ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>70% attack damage<>. The second Q is stronger. The third Q fires a tornado that knocks enemies airborne and readies Last Breath.",
         "skill2": "W/E - Sweeping Blade + Wind Wall: Yasuo dashes through the chosen direction, slicing enemies for <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>55% attack damage<>, gaining a small shield, then raises a wind wall that blocks movement skills and pushes enemies back.",
         "ult": "R - Last Breath: Yasuo blinks behind an enemy champion and strikes for <#ff9028ff>110<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>120% attack damage<>. If Steel Tempest tornado recently hit, Last Breath becomes empowered, dealing higher damage in an area and knocking enemies airborne."
+      },
+      "bo_league_champions_jinx": {
+        "name": "Jinx (Loose Cannon)",
+        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
+        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
+        "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
+      },
+      "test_mod_jinx": {
+        "name": "Jinx (Loose Cannon)",
+        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
+        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
+        "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       }
     }
   },
@@ -1260,6 +1358,20 @@
         "skill": "Q - Steel Tempest: each cast thrusts a wind blade forward, dealing <#ff9028ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>70% attack damage<>. The second Q is stronger. The third Q fires a tornado that knocks enemies airborne and readies Last Breath.",
         "skill2": "W/E - Sweeping Blade + Wind Wall: Yasuo dashes through the chosen direction, slicing enemies for <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>55% attack damage<>, gaining a small shield, then raises a wind wall that blocks movement skills and pushes enemies back.",
         "ult": "R - Last Breath: Yasuo blinks behind an enemy champion and strikes for <#ff9028ff>110<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>120% attack damage<>. If Steel Tempest tornado recently hit, Last Breath becomes empowered, dealing higher damage in an area and knocking enemies airborne."
+      },
+      "bo_league_champions_jinx": {
+        "name": "Jinx (Loose Cannon)",
+        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
+        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
+        "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
+      },
+      "test_mod_jinx": {
+        "name": "Jinx (Loose Cannon)",
+        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
+        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
+        "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       }
     }
   },
@@ -1418,6 +1530,20 @@
         "skill": "Q - Steel Tempest: each cast thrusts a wind blade forward, dealing <#ff9028ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>70% attack damage<>. The second Q is stronger. The third Q fires a tornado that knocks enemies airborne and readies Last Breath.",
         "skill2": "W/E - Sweeping Blade + Wind Wall: Yasuo dashes through the chosen direction, slicing enemies for <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>55% attack damage<>, gaining a small shield, then raises a wind wall that blocks movement skills and pushes enemies back.",
         "ult": "R - Last Breath: Yasuo blinks behind an enemy champion and strikes for <#ff9028ff>110<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>120% attack damage<>. If Steel Tempest tornado recently hit, Last Breath becomes empowered, dealing higher damage in an area and knocking enemies airborne."
+      },
+      "bo_league_champions_jinx": {
+        "name": "Jinx (Loose Cannon)",
+        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
+        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
+        "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
+      },
+      "test_mod_jinx": {
+        "name": "Jinx (Loose Cannon)",
+        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
+        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
+        "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       }
     }
   },
@@ -1576,6 +1702,20 @@
         "skill": "Q - Steel Tempest: each cast thrusts a wind blade forward, dealing <#ff9028ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>70% attack damage<>. The second Q is stronger. The third Q fires a tornado that knocks enemies airborne and readies Last Breath.",
         "skill2": "W/E - Sweeping Blade + Wind Wall: Yasuo dashes through the chosen direction, slicing enemies for <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>55% attack damage<>, gaining a small shield, then raises a wind wall that blocks movement skills and pushes enemies back.",
         "ult": "R - Last Breath: Yasuo blinks behind an enemy champion and strikes for <#ff9028ff>110<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>120% attack damage<>. If Steel Tempest tornado recently hit, Last Breath becomes empowered, dealing higher damage in an area and knocking enemies airborne."
+      },
+      "bo_league_champions_jinx": {
+        "name": "Jinx (Loose Cannon)",
+        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
+        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
+        "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
+      },
+      "test_mod_jinx": {
+        "name": "Jinx (Loose Cannon)",
+        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
+        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
+        "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       }
     }
   },
@@ -1734,6 +1874,20 @@
         "skill": "Q - Steel Tempest: each cast thrusts a wind blade forward, dealing <#ff9028ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>70% attack damage<>. The second Q is stronger. The third Q fires a tornado that knocks enemies airborne and readies Last Breath.",
         "skill2": "W/E - Sweeping Blade + Wind Wall: Yasuo dashes through the chosen direction, slicing enemies for <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>55% attack damage<>, gaining a small shield, then raises a wind wall that blocks movement skills and pushes enemies back.",
         "ult": "R - Last Breath: Yasuo blinks behind an enemy champion and strikes for <#ff9028ff>110<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>120% attack damage<>. If Steel Tempest tornado recently hit, Last Breath becomes empowered, dealing higher damage in an area and knocking enemies airborne."
+      },
+      "bo_league_champions_jinx": {
+        "name": "Jinx (Loose Cannon)",
+        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
+        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
+        "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
+      },
+      "test_mod_jinx": {
+        "name": "Jinx (Loose Cannon)",
+        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
+        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
+        "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       }
     }
   },
@@ -1892,6 +2046,20 @@
         "skill": "Q - 斩钢闪：每次施放向前刺出风刃，造成<#ff9028ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>70%攻击力<>的物理伤害。第二段更强，第三段会发射龙卷风，击飞敌人并使狂风绝息斩进入可强化状态。",
         "skill2": "W/E - 踏前斩 + 风之障壁：亚索向指定方向突进并斩击敌人，造成<#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>55%攻击力<>的物理伤害，获得小护盾，随后扬起风墙，阻挡位移技能并击退敌人。",
         "ult": "R - 狂风绝息斩：亚索闪至敌方英雄身后斩击，造成<#ff9028ff>110<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>120%攻击力<>的物理伤害。若近期由斩钢闪龙卷风命中，则强化为范围伤害并击飞敌人。"
+      },
+      "bo_league_champions_jinx": {
+        "name": "暴走萝莉",
+        "attack": "砰砰枪 / 鱼骨头：普攻默认使用砰砰枪，连续攻击会叠加攻击速度。切到鱼骨头后普攻变成溅射火箭，并清除砰砰枪层数。",
+        "skill": "枪炮交响曲：在砰砰枪和鱼骨头之间切换。鱼骨头提供溅射火箭普攻；切回砰砰枪后恢复叠攻速节奏。",
+        "skill2": "震荡电磁波 + 嚼火者手雷：向前射出长距离电击，造成物理伤害并减速；随后投出嚼火者，在前方咬住、眩晕并灼烧敌人。",
+        "ult": "超究极死神飞弹：发射一枚横贯战场的巨型鲨鱼火箭。命中英雄时爆炸造成高额物理伤害，并触发罪恶快感，获得移动速度和攻击速度。"
+      },
+      "test_mod_jinx": {
+        "name": "暴走萝莉",
+        "attack": "砰砰枪 / 鱼骨头：普攻默认使用砰砰枪，连续攻击会叠加攻击速度。切到鱼骨头后普攻变成溅射火箭，并清除砰砰枪层数。",
+        "skill": "枪炮交响曲：在砰砰枪和鱼骨头之间切换。鱼骨头提供溅射火箭普攻；切回砰砰枪后恢复叠攻速节奏。",
+        "skill2": "震荡电磁波 + 嚼火者手雷：向前射出长距离电击，造成物理伤害并减速；随后投出嚼火者，在前方咬住、眩晕并灼烧敌人。",
+        "ult": "超究极死神飞弹：发射一枚横贯战场的巨型鲨鱼火箭。命中英雄时爆炸造成高额物理伤害，并触发罪恶快感，获得移动速度和攻击速度。"
       }
     }
   },
@@ -2050,6 +2218,20 @@
         "skill": "Q - 斬鋼閃：每次施放向前刺出風刃，造成<#ff9028ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>70%攻擊力<>的物理傷害。第二段更強，第三段會發射龍捲風，擊飛敵人並使奪命氣息進入可強化狀態。",
         "skill2": "W/E - 刃敵千軍 + 風牆：犽宿向指定方向突進並斬擊敵人，造成<#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>55%攻擊力<>的物理傷害，獲得小護盾，隨後揚起風牆，阻擋位移技能並擊退敵人。",
         "ult": "R - 奪命氣息：犽宿閃至敵方英雄身後斬擊，造成<#ff9028ff>110<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>120%攻擊力<>的物理傷害。若近期由斬鋼閃龍捲風命中，則強化為範圍傷害並擊飛敵人。"
+      },
+      "bo_league_champions_jinx": {
+        "name": "暴走蘿莉",
+        "attack": "砰砰槍 / 魚骨頭：普攻預設使用砰砰槍，連續攻擊會疊加攻擊速度。切到魚骨頭後普攻變成濺射火箭，並清除砰砰槍層數。",
+        "skill": "槍炮交響曲：在砰砰槍和魚骨頭之間切換。魚骨頭提供濺射火箭普攻；切回砰砰槍後恢復疊攻速節奏。",
+        "skill2": "震盪電磁波 + 嚼火者手雷：向前射出長距離電擊，造成物理傷害並減速；隨後投出嚼火者，在前方咬住、暈眩並灼燒敵人。",
+        "ult": "超究極死神飛彈：發射一枚橫貫戰場的巨型鯊魚火箭。命中英雄時爆炸造成高額物理傷害，並觸發罪惡快感，獲得移動速度和攻擊速度。"
+      },
+      "test_mod_jinx": {
+        "name": "暴走蘿莉",
+        "attack": "砰砰槍 / 魚骨頭：普攻預設使用砰砰槍，連續攻擊會疊加攻擊速度。切到魚骨頭後普攻變成濺射火箭，並清除砰砰槍層數。",
+        "skill": "槍炮交響曲：在砰砰槍和魚骨頭之間切換。魚骨頭提供濺射火箭普攻；切回砰砰槍後恢復疊攻速節奏。",
+        "skill2": "震盪電磁波 + 嚼火者手雷：向前射出長距離電擊，造成物理傷害並減速；隨後投出嚼火者，在前方咬住、暈眩並灼燒敵人。",
+        "ult": "超究極死神飛彈：發射一枚橫貫戰場的巨型鯊魚火箭。命中英雄時爆炸造成高額物理傷害，並觸發罪惡快感，獲得移動速度和攻擊速度。"
       }
     }
   },
@@ -2208,6 +2390,20 @@
         "skill": "Q - Steel Tempest: each cast thrusts a wind blade forward, dealing <#ff9028ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>70% attack damage<>. The second Q is stronger. The third Q fires a tornado that knocks enemies airborne and readies Last Breath.",
         "skill2": "W/E - Sweeping Blade + Wind Wall: Yasuo dashes through the chosen direction, slicing enemies for <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>55% attack damage<>, gaining a small shield, then raises a wind wall that blocks movement skills and pushes enemies back.",
         "ult": "R - Last Breath: Yasuo blinks behind an enemy champion and strikes for <#ff9028ff>110<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>120% attack damage<>. If Steel Tempest tornado recently hit, Last Breath becomes empowered, dealing higher damage in an area and knocking enemies airborne."
+      },
+      "bo_league_champions_jinx": {
+        "name": "Jinx (Loose Cannon)",
+        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
+        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
+        "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
+      },
+      "test_mod_jinx": {
+        "name": "Jinx (Loose Cannon)",
+        "attack": "Pow-Pow / Fishbones: basic attacks use Pow-Pow to build attack speed. Switcheroo toggles Fishbones, making attacks fire splash rockets and clearing Pow-Pow stacks.",
+        "skill": "Switcheroo!: toggles between Pow-Pow minigun and Fishbones rocket launcher. Fishbones gives splash rocket attacks; returning to Pow-Pow restores the stacking minigun rhythm.",
+        "skill2": "Zap! + Flame Chompers!: fires a long electric shot that damages and slows, then throws Flame Chompers ahead to bite, stun, and burn enemies caught in the line.",
+        "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       }
     }
   }

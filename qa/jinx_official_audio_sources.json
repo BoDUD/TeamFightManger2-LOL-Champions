@@ -1,0 +1,151 @@
+{
+  "source": "League of Legends Game/DATA/FINAL/Champions/Jinx.wad.client",
+  "bank": "assets/sounds/wwise2016/sfx/characters/jinx/skins/base/jinx_base_sfx_audio.bnk (official Jinx WAD BKHD/DIDX/DATA bank shards)",
+  "events_bank": "assets/sounds/wwise2016/sfx/characters/jinx/skins/base/jinx_base_sfx_events.bnk (events unavailable by path; clips selected from official Jinx WAD media IDs)",
+  "extracted_with": "WAD BKHD/DIDX/DATA scan + WEM split + vgmstream-cli",
+  "events": {
+    "test_mod_jinx_minigun_cast": {
+      "media_id": "871511008",
+      "clip": "test_mod_jinx_minigun_cast_clip",
+      "volume": 0.84,
+      "duration": 0.191,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 1.0,
+      "rms": 0.3799
+    },
+    "test_mod_jinx_minigun_hit": {
+      "media_id": "230875545",
+      "clip": "test_mod_jinx_minigun_hit_clip",
+      "volume": 0.84,
+      "duration": 0.219,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 1.0,
+      "rms": 0.3439
+    },
+    "test_mod_jinx_rocket_cast": {
+      "media_id": "1043413444",
+      "clip": "test_mod_jinx_rocket_cast_clip",
+      "volume": 0.88,
+      "duration": 0.725,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 1.0,
+      "rms": 0.3757
+    },
+    "test_mod_jinx_rocket_hit": {
+      "media_id": "411020415",
+      "clip": "test_mod_jinx_rocket_hit_clip",
+      "volume": 0.88,
+      "duration": 0.773,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 1.0,
+      "rms": 0.3659
+    },
+    "test_mod_jinx_switch_to_minigun": {
+      "media_id": "130431412",
+      "clip": "test_mod_jinx_switch_to_minigun_clip",
+      "volume": 0.88,
+      "duration": 0.769,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 1.0,
+      "rms": 0.3549
+    },
+    "test_mod_jinx_switch_to_rocket": {
+      "media_id": "148352341",
+      "clip": "test_mod_jinx_switch_to_rocket_clip",
+      "volume": 0.88,
+      "duration": 1.042,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 1.0,
+      "rms": 0.3531
+    },
+    "test_mod_jinx_zap_cast": {
+      "media_id": "995389952",
+      "clip": "test_mod_jinx_zap_cast_clip",
+      "volume": 0.92,
+      "duration": 1.605,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 1.0,
+      "rms": 0.3951
+    },
+    "test_mod_jinx_zap_hit": {
+      "media_id": "670846690",
+      "clip": "test_mod_jinx_zap_hit_clip",
+      "volume": 0.9,
+      "duration": 1.756,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 1.0,
+      "rms": 0.3942
+    },
+    "test_mod_jinx_chompers_cast": {
+      "media_id": "838897672",
+      "clip": "test_mod_jinx_chompers_cast_clip",
+      "volume": 0.88,
+      "duration": 1.041,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 1.0,
+      "rms": 0.3846
+    },
+    "test_mod_jinx_chompers_trigger": {
+      "media_id": "1062072193",
+      "clip": "test_mod_jinx_chompers_trigger_clip",
+      "volume": 0.88,
+      "duration": 1.39,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 1.0,
+      "rms": 0.3893
+    },
+    "test_mod_jinx_r_cast": {
+      "media_id": "568985478",
+      "clip": "test_mod_jinx_r_cast_clip",
+      "volume": 0.94,
+      "duration": 3.082,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 1.0,
+      "rms": 0.3934
+    },
+    "test_mod_jinx_r_hit": {
+      "media_id": "203216632",
+      "clip": "test_mod_jinx_r_hit_clip",
+      "volume": 0.92,
+      "duration": 2.987,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 1.0,
+      "rms": 0.3765
+    },
+    "test_mod_jinx_get_excited": {
+      "media_id": "581983763",
+      "clip": "test_mod_jinx_get_excited_clip",
+      "volume": 0.88,
+      "duration": 1.181,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 1.0,
+      "rms": 0.3466
+    },
+    "test_mod_jinx_ult_voice": {
+      "media_id": "870699277",
+      "clip": "test_mod_jinx_ult_voice_clip",
+      "volume": 0.96,
+      "duration": 4.18,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 0.8181,
+      "rms": 0.0878,
+      "source_type": "fixed_official_vo"
+    }
+  },
+  "voice_source": "League of Legends Game/DATA/FINAL/Champions/Jinx.en_US.wad.client",
+  "voice_extracted_with": "WAD BKHD/DIDX/DATA scan + WEM split + vgmstream-cli"
+}
