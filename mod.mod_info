@@ -3,8 +3,8 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.9.2",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version slows Yasuo run timing, fixes Yasuo compact portrait alignment, adds fixed official LoL VO lines to Yasuo/Kayn/Aatrox ult casts, and extends CI to gate those voice events.",
+  "version": "0.10.0",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version adds Jinx with crossed walk sprites, Switcheroo/Pow-Pow/Fishbones/Zap-Chompers/Rocket gameplay, official LoL audio hooks, and CI gates for encyclopedia visibility, motion, portraits, effects, and sound source parity.",
   "last_updated": "2026-06-10",
   "dependencies": [
     {

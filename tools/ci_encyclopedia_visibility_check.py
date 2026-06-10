@@ -17,6 +17,7 @@ EXPECTED_CHAMPIONS = {
     "fiddlesticks",
     "fizz",
     "jhin",
+    "jinx",
     "kayn",
     "vayne",
     "veigar",
@@ -240,6 +241,84 @@ YASUO_SKILL_SOUND_EVENTS = {
     "test_mod_yasuo_ult_voice",
 }
 YASUO_SKILL_SOUND_VOLUME_FLOOR = 0.80
+JINX_IDS = ("bo_league_champions_jinx", "test_mod_jinx")
+JINX_FRAME_SIZE = (57.0, 54.0)
+JINX_CORE_ACTIONS = ("idle", "run", "attack", "skill", "skill2", "hit", "dead", "ult")
+JINX_EFFECT_REFS = {
+    "test_mod_jinx_minigun_bullet": (
+        "asset/bo_league_champions/aseprite_resources/effects/jinx_minigun_bullet",
+        "projectile",
+    ),
+    "test_mod_jinx_rocket_attack": (
+        "asset/bo_league_champions/aseprite_resources/effects/jinx_rocket_attack",
+        "projectile",
+    ),
+    "test_mod_jinx_zap": (
+        "asset/bo_league_champions/aseprite_resources/effects/jinx_zap",
+        "beam",
+    ),
+    "test_mod_jinx_flame_chompers": (
+        "asset/bo_league_champions/aseprite_resources/effects/jinx_flame_chompers",
+        "trap",
+    ),
+    "test_mod_jinx_super_mega_death_rocket": (
+        "asset/bo_league_champions/aseprite_resources/effects/jinx_super_mega_death_rocket",
+        "rocket",
+    ),
+}
+JINX_VIEW_EFFECT_REFS = {
+    "test_mod_jinx_switcheroo_vfx": (
+        "asset/bo_league_champions/aseprite_resources/effects/jinx_switcheroo",
+        "switch",
+    ),
+    "test_mod_jinx_rocket_explosion_vfx": (
+        "asset/bo_league_champions/aseprite_resources/effects/jinx_rocket_explosion",
+        "burst",
+    ),
+}
+JINX_BUFF_REFS = {
+    "test_mod_jinx_get_excited": (
+        "asset/bo_league_champions/aseprite_resources/effects/jinx_get_excited_aura",
+        "loop",
+    ),
+    "test_mod_jinx_fishbones_visual": (
+        "asset/bo_league_champions/aseprite_resources/effects/jinx_fishbones_mode_aura",
+        "loop",
+    ),
+    "test_mod_jinx_powpow_visual": (
+        "asset/bo_league_champions/aseprite_resources/effects/jinx_powpow_ready",
+        "loop",
+    ),
+}
+JINX_SOUND_MEDIA_IDS = {
+    "test_mod_jinx_minigun_cast": "871511008",
+    "test_mod_jinx_minigun_hit": "230875545",
+    "test_mod_jinx_rocket_cast": "1043413444",
+    "test_mod_jinx_rocket_hit": "411020415",
+    "test_mod_jinx_switch_to_minigun": "130431412",
+    "test_mod_jinx_switch_to_rocket": "148352341",
+    "test_mod_jinx_zap_cast": "995389952",
+    "test_mod_jinx_zap_hit": "670846690",
+    "test_mod_jinx_chompers_cast": "838897672",
+    "test_mod_jinx_chompers_trigger": "1062072193",
+    "test_mod_jinx_r_cast": "568985478",
+    "test_mod_jinx_r_hit": "203216632",
+    "test_mod_jinx_get_excited": "581983763",
+    "test_mod_jinx_ult_voice": "870699277",
+}
+JINX_SKILL_SOUND_EVENTS = {
+    "test_mod_jinx_switch_to_minigun",
+    "test_mod_jinx_switch_to_rocket",
+    "test_mod_jinx_zap_cast",
+    "test_mod_jinx_zap_hit",
+    "test_mod_jinx_chompers_cast",
+    "test_mod_jinx_chompers_trigger",
+    "test_mod_jinx_r_cast",
+    "test_mod_jinx_r_hit",
+    "test_mod_jinx_get_excited",
+    "test_mod_jinx_ult_voice",
+}
+JINX_SKILL_SOUND_VOLUME_FLOOR = 0.84
 AATROX_SOUND_MEDIA_IDS = {
     "test_mod_aatrox_attack_cast": ("29529616",),
     "test_mod_aatrox_attack_hit": ("780778749",),
@@ -1328,6 +1407,228 @@ def check_yasuo_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
     )
 
 
+def check_jinx_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
+    expected_display_names = {
+        "en": "Jinx (Loose Cannon)",
+        "zh-hans": "\u66b4\u8d70\u841d\u8389",
+        "zh-hant": "\u66b4\u8d70\u863f\u8389",
+        "ko": "\uc9d5\ud06c\uc2a4",
+    }
+    expected_terms = {
+        "en": ("Pow-Pow", "Fishbones", "Switcheroo", "Zap", "Flame Chompers", "Super Mega Death Rocket"),
+        "zh-hans": ("\u7830\u7830\u67aa", "\u9c7c\u9aa8\u5934", "\u67aa\u70ae\u4ea4\u54cd\u66f2", "\u9707\u8361\u7535\u78c1\u6ce2", "\u56bc\u706b\u8005", "\u8d85\u7a76\u6781\u6b7b\u795e\u98de\u5f39"),
+        "zh-hant": ("\u7830\u7830\u69cd", "\u9b5a\u9aa8\u982d", "\u69cd\u70ae\u4ea4\u97ff\u66f2", "\u9707\u76ea\u96fb\u78c1\u6ce2", "\u56bc\u706b\u8005", "\u8d85\u7a76\u6975\u6b7b\u795e\u98db\u5f48"),
+    }
+    for locale, expected_name in expected_display_names.items():
+        descriptions = text.get(locale, {}).get("description")
+        if not isinstance(descriptions, dict):
+            fail(f"text/champion.i18n locale {locale} missing description object")
+        for jinx_id in JINX_IDS:
+            row = descriptions.get(jinx_id)
+            if not isinstance(row, dict):
+                fail(f"text/champion.i18n locale {locale} missing {jinx_id}")
+            name = str(row.get("name", ""))
+            if name != expected_name:
+                fail(f"text/champion.i18n locale {locale} {jinx_id}.name must be short display name {expected_name!r}")
+            if locale in {"zh-hans", "zh-hant"} and any(alias in name for alias in ("Jinx", "\u91d1\u514b\u4e1d", "\u91d1\u514b\u7d72")):
+                fail(f"text/champion.i18n locale {locale} {jinx_id}.name must not include search aliases")
+            for key in REQUIRED_DESCRIPTION_KEYS:
+                value = str(row.get(key, ""))
+                if "??" in value or "\ufffd" in value or "\u7e5d" in value:
+                    fail(f"text/champion.i18n locale {locale} {jinx_id}.{key} still contains corrupted text")
+            for term in expected_terms.get(locale, ()):
+                if not any(term in str(row.get(key, "")) for key in ("attack", "skill", "skill2", "ult")):
+                    fail(f"text/champion.i18n locale {locale} {jinx_id} missing term {term!r}")
+
+    for jinx_id in JINX_IDS:
+        view = entries.get(jinx_id)
+        if not isinstance(view, dict):
+            fail(f"style/champion_view.champion_view missing entries.{jinx_id}")
+        if view.get("face", {}).get("x") != -2 or view.get("face", {}).get("y") != -34:
+            fail(f"style entry {jinx_id}.face must keep Jinx compact portrait aligned at x=-2,y=-34")
+        if view.get("center", {}).get("y") != -12:
+            fail(f"style entry {jinx_id}.center.y must keep the full model above the name")
+
+    for path in (
+        ROOT / "aseprite_resources" / "champions" / "jinx#sheet.png",
+        ROOT / "icons" / "jinx_skill.png",
+        ROOT / "icons" / "jinx_skill2.png",
+        ROOT / "icons" / "jinx_ult.png",
+    ):
+        require_file(path)
+        require_no_green_residue(path)
+    for effect_name in (
+        "jinx_minigun_bullet",
+        "jinx_rocket_attack",
+        "jinx_zap",
+        "jinx_flame_chompers",
+        "jinx_super_mega_death_rocket",
+        "jinx_switcheroo",
+        "jinx_rocket_explosion",
+        "jinx_get_excited_aura",
+        "jinx_fishbones_mode_aura",
+        "jinx_powpow_ready",
+    ):
+        sheet = ROOT / "aseprite_resources" / "effects" / f"{effect_name}#sheet.png"
+        fanim = ROOT / "aseprite_resources" / "effects" / f"{effect_name}#anim.fanim"
+        require_file(sheet)
+        require_file(fanim)
+        require_no_green_residue(sheet)
+        width, height, rgba = load_rgba(sheet)
+        visible_pixels = 0
+        actor_skin_pixels = 0
+        for i in range(width * height):
+            r = rgba[i * 4]
+            g = rgba[i * 4 + 1]
+            b = rgba[i * 4 + 2]
+            a = rgba[i * 4 + 3]
+            if not a:
+                continue
+            visible_pixels += 1
+            if r > 170 and 95 < g < 195 and 55 < b < 155 and r > b + 25 and abs(r - g) < 95:
+                actor_skin_pixels += 1
+        if visible_pixels < 20:
+            fail(f"{sheet.relative_to(ROOT)} must contain a visible generated Jinx effect")
+        if actor_skin_pixels > max(40, visible_pixels // 5):
+            fail(f"{sheet.relative_to(ROOT)} contains too many actor/body-colored pixels; effects must stay separate from the champion body")
+
+    fanim = load_json(ROOT / "aseprite_resources" / "champions" / "jinx#anim.fanim")
+    sheet_width, sheet_height, sheet_alpha = load_rgba_alpha(
+        ROOT / "aseprite_resources" / "champions" / "jinx#sheet.png"
+    )
+    expected_counts = {
+        "idle": 8,
+        "run": 10,
+        "attack": 7,
+        "skill": 6,
+        "skill2": 7,
+        "ult": 6,
+        "hit": 1,
+        "dead": 1,
+    }
+    action_hashes: dict[str, list[str]] = {}
+    action_bboxes: dict[str, list[tuple[int, int, int, int]]] = {}
+    for action in JINX_CORE_ACTIONS:
+        frames = fanim.get("anims", {}).get(action, {}).get("frames")
+        if not isinstance(frames, list) or len(frames) != expected_counts[action]:
+            fail(f"Jinx {action} animation must have {expected_counts[action]} frames")
+        action_hashes[action] = []
+        action_bboxes[action] = []
+        for index, frame in enumerate(frames):
+            data = frame.get("data") if isinstance(frame, dict) else None
+            if not isinstance(data, dict):
+                fail(f"Jinx {action} frame {index} missing frame data")
+            if (data.get("w"), data.get("h")) != JINX_FRAME_SIZE:
+                fail(f"Jinx {action} frame {index} must use the 57x54 actor frame")
+            x = int(round(float(data.get("x", -1))))
+            y = int(round(float(data.get("y", -1))))
+            w = int(round(float(data.get("w", 0))))
+            h = int(round(float(data.get("h", 0))))
+            if x < 0 or y < 0 or x + w > sheet_width or y + h > sheet_height:
+                fail(f"Jinx {action} frame {index} points outside jinx#sheet.png")
+            bbox = alpha_bbox_in_rect(sheet_alpha, sheet_width, (x, y, w, h))
+            if bbox is None:
+                fail(f"Jinx {action} frame {index} is blank")
+            action_bboxes[action].append(bbox)
+            action_hashes[action].append(alpha_frame_hash(sheet_alpha, sheet_width, (x, y, w, h)))
+            body_height = bbox[3] - bbox[1]
+            bottom_safe = h - bbox[3]
+            if action != "dead" and body_height > 45:
+                fail(f"Jinx {action} frame {index} body height {body_height}px is too large for UI/battle labels")
+            if action != "dead" and bottom_safe < 6:
+                fail(f"Jinx {action} frame {index} leaves only {bottom_safe}px bottom safety above labels")
+            if action == "run" and frame.get("duration") != 0.095:
+                fail("Jinx run must use the slower 0.095s crossed-walk timing, not a sprint")
+        if action in {"attack", "skill", "skill2", "ult"} and len(set(action_hashes[action])) < min(4, len(action_hashes[action])):
+            fail(f"Jinx {action} must have real action motion, not repeated idle frames")
+
+    for action in ("attack", "skill", "skill2", "ult", "hit"):
+        if tuple(action_hashes[action][: len(action_hashes["idle"])]) == tuple(action_hashes["idle"][: len(action_hashes[action])]):
+            fail(f"Jinx {action} must not be a direct copy of idle")
+
+    run_frames = fanim.get("anims", {}).get("run", {}).get("frames")
+    assert isinstance(run_frames, list)
+    foot_centers: list[float] = []
+    lower_shapes: set[tuple[tuple[int, int], ...]] = set()
+    for index, frame in enumerate(run_frames):
+        data = frame["data"]
+        x = int(round(float(data["x"])))
+        y = int(round(float(data["y"])))
+        w = int(round(float(data["w"])))
+        h = int(round(float(data["h"])))
+        bbox = action_bboxes["run"][index]
+        lower_points: list[tuple[int, int]] = []
+        for local_y in range(max(26, bbox[1] + (bbox[3] - bbox[1]) // 2), min(h, bbox[3])):
+            row_start = (y + local_y) * sheet_width
+            for local_x in range(bbox[0], bbox[2]):
+                if 0 <= local_x < w and sheet_alpha[row_start + x + local_x] != 0:
+                    lower_points.append((local_x, local_y))
+        if len(lower_points) < 65:
+            fail(f"Jinx run frame {index} has only {len(lower_points)} lower-body pixels; keep the full generated legs visible")
+        foot_centers.append(sum(point[0] for point in lower_points) / len(lower_points))
+        lower_shapes.add(tuple(lower_points))
+    if max(foot_centers) - min(foot_centers) < 1.25:
+        fail("Jinx run must have crossed walking foot motion, not a sliding/zombie step")
+    if len(lower_shapes) < 6:
+        fail("Jinx run must vary lower-body shapes across the ten-frame walk cycle")
+
+    jinx = load_json(ROOT / "champion" / "jinx.data_champion")
+    strings = set(walk_strings(jinx))
+    for required in (
+        "SwitchByBuff",
+        "TargetSplashProjectile",
+        "LineRangeProjectile",
+        "LinearProjectile",
+        "test_mod_jinx_fishbones_mode",
+        "test_mod_jinx_powpow_1",
+        "test_mod_jinx_powpow_2",
+        "test_mod_jinx_powpow_3",
+        "test_mod_jinx_flame_chompers",
+        "test_mod_jinx_get_excited",
+        "test_mod_jinx_ult_voice",
+    ):
+        if required not in strings:
+            fail(f"champion/jinx.data_champion must include LoL Jinx mechanic token {required}")
+    for action, sfx_names in (
+        ("skill", {"test_mod_jinx_switch_to_minigun", "test_mod_jinx_switch_to_rocket"}),
+        ("skill2", {"test_mod_jinx_zap_cast", "test_mod_jinx_chompers_cast"}),
+        ("ult", {"test_mod_jinx_r_cast", "test_mod_jinx_ult_voice"}),
+    ):
+        action_strings = set(walk_strings(jinx.get(action, {})))
+        missing = sfx_names - action_strings
+        if missing:
+            fail(f"Jinx {action} must trigger sound events {sorted(missing)}")
+
+    projectile_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in jinx.get("view_projectiles", [])}
+    for name, expected in JINX_EFFECT_REFS.items():
+        if projectile_refs.get(name) != expected:
+            fail(f"champion/jinx.data_champion projectile {name} must reference {expected}")
+    effect_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in jinx.get("view_effects", [])}
+    for name, expected in JINX_VIEW_EFFECT_REFS.items():
+        if effect_refs.get(name) != expected:
+            fail(f"champion/jinx.data_champion view_effect {name} must reference {expected}")
+    buff_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in jinx.get("view_buffs", [])}
+    for name, expected in JINX_BUFF_REFS.items():
+        if buff_refs.get(name) != expected:
+            fail(f"champion/jinx.data_champion buff {name} must reference {expected}")
+    for buff_name in JINX_BUFF_REFS:
+        buff = next((item for item in jinx.get("view_buffs", []) if item.get("name") == buff_name), None)
+        if not isinstance(buff, dict) or buff.get("z") != -1:
+            fail(f"Jinx buff {buff_name} must render behind the actor")
+
+    assert_official_audio_sources(
+        "jinx",
+        "Jinx.wad.client",
+        "jinx_base_sfx_audio.bnk",
+        JINX_SOUND_MEDIA_IDS,
+        JINX_SKILL_SOUND_EVENTS,
+        JINX_SKILL_SOUND_VOLUME_FLOOR,
+    )
+    official = load_json(ROOT / "qa" / "jinx_official_audio_sources.json")
+    if "Jinx.en_US.wad.client" not in str(official.get("voice_source", "")):
+        fail("Jinx ult voice source must document the official Jinx.en_US.wad.client")
+
+
 def check_champion_visibility() -> None:
     text = load_json(ROOT / "text" / "champion.i18n")
     style = load_json(ROOT / "style" / "champion_view.champion_view")
@@ -1407,9 +1708,12 @@ def check_champion_visibility() -> None:
         fail("Kayn encyclopedia chain is missing bo_league_champions_kayn")
     if f"{MOD_ID}_yasuo" not in ids:
         fail("Yasuo encyclopedia chain is missing bo_league_champions_yasuo")
+    if f"{MOD_ID}_jinx" not in ids:
+        fail("Jinx encyclopedia chain is missing bo_league_champions_jinx")
     check_aatrox_rework_contract(text, entries)
     check_kayn_rework_contract(text, entries)
     check_yasuo_contract(text, entries)
+    check_jinx_contract(text, entries)
 
 
 def main() -> int:
