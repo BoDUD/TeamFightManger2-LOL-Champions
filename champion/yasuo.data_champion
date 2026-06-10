@@ -557,6 +557,10 @@
             "name": "test_mod_yasuo_r_cast"
           },
           {
+            "type": "Sfx",
+            "name": "test_mod_yasuo_ult_voice"
+          },
+          {
             "type": "CasterViewEffect",
             "name": "test_mod_yasuo_last_breath_burst"
           },
@@ -609,6 +613,10 @@
           {
             "type": "Sfx",
             "name": "test_mod_yasuo_r_cast"
+          },
+          {
+            "type": "Sfx",
+            "name": "test_mod_yasuo_ult_voice"
           },
           {
             "type": "CasterViewEffect",

@@ -546,5 +546,29 @@
   "asset/base/sound/sfx/test_mod_yasuo_r_hit_clip": {
     "remapping": "asset/bo_league_champions/sound/sfx/test_mod_yasuo_r_hit_clip",
     "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_aatrox_ult_voice": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_aatrox_ult_voice",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_aatrox_ult_voice_clip": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_aatrox_ult_voice_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_kayn_ult_voice": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_kayn_ult_voice",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_kayn_ult_voice_clip": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_kayn_ult_voice_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_yasuo_ult_voice": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_yasuo_ult_voice",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_yasuo_ult_voice_clip": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_yasuo_ult_voice_clip",
+    "type": "override"
   }
 }

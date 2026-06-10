@@ -202,8 +202,8 @@
     },
     "bo_league_champions_yasuo": {
       "face": {
-        "x": 0,
-        "y": -34
+        "x": 4,
+        "y": -26
       },
       "center": {
         "x": 0,
@@ -212,8 +212,8 @@
     },
     "test_mod_yasuo": {
       "face": {
-        "x": 0,
-        "y": -34
+        "x": 4,
+        "y": -26
       },
       "center": {
         "x": 0,
