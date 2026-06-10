@@ -9,11 +9,11 @@
         "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "bo_league_champions_viktor": {
-        "name": "빅토르",
-        "attack": "마법 탄환을 발사해 대상에게 <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>공격력의 100%<>만큼 <#ff9028ff>물리 피해<>를 입힙니다.",
-        "skill": "일직선으로 레이저를 발사해 적중한 적 챔피언에게 <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력의 100%<>만큼 <#a974ffff>마법 피해<>를 입힙니다. 미니언과 몬스터는 감소된 피해를 받습니다. 강화된 상태에서는 레이저가 여진을 남겨 <#ffb900ff>1.0초<> 후 다시 적중합니다.",
-        "skill2": "<#ffb900ff>4.0초<> 동안 유지되는 중력장을 생성해 내부의 적 챔피언을 <#ef5350ff>40% 둔화<>시킵니다. 중력장이 사라질 때 내부에 남아 있는 적 챔피언은 <#ef5350ff>2.0초 동안 기절<>합니다.",
-        "ult": "<#ffb900ff>4.0초<> 동안 혼돈의 폭풍을 소환해 35 범위 안의 적에게 <#ffb900ff>0.50초<>마다 <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력의 40%<>만큼 <#a974ffff>마법 피해<>를 입히고, 적의 스킬을 잠시 방해합니다. 혼돈의 폭풍은 빅토르의 레이저도 진화시킵니다."
+        "name": "Viktor",
+        "attack": "Herald of the Arcane - Arcane Pulse: Viktor fires an arcane bolt, dealing <#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> as magic damage. While Siphon Empower is active, his next basic attack deals <#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115% magic power<> and grants Viktor a shield.",
+        "skill": "E - Hextech Ray: Viktor's third arm fires a laser in the target direction, dealing magic damage to enemies in a line. When evolved, the ray leaves an aftershock that detonates shortly after, damaging and briefly slowing enemies. Hitting an enemy champion advances Glorious Evolution.",
+        "skill2": "Q/W - Siphon Power + Gravity Field: Viktor shields himself and empowers his next basic attack, then creates a gravity field at the target location. Enemies inside are slowed; enemies still in the field when it collapses are stunned. When evolved, the field also disrupts movement skills.",
+        "ult": "R - Arcane Storm: Viktor summons an arcane storm at the target location, dealing an initial burst of magic damage and disrupting enemy skills. The storm then pulses repeatedly. Casting Arcane Storm advances Glorious Evolution; once fully evolved, the storm is larger, lasts longer, and pulses faster."
       },
       "bo_league_champions_veigar": {
         "name": "베이가",
@@ -72,11 +72,11 @@
         "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "test_mod_viktor": {
-        "name": "빅토르",
-        "attack": "마법 탄환을 발사해 대상에게 <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>공격력의 100%<>만큼 <#ff9028ff>물리 피해<>를 입힙니다.",
-        "skill": "일직선으로 레이저를 발사해 적중한 적 챔피언에게 <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력의 100%<>만큼 <#a974ffff>마법 피해<>를 입힙니다. 미니언과 몬스터는 감소된 피해를 받습니다. 강화된 상태에서는 레이저가 여진을 남겨 <#ffb900ff>1.0초<> 후 다시 적중합니다.",
-        "skill2": "<#ffb900ff>4.0초<> 동안 유지되는 중력장을 생성해 내부의 적 챔피언을 <#ef5350ff>40% 둔화<>시킵니다. 중력장이 사라질 때 내부에 남아 있는 적 챔피언은 <#ef5350ff>2.0초 동안 기절<>합니다.",
-        "ult": "<#ffb900ff>4.0초<> 동안 혼돈의 폭풍을 소환해 35 범위 안의 적에게 <#ffb900ff>0.50초<>마다 <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력의 40%<>만큼 <#a974ffff>마법 피해<>를 입히고, 적의 스킬을 잠시 방해합니다. 혼돈의 폭풍은 빅토르의 레이저도 진화시킵니다."
+        "name": "Viktor",
+        "attack": "Herald of the Arcane - Arcane Pulse: Viktor fires an arcane bolt, dealing <#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> as magic damage. While Siphon Empower is active, his next basic attack deals <#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115% magic power<> and grants Viktor a shield.",
+        "skill": "E - Hextech Ray: Viktor's third arm fires a laser in the target direction, dealing magic damage to enemies in a line. When evolved, the ray leaves an aftershock that detonates shortly after, damaging and briefly slowing enemies. Hitting an enemy champion advances Glorious Evolution.",
+        "skill2": "Q/W - Siphon Power + Gravity Field: Viktor shields himself and empowers his next basic attack, then creates a gravity field at the target location. Enemies inside are slowed; enemies still in the field when it collapses are stunned. When evolved, the field also disrupts movement skills.",
+        "ult": "R - Arcane Storm: Viktor summons an arcane storm at the target location, dealing an initial burst of magic damage and disrupting enemy skills. The storm then pulses repeatedly. Casting Arcane Storm advances Glorious Evolution; once fully evolved, the storm is larger, lasts longer, and pulses faster."
       },
       "test_mod_veigar": {
         "name": "베이가",
@@ -210,10 +210,10 @@
       },
       "bo_league_champions_viktor": {
         "name": "Viktor",
-        "attack": "Fires a magic bolt at a target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Fires a laser in a straight line, dealing <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>magic damage<> to enemy champions hit. Minions and monsters take reduced damage. While Augmented, the laser leaves an aftershock that hits again after <#ffb900ff>1.0s<>.",
-        "skill2": "Creates a gravity field lasting <#ffb900ff>4.0s<> that <#ef5350ff>slows enemy champions by 40%<>. Enemy champions still inside when it collapses are <#ef5350ff>stunned for 2.0s<>.",
-        "ult": "Summons a chaos storm for <#ffb900ff>4.0s<>, dealing <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>40% AP<> <#a974ffff>magic damage<> every <#ffb900ff>0.50s<> within 35 range and briefly disrupting enemy skills. Chaos Storm also evolves Viktor's laser."
+        "attack": "Herald of the Arcane - Arcane Pulse: Viktor fires an arcane bolt, dealing <#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> as magic damage. While Siphon Empower is active, his next basic attack deals <#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115% magic power<> and grants Viktor a shield.",
+        "skill": "E - Hextech Ray: Viktor's third arm fires a laser in the target direction, dealing magic damage to enemies in a line. When evolved, the ray leaves an aftershock that detonates shortly after, damaging and briefly slowing enemies. Hitting an enemy champion advances Glorious Evolution.",
+        "skill2": "Q/W - Siphon Power + Gravity Field: Viktor shields himself and empowers his next basic attack, then creates a gravity field at the target location. Enemies inside are slowed; enemies still in the field when it collapses are stunned. When evolved, the field also disrupts movement skills.",
+        "ult": "R - Arcane Storm: Viktor summons an arcane storm at the target location, dealing an initial burst of magic damage and disrupting enemy skills. The storm then pulses repeatedly. Casting Arcane Storm advances Glorious Evolution; once fully evolved, the storm is larger, lasts longer, and pulses faster."
       },
       "bo_league_champions_veigar": {
         "name": "Veigar",
@@ -273,10 +273,10 @@
       },
       "test_mod_viktor": {
         "name": "Viktor",
-        "attack": "Fires a magic bolt at a target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Fires a laser in a straight line, dealing <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>magic damage<> to enemy champions hit. Minions and monsters take reduced damage. While Augmented, the laser leaves an aftershock that hits again after <#ffb900ff>1.0s<>.",
-        "skill2": "Creates a gravity field lasting <#ffb900ff>4.0s<> that <#ef5350ff>slows enemy champions by 40%<>. Enemy champions still inside when it collapses are <#ef5350ff>stunned for 2.0s<>.",
-        "ult": "Summons a chaos storm for <#ffb900ff>4.0s<>, dealing <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>40% AP<> <#a974ffff>magic damage<> every <#ffb900ff>0.50s<> within 35 range and briefly disrupting enemy skills. Chaos Storm also evolves Viktor's laser."
+        "attack": "Herald of the Arcane - Arcane Pulse: Viktor fires an arcane bolt, dealing <#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> as magic damage. While Siphon Empower is active, his next basic attack deals <#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115% magic power<> and grants Viktor a shield.",
+        "skill": "E - Hextech Ray: Viktor's third arm fires a laser in the target direction, dealing magic damage to enemies in a line. When evolved, the ray leaves an aftershock that detonates shortly after, damaging and briefly slowing enemies. Hitting an enemy champion advances Glorious Evolution.",
+        "skill2": "Q/W - Siphon Power + Gravity Field: Viktor shields himself and empowers his next basic attack, then creates a gravity field at the target location. Enemies inside are slowed; enemies still in the field when it collapses are stunned. When evolved, the field also disrupts movement skills.",
+        "ult": "R - Arcane Storm: Viktor summons an arcane storm at the target location, dealing an initial burst of magic damage and disrupting enemy skills. The storm then pulses repeatedly. Casting Arcane Storm advances Glorious Evolution; once fully evolved, the storm is larger, lasts longer, and pulses faster."
       },
       "test_mod_veigar": {
         "name": "Veigar",
@@ -410,10 +410,10 @@
       },
       "bo_league_champions_viktor": {
         "name": "Viktor",
-        "attack": "Fires a magic bolt at a target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Fires a laser in a straight line, dealing <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>magic damage<> to enemy champions hit. Minions and monsters take reduced damage. While Augmented, the laser leaves an aftershock that hits again after <#ffb900ff>1.0s<>.",
-        "skill2": "Creates a gravity field lasting <#ffb900ff>4.0s<> that <#ef5350ff>slows enemy champions by 40%<>. Enemy champions still inside when it collapses are <#ef5350ff>stunned for 2.0s<>.",
-        "ult": "Summons a chaos storm for <#ffb900ff>4.0s<>, dealing <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>40% AP<> <#a974ffff>magic damage<> every <#ffb900ff>0.50s<> within 35 range and briefly disrupting enemy skills. Chaos Storm also evolves Viktor's laser."
+        "attack": "Herald of the Arcane - Arcane Pulse: Viktor fires an arcane bolt, dealing <#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> as magic damage. While Siphon Empower is active, his next basic attack deals <#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115% magic power<> and grants Viktor a shield.",
+        "skill": "E - Hextech Ray: Viktor's third arm fires a laser in the target direction, dealing magic damage to enemies in a line. When evolved, the ray leaves an aftershock that detonates shortly after, damaging and briefly slowing enemies. Hitting an enemy champion advances Glorious Evolution.",
+        "skill2": "Q/W - Siphon Power + Gravity Field: Viktor shields himself and empowers his next basic attack, then creates a gravity field at the target location. Enemies inside are slowed; enemies still in the field when it collapses are stunned. When evolved, the field also disrupts movement skills.",
+        "ult": "R - Arcane Storm: Viktor summons an arcane storm at the target location, dealing an initial burst of magic damage and disrupting enemy skills. The storm then pulses repeatedly. Casting Arcane Storm advances Glorious Evolution; once fully evolved, the storm is larger, lasts longer, and pulses faster."
       },
       "bo_league_champions_veigar": {
         "name": "Veigar",
@@ -473,10 +473,10 @@
       },
       "test_mod_viktor": {
         "name": "Viktor",
-        "attack": "Fires a magic bolt at a target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Fires a laser in a straight line, dealing <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>magic damage<> to enemy champions hit. Minions and monsters take reduced damage. While Augmented, the laser leaves an aftershock that hits again after <#ffb900ff>1.0s<>.",
-        "skill2": "Creates a gravity field lasting <#ffb900ff>4.0s<> that <#ef5350ff>slows enemy champions by 40%<>. Enemy champions still inside when it collapses are <#ef5350ff>stunned for 2.0s<>.",
-        "ult": "Summons a chaos storm for <#ffb900ff>4.0s<>, dealing <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>40% AP<> <#a974ffff>magic damage<> every <#ffb900ff>0.50s<> within 35 range and briefly disrupting enemy skills. Chaos Storm also evolves Viktor's laser."
+        "attack": "Herald of the Arcane - Arcane Pulse: Viktor fires an arcane bolt, dealing <#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> as magic damage. While Siphon Empower is active, his next basic attack deals <#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115% magic power<> and grants Viktor a shield.",
+        "skill": "E - Hextech Ray: Viktor's third arm fires a laser in the target direction, dealing magic damage to enemies in a line. When evolved, the ray leaves an aftershock that detonates shortly after, damaging and briefly slowing enemies. Hitting an enemy champion advances Glorious Evolution.",
+        "skill2": "Q/W - Siphon Power + Gravity Field: Viktor shields himself and empowers his next basic attack, then creates a gravity field at the target location. Enemies inside are slowed; enemies still in the field when it collapses are stunned. When evolved, the field also disrupts movement skills.",
+        "ult": "R - Arcane Storm: Viktor summons an arcane storm at the target location, dealing an initial burst of magic damage and disrupting enemy skills. The storm then pulses repeatedly. Casting Arcane Storm advances Glorious Evolution; once fully evolved, the storm is larger, lasts longer, and pulses faster."
       },
       "test_mod_veigar": {
         "name": "Veigar",
@@ -610,10 +610,10 @@
       },
       "bo_league_champions_viktor": {
         "name": "Viktor",
-        "attack": "Feuert ein magisches Geschoss auf ein Ziel ab und verursacht <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% Angriffsschaden<> als <#ff9028ff>physischen Schaden<>.",
-        "skill": "Feuert einen Laser in gerader Linie ab und verursacht an getroffenen gegnerischen Champions <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>magischen Schaden<>. Vasallen und Monster erleiden verringerten Schaden. Im verstärkten Zustand hinterlässt der Laser ein Nachbeben, das nach <#ffb900ff>1.0s<> erneut trifft.",
-        "skill2": "Erzeugt ein Gravitationsfeld für <#ffb900ff>4.0s<>, das <#ef5350ff>gegnerische Champions um 40% verlangsamt<>. Gegnerische Champions, die beim Zusammenbruch noch darin stehen, werden <#ef5350ff>2.0s lang betäubt<>.",
-        "ult": "Beschwört <#ffb900ff>4.0s<> lang einen Chaossturm, der alle <#ffb900ff>0.50s<> im Umkreis von 35 <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>40% AP<> <#a974ffff>magischen Schaden<> verursacht und gegnerische Fähigkeiten kurz unterbricht. Chaossturm entwickelt außerdem Viktors Laser weiter."
+        "attack": "Arcane Pulse: Viktor fires an arcane bolt, dealing <#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> as magic damage. While Siphon Empower is active, his next basic attack deals <#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115% magic power<> and grants Viktor a shield.",
+        "skill": "E - Hextech Ray: Viktor's third arm fires a laser in the target direction, dealing magic damage to enemies in a line. When evolved, the ray leaves an aftershock that detonates shortly after, damaging and briefly slowing enemies. Hitting an enemy champion advances Glorious Evolution.",
+        "skill2": "Q/W - Siphon Power + Gravity Field: Viktor shields himself and empowers his next basic attack, then creates a gravity field at the target location. Enemies inside are slowed; enemies still in the field when it collapses are stunned. When evolved, the field also disrupts movement skills.",
+        "ult": "R - Arcane Storm: Viktor summons an arcane storm at the target location, dealing an initial burst of magic damage and disrupting enemy skills. The storm then pulses repeatedly. Casting Arcane Storm advances Glorious Evolution; once fully evolved, the storm is larger, lasts longer, and pulses faster."
       },
       "bo_league_champions_veigar": {
         "name": "Veigar",
@@ -673,10 +673,10 @@
       },
       "test_mod_viktor": {
         "name": "Viktor",
-        "attack": "Feuert ein magisches Geschoss auf ein Ziel ab und verursacht <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% Angriffsschaden<> als <#ff9028ff>physischen Schaden<>.",
-        "skill": "Feuert einen Laser in gerader Linie ab und verursacht an getroffenen gegnerischen Champions <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>magischen Schaden<>. Vasallen und Monster erleiden verringerten Schaden. Im verstärkten Zustand hinterlässt der Laser ein Nachbeben, das nach <#ffb900ff>1.0s<> erneut trifft.",
-        "skill2": "Erzeugt ein Gravitationsfeld für <#ffb900ff>4.0s<>, das <#ef5350ff>gegnerische Champions um 40% verlangsamt<>. Gegnerische Champions, die beim Zusammenbruch noch darin stehen, werden <#ef5350ff>2.0s lang betäubt<>.",
-        "ult": "Beschwört <#ffb900ff>4.0s<> lang einen Chaossturm, der alle <#ffb900ff>0.50s<> im Umkreis von 35 <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>40% AP<> <#a974ffff>magischen Schaden<> verursacht und gegnerische Fähigkeiten kurz unterbricht. Chaossturm entwickelt außerdem Viktors Laser weiter."
+        "attack": "Arcane Pulse: Viktor fires an arcane bolt, dealing <#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> as magic damage. While Siphon Empower is active, his next basic attack deals <#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115% magic power<> and grants Viktor a shield.",
+        "skill": "E - Hextech Ray: Viktor's third arm fires a laser in the target direction, dealing magic damage to enemies in a line. When evolved, the ray leaves an aftershock that detonates shortly after, damaging and briefly slowing enemies. Hitting an enemy champion advances Glorious Evolution.",
+        "skill2": "Q/W - Siphon Power + Gravity Field: Viktor shields himself and empowers his next basic attack, then creates a gravity field at the target location. Enemies inside are slowed; enemies still in the field when it collapses are stunned. When evolved, the field also disrupts movement skills.",
+        "ult": "R - Arcane Storm: Viktor summons an arcane storm at the target location, dealing an initial burst of magic damage and disrupting enemy skills. The storm then pulses repeatedly. Casting Arcane Storm advances Glorious Evolution; once fully evolved, the storm is larger, lasts longer, and pulses faster."
       },
       "test_mod_veigar": {
         "name": "Veigar",
@@ -810,10 +810,10 @@
       },
       "bo_league_champions_viktor": {
         "name": "Viktor",
-        "attack": "Bắn một tia ma thuật vào mục tiêu, gây <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% sức mạnh công kích<> thành <#ff9028ff>sát thương vật lý<>.",
-        "skill": "Bắn một tia laser theo đường thẳng, gây <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>sát thương phép<> lên tướng địch trúng chiêu. Lính và quái chịu ít sát thương hơn. Khi được Nâng Cấp, tia laser để lại dư chấn đánh trúng lần nữa sau <#ffb900ff>1.0 giây<>.",
-        "skill2": "Tạo một trường trọng lực tồn tại <#ffb900ff>4.0 giây<> và <#ef5350ff>làm chậm tướng địch 40%<>. Tướng địch còn ở bên trong khi trường sụp đổ sẽ bị <#ef5350ff>choáng trong 2.0 giây<>.",
-        "ult": "Triệu hồi một cơn bão hỗn loạn trong <#ffb900ff>4.0 giây<>, gây <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>40% AP<> <#a974ffff>sát thương phép<> mỗi <#ffb900ff>0.50 giây<> trong phạm vi 35 và gián đoạn ngắn kỹ năng của kẻ địch. Bão Hỗn Loạn cũng tiến hóa tia laser của Viktor."
+        "attack": "Arcane Pulse: Viktor fires an arcane bolt, dealing <#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> as magic damage. While Siphon Empower is active, his next basic attack deals <#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115% magic power<> and grants Viktor a shield.",
+        "skill": "E - Hextech Ray: Viktor's third arm fires a laser in the target direction, dealing magic damage to enemies in a line. When evolved, the ray leaves an aftershock that detonates shortly after, damaging and briefly slowing enemies. Hitting an enemy champion advances Glorious Evolution.",
+        "skill2": "Q/W - Siphon Power + Gravity Field: Viktor shields himself and empowers his next basic attack, then creates a gravity field at the target location. Enemies inside are slowed; enemies still in the field when it collapses are stunned. When evolved, the field also disrupts movement skills.",
+        "ult": "R - Arcane Storm: Viktor summons an arcane storm at the target location, dealing an initial burst of magic damage and disrupting enemy skills. The storm then pulses repeatedly. Casting Arcane Storm advances Glorious Evolution; once fully evolved, the storm is larger, lasts longer, and pulses faster."
       },
       "bo_league_champions_veigar": {
         "name": "Veigar",
@@ -873,10 +873,10 @@
       },
       "test_mod_viktor": {
         "name": "Viktor",
-        "attack": "Bắn một tia ma thuật vào mục tiêu, gây <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% sức mạnh công kích<> thành <#ff9028ff>sát thương vật lý<>.",
-        "skill": "Bắn một tia laser theo đường thẳng, gây <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>sát thương phép<> lên tướng địch trúng chiêu. Lính và quái chịu ít sát thương hơn. Khi được Nâng Cấp, tia laser để lại dư chấn đánh trúng lần nữa sau <#ffb900ff>1.0 giây<>.",
-        "skill2": "Tạo một trường trọng lực tồn tại <#ffb900ff>4.0 giây<> và <#ef5350ff>làm chậm tướng địch 40%<>. Tướng địch còn ở bên trong khi trường sụp đổ sẽ bị <#ef5350ff>choáng trong 2.0 giây<>.",
-        "ult": "Triệu hồi một cơn bão hỗn loạn trong <#ffb900ff>4.0 giây<>, gây <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>40% AP<> <#a974ffff>sát thương phép<> mỗi <#ffb900ff>0.50 giây<> trong phạm vi 35 và gián đoạn ngắn kỹ năng của kẻ địch. Bão Hỗn Loạn cũng tiến hóa tia laser của Viktor."
+        "attack": "Arcane Pulse: Viktor fires an arcane bolt, dealing <#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> as magic damage. While Siphon Empower is active, his next basic attack deals <#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115% magic power<> and grants Viktor a shield.",
+        "skill": "E - Hextech Ray: Viktor's third arm fires a laser in the target direction, dealing magic damage to enemies in a line. When evolved, the ray leaves an aftershock that detonates shortly after, damaging and briefly slowing enemies. Hitting an enemy champion advances Glorious Evolution.",
+        "skill2": "Q/W - Siphon Power + Gravity Field: Viktor shields himself and empowers his next basic attack, then creates a gravity field at the target location. Enemies inside are slowed; enemies still in the field when it collapses are stunned. When evolved, the field also disrupts movement skills.",
+        "ult": "R - Arcane Storm: Viktor summons an arcane storm at the target location, dealing an initial burst of magic damage and disrupting enemy skills. The storm then pulses repeatedly. Casting Arcane Storm advances Glorious Evolution; once fully evolved, the storm is larger, lasts longer, and pulses faster."
       },
       "test_mod_veigar": {
         "name": "Veigar",
@@ -1010,10 +1010,10 @@
       },
       "bo_league_champions_viktor": {
         "name": "Viktor",
-        "attack": "Dispara um projétil mágico contra um alvo, causando <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% do dano de ataque<> como <#ff9028ff>dano físico<>.",
-        "skill": "Dispara um laser em linha reta, causando <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% de AP<> de <#a974ffff>dano mágico<> aos campeões inimigos atingidos. Tropas e monstros sofrem dano reduzido. Enquanto Aprimorado, o laser deixa um tremor residual que acerta novamente após <#ffb900ff>1.0s<>.",
-        "skill2": "Cria um campo gravitacional que dura <#ffb900ff>4.0s<> e <#ef5350ff>reduz a velocidade dos campeões inimigos em 40%<>. Campeões inimigos ainda dentro do campo quando ele colapsa ficam <#ef5350ff>atordoados por 2.0s<>.",
-        "ult": "Invoca uma tempestade do caos por <#ffb900ff>4.0s<>, causando <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>40% de AP<> de <#a974ffff>dano mágico<> a cada <#ffb900ff>0.50s<> em 35 de alcance e interrompendo brevemente habilidades inimigas. Tempestade do Caos também evolui o laser de Viktor."
+        "attack": "Arcane Pulse: Viktor fires an arcane bolt, dealing <#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> as magic damage. While Siphon Empower is active, his next basic attack deals <#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115% magic power<> and grants Viktor a shield.",
+        "skill": "E - Hextech Ray: Viktor's third arm fires a laser in the target direction, dealing magic damage to enemies in a line. When evolved, the ray leaves an aftershock that detonates shortly after, damaging and briefly slowing enemies. Hitting an enemy champion advances Glorious Evolution.",
+        "skill2": "Q/W - Siphon Power + Gravity Field: Viktor shields himself and empowers his next basic attack, then creates a gravity field at the target location. Enemies inside are slowed; enemies still in the field when it collapses are stunned. When evolved, the field also disrupts movement skills.",
+        "ult": "R - Arcane Storm: Viktor summons an arcane storm at the target location, dealing an initial burst of magic damage and disrupting enemy skills. The storm then pulses repeatedly. Casting Arcane Storm advances Glorious Evolution; once fully evolved, the storm is larger, lasts longer, and pulses faster."
       },
       "bo_league_champions_veigar": {
         "name": "Veigar",
@@ -1073,10 +1073,10 @@
       },
       "test_mod_viktor": {
         "name": "Viktor",
-        "attack": "Dispara um projétil mágico contra um alvo, causando <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% do dano de ataque<> como <#ff9028ff>dano físico<>.",
-        "skill": "Dispara um laser em linha reta, causando <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% de AP<> de <#a974ffff>dano mágico<> aos campeões inimigos atingidos. Tropas e monstros sofrem dano reduzido. Enquanto Aprimorado, o laser deixa um tremor residual que acerta novamente após <#ffb900ff>1.0s<>.",
-        "skill2": "Cria um campo gravitacional que dura <#ffb900ff>4.0s<> e <#ef5350ff>reduz a velocidade dos campeões inimigos em 40%<>. Campeões inimigos ainda dentro do campo quando ele colapsa ficam <#ef5350ff>atordoados por 2.0s<>.",
-        "ult": "Invoca uma tempestade do caos por <#ffb900ff>4.0s<>, causando <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>40% de AP<> de <#a974ffff>dano mágico<> a cada <#ffb900ff>0.50s<> em 35 de alcance e interrompendo brevemente habilidades inimigas. Tempestade do Caos também evolui o laser de Viktor."
+        "attack": "Arcane Pulse: Viktor fires an arcane bolt, dealing <#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> as magic damage. While Siphon Empower is active, his next basic attack deals <#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115% magic power<> and grants Viktor a shield.",
+        "skill": "E - Hextech Ray: Viktor's third arm fires a laser in the target direction, dealing magic damage to enemies in a line. When evolved, the ray leaves an aftershock that detonates shortly after, damaging and briefly slowing enemies. Hitting an enemy champion advances Glorious Evolution.",
+        "skill2": "Q/W - Siphon Power + Gravity Field: Viktor shields himself and empowers his next basic attack, then creates a gravity field at the target location. Enemies inside are slowed; enemies still in the field when it collapses are stunned. When evolved, the field also disrupts movement skills.",
+        "ult": "R - Arcane Storm: Viktor summons an arcane storm at the target location, dealing an initial burst of magic damage and disrupting enemy skills. The storm then pulses repeatedly. Casting Arcane Storm advances Glorious Evolution; once fully evolved, the storm is larger, lasts longer, and pulses faster."
       },
       "test_mod_veigar": {
         "name": "Veigar",
@@ -1210,10 +1210,10 @@
       },
       "bo_league_champions_viktor": {
         "name": "Viktor",
-        "attack": "Fires a magic bolt at a target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Fires a laser in a straight line, dealing <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>magic damage<> to enemy champions hit. Minions and monsters take reduced damage. While Augmented, the laser leaves an aftershock that hits again after <#ffb900ff>1.0s<>.",
-        "skill2": "Creates a gravity field lasting <#ffb900ff>4.0s<> that <#ef5350ff>slows enemy champions by 40%<>. Enemy champions still inside when it collapses are <#ef5350ff>stunned for 2.0s<>.",
-        "ult": "Summons a chaos storm for <#ffb900ff>4.0s<>, dealing <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>40% AP<> <#a974ffff>magic damage<> every <#ffb900ff>0.50s<> within 35 range and briefly disrupting enemy skills. Chaos Storm also evolves Viktor's laser."
+        "attack": "Arcane Pulse: Viktor fires an arcane bolt, dealing <#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> as magic damage. While Siphon Empower is active, his next basic attack deals <#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115% magic power<> and grants Viktor a shield.",
+        "skill": "E - Hextech Ray: Viktor's third arm fires a laser in the target direction, dealing magic damage to enemies in a line. When evolved, the ray leaves an aftershock that detonates shortly after, damaging and briefly slowing enemies. Hitting an enemy champion advances Glorious Evolution.",
+        "skill2": "Q/W - Siphon Power + Gravity Field: Viktor shields himself and empowers his next basic attack, then creates a gravity field at the target location. Enemies inside are slowed; enemies still in the field when it collapses are stunned. When evolved, the field also disrupts movement skills.",
+        "ult": "R - Arcane Storm: Viktor summons an arcane storm at the target location, dealing an initial burst of magic damage and disrupting enemy skills. The storm then pulses repeatedly. Casting Arcane Storm advances Glorious Evolution; once fully evolved, the storm is larger, lasts longer, and pulses faster."
       },
       "bo_league_champions_veigar": {
         "name": "Veigar",
@@ -1273,10 +1273,10 @@
       },
       "test_mod_viktor": {
         "name": "Viktor",
-        "attack": "Fires a magic bolt at a target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Fires a laser in a straight line, dealing <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>magic damage<> to enemy champions hit. Minions and monsters take reduced damage. While Augmented, the laser leaves an aftershock that hits again after <#ffb900ff>1.0s<>.",
-        "skill2": "Creates a gravity field lasting <#ffb900ff>4.0s<> that <#ef5350ff>slows enemy champions by 40%<>. Enemy champions still inside when it collapses are <#ef5350ff>stunned for 2.0s<>.",
-        "ult": "Summons a chaos storm for <#ffb900ff>4.0s<>, dealing <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>40% AP<> <#a974ffff>magic damage<> every <#ffb900ff>0.50s<> within 35 range and briefly disrupting enemy skills. Chaos Storm also evolves Viktor's laser."
+        "attack": "Arcane Pulse: Viktor fires an arcane bolt, dealing <#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> as magic damage. While Siphon Empower is active, his next basic attack deals <#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115% magic power<> and grants Viktor a shield.",
+        "skill": "E - Hextech Ray: Viktor's third arm fires a laser in the target direction, dealing magic damage to enemies in a line. When evolved, the ray leaves an aftershock that detonates shortly after, damaging and briefly slowing enemies. Hitting an enemy champion advances Glorious Evolution.",
+        "skill2": "Q/W - Siphon Power + Gravity Field: Viktor shields himself and empowers his next basic attack, then creates a gravity field at the target location. Enemies inside are slowed; enemies still in the field when it collapses are stunned. When evolved, the field also disrupts movement skills.",
+        "ult": "R - Arcane Storm: Viktor summons an arcane storm at the target location, dealing an initial burst of magic damage and disrupting enemy skills. The storm then pulses repeatedly. Casting Arcane Storm advances Glorious Evolution; once fully evolved, the storm is larger, lasts longer, and pulses faster."
       },
       "test_mod_veigar": {
         "name": "Veigar",
@@ -1410,10 +1410,10 @@
       },
       "bo_league_champions_viktor": {
         "name": "Viktor",
-        "attack": "Fires a magic bolt at a target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Fires a laser in a straight line, dealing <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>magic damage<> to enemy champions hit. Minions and monsters take reduced damage. While Augmented, the laser leaves an aftershock that hits again after <#ffb900ff>1.0s<>.",
-        "skill2": "Creates a gravity field lasting <#ffb900ff>4.0s<> that <#ef5350ff>slows enemy champions by 40%<>. Enemy champions still inside when it collapses are <#ef5350ff>stunned for 2.0s<>.",
-        "ult": "Summons a chaos storm for <#ffb900ff>4.0s<>, dealing <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>40% AP<> <#a974ffff>magic damage<> every <#ffb900ff>0.50s<> within 35 range and briefly disrupting enemy skills. Chaos Storm also evolves Viktor's laser."
+        "attack": "Arcane Pulse: Viktor fires an arcane bolt, dealing <#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> as magic damage. While Siphon Empower is active, his next basic attack deals <#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115% magic power<> and grants Viktor a shield.",
+        "skill": "E - Hextech Ray: Viktor's third arm fires a laser in the target direction, dealing magic damage to enemies in a line. When evolved, the ray leaves an aftershock that detonates shortly after, damaging and briefly slowing enemies. Hitting an enemy champion advances Glorious Evolution.",
+        "skill2": "Q/W - Siphon Power + Gravity Field: Viktor shields himself and empowers his next basic attack, then creates a gravity field at the target location. Enemies inside are slowed; enemies still in the field when it collapses are stunned. When evolved, the field also disrupts movement skills.",
+        "ult": "R - Arcane Storm: Viktor summons an arcane storm at the target location, dealing an initial burst of magic damage and disrupting enemy skills. The storm then pulses repeatedly. Casting Arcane Storm advances Glorious Evolution; once fully evolved, the storm is larger, lasts longer, and pulses faster."
       },
       "bo_league_champions_veigar": {
         "name": "Veigar",
@@ -1473,10 +1473,10 @@
       },
       "test_mod_viktor": {
         "name": "Viktor",
-        "attack": "Fires a magic bolt at a target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Fires a laser in a straight line, dealing <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>magic damage<> to enemy champions hit. Minions and monsters take reduced damage. While Augmented, the laser leaves an aftershock that hits again after <#ffb900ff>1.0s<>.",
-        "skill2": "Creates a gravity field lasting <#ffb900ff>4.0s<> that <#ef5350ff>slows enemy champions by 40%<>. Enemy champions still inside when it collapses are <#ef5350ff>stunned for 2.0s<>.",
-        "ult": "Summons a chaos storm for <#ffb900ff>4.0s<>, dealing <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>40% AP<> <#a974ffff>magic damage<> every <#ffb900ff>0.50s<> within 35 range and briefly disrupting enemy skills. Chaos Storm also evolves Viktor's laser."
+        "attack": "Arcane Pulse: Viktor fires an arcane bolt, dealing <#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> as magic damage. While Siphon Empower is active, his next basic attack deals <#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115% magic power<> and grants Viktor a shield.",
+        "skill": "E - Hextech Ray: Viktor's third arm fires a laser in the target direction, dealing magic damage to enemies in a line. When evolved, the ray leaves an aftershock that detonates shortly after, damaging and briefly slowing enemies. Hitting an enemy champion advances Glorious Evolution.",
+        "skill2": "Q/W - Siphon Power + Gravity Field: Viktor shields himself and empowers his next basic attack, then creates a gravity field at the target location. Enemies inside are slowed; enemies still in the field when it collapses are stunned. When evolved, the field also disrupts movement skills.",
+        "ult": "R - Arcane Storm: Viktor summons an arcane storm at the target location, dealing an initial burst of magic damage and disrupting enemy skills. The storm then pulses repeatedly. Casting Arcane Storm advances Glorious Evolution; once fully evolved, the storm is larger, lasts longer, and pulses faster."
       },
       "test_mod_veigar": {
         "name": "Veigar",
@@ -1609,11 +1609,11 @@
         "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "bo_league_champions_viktor": {
-        "name": "Виктор",
-        "attack": "Выпускает магический снаряд в цель, нанося <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% силы атаки<> в виде <#ff9028ff>физического урона<>.",
-        "skill": "Выпускает лазер по прямой линии, нанося пораженным вражеским чемпионам <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>магического урона<>. Миньоны и монстры получают уменьшенный урон. В усиленном состоянии лазер оставляет послевсплеск, который срабатывает снова через <#ffb900ff>1.0 сек.<>.",
-        "skill2": "Создает гравитационное поле на <#ffb900ff>4.0 сек.<>, которое <#ef5350ff>замедляет вражеских чемпионов на 40%<>. Вражеские чемпионы, оставшиеся внутри при схлопывании, <#ef5350ff>оглушаются на 2.0 сек.<>.",
-        "ult": "Призывает бурю хаоса на <#ffb900ff>4.0 сек.<>, нанося <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>40% AP<> <#a974ffff>магического урона<> каждые <#ffb900ff>0.50 сек.<> в радиусе 35 и ненадолго прерывая умения врагов. Буря хаоса также улучшает лазер Виктора."
+        "name": "Viktor",
+        "attack": "Arcane Pulse: Viktor fires an arcane bolt, dealing <#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> as magic damage. While Siphon Empower is active, his next basic attack deals <#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115% magic power<> and grants Viktor a shield.",
+        "skill": "E - Hextech Ray: Viktor's third arm fires a laser in the target direction, dealing magic damage to enemies in a line. When evolved, the ray leaves an aftershock that detonates shortly after, damaging and briefly slowing enemies. Hitting an enemy champion advances Glorious Evolution.",
+        "skill2": "Q/W - Siphon Power + Gravity Field: Viktor shields himself and empowers his next basic attack, then creates a gravity field at the target location. Enemies inside are slowed; enemies still in the field when it collapses are stunned. When evolved, the field also disrupts movement skills.",
+        "ult": "R - Arcane Storm: Viktor summons an arcane storm at the target location, dealing an initial burst of magic damage and disrupting enemy skills. The storm then pulses repeatedly. Casting Arcane Storm advances Glorious Evolution; once fully evolved, the storm is larger, lasts longer, and pulses faster."
       },
       "bo_league_champions_veigar": {
         "name": "Вейгар",
@@ -1672,11 +1672,11 @@
         "ult": "R - World Ender: Aatrox reveals his demonic form for <#ffb900ff>10.0s<>, gaining <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75 attack damage<>, <i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20% movement speed<> and <#6aff55ff>50% vamp<>. Nearby enemies are briefly feared on cast."
       },
       "test_mod_viktor": {
-        "name": "Виктор",
-        "attack": "Выпускает магический снаряд в цель, нанося <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% силы атаки<> в виде <#ff9028ff>физического урона<>.",
-        "skill": "Выпускает лазер по прямой линии, нанося пораженным вражеским чемпионам <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>магического урона<>. Миньоны и монстры получают уменьшенный урон. В усиленном состоянии лазер оставляет послевсплеск, который срабатывает снова через <#ffb900ff>1.0 сек.<>.",
-        "skill2": "Создает гравитационное поле на <#ffb900ff>4.0 сек.<>, которое <#ef5350ff>замедляет вражеских чемпионов на 40%<>. Вражеские чемпионы, оставшиеся внутри при схлопывании, <#ef5350ff>оглушаются на 2.0 сек.<>.",
-        "ult": "Призывает бурю хаоса на <#ffb900ff>4.0 сек.<>, нанося <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>40% AP<> <#a974ffff>магического урона<> каждые <#ffb900ff>0.50 сек.<> в радиусе 35 и ненадолго прерывая умения врагов. Буря хаоса также улучшает лазер Виктора."
+        "name": "Viktor",
+        "attack": "Arcane Pulse: Viktor fires an arcane bolt, dealing <#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> as magic damage. While Siphon Empower is active, his next basic attack deals <#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115% magic power<> and grants Viktor a shield.",
+        "skill": "E - Hextech Ray: Viktor's third arm fires a laser in the target direction, dealing magic damage to enemies in a line. When evolved, the ray leaves an aftershock that detonates shortly after, damaging and briefly slowing enemies. Hitting an enemy champion advances Glorious Evolution.",
+        "skill2": "Q/W - Siphon Power + Gravity Field: Viktor shields himself and empowers his next basic attack, then creates a gravity field at the target location. Enemies inside are slowed; enemies still in the field when it collapses are stunned. When evolved, the field also disrupts movement skills.",
+        "ult": "R - Arcane Storm: Viktor summons an arcane storm at the target location, dealing an initial burst of magic damage and disrupting enemy skills. The storm then pulses repeatedly. Casting Arcane Storm advances Glorious Evolution; once fully evolved, the storm is larger, lasts longer, and pulses faster."
       },
       "test_mod_veigar": {
         "name": "Вейгар",
@@ -1810,10 +1810,10 @@
       },
       "bo_league_champions_viktor": {
         "name": "Viktor",
-        "attack": "Dispara un proyectil mágico al objetivo e inflige <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% de daño de ataque<> como <#ff9028ff>daño físico<>.",
-        "skill": "Dispara un láser en línea recta que inflige <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% de AP<> como <#a974ffff>daño mágico<> a los campeones enemigos alcanzados. Los súbditos y monstruos reciben daño reducido. Al estar Mejorado, el láser deja una réplica que golpea de nuevo tras <#ffb900ff>1.0 s<>.",
-        "skill2": "Crea un campo gravitatorio que dura <#ffb900ff>4.0 s<> y <#ef5350ff>ralentiza un 40% a los campeones enemigos<>. Los campeones enemigos que sigan dentro al colapsar quedan <#ef5350ff>aturdidos durante 2.0 s<>.",
-        "ult": "Invoca una tormenta del caos durante <#ffb900ff>4.0 s<>, inflige <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>40% de AP<> como <#a974ffff>daño mágico<> cada <#ffb900ff>0.50 s<> en un alcance de 35 e interrumpe brevemente las habilidades enemigas. Tormenta del Caos también evoluciona el láser de Viktor."
+        "attack": "Arcane Pulse: Viktor fires an arcane bolt, dealing <#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> as magic damage. While Siphon Empower is active, his next basic attack deals <#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115% magic power<> and grants Viktor a shield.",
+        "skill": "E - Hextech Ray: Viktor's third arm fires a laser in the target direction, dealing magic damage to enemies in a line. When evolved, the ray leaves an aftershock that detonates shortly after, damaging and briefly slowing enemies. Hitting an enemy champion advances Glorious Evolution.",
+        "skill2": "Q/W - Siphon Power + Gravity Field: Viktor shields himself and empowers his next basic attack, then creates a gravity field at the target location. Enemies inside are slowed; enemies still in the field when it collapses are stunned. When evolved, the field also disrupts movement skills.",
+        "ult": "R - Arcane Storm: Viktor summons an arcane storm at the target location, dealing an initial burst of magic damage and disrupting enemy skills. The storm then pulses repeatedly. Casting Arcane Storm advances Glorious Evolution; once fully evolved, the storm is larger, lasts longer, and pulses faster."
       },
       "bo_league_champions_veigar": {
         "name": "Veigar",
@@ -1873,10 +1873,10 @@
       },
       "test_mod_viktor": {
         "name": "Viktor",
-        "attack": "Dispara un proyectil mágico al objetivo e inflige <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% de daño de ataque<> como <#ff9028ff>daño físico<>.",
-        "skill": "Dispara un láser en línea recta que inflige <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% de AP<> como <#a974ffff>daño mágico<> a los campeones enemigos alcanzados. Los súbditos y monstruos reciben daño reducido. Al estar Mejorado, el láser deja una réplica que golpea de nuevo tras <#ffb900ff>1.0 s<>.",
-        "skill2": "Crea un campo gravitatorio que dura <#ffb900ff>4.0 s<> y <#ef5350ff>ralentiza un 40% a los campeones enemigos<>. Los campeones enemigos que sigan dentro al colapsar quedan <#ef5350ff>aturdidos durante 2.0 s<>.",
-        "ult": "Invoca una tormenta del caos durante <#ffb900ff>4.0 s<>, inflige <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>40% de AP<> como <#a974ffff>daño mágico<> cada <#ffb900ff>0.50 s<> en un alcance de 35 e interrumpe brevemente las habilidades enemigas. Tormenta del Caos también evoluciona el láser de Viktor."
+        "attack": "Arcane Pulse: Viktor fires an arcane bolt, dealing <#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> as magic damage. While Siphon Empower is active, his next basic attack deals <#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115% magic power<> and grants Viktor a shield.",
+        "skill": "E - Hextech Ray: Viktor's third arm fires a laser in the target direction, dealing magic damage to enemies in a line. When evolved, the ray leaves an aftershock that detonates shortly after, damaging and briefly slowing enemies. Hitting an enemy champion advances Glorious Evolution.",
+        "skill2": "Q/W - Siphon Power + Gravity Field: Viktor shields himself and empowers his next basic attack, then creates a gravity field at the target location. Enemies inside are slowed; enemies still in the field when it collapses are stunned. When evolved, the field also disrupts movement skills.",
+        "ult": "R - Arcane Storm: Viktor summons an arcane storm at the target location, dealing an initial burst of magic damage and disrupting enemy skills. The storm then pulses repeatedly. Casting Arcane Storm advances Glorious Evolution; once fully evolved, the storm is larger, lasts longer, and pulses faster."
       },
       "test_mod_veigar": {
         "name": "Veigar",
@@ -2010,10 +2010,10 @@
       },
       "bo_league_champions_viktor": {
         "name": "Viktor",
-        "attack": "Tire un projectile magique sur une cible, infligeant <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% des dégâts d'attaque<> en <#ff9028ff>dégâts physiques<>.",
-        "skill": "Tire un laser en ligne droite, infligeant <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>dégâts magiques<> aux champions ennemis touchés. Les sbires et monstres subissent des dégâts réduits. Une fois Augmenté, le laser laisse une réplique qui frappe à nouveau après <#ffb900ff>1.0s<>.",
-        "skill2": "Crée un champ gravitationnel durant <#ffb900ff>4.0s<> qui <#ef5350ff>ralentit les champions ennemis de 40%<>. Les champions ennemis encore à l'intérieur lorsqu'il s'effondre sont <#ef5350ff>étourdis pendant 2.0s<>.",
-        "ult": "Invoque une tempête du chaos pendant <#ffb900ff>4.0s<>, infligeant <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>40% AP<> <#a974ffff>dégâts magiques<> toutes les <#ffb900ff>0.50s<> dans un rayon de 35 et perturbant brièvement les compétences ennemies. Tempête du chaos fait aussi évoluer le laser de Viktor."
+        "attack": "Arcane Pulse: Viktor fires an arcane bolt, dealing <#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> as magic damage. While Siphon Empower is active, his next basic attack deals <#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115% magic power<> and grants Viktor a shield.",
+        "skill": "E - Hextech Ray: Viktor's third arm fires a laser in the target direction, dealing magic damage to enemies in a line. When evolved, the ray leaves an aftershock that detonates shortly after, damaging and briefly slowing enemies. Hitting an enemy champion advances Glorious Evolution.",
+        "skill2": "Q/W - Siphon Power + Gravity Field: Viktor shields himself and empowers his next basic attack, then creates a gravity field at the target location. Enemies inside are slowed; enemies still in the field when it collapses are stunned. When evolved, the field also disrupts movement skills.",
+        "ult": "R - Arcane Storm: Viktor summons an arcane storm at the target location, dealing an initial burst of magic damage and disrupting enemy skills. The storm then pulses repeatedly. Casting Arcane Storm advances Glorious Evolution; once fully evolved, the storm is larger, lasts longer, and pulses faster."
       },
       "bo_league_champions_veigar": {
         "name": "Veigar",
@@ -2073,10 +2073,10 @@
       },
       "test_mod_viktor": {
         "name": "Viktor",
-        "attack": "Tire un projectile magique sur une cible, infligeant <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% des dégâts d'attaque<> en <#ff9028ff>dégâts physiques<>.",
-        "skill": "Tire un laser en ligne droite, infligeant <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>dégâts magiques<> aux champions ennemis touchés. Les sbires et monstres subissent des dégâts réduits. Une fois Augmenté, le laser laisse une réplique qui frappe à nouveau après <#ffb900ff>1.0s<>.",
-        "skill2": "Crée un champ gravitationnel durant <#ffb900ff>4.0s<> qui <#ef5350ff>ralentit les champions ennemis de 40%<>. Les champions ennemis encore à l'intérieur lorsqu'il s'effondre sont <#ef5350ff>étourdis pendant 2.0s<>.",
-        "ult": "Invoque une tempête du chaos pendant <#ffb900ff>4.0s<>, infligeant <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>40% AP<> <#a974ffff>dégâts magiques<> toutes les <#ffb900ff>0.50s<> dans un rayon de 35 et perturbant brièvement les compétences ennemies. Tempête du chaos fait aussi évoluer le laser de Viktor."
+        "attack": "Arcane Pulse: Viktor fires an arcane bolt, dealing <#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> as magic damage. While Siphon Empower is active, his next basic attack deals <#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115% magic power<> and grants Viktor a shield.",
+        "skill": "E - Hextech Ray: Viktor's third arm fires a laser in the target direction, dealing magic damage to enemies in a line. When evolved, the ray leaves an aftershock that detonates shortly after, damaging and briefly slowing enemies. Hitting an enemy champion advances Glorious Evolution.",
+        "skill2": "Q/W - Siphon Power + Gravity Field: Viktor shields himself and empowers his next basic attack, then creates a gravity field at the target location. Enemies inside are slowed; enemies still in the field when it collapses are stunned. When evolved, the field also disrupts movement skills.",
+        "ult": "R - Arcane Storm: Viktor summons an arcane storm at the target location, dealing an initial burst of magic damage and disrupting enemy skills. The storm then pulses repeatedly. Casting Arcane Storm advances Glorious Evolution; once fully evolved, the storm is larger, lasts longer, and pulses faster."
       },
       "test_mod_veigar": {
         "name": "Veigar",
@@ -2209,11 +2209,11 @@
         "ult": "R - 大灭：亚托克斯释放恶魔形态，持续<#ffb900ff>10.0秒<>，获得<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75攻击力<>、<i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20%移动速度<>和<#6aff55ff>50%吸血<>。施放时短暂恐惧附近敌人。"
       },
       "bo_league_champions_viktor": {
-        "name": "奥术先驱",
-        "attack": "向目标发射一枚魔法弹，造成<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力的100%<>的<#ff9028ff>物理伤害<>。",
-        "skill": "沿直线发射一道激光，对命中的敌方英雄造成<#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法术强度的100%<>的<#a974ffff>魔法伤害<>。小兵和野怪受到的伤害降低。强化后，激光会留下余波，并在<#ffb900ff>1.0秒<>后再次命中。",
-        "skill2": "生成一片引力领域，持续<#ffb900ff>4.0秒<>，<#ef5350ff>使范围内敌方英雄减速40%<>。领域消失时仍在其中的敌方英雄会被<#ef5350ff>晕眩2.0秒<>。",
-        "ult": "召唤混乱风暴，持续<#ffb900ff>4.0秒<>，每<#ffb900ff>0.50秒<>对35范围内的敌人造成<#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法术强度的40%<>的<#a974ffff>魔法伤害<>，并短暂打断敌人的技能。混乱风暴还会进化维克托的激光。"
+        "name": "维克托",
+        "attack": "奥术先驱维克托：奥术脉冲造成<#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75%法术强度<>的魔法伤害。虹吸蓄能时下一次普攻造成<#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115%法术强度<>并获得护盾。光荣进化会强化后续技能。",
+        "skill": "E - 海克斯射线：维克托的第三机械臂向指定方向发射激光，对直线敌人造成魔法伤害。进化后留下余震，造成伤害并短暂减速。命中敌方英雄会推进光荣进化。",
+        "skill2": "Q/W - 虹吸能量 + 重力场：维克托获得护盾并强化下一次普攻，随后在目标位置制造重力场。区域内敌人被减速，停留到坍缩时会被眩晕；进化后还会干扰位移技能。",
+        "ult": "R - 奥术风暴：维克托在目标位置召唤奥术风暴，造成初始爆发魔法伤害并干扰敌方技能，随后持续脉冲。施放奥术风暴会推进光荣进化；完全进化后范围更大、持续更久、脉冲更快。"
       },
       "bo_league_champions_veigar": {
         "name": "维迦",
@@ -2272,11 +2272,11 @@
         "ult": "R - 大灭：亚托克斯释放恶魔形态，持续<#ffb900ff>10.0秒<>，获得<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75攻击力<>、<i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20%移动速度<>和<#6aff55ff>50%吸血<>。施放时短暂恐惧附近敌人。"
       },
       "test_mod_viktor": {
-        "name": "奥术先驱",
-        "attack": "向目标发射一枚魔法弹，造成<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻击力的100%<>的<#ff9028ff>物理伤害<>。",
-        "skill": "沿直线发射一道激光，对命中的敌方英雄造成<#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法术强度的100%<>的<#a974ffff>魔法伤害<>。小兵和野怪受到的伤害降低。强化后，激光会留下余波，并在<#ffb900ff>1.0秒<>后再次命中。",
-        "skill2": "生成一片引力领域，持续<#ffb900ff>4.0秒<>，<#ef5350ff>使范围内敌方英雄减速40%<>。领域消失时仍在其中的敌方英雄会被<#ef5350ff>晕眩2.0秒<>。",
-        "ult": "召唤混乱风暴，持续<#ffb900ff>4.0秒<>，每<#ffb900ff>0.50秒<>对35范围内的敌人造成<#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法术强度的40%<>的<#a974ffff>魔法伤害<>，并短暂打断敌人的技能。混乱风暴还会进化维克托的激光。"
+        "name": "维克托",
+        "attack": "奥术先驱维克托：奥术脉冲造成<#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75%法术强度<>的魔法伤害。虹吸蓄能时下一次普攻造成<#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115%法术强度<>并获得护盾。光荣进化会强化后续技能。",
+        "skill": "E - 海克斯射线：维克托的第三机械臂向指定方向发射激光，对直线敌人造成魔法伤害。进化后留下余震，造成伤害并短暂减速。命中敌方英雄会推进光荣进化。",
+        "skill2": "Q/W - 虹吸能量 + 重力场：维克托获得护盾并强化下一次普攻，随后在目标位置制造重力场。区域内敌人被减速，停留到坍缩时会被眩晕；进化后还会干扰位移技能。",
+        "ult": "R - 奥术风暴：维克托在目标位置召唤奥术风暴，造成初始爆发魔法伤害并干扰敌方技能，随后持续脉冲。施放奥术风暴会推进光荣进化；完全进化后范围更大、持续更久、脉冲更快。"
       },
       "test_mod_veigar": {
         "name": "维迦",
@@ -2409,11 +2409,11 @@
         "ult": "R - World Ender：亞托克斯釋放惡魔形態，持續<#ffb900ff>10.0秒<>，獲得<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75攻擊力<>、<i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20%移動速度<>和<#6aff55ff>50%吸血<>。施放時短暫恐懼附近敵人。"
       },
       "bo_league_champions_viktor": {
-        "name": "奧術先驅",
-        "attack": "向目標發射一枚魔法彈，造成<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力的100%<>的<#ff9028ff>物理傷害<>。",
-        "skill": "沿直線發射一道雷射，對命中的敵方英雄造成<#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法術強度的100%<>的<#a974ffff>魔法傷害<>。小兵和野怪受到的傷害降低。強化後，雷射會留下餘波，並在<#ffb900ff>1.0秒<>後再次命中。",
-        "skill2": "生成一片引力領域，持續<#ffb900ff>4.0秒<>，<#ef5350ff>使範圍內敵方英雄減速40%<>。領域消失時仍在其中的敵方英雄會被<#ef5350ff>暈眩2.0秒<>。",
-        "ult": "召喚混亂風暴，持續<#ffb900ff>4.0秒<>，每<#ffb900ff>0.50秒<>對35範圍內的敵人造成<#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法術強度的40%<>的<#a974ffff>魔法傷害<>，並短暫打斷敵人的技能。混亂風暴還會進化維克特的雷射。"
+        "name": "維克特",
+        "attack": "奧術先驅維克特：奧術脈衝造成<#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75%法術強度<>的魔法傷害。虹吸蓄能時下一次普攻造成<#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115%法術強度<>並獲得護盾。光榮進化會強化後續技能。",
+        "skill": "E - 海克斯射線：維克特的第三機械臂向指定方向發射雷射，對直線敌人造成魔法傷害。進化後留下餘震，造成傷害並短暂減速。命中敌方英雄會推進光榮進化。",
+        "skill2": "Q/W - 虹吸能量 + 重力場：維克特獲得護盾並強化下一次普攻，隨後在目標位置製造重力場。區域內敌人被減速，停留到塌縮時會被暈眩；進化後還會干擾位移技能。",
+        "ult": "R - 奧術風暴：維克特在目標位置召喚奧術風暴，造成初始爆發魔法傷害並干擾敌方技能，隨後持續脈衝。施放奧術風暴會推進光榮進化；完全進化後範圍更大、持續更久、脈衝更快。"
       },
       "bo_league_champions_veigar": {
         "name": "維迦",
@@ -2472,11 +2472,11 @@
         "ult": "R - World Ender：亞托克斯釋放惡魔形態，持續<#ffb900ff>10.0秒<>，獲得<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>75攻擊力<>、<i#asset/base/ui/banpick/champion_stat_icon:speed_0><#ffffffff>20%移動速度<>和<#6aff55ff>50%吸血<>。施放時短暫恐懼附近敵人。"
       },
       "test_mod_viktor": {
-        "name": "奧術先驅",
-        "attack": "向目標發射一枚魔法彈，造成<i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>攻擊力的100%<>的<#ff9028ff>物理傷害<>。",
-        "skill": "沿直線發射一道雷射，對命中的敵方英雄造成<#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法術強度的100%<>的<#a974ffff>魔法傷害<>。小兵和野怪受到的傷害降低。強化後，雷射會留下餘波，並在<#ffb900ff>1.0秒<>後再次命中。",
-        "skill2": "生成一片引力領域，持續<#ffb900ff>4.0秒<>，<#ef5350ff>使範圍內敵方英雄減速40%<>。領域消失時仍在其中的敵方英雄會被<#ef5350ff>暈眩2.0秒<>。",
-        "ult": "召喚混亂風暴，持續<#ffb900ff>4.0秒<>，每<#ffb900ff>0.50秒<>對35範圍內的敵人造成<#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法術強度的40%<>的<#a974ffff>魔法傷害<>，並短暫打斷敵人的技能。混亂風暴還會進化維克特的雷射。"
+        "name": "維克特",
+        "attack": "奧術先驅維克特：奧術脈衝造成<#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75%法術強度<>的魔法傷害。虹吸蓄能時下一次普攻造成<#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115%法術強度<>並獲得護盾。光榮進化會強化後續技能。",
+        "skill": "E - 海克斯射線：維克特的第三機械臂向指定方向發射雷射，對直線敌人造成魔法傷害。進化後留下餘震，造成傷害並短暂減速。命中敌方英雄會推進光榮進化。",
+        "skill2": "Q/W - 虹吸能量 + 重力場：維克特獲得護盾並強化下一次普攻，隨後在目標位置製造重力場。區域內敌人被減速，停留到塌縮時會被暈眩；進化後還會干擾位移技能。",
+        "ult": "R - 奧術風暴：維克特在目標位置召喚奧術風暴，造成初始爆發魔法傷害並干擾敌方技能，隨後持續脈衝。施放奧術風暴會推進光榮進化；完全進化後範圍更大、持續更久、脈衝更快。"
       },
       "test_mod_veigar": {
         "name": "維迦",
@@ -2610,10 +2610,10 @@
       },
       "bo_league_champions_viktor": {
         "name": "Viktor",
-        "attack": "Fires a magic bolt at a target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Fires a laser in a straight line, dealing <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>magic damage<> to enemy champions hit. Minions and monsters take reduced damage. While Augmented, the laser leaves an aftershock that hits again after <#ffb900ff>1.0s<>.",
-        "skill2": "Creates a gravity field lasting <#ffb900ff>4.0s<> that <#ef5350ff>slows enemy champions by 40%<>. Enemy champions still inside when it collapses are <#ef5350ff>stunned for 2.0s<>.",
-        "ult": "Summons a chaos storm for <#ffb900ff>4.0s<>, dealing <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>40% AP<> <#a974ffff>magic damage<> every <#ffb900ff>0.50s<> within 35 range and briefly disrupting enemy skills. Chaos Storm also evolves Viktor's laser."
+        "attack": "Arcane Pulse: Viktor fires an arcane bolt, dealing <#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> as magic damage. While Siphon Empower is active, his next basic attack deals <#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115% magic power<> and grants Viktor a shield.",
+        "skill": "E - Hextech Ray: Viktor's third arm fires a laser in the target direction, dealing magic damage to enemies in a line. When evolved, the ray leaves an aftershock that detonates shortly after, damaging and briefly slowing enemies. Hitting an enemy champion advances Glorious Evolution.",
+        "skill2": "Q/W - Siphon Power + Gravity Field: Viktor shields himself and empowers his next basic attack, then creates a gravity field at the target location. Enemies inside are slowed; enemies still in the field when it collapses are stunned. When evolved, the field also disrupts movement skills.",
+        "ult": "R - Arcane Storm: Viktor summons an arcane storm at the target location, dealing an initial burst of magic damage and disrupting enemy skills. The storm then pulses repeatedly. Casting Arcane Storm advances Glorious Evolution; once fully evolved, the storm is larger, lasts longer, and pulses faster."
       },
       "bo_league_champions_veigar": {
         "name": "Veigar",
@@ -2673,10 +2673,10 @@
       },
       "test_mod_viktor": {
         "name": "Viktor",
-        "attack": "Fires a magic bolt at a target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>100% attack damage<> as <#ff9028ff>physical damage<>.",
-        "skill": "Fires a laser in a straight line, dealing <#a974ffff>100<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>100% AP<> <#a974ffff>magic damage<> to enemy champions hit. Minions and monsters take reduced damage. While Augmented, the laser leaves an aftershock that hits again after <#ffb900ff>1.0s<>.",
-        "skill2": "Creates a gravity field lasting <#ffb900ff>4.0s<> that <#ef5350ff>slows enemy champions by 40%<>. Enemy champions still inside when it collapses are <#ef5350ff>stunned for 2.0s<>.",
-        "ult": "Summons a chaos storm for <#ffb900ff>4.0s<>, dealing <#a974ffff>40<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>40% AP<> <#a974ffff>magic damage<> every <#ffb900ff>0.50s<> within 35 range and briefly disrupting enemy skills. Chaos Storm also evolves Viktor's laser."
+        "attack": "Arcane Pulse: Viktor fires an arcane bolt, dealing <#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> as magic damage. While Siphon Empower is active, his next basic attack deals <#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115% magic power<> and grants Viktor a shield.",
+        "skill": "E - Hextech Ray: Viktor's third arm fires a laser in the target direction, dealing magic damage to enemies in a line. When evolved, the ray leaves an aftershock that detonates shortly after, damaging and briefly slowing enemies. Hitting an enemy champion advances Glorious Evolution.",
+        "skill2": "Q/W - Siphon Power + Gravity Field: Viktor shields himself and empowers his next basic attack, then creates a gravity field at the target location. Enemies inside are slowed; enemies still in the field when it collapses are stunned. When evolved, the field also disrupts movement skills.",
+        "ult": "R - Arcane Storm: Viktor summons an arcane storm at the target location, dealing an initial burst of magic damage and disrupting enemy skills. The storm then pulses repeatedly. Casting Arcane Storm advances Glorious Evolution; once fully evolved, the storm is larger, lasts longer, and pulses faster."
       },
       "test_mod_veigar": {
         "name": "Veigar",

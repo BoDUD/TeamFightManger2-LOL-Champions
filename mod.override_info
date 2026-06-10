@@ -890,5 +890,57 @@
   "asset/base/sound/sfx/test_mod_darius_ult_voice_clip": {
     "remapping": "asset/bo_league_champions/sound/sfx/test_mod_darius_ult_voice_clip",
     "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_viktor_attack_hit": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_viktor_attack_hit",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_viktor_attack_hit_clip": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_viktor_attack_hit_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_viktor_siphon_cast": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_viktor_siphon_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_viktor_siphon_cast_clip": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_viktor_siphon_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_viktor_siphon_empower_hit": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_viktor_siphon_empower_hit",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_viktor_siphon_empower_hit_clip": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_viktor_siphon_empower_hit_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_viktor_chaos_storm_duration": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_viktor_chaos_storm_duration",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_viktor_storm_impact": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_viktor_storm_impact",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_viktor_storm_impact_clip": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_viktor_storm_impact_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_viktor_evolution": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_viktor_evolution",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_viktor_evolution_clip": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_viktor_evolution_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_viktor_ult_voice": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_viktor_ult_voice",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_viktor_ult_voice_clip": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_viktor_ult_voice_clip",
+    "type": "override"
   }
 }

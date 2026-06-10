@@ -1,0 +1,152 @@
+{
+  "champion": "viktor",
+  "source": "D:/Riot Games/League of Legends/Game/DATA/FINAL/Champions/Viktor.wad.client; D:/Riot Games/League of Legends/Game/DATA/FINAL/Champions/Viktor.en_US.wad.client",
+  "bank": "assets/sounds/wwise2016/sfx/characters/viktor/skins/base/viktor_base_sfx_audio.bnk",
+  "voice_source": "D:/Riot Games/League of Legends/Game/DATA/FINAL/Champions/Viktor.en_US.wad.client",
+  "extracted_with": "cdtb wad-extract + wwiser + vgmstream-cli",
+  "events": {
+    "test_mod_viktor_attack_cast": {
+      "clip": "sound/sfx/test_mod_viktor_attack_cast_clip.wav",
+      "volume": 0.9,
+      "duration_seconds": 0.661,
+      "source_event": "base_sfx_event_0217",
+      "media_id": "366956455",
+      "source": "D:/Riot Games/League of Legends/Game/DATA/FINAL/Champions/Viktor.wad.client",
+      "bank": "assets/sounds/wwise2016/sfx/characters/viktor/skins/base/viktor_base_sfx_audio.bnk",
+      "events_bank": "assets/sounds/wwise2016/sfx/characters/viktor/skins/base/viktor_base_sfx_events.bnk"
+    },
+    "test_mod_viktor_attack_hit": {
+      "clip": "sound/sfx/test_mod_viktor_attack_hit_clip.wav",
+      "volume": 0.9,
+      "duration_seconds": 0.823,
+      "source_event": "base_sfx_event_0195",
+      "media_id": "638215974",
+      "source": "D:/Riot Games/League of Legends/Game/DATA/FINAL/Champions/Viktor.wad.client",
+      "bank": "assets/sounds/wwise2016/sfx/characters/viktor/skins/base/viktor_base_sfx_audio.bnk",
+      "events_bank": "assets/sounds/wwise2016/sfx/characters/viktor/skins/base/viktor_base_sfx_events.bnk"
+    },
+    "test_mod_viktor_siphon_cast": {
+      "clip": "sound/sfx/test_mod_viktor_siphon_cast_clip.wav",
+      "volume": 0.9,
+      "duration_seconds": 1.027,
+      "source_event": "base_sfx_event_0331",
+      "media_id": "718200240",
+      "source": "D:/Riot Games/League of Legends/Game/DATA/FINAL/Champions/Viktor.wad.client",
+      "bank": "assets/sounds/wwise2016/sfx/characters/viktor/skins/base/viktor_base_sfx_audio.bnk",
+      "events_bank": "assets/sounds/wwise2016/sfx/characters/viktor/skins/base/viktor_base_sfx_events.bnk"
+    },
+    "test_mod_viktor_siphon_empower_hit": {
+      "clip": "sound/sfx/test_mod_viktor_siphon_empower_hit_clip.wav",
+      "volume": 0.9,
+      "duration_seconds": 2.717,
+      "source_event": "base_sfx_event_0250",
+      "media_id": "492941568",
+      "source": "D:/Riot Games/League of Legends/Game/DATA/FINAL/Champions/Viktor.wad.client",
+      "bank": "assets/sounds/wwise2016/sfx/characters/viktor/skins/base/viktor_base_sfx_audio.bnk",
+      "events_bank": "assets/sounds/wwise2016/sfx/characters/viktor/skins/base/viktor_base_sfx_events.bnk"
+    },
+    "test_mod_viktor_laser_cast": {
+      "clip": "sound/sfx/test_mod_viktor_laser_cast_clip.wav",
+      "volume": 0.92,
+      "duration_seconds": 1.776,
+      "source_event": "base_sfx_event_0315",
+      "media_id": "265099124",
+      "source": "D:/Riot Games/League of Legends/Game/DATA/FINAL/Champions/Viktor.wad.client",
+      "bank": "assets/sounds/wwise2016/sfx/characters/viktor/skins/base/viktor_base_sfx_audio.bnk",
+      "events_bank": "assets/sounds/wwise2016/sfx/characters/viktor/skins/base/viktor_base_sfx_events.bnk"
+    },
+    "test_mod_viktor_laser_hit": {
+      "clip": "sound/sfx/test_mod_viktor_laser_hit_clip.wav",
+      "volume": 0.9,
+      "duration_seconds": 0.864,
+      "source_event": "base_sfx_event_0256",
+      "media_id": "531075080",
+      "source": "D:/Riot Games/League of Legends/Game/DATA/FINAL/Champions/Viktor.wad.client",
+      "bank": "assets/sounds/wwise2016/sfx/characters/viktor/skins/base/viktor_base_sfx_audio.bnk",
+      "events_bank": "assets/sounds/wwise2016/sfx/characters/viktor/skins/base/viktor_base_sfx_events.bnk"
+    },
+    "test_mod_viktor_laser_aftershock_hit": {
+      "clip": "sound/sfx/test_mod_viktor_laser_aftershock_hit_clip.wav",
+      "volume": 0.9,
+      "duration_seconds": 0.914,
+      "source_event": "base_sfx_event_0248",
+      "media_id": "748611133",
+      "source": "D:/Riot Games/League of Legends/Game/DATA/FINAL/Champions/Viktor.wad.client",
+      "bank": "assets/sounds/wwise2016/sfx/characters/viktor/skins/base/viktor_base_sfx_audio.bnk",
+      "events_bank": "assets/sounds/wwise2016/sfx/characters/viktor/skins/base/viktor_base_sfx_events.bnk"
+    },
+    "test_mod_viktor_gravity_field_cast": {
+      "clip": "sound/sfx/test_mod_viktor_gravity_field_cast_clip.wav",
+      "volume": 0.88,
+      "duration_seconds": 4.024,
+      "source_event": "base_sfx_event_0298",
+      "media_id": "626995735",
+      "source": "D:/Riot Games/League of Legends/Game/DATA/FINAL/Champions/Viktor.wad.client",
+      "bank": "assets/sounds/wwise2016/sfx/characters/viktor/skins/base/viktor_base_sfx_audio.bnk",
+      "events_bank": "assets/sounds/wwise2016/sfx/characters/viktor/skins/base/viktor_base_sfx_events.bnk"
+    },
+    "test_mod_viktor_gravity_field_slow": {
+      "clip": "sound/sfx/test_mod_viktor_gravity_field_slow_clip.wav",
+      "volume": 0.86,
+      "duration_seconds": 2.667,
+      "source_event": "base_sfx_event_0370",
+      "media_id": "526229873",
+      "source": "D:/Riot Games/League of Legends/Game/DATA/FINAL/Champions/Viktor.wad.client",
+      "bank": "assets/sounds/wwise2016/sfx/characters/viktor/skins/base/viktor_base_sfx_audio.bnk",
+      "events_bank": "assets/sounds/wwise2016/sfx/characters/viktor/skins/base/viktor_base_sfx_events.bnk"
+    },
+    "test_mod_viktor_chaos_storm_cast": {
+      "clip": "sound/sfx/test_mod_viktor_chaos_storm_cast_clip.wav",
+      "volume": 0.9,
+      "duration_seconds": 3.345,
+      "source_event": "base_sfx_event_0349",
+      "media_id": "648540030",
+      "source": "D:/Riot Games/League of Legends/Game/DATA/FINAL/Champions/Viktor.wad.client",
+      "bank": "assets/sounds/wwise2016/sfx/characters/viktor/skins/base/viktor_base_sfx_audio.bnk",
+      "events_bank": "assets/sounds/wwise2016/sfx/characters/viktor/skins/base/viktor_base_sfx_events.bnk"
+    },
+    "test_mod_viktor_chaos_storm_duration": {
+      "clip": "sound/sfx/test_mod_viktor_chaos_storm_duration_clip.wav",
+      "volume": 0.86,
+      "duration_seconds": 11.335,
+      "source_event": "base_sfx_event_0368_loop",
+      "media_id": "90156452",
+      "source": "D:/Riot Games/League of Legends/Game/DATA/FINAL/Champions/Viktor.wad.client",
+      "bank": "assets/sounds/wwise2016/sfx/characters/viktor/skins/base/viktor_base_sfx_audio.bnk",
+      "events_bank": "assets/sounds/wwise2016/sfx/characters/viktor/skins/base/viktor_base_sfx_events.bnk"
+    },
+    "test_mod_viktor_storm_impact": {
+      "clip": "sound/sfx/test_mod_viktor_storm_impact_clip.wav",
+      "volume": 0.9,
+      "duration_seconds": 0.968,
+      "source_event": "base_sfx_event_0378",
+      "media_id": "103931219",
+      "source": "D:/Riot Games/League of Legends/Game/DATA/FINAL/Champions/Viktor.wad.client",
+      "bank": "assets/sounds/wwise2016/sfx/characters/viktor/skins/base/viktor_base_sfx_audio.bnk",
+      "events_bank": "assets/sounds/wwise2016/sfx/characters/viktor/skins/base/viktor_base_sfx_events.bnk"
+    },
+    "test_mod_viktor_evolution": {
+      "clip": "sound/sfx/test_mod_viktor_evolution_clip.wav",
+      "volume": 0.9,
+      "duration_seconds": 2.141,
+      "source_event": "base_sfx_event_0237",
+      "media_id": "760600724",
+      "source": "D:/Riot Games/League of Legends/Game/DATA/FINAL/Champions/Viktor.wad.client",
+      "bank": "assets/sounds/wwise2016/sfx/characters/viktor/skins/base/viktor_base_sfx_audio.bnk",
+      "events_bank": "assets/sounds/wwise2016/sfx/characters/viktor/skins/base/viktor_base_sfx_events.bnk"
+    },
+    "test_mod_viktor_ult_voice": {
+      "clip": "sound/sfx/test_mod_viktor_ult_voice_clip.wav",
+      "volume": 0.92,
+      "duration_seconds": 3.156,
+      "source_event": "base_vo_event_0288",
+      "media_id": "18846564",
+      "source": "D:/Riot Games/League of Legends/Game/DATA/FINAL/Champions/Viktor.en_US.wad.client",
+      "voice_source": "D:/Riot Games/League of Legends/Game/DATA/FINAL/Champions/Viktor.en_US.wad.client",
+      "bank": "assets/sounds/wwise2016/vo/en_us/characters/viktor/skins/base/viktor_base_vo_audio.wpk",
+      "events_bank": "assets/sounds/wwise2016/vo/en_us/characters/viktor/skins/base/viktor_base_vo_events.bnk",
+      "source_offset": 85528,
+      "source_size": 38601
+    }
+  }
+}

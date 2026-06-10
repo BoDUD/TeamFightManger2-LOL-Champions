@@ -16,6 +16,7 @@ CHAMPION_IDS = (
     f"{MOD_ID}_yasuo",
     f"{MOD_ID}_jinx",
     f"{MOD_ID}_thresh",
+    f"{MOD_ID}_viktor",
 )
 AATROX_SOUND_EVENTS = (
     "test_mod_aatrox_attack_cast",
@@ -97,6 +98,22 @@ THRESH_SOUND_EVENTS = (
     "test_mod_thresh_soul_gain",
     "test_mod_thresh_ult_voice",
 )
+VIKTOR_SOUND_EVENTS = (
+    "test_mod_viktor_attack_cast",
+    "test_mod_viktor_attack_hit",
+    "test_mod_viktor_siphon_cast",
+    "test_mod_viktor_siphon_empower_hit",
+    "test_mod_viktor_laser_cast",
+    "test_mod_viktor_laser_hit",
+    "test_mod_viktor_laser_aftershock_hit",
+    "test_mod_viktor_gravity_field_cast",
+    "test_mod_viktor_gravity_field_slow",
+    "test_mod_viktor_chaos_storm_cast",
+    "test_mod_viktor_chaos_storm_duration",
+    "test_mod_viktor_storm_impact",
+    "test_mod_viktor_evolution",
+    "test_mod_viktor_ult_voice",
+)
 REQUIRED_DESCRIPTION_KEYS = ("name", "attack", "skill", "skill2", "ult")
 REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS: dict[str, dict[str, tuple[str, ...]]] = {
     f"{MOD_ID}_aatrox": {
@@ -128,6 +145,11 @@ REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS: dict[str, dict[str, tuple[str, ...]]] = {
         "en": ("Thresh", "Chain Warden"),
         "zh-hans": ("魂锁典狱长", "锤石"),
         "zh-hant": ("魂鎖典獄長", "瑟雷西"),
+    },
+    f"{MOD_ID}_viktor": {
+        "en": ("Viktor", "Herald of the Arcane", "Glorious Evolution", "Hextech Ray", "Gravity Field", "Arcane Storm"),
+        "zh-hans": ("维克托", "奥术先驱", "光荣进化", "海克斯射线", "重力场", "奥术风暴"),
+        "zh-hant": ("維克特", "奧術先驅", "光榮進化", "海克斯射線", "重力場", "奧術風暴"),
     },
 }
 
@@ -202,6 +224,7 @@ def check_runtime_copy(game_root: Path) -> None:
         "champion/yasuo.data_champion",
         "champion/jinx.data_champion",
         "champion/thresh.data_champion",
+        "champion/viktor.data_champion",
         "text/champion.i18n",
         "style/champion_view.champion_view",
         "aseprite_resources/champions/aatrox#sheet.png",
@@ -234,6 +257,8 @@ def check_runtime_copy(game_root: Path) -> None:
         "aseprite_resources/champions/jinx#anim.fanim",
         "aseprite_resources/champions/thresh#sheet.png",
         "aseprite_resources/champions/thresh#anim.fanim",
+        "aseprite_resources/champions/viktor#sheet.png",
+        "aseprite_resources/champions/viktor#anim.fanim",
         "aseprite_resources/effects/kayn_q_slash#sheet.png",
         "aseprite_resources/effects/kayn_q_slash#anim.fanim",
         "aseprite_resources/effects/kayn_w_blade_reach#sheet.png",
@@ -292,6 +317,22 @@ def check_runtime_copy(game_root: Path) -> None:
         "aseprite_resources/effects/thresh_box#anim.fanim",
         "aseprite_resources/effects/thresh_soul_stack#sheet.png",
         "aseprite_resources/effects/thresh_soul_stack#anim.fanim",
+        "aseprite_resources/effects/viktor_attack_projectile#sheet.png",
+        "aseprite_resources/effects/viktor_attack_projectile#anim.fanim",
+        "aseprite_resources/effects/viktor_laser#sheet.png",
+        "aseprite_resources/effects/viktor_laser#anim.fanim",
+        "aseprite_resources/effects/viktor_laser_aftershock#sheet.png",
+        "aseprite_resources/effects/viktor_laser_aftershock#anim.fanim",
+        "aseprite_resources/effects/viktor_gravity_field#sheet.png",
+        "aseprite_resources/effects/viktor_gravity_field#anim.fanim",
+        "aseprite_resources/effects/viktor_chaos_storm#sheet.png",
+        "aseprite_resources/effects/viktor_chaos_storm#anim.fanim",
+        "aseprite_resources/effects/viktor_siphon_shield#sheet.png",
+        "aseprite_resources/effects/viktor_siphon_shield#anim.fanim",
+        "aseprite_resources/effects/viktor_evolution_aura#sheet.png",
+        "aseprite_resources/effects/viktor_evolution_aura#anim.fanim",
+        "aseprite_resources/effects/viktor_storm_impact#sheet.png",
+        "aseprite_resources/effects/viktor_storm_impact#anim.fanim",
         "icons/kayn_skill.png",
         "icons/kayn_skill2.png",
         "icons/kayn_ult.png",
@@ -307,12 +348,16 @@ def check_runtime_copy(game_root: Path) -> None:
         "icons/thresh_skill.png",
         "icons/thresh_skill2.png",
         "icons/thresh_ult.png",
+        "icons/viktor_skill.png",
+        "icons/viktor_skill2.png",
+        "icons/viktor_ult.png",
         "qa/aatrox_official_audio_sources.json",
         "qa/darius_official_audio_sources.json",
         "qa/kayn_official_audio_sources.json",
         "qa/yasuo_official_audio_sources.json",
         "qa/jinx_official_audio_sources.json",
         "qa/thresh_official_audio_sources.json",
+        "qa/viktor_official_audio_sources.json",
         "qa/roster_visibility_coverage.json",
     ]
     for event_name in AATROX_SOUND_EVENTS:
@@ -335,6 +380,9 @@ def check_runtime_copy(game_root: Path) -> None:
         critical_files.append(f"sound/sfx/{event_name}.sound_info")
         critical_files.append(f"sound/sfx/{event_name}_clip.wav")
     for event_name in THRESH_SOUND_EVENTS:
+        critical_files.append(f"sound/sfx/{event_name}.sound_info")
+        critical_files.append(f"sound/sfx/{event_name}_clip.wav")
+    for event_name in VIKTOR_SOUND_EVENTS:
         critical_files.append(f"sound/sfx/{event_name}.sound_info")
         critical_files.append(f"sound/sfx/{event_name}_clip.wav")
     for relative in critical_files:
@@ -403,6 +451,10 @@ def check_runtime_copy(game_root: Path) -> None:
                         "zh-hans": "魂锁典狱长",
                         "zh-hant": "魂鎖典獄長",
                     },
+                    f"{MOD_ID}_viktor": {
+                        "zh-hans": "维克托",
+                        "zh-hant": "維克特",
+                    },
                 }
                 display_by_locale = expected_display_names.get(champion_id)
                 if display_by_locale:
@@ -418,6 +470,7 @@ def check_runtime_copy(game_root: Path) -> None:
                         "Yasuo",
                         "Jinx",
                         "Thresh",
+                        "Viktor",
                         "Darius",
                         "诺手",
                         "諾手",
@@ -429,6 +482,8 @@ def check_runtime_copy(game_root: Path) -> None:
                         "金克絲",
                         "锤石",
                         "瑟雷西",
+                        "奥术先驱",
+                        "奧術先驅",
                     )
                     if any(alias in actual_name for alias in forbidden_aliases):
                         fail(f"runtime text locale {locale} description.{champion_id}.name contains search alias")
@@ -452,6 +507,10 @@ def check_runtime_copy(game_root: Path) -> None:
                     f"{MOD_ID}_thresh": {
                         "zh-hans": ("锤石", "魂锁典狱长", "死亡判决", "魂引之灯", "厄运钟摆", "幽冥监牢"),
                         "zh-hant": ("瑟雷西", "魂鎖典獄長", "死亡判決", "冥燈引路", "厄運鐘擺", "幽冥監牢"),
+                    },
+                    f"{MOD_ID}_viktor": {
+                        "zh-hans": ("维克托", "奥术先驱", "光荣进化", "海克斯射线", "重力场", "奥术风暴"),
+                        "zh-hant": ("維克特", "奧術先驅", "光榮進化", "海克斯射線", "重力場", "奧術風暴"),
                     },
                 }
                 required_by_locale = required_terms_by_champion.get(champion_id)
