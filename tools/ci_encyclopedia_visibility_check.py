@@ -923,17 +923,17 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
 
 
 def check_kayn_rework_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
-    expected_names = {
-        "en": ("Kayn", "Shadow Reaper"),
-        "zh-hans": ("\u51ef\u9690", "Kayn"),
-        "zh-hant": ("\u6168\u5f71", "Kayn"),
+    expected_display_names = {
+        "en": "Kayn (Shadow Reaper)",
+        "zh-hans": "\u5f71\u6d41\u4e4b\u9570",
+        "zh-hant": "\u5f71\u6d41\u4e4b\u942e",
     }
     expected_terms = {
         "en": ("Shadow Reaper", "Darkin Scythe", "Darkin Ascension"),
         "zh-hans": ("\u5f71\u6d41\u4e4b\u9570", "\u5de8\u9570\u6a2a\u626b", "\u5229\u5203\u7eb5\u8d2f", "\u88c2\u820d\u5f71", "\u6697\u88d4\u5347\u534e"),
         "zh-hant": ("\u5f71\u6d41\u4e4b\u942e", "\u5de8\u942e\u6a6b\u6383", "\u5229\u5203\u7e31\u8cab", "\u88c2\u820d\u5f71", "\u51a5\u8840\u5347\u83ef"),
     }
-    for locale, expected_name_terms in expected_names.items():
+    for locale, expected_name in expected_display_names.items():
         descriptions = text.get(locale, {}).get("description")
         if not isinstance(descriptions, dict):
             fail(f"text/champion.i18n locale {locale} missing description object")
@@ -942,9 +942,10 @@ def check_kayn_rework_contract(text: dict[str, Any], entries: dict[str, Any]) ->
             if not isinstance(row, dict):
                 fail(f"text/champion.i18n locale {locale} missing {kayn_id}")
             name = str(row.get("name", ""))
-            for expected_name_term in expected_name_terms:
-                if expected_name_term not in name:
-                    fail(f"text/champion.i18n locale {locale} {kayn_id}.name must include {expected_name_term!r}")
+            if name != expected_name:
+                fail(f"text/champion.i18n locale {locale} {kayn_id}.name must be short display name {expected_name!r}")
+            if locale in {"zh-hans", "zh-hant"} and any(alias in name for alias in ("Kayn", "\u51ef\u9690", "\u6168\u5f71")):
+                fail(f"text/champion.i18n locale {locale} {kayn_id}.name must not include search aliases")
             for key in REQUIRED_DESCRIPTION_KEYS:
                 value = str(row.get(key, ""))
                 if "??" in value or "・ｽ" in value:
@@ -1129,17 +1130,17 @@ def check_kayn_rework_contract(text: dict[str, Any], entries: dict[str, Any]) ->
 
 
 def check_yasuo_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
-    expected_names = {
-        "en": ("Yasuo", "Unforgiven"),
-        "zh-hans": ("\u4e9a\u7d22", "Yasuo", "\u75be\u98ce\u5251\u8c6a"),
-        "zh-hant": ("\u72bd\u5bbf", "Yasuo"),
+    expected_display_names = {
+        "en": "Yasuo (Unforgiven)",
+        "zh-hans": "\u75be\u98ce\u5251\u8c6a",
+        "zh-hant": "\u75be\u98a8\u528d\u8c6a",
     }
     expected_terms = {
         "en": ("Steel Tempest", "Sweeping Blade", "Wind Wall", "Last Breath"),
         "zh-hans": ("\u65a9\u94a2\u95ea", "\u8e0f\u524d\u65a9", "\u98ce\u4e4b\u969c\u58c1", "\u72c2\u98ce\u7edd\u606f\u65a9"),
         "zh-hant": ("\u65ac\u92fc\u9583", "\u98a8\u7246", "\u596a\u547d\u6c23\u606f"),
     }
-    for locale, expected_name_terms in expected_names.items():
+    for locale, expected_name in expected_display_names.items():
         descriptions = text.get(locale, {}).get("description")
         if not isinstance(descriptions, dict):
             fail(f"text/champion.i18n locale {locale} missing description object")
@@ -1148,9 +1149,10 @@ def check_yasuo_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
             if not isinstance(row, dict):
                 fail(f"text/champion.i18n locale {locale} missing {yasuo_id}")
             name = str(row.get("name", ""))
-            for expected_name_term in expected_name_terms:
-                if expected_name_term not in name:
-                    fail(f"text/champion.i18n locale {locale} {yasuo_id}.name must include {expected_name_term!r}")
+            if name != expected_name:
+                fail(f"text/champion.i18n locale {locale} {yasuo_id}.name must be short display name {expected_name!r}")
+            if locale in {"zh-hans", "zh-hant"} and any(alias in name for alias in ("Yasuo", "\u4e9a\u7d22", "\u72bd\u5bbf")):
+                fail(f"text/champion.i18n locale {locale} {yasuo_id}.name must not include search aliases")
             for key in REQUIRED_DESCRIPTION_KEYS:
                 value = str(row.get(key, ""))
                 if "??" in value or "繝ｻ・ｽ" in value:

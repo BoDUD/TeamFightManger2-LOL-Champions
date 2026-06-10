@@ -3,8 +3,8 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.9.0",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version adds Yasuo with staged Steel Tempest, Sweeping Blade/Wind Wall, Last Breath, generated-source wind VFX, official LoL Wwise SFX, fixes Kayn encyclopedia search visibility, raises Kayn audibility, and documents official Aatrox audio sources in CI.",
+  "version": "0.9.1",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version shortens Chinese display names for Kayn/Yasuo, bumps the mod version to force encyclopedia cache refresh, keeps Yasuo's staged Steel Tempest, Sweeping Blade/Wind Wall, Last Breath, generated-source wind VFX, official LoL Wwise SFX, and preserves the Kayn/Aatrox official-audio QA gates.",
   "last_updated": "2026-06-10",
   "dependencies": [
     {
