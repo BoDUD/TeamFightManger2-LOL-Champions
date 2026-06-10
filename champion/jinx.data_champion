@@ -377,17 +377,6 @@
           }
         },
         {
-          "type": "AddCasterBuff",
-          "buff_state": {
-            "name": "test_mod_jinx_fishbones_visual",
-            "duration": {
-              "Time": {
-                "tick": 210
-              }
-            }
-          }
-        },
-        {
           "type": "RemoveCasterBuff",
           "name": "test_mod_jinx_powpow_1"
         },
@@ -589,22 +578,6 @@
                 "name": "test_mod_jinx_rocket_explosion_vfx"
               },
               "casting_type": "Targeting"
-            },
-            {
-              "effect": {
-                "type": "AddCasterBuff",
-                "buff_state": {
-                  "name": "test_mod_jinx_get_excited",
-                  "duration": {
-                    "Time": {
-                      "tick": 180
-                    }
-                  },
-                  "attack_speed_mult": 35,
-                  "move_speed_mult": 35
-                }
-              },
-              "casting_type": "Targeting"
             }
           ]
         },
@@ -681,22 +654,5 @@
       "is_follow": true
     }
   ],
-  "view_buffs": [
-    {
-      "type": "Animated",
-      "name": "test_mod_jinx_get_excited",
-      "anim": "asset/bo_league_champions/aseprite_resources/effects/jinx_get_excited_aura",
-      "tag": "loop",
-      "z": -1,
-      "repeat": true
-    },
-    {
-      "type": "Animated",
-      "name": "test_mod_jinx_fishbones_visual",
-      "anim": "asset/bo_league_champions/aseprite_resources/effects/jinx_fishbones_mode_aura",
-      "tag": "loop",
-      "z": 1,
-      "repeat": true
-    }
-  ]
+  "view_buffs": []
 }

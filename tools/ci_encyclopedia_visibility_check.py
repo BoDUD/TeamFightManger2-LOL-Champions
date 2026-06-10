@@ -88,12 +88,6 @@ AATROX_ALLOWED_FRAME_XS = tuple(
         )
     )
 )
-AATROX_ATTACK_CAST_EFFECT_REFS = {
-    "test_mod_aatrox_attack_slash_vfx": (
-        "asset/bo_league_champions/aseprite_resources/effects/aatrox_attack_slash",
-        "slash",
-    ),
-}
 AATROX_Q_CAST_EFFECT_REFS = {
     "test_mod_aatrox_q1_cast_vfx": (
         "asset/bo_league_champions/aseprite_resources/effects/aatrox_q1_cleave",
@@ -120,6 +114,14 @@ KAYN_EFFECT_REFS = {
     ),
 }
 KAYN_VIEW_EFFECT_REFS = {
+    "test_mod_kayn_attack_slash_vfx": (
+        "asset/bo_league_champions/aseprite_resources/effects/kayn_attack_slash",
+        "slash",
+    ),
+    "test_mod_kayn_q_slash_cast_vfx": (
+        "asset/bo_league_champions/aseprite_resources/effects/kayn_q_slash",
+        "slash",
+    ),
     "test_mod_kayn_r_entry": (
         "asset/bo_league_champions/aseprite_resources/effects/kayn_r_entry",
         "entry",
@@ -277,16 +279,7 @@ JINX_VIEW_EFFECT_REFS = {
         "burst",
     ),
 }
-JINX_BUFF_REFS = {
-    "test_mod_jinx_get_excited": (
-        "asset/bo_league_champions/aseprite_resources/effects/jinx_get_excited_aura",
-        "loop",
-    ),
-    "test_mod_jinx_fishbones_visual": (
-        "asset/bo_league_champions/aseprite_resources/effects/jinx_fishbones_mode_aura",
-        "loop",
-    ),
-}
+JINX_BUFF_REFS: dict[str, tuple[str, str]] = {}
 JINX_SOUND_MEDIA_IDS = {
     "test_mod_jinx_minigun_cast": "871511008",
     "test_mod_jinx_minigun_hit": "230875545",
@@ -523,52 +516,6 @@ def require_file(path: Path) -> None:
         fail(f"missing file: {path.relative_to(ROOT)}")
 
 
-def assert_jinx_fishbones_held_overlay() -> None:
-    sheet = ROOT / "aseprite_resources" / "effects" / "jinx_fishbones_mode_aura#sheet.png"
-    width, height, rgba = load_rgba(sheet)
-    _, _, alpha = load_rgba_alpha(sheet)
-    if (width, height) != (384, 64):
-        fail("Jinx Fishbones visual must keep the 6-frame 64x64 held-weapon overlay contract")
-    for frame_index in range(6):
-        x0 = frame_index * 64
-        bbox = alpha_bbox_in_rect(alpha, width, (x0, 0, 64, 64))
-        if bbox is None:
-            fail(f"Jinx Fishbones held overlay frame {frame_index} is empty")
-        bw = bbox[2] - bbox[0]
-        bh = bbox[3] - bbox[1]
-        if bw > 30 or bh > 20:
-            fail(
-                f"Jinx Fishbones frame {frame_index} must be a compact held weapon, "
-                f"not a rocket/smoke aura; bbox is {bw}x{bh}"
-            )
-        if bbox[0] < 28 or bbox[1] < 18 or bbox[3] > 44:
-            fail(
-                f"Jinx Fishbones frame {frame_index} must stay near the hand/shoulder weapon area; "
-                f"bbox is {bbox}"
-            )
-        visible = 0
-        flame_pixels = 0
-        for y in range(bbox[1], bbox[3]):
-            for x in range(bbox[0], bbox[2]):
-                i = ((y * width) + x0 + x) * 4
-                r = rgba[i]
-                g = rgba[i + 1]
-                b = rgba[i + 2]
-                a = rgba[i + 3]
-                if not a:
-                    continue
-                visible += 1
-                if r > 180 and g > 70 and b < 80:
-                    flame_pixels += 1
-        if visible < 100:
-            fail(f"Jinx Fishbones held overlay frame {frame_index} is too sparse to read as a weapon")
-        if flame_pixels:
-            fail(
-                f"Jinx Fishbones held overlay frame {frame_index} still contains muzzle flame; "
-                "fire and smoke belong in projectile/hit effects, not the actor buff"
-            )
-
-
 def effect_frame_bboxes(path: Path, frame_w: int, frame_h: int) -> list[tuple[int, int, int, int]]:
     width, height, alpha = load_rgba_alpha(path)
     if height != frame_h or width % frame_w:
@@ -638,6 +585,50 @@ def assert_kayn_skill_vfx_no_actor_body() -> None:
                     f"{path.relative_to(ROOT)} frame {frame_index} contains {bodylike_pixels} "
                     "neutral actor-body pixels; Kayn skill VFX must be aura/slash only"
                 )
+
+
+def assert_kayn_q_and_attack_vfx_readable() -> None:
+    for name, frame_w, frame_h, min_bright, max_width in (
+        ("kayn_q_slash", 192, 96, 260, 150),
+        ("kayn_attack_slash", 96, 72, 80, 92),
+    ):
+        path = ROOT / "aseprite_resources" / "effects" / f"{name}#sheet.png"
+        width, height, rgba = load_rgba(path)
+        if height != frame_h or width % frame_w:
+            fail(f"{path.relative_to(ROOT)} must use {frame_w}x{frame_h} frames")
+        frame_count = width // frame_w
+        bright_counts: list[int] = []
+        widths: list[int] = []
+        _, _, alpha = load_rgba_alpha(path)
+        for frame_index in range(frame_count):
+            bbox = alpha_bbox_in_rect(alpha, width, (frame_index * frame_w, 0, frame_w, frame_h))
+            if bbox is None:
+                fail(f"{path.relative_to(ROOT)} frame {frame_index} is empty")
+            widths.append(bbox[2] - bbox[0])
+            bright = 0
+            for y in range(frame_h):
+                for x in range(frame_w):
+                    i = ((y * width) + frame_index * frame_w + x) * 4
+                    r = rgba[i]
+                    g = rgba[i + 1]
+                    b = rgba[i + 2]
+                    a = rgba[i + 3]
+                    if a and (b > 145 or r > 180) and max(r, g, b) - min(r, g, b) > 35:
+                        bright += 1
+            bright_counts.append(bright)
+        if max(bright_counts) < min_bright:
+            fail(f"{path.relative_to(ROOT)} must have a visible bright slash; bright counts={bright_counts}")
+        if max(widths) > max_width:
+            fail(f"{path.relative_to(ROOT)} is too wide for its role; widths={widths}")
+
+
+def assert_jinx_r_big_projectile() -> None:
+    path = ROOT / "aseprite_resources" / "effects" / "jinx_super_mega_death_rocket#sheet.png"
+    bboxes = effect_frame_bboxes(path, 128, 64)
+    widths = [bbox[2] - bbox[0] for bbox in bboxes]
+    heights = [bbox[3] - bbox[1] for bbox in bboxes]
+    if min(widths) < 95 or min(heights) < 35:
+        fail(f"Jinx R projectile must read as a large Super Mega Death Rocket; widths={widths}, heights={heights}")
 
 
 def require_aseprite_asset(asset: str) -> None:
@@ -956,7 +947,6 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
 
     for path in (
         ROOT / "aseprite_resources" / "champions" / "aatrox#sheet.png",
-        ROOT / "aseprite_resources" / "effects" / "aatrox_attack_slash#sheet.png",
         ROOT / "aseprite_resources" / "effects" / "aatrox_q1_cleave#sheet.png",
         ROOT / "aseprite_resources" / "effects" / "aatrox_q2_cleave#sheet.png",
         ROOT / "aseprite_resources" / "effects" / "aatrox_q3_cleave#sheet.png",
@@ -1129,13 +1119,9 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
         if projectile_z.get(name) != 1:
             fail(f"champion/aatrox.data_champion projectile {name} must render visibly above terrain at z=1")
     view_effect_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in aatrox.get("view_effects", [])}
-    for name, expected in AATROX_ATTACK_CAST_EFFECT_REFS.items():
-        if view_effect_refs.get(name) != expected:
-            fail(f"champion/aatrox.data_champion attack view_effect {name} must reference {expected}")
     attack_strings = set(walk_strings(aatrox.get("attack", {})))
-    for name in AATROX_ATTACK_CAST_EFFECT_REFS:
-        if name not in attack_strings:
-            fail(f"champion/aatrox.data_champion attack.effect must trigger {name} for the basic attack slash VFX")
+    if "test_mod_aatrox_attack_slash_vfx" in attack_strings or "test_mod_aatrox_attack_slash_vfx" in view_effect_refs:
+        fail("Aatrox basic attack must not trigger the oversized skill-like attack slash VFX")
     for name, expected in AATROX_Q_CAST_EFFECT_REFS.items():
         if view_effect_refs.get(name) != expected:
             fail(f"champion/aatrox.data_champion view_effect {name} must reference {expected}")
@@ -1262,6 +1248,7 @@ def check_kayn_rework_contract(text: dict[str, Any], entries: dict[str, Any]) ->
 
     for path in (
         ROOT / "aseprite_resources" / "champions" / "kayn#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "kayn_attack_slash#sheet.png",
         ROOT / "aseprite_resources" / "effects" / "kayn_q_slash#sheet.png",
         ROOT / "aseprite_resources" / "effects" / "kayn_w_blade_reach#sheet.png",
         ROOT / "aseprite_resources" / "effects" / "kayn_r_entry#sheet.png",
@@ -1274,6 +1261,7 @@ def check_kayn_rework_contract(text: dict[str, Any], entries: dict[str, Any]) ->
         require_file(path)
         require_no_green_residue(path)
     assert_kayn_skill_vfx_no_actor_body()
+    assert_kayn_q_and_attack_vfx_readable()
 
     fanim = load_json(ROOT / "aseprite_resources" / "champions" / "kayn#anim.fanim")
     sheet_width, sheet_height, sheet_alpha = load_rgba_alpha(
@@ -1385,6 +1373,12 @@ def check_kayn_rework_contract(text: dict[str, Any], entries: dict[str, Any]) ->
     for name, expected in KAYN_VIEW_EFFECT_REFS.items():
         if effect_refs.get(name) != expected:
             fail(f"champion/kayn.data_champion view_effect {name} must reference {expected}")
+    attack_strings = set(walk_strings(kayn.get("attack", {})))
+    if "test_mod_kayn_attack_slash_vfx" not in attack_strings:
+        fail("Kayn basic attack must trigger a small scythe slash VFX")
+    skill_strings = set(walk_strings(kayn.get("skill", {})))
+    if "test_mod_kayn_q_slash_cast_vfx" not in skill_strings:
+        fail("Kayn Q must trigger a visible caster-side slash VFX as well as the line projectile")
     buff_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in kayn.get("view_buffs", [])}
     for name, expected in KAYN_BUFF_REFS.items():
         if buff_refs.get(name) != expected:
@@ -1663,6 +1657,14 @@ def check_jinx_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
     ):
         require_file(path)
         require_no_green_residue(path)
+    for retired in (
+        ROOT / "aseprite_resources" / "effects" / "jinx_get_excited_aura#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "jinx_get_excited_aura#anim.fanim",
+        ROOT / "aseprite_resources" / "effects" / "jinx_fishbones_mode_aura#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "jinx_fishbones_mode_aura#anim.fanim",
+    ):
+        if retired.exists():
+            fail(f"{retired.relative_to(ROOT)} is retired; Jinx form/ultimate state must not attach VFX to the actor body")
     for effect_name in (
         "jinx_minigun_bullet",
         "jinx_rocket_attack",
@@ -1671,8 +1673,6 @@ def check_jinx_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
         "jinx_super_mega_death_rocket",
         "jinx_switcheroo",
         "jinx_rocket_explosion",
-        "jinx_get_excited_aura",
-        "jinx_fishbones_mode_aura",
     ):
         sheet = ROOT / "aseprite_resources" / "effects" / f"{effect_name}#sheet.png"
         fanim = ROOT / "aseprite_resources" / "effects" / f"{effect_name}#anim.fanim"
@@ -1696,7 +1696,7 @@ def check_jinx_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
             fail(f"{sheet.relative_to(ROOT)} must contain a visible generated Jinx effect")
         if actor_skin_pixels > max(40, visible_pixels // 5):
             fail(f"{sheet.relative_to(ROOT)} contains too many actor/body-colored pixels; effects must stay separate from the champion body")
-    assert_jinx_fishbones_held_overlay()
+    assert_jinx_r_big_projectile()
 
     fanim = load_json(ROOT / "aseprite_resources" / "champions" / "jinx#anim.fanim")
     sheet_width, sheet_height, sheet_alpha = load_rgba_alpha(
@@ -1809,6 +1809,11 @@ def check_jinx_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
         fail("Jinx Switcheroo skill must be a short AI-targeted Fishbones window, not a permanent toggle")
     if "test_mod_jinx_fishbones_mode" not in skill_strings or "test_mod_jinx_switch_to_minigun" not in skill_strings:
         fail("Jinx Switcheroo must add Fishbones briefly and schedule a return-to-minigun sound")
+    all_jinx_strings = set(walk_strings(jinx))
+    if "test_mod_jinx_fishbones_visual" in all_jinx_strings or "jinx_fishbones_mode_aura" in all_jinx_strings:
+        fail("Jinx Fishbones form must not attach a body overlay; Switcheroo should only change the attack mode")
+    if "test_mod_jinx_get_excited" in set(walk_strings(jinx.get("view_buffs", []))):
+        fail("Jinx R/Get Excited must not attach a model-deforming actor aura")
 
     def find_named_buff_ticks(node: Any, buff_name: str) -> list[int]:
         ticks: list[int] = []
@@ -1830,12 +1835,6 @@ def check_jinx_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
     fishbones_ticks = find_named_buff_ticks(skill, "test_mod_jinx_fishbones_mode")
     if fishbones_ticks != [210]:
         fail(f"Jinx Switcheroo must use one 210-tick Fishbones window, got {fishbones_ticks}")
-    fishbones_visual_ticks = find_named_buff_ticks(skill, "test_mod_jinx_fishbones_visual")
-    if fishbones_visual_ticks != [210]:
-        fail(f"Jinx Switcheroo must show one 210-tick held Fishbones overlay, got {fishbones_visual_ticks}")
-    attack_visual_ticks = find_named_buff_ticks(jinx.get("attack", {}), "test_mod_jinx_fishbones_visual")
-    if attack_visual_ticks:
-        fail("Jinx basic attacks must not add the held Fishbones overlay directly; Switcheroo controls the form window")
 
     for action, sfx_names in (
         ("skill", {"test_mod_jinx_switch_to_minigun", "test_mod_jinx_switch_to_rocket"}),
@@ -1856,17 +1855,11 @@ def check_jinx_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
         if effect_refs.get(name) != expected:
             fail(f"champion/jinx.data_champion view_effect {name} must reference {expected}")
     buff_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in jinx.get("view_buffs", [])}
+    if buff_refs:
+        fail(f"Jinx must not define actor-attached view_buffs while model overlays are unstable, got {sorted(buff_refs)}")
     for name, expected in JINX_BUFF_REFS.items():
         if buff_refs.get(name) != expected:
             fail(f"champion/jinx.data_champion buff {name} must reference {expected}")
-    expected_buff_z = {
-        "test_mod_jinx_get_excited": -1,
-        "test_mod_jinx_fishbones_visual": 1,
-    }
-    for buff_name in JINX_BUFF_REFS:
-        buff = next((item for item in jinx.get("view_buffs", []) if item.get("name") == buff_name), None)
-        if not isinstance(buff, dict) or buff.get("z") != expected_buff_z[buff_name]:
-            fail(f"Jinx buff {buff_name} must render at z={expected_buff_z[buff_name]}")
 
     assert_official_audio_sources(
         "jinx",

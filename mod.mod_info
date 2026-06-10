@@ -3,8 +3,8 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.10.5",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version shrinks Jinx's Fishbones overlay so cannon form does not cover the actor body, refines Aatrox Q1 into a Darkin Blade ground cleave, and cleans Kayn skill VFX so slash and ultimate effects do not include duplicate actor bodies.",
+  "version": "0.10.6",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version removes Jinx actor-attached weapon and Get Excited overlays, enlarges her ultimate rocket and explosion as independent VFX, restores Kayn Q visibility with a small attack slash, and disables Aatrox's oversized basic-attack slash.",
   "last_updated": "2026-06-10",
   "dependencies": [
     {
