@@ -62,6 +62,29 @@ JINX_SOUND_EVENTS = (
     "test_mod_jinx_get_excited",
     "test_mod_jinx_ult_voice",
 )
+REQUIRED_DESCRIPTION_KEYS = ("name", "attack", "skill", "skill2", "ult")
+REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS: dict[str, dict[str, tuple[str, ...]]] = {
+    f"{MOD_ID}_aatrox": {
+        "en": ("Aatrox",),
+        "zh-hans": ("亚托克斯", "剑魔"),
+        "zh-hant": ("亞托克斯", "劍魔"),
+    },
+    f"{MOD_ID}_kayn": {
+        "en": ("Kayn", "Shadow Reaper"),
+        "zh-hans": ("影流之镰", "凯隐"),
+        "zh-hant": ("影流之鐮", "慨影"),
+    },
+    f"{MOD_ID}_yasuo": {
+        "en": ("Yasuo", "Unforgiven"),
+        "zh-hans": ("疾风剑豪", "亚索"),
+        "zh-hant": ("疾風劍豪", "犽宿"),
+    },
+    f"{MOD_ID}_jinx": {
+        "en": ("Jinx", "Loose Cannon"),
+        "zh-hans": ("暴走萝莉", "金克丝"),
+        "zh-hant": ("暴走蘿莉", "金克絲"),
+    },
+}
 
 
 def fail(message: str) -> None:
@@ -279,6 +302,28 @@ def check_runtime_copy(game_root: Path) -> None:
                     missing = [term for term in required_terms if term not in payload_text]
                     if missing:
                         fail(f"runtime text locale {locale} description.{champion_id} missing search aliases {missing}")
+    check_encyclopedia_search_terms(text)
+
+
+def check_encyclopedia_search_terms(text: object) -> None:
+    if not isinstance(text, dict):
+        fail("runtime champion text must contain a JSON object")
+    for champion_id, terms_by_locale in REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS.items():
+        for locale, required_terms in terms_by_locale.items():
+            payload = text.get(locale)
+            descriptions = payload.get("description") if isinstance(payload, dict) else None
+            if not isinstance(descriptions, dict):
+                fail(f"runtime text locale {locale} missing description object")
+            row = descriptions.get(champion_id)
+            if not isinstance(row, dict):
+                fail(f"runtime text locale {locale} missing description.{champion_id}")
+            surface = " ".join(str(row.get(key, "")) for key in REQUIRED_DESCRIPTION_KEYS).casefold()
+            missing = [term for term in required_terms if term.casefold() not in surface]
+            if missing:
+                fail(
+                    f"runtime text locale {locale} description.{champion_id} "
+                    f"is missing encyclopedia search terms {missing}"
+                )
 
 
 def check_custom_database_state() -> None:

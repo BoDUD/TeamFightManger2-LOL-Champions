@@ -319,6 +319,31 @@ JINX_SKILL_SOUND_EVENTS = {
     "test_mod_jinx_ult_voice",
 }
 JINX_SKILL_SOUND_VOLUME_FLOOR = 0.84
+REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS: dict[str, dict[str, tuple[str, ...]]] = {}
+for _champion_id in AATROX_IDS:
+    REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS[_champion_id] = {
+        "en": ("Aatrox",),
+        "zh-hans": ("\u4e9a\u6258\u514b\u65af", "\u5251\u9b54"),
+        "zh-hant": ("\u4e9e\u6258\u514b\u65af", "\u528d\u9b54"),
+    }
+for _champion_id in KAYN_IDS:
+    REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS[_champion_id] = {
+        "en": ("Kayn", "Shadow Reaper"),
+        "zh-hans": ("\u5f71\u6d41\u4e4b\u9570", "\u51ef\u9690"),
+        "zh-hant": ("\u5f71\u6d41\u4e4b\u942e", "\u6168\u5f71"),
+    }
+for _champion_id in YASUO_IDS:
+    REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS[_champion_id] = {
+        "en": ("Yasuo", "Unforgiven"),
+        "zh-hans": ("\u75be\u98ce\u5251\u8c6a", "\u4e9a\u7d22"),
+        "zh-hant": ("\u75be\u98a8\u528d\u8c6a", "\u72bd\u5bbf"),
+    }
+for _champion_id in JINX_IDS:
+    REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS[_champion_id] = {
+        "en": ("Jinx", "Loose Cannon"),
+        "zh-hans": ("\u66b4\u8d70\u841d\u8389", "\u91d1\u514b\u4e1d"),
+        "zh-hant": ("\u66b4\u8d70\u863f\u8389", "\u91d1\u514b\u7d72"),
+    }
 AATROX_SOUND_MEDIA_IDS = {
     "test_mod_aatrox_attack_cast": ("29529616",),
     "test_mod_aatrox_attack_hit": ("780778749",),
@@ -625,6 +650,24 @@ def walk_strings(node: Any) -> list[str]:
             out.extend(walk_strings(value))
         return out
     return []
+
+
+def check_encyclopedia_search_terms(text: dict[str, Any]) -> None:
+    for champion_id, terms_by_locale in REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS.items():
+        for locale, required_terms in terms_by_locale.items():
+            descriptions = text.get(locale, {}).get("description")
+            if not isinstance(descriptions, dict):
+                fail(f"text/champion.i18n locale {locale} missing description object")
+            row = descriptions.get(champion_id)
+            if not isinstance(row, dict):
+                fail(f"text/champion.i18n locale {locale} missing {champion_id}")
+            surface = " ".join(str(row.get(key, "")) for key in REQUIRED_DESCRIPTION_KEYS).casefold()
+            missing = [term for term in required_terms if term.casefold() not in surface]
+            if missing:
+                fail(
+                    f"text/champion.i18n locale {locale} {champion_id} "
+                    f"is missing encyclopedia search terms {missing}"
+                )
 
 
 def description_refs(champion: dict[str, Any]) -> set[tuple[str, str]]:
@@ -1710,6 +1753,7 @@ def check_champion_visibility() -> None:
         fail("Yasuo encyclopedia chain is missing bo_league_champions_yasuo")
     if f"{MOD_ID}_jinx" not in ids:
         fail("Jinx encyclopedia chain is missing bo_league_champions_jinx")
+    check_encyclopedia_search_terms(text)
     check_aatrox_rework_contract(text, entries)
     check_kayn_rework_contract(text, entries)
     check_yasuo_contract(text, entries)
