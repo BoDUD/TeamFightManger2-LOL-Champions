@@ -205,10 +205,8 @@ def check_runtime_copy(game_root: Path) -> None:
         "aseprite_resources/effects/jinx_switcheroo#anim.fanim",
         "aseprite_resources/effects/jinx_rocket_explosion#sheet.png",
         "aseprite_resources/effects/jinx_rocket_explosion#anim.fanim",
-        "aseprite_resources/effects/jinx_get_excited_aura#sheet.png",
-        "aseprite_resources/effects/jinx_get_excited_aura#anim.fanim",
-        "aseprite_resources/effects/jinx_fishbones_mode_aura#sheet.png",
-        "aseprite_resources/effects/jinx_fishbones_mode_aura#anim.fanim",
+        "aseprite_resources/effects/kayn_attack_slash#sheet.png",
+        "aseprite_resources/effects/kayn_attack_slash#anim.fanim",
         "icons/kayn_skill.png",
         "icons/kayn_skill2.png",
         "icons/kayn_ult.png",
@@ -247,6 +245,15 @@ def check_runtime_copy(game_root: Path) -> None:
             fail(f"runtime mod is missing {runtime_file}")
         if sha256(repo_file) != sha256(runtime_file):
             fail(f"runtime mod file is stale or differs from repo: {runtime_file}")
+
+    for relative in (
+        "aseprite_resources/effects/jinx_get_excited_aura#sheet.png",
+        "aseprite_resources/effects/jinx_get_excited_aura#anim.fanim",
+        "aseprite_resources/effects/jinx_fishbones_mode_aura#sheet.png",
+        "aseprite_resources/effects/jinx_fishbones_mode_aura#anim.fanim",
+    ):
+        if (runtime_root / relative).exists():
+            fail(f"runtime mod still contains retired actor-attached Jinx VFX: {runtime_root / relative}")
 
     for data_path in sorted((runtime_root / "champion").glob("*.data_champion")):
         check_view_effect_types(data_path, load_json(data_path))

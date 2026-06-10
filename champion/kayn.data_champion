@@ -57,6 +57,10 @@
             "name": "test_mod_kayn_attack_cast"
           },
           {
+            "type": "CasterViewEffect",
+            "name": "test_mod_kayn_attack_slash_vfx"
+          },
+          {
             "type": "Attack",
             "damage": 10,
             "attack_ratio": 105
@@ -73,6 +77,10 @@
           {
             "type": "Sfx",
             "name": "test_mod_kayn_attack_cast"
+          },
+          {
+            "type": "CasterViewEffect",
+            "name": "test_mod_kayn_attack_slash_vfx"
           },
           {
             "type": "Attack",
@@ -125,6 +133,10 @@
                 "applied_effects": []
               },
               {
+                "type": "CasterViewEffect",
+                "name": "test_mod_kayn_q_slash_cast_vfx"
+              },
+              {
                 "type": "LineRangeProjectile",
                 "width": 13000,
                 "length": 46000,
@@ -165,6 +177,10 @@
                 "casting_target": "EnemyWithoutTower",
                 "penetrate": true,
                 "applied_effects": []
+              },
+              {
+                "type": "CasterViewEffect",
+                "name": "test_mod_kayn_q_slash_cast_vfx"
               },
               {
                 "type": "LineRangeProjectile",
@@ -465,6 +481,22 @@
       "tag": "exit",
       "z": 1,
       "is_follow": false
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_kayn_attack_slash_vfx",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/kayn_attack_slash",
+      "tag": "slash",
+      "z": 1,
+      "is_follow": true
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_kayn_q_slash_cast_vfx",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/kayn_q_slash",
+      "tag": "slash",
+      "z": 1,
+      "is_follow": true
     }
   ],
   "skill_icon": {
