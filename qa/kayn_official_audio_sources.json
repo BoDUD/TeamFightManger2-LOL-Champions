@@ -1,0 +1,54 @@
+{
+  "source": "League of Legends Game/DATA/FINAL/Champions/Kayn.wad.client",
+  "bank": "assets/sounds/wwise2016/sfx/characters/kayn/skins/base/kayn_base_sfx_audio.bnk",
+  "events": {
+    "test_mod_kayn_attack_cast": {
+      "media_id": "1231310",
+      "event_group": "0420",
+      "state": "kayn=base",
+      "volume": 0.46
+    },
+    "test_mod_kayn_attack_hit": {
+      "media_id": "673548444",
+      "event_group": "0424",
+      "state": "1559186049=Metal",
+      "volume": 0.38
+    },
+    "test_mod_kayn_q_cast": {
+      "media_id": "16234722",
+      "event_group": "0446",
+      "state": "kayn=base",
+      "volume": 0.48
+    },
+    "test_mod_kayn_q_hit": {
+      "media_id": "249093668",
+      "event_group": "0453",
+      "state": "kayn=base",
+      "volume": 0.42
+    },
+    "test_mod_kayn_w_cast": {
+      "media_id": "533812089",
+      "event_group": "0449",
+      "state": "kayn=base",
+      "volume": 0.42
+    },
+    "test_mod_kayn_w_hit": {
+      "media_id": "800215479",
+      "event_group": "0461",
+      "state": "kayn=base;3532398821=1181096339",
+      "volume": 0.4
+    },
+    "test_mod_kayn_r_cast": {
+      "media_id": "49181076",
+      "event_group": "0516",
+      "state": "kayn=base",
+      "volume": 0.44
+    },
+    "test_mod_kayn_r_hit": {
+      "media_id": "710731227",
+      "event_group": "0525",
+      "state": "kayn=base",
+      "volume": 0.46
+    }
+  }
+}

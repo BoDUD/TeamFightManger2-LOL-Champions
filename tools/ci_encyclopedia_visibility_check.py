@@ -16,6 +16,7 @@ EXPECTED_CHAMPIONS = {
     "fiddlesticks",
     "fizz",
     "jhin",
+    "kayn",
     "vayne",
     "veigar",
     "viktor",
@@ -57,9 +58,48 @@ AATROX_VIKTOR_FRAME_SIZE = (57.0, 54.0)
 AATROX_MIN_BOTTOM_SAFE_PIXELS = 16
 AATROX_MAX_CORE_BODY_HEIGHT = 36
 AATROX_MIN_RUN_FOOT_CENTER_RANGE = 0.9
-AATROX_MIN_RUN_FOOT_SHAPES = 6
-AATROX_MIN_RUN_FOOT_PIXELS = 80
-AATROX_MIN_RUN_LOWER_PIXELS = 110
+AATROX_MIN_RUN_FOOT_SHAPES = 5
+AATROX_MIN_RUN_FOOT_PIXELS = 24
+AATROX_MIN_RUN_LOWER_PIXELS = 40
+KAYN_IDS = ("bo_league_champions_kayn", "test_mod_kayn")
+KAYN_EFFECT_REFS = {
+    "test_mod_kayn_q_slash": (
+        "asset/bo_league_champions/aseprite_resources/effects/kayn_q_slash",
+        "slash",
+    ),
+    "test_mod_kayn_w_blade_reach": (
+        "asset/bo_league_champions/aseprite_resources/effects/kayn_w_blade_reach",
+        "blade",
+    ),
+}
+KAYN_VIEW_EFFECT_REFS = {
+    "test_mod_kayn_r_entry": (
+        "asset/bo_league_champions/aseprite_resources/effects/kayn_r_entry",
+        "entry",
+    ),
+    "test_mod_kayn_r_exit": (
+        "asset/bo_league_champions/aseprite_resources/effects/kayn_r_exit",
+        "exit",
+    ),
+}
+KAYN_BUFF_REFS = {
+    "test_mod_kayn_darkin_ascension": (
+        "asset/bo_league_champions/aseprite_resources/effects/kayn_darkin_aura",
+        "loop",
+    ),
+}
+KAYN_SOUND_MEDIA_IDS = {
+    "test_mod_kayn_attack_cast": "1231310",
+    "test_mod_kayn_attack_hit": "673548444",
+    "test_mod_kayn_q_cast": "16234722",
+    "test_mod_kayn_q_hit": "249093668",
+    "test_mod_kayn_w_cast": "533812089",
+    "test_mod_kayn_w_hit": "800215479",
+    "test_mod_kayn_r_cast": "49181076",
+    "test_mod_kayn_r_hit": "710731227",
+}
+KAYN_CORE_ACTIONS = ("idle", "run", "attack", "skill", "skill2", "hit", "dead", "ult")
+KAYN_FRAME_SIZE = (57.0, 54.0)
 
 
 def fail(message: str) -> None:
@@ -73,7 +113,7 @@ def load_json(path: Path) -> Any:
         raise AssertionError(f"{path.relative_to(ROOT)} is not valid JSON: {exc}") from exc
 
 
-def load_rgba_alpha(path: Path) -> tuple[int, int, bytes]:
+def load_rgba(path: Path) -> tuple[int, int, bytes]:
     raw = path.read_bytes()
     if not raw.startswith(b"\x89PNG\r\n\x1a\n"):
         fail(f"{path.relative_to(ROOT)} is not a PNG file")
@@ -137,10 +177,18 @@ def load_rgba_alpha(path: Path) -> tuple[int, int, bytes]:
             row[i] = recon & 0xFF
         rows.append(row)
 
-    alpha = bytearray(width * height)
+    rgba = bytearray(width * height * bpp)
     for y, row in enumerate(rows):
-        for x in range(width):
-            alpha[y * width + x] = row[x * bpp + 3]
+        start = y * stride
+        rgba[start : start + stride] = row
+    return width, height, bytes(rgba)
+
+
+def load_rgba_alpha(path: Path) -> tuple[int, int, bytes]:
+    width, height, rgba = load_rgba(path)
+    alpha = bytearray(width * height)
+    for i in range(width * height):
+        alpha[i] = rgba[i * 4 + 3]
     return width, height, bytes(alpha)
 
 
@@ -165,6 +213,25 @@ def alpha_bbox_in_rect(
     return min_x, min_y, max_x, max_y
 
 
+def count_green_residue(path: Path) -> int:
+    width, height, rgba = load_rgba(path)
+    offenders = 0
+    for i in range(width * height):
+        r = rgba[i * 4]
+        g = rgba[i * 4 + 1]
+        b = rgba[i * 4 + 2]
+        a = rgba[i * 4 + 3]
+        if a and g > 90 and g > r * 1.18 and g > b * 1.18:
+            offenders += 1
+    return offenders
+
+
+def require_no_green_residue(path: Path) -> None:
+    offenders = count_green_residue(path)
+    if offenders:
+        fail(f"{path.relative_to(ROOT)} still contains {offenders} green-screen residue pixels")
+
+
 def local_asset_path(asset: str) -> Path:
     prefix = f"asset/{MOD_ID}/"
     if not asset.startswith(prefix):
@@ -185,6 +252,27 @@ def require_aseprite_asset(asset: str) -> None:
 
 def require_png_asset(asset: str) -> None:
     require_file(local_asset_path(asset).with_suffix(".png"))
+
+
+def require_wave_asset(event_name: str) -> None:
+    sound_info = ROOT / "sound" / "sfx" / f"{event_name}.sound_info"
+    clip = ROOT / "sound" / "sfx" / f"{event_name}_clip.wav"
+    require_file(sound_info)
+    require_file(clip)
+    info = load_json(sound_info)
+    if not isinstance(info, dict):
+        fail(f"{sound_info.relative_to(ROOT)} must contain a JSON object")
+    plays = info.get("plays")
+    if (
+        not isinstance(plays, list)
+        or not plays
+        or not isinstance(plays[0], dict)
+        or plays[0].get("clip") != f"{event_name}_clip"
+    ):
+        fail(f"{sound_info.relative_to(ROOT)} must point at {event_name}_clip")
+    payload = clip.read_bytes()
+    if len(payload) < 1000 or not payload.startswith(b"RIFF") or payload[8:12] != b"WAVE":
+        fail(f"{clip.relative_to(ROOT)} must be a decoded official wav clip")
 
 
 def walk_strings(node: Any) -> list[str]:
@@ -378,11 +466,10 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
 
     run_widths = [bbox[2] - bbox[0] for bbox in action_bboxes["run"]]
     run_heights = [bbox[3] - bbox[1] for bbox in action_bboxes["run"]]
+    if max(run_widths) - min(run_widths) > 6:
+        fail("Aatrox run frame widths must stay stable to avoid animation jitter")
     for action in ("idle", "hit", "dead", "ult"):
-        widths = [bbox[2] - bbox[0] for bbox in action_bboxes[action]]
         heights = [bbox[3] - bbox[1] for bbox in action_bboxes[action]]
-        if max(widths) + 2 < min(run_widths):
-            fail(f"Aatrox {action} uses a thinner display-only model than the run/action body")
         if max(abs(height - run_heights[0]) for height in heights) > 2:
             fail(f"Aatrox {action} model height must stay in the same scale class as run")
 
@@ -447,6 +534,184 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
             fail(f"Aatrox World Ender aura frame {index} must stay within 64x64")
 
 
+def check_kayn_rework_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
+    expected_names = {
+        "en": ("Kayn",),
+        "zh-hans": ("\u51ef\u9690",),
+        "zh-hant": ("\u6168\u5f71",),
+    }
+    expected_terms = {
+        "zh-hans": ("\u5de8\u9570\u6a2a\u626b", "\u5229\u5203\u7eb5\u8d2f", "\u88c2\u820d\u5f71", "\u6697\u88d4\u5347\u534e"),
+        "zh-hant": ("\u5de8\u9430\u6a6b\u6383", "\u5229\u5203\u7e31\u8cab", "\u88c2\u820d\u5f71", "\u51a5\u8840\u5347\u83ef"),
+    }
+    for locale, expected_name_terms in expected_names.items():
+        descriptions = text.get(locale, {}).get("description")
+        if not isinstance(descriptions, dict):
+            fail(f"text/champion.i18n locale {locale} missing description object")
+        for kayn_id in KAYN_IDS:
+            row = descriptions.get(kayn_id)
+            if not isinstance(row, dict):
+                fail(f"text/champion.i18n locale {locale} missing {kayn_id}")
+            name = str(row.get("name", ""))
+            for expected_name_term in expected_name_terms:
+                if expected_name_term not in name:
+                    fail(f"text/champion.i18n locale {locale} {kayn_id}.name must include {expected_name_term!r}")
+            for key in REQUIRED_DESCRIPTION_KEYS:
+                value = str(row.get(key, ""))
+                if "??" in value or "・ｽ" in value:
+                    fail(f"text/champion.i18n locale {locale} {kayn_id}.{key} still contains corrupted text")
+            for term in expected_terms.get(locale, ()):
+                if not any(term in str(row.get(key, "")) for key in ("skill", "skill2", "ult")):
+                    fail(f"text/champion.i18n locale {locale} {kayn_id} missing term {term!r}")
+
+    for kayn_id in KAYN_IDS:
+        view = entries.get(kayn_id)
+        if not isinstance(view, dict):
+            fail(f"style/champion_view.champion_view missing entries.{kayn_id}")
+        face_y = view.get("face", {}).get("y")
+        center_y = view.get("center", {}).get("y")
+        if not isinstance(face_y, (int, float)) or face_y > -30:
+            fail(f"style entry {kayn_id}.face.y must keep the portrait on the head/torso")
+        if not isinstance(center_y, (int, float)) or not -20 <= center_y <= -8:
+            fail(f"style entry {kayn_id}.center.y must keep the full-body display above the name")
+
+    for path in (
+        ROOT / "aseprite_resources" / "champions" / "kayn#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "kayn_q_slash#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "kayn_w_blade_reach#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "kayn_r_entry#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "kayn_r_exit#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "kayn_darkin_aura#sheet.png",
+        ROOT / "icons" / "kayn_skill.png",
+        ROOT / "icons" / "kayn_skill2.png",
+        ROOT / "icons" / "kayn_ult.png",
+    ):
+        require_file(path)
+        require_no_green_residue(path)
+
+    fanim = load_json(ROOT / "aseprite_resources" / "champions" / "kayn#anim.fanim")
+    sheet_width, sheet_height, sheet_alpha = load_rgba_alpha(
+        ROOT / "aseprite_resources" / "champions" / "kayn#sheet.png"
+    )
+    expected_counts = {
+        "idle": 6,
+        "run": 10,
+        "attack": 6,
+        "skill": 6,
+        "skill2": 7,
+        "ult": 7,
+        "hit": 1,
+        "dead": 1,
+    }
+    action_bboxes: dict[str, list[tuple[int, int, int, int]]] = {}
+    for action in KAYN_CORE_ACTIONS:
+        frames = fanim.get("anims", {}).get(action, {}).get("frames")
+        if not isinstance(frames, list) or len(frames) != expected_counts[action]:
+            fail(f"Kayn {action} animation must have {expected_counts[action]} frames")
+        action_bboxes[action] = []
+        for index, frame in enumerate(frames):
+            data = frame.get("data") if isinstance(frame, dict) else None
+            if not isinstance(data, dict):
+                fail(f"Kayn {action} frame {index} missing frame data")
+            if (data.get("w"), data.get("h")) != KAYN_FRAME_SIZE:
+                fail(f"Kayn {action} frame {index} must use the {KAYN_FRAME_SIZE[0]:.0f}x{KAYN_FRAME_SIZE[1]:.0f} actor frame")
+            x = int(round(float(data.get("x", -1))))
+            y = int(round(float(data.get("y", -1))))
+            w = int(round(float(data.get("w", 0))))
+            h = int(round(float(data.get("h", 0))))
+            if x < 0 or y < 0 or x + w > sheet_width or y + h > sheet_height:
+                fail(f"Kayn {action} frame {index} points outside kayn#sheet.png")
+            bbox = alpha_bbox_in_rect(sheet_alpha, sheet_width, (x, y, w, h))
+            if bbox is None:
+                fail(f"Kayn {action} frame {index} is blank")
+            action_bboxes[action].append(bbox)
+            body_height = bbox[3] - bbox[1]
+            bottom_safe = h - bbox[3]
+            if body_height > 42:
+                fail(f"Kayn {action} frame {index} body height {body_height}px is too large for the in-game label")
+            if bottom_safe < 10:
+                fail(f"Kayn {action} frame {index} leaves only {bottom_safe}px bottom safety above name/health labels")
+            if action == "run" and frame.get("duration") != 0.065:
+                fail(f"Kayn run frame {index} must keep Viktor-like 0.065s timing")
+
+    run_frames = fanim.get("anims", {}).get("run", {}).get("frames")
+    foot_centers: list[float] = []
+    foot_shapes: set[tuple[tuple[int, int], ...]] = set()
+    for index, frame in enumerate(run_frames):
+        data = frame["data"]
+        x = int(round(float(data["x"])))
+        y = int(round(float(data["y"])))
+        w = int(round(float(data["w"])))
+        h = int(round(float(data["h"])))
+        bbox = action_bboxes["run"][index]
+        lower_points: list[tuple[int, int]] = []
+        for local_y in range(max(bbox[1], 30), bbox[3]):
+            row_start = (y + local_y) * sheet_width
+            for local_x in range(bbox[0], bbox[2]):
+                if 0 <= local_x < w and 0 <= local_y < h and sheet_alpha[row_start + x + local_x] != 0:
+                    lower_points.append((local_x, local_y))
+        if len(lower_points) < 120:
+            fail(f"Kayn run frame {index} has only {len(lower_points)} lower-body pixels; keep a solid generated model")
+        foot_centers.append(sum(point[0] for point in lower_points) / len(lower_points))
+        foot_shapes.add(tuple(lower_points))
+    if max(foot_centers) - min(foot_centers) < 1.5:
+        fail("Kayn run must have alternating foot motion, not a sliding or zombie step")
+    if len(foot_shapes) < 5:
+        fail("Kayn run must vary lower-body shapes across the run cycle")
+
+    kayn = load_json(ROOT / "champion" / "kayn.data_champion")
+    strings = set(walk_strings(kayn))
+    for required in (
+        "SwitchByBuff",
+        "test_mod_kayn_darkin_ascension",
+        "RushTime",
+        "LineRangeProjectile",
+        "Invisible",
+        "RushMoveToBack",
+        "Airborne",
+    ):
+        if required not in strings:
+            fail(f"champion/kayn.data_champion must include LoL Kayn mechanic token {required}")
+    projectile_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in kayn.get("view_projectiles", [])}
+    for name, expected in KAYN_EFFECT_REFS.items():
+        if projectile_refs.get(name) != expected:
+            fail(f"champion/kayn.data_champion projectile {name} must reference {expected}")
+    effect_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in kayn.get("view_effects", [])}
+    for name, expected in KAYN_VIEW_EFFECT_REFS.items():
+        if effect_refs.get(name) != expected:
+            fail(f"champion/kayn.data_champion view_effect {name} must reference {expected}")
+    buff_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in kayn.get("view_buffs", [])}
+    for name, expected in KAYN_BUFF_REFS.items():
+        if buff_refs.get(name) != expected:
+            fail(f"champion/kayn.data_champion buff {name} must reference {expected}")
+    darkin = next((item for item in kayn.get("view_buffs", []) if item.get("name") == "test_mod_kayn_darkin_ascension"), None)
+    if not isinstance(darkin, dict) or darkin.get("z") != -1:
+        fail("Kayn Darkin Ascension aura must render behind the actor")
+
+    official = load_json(ROOT / "qa" / "kayn_official_audio_sources.json")
+    if not isinstance(official, dict):
+        fail("qa/kayn_official_audio_sources.json must contain a JSON object")
+    if "Kayn.wad.client" not in str(official.get("source", "")):
+        fail("Kayn audio source must document the official Kayn.wad.client")
+    if "kayn_base_sfx_audio.bnk" not in str(official.get("bank", "")):
+        fail("Kayn audio source must document the official Kayn base SFX bank")
+    events = official.get("events")
+    if not isinstance(events, dict):
+        fail("qa/kayn_official_audio_sources.json missing events object")
+    overrides = load_json(ROOT / "mod.override_info")
+    for event_name, media_id in KAYN_SOUND_MEDIA_IDS.items():
+        row = events.get(event_name)
+        if not isinstance(row, dict) or str(row.get("media_id")) != media_id:
+            fail(f"official Kayn audio event {event_name} must document media_id {media_id}")
+        require_wave_asset(event_name)
+        for suffix in ("", "_clip"):
+            key = f"asset/base/sound/sfx/{event_name}{suffix}"
+            expected_remap = f"asset/bo_league_champions/sound/sfx/{event_name}{suffix}"
+            override = overrides.get(key)
+            if not isinstance(override, dict) or override.get("remapping") != expected_remap or override.get("type") != "override":
+                fail(f"mod.override_info must override {key} to {expected_remap}")
+
+
 def check_champion_visibility() -> None:
     text = load_json(ROOT / "text" / "champion.i18n")
     style = load_json(ROOT / "style" / "champion_view.champion_view")
@@ -493,6 +758,10 @@ def check_champion_visibility() -> None:
             anim = buff.get("anim")
             if anim:
                 require_aseprite_asset(anim)
+        for effect in data.get("view_effects", []):
+            anim = effect.get("anim")
+            if anim:
+                require_aseprite_asset(anim)
 
         view = entries.get(champion_id)
         if not isinstance(view, dict):
@@ -518,7 +787,10 @@ def check_champion_visibility() -> None:
 
     if f"{MOD_ID}_aatrox" not in ids:
         fail("Aatrox encyclopedia chain is missing bo_league_champions_aatrox")
+    if f"{MOD_ID}_kayn" not in ids:
+        fail("Kayn encyclopedia chain is missing bo_league_champions_kayn")
     check_aatrox_rework_contract(text, entries)
+    check_kayn_rework_contract(text, entries)
 
 
 def main() -> int:

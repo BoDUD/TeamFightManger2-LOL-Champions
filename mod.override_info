@@ -394,5 +394,69 @@
   "asset/base/sound/sfx/test_mod_ezreal_r_cast_clip": {
     "remapping": "asset/bo_league_champions/sound/sfx/test_mod_ezreal_r_cast_clip",
     "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_kayn_attack_cast": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_kayn_attack_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_kayn_attack_cast_clip": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_kayn_attack_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_kayn_attack_hit": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_kayn_attack_hit",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_kayn_attack_hit_clip": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_kayn_attack_hit_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_kayn_q_cast": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_kayn_q_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_kayn_q_cast_clip": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_kayn_q_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_kayn_q_hit": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_kayn_q_hit",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_kayn_q_hit_clip": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_kayn_q_hit_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_kayn_w_cast": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_kayn_w_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_kayn_w_cast_clip": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_kayn_w_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_kayn_w_hit": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_kayn_w_hit",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_kayn_w_hit_clip": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_kayn_w_hit_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_kayn_r_cast": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_kayn_r_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_kayn_r_cast_clip": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_kayn_r_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_kayn_r_hit": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_kayn_r_hit",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_kayn_r_hit_clip": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_kayn_r_hit_clip",
+    "type": "override"
   }
 }

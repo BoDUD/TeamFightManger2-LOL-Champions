@@ -4,5 +4,6 @@ source/**/*preview*.png
 source/**/*.png
 qa/**/*contact*.png
 qa/**/*preview*.png
+.tmp_kayn_assets/
 __pycache__/
 **/__pycache__/
