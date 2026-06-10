@@ -1,0 +1,152 @@
+{
+  "source": "League of Legends Game/DATA/FINAL/Champions/Darius.wad.client + Darius.en_US.wad.client",
+  "bank": "Darius.wad.client official Wwise BKHD/DIDX/DATA SFX chunks + Darius.en_US.wad.client official RIFF voice chunks",
+  "events_bank": "Darius.wad.client events are hashed in this install; clips selected from official Darius WAD media IDs/offsets and decoded with vgmstream-cli",
+  "extracted_with": "WAD RIFF split + BKHD/DIDX media-id scan + vgmstream-cli",
+  "events": {
+    "test_mod_darius_attack_cast": {
+      "duration": 0.46,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 0.9571,
+      "rms": 0.2442,
+      "clip": "test_mod_darius_attack_cast_clip",
+      "volume": 0.86,
+      "source_file": "Darius.wad.client",
+      "media_id": "720364500"
+    },
+    "test_mod_darius_attack_hit": {
+      "duration": 0.591,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 1.0,
+      "rms": 0.2286,
+      "clip": "test_mod_darius_attack_hit_clip",
+      "volume": 0.86,
+      "source_file": "Darius.wad.client",
+      "media_id": "332456238"
+    },
+    "test_mod_darius_hemo_apply": {
+      "duration": 0.598,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 1.0,
+      "rms": 0.2054,
+      "clip": "test_mod_darius_hemo_apply_clip",
+      "volume": 0.88,
+      "source_file": "Darius.wad.client",
+      "media_id": "4425754"
+    },
+    "test_mod_darius_noxian_might": {
+      "duration": 1.876,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 1.0,
+      "rms": 0.2152,
+      "clip": "test_mod_darius_noxian_might_clip",
+      "volume": 0.9,
+      "source_file": "Darius.wad.client",
+      "media_id": "9103428"
+    },
+    "test_mod_darius_q_cast": {
+      "duration": 1.875,
+      "sample_rate": 44100,
+      "channels": 2,
+      "peak": 1.0,
+      "rms": 0.2493,
+      "clip": "test_mod_darius_q_cast_clip",
+      "volume": 0.92,
+      "source_file": "Darius.wad.client",
+      "media_id": "392706208"
+    },
+    "test_mod_darius_q_hit": {
+      "duration": 0.706,
+      "sample_rate": 44100,
+      "channels": 2,
+      "peak": 1.0,
+      "rms": 0.2609,
+      "clip": "test_mod_darius_q_hit_clip",
+      "volume": 0.9,
+      "source_file": "Darius.wad.client",
+      "media_id": "448140634"
+    },
+    "test_mod_darius_q_heal": {
+      "duration": 0.626,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 1.0,
+      "rms": 0.2089,
+      "clip": "test_mod_darius_q_heal_clip",
+      "volume": 0.86,
+      "source_file": "Darius.wad.client",
+      "media_id": "649971236"
+    },
+    "test_mod_darius_e_cast": {
+      "duration": 1.993,
+      "sample_rate": 44100,
+      "channels": 2,
+      "peak": 1.0,
+      "rms": 0.2257,
+      "clip": "test_mod_darius_e_cast_clip",
+      "volume": 0.92,
+      "source_file": "Darius.wad.client",
+      "media_id": "154735781"
+    },
+    "test_mod_darius_e_hit": {
+      "duration": 0.685,
+      "sample_rate": 44100,
+      "channels": 2,
+      "peak": 1.0,
+      "rms": 0.2571,
+      "clip": "test_mod_darius_e_hit_clip",
+      "volume": 0.9,
+      "source_file": "Darius.wad.client",
+      "media_id": "607726065"
+    },
+    "test_mod_darius_w_hit": {
+      "duration": 0.724,
+      "sample_rate": 44100,
+      "channels": 2,
+      "peak": 1.0,
+      "rms": 0.2614,
+      "clip": "test_mod_darius_w_hit_clip",
+      "volume": 0.9,
+      "source_file": "Darius.wad.client",
+      "media_id": "982525424"
+    },
+    "test_mod_darius_r_cast": {
+      "duration": 2.041,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 1.0,
+      "rms": 0.1839,
+      "clip": "test_mod_darius_r_cast_clip",
+      "volume": 0.94,
+      "source_file": "Darius.wad.client",
+      "media_id": "264287498"
+    },
+    "test_mod_darius_r_hit": {
+      "duration": 1.923,
+      "sample_rate": 44100,
+      "channels": 2,
+      "peak": 1.0,
+      "rms": 0.2409,
+      "clip": "test_mod_darius_r_hit_clip",
+      "volume": 0.92,
+      "source_file": "Darius.wad.client",
+      "media_id": "493187816"
+    },
+    "test_mod_darius_ult_voice": {
+      "duration": 2.015,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak": 0.9252,
+      "rms": 0.1551,
+      "clip": "test_mod_darius_ult_voice_clip",
+      "volume": 0.96,
+      "source_file": "Darius.en_US.wad.client",
+      "source_offset": 3621937,
+      "source_index": 120
+    }
+  }
+}

@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 MOD_ID = "bo_league_champions"
 CHAMPION_IDS = (
     f"{MOD_ID}_aatrox",
+    f"{MOD_ID}_darius",
     f"{MOD_ID}_kayn",
     f"{MOD_ID}_yasuo",
     f"{MOD_ID}_jinx",
@@ -24,6 +25,21 @@ AATROX_SOUND_EVENTS = (
     "test_mod_aatrox_dash_cast",
     "test_mod_aatrox_ult_cast",
     "test_mod_aatrox_ult_voice",
+)
+DARIUS_SOUND_EVENTS = (
+    "test_mod_darius_attack_cast",
+    "test_mod_darius_attack_hit",
+    "test_mod_darius_hemo_apply",
+    "test_mod_darius_noxian_might",
+    "test_mod_darius_q_cast",
+    "test_mod_darius_q_hit",
+    "test_mod_darius_q_heal",
+    "test_mod_darius_e_cast",
+    "test_mod_darius_e_hit",
+    "test_mod_darius_w_hit",
+    "test_mod_darius_r_cast",
+    "test_mod_darius_r_hit",
+    "test_mod_darius_ult_voice",
 )
 KAYN_SOUND_EVENTS = (
     "test_mod_kayn_attack_cast",
@@ -87,6 +103,11 @@ REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS: dict[str, dict[str, tuple[str, ...]]] = {
         "en": ("Aatrox",),
         "zh-hans": ("亚托克斯", "剑魔"),
         "zh-hant": ("亞托克斯", "劍魔"),
+    },
+    f"{MOD_ID}_darius": {
+        "en": ("Darius", "Hand of Noxus", "Hemorrhage", "Decimate", "Apprehend", "Crippling Strike", "Noxian Guillotine"),
+        "zh-hans": ("诺克萨斯之手", "诺手", "Darius", "出血", "大杀四方", "无情铁手", "致残打击", "诺克萨斯断头台"),
+        "zh-hant": ("諾克薩斯之手", "諾手", "Darius", "出血", "大殺四方", "無情鐵手", "致殘打擊", "諾克薩斯斷頭台"),
     },
     f"{MOD_ID}_kayn": {
         "en": ("Kayn", "Shadow Reaper"),
@@ -176,6 +197,7 @@ def check_runtime_copy(game_root: Path) -> None:
         "mod.mod_info",
         "mod.override_info",
         "champion/aatrox.data_champion",
+        "champion/darius.data_champion",
         "champion/kayn.data_champion",
         "champion/yasuo.data_champion",
         "champion/jinx.data_champion",
@@ -184,6 +206,26 @@ def check_runtime_copy(game_root: Path) -> None:
         "style/champion_view.champion_view",
         "aseprite_resources/champions/aatrox#sheet.png",
         "aseprite_resources/champions/aatrox#anim.fanim",
+        "aseprite_resources/champions/darius#sheet.png",
+        "aseprite_resources/champions/darius#anim.fanim",
+        "aseprite_resources/effects/darius_attack_slash#sheet.png",
+        "aseprite_resources/effects/darius_attack_slash#anim.fanim",
+        "aseprite_resources/effects/darius_bleed_apply#sheet.png",
+        "aseprite_resources/effects/darius_bleed_apply#anim.fanim",
+        "aseprite_resources/effects/darius_noxian_might_aura#sheet.png",
+        "aseprite_resources/effects/darius_noxian_might_aura#anim.fanim",
+        "aseprite_resources/effects/darius_decimate#sheet.png",
+        "aseprite_resources/effects/darius_decimate#anim.fanim",
+        "aseprite_resources/effects/darius_decimate_heal#sheet.png",
+        "aseprite_resources/effects/darius_decimate_heal#anim.fanim",
+        "aseprite_resources/effects/darius_apprehend#sheet.png",
+        "aseprite_resources/effects/darius_apprehend#anim.fanim",
+        "aseprite_resources/effects/darius_crippling_strike#sheet.png",
+        "aseprite_resources/effects/darius_crippling_strike#anim.fanim",
+        "aseprite_resources/effects/darius_noxian_guillotine#sheet.png",
+        "aseprite_resources/effects/darius_noxian_guillotine#anim.fanim",
+        "aseprite_resources/effects/darius_noxian_guillotine_hit#sheet.png",
+        "aseprite_resources/effects/darius_noxian_guillotine_hit#anim.fanim",
         "aseprite_resources/champions/kayn#sheet.png",
         "aseprite_resources/champions/kayn#anim.fanim",
         "aseprite_resources/champions/yasuo#sheet.png",
@@ -253,6 +295,9 @@ def check_runtime_copy(game_root: Path) -> None:
         "icons/kayn_skill.png",
         "icons/kayn_skill2.png",
         "icons/kayn_ult.png",
+        "icons/darius_skill.png",
+        "icons/darius_skill2.png",
+        "icons/darius_ult.png",
         "icons/yasuo_skill.png",
         "icons/yasuo_skill2.png",
         "icons/yasuo_ult.png",
@@ -263,6 +308,7 @@ def check_runtime_copy(game_root: Path) -> None:
         "icons/thresh_skill2.png",
         "icons/thresh_ult.png",
         "qa/aatrox_official_audio_sources.json",
+        "qa/darius_official_audio_sources.json",
         "qa/kayn_official_audio_sources.json",
         "qa/yasuo_official_audio_sources.json",
         "qa/jinx_official_audio_sources.json",
@@ -276,6 +322,9 @@ def check_runtime_copy(game_root: Path) -> None:
             critical_files.append("sound/sfx/test_mod_aatrox_dash_effect_clip.wav")
         else:
             critical_files.append(f"sound/sfx/{event_name}_clip.wav")
+    for event_name in DARIUS_SOUND_EVENTS:
+        critical_files.append(f"sound/sfx/{event_name}.sound_info")
+        critical_files.append(f"sound/sfx/{event_name}_clip.wav")
     for event_name in KAYN_SOUND_EVENTS:
         critical_files.append(f"sound/sfx/{event_name}.sound_info")
         critical_files.append(f"sound/sfx/{event_name}_clip.wav")
@@ -334,6 +383,10 @@ def check_runtime_copy(game_root: Path) -> None:
                 if "??" in payload_text:
                     fail(f"runtime text locale {locale} description.{champion_id} still contains corrupted question marks")
                 expected_display_names = {
+                    f"{MOD_ID}_darius": {
+                        "zh-hans": "诺克萨斯之手",
+                        "zh-hant": "諾克薩斯之手",
+                    },
                     f"{MOD_ID}_kayn": {
                         "zh-hans": "影流之镰",
                         "zh-hant": "影流之鐮",
@@ -365,6 +418,9 @@ def check_runtime_copy(game_root: Path) -> None:
                         "Yasuo",
                         "Jinx",
                         "Thresh",
+                        "Darius",
+                        "诺手",
+                        "諾手",
                         "凯隐",
                         "慨影",
                         "亚索",
@@ -377,6 +433,10 @@ def check_runtime_copy(game_root: Path) -> None:
                     if any(alias in actual_name for alias in forbidden_aliases):
                         fail(f"runtime text locale {locale} description.{champion_id}.name contains search alias")
                 required_terms_by_champion = {
+                    f"{MOD_ID}_darius": {
+                        "zh-hans": ("诺克萨斯之手", "诺手", "Darius", "出血", "大杀四方", "无情铁手", "致残打击", "诺克萨斯断头台"),
+                        "zh-hant": ("諾克薩斯之手", "諾手", "Darius", "出血", "大殺四方", "無情鐵手", "致殘打擊", "諾克薩斯斷頭台"),
+                    },
                     f"{MOD_ID}_kayn": {
                         "zh-hans": ("凯隐", "影流之镰", "巨镰横扫", "利刃纵贯", "裂舍影"),
                         "zh-hant": ("慨影", "影流之鐮", "巨鐮橫掃", "利刃縱貫", "裂舍影"),

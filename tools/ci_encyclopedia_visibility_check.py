@@ -13,6 +13,7 @@ MOD_ID = "bo_league_champions"
 EXPECTED_CHAMPIONS = {
     "aatrox",
     "azir",
+    "darius",
     "ezreal",
     "fiddlesticks",
     "fizz",
@@ -104,6 +105,72 @@ AATROX_Q_CAST_EFFECT_REFS = {
         "q3",
     ),
 }
+DARIUS_IDS = ("bo_league_champions_darius", "test_mod_darius")
+DARIUS_FRAME_SIZE = (57.0, 54.0)
+DARIUS_CORE_ACTIONS = ("idle", "run", "attack", "skill", "skill2", "hit", "dead", "ult")
+DARIUS_EFFECT_REFS = {
+    "test_mod_darius_apprehend": (
+        "asset/bo_league_champions/aseprite_resources/effects/darius_apprehend",
+        "chain",
+    ),
+}
+DARIUS_VIEW_EFFECT_REFS = {
+    "test_mod_darius_attack_slash_vfx": (
+        "asset/bo_league_champions/aseprite_resources/effects/darius_attack_slash",
+        "slash",
+    ),
+    "test_mod_darius_bleed_apply_vfx": (
+        "asset/bo_league_champions/aseprite_resources/effects/darius_bleed_apply",
+        "hit",
+    ),
+    "test_mod_darius_decimate_cast_vfx": (
+        "asset/bo_league_champions/aseprite_resources/effects/darius_decimate",
+        "swing",
+    ),
+    "test_mod_darius_decimate_heal_vfx": (
+        "asset/bo_league_champions/aseprite_resources/effects/darius_decimate_heal",
+        "heal",
+    ),
+    "test_mod_darius_apprehend_cast_vfx": (
+        "asset/bo_league_champions/aseprite_resources/effects/darius_apprehend",
+        "chain",
+    ),
+    "test_mod_darius_crippling_strike_vfx": (
+        "asset/bo_league_champions/aseprite_resources/effects/darius_crippling_strike",
+        "hit",
+    ),
+    "test_mod_darius_noxian_guillotine_cast_vfx": (
+        "asset/bo_league_champions/aseprite_resources/effects/darius_noxian_guillotine",
+        "cast",
+    ),
+    "test_mod_darius_noxian_guillotine_hit_vfx": (
+        "asset/bo_league_champions/aseprite_resources/effects/darius_noxian_guillotine_hit",
+        "hit",
+    ),
+}
+DARIUS_BUFF_REFS = {
+    "test_mod_darius_noxian_might_visual": (
+        "asset/bo_league_champions/aseprite_resources/effects/darius_noxian_might_aura",
+        "loop",
+    ),
+}
+DARIUS_SOUND_MEDIA_IDS = {
+    "test_mod_darius_attack_cast": "720364500",
+    "test_mod_darius_attack_hit": "332456238",
+    "test_mod_darius_hemo_apply": "4425754",
+    "test_mod_darius_noxian_might": "9103428",
+    "test_mod_darius_q_cast": "392706208",
+    "test_mod_darius_q_hit": "448140634",
+    "test_mod_darius_q_heal": "649971236",
+    "test_mod_darius_e_cast": "154735781",
+    "test_mod_darius_e_hit": "607726065",
+    "test_mod_darius_w_hit": "982525424",
+    "test_mod_darius_r_cast": "264287498",
+    "test_mod_darius_r_hit": "493187816",
+    "test_mod_darius_ult_voice": "offset_3621937",
+}
+DARIUS_SKILL_SOUND_EVENTS = set(DARIUS_SOUND_MEDIA_IDS)
+DARIUS_SKILL_SOUND_VOLUME_FLOOR = 0.84
 KAYN_IDS = ("bo_league_champions_kayn", "test_mod_kayn")
 KAYN_EFFECT_REFS = {
     "test_mod_kayn_q_slash": (
@@ -398,6 +465,12 @@ for _champion_id in AATROX_IDS:
         "en": ("Aatrox",),
         "zh-hans": ("\u4e9a\u6258\u514b\u65af", "\u5251\u9b54"),
         "zh-hant": ("\u4e9e\u6258\u514b\u65af", "\u528d\u9b54"),
+    }
+for _champion_id in DARIUS_IDS:
+    REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS[_champion_id] = {
+        "en": ("Darius", "Hand of Noxus", "Hemorrhage", "Decimate", "Apprehend", "Crippling Strike", "Noxian Guillotine"),
+        "zh-hans": ("\u8bfa\u514b\u8428\u65af\u4e4b\u624b", "\u8bfa\u624b", "Darius", "\u51fa\u8840", "\u5927\u6740\u56db\u65b9", "\u65e0\u60c5\u94c1\u624b", "\u81f4\u6b8b\u6253\u51fb", "\u8bfa\u514b\u8428\u65af\u65ad\u5934\u53f0"),
+        "zh-hant": ("\u8afe\u514b\u85a9\u65af\u4e4b\u624b", "\u8afe\u624b", "Darius", "\u51fa\u8840", "\u5927\u6bba\u56db\u65b9", "\u7121\u60c5\u9435\u624b", "\u81f4\u6b98\u6253\u64ca", "\u8afe\u514b\u85a9\u65af\u65b7\u982d\u53f0"),
     }
 for _champion_id in KAYN_IDS:
     REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS[_champion_id] = {
@@ -806,8 +879,14 @@ def assert_official_audio_sources(
         assert isinstance(plays, list)
         expected_ids = expected_media if isinstance(expected_media, tuple) else (expected_media,)
         if len(expected_ids) == 1:
-            if str(row.get("media_id")) != expected_ids[0]:
-                fail(f"official {champion_name} audio event {event_name} must document media_id {expected_ids[0]}")
+            expected_id = expected_ids[0]
+            if expected_id.startswith("offset_"):
+                row_offset = row.get("source_offset")
+                documented_offset = f"offset_{row_offset}" if row_offset is not None else str(row.get("media_id"))
+                if documented_offset != expected_id:
+                    fail(f"official {champion_name} audio event {event_name} must document source_offset {expected_id}")
+            elif str(row.get("media_id")) != expected_id:
+                fail(f"official {champion_name} audio event {event_name} must document media_id {expected_id}")
         else:
             clips = row.get("clips")
             if not isinstance(clips, list):
@@ -1972,6 +2051,279 @@ def check_jinx_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
         fail("Jinx ult voice source must document the official Jinx.en_US.wad.client")
 
 
+def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
+    expected_display_names = {
+        "en": "Darius",
+        "zh-hans": "\u8bfa\u514b\u8428\u65af\u4e4b\u624b",
+        "zh-hant": "\u8afe\u514b\u85a9\u65af\u4e4b\u624b",
+        "ko": "Darius",
+        "ja": "Darius",
+    }
+    expected_terms = {
+        "en": ("Hemorrhage", "Hand of Noxus", "Decimate", "Apprehend", "Crippling Strike", "Noxian Guillotine"),
+        "zh-hans": ("\u8bfa\u624b", "\u51fa\u8840", "\u5927\u6740\u56db\u65b9", "\u65e0\u60c5\u94c1\u624b", "\u81f4\u6b8b\u6253\u51fb", "\u8bfa\u514b\u8428\u65af\u65ad\u5934\u53f0"),
+        "zh-hant": ("\u8afe\u624b", "\u51fa\u8840", "\u5927\u6bba\u56db\u65b9", "\u7121\u60c5\u9435\u624b", "\u81f4\u6b98\u6253\u64ca", "\u8afe\u514b\u85a9\u65af\u65b7\u982d\u53f0"),
+    }
+    for locale, expected_name in expected_display_names.items():
+        descriptions = text.get(locale, {}).get("description")
+        if not isinstance(descriptions, dict):
+            fail(f"text/champion.i18n locale {locale} missing description object")
+        for darius_id in DARIUS_IDS:
+            row = descriptions.get(darius_id)
+            if not isinstance(row, dict):
+                fail(f"text/champion.i18n locale {locale} missing {darius_id}")
+            name = str(row.get("name", ""))
+            if name != expected_name:
+                fail(f"text/champion.i18n locale {locale} {darius_id}.name must be short display name {expected_name!r}")
+            if locale in {"zh-hans", "zh-hant"} and any(alias in name for alias in ("Darius", "\u8bfa\u624b", "\u8afe\u624b")):
+                fail(f"text/champion.i18n locale {locale} {darius_id}.name must not include search aliases")
+            for key in REQUIRED_DESCRIPTION_KEYS:
+                value = str(row.get(key, ""))
+                if "??" in value or "\ufffd" in value or "\u7e5d" in value:
+                    fail(f"text/champion.i18n locale {locale} {darius_id}.{key} still contains corrupted text")
+            for term in expected_terms.get(locale, ()):
+                if not any(term in str(row.get(key, "")) for key in ("attack", "skill", "skill2", "ult")):
+                    fail(f"text/champion.i18n locale {locale} {darius_id} missing term {term!r}")
+
+    for darius_id in DARIUS_IDS:
+        view = entries.get(darius_id)
+        if not isinstance(view, dict):
+            fail(f"style/champion_view.champion_view missing entries.{darius_id}")
+        if view.get("face", {}).get("x") != 2 or view.get("face", {}).get("y") != -31:
+            fail(f"style entry {darius_id}.face must keep Darius compact portrait aligned at x=2,y=-31")
+        if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -13:
+            fail(f"style entry {darius_id}.center must keep Darius full-body display above the name at x=0,y=-13")
+
+    for path in (
+        ROOT / "champion" / "darius.data_champion",
+        ROOT / "aseprite_resources" / "champions" / "darius#sheet.png",
+        ROOT / "aseprite_resources" / "champions" / "darius#anim.fanim",
+        ROOT / "icons" / "darius_skill.png",
+        ROOT / "icons" / "darius_skill2.png",
+        ROOT / "icons" / "darius_ult.png",
+        ROOT / "qa" / "darius_official_audio_sources.json",
+    ):
+        require_file(path)
+        if path.suffix == ".png":
+            require_no_green_residue(path)
+
+    effect_tags = {
+        "darius_attack_slash": "slash",
+        "darius_bleed_apply": "hit",
+        "darius_noxian_might_aura": "loop",
+        "darius_decimate": "swing",
+        "darius_decimate_heal": "heal",
+        "darius_apprehend": "chain",
+        "darius_crippling_strike": "hit",
+        "darius_noxian_guillotine": "cast",
+        "darius_noxian_guillotine_hit": "hit",
+    }
+    for effect_name, required_tag in effect_tags.items():
+        sheet = ROOT / "aseprite_resources" / "effects" / f"{effect_name}#sheet.png"
+        fanim_path = ROOT / "aseprite_resources" / "effects" / f"{effect_name}#anim.fanim"
+        require_file(sheet)
+        require_file(fanim_path)
+        require_no_green_residue(sheet)
+        fanim = load_json(fanim_path)
+        frames = fanim.get("anims", {}).get(required_tag, {}).get("frames") if isinstance(fanim, dict) else None
+        if not isinstance(frames, list) or len(frames) < 5:
+            fail(f"{fanim_path.relative_to(ROOT)} must expose tag {required_tag!r} with at least five readable frames")
+        width, height, rgba = load_rgba(sheet)
+        visible_pixels = 0
+        red_pixels = 0
+        for i in range(width * height):
+            r = rgba[i * 4]
+            g = rgba[i * 4 + 1]
+            b = rgba[i * 4 + 2]
+            a = rgba[i * 4 + 3]
+            if not a:
+                continue
+            visible_pixels += 1
+            if r > 95 and r > g * 1.25 and r > b * 0.75:
+                red_pixels += 1
+        if visible_pixels < 30:
+            fail(f"{sheet.relative_to(ROOT)} must contain a visible generated Darius effect")
+        if effect_name not in {"darius_decimate_heal"} and red_pixels < max(20, visible_pixels // 10):
+            fail(f"{sheet.relative_to(ROOT)} must keep Darius's red-black Noxian VFX palette")
+
+    fanim = load_json(ROOT / "aseprite_resources" / "champions" / "darius#anim.fanim")
+    sheet_width, sheet_height, sheet_alpha = load_rgba_alpha(
+        ROOT / "aseprite_resources" / "champions" / "darius#sheet.png"
+    )
+    expected_counts = {
+        "idle": 8,
+        "run": 10,
+        "attack": 8,
+        "skill": 8,
+        "skill2": 8,
+        "ult": 6,
+        "hit": 1,
+        "dead": 1,
+    }
+    expected_durations = {
+        "idle": 0.12,
+        "run": 0.11,
+        "attack": 0.07,
+        "skill": 0.075,
+        "skill2": 0.07,
+        "ult": 0.09,
+        "hit": 0.12,
+        "dead": 0.2,
+    }
+    action_hashes: dict[str, list[str]] = {}
+    action_bboxes: dict[str, list[tuple[int, int, int, int]]] = {}
+    for action in DARIUS_CORE_ACTIONS:
+        frames = fanim.get("anims", {}).get(action, {}).get("frames")
+        if not isinstance(frames, list) or len(frames) != expected_counts[action]:
+            fail(f"Darius {action} animation must have {expected_counts[action]} frames")
+        action_hashes[action] = []
+        action_bboxes[action] = []
+        for index, frame in enumerate(frames):
+            data = frame.get("data") if isinstance(frame, dict) else None
+            if not isinstance(data, dict):
+                fail(f"Darius {action} frame {index} missing frame data")
+            if (data.get("w"), data.get("h")) != DARIUS_FRAME_SIZE:
+                fail(f"Darius {action} frame {index} must use the 57x54 actor frame")
+            if frame.get("duration") != expected_durations[action]:
+                fail(f"Darius {action} frame {index} must keep duration {expected_durations[action]}")
+            x = int(round(float(data.get("x", -1))))
+            y = int(round(float(data.get("y", -1))))
+            w = int(round(float(data.get("w", 0))))
+            h = int(round(float(data.get("h", 0))))
+            if x < 0 or y < 0 or x + w > sheet_width or y + h > sheet_height:
+                fail(f"Darius {action} frame {index} points outside darius#sheet.png")
+            bbox = alpha_bbox_in_rect(sheet_alpha, sheet_width, (x, y, w, h))
+            if bbox is None:
+                fail(f"Darius {action} frame {index} is blank")
+            action_bboxes[action].append(bbox)
+            action_hashes[action].append(alpha_frame_hash(sheet_alpha, sheet_width, (x, y, w, h)))
+            body_height = bbox[3] - bbox[1]
+            bottom_safe = h - bbox[3]
+            if action != "dead" and body_height > 49:
+                fail(f"Darius {action} frame {index} body height {body_height}px is too large for UI/battle labels")
+            if action not in {"dead", "hit"} and body_height < 33:
+                fail(f"Darius {action} frame {index} body height {body_height}px is too small for a readable Noxian silhouette")
+            if action != "dead" and bottom_safe < 4:
+                fail(f"Darius {action} frame {index} leaves only {bottom_safe}px bottom safety above labels")
+        if action in {"attack", "skill", "skill2", "ult"} and len(set(action_hashes[action])) < min(4, len(action_hashes[action])):
+            fail(f"Darius {action} must have real action motion, not repeated idle frames")
+
+    for action in ("attack", "skill", "skill2", "ult", "hit"):
+        if tuple(action_hashes[action][: len(action_hashes["idle"])]) == tuple(action_hashes["idle"][: len(action_hashes[action])]):
+            fail(f"Darius {action} must not be a direct copy of idle")
+
+    run_frames = fanim.get("anims", {}).get("run", {}).get("frames")
+    assert isinstance(run_frames, list)
+    foot_centers: list[float] = []
+    lower_shapes: set[tuple[tuple[int, int], ...]] = set()
+    for index, frame in enumerate(run_frames):
+        data = frame["data"]
+        x = int(round(float(data["x"])))
+        y = int(round(float(data["y"])))
+        w = int(round(float(data["w"])))
+        h = int(round(float(data["h"])))
+        bbox = action_bboxes["run"][index]
+        lower_points: list[tuple[int, int]] = []
+        for local_y in range(max(25, bbox[1] + (bbox[3] - bbox[1]) // 2), min(h, bbox[3])):
+            row_start = (y + local_y) * sheet_width
+            for local_x in range(bbox[0], bbox[2]):
+                if 0 <= local_x < w and sheet_alpha[row_start + x + local_x] != 0:
+                    lower_points.append((local_x, local_y))
+        if len(lower_points) < 45:
+            fail(f"Darius run frame {index} has only {len(lower_points)} lower-body pixels; keep the full generated legs visible")
+        foot_centers.append(sum(point[0] for point in lower_points) / len(lower_points))
+        lower_shapes.add(tuple(lower_points))
+    if max(foot_centers) - min(foot_centers) < 1.0:
+        fail("Darius run must have weighted walking foot motion, not a sliding/zombie step")
+    if len(lower_shapes) < 5:
+        fail("Darius run must vary lower-body shapes across the ten-frame walk cycle")
+
+    darius = load_json(ROOT / "champion" / "darius.data_champion")
+    strings = set(walk_strings(darius))
+    for required in (
+        "SwitchByBuff",
+        "RangeEffect",
+        "LineRangeProjectile",
+        "RushMoveToBack",
+        "FixedAttack",
+        "Heal",
+        "Stun",
+        "BlockMoveSkill",
+        "test_mod_darius_hemo_1",
+        "test_mod_darius_hemo_2",
+        "test_mod_darius_hemo_3",
+        "test_mod_darius_hemo_4",
+        "test_mod_darius_hemo_5",
+        "test_mod_darius_noxian_might",
+        "test_mod_darius_crippling_strike_ready",
+        "test_mod_darius_apprehend_slow",
+        "test_mod_darius_execution_momentum",
+        "test_mod_darius_q_heal",
+        "test_mod_darius_ult_voice",
+    ):
+        if required not in strings:
+            fail(f"champion/darius.data_champion must include LoL Darius mechanic token {required}")
+
+    darius_category = darius.get("category")
+    if darius_category != "Melee":
+        fail(f"champion/darius.data_champion category must be Melee, got {darius_category!r}")
+    tags = set(darius.get("tags", []))
+    for tag in ("AD", "Melee", "Tank", "CC"):
+        if tag not in tags:
+            fail(f"champion/darius.data_champion tags must include {tag}")
+
+    attack_effect = darius.get("attack", {}).get("effect")
+    if not isinstance(attack_effect, dict) or attack_effect.get("type") != "SwitchByBuff":
+        fail("Darius attack must branch on Crippling Strike/Noxian Might state")
+    if attack_effect.get("buff_name") != "test_mod_darius_crippling_strike_ready":
+        fail("Darius attack must first consume test_mod_darius_crippling_strike_ready")
+    skill_effect = darius.get("skill", {}).get("effect")
+    if not isinstance(skill_effect, dict) or skill_effect.get("type") != "SwitchByBuff":
+        fail("Darius Q must branch on Noxian Might for empowered Decimate")
+    skill2_strings = set(walk_strings(darius.get("skill2", {})))
+    if "test_mod_darius_apprehend" not in skill2_strings or "test_mod_darius_crippling_strike_ready" not in skill2_strings:
+        fail("Darius E/W must hook with Apprehend and prime Crippling Strike")
+    ult_strings = set(walk_strings(darius.get("ult", {})))
+    if "test_mod_darius_hemo_5" not in ult_strings or "test_mod_darius_noxian_might" not in ult_strings:
+        fail("Darius R must scale/branch on Hemorrhage stacks and Noxian Might")
+
+    projectile_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in darius.get("view_projectiles", [])}
+    for name, expected in DARIUS_EFFECT_REFS.items():
+        if projectile_refs.get(name) != expected:
+            fail(f"champion/darius.data_champion projectile {name} must reference {expected}")
+    view_effect_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in darius.get("view_effects", [])}
+    for name, expected in DARIUS_VIEW_EFFECT_REFS.items():
+        if view_effect_refs.get(name) != expected:
+            fail(f"champion/darius.data_champion view_effect {name} must reference {expected}")
+    buff_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in darius.get("view_buffs", [])}
+    for name, expected in DARIUS_BUFF_REFS.items():
+        if buff_refs.get(name) != expected:
+            fail(f"champion/darius.data_champion buff {name} must reference {expected}")
+
+    for action, sfx_names in (
+        ("attack", {"test_mod_darius_attack_cast", "test_mod_darius_attack_hit", "test_mod_darius_w_hit", "test_mod_darius_hemo_apply"}),
+        ("skill", {"test_mod_darius_q_cast", "test_mod_darius_q_hit", "test_mod_darius_q_heal", "test_mod_darius_hemo_apply"}),
+        ("skill2", {"test_mod_darius_e_cast", "test_mod_darius_e_hit"}),
+        ("ult", {"test_mod_darius_r_cast", "test_mod_darius_r_hit", "test_mod_darius_ult_voice"}),
+    ):
+        action_strings = set(walk_strings(darius.get(action, {})))
+        missing = sfx_names - action_strings
+        if missing:
+            fail(f"Darius {action} must trigger sound events {sorted(missing)}")
+
+    assert_official_audio_sources(
+        "darius",
+        "Darius.wad.client",
+        "Darius.wad.client",
+        DARIUS_SOUND_MEDIA_IDS,
+        DARIUS_SKILL_SOUND_EVENTS,
+        DARIUS_SKILL_SOUND_VOLUME_FLOOR,
+    )
+    official = load_json(ROOT / "qa" / "darius_official_audio_sources.json")
+    if "Darius.en_US.wad.client" not in str(official.get("source", "")):
+        fail("Darius ult voice source must document the official Darius.en_US.wad.client")
+
+
 def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
     expected_display_names = {
         "en": "Thresh (Chain Warden)",
@@ -2235,6 +2587,8 @@ def check_champion_visibility() -> None:
 
     if f"{MOD_ID}_aatrox" not in ids:
         fail("Aatrox encyclopedia chain is missing bo_league_champions_aatrox")
+    if f"{MOD_ID}_darius" not in ids:
+        fail("Darius encyclopedia chain is missing bo_league_champions_darius")
     if f"{MOD_ID}_kayn" not in ids:
         fail("Kayn encyclopedia chain is missing bo_league_champions_kayn")
     if f"{MOD_ID}_yasuo" not in ids:
@@ -2245,6 +2599,7 @@ def check_champion_visibility() -> None:
         fail("Thresh encyclopedia chain is missing bo_league_champions_thresh")
     check_encyclopedia_search_terms(text)
     check_aatrox_rework_contract(text, entries)
+    check_darius_contract(text, entries)
     check_kayn_rework_contract(text, entries)
     check_yasuo_contract(text, entries)
     check_jinx_contract(text, entries)
