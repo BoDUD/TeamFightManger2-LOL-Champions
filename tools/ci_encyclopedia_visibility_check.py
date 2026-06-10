@@ -286,10 +286,6 @@ JINX_BUFF_REFS = {
         "asset/bo_league_champions/aseprite_resources/effects/jinx_fishbones_mode_aura",
         "loop",
     ),
-    "test_mod_jinx_powpow_visual": (
-        "asset/bo_league_champions/aseprite_resources/effects/jinx_powpow_ready",
-        "loop",
-    ),
 }
 JINX_SOUND_MEDIA_IDS = {
     "test_mod_jinx_minigun_cast": "871511008",
@@ -525,6 +521,52 @@ def local_asset_path(asset: str) -> Path:
 def require_file(path: Path) -> None:
     if not path.is_file():
         fail(f"missing file: {path.relative_to(ROOT)}")
+
+
+def assert_jinx_fishbones_held_overlay() -> None:
+    sheet = ROOT / "aseprite_resources" / "effects" / "jinx_fishbones_mode_aura#sheet.png"
+    width, height, rgba = load_rgba(sheet)
+    _, _, alpha = load_rgba_alpha(sheet)
+    if (width, height) != (384, 64):
+        fail("Jinx Fishbones visual must keep the 6-frame 64x64 held-weapon overlay contract")
+    for frame_index in range(6):
+        x0 = frame_index * 64
+        bbox = alpha_bbox_in_rect(alpha, width, (x0, 0, 64, 64))
+        if bbox is None:
+            fail(f"Jinx Fishbones held overlay frame {frame_index} is empty")
+        bw = bbox[2] - bbox[0]
+        bh = bbox[3] - bbox[1]
+        if bw > 44 or bh > 32:
+            fail(
+                f"Jinx Fishbones frame {frame_index} must be a compact held weapon, "
+                f"not a rocket/smoke aura; bbox is {bw}x{bh}"
+            )
+        if bbox[0] < 16 or bbox[1] < 14 or bbox[3] > 50:
+            fail(
+                f"Jinx Fishbones frame {frame_index} must stay near the hand/shoulder weapon area; "
+                f"bbox is {bbox}"
+            )
+        visible = 0
+        flame_pixels = 0
+        for y in range(bbox[1], bbox[3]):
+            for x in range(bbox[0], bbox[2]):
+                i = ((y * width) + x0 + x) * 4
+                r = rgba[i]
+                g = rgba[i + 1]
+                b = rgba[i + 2]
+                a = rgba[i + 3]
+                if not a:
+                    continue
+                visible += 1
+                if r > 180 and g > 70 and b < 80:
+                    flame_pixels += 1
+        if visible < 120:
+            fail(f"Jinx Fishbones held overlay frame {frame_index} is too sparse to read as a weapon")
+        if flame_pixels:
+            fail(
+                f"Jinx Fishbones held overlay frame {frame_index} still contains muzzle flame; "
+                "fire and smoke belong in projectile/hit effects, not the actor buff"
+            )
 
 
 def require_aseprite_asset(asset: str) -> None:
@@ -1558,7 +1600,6 @@ def check_jinx_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
         "jinx_rocket_explosion",
         "jinx_get_excited_aura",
         "jinx_fishbones_mode_aura",
-        "jinx_powpow_ready",
     ):
         sheet = ROOT / "aseprite_resources" / "effects" / f"{effect_name}#sheet.png"
         fanim = ROOT / "aseprite_resources" / "effects" / f"{effect_name}#anim.fanim"
@@ -1582,6 +1623,7 @@ def check_jinx_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
             fail(f"{sheet.relative_to(ROOT)} must contain a visible generated Jinx effect")
         if actor_skin_pixels > max(40, visible_pixels // 5):
             fail(f"{sheet.relative_to(ROOT)} contains too many actor/body-colored pixels; effects must stay separate from the champion body")
+    assert_jinx_fishbones_held_overlay()
 
     fanim = load_json(ROOT / "aseprite_resources" / "champions" / "jinx#anim.fanim")
     sheet_width, sheet_height, sheet_alpha = load_rgba_alpha(
@@ -1680,6 +1722,8 @@ def check_jinx_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
     ):
         if required not in strings:
             fail(f"champion/jinx.data_champion must include LoL Jinx mechanic token {required}")
+    if "test_mod_jinx_powpow_visual" in strings or "jinx_powpow_ready" in strings:
+        fail("Jinx must not attach Pow-Pow/Fishbones weapon loops to the actor body; use projectiles or the held Fishbones overlay only")
     skill = jinx.get("skill", {})
     if not isinstance(skill, dict):
         fail("Jinx skill must be a JSON object")
@@ -1713,6 +1757,12 @@ def check_jinx_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
     fishbones_ticks = find_named_buff_ticks(skill, "test_mod_jinx_fishbones_mode")
     if fishbones_ticks != [210]:
         fail(f"Jinx Switcheroo must use one 210-tick Fishbones window, got {fishbones_ticks}")
+    fishbones_visual_ticks = find_named_buff_ticks(skill, "test_mod_jinx_fishbones_visual")
+    if fishbones_visual_ticks != [210]:
+        fail(f"Jinx Switcheroo must show one 210-tick held Fishbones overlay, got {fishbones_visual_ticks}")
+    attack_visual_ticks = find_named_buff_ticks(jinx.get("attack", {}), "test_mod_jinx_fishbones_visual")
+    if attack_visual_ticks:
+        fail("Jinx basic attacks must not add the held Fishbones overlay directly; Switcheroo controls the form window")
 
     for action, sfx_names in (
         ("skill", {"test_mod_jinx_switch_to_minigun", "test_mod_jinx_switch_to_rocket"}),
@@ -1736,10 +1786,14 @@ def check_jinx_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
     for name, expected in JINX_BUFF_REFS.items():
         if buff_refs.get(name) != expected:
             fail(f"champion/jinx.data_champion buff {name} must reference {expected}")
+    expected_buff_z = {
+        "test_mod_jinx_get_excited": -1,
+        "test_mod_jinx_fishbones_visual": 1,
+    }
     for buff_name in JINX_BUFF_REFS:
         buff = next((item for item in jinx.get("view_buffs", []) if item.get("name") == buff_name), None)
-        if not isinstance(buff, dict) or buff.get("z") != -1:
-            fail(f"Jinx buff {buff_name} must render behind the actor")
+        if not isinstance(buff, dict) or buff.get("z") != expected_buff_z[buff_name]:
+            fail(f"Jinx buff {buff_name} must render at z={expected_buff_z[buff_name]}")
 
     assert_official_audio_sources(
         "jinx",

@@ -209,8 +209,6 @@ def check_runtime_copy(game_root: Path) -> None:
         "aseprite_resources/effects/jinx_get_excited_aura#anim.fanim",
         "aseprite_resources/effects/jinx_fishbones_mode_aura#sheet.png",
         "aseprite_resources/effects/jinx_fishbones_mode_aura#anim.fanim",
-        "aseprite_resources/effects/jinx_powpow_ready#sheet.png",
-        "aseprite_resources/effects/jinx_powpow_ready#anim.fanim",
         "icons/kayn_skill.png",
         "icons/kayn_skill2.png",
         "icons/kayn_ult.png",

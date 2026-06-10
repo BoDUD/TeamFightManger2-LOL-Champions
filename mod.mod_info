@@ -3,8 +3,8 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.10.3",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version fixes Jinx card/battle placement, slows her crossed-walk cycle, changes Switcheroo into an AI-targeted short Fishbones window, and adds roster coverage gates for staged native hero retirement.",
+  "version": "0.10.4",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version fixes Jinx Fishbones form to use a compact held-weapon overlay, removes the obsolete Pow-Pow body loop, and gates against rocket or smoke aura regressions.",
   "last_updated": "2026-06-10",
   "dependencies": [
     {

@@ -112,17 +112,6 @@
                     },
                     "attack_speed_mult": 10
                   }
-                },
-                {
-                  "type": "AddCasterBuff",
-                  "buff_state": {
-                    "name": "test_mod_jinx_powpow_visual",
-                    "duration": {
-                      "Time": {
-                        "tick": 150
-                      }
-                    }
-                  }
                 }
               ]
             },
@@ -179,17 +168,6 @@
                       }
                     },
                     "attack_speed_mult": 20
-                  }
-                },
-                {
-                  "type": "AddCasterBuff",
-                  "buff_state": {
-                    "name": "test_mod_jinx_powpow_visual",
-                    "duration": {
-                      "Time": {
-                        "tick": 150
-                      }
-                    }
                   }
                 }
               ]
@@ -249,17 +227,6 @@
                   },
                   "attack_speed_mult": 30
                 }
-              },
-              {
-                "type": "AddCasterBuff",
-                "buff_state": {
-                  "name": "test_mod_jinx_powpow_visual",
-                  "duration": {
-                    "Time": {
-                      "tick": 150
-                    }
-                  }
-                }
               }
             ]
           }
@@ -318,17 +285,6 @@
                 },
                 "attack_speed_mult": 30
               }
-            },
-            {
-              "type": "AddCasterBuff",
-              "buff_state": {
-                "name": "test_mod_jinx_powpow_visual",
-                "duration": {
-                  "Time": {
-                    "tick": 150
-                  }
-                }
-              }
             }
           ]
         }
@@ -383,10 +339,6 @@
           {
             "type": "RemoveCasterBuff",
             "name": "test_mod_jinx_powpow_3"
-          },
-          {
-            "type": "RemoveCasterBuff",
-            "name": "test_mod_jinx_powpow_visual"
           }
         ]
       }
@@ -446,10 +398,6 @@
         {
           "type": "RemoveCasterBuff",
           "name": "test_mod_jinx_powpow_3"
-        },
-        {
-          "type": "RemoveCasterBuff",
-          "name": "test_mod_jinx_powpow_visual"
         },
         {
           "type": "Delayed",
@@ -747,15 +695,7 @@
       "name": "test_mod_jinx_fishbones_visual",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/jinx_fishbones_mode_aura",
       "tag": "loop",
-      "z": -1,
-      "repeat": true
-    },
-    {
-      "type": "Animated",
-      "name": "test_mod_jinx_powpow_visual",
-      "anim": "asset/bo_league_champions/aseprite_resources/effects/jinx_powpow_ready",
-      "tag": "loop",
-      "z": -1,
+      "z": 1,
       "repeat": true
     }
   ]
