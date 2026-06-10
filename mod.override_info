@@ -786,5 +786,109 @@
   "asset/base/sound/sfx/test_mod_thresh_ult_voice_clip": {
     "remapping": "asset/bo_league_champions/sound/sfx/test_mod_thresh_ult_voice_clip",
     "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_darius_attack_cast": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_darius_attack_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_darius_attack_cast_clip": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_darius_attack_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_darius_attack_hit": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_darius_attack_hit",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_darius_attack_hit_clip": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_darius_attack_hit_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_darius_hemo_apply": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_darius_hemo_apply",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_darius_hemo_apply_clip": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_darius_hemo_apply_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_darius_noxian_might": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_darius_noxian_might",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_darius_noxian_might_clip": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_darius_noxian_might_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_darius_q_cast": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_darius_q_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_darius_q_cast_clip": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_darius_q_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_darius_q_hit": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_darius_q_hit",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_darius_q_hit_clip": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_darius_q_hit_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_darius_q_heal": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_darius_q_heal",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_darius_q_heal_clip": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_darius_q_heal_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_darius_e_cast": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_darius_e_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_darius_e_cast_clip": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_darius_e_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_darius_e_hit": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_darius_e_hit",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_darius_e_hit_clip": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_darius_e_hit_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_darius_w_hit": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_darius_w_hit",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_darius_w_hit_clip": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_darius_w_hit_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_darius_r_cast": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_darius_r_cast",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_darius_r_cast_clip": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_darius_r_cast_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_darius_r_hit": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_darius_r_hit",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_darius_r_hit_clip": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_darius_r_hit_clip",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_darius_ult_voice": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_darius_ult_voice",
+    "type": "override"
+  },
+  "asset/base/sound/sfx/test_mod_darius_ult_voice_clip": {
+    "remapping": "asset/bo_league_champions/sound/sfx/test_mod_darius_ult_voice_clip",
+    "type": "override"
   }
 }

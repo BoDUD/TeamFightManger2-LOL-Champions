@@ -1,0 +1,2670 @@
+{
+  "id": "bo_league_champions_darius",
+  "category": "Melee",
+  "tags": [
+    "AD",
+    "Melee",
+    "Tank",
+    "CC"
+  ],
+  "sprite": "asset/bo_league_champions/aseprite_resources/champions/darius",
+  "anim_prefix": "",
+  "skill_icons": [
+    "asset/bo_league_champions/icons/darius_skill",
+    "asset/bo_league_champions/icons/darius_skill2",
+    "asset/bo_league_champions/icons/darius_ult"
+  ],
+  "stat": {
+    "attack": 88,
+    "magic_power": 0,
+    "hp": 1040,
+    "defence": 32,
+    "magic_resistance": 22,
+    "move_speed": 930,
+    "hp_regen": 6,
+    "stack": 0,
+    "crit_chance": 0
+  },
+  "growth": {
+    "attack": 28,
+    "magic_power": 0,
+    "hp": 118,
+    "defence": 7,
+    "magic_resistance": 4,
+    "move_speed": 8,
+    "hp_regen": 2,
+    "stack": 0,
+    "crit_chance": 0
+  },
+  "attack": {
+    "action_name": "attack",
+    "description": "#asset/base/text/champion?description.bo_league_champions_darius.attack",
+    "casting_type": "Targeting",
+    "casting_target": "Enemy",
+    "attack_type": "BaseAttack",
+    "range": 31000,
+    "duration": 26,
+    "cooltime": 68,
+    "start_timing": 14,
+    "cancelable": true,
+    "effect": {
+      "type": "SwitchByBuff",
+      "buff_name": "test_mod_darius_crippling_strike_ready",
+      "effect_buff": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "Sfx",
+            "name": "test_mod_darius_attack_cast"
+          },
+          {
+            "type": "CasterViewEffect",
+            "name": "test_mod_darius_attack_slash_vfx"
+          },
+          {
+            "type": "Attack",
+            "damage": 45,
+            "attack_ratio": 145
+          },
+          {
+            "type": "TargetSfx",
+            "name": "test_mod_darius_attack_hit"
+          },
+          {
+            "type": "ViewEffect",
+            "name": "test_mod_darius_bleed_apply_vfx"
+          },
+          {
+            "type": "Sfx",
+            "name": "test_mod_darius_hemo_apply"
+          },
+          {
+            "type": "Sfx",
+            "name": "test_mod_darius_w_hit"
+          },
+          {
+            "type": "ViewEffect",
+            "name": "test_mod_darius_crippling_strike_vfx"
+          },
+          {
+            "type": "AddBuff",
+            "buff_state": {
+              "name": "test_mod_darius_crippling_strike_slow",
+              "duration": {
+                "Time": {
+                  "tick": 60
+                }
+              },
+              "move_speed_mult": -45
+            }
+          },
+          {
+            "type": "RemoveCasterBuff",
+            "name": "test_mod_darius_crippling_strike_ready"
+          },
+          {
+            "type": "SwitchByBuff",
+            "buff_name": "test_mod_darius_hemo_5",
+            "effect_buff": {
+              "type": "Combine",
+              "effects": [
+                {
+                  "type": "RemoveCasterBuff",
+                  "name": "test_mod_darius_hemo_1"
+                },
+                {
+                  "type": "RemoveCasterBuff",
+                  "name": "test_mod_darius_hemo_2"
+                },
+                {
+                  "type": "RemoveCasterBuff",
+                  "name": "test_mod_darius_hemo_3"
+                },
+                {
+                  "type": "RemoveCasterBuff",
+                  "name": "test_mod_darius_hemo_4"
+                },
+                {
+                  "type": "RemoveCasterBuff",
+                  "name": "test_mod_darius_hemo_5"
+                },
+                {
+                  "type": "AddCasterBuff",
+                  "buff_state": {
+                    "name": "test_mod_darius_hemo_5",
+                    "duration": {
+                      "Time": {
+                        "tick": 360
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "AddCasterBuff",
+                  "buff_state": {
+                    "name": "test_mod_darius_noxian_might",
+                    "duration": {
+                      "Time": {
+                        "tick": 360
+                      }
+                    },
+                    "attack": 55,
+                    "move_speed_mult": 10
+                  }
+                },
+                {
+                  "type": "Sfx",
+                  "name": "test_mod_darius_noxian_might"
+                },
+                {
+                  "type": "AddCasterBuff",
+                  "buff_state": {
+                    "name": "test_mod_darius_noxian_might_visual",
+                    "duration": {
+                      "Time": {
+                        "tick": 360
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "effect_none": {
+              "type": "SwitchByBuff",
+              "buff_name": "test_mod_darius_hemo_4",
+              "effect_buff": {
+                "type": "Combine",
+                "effects": [
+                  {
+                    "type": "RemoveCasterBuff",
+                    "name": "test_mod_darius_hemo_1"
+                  },
+                  {
+                    "type": "RemoveCasterBuff",
+                    "name": "test_mod_darius_hemo_2"
+                  },
+                  {
+                    "type": "RemoveCasterBuff",
+                    "name": "test_mod_darius_hemo_3"
+                  },
+                  {
+                    "type": "RemoveCasterBuff",
+                    "name": "test_mod_darius_hemo_4"
+                  },
+                  {
+                    "type": "RemoveCasterBuff",
+                    "name": "test_mod_darius_hemo_5"
+                  },
+                  {
+                    "type": "AddCasterBuff",
+                    "buff_state": {
+                      "name": "test_mod_darius_hemo_5",
+                      "duration": {
+                        "Time": {
+                          "tick": 360
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "AddCasterBuff",
+                    "buff_state": {
+                      "name": "test_mod_darius_noxian_might",
+                      "duration": {
+                        "Time": {
+                          "tick": 360
+                        }
+                      },
+                      "attack": 55,
+                      "move_speed_mult": 10
+                    }
+                  },
+                  {
+                    "type": "Sfx",
+                    "name": "test_mod_darius_noxian_might"
+                  },
+                  {
+                    "type": "AddCasterBuff",
+                    "buff_state": {
+                      "name": "test_mod_darius_noxian_might_visual",
+                      "duration": {
+                        "Time": {
+                          "tick": 360
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "effect_none": {
+                "type": "SwitchByBuff",
+                "buff_name": "test_mod_darius_hemo_3",
+                "effect_buff": {
+                  "type": "Combine",
+                  "effects": [
+                    {
+                      "type": "RemoveCasterBuff",
+                      "name": "test_mod_darius_hemo_1"
+                    },
+                    {
+                      "type": "RemoveCasterBuff",
+                      "name": "test_mod_darius_hemo_2"
+                    },
+                    {
+                      "type": "RemoveCasterBuff",
+                      "name": "test_mod_darius_hemo_3"
+                    },
+                    {
+                      "type": "RemoveCasterBuff",
+                      "name": "test_mod_darius_hemo_4"
+                    },
+                    {
+                      "type": "RemoveCasterBuff",
+                      "name": "test_mod_darius_hemo_5"
+                    },
+                    {
+                      "type": "AddCasterBuff",
+                      "buff_state": {
+                        "name": "test_mod_darius_hemo_4",
+                        "duration": {
+                          "Time": {
+                            "tick": 360
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "effect_none": {
+                  "type": "SwitchByBuff",
+                  "buff_name": "test_mod_darius_hemo_2",
+                  "effect_buff": {
+                    "type": "Combine",
+                    "effects": [
+                      {
+                        "type": "RemoveCasterBuff",
+                        "name": "test_mod_darius_hemo_1"
+                      },
+                      {
+                        "type": "RemoveCasterBuff",
+                        "name": "test_mod_darius_hemo_2"
+                      },
+                      {
+                        "type": "RemoveCasterBuff",
+                        "name": "test_mod_darius_hemo_3"
+                      },
+                      {
+                        "type": "RemoveCasterBuff",
+                        "name": "test_mod_darius_hemo_4"
+                      },
+                      {
+                        "type": "RemoveCasterBuff",
+                        "name": "test_mod_darius_hemo_5"
+                      },
+                      {
+                        "type": "AddCasterBuff",
+                        "buff_state": {
+                          "name": "test_mod_darius_hemo_3",
+                          "duration": {
+                            "Time": {
+                              "tick": 360
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "effect_none": {
+                    "type": "SwitchByBuff",
+                    "buff_name": "test_mod_darius_hemo_1",
+                    "effect_buff": {
+                      "type": "Combine",
+                      "effects": [
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_1"
+                        },
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_2"
+                        },
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_3"
+                        },
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_4"
+                        },
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_5"
+                        },
+                        {
+                          "type": "AddCasterBuff",
+                          "buff_state": {
+                            "name": "test_mod_darius_hemo_2",
+                            "duration": {
+                              "Time": {
+                                "tick": 360
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "effect_none": {
+                      "type": "Combine",
+                      "effects": [
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_1"
+                        },
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_2"
+                        },
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_3"
+                        },
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_4"
+                        },
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_5"
+                        },
+                        {
+                          "type": "AddCasterBuff",
+                          "buff_state": {
+                            "name": "test_mod_darius_hemo_1",
+                            "duration": {
+                              "Time": {
+                                "tick": 360
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "effect_none": {
+        "type": "SwitchByBuff",
+        "buff_name": "test_mod_darius_noxian_might",
+        "effect_buff": {
+          "type": "Combine",
+          "effects": [
+            {
+              "type": "Sfx",
+              "name": "test_mod_darius_attack_cast"
+            },
+            {
+              "type": "CasterViewEffect",
+              "name": "test_mod_darius_attack_slash_vfx"
+            },
+            {
+              "type": "Attack",
+              "damage": 32,
+              "attack_ratio": 125
+            },
+            {
+              "type": "TargetSfx",
+              "name": "test_mod_darius_attack_hit"
+            },
+            {
+              "type": "ViewEffect",
+              "name": "test_mod_darius_bleed_apply_vfx"
+            },
+            {
+              "type": "Sfx",
+              "name": "test_mod_darius_hemo_apply"
+            },
+            {
+              "type": "SwitchByBuff",
+              "buff_name": "test_mod_darius_hemo_5",
+              "effect_buff": {
+                "type": "Combine",
+                "effects": [
+                  {
+                    "type": "RemoveCasterBuff",
+                    "name": "test_mod_darius_hemo_1"
+                  },
+                  {
+                    "type": "RemoveCasterBuff",
+                    "name": "test_mod_darius_hemo_2"
+                  },
+                  {
+                    "type": "RemoveCasterBuff",
+                    "name": "test_mod_darius_hemo_3"
+                  },
+                  {
+                    "type": "RemoveCasterBuff",
+                    "name": "test_mod_darius_hemo_4"
+                  },
+                  {
+                    "type": "RemoveCasterBuff",
+                    "name": "test_mod_darius_hemo_5"
+                  },
+                  {
+                    "type": "AddCasterBuff",
+                    "buff_state": {
+                      "name": "test_mod_darius_hemo_5",
+                      "duration": {
+                        "Time": {
+                          "tick": 360
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "AddCasterBuff",
+                    "buff_state": {
+                      "name": "test_mod_darius_noxian_might",
+                      "duration": {
+                        "Time": {
+                          "tick": 360
+                        }
+                      },
+                      "attack": 55,
+                      "move_speed_mult": 10
+                    }
+                  },
+                  {
+                    "type": "Sfx",
+                    "name": "test_mod_darius_noxian_might"
+                  },
+                  {
+                    "type": "AddCasterBuff",
+                    "buff_state": {
+                      "name": "test_mod_darius_noxian_might_visual",
+                      "duration": {
+                        "Time": {
+                          "tick": 360
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "effect_none": {
+                "type": "SwitchByBuff",
+                "buff_name": "test_mod_darius_hemo_4",
+                "effect_buff": {
+                  "type": "Combine",
+                  "effects": [
+                    {
+                      "type": "RemoveCasterBuff",
+                      "name": "test_mod_darius_hemo_1"
+                    },
+                    {
+                      "type": "RemoveCasterBuff",
+                      "name": "test_mod_darius_hemo_2"
+                    },
+                    {
+                      "type": "RemoveCasterBuff",
+                      "name": "test_mod_darius_hemo_3"
+                    },
+                    {
+                      "type": "RemoveCasterBuff",
+                      "name": "test_mod_darius_hemo_4"
+                    },
+                    {
+                      "type": "RemoveCasterBuff",
+                      "name": "test_mod_darius_hemo_5"
+                    },
+                    {
+                      "type": "AddCasterBuff",
+                      "buff_state": {
+                        "name": "test_mod_darius_hemo_5",
+                        "duration": {
+                          "Time": {
+                            "tick": 360
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "AddCasterBuff",
+                      "buff_state": {
+                        "name": "test_mod_darius_noxian_might",
+                        "duration": {
+                          "Time": {
+                            "tick": 360
+                          }
+                        },
+                        "attack": 55,
+                        "move_speed_mult": 10
+                      }
+                    },
+                    {
+                      "type": "Sfx",
+                      "name": "test_mod_darius_noxian_might"
+                    },
+                    {
+                      "type": "AddCasterBuff",
+                      "buff_state": {
+                        "name": "test_mod_darius_noxian_might_visual",
+                        "duration": {
+                          "Time": {
+                            "tick": 360
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "effect_none": {
+                  "type": "SwitchByBuff",
+                  "buff_name": "test_mod_darius_hemo_3",
+                  "effect_buff": {
+                    "type": "Combine",
+                    "effects": [
+                      {
+                        "type": "RemoveCasterBuff",
+                        "name": "test_mod_darius_hemo_1"
+                      },
+                      {
+                        "type": "RemoveCasterBuff",
+                        "name": "test_mod_darius_hemo_2"
+                      },
+                      {
+                        "type": "RemoveCasterBuff",
+                        "name": "test_mod_darius_hemo_3"
+                      },
+                      {
+                        "type": "RemoveCasterBuff",
+                        "name": "test_mod_darius_hemo_4"
+                      },
+                      {
+                        "type": "RemoveCasterBuff",
+                        "name": "test_mod_darius_hemo_5"
+                      },
+                      {
+                        "type": "AddCasterBuff",
+                        "buff_state": {
+                          "name": "test_mod_darius_hemo_4",
+                          "duration": {
+                            "Time": {
+                              "tick": 360
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "effect_none": {
+                    "type": "SwitchByBuff",
+                    "buff_name": "test_mod_darius_hemo_2",
+                    "effect_buff": {
+                      "type": "Combine",
+                      "effects": [
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_1"
+                        },
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_2"
+                        },
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_3"
+                        },
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_4"
+                        },
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_5"
+                        },
+                        {
+                          "type": "AddCasterBuff",
+                          "buff_state": {
+                            "name": "test_mod_darius_hemo_3",
+                            "duration": {
+                              "Time": {
+                                "tick": 360
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "effect_none": {
+                      "type": "SwitchByBuff",
+                      "buff_name": "test_mod_darius_hemo_1",
+                      "effect_buff": {
+                        "type": "Combine",
+                        "effects": [
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_1"
+                          },
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_2"
+                          },
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_3"
+                          },
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_4"
+                          },
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_5"
+                          },
+                          {
+                            "type": "AddCasterBuff",
+                            "buff_state": {
+                              "name": "test_mod_darius_hemo_2",
+                              "duration": {
+                                "Time": {
+                                  "tick": 360
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "effect_none": {
+                        "type": "Combine",
+                        "effects": [
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_1"
+                          },
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_2"
+                          },
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_3"
+                          },
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_4"
+                          },
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_5"
+                          },
+                          {
+                            "type": "AddCasterBuff",
+                            "buff_state": {
+                              "name": "test_mod_darius_hemo_1",
+                              "duration": {
+                                "Time": {
+                                  "tick": 360
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "effect_none": {
+          "type": "Combine",
+          "effects": [
+            {
+              "type": "Sfx",
+              "name": "test_mod_darius_attack_cast"
+            },
+            {
+              "type": "CasterViewEffect",
+              "name": "test_mod_darius_attack_slash_vfx"
+            },
+            {
+              "type": "Attack",
+              "damage": 18,
+              "attack_ratio": 110
+            },
+            {
+              "type": "TargetSfx",
+              "name": "test_mod_darius_attack_hit"
+            },
+            {
+              "type": "ViewEffect",
+              "name": "test_mod_darius_bleed_apply_vfx"
+            },
+            {
+              "type": "Sfx",
+              "name": "test_mod_darius_hemo_apply"
+            },
+            {
+              "type": "SwitchByBuff",
+              "buff_name": "test_mod_darius_hemo_5",
+              "effect_buff": {
+                "type": "Combine",
+                "effects": [
+                  {
+                    "type": "RemoveCasterBuff",
+                    "name": "test_mod_darius_hemo_1"
+                  },
+                  {
+                    "type": "RemoveCasterBuff",
+                    "name": "test_mod_darius_hemo_2"
+                  },
+                  {
+                    "type": "RemoveCasterBuff",
+                    "name": "test_mod_darius_hemo_3"
+                  },
+                  {
+                    "type": "RemoveCasterBuff",
+                    "name": "test_mod_darius_hemo_4"
+                  },
+                  {
+                    "type": "RemoveCasterBuff",
+                    "name": "test_mod_darius_hemo_5"
+                  },
+                  {
+                    "type": "AddCasterBuff",
+                    "buff_state": {
+                      "name": "test_mod_darius_hemo_5",
+                      "duration": {
+                        "Time": {
+                          "tick": 360
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "AddCasterBuff",
+                    "buff_state": {
+                      "name": "test_mod_darius_noxian_might",
+                      "duration": {
+                        "Time": {
+                          "tick": 360
+                        }
+                      },
+                      "attack": 55,
+                      "move_speed_mult": 10
+                    }
+                  },
+                  {
+                    "type": "Sfx",
+                    "name": "test_mod_darius_noxian_might"
+                  },
+                  {
+                    "type": "AddCasterBuff",
+                    "buff_state": {
+                      "name": "test_mod_darius_noxian_might_visual",
+                      "duration": {
+                        "Time": {
+                          "tick": 360
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "effect_none": {
+                "type": "SwitchByBuff",
+                "buff_name": "test_mod_darius_hemo_4",
+                "effect_buff": {
+                  "type": "Combine",
+                  "effects": [
+                    {
+                      "type": "RemoveCasterBuff",
+                      "name": "test_mod_darius_hemo_1"
+                    },
+                    {
+                      "type": "RemoveCasterBuff",
+                      "name": "test_mod_darius_hemo_2"
+                    },
+                    {
+                      "type": "RemoveCasterBuff",
+                      "name": "test_mod_darius_hemo_3"
+                    },
+                    {
+                      "type": "RemoveCasterBuff",
+                      "name": "test_mod_darius_hemo_4"
+                    },
+                    {
+                      "type": "RemoveCasterBuff",
+                      "name": "test_mod_darius_hemo_5"
+                    },
+                    {
+                      "type": "AddCasterBuff",
+                      "buff_state": {
+                        "name": "test_mod_darius_hemo_5",
+                        "duration": {
+                          "Time": {
+                            "tick": 360
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "AddCasterBuff",
+                      "buff_state": {
+                        "name": "test_mod_darius_noxian_might",
+                        "duration": {
+                          "Time": {
+                            "tick": 360
+                          }
+                        },
+                        "attack": 55,
+                        "move_speed_mult": 10
+                      }
+                    },
+                    {
+                      "type": "Sfx",
+                      "name": "test_mod_darius_noxian_might"
+                    },
+                    {
+                      "type": "AddCasterBuff",
+                      "buff_state": {
+                        "name": "test_mod_darius_noxian_might_visual",
+                        "duration": {
+                          "Time": {
+                            "tick": 360
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "effect_none": {
+                  "type": "SwitchByBuff",
+                  "buff_name": "test_mod_darius_hemo_3",
+                  "effect_buff": {
+                    "type": "Combine",
+                    "effects": [
+                      {
+                        "type": "RemoveCasterBuff",
+                        "name": "test_mod_darius_hemo_1"
+                      },
+                      {
+                        "type": "RemoveCasterBuff",
+                        "name": "test_mod_darius_hemo_2"
+                      },
+                      {
+                        "type": "RemoveCasterBuff",
+                        "name": "test_mod_darius_hemo_3"
+                      },
+                      {
+                        "type": "RemoveCasterBuff",
+                        "name": "test_mod_darius_hemo_4"
+                      },
+                      {
+                        "type": "RemoveCasterBuff",
+                        "name": "test_mod_darius_hemo_5"
+                      },
+                      {
+                        "type": "AddCasterBuff",
+                        "buff_state": {
+                          "name": "test_mod_darius_hemo_4",
+                          "duration": {
+                            "Time": {
+                              "tick": 360
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "effect_none": {
+                    "type": "SwitchByBuff",
+                    "buff_name": "test_mod_darius_hemo_2",
+                    "effect_buff": {
+                      "type": "Combine",
+                      "effects": [
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_1"
+                        },
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_2"
+                        },
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_3"
+                        },
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_4"
+                        },
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_5"
+                        },
+                        {
+                          "type": "AddCasterBuff",
+                          "buff_state": {
+                            "name": "test_mod_darius_hemo_3",
+                            "duration": {
+                              "Time": {
+                                "tick": 360
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "effect_none": {
+                      "type": "SwitchByBuff",
+                      "buff_name": "test_mod_darius_hemo_1",
+                      "effect_buff": {
+                        "type": "Combine",
+                        "effects": [
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_1"
+                          },
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_2"
+                          },
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_3"
+                          },
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_4"
+                          },
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_5"
+                          },
+                          {
+                            "type": "AddCasterBuff",
+                            "buff_state": {
+                              "name": "test_mod_darius_hemo_2",
+                              "duration": {
+                                "Time": {
+                                  "tick": 360
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "effect_none": {
+                        "type": "Combine",
+                        "effects": [
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_1"
+                          },
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_2"
+                          },
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_3"
+                          },
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_4"
+                          },
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_5"
+                          },
+                          {
+                            "type": "AddCasterBuff",
+                            "buff_state": {
+                              "name": "test_mod_darius_hemo_1",
+                              "duration": {
+                                "Time": {
+                                  "tick": 360
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "skill": {
+    "action_name": "skill",
+    "description": "#asset/base/text/champion?description.bo_league_champions_darius.skill",
+    "casting_type": "Targeting",
+    "casting_target": "EnemyWithoutTower",
+    "attack_type": "Skill",
+    "range": 43000,
+    "duration": 54,
+    "cooltime": 540,
+    "start_timing": 22,
+    "cancelable": false,
+    "can_use_with_move": false,
+    "effect": {
+      "type": "SwitchByBuff",
+      "buff_name": "test_mod_darius_noxian_might",
+      "effect_buff": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "Sfx",
+            "name": "test_mod_darius_q_cast"
+          },
+          {
+            "type": "CasterViewEffect",
+            "name": "test_mod_darius_decimate_cast_vfx"
+          },
+          {
+            "type": "Delayed",
+            "tick": 18,
+            "effects": [
+              {
+                "type": "RangeEffect",
+                "shape": {
+                  "Circle": {
+                    "radius": 43000
+                  }
+                },
+                "target": "EnemyWithoutTower",
+                "apply_type": "AroundCaster",
+                "effects": [
+                  {
+                    "type": "Attack",
+                    "damage": 70,
+                    "attack_ratio": 115
+                  },
+                  {
+                    "type": "Heal",
+                    "amount": 50,
+                    "attack_ratio": 22,
+                    "ap_ratio": 0,
+                    "heal_type": "Caster"
+                  },
+                  {
+                    "type": "Sfx",
+                    "name": "test_mod_darius_q_heal"
+                  },
+                  {
+                    "type": "TargetSfx",
+                    "name": "test_mod_darius_q_hit"
+                  },
+                  {
+                    "type": "ViewEffect",
+                    "name": "test_mod_darius_bleed_apply_vfx"
+                  },
+                  {
+                    "type": "Sfx",
+                    "name": "test_mod_darius_hemo_apply"
+                  },
+                  {
+                    "type": "ViewEffect",
+                    "name": "test_mod_darius_decimate_heal_vfx"
+                  },
+                  {
+                    "type": "SwitchByBuff",
+                    "buff_name": "test_mod_darius_hemo_5",
+                    "effect_buff": {
+                      "type": "Combine",
+                      "effects": [
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_1"
+                        },
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_2"
+                        },
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_3"
+                        },
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_4"
+                        },
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_5"
+                        },
+                        {
+                          "type": "AddCasterBuff",
+                          "buff_state": {
+                            "name": "test_mod_darius_hemo_5",
+                            "duration": {
+                              "Time": {
+                                "tick": 360
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "type": "AddCasterBuff",
+                          "buff_state": {
+                            "name": "test_mod_darius_noxian_might",
+                            "duration": {
+                              "Time": {
+                                "tick": 360
+                              }
+                            },
+                            "attack": 55,
+                            "move_speed_mult": 10
+                          }
+                        },
+                        {
+                          "type": "Sfx",
+                          "name": "test_mod_darius_noxian_might"
+                        },
+                        {
+                          "type": "AddCasterBuff",
+                          "buff_state": {
+                            "name": "test_mod_darius_noxian_might_visual",
+                            "duration": {
+                              "Time": {
+                                "tick": 360
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "effect_none": {
+                      "type": "SwitchByBuff",
+                      "buff_name": "test_mod_darius_hemo_4",
+                      "effect_buff": {
+                        "type": "Combine",
+                        "effects": [
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_1"
+                          },
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_2"
+                          },
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_3"
+                          },
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_4"
+                          },
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_5"
+                          },
+                          {
+                            "type": "AddCasterBuff",
+                            "buff_state": {
+                              "name": "test_mod_darius_hemo_5",
+                              "duration": {
+                                "Time": {
+                                  "tick": 360
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "type": "AddCasterBuff",
+                            "buff_state": {
+                              "name": "test_mod_darius_noxian_might",
+                              "duration": {
+                                "Time": {
+                                  "tick": 360
+                                }
+                              },
+                              "attack": 55,
+                              "move_speed_mult": 10
+                            }
+                          },
+                          {
+                            "type": "Sfx",
+                            "name": "test_mod_darius_noxian_might"
+                          },
+                          {
+                            "type": "AddCasterBuff",
+                            "buff_state": {
+                              "name": "test_mod_darius_noxian_might_visual",
+                              "duration": {
+                                "Time": {
+                                  "tick": 360
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "effect_none": {
+                        "type": "SwitchByBuff",
+                        "buff_name": "test_mod_darius_hemo_3",
+                        "effect_buff": {
+                          "type": "Combine",
+                          "effects": [
+                            {
+                              "type": "RemoveCasterBuff",
+                              "name": "test_mod_darius_hemo_1"
+                            },
+                            {
+                              "type": "RemoveCasterBuff",
+                              "name": "test_mod_darius_hemo_2"
+                            },
+                            {
+                              "type": "RemoveCasterBuff",
+                              "name": "test_mod_darius_hemo_3"
+                            },
+                            {
+                              "type": "RemoveCasterBuff",
+                              "name": "test_mod_darius_hemo_4"
+                            },
+                            {
+                              "type": "RemoveCasterBuff",
+                              "name": "test_mod_darius_hemo_5"
+                            },
+                            {
+                              "type": "AddCasterBuff",
+                              "buff_state": {
+                                "name": "test_mod_darius_hemo_4",
+                                "duration": {
+                                  "Time": {
+                                    "tick": 360
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "effect_none": {
+                          "type": "SwitchByBuff",
+                          "buff_name": "test_mod_darius_hemo_2",
+                          "effect_buff": {
+                            "type": "Combine",
+                            "effects": [
+                              {
+                                "type": "RemoveCasterBuff",
+                                "name": "test_mod_darius_hemo_1"
+                              },
+                              {
+                                "type": "RemoveCasterBuff",
+                                "name": "test_mod_darius_hemo_2"
+                              },
+                              {
+                                "type": "RemoveCasterBuff",
+                                "name": "test_mod_darius_hemo_3"
+                              },
+                              {
+                                "type": "RemoveCasterBuff",
+                                "name": "test_mod_darius_hemo_4"
+                              },
+                              {
+                                "type": "RemoveCasterBuff",
+                                "name": "test_mod_darius_hemo_5"
+                              },
+                              {
+                                "type": "AddCasterBuff",
+                                "buff_state": {
+                                  "name": "test_mod_darius_hemo_3",
+                                  "duration": {
+                                    "Time": {
+                                      "tick": 360
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "effect_none": {
+                            "type": "SwitchByBuff",
+                            "buff_name": "test_mod_darius_hemo_1",
+                            "effect_buff": {
+                              "type": "Combine",
+                              "effects": [
+                                {
+                                  "type": "RemoveCasterBuff",
+                                  "name": "test_mod_darius_hemo_1"
+                                },
+                                {
+                                  "type": "RemoveCasterBuff",
+                                  "name": "test_mod_darius_hemo_2"
+                                },
+                                {
+                                  "type": "RemoveCasterBuff",
+                                  "name": "test_mod_darius_hemo_3"
+                                },
+                                {
+                                  "type": "RemoveCasterBuff",
+                                  "name": "test_mod_darius_hemo_4"
+                                },
+                                {
+                                  "type": "RemoveCasterBuff",
+                                  "name": "test_mod_darius_hemo_5"
+                                },
+                                {
+                                  "type": "AddCasterBuff",
+                                  "buff_state": {
+                                    "name": "test_mod_darius_hemo_2",
+                                    "duration": {
+                                      "Time": {
+                                        "tick": 360
+                                      }
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "effect_none": {
+                              "type": "Combine",
+                              "effects": [
+                                {
+                                  "type": "RemoveCasterBuff",
+                                  "name": "test_mod_darius_hemo_1"
+                                },
+                                {
+                                  "type": "RemoveCasterBuff",
+                                  "name": "test_mod_darius_hemo_2"
+                                },
+                                {
+                                  "type": "RemoveCasterBuff",
+                                  "name": "test_mod_darius_hemo_3"
+                                },
+                                {
+                                  "type": "RemoveCasterBuff",
+                                  "name": "test_mod_darius_hemo_4"
+                                },
+                                {
+                                  "type": "RemoveCasterBuff",
+                                  "name": "test_mod_darius_hemo_5"
+                                },
+                                {
+                                  "type": "AddCasterBuff",
+                                  "buff_state": {
+                                    "name": "test_mod_darius_hemo_1",
+                                    "duration": {
+                                      "Time": {
+                                        "tick": 360
+                                      }
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "effect_none": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "Sfx",
+            "name": "test_mod_darius_q_cast"
+          },
+          {
+            "type": "CasterViewEffect",
+            "name": "test_mod_darius_decimate_cast_vfx"
+          },
+          {
+            "type": "Delayed",
+            "tick": 18,
+            "effects": [
+              {
+                "type": "RangeEffect",
+                "shape": {
+                  "Circle": {
+                    "radius": 43000
+                  }
+                },
+                "target": "EnemyWithoutTower",
+                "apply_type": "AroundCaster",
+                "effects": [
+                  {
+                    "type": "Attack",
+                    "damage": 50,
+                    "attack_ratio": 95
+                  },
+                  {
+                    "type": "Heal",
+                    "amount": 35,
+                    "attack_ratio": 18,
+                    "ap_ratio": 0,
+                    "heal_type": "Caster"
+                  },
+                  {
+                    "type": "Sfx",
+                    "name": "test_mod_darius_q_heal"
+                  },
+                  {
+                    "type": "TargetSfx",
+                    "name": "test_mod_darius_q_hit"
+                  },
+                  {
+                    "type": "ViewEffect",
+                    "name": "test_mod_darius_bleed_apply_vfx"
+                  },
+                  {
+                    "type": "Sfx",
+                    "name": "test_mod_darius_hemo_apply"
+                  },
+                  {
+                    "type": "ViewEffect",
+                    "name": "test_mod_darius_decimate_heal_vfx"
+                  },
+                  {
+                    "type": "SwitchByBuff",
+                    "buff_name": "test_mod_darius_hemo_5",
+                    "effect_buff": {
+                      "type": "Combine",
+                      "effects": [
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_1"
+                        },
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_2"
+                        },
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_3"
+                        },
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_4"
+                        },
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_5"
+                        },
+                        {
+                          "type": "AddCasterBuff",
+                          "buff_state": {
+                            "name": "test_mod_darius_hemo_5",
+                            "duration": {
+                              "Time": {
+                                "tick": 360
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "type": "AddCasterBuff",
+                          "buff_state": {
+                            "name": "test_mod_darius_noxian_might",
+                            "duration": {
+                              "Time": {
+                                "tick": 360
+                              }
+                            },
+                            "attack": 55,
+                            "move_speed_mult": 10
+                          }
+                        },
+                        {
+                          "type": "Sfx",
+                          "name": "test_mod_darius_noxian_might"
+                        },
+                        {
+                          "type": "AddCasterBuff",
+                          "buff_state": {
+                            "name": "test_mod_darius_noxian_might_visual",
+                            "duration": {
+                              "Time": {
+                                "tick": 360
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "effect_none": {
+                      "type": "SwitchByBuff",
+                      "buff_name": "test_mod_darius_hemo_4",
+                      "effect_buff": {
+                        "type": "Combine",
+                        "effects": [
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_1"
+                          },
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_2"
+                          },
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_3"
+                          },
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_4"
+                          },
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_5"
+                          },
+                          {
+                            "type": "AddCasterBuff",
+                            "buff_state": {
+                              "name": "test_mod_darius_hemo_5",
+                              "duration": {
+                                "Time": {
+                                  "tick": 360
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "type": "AddCasterBuff",
+                            "buff_state": {
+                              "name": "test_mod_darius_noxian_might",
+                              "duration": {
+                                "Time": {
+                                  "tick": 360
+                                }
+                              },
+                              "attack": 55,
+                              "move_speed_mult": 10
+                            }
+                          },
+                          {
+                            "type": "Sfx",
+                            "name": "test_mod_darius_noxian_might"
+                          },
+                          {
+                            "type": "AddCasterBuff",
+                            "buff_state": {
+                              "name": "test_mod_darius_noxian_might_visual",
+                              "duration": {
+                                "Time": {
+                                  "tick": 360
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "effect_none": {
+                        "type": "SwitchByBuff",
+                        "buff_name": "test_mod_darius_hemo_3",
+                        "effect_buff": {
+                          "type": "Combine",
+                          "effects": [
+                            {
+                              "type": "RemoveCasterBuff",
+                              "name": "test_mod_darius_hemo_1"
+                            },
+                            {
+                              "type": "RemoveCasterBuff",
+                              "name": "test_mod_darius_hemo_2"
+                            },
+                            {
+                              "type": "RemoveCasterBuff",
+                              "name": "test_mod_darius_hemo_3"
+                            },
+                            {
+                              "type": "RemoveCasterBuff",
+                              "name": "test_mod_darius_hemo_4"
+                            },
+                            {
+                              "type": "RemoveCasterBuff",
+                              "name": "test_mod_darius_hemo_5"
+                            },
+                            {
+                              "type": "AddCasterBuff",
+                              "buff_state": {
+                                "name": "test_mod_darius_hemo_4",
+                                "duration": {
+                                  "Time": {
+                                    "tick": 360
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "effect_none": {
+                          "type": "SwitchByBuff",
+                          "buff_name": "test_mod_darius_hemo_2",
+                          "effect_buff": {
+                            "type": "Combine",
+                            "effects": [
+                              {
+                                "type": "RemoveCasterBuff",
+                                "name": "test_mod_darius_hemo_1"
+                              },
+                              {
+                                "type": "RemoveCasterBuff",
+                                "name": "test_mod_darius_hemo_2"
+                              },
+                              {
+                                "type": "RemoveCasterBuff",
+                                "name": "test_mod_darius_hemo_3"
+                              },
+                              {
+                                "type": "RemoveCasterBuff",
+                                "name": "test_mod_darius_hemo_4"
+                              },
+                              {
+                                "type": "RemoveCasterBuff",
+                                "name": "test_mod_darius_hemo_5"
+                              },
+                              {
+                                "type": "AddCasterBuff",
+                                "buff_state": {
+                                  "name": "test_mod_darius_hemo_3",
+                                  "duration": {
+                                    "Time": {
+                                      "tick": 360
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "effect_none": {
+                            "type": "SwitchByBuff",
+                            "buff_name": "test_mod_darius_hemo_1",
+                            "effect_buff": {
+                              "type": "Combine",
+                              "effects": [
+                                {
+                                  "type": "RemoveCasterBuff",
+                                  "name": "test_mod_darius_hemo_1"
+                                },
+                                {
+                                  "type": "RemoveCasterBuff",
+                                  "name": "test_mod_darius_hemo_2"
+                                },
+                                {
+                                  "type": "RemoveCasterBuff",
+                                  "name": "test_mod_darius_hemo_3"
+                                },
+                                {
+                                  "type": "RemoveCasterBuff",
+                                  "name": "test_mod_darius_hemo_4"
+                                },
+                                {
+                                  "type": "RemoveCasterBuff",
+                                  "name": "test_mod_darius_hemo_5"
+                                },
+                                {
+                                  "type": "AddCasterBuff",
+                                  "buff_state": {
+                                    "name": "test_mod_darius_hemo_2",
+                                    "duration": {
+                                      "Time": {
+                                        "tick": 360
+                                      }
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "effect_none": {
+                              "type": "Combine",
+                              "effects": [
+                                {
+                                  "type": "RemoveCasterBuff",
+                                  "name": "test_mod_darius_hemo_1"
+                                },
+                                {
+                                  "type": "RemoveCasterBuff",
+                                  "name": "test_mod_darius_hemo_2"
+                                },
+                                {
+                                  "type": "RemoveCasterBuff",
+                                  "name": "test_mod_darius_hemo_3"
+                                },
+                                {
+                                  "type": "RemoveCasterBuff",
+                                  "name": "test_mod_darius_hemo_4"
+                                },
+                                {
+                                  "type": "RemoveCasterBuff",
+                                  "name": "test_mod_darius_hemo_5"
+                                },
+                                {
+                                  "type": "AddCasterBuff",
+                                  "buff_state": {
+                                    "name": "test_mod_darius_hemo_1",
+                                    "duration": {
+                                      "Time": {
+                                        "tick": 360
+                                      }
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "skill2": {
+    "action_name": "skill2",
+    "description": "#asset/base/text/champion?description.bo_league_champions_darius.skill2",
+    "casting_type": "Direction",
+    "casting_target": "EnemyWithoutTower",
+    "attack_type": "Skill",
+    "range": 56000,
+    "duration": 44,
+    "cooltime": 780,
+    "start_timing": 10,
+    "cancelable": false,
+    "can_use_with_move": false,
+    "effect": {
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "Sfx",
+          "name": "test_mod_darius_e_cast"
+        },
+        {
+          "type": "CasterViewEffect",
+          "name": "test_mod_darius_apprehend_cast_vfx"
+        },
+        {
+          "type": "LineRangeProjectile",
+          "width": 23000,
+          "length": 56000,
+          "delay": 8,
+          "apply": 14,
+          "name": "test_mod_darius_apprehend",
+          "applied_target": "EnemyWithoutTower",
+          "applied_effects": [
+            {
+              "effect": {
+                "type": "Combine",
+                "effects": [
+                  {
+                    "type": "Attack",
+                    "damage": 35,
+                    "attack_ratio": 60
+                  },
+                  {
+                    "type": "Stun",
+                    "duration": 18
+                  },
+                  {
+                    "type": "AddBuff",
+                    "buff_state": {
+                      "name": "test_mod_darius_apprehend_slow",
+                      "duration": {
+                        "Time": {
+                          "tick": 75
+                        }
+                      },
+                      "move_speed_mult": -45
+                    }
+                  },
+                  {
+                    "type": "BlockMoveSkill",
+                    "tick": 24
+                  },
+                  {
+                    "type": "ViewEffect",
+                    "name": "test_mod_darius_bleed_apply_vfx"
+                  },
+                  {
+                    "type": "Sfx",
+                    "name": "test_mod_darius_hemo_apply"
+                  },
+                  {
+                    "type": "TargetSfx",
+                    "name": "test_mod_darius_e_hit"
+                  },
+                  {
+                    "type": "SwitchByBuff",
+                    "buff_name": "test_mod_darius_hemo_5",
+                    "effect_buff": {
+                      "type": "Combine",
+                      "effects": [
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_1"
+                        },
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_2"
+                        },
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_3"
+                        },
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_4"
+                        },
+                        {
+                          "type": "RemoveCasterBuff",
+                          "name": "test_mod_darius_hemo_5"
+                        },
+                        {
+                          "type": "AddCasterBuff",
+                          "buff_state": {
+                            "name": "test_mod_darius_hemo_5",
+                            "duration": {
+                              "Time": {
+                                "tick": 360
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "type": "AddCasterBuff",
+                          "buff_state": {
+                            "name": "test_mod_darius_noxian_might",
+                            "duration": {
+                              "Time": {
+                                "tick": 360
+                              }
+                            },
+                            "attack": 55,
+                            "move_speed_mult": 10
+                          }
+                        },
+                        {
+                          "type": "Sfx",
+                          "name": "test_mod_darius_noxian_might"
+                        },
+                        {
+                          "type": "AddCasterBuff",
+                          "buff_state": {
+                            "name": "test_mod_darius_noxian_might_visual",
+                            "duration": {
+                              "Time": {
+                                "tick": 360
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "effect_none": {
+                      "type": "SwitchByBuff",
+                      "buff_name": "test_mod_darius_hemo_4",
+                      "effect_buff": {
+                        "type": "Combine",
+                        "effects": [
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_1"
+                          },
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_2"
+                          },
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_3"
+                          },
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_4"
+                          },
+                          {
+                            "type": "RemoveCasterBuff",
+                            "name": "test_mod_darius_hemo_5"
+                          },
+                          {
+                            "type": "AddCasterBuff",
+                            "buff_state": {
+                              "name": "test_mod_darius_hemo_5",
+                              "duration": {
+                                "Time": {
+                                  "tick": 360
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "type": "AddCasterBuff",
+                            "buff_state": {
+                              "name": "test_mod_darius_noxian_might",
+                              "duration": {
+                                "Time": {
+                                  "tick": 360
+                                }
+                              },
+                              "attack": 55,
+                              "move_speed_mult": 10
+                            }
+                          },
+                          {
+                            "type": "Sfx",
+                            "name": "test_mod_darius_noxian_might"
+                          },
+                          {
+                            "type": "AddCasterBuff",
+                            "buff_state": {
+                              "name": "test_mod_darius_noxian_might_visual",
+                              "duration": {
+                                "Time": {
+                                  "tick": 360
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "effect_none": {
+                        "type": "SwitchByBuff",
+                        "buff_name": "test_mod_darius_hemo_3",
+                        "effect_buff": {
+                          "type": "Combine",
+                          "effects": [
+                            {
+                              "type": "RemoveCasterBuff",
+                              "name": "test_mod_darius_hemo_1"
+                            },
+                            {
+                              "type": "RemoveCasterBuff",
+                              "name": "test_mod_darius_hemo_2"
+                            },
+                            {
+                              "type": "RemoveCasterBuff",
+                              "name": "test_mod_darius_hemo_3"
+                            },
+                            {
+                              "type": "RemoveCasterBuff",
+                              "name": "test_mod_darius_hemo_4"
+                            },
+                            {
+                              "type": "RemoveCasterBuff",
+                              "name": "test_mod_darius_hemo_5"
+                            },
+                            {
+                              "type": "AddCasterBuff",
+                              "buff_state": {
+                                "name": "test_mod_darius_hemo_4",
+                                "duration": {
+                                  "Time": {
+                                    "tick": 360
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "effect_none": {
+                          "type": "SwitchByBuff",
+                          "buff_name": "test_mod_darius_hemo_2",
+                          "effect_buff": {
+                            "type": "Combine",
+                            "effects": [
+                              {
+                                "type": "RemoveCasterBuff",
+                                "name": "test_mod_darius_hemo_1"
+                              },
+                              {
+                                "type": "RemoveCasterBuff",
+                                "name": "test_mod_darius_hemo_2"
+                              },
+                              {
+                                "type": "RemoveCasterBuff",
+                                "name": "test_mod_darius_hemo_3"
+                              },
+                              {
+                                "type": "RemoveCasterBuff",
+                                "name": "test_mod_darius_hemo_4"
+                              },
+                              {
+                                "type": "RemoveCasterBuff",
+                                "name": "test_mod_darius_hemo_5"
+                              },
+                              {
+                                "type": "AddCasterBuff",
+                                "buff_state": {
+                                  "name": "test_mod_darius_hemo_3",
+                                  "duration": {
+                                    "Time": {
+                                      "tick": 360
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "effect_none": {
+                            "type": "SwitchByBuff",
+                            "buff_name": "test_mod_darius_hemo_1",
+                            "effect_buff": {
+                              "type": "Combine",
+                              "effects": [
+                                {
+                                  "type": "RemoveCasterBuff",
+                                  "name": "test_mod_darius_hemo_1"
+                                },
+                                {
+                                  "type": "RemoveCasterBuff",
+                                  "name": "test_mod_darius_hemo_2"
+                                },
+                                {
+                                  "type": "RemoveCasterBuff",
+                                  "name": "test_mod_darius_hemo_3"
+                                },
+                                {
+                                  "type": "RemoveCasterBuff",
+                                  "name": "test_mod_darius_hemo_4"
+                                },
+                                {
+                                  "type": "RemoveCasterBuff",
+                                  "name": "test_mod_darius_hemo_5"
+                                },
+                                {
+                                  "type": "AddCasterBuff",
+                                  "buff_state": {
+                                    "name": "test_mod_darius_hemo_2",
+                                    "duration": {
+                                      "Time": {
+                                        "tick": 360
+                                      }
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "effect_none": {
+                              "type": "Combine",
+                              "effects": [
+                                {
+                                  "type": "RemoveCasterBuff",
+                                  "name": "test_mod_darius_hemo_1"
+                                },
+                                {
+                                  "type": "RemoveCasterBuff",
+                                  "name": "test_mod_darius_hemo_2"
+                                },
+                                {
+                                  "type": "RemoveCasterBuff",
+                                  "name": "test_mod_darius_hemo_3"
+                                },
+                                {
+                                  "type": "RemoveCasterBuff",
+                                  "name": "test_mod_darius_hemo_4"
+                                },
+                                {
+                                  "type": "RemoveCasterBuff",
+                                  "name": "test_mod_darius_hemo_5"
+                                },
+                                {
+                                  "type": "AddCasterBuff",
+                                  "buff_state": {
+                                    "name": "test_mod_darius_hemo_1",
+                                    "duration": {
+                                      "Time": {
+                                        "tick": 360
+                                      }
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "casting_type": "Targeting"
+            }
+          ]
+        },
+        {
+          "type": "AddCasterBuff",
+          "buff_state": {
+            "name": "test_mod_darius_crippling_strike_ready",
+            "duration": {
+              "Time": {
+                "tick": 240
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "ult": {
+    "action_name": "ult",
+    "description": "#asset/base/text/champion?description.bo_league_champions_darius.ult",
+    "casting_type": "Targeting",
+    "casting_target": "EnemyChampion",
+    "attack_type": "Skill",
+    "range": 52000,
+    "duration": 52,
+    "cooltime": 3900,
+    "start_timing": 16,
+    "cancelable": false,
+    "can_use_with_move": false,
+    "effect": {
+      "type": "SwitchByBuff",
+      "buff_name": "test_mod_darius_noxian_might",
+      "effect_buff": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "Sfx",
+            "name": "test_mod_darius_r_cast"
+          },
+          {
+            "type": "Sfx",
+            "name": "test_mod_darius_ult_voice"
+          },
+          {
+            "type": "CasterViewEffect",
+            "name": "test_mod_darius_noxian_guillotine_cast_vfx"
+          },
+          {
+            "type": "RushMoveToBack",
+            "speed": 3200,
+            "applied_effects": [
+              {
+                "type": "Combine",
+                "effects": [
+                  {
+                    "type": "FixedAttack",
+                    "damage": 280,
+                    "attack_ratio": 190
+                  },
+                  {
+                    "type": "Stun",
+                    "duration": 8
+                  },
+                  {
+                    "type": "ViewEffect",
+                    "name": "test_mod_darius_noxian_guillotine_hit_vfx"
+                  },
+                  {
+                    "type": "TargetSfx",
+                    "name": "test_mod_darius_r_hit"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "AddCasterBuff",
+            "buff_state": {
+              "name": "test_mod_darius_noxian_might",
+              "duration": {
+                "Time": {
+                  "tick": 360
+                }
+              },
+              "attack": 55,
+              "move_speed_mult": 10
+            }
+          },
+          {
+            "type": "AddCasterBuff",
+            "buff_state": {
+              "name": "test_mod_darius_noxian_might_visual",
+              "duration": {
+                "Time": {
+                  "tick": 360
+                }
+              }
+            }
+          },
+          {
+            "type": "AddCasterBuff",
+            "buff_state": {
+              "name": "test_mod_darius_execution_momentum",
+              "duration": {
+                "Time": {
+                  "tick": 180
+                }
+              },
+              "move_speed_mult": 10
+            }
+          }
+        ]
+      },
+      "effect_none": {
+        "type": "SwitchByBuff",
+        "buff_name": "test_mod_darius_hemo_5",
+        "effect_buff": {
+          "type": "Combine",
+          "effects": [
+            {
+              "type": "Sfx",
+              "name": "test_mod_darius_r_cast"
+            },
+            {
+              "type": "Sfx",
+              "name": "test_mod_darius_ult_voice"
+            },
+            {
+              "type": "CasterViewEffect",
+              "name": "test_mod_darius_noxian_guillotine_cast_vfx"
+            },
+            {
+              "type": "RushMoveToBack",
+              "speed": 3200,
+              "applied_effects": [
+                {
+                  "type": "Combine",
+                  "effects": [
+                    {
+                      "type": "FixedAttack",
+                      "damage": 280,
+                      "attack_ratio": 190
+                    },
+                    {
+                      "type": "Stun",
+                      "duration": 8
+                    },
+                    {
+                      "type": "ViewEffect",
+                      "name": "test_mod_darius_noxian_guillotine_hit_vfx"
+                    },
+                    {
+                      "type": "TargetSfx",
+                      "name": "test_mod_darius_r_hit"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "AddCasterBuff",
+              "buff_state": {
+                "name": "test_mod_darius_noxian_might",
+                "duration": {
+                  "Time": {
+                    "tick": 360
+                  }
+                },
+                "attack": 55,
+                "move_speed_mult": 10
+              }
+            },
+            {
+              "type": "AddCasterBuff",
+              "buff_state": {
+                "name": "test_mod_darius_noxian_might_visual",
+                "duration": {
+                  "Time": {
+                    "tick": 360
+                  }
+                }
+              }
+            },
+            {
+              "type": "AddCasterBuff",
+              "buff_state": {
+                "name": "test_mod_darius_execution_momentum",
+                "duration": {
+                  "Time": {
+                    "tick": 180
+                  }
+                },
+                "move_speed_mult": 10
+              }
+            }
+          ]
+        },
+        "effect_none": {
+          "type": "SwitchByBuff",
+          "buff_name": "test_mod_darius_hemo_4",
+          "effect_buff": {
+            "type": "Combine",
+            "effects": [
+              {
+                "type": "Sfx",
+                "name": "test_mod_darius_r_cast"
+              },
+              {
+                "type": "Sfx",
+                "name": "test_mod_darius_ult_voice"
+              },
+              {
+                "type": "CasterViewEffect",
+                "name": "test_mod_darius_noxian_guillotine_cast_vfx"
+              },
+              {
+                "type": "RushMoveToBack",
+                "speed": 3200,
+                "applied_effects": [
+                  {
+                    "type": "Combine",
+                    "effects": [
+                      {
+                        "type": "FixedAttack",
+                        "damage": 235,
+                        "attack_ratio": 170
+                      },
+                      {
+                        "type": "Stun",
+                        "duration": 8
+                      },
+                      {
+                        "type": "ViewEffect",
+                        "name": "test_mod_darius_noxian_guillotine_hit_vfx"
+                      },
+                      {
+                        "type": "TargetSfx",
+                        "name": "test_mod_darius_r_hit"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "effect_none": {
+            "type": "SwitchByBuff",
+            "buff_name": "test_mod_darius_hemo_3",
+            "effect_buff": {
+              "type": "Combine",
+              "effects": [
+                {
+                  "type": "Sfx",
+                  "name": "test_mod_darius_r_cast"
+                },
+                {
+                  "type": "Sfx",
+                  "name": "test_mod_darius_ult_voice"
+                },
+                {
+                  "type": "CasterViewEffect",
+                  "name": "test_mod_darius_noxian_guillotine_cast_vfx"
+                },
+                {
+                  "type": "RushMoveToBack",
+                  "speed": 3200,
+                  "applied_effects": [
+                    {
+                      "type": "Combine",
+                      "effects": [
+                        {
+                          "type": "FixedAttack",
+                          "damage": 200,
+                          "attack_ratio": 155
+                        },
+                        {
+                          "type": "Stun",
+                          "duration": 8
+                        },
+                        {
+                          "type": "ViewEffect",
+                          "name": "test_mod_darius_noxian_guillotine_hit_vfx"
+                        },
+                        {
+                          "type": "TargetSfx",
+                          "name": "test_mod_darius_r_hit"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "effect_none": {
+              "type": "SwitchByBuff",
+              "buff_name": "test_mod_darius_hemo_2",
+              "effect_buff": {
+                "type": "Combine",
+                "effects": [
+                  {
+                    "type": "Sfx",
+                    "name": "test_mod_darius_r_cast"
+                  },
+                  {
+                    "type": "Sfx",
+                    "name": "test_mod_darius_ult_voice"
+                  },
+                  {
+                    "type": "CasterViewEffect",
+                    "name": "test_mod_darius_noxian_guillotine_cast_vfx"
+                  },
+                  {
+                    "type": "RushMoveToBack",
+                    "speed": 3200,
+                    "applied_effects": [
+                      {
+                        "type": "Combine",
+                        "effects": [
+                          {
+                            "type": "FixedAttack",
+                            "damage": 170,
+                            "attack_ratio": 140
+                          },
+                          {
+                            "type": "Stun",
+                            "duration": 8
+                          },
+                          {
+                            "type": "ViewEffect",
+                            "name": "test_mod_darius_noxian_guillotine_hit_vfx"
+                          },
+                          {
+                            "type": "TargetSfx",
+                            "name": "test_mod_darius_r_hit"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "effect_none": {
+                "type": "SwitchByBuff",
+                "buff_name": "test_mod_darius_hemo_1",
+                "effect_buff": {
+                  "type": "Combine",
+                  "effects": [
+                    {
+                      "type": "Sfx",
+                      "name": "test_mod_darius_r_cast"
+                    },
+                    {
+                      "type": "Sfx",
+                      "name": "test_mod_darius_ult_voice"
+                    },
+                    {
+                      "type": "CasterViewEffect",
+                      "name": "test_mod_darius_noxian_guillotine_cast_vfx"
+                    },
+                    {
+                      "type": "RushMoveToBack",
+                      "speed": 3200,
+                      "applied_effects": [
+                        {
+                          "type": "Combine",
+                          "effects": [
+                            {
+                              "type": "FixedAttack",
+                              "damage": 145,
+                              "attack_ratio": 130
+                            },
+                            {
+                              "type": "Stun",
+                              "duration": 8
+                            },
+                            {
+                              "type": "ViewEffect",
+                              "name": "test_mod_darius_noxian_guillotine_hit_vfx"
+                            },
+                            {
+                              "type": "TargetSfx",
+                              "name": "test_mod_darius_r_hit"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "effect_none": {
+                  "type": "Combine",
+                  "effects": [
+                    {
+                      "type": "Sfx",
+                      "name": "test_mod_darius_r_cast"
+                    },
+                    {
+                      "type": "Sfx",
+                      "name": "test_mod_darius_ult_voice"
+                    },
+                    {
+                      "type": "CasterViewEffect",
+                      "name": "test_mod_darius_noxian_guillotine_cast_vfx"
+                    },
+                    {
+                      "type": "RushMoveToBack",
+                      "speed": 3200,
+                      "applied_effects": [
+                        {
+                          "type": "Combine",
+                          "effects": [
+                            {
+                              "type": "FixedAttack",
+                              "damage": 120,
+                              "attack_ratio": 120
+                            },
+                            {
+                              "type": "Stun",
+                              "duration": 8
+                            },
+                            {
+                              "type": "ViewEffect",
+                              "name": "test_mod_darius_noxian_guillotine_hit_vfx"
+                            },
+                            {
+                              "type": "TargetSfx",
+                              "name": "test_mod_darius_r_hit"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "view_projectiles": [
+    {
+      "type": "Animated",
+      "name": "test_mod_darius_apprehend",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/darius_apprehend",
+      "tag": "chain",
+      "z": 1,
+      "repeat": false
+    }
+  ],
+  "view_effects": [
+    {
+      "type": "Animation",
+      "name": "test_mod_darius_attack_slash_vfx",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/darius_attack_slash",
+      "tag": "slash",
+      "z": 1,
+      "is_follow": true
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_darius_bleed_apply_vfx",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/darius_bleed_apply",
+      "tag": "hit",
+      "z": 2,
+      "is_follow": true
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_darius_decimate_cast_vfx",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/darius_decimate",
+      "tag": "swing",
+      "z": 2,
+      "is_follow": true
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_darius_decimate_heal_vfx",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/darius_decimate_heal",
+      "tag": "heal",
+      "z": 2,
+      "is_follow": true
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_darius_apprehend_cast_vfx",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/darius_apprehend",
+      "tag": "chain",
+      "z": 2,
+      "is_follow": true
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_darius_crippling_strike_vfx",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/darius_crippling_strike",
+      "tag": "hit",
+      "z": 2,
+      "is_follow": true
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_darius_noxian_guillotine_cast_vfx",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/darius_noxian_guillotine",
+      "tag": "cast",
+      "z": 2,
+      "is_follow": true
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_darius_noxian_guillotine_hit_vfx",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/darius_noxian_guillotine_hit",
+      "tag": "hit",
+      "z": 3,
+      "is_follow": false
+    }
+  ],
+  "view_buffs": [
+    {
+      "type": "Animated",
+      "name": "test_mod_darius_noxian_might_visual",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/darius_noxian_might_aura",
+      "tag": "loop",
+      "z": -1
+    }
+  ]
+}

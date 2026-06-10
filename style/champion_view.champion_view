@@ -259,6 +259,26 @@
         "x": 0,
         "y": -14
       }
+    },
+    "bo_league_champions_darius": {
+      "face": {
+        "x": 2,
+        "y": -31
+      },
+      "center": {
+        "x": 0,
+        "y": -13
+      }
+    },
+    "test_mod_darius": {
+      "face": {
+        "x": 2,
+        "y": -31
+      },
+      "center": {
+        "x": 0,
+        "y": -13
+      }
     }
   }
 }

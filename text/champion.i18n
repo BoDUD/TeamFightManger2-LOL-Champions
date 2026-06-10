@@ -182,6 +182,20 @@
         "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain. The first enemy hit takes magic damage, is stunned, heavily slowed, and briefly loses movement skills. Champion hits grant a permanent soul stack.",
         "skill2": "W/E - Dark Passage / Flay: Thresh lights the lantern for a shield, then sweeps the chain scythe forward to push and slow enemies. Champion hits grant a permanent soul stack.",
         "ult": "R - The Box: Thresh creates spectral prison walls around himself, damaging enemies, strongly slowing them, and briefly blocking movement skills. Champion hits grant permanent souls."
+      },
+      "bo_league_champions_darius": {
+        "name": "Darius",
+        "attack": "Hemorrhage: Darius cleaves with his axe for <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as physical damage and advances Hemorrhage. At five stacks he gains Noxian Might.",
+        "skill": "Q - Decimate: Darius spins his axe in a red outer circle, dealing <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> as physical damage, applying Hemorrhage, and healing himself when enemies are struck.",
+        "skill2": "E/W - Apprehend and Crippling Strike: Darius sweeps his axe forward in a chain-like hook line, briefly stunning, slowing, and blocking movement skills. The cast primes his next attack as Crippling Strike.",
+        "ult": "R - Noxian Guillotine: Darius rushes behind an enemy champion and executes with true damage that scales with Hemorrhage stacks."
+      },
+      "test_mod_darius": {
+        "name": "Darius",
+        "attack": "Hemorrhage: Darius cleaves with his axe for <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as physical damage and advances Hemorrhage. At five stacks he gains Noxian Might.",
+        "skill": "Q - Decimate: Darius spins his axe in a red outer circle, dealing <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> as physical damage, applying Hemorrhage, and healing himself when enemies are struck.",
+        "skill2": "E/W - Apprehend and Crippling Strike: Darius sweeps his axe forward in a chain-like hook line, briefly stunning, slowing, and blocking movement skills. The cast primes his next attack as Crippling Strike.",
+        "ult": "R - Noxian Guillotine: Darius rushes behind an enemy champion and executes with true damage that scales with Hemorrhage stacks."
       }
     }
   },
@@ -368,6 +382,20 @@
         "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
         "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
         "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
+      },
+      "bo_league_champions_darius": {
+        "name": "Darius",
+        "attack": "Hemorrhage: Darius, the Hand of Noxus, cleaves with his axe for <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as physical damage and advances Hemorrhage. At five stacks he gains Noxian Might. If Crippling Strike is primed, the next attack deals heavier damage and <#ef5350ff>slows<> the target.",
+        "skill": "Q - Decimate: Darius spins his axe in a red outer circle, dealing <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> as physical damage, applying Hemorrhage, and healing himself when enemies are struck. During Noxian Might, Decimate deals more damage and heals more.",
+        "skill2": "E/W - Apprehend and Crippling Strike: Darius sweeps his axe forward in a chain-like hook line, dealing <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>60% attack damage<>, briefly stunning, slowing, and blocking movement skills. The cast primes his next attack as Crippling Strike.",
+        "ult": "R - Noxian Guillotine: Darius rushes behind an enemy champion and executes with true damage. The blow scales with Hemorrhage stacks, reaches its highest damage at five stacks or during Noxian Might, and plays Darius's Noxian Guillotine voice line."
+      },
+      "test_mod_darius": {
+        "name": "Darius",
+        "attack": "Hemorrhage: Darius, the Hand of Noxus, cleaves with his axe for <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as physical damage and advances Hemorrhage. At five stacks he gains Noxian Might. If Crippling Strike is primed, the next attack deals heavier damage and <#ef5350ff>slows<> the target.",
+        "skill": "Q - Decimate: Darius spins his axe in a red outer circle, dealing <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> as physical damage, applying Hemorrhage, and healing himself when enemies are struck. During Noxian Might, Decimate deals more damage and heals more.",
+        "skill2": "E/W - Apprehend and Crippling Strike: Darius sweeps his axe forward in a chain-like hook line, dealing <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>60% attack damage<>, briefly stunning, slowing, and blocking movement skills. The cast primes his next attack as Crippling Strike.",
+        "ult": "R - Noxian Guillotine: Darius rushes behind an enemy champion and executes with true damage. The blow scales with Hemorrhage stacks, reaches its highest damage at five stacks or during Noxian Might, and plays Darius's Noxian Guillotine voice line."
       }
     }
   },
@@ -554,6 +582,20 @@
         "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
         "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
         "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
+      },
+      "bo_league_champions_darius": {
+        "name": "Darius",
+        "attack": "Hemorrhage: Darius cleaves with his axe for <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as physical damage and advances Hemorrhage. At five stacks he gains Noxian Might.",
+        "skill": "Q - Decimate: Darius spins his axe in a red outer circle, dealing <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> as physical damage, applying Hemorrhage, and healing himself when enemies are struck.",
+        "skill2": "E/W - Apprehend and Crippling Strike: Darius sweeps his axe forward in a chain-like hook line, briefly stunning, slowing, and blocking movement skills. The cast primes his next attack as Crippling Strike.",
+        "ult": "R - Noxian Guillotine: Darius rushes behind an enemy champion and executes with true damage that scales with Hemorrhage stacks."
+      },
+      "test_mod_darius": {
+        "name": "Darius",
+        "attack": "Hemorrhage: Darius cleaves with his axe for <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as physical damage and advances Hemorrhage. At five stacks he gains Noxian Might.",
+        "skill": "Q - Decimate: Darius spins his axe in a red outer circle, dealing <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> as physical damage, applying Hemorrhage, and healing himself when enemies are struck.",
+        "skill2": "E/W - Apprehend and Crippling Strike: Darius sweeps his axe forward in a chain-like hook line, briefly stunning, slowing, and blocking movement skills. The cast primes his next attack as Crippling Strike.",
+        "ult": "R - Noxian Guillotine: Darius rushes behind an enemy champion and executes with true damage that scales with Hemorrhage stacks."
       }
     }
   },
@@ -740,6 +782,20 @@
         "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
         "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
         "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
+      },
+      "bo_league_champions_darius": {
+        "name": "Darius",
+        "attack": "Hemorrhage: Darius, the Hand of Noxus, cleaves with his axe for <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as physical damage and advances Hemorrhage. At five stacks he gains Noxian Might. If Crippling Strike is primed, the next attack deals heavier damage and <#ef5350ff>slows<> the target.",
+        "skill": "Q - Decimate: Darius spins his axe in a red outer circle, dealing <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> as physical damage, applying Hemorrhage, and healing himself when enemies are struck. During Noxian Might, Decimate deals more damage and heals more.",
+        "skill2": "E/W - Apprehend and Crippling Strike: Darius sweeps his axe forward in a chain-like hook line, dealing <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>60% attack damage<>, briefly stunning, slowing, and blocking movement skills. The cast primes his next attack as Crippling Strike.",
+        "ult": "R - Noxian Guillotine: Darius rushes behind an enemy champion and executes with true damage. The blow scales with Hemorrhage stacks, reaches its highest damage at five stacks or during Noxian Might, and plays Darius's Noxian Guillotine voice line."
+      },
+      "test_mod_darius": {
+        "name": "Darius",
+        "attack": "Hemorrhage: Darius, the Hand of Noxus, cleaves with his axe for <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as physical damage and advances Hemorrhage. At five stacks he gains Noxian Might. If Crippling Strike is primed, the next attack deals heavier damage and <#ef5350ff>slows<> the target.",
+        "skill": "Q - Decimate: Darius spins his axe in a red outer circle, dealing <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> as physical damage, applying Hemorrhage, and healing himself when enemies are struck. During Noxian Might, Decimate deals more damage and heals more.",
+        "skill2": "E/W - Apprehend and Crippling Strike: Darius sweeps his axe forward in a chain-like hook line, dealing <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>60% attack damage<>, briefly stunning, slowing, and blocking movement skills. The cast primes his next attack as Crippling Strike.",
+        "ult": "R - Noxian Guillotine: Darius rushes behind an enemy champion and executes with true damage. The blow scales with Hemorrhage stacks, reaches its highest damage at five stacks or during Noxian Might, and plays Darius's Noxian Guillotine voice line."
       }
     }
   },
@@ -926,6 +982,20 @@
         "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
         "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
         "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
+      },
+      "bo_league_champions_darius": {
+        "name": "Darius",
+        "attack": "Hemorrhage: Darius, the Hand of Noxus, cleaves with his axe for <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as physical damage and advances Hemorrhage. At five stacks he gains Noxian Might. If Crippling Strike is primed, the next attack deals heavier damage and <#ef5350ff>slows<> the target.",
+        "skill": "Q - Decimate: Darius spins his axe in a red outer circle, dealing <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> as physical damage, applying Hemorrhage, and healing himself when enemies are struck. During Noxian Might, Decimate deals more damage and heals more.",
+        "skill2": "E/W - Apprehend and Crippling Strike: Darius sweeps his axe forward in a chain-like hook line, dealing <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>60% attack damage<>, briefly stunning, slowing, and blocking movement skills. The cast primes his next attack as Crippling Strike.",
+        "ult": "R - Noxian Guillotine: Darius rushes behind an enemy champion and executes with true damage. The blow scales with Hemorrhage stacks, reaches its highest damage at five stacks or during Noxian Might, and plays Darius's Noxian Guillotine voice line."
+      },
+      "test_mod_darius": {
+        "name": "Darius",
+        "attack": "Hemorrhage: Darius, the Hand of Noxus, cleaves with his axe for <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as physical damage and advances Hemorrhage. At five stacks he gains Noxian Might. If Crippling Strike is primed, the next attack deals heavier damage and <#ef5350ff>slows<> the target.",
+        "skill": "Q - Decimate: Darius spins his axe in a red outer circle, dealing <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> as physical damage, applying Hemorrhage, and healing himself when enemies are struck. During Noxian Might, Decimate deals more damage and heals more.",
+        "skill2": "E/W - Apprehend and Crippling Strike: Darius sweeps his axe forward in a chain-like hook line, dealing <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>60% attack damage<>, briefly stunning, slowing, and blocking movement skills. The cast primes his next attack as Crippling Strike.",
+        "ult": "R - Noxian Guillotine: Darius rushes behind an enemy champion and executes with true damage. The blow scales with Hemorrhage stacks, reaches its highest damage at five stacks or during Noxian Might, and plays Darius's Noxian Guillotine voice line."
       }
     }
   },
@@ -1112,6 +1182,20 @@
         "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
         "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
         "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
+      },
+      "bo_league_champions_darius": {
+        "name": "Darius",
+        "attack": "Hemorrhage: Darius, the Hand of Noxus, cleaves with his axe for <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as physical damage and advances Hemorrhage. At five stacks he gains Noxian Might. If Crippling Strike is primed, the next attack deals heavier damage and <#ef5350ff>slows<> the target.",
+        "skill": "Q - Decimate: Darius spins his axe in a red outer circle, dealing <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> as physical damage, applying Hemorrhage, and healing himself when enemies are struck. During Noxian Might, Decimate deals more damage and heals more.",
+        "skill2": "E/W - Apprehend and Crippling Strike: Darius sweeps his axe forward in a chain-like hook line, dealing <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>60% attack damage<>, briefly stunning, slowing, and blocking movement skills. The cast primes his next attack as Crippling Strike.",
+        "ult": "R - Noxian Guillotine: Darius rushes behind an enemy champion and executes with true damage. The blow scales with Hemorrhage stacks, reaches its highest damage at five stacks or during Noxian Might, and plays Darius's Noxian Guillotine voice line."
+      },
+      "test_mod_darius": {
+        "name": "Darius",
+        "attack": "Hemorrhage: Darius, the Hand of Noxus, cleaves with his axe for <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as physical damage and advances Hemorrhage. At five stacks he gains Noxian Might. If Crippling Strike is primed, the next attack deals heavier damage and <#ef5350ff>slows<> the target.",
+        "skill": "Q - Decimate: Darius spins his axe in a red outer circle, dealing <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> as physical damage, applying Hemorrhage, and healing himself when enemies are struck. During Noxian Might, Decimate deals more damage and heals more.",
+        "skill2": "E/W - Apprehend and Crippling Strike: Darius sweeps his axe forward in a chain-like hook line, dealing <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>60% attack damage<>, briefly stunning, slowing, and blocking movement skills. The cast primes his next attack as Crippling Strike.",
+        "ult": "R - Noxian Guillotine: Darius rushes behind an enemy champion and executes with true damage. The blow scales with Hemorrhage stacks, reaches its highest damage at five stacks or during Noxian Might, and plays Darius's Noxian Guillotine voice line."
       }
     }
   },
@@ -1298,6 +1382,20 @@
         "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
         "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
         "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
+      },
+      "bo_league_champions_darius": {
+        "name": "Darius",
+        "attack": "Hemorrhage: Darius, the Hand of Noxus, cleaves with his axe for <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as physical damage and advances Hemorrhage. At five stacks he gains Noxian Might. If Crippling Strike is primed, the next attack deals heavier damage and <#ef5350ff>slows<> the target.",
+        "skill": "Q - Decimate: Darius spins his axe in a red outer circle, dealing <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> as physical damage, applying Hemorrhage, and healing himself when enemies are struck. During Noxian Might, Decimate deals more damage and heals more.",
+        "skill2": "E/W - Apprehend and Crippling Strike: Darius sweeps his axe forward in a chain-like hook line, dealing <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>60% attack damage<>, briefly stunning, slowing, and blocking movement skills. The cast primes his next attack as Crippling Strike.",
+        "ult": "R - Noxian Guillotine: Darius rushes behind an enemy champion and executes with true damage. The blow scales with Hemorrhage stacks, reaches its highest damage at five stacks or during Noxian Might, and plays Darius's Noxian Guillotine voice line."
+      },
+      "test_mod_darius": {
+        "name": "Darius",
+        "attack": "Hemorrhage: Darius, the Hand of Noxus, cleaves with his axe for <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as physical damage and advances Hemorrhage. At five stacks he gains Noxian Might. If Crippling Strike is primed, the next attack deals heavier damage and <#ef5350ff>slows<> the target.",
+        "skill": "Q - Decimate: Darius spins his axe in a red outer circle, dealing <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> as physical damage, applying Hemorrhage, and healing himself when enemies are struck. During Noxian Might, Decimate deals more damage and heals more.",
+        "skill2": "E/W - Apprehend and Crippling Strike: Darius sweeps his axe forward in a chain-like hook line, dealing <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>60% attack damage<>, briefly stunning, slowing, and blocking movement skills. The cast primes his next attack as Crippling Strike.",
+        "ult": "R - Noxian Guillotine: Darius rushes behind an enemy champion and executes with true damage. The blow scales with Hemorrhage stacks, reaches its highest damage at five stacks or during Noxian Might, and plays Darius's Noxian Guillotine voice line."
       }
     }
   },
@@ -1484,6 +1582,20 @@
         "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
         "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
         "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
+      },
+      "bo_league_champions_darius": {
+        "name": "Darius",
+        "attack": "Hemorrhage: Darius, the Hand of Noxus, cleaves with his axe for <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as physical damage and advances Hemorrhage. At five stacks he gains Noxian Might. If Crippling Strike is primed, the next attack deals heavier damage and <#ef5350ff>slows<> the target.",
+        "skill": "Q - Decimate: Darius spins his axe in a red outer circle, dealing <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> as physical damage, applying Hemorrhage, and healing himself when enemies are struck. During Noxian Might, Decimate deals more damage and heals more.",
+        "skill2": "E/W - Apprehend and Crippling Strike: Darius sweeps his axe forward in a chain-like hook line, dealing <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>60% attack damage<>, briefly stunning, slowing, and blocking movement skills. The cast primes his next attack as Crippling Strike.",
+        "ult": "R - Noxian Guillotine: Darius rushes behind an enemy champion and executes with true damage. The blow scales with Hemorrhage stacks, reaches its highest damage at five stacks or during Noxian Might, and plays Darius's Noxian Guillotine voice line."
+      },
+      "test_mod_darius": {
+        "name": "Darius",
+        "attack": "Hemorrhage: Darius, the Hand of Noxus, cleaves with his axe for <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as physical damage and advances Hemorrhage. At five stacks he gains Noxian Might. If Crippling Strike is primed, the next attack deals heavier damage and <#ef5350ff>slows<> the target.",
+        "skill": "Q - Decimate: Darius spins his axe in a red outer circle, dealing <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> as physical damage, applying Hemorrhage, and healing himself when enemies are struck. During Noxian Might, Decimate deals more damage and heals more.",
+        "skill2": "E/W - Apprehend and Crippling Strike: Darius sweeps his axe forward in a chain-like hook line, dealing <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>60% attack damage<>, briefly stunning, slowing, and blocking movement skills. The cast primes his next attack as Crippling Strike.",
+        "ult": "R - Noxian Guillotine: Darius rushes behind an enemy champion and executes with true damage. The blow scales with Hemorrhage stacks, reaches its highest damage at five stacks or during Noxian Might, and plays Darius's Noxian Guillotine voice line."
       }
     }
   },
@@ -1670,6 +1782,20 @@
         "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
         "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
         "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
+      },
+      "bo_league_champions_darius": {
+        "name": "Darius",
+        "attack": "Hemorrhage: Darius, the Hand of Noxus, cleaves with his axe for <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as physical damage and advances Hemorrhage. At five stacks he gains Noxian Might. If Crippling Strike is primed, the next attack deals heavier damage and <#ef5350ff>slows<> the target.",
+        "skill": "Q - Decimate: Darius spins his axe in a red outer circle, dealing <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> as physical damage, applying Hemorrhage, and healing himself when enemies are struck. During Noxian Might, Decimate deals more damage and heals more.",
+        "skill2": "E/W - Apprehend and Crippling Strike: Darius sweeps his axe forward in a chain-like hook line, dealing <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>60% attack damage<>, briefly stunning, slowing, and blocking movement skills. The cast primes his next attack as Crippling Strike.",
+        "ult": "R - Noxian Guillotine: Darius rushes behind an enemy champion and executes with true damage. The blow scales with Hemorrhage stacks, reaches its highest damage at five stacks or during Noxian Might, and plays Darius's Noxian Guillotine voice line."
+      },
+      "test_mod_darius": {
+        "name": "Darius",
+        "attack": "Hemorrhage: Darius, the Hand of Noxus, cleaves with his axe for <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as physical damage and advances Hemorrhage. At five stacks he gains Noxian Might. If Crippling Strike is primed, the next attack deals heavier damage and <#ef5350ff>slows<> the target.",
+        "skill": "Q - Decimate: Darius spins his axe in a red outer circle, dealing <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> as physical damage, applying Hemorrhage, and healing himself when enemies are struck. During Noxian Might, Decimate deals more damage and heals more.",
+        "skill2": "E/W - Apprehend and Crippling Strike: Darius sweeps his axe forward in a chain-like hook line, dealing <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>60% attack damage<>, briefly stunning, slowing, and blocking movement skills. The cast primes his next attack as Crippling Strike.",
+        "ult": "R - Noxian Guillotine: Darius rushes behind an enemy champion and executes with true damage. The blow scales with Hemorrhage stacks, reaches its highest damage at five stacks or during Noxian Might, and plays Darius's Noxian Guillotine voice line."
       }
     }
   },
@@ -1856,6 +1982,20 @@
         "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
         "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
         "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
+      },
+      "bo_league_champions_darius": {
+        "name": "Darius",
+        "attack": "Hemorrhage: Darius, the Hand of Noxus, cleaves with his axe for <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as physical damage and advances Hemorrhage. At five stacks he gains Noxian Might. If Crippling Strike is primed, the next attack deals heavier damage and <#ef5350ff>slows<> the target.",
+        "skill": "Q - Decimate: Darius spins his axe in a red outer circle, dealing <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> as physical damage, applying Hemorrhage, and healing himself when enemies are struck. During Noxian Might, Decimate deals more damage and heals more.",
+        "skill2": "E/W - Apprehend and Crippling Strike: Darius sweeps his axe forward in a chain-like hook line, dealing <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>60% attack damage<>, briefly stunning, slowing, and blocking movement skills. The cast primes his next attack as Crippling Strike.",
+        "ult": "R - Noxian Guillotine: Darius rushes behind an enemy champion and executes with true damage. The blow scales with Hemorrhage stacks, reaches its highest damage at five stacks or during Noxian Might, and plays Darius's Noxian Guillotine voice line."
+      },
+      "test_mod_darius": {
+        "name": "Darius",
+        "attack": "Hemorrhage: Darius, the Hand of Noxus, cleaves with his axe for <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as physical damage and advances Hemorrhage. At five stacks he gains Noxian Might. If Crippling Strike is primed, the next attack deals heavier damage and <#ef5350ff>slows<> the target.",
+        "skill": "Q - Decimate: Darius spins his axe in a red outer circle, dealing <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> as physical damage, applying Hemorrhage, and healing himself when enemies are struck. During Noxian Might, Decimate deals more damage and heals more.",
+        "skill2": "E/W - Apprehend and Crippling Strike: Darius sweeps his axe forward in a chain-like hook line, dealing <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>60% attack damage<>, briefly stunning, slowing, and blocking movement skills. The cast primes his next attack as Crippling Strike.",
+        "ult": "R - Noxian Guillotine: Darius rushes behind an enemy champion and executes with true damage. The blow scales with Hemorrhage stacks, reaches its highest damage at five stacks or during Noxian Might, and plays Darius's Noxian Guillotine voice line."
       }
     }
   },
@@ -2042,6 +2182,20 @@
         "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
         "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
         "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
+      },
+      "bo_league_champions_darius": {
+        "name": "Darius",
+        "attack": "Hemorrhage: Darius, the Hand of Noxus, cleaves with his axe for <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as physical damage and advances Hemorrhage. At five stacks he gains Noxian Might. If Crippling Strike is primed, the next attack deals heavier damage and <#ef5350ff>slows<> the target.",
+        "skill": "Q - Decimate: Darius spins his axe in a red outer circle, dealing <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> as physical damage, applying Hemorrhage, and healing himself when enemies are struck. During Noxian Might, Decimate deals more damage and heals more.",
+        "skill2": "E/W - Apprehend and Crippling Strike: Darius sweeps his axe forward in a chain-like hook line, dealing <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>60% attack damage<>, briefly stunning, slowing, and blocking movement skills. The cast primes his next attack as Crippling Strike.",
+        "ult": "R - Noxian Guillotine: Darius rushes behind an enemy champion and executes with true damage. The blow scales with Hemorrhage stacks, reaches its highest damage at five stacks or during Noxian Might, and plays Darius's Noxian Guillotine voice line."
+      },
+      "test_mod_darius": {
+        "name": "Darius",
+        "attack": "Hemorrhage: Darius, the Hand of Noxus, cleaves with his axe for <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as physical damage and advances Hemorrhage. At five stacks he gains Noxian Might. If Crippling Strike is primed, the next attack deals heavier damage and <#ef5350ff>slows<> the target.",
+        "skill": "Q - Decimate: Darius spins his axe in a red outer circle, dealing <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> as physical damage, applying Hemorrhage, and healing himself when enemies are struck. During Noxian Might, Decimate deals more damage and heals more.",
+        "skill2": "E/W - Apprehend and Crippling Strike: Darius sweeps his axe forward in a chain-like hook line, dealing <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>60% attack damage<>, briefly stunning, slowing, and blocking movement skills. The cast primes his next attack as Crippling Strike.",
+        "ult": "R - Noxian Guillotine: Darius rushes behind an enemy champion and executes with true damage. The blow scales with Hemorrhage stacks, reaches its highest damage at five stacks or during Noxian Might, and plays Darius's Noxian Guillotine voice line."
       }
     }
   },
@@ -2228,6 +2382,20 @@
         "skill": "Q - 死亡判决：锤石向前投出不可穿透的钩锁。命中的第一个敌人受到<#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75%法术强度<>的魔法伤害，被眩晕、重度减速，并短暂无法使用位移技能。命中英雄会获得永久地狱诅咒灵魂层数。",
         "skill2": "W/E - 魂引之灯 / 厄运钟摆：锤石点亮魂灯为自己提供护盾，随后向前横扫锁链镰刀。敌人受到魔法伤害、被击退并减速；命中英雄会获得永久灵魂层数。",
         "ult": "R - 幽冥监牢：锤石在自身周围召唤幽绿色灵魂墙。范围内敌人受到高额魔法伤害、强烈减速，并短暂无法使用位移技能。监牢会短暂残留为减速力场，命中英雄获得永久灵魂。"
+      },
+      "bo_league_champions_darius": {
+        "name": "诺克萨斯之手",
+        "attack": "出血：诺手 Darius 挥动巨斧，造成 <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110%攻击力<> 的物理伤害并推进出血层数。5层时获得诺克萨斯之力。若已准备致残打击，下一次普攻会造成更高伤害并<#ef5350ff>减速<>目标。",
+        "skill": "Q - 大杀四方：诺克萨斯之手旋转巨斧形成红色外圈，造成 <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95%攻击力<> 的物理伤害、施加出血，并在命中敌人时治疗自己。诺克萨斯之力期间伤害与治疗更高。",
+        "skill2": "E/W - 无情铁手与致残打击：诺手向前挥出链钩般的斧势，造成 <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>60%攻击力<> 的物理伤害，短暂眩晕、减速并封锁位移技能。本次施放会准备下一次致残打击。",
+        "ult": "R - 诺克萨斯断头台：诺手冲到敌方英雄身后处决，造成真实伤害。伤害随出血层数提升，5层或诺克萨斯之力期间达到最高，并播放官方大招语音。"
+      },
+      "test_mod_darius": {
+        "name": "诺克萨斯之手",
+        "attack": "出血：诺手 Darius 挥动巨斧，造成 <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110%攻击力<> 的物理伤害并推进出血层数。5层时获得诺克萨斯之力。若已准备致残打击，下一次普攻会造成更高伤害并<#ef5350ff>减速<>目标。",
+        "skill": "Q - 大杀四方：诺克萨斯之手旋转巨斧形成红色外圈，造成 <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95%攻击力<> 的物理伤害、施加出血，并在命中敌人时治疗自己。诺克萨斯之力期间伤害与治疗更高。",
+        "skill2": "E/W - 无情铁手与致残打击：诺手向前挥出链钩般的斧势，造成 <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>60%攻击力<> 的物理伤害，短暂眩晕、减速并封锁位移技能。本次施放会准备下一次致残打击。",
+        "ult": "R - 诺克萨斯断头台：诺手冲到敌方英雄身后处决，造成真实伤害。伤害随出血层数提升，5层或诺克萨斯之力期间达到最高，并播放官方大招语音。"
       }
     }
   },
@@ -2414,6 +2582,20 @@
         "skill": "Q - 死亡判決：瑟雷西向前投出不可穿透的鉤鎖。命中的第一個敌人受到<#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75%魔法攻擊<>的魔法傷害，被暈眩、重度緩速，並短暫無法使用位移技能。命中英雄會獲得永久地獄詛咒靈魂層數。",
         "skill2": "W/E - 冥燈引路 / 厄運鐘擺：瑟雷西點亮冥燈為自己提供護盾，隨後向前橫掃鎖鏈鐮刀。敌人受到魔法傷害、被擊退並緩速；命中英雄會獲得永久靈魂層數。",
         "ult": "R - 幽冥監牢：瑟雷西在自身周圍召喚幽綠色靈魂牆。範圍內敌人受到高額魔法傷害、強烈緩速，並短暫無法使用位移技能。監牢會短暫殘留為緩速力場，命中英雄獲得永久靈魂。"
+      },
+      "bo_league_champions_darius": {
+        "name": "諾克薩斯之手",
+        "attack": "出血：諾手 Darius 揮動巨斧，造成 <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110%攻擊力<> 的物理傷害並推進出血層數。5層時獲得諾克薩斯之力。若已準備致殘打擊，下一次普攻會造成更高傷害並<#ef5350ff>緩速<>目標。",
+        "skill": "Q - 大殺四方：諾克薩斯之手旋轉巨斧形成紅色外圈，造成 <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95%攻擊力<> 的物理傷害、施加出血，並在命中敵人時治療自己。諾克薩斯之力期間傷害與治療更高。",
+        "skill2": "E/W - 無情鐵手與致殘打擊：諾手向前揮出鏈鉤般的斧勢，造成 <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>60%攻擊力<> 的物理傷害，短暫暈眩、緩速並封鎖位移技能。本次施放會準備下一次致殘打擊。",
+        "ult": "R - 諾克薩斯斷頭台：諾手衝到敵方英雄身後處決，造成真實傷害。傷害隨出血層數提升，5層或諾克薩斯之力期間達到最高，並播放官方大招語音。"
+      },
+      "test_mod_darius": {
+        "name": "諾克薩斯之手",
+        "attack": "出血：諾手 Darius 揮動巨斧，造成 <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110%攻擊力<> 的物理傷害並推進出血層數。5層時獲得諾克薩斯之力。若已準備致殘打擊，下一次普攻會造成更高傷害並<#ef5350ff>緩速<>目標。",
+        "skill": "Q - 大殺四方：諾克薩斯之手旋轉巨斧形成紅色外圈，造成 <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95%攻擊力<> 的物理傷害、施加出血，並在命中敵人時治療自己。諾克薩斯之力期間傷害與治療更高。",
+        "skill2": "E/W - 無情鐵手與致殘打擊：諾手向前揮出鏈鉤般的斧勢，造成 <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>60%攻擊力<> 的物理傷害，短暫暈眩、緩速並封鎖位移技能。本次施放會準備下一次致殘打擊。",
+        "ult": "R - 諾克薩斯斷頭台：諾手衝到敵方英雄身後處決，造成真實傷害。傷害隨出血層數提升，5層或諾克薩斯之力期間達到最高，並播放官方大招語音。"
       }
     }
   },
@@ -2600,6 +2782,20 @@
         "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
         "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
         "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
+      },
+      "bo_league_champions_darius": {
+        "name": "Darius",
+        "attack": "Hemorrhage: Darius, the Hand of Noxus, cleaves with his axe for <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as physical damage and advances Hemorrhage. At five stacks he gains Noxian Might. If Crippling Strike is primed, the next attack deals heavier damage and <#ef5350ff>slows<> the target.",
+        "skill": "Q - Decimate: Darius spins his axe in a red outer circle, dealing <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> as physical damage, applying Hemorrhage, and healing himself when enemies are struck. During Noxian Might, Decimate deals more damage and heals more.",
+        "skill2": "E/W - Apprehend and Crippling Strike: Darius sweeps his axe forward in a chain-like hook line, dealing <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>60% attack damage<>, briefly stunning, slowing, and blocking movement skills. The cast primes his next attack as Crippling Strike.",
+        "ult": "R - Noxian Guillotine: Darius rushes behind an enemy champion and executes with true damage. The blow scales with Hemorrhage stacks, reaches its highest damage at five stacks or during Noxian Might, and plays Darius's Noxian Guillotine voice line."
+      },
+      "test_mod_darius": {
+        "name": "Darius",
+        "attack": "Hemorrhage: Darius, the Hand of Noxus, cleaves with his axe for <#ff9028ff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>110% attack damage<> as physical damage and advances Hemorrhage. At five stacks he gains Noxian Might. If Crippling Strike is primed, the next attack deals heavier damage and <#ef5350ff>slows<> the target.",
+        "skill": "Q - Decimate: Darius spins his axe in a red outer circle, dealing <#ff9028ff>50<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>95% attack damage<> as physical damage, applying Hemorrhage, and healing himself when enemies are struck. During Noxian Might, Decimate deals more damage and heals more.",
+        "skill2": "E/W - Apprehend and Crippling Strike: Darius sweeps his axe forward in a chain-like hook line, dealing <#ff9028ff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ad_0><#ff9028ff>60% attack damage<>, briefly stunning, slowing, and blocking movement skills. The cast primes his next attack as Crippling Strike.",
+        "ult": "R - Noxian Guillotine: Darius rushes behind an enemy champion and executes with true damage. The blow scales with Hemorrhage stacks, reaches its highest damage at five stacks or during Noxian Might, and plays Darius's Noxian Guillotine voice line."
       }
     }
   }
