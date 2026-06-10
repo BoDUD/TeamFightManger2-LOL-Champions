@@ -113,6 +113,18 @@
       "channels": 1,
       "peak": 1.0,
       "rms": 0.1855
+    },
+    "test_mod_yasuo_ult_voice": {
+      "media_id": "959232333",
+      "clip": "test_mod_yasuo_ult_voice_clip",
+      "volume": 0.92,
+      "duration": 1.981,
+      "event_group": "03_1c2a16515d083f2e-0113-event-124787191",
+      "source_type": "fixed_official_vo",
+      "sample_rate": 44100,
+      "channels": 1
     }
-  }
+  },
+  "voice_source": "League of Legends Game/DATA/FINAL/Champions/Yasuo.en_US.wad.client",
+  "voice_extracted_with": "r3d2 WPK split + wwiser + vgmstream-cli"
 }

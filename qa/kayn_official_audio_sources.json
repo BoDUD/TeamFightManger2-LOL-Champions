@@ -89,7 +89,20 @@
       "channels": 1,
       "peak": 0.6932,
       "rms": 0.065
+    },
+    "test_mod_kayn_ult_voice": {
+      "media_id": "136354677",
+      "clip": "test_mod_kayn_ult_voice_clip",
+      "volume": 0.9,
+      "duration": 4.667,
+      "event_group": "08_8ca6376942b2a0a4-0033-event-2027467427",
+      "state": "kayn=1291433366",
+      "source_type": "fixed_official_vo",
+      "sample_rate": 44100,
+      "channels": 1
     }
   },
-  "extracted_with": "lol-wad-parser + wwiser bnkextr + vgmstream-cli"
+  "extracted_with": "lol-wad-parser + wwiser bnkextr + vgmstream-cli",
+  "voice_source": "League of Legends Game/DATA/FINAL/Champions/Kayn.en_US.wad.client",
+  "voice_extracted_with": "r3d2 WPK split + wwiser + vgmstream-cli"
 }

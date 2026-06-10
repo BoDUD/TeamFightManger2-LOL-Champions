@@ -404,6 +404,10 @@
           "name": "test_mod_aatrox_ult_cast"
         },
         {
+          "type": "Sfx",
+          "name": "test_mod_aatrox_ult_voice"
+        },
+        {
           "type": "AddCasterBuff",
           "buff_state": {
             "name": "test_mod_aatrox_world_ender",

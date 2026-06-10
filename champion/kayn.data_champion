@@ -344,6 +344,10 @@
           "name": "test_mod_kayn_r_cast"
         },
         {
+          "type": "Sfx",
+          "name": "test_mod_kayn_ult_voice"
+        },
+        {
           "type": "CasterViewEffect",
           "name": "test_mod_kayn_r_entry"
         },

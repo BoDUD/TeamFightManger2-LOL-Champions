@@ -142,6 +142,7 @@ KAYN_SOUND_MEDIA_IDS = {
     "test_mod_kayn_w_hit": "800215479",
     "test_mod_kayn_r_cast": "49181076",
     "test_mod_kayn_r_hit": "710731227",
+    "test_mod_kayn_ult_voice": "136354677",
 }
 KAYN_SKILL_SOUND_EVENTS = {
     "test_mod_kayn_q_cast",
@@ -150,6 +151,7 @@ KAYN_SKILL_SOUND_EVENTS = {
     "test_mod_kayn_w_hit",
     "test_mod_kayn_r_cast",
     "test_mod_kayn_r_hit",
+    "test_mod_kayn_ult_voice",
 }
 KAYN_SKILL_SOUND_VOLUME_FLOOR = 0.78
 KAYN_CORE_ACTIONS = ("idle", "run", "attack", "skill", "skill2", "hit", "dead", "ult")
@@ -223,6 +225,7 @@ YASUO_SOUND_MEDIA_IDS = {
     "test_mod_yasuo_wind_wall_cast": "663920909",
     "test_mod_yasuo_r_cast": "122167141",
     "test_mod_yasuo_r_hit": "706858599",
+    "test_mod_yasuo_ult_voice": "959232333",
 }
 YASUO_SKILL_SOUND_EVENTS = {
     "test_mod_yasuo_q_cast",
@@ -234,6 +237,7 @@ YASUO_SKILL_SOUND_EVENTS = {
     "test_mod_yasuo_wind_wall_cast",
     "test_mod_yasuo_r_cast",
     "test_mod_yasuo_r_hit",
+    "test_mod_yasuo_ult_voice",
 }
 YASUO_SKILL_SOUND_VOLUME_FLOOR = 0.80
 AATROX_SOUND_MEDIA_IDS = {
@@ -243,6 +247,7 @@ AATROX_SOUND_MEDIA_IDS = {
     "test_mod_aatrox_cleave_hit": ("711456995",),
     "test_mod_aatrox_dash_cast": ("243486348", "19360160"),
     "test_mod_aatrox_ult_cast": ("544373583",),
+    "test_mod_aatrox_ult_voice": ("216379411",),
 }
 AATROX_SKILL_SOUND_VOLUME_FLOOR = 0.80
 
@@ -910,9 +915,12 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
             "test_mod_aatrox_cleave_hit",
             "test_mod_aatrox_dash_cast",
             "test_mod_aatrox_ult_cast",
+            "test_mod_aatrox_ult_voice",
         },
         AATROX_SKILL_SOUND_VOLUME_FLOOR,
     )
+    if "test_mod_aatrox_ult_voice" not in set(walk_strings(aatrox.get("ult", {}))):
+        fail("Aatrox ult must play fixed official VO through test_mod_aatrox_ult_voice")
     overrides = load_json(ROOT / "mod.override_info")
     for clip_name in ("test_mod_aatrox_dash_voice_clip", "test_mod_aatrox_dash_effect_clip"):
         key = f"asset/base/sound/sfx/{clip_name}"
@@ -1082,6 +1090,8 @@ def check_kayn_rework_contract(text: dict[str, Any], entries: dict[str, Any]) ->
             fail(f"Kayn {action} must play {sfx_name} as the first top-level cast effect")
         if action in {"skill", "skill2"} and (not isinstance(effects[1], dict) or effects[1].get("type") != "SwitchByBuff"):
             fail(f"Kayn {action} must keep its form branch logic after the top-level cast SFX")
+    if "test_mod_kayn_ult_voice" not in set(walk_strings(kayn.get("ult", {}))):
+        fail("Kayn ult must play fixed official VO through test_mod_kayn_ult_voice")
     projectile_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in kayn.get("view_projectiles", [])}
     for name, expected in KAYN_EFFECT_REFS.items():
         if projectile_refs.get(name) != expected:
@@ -1165,8 +1175,8 @@ def check_yasuo_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
         view = entries.get(yasuo_id)
         if not isinstance(view, dict):
             fail(f"style/champion_view.champion_view missing entries.{yasuo_id}")
-        if view.get("face", {}).get("y") != -34:
-            fail(f"style entry {yasuo_id}.face.y must keep Yasuo compact portrait aligned at -34")
+        if view.get("face", {}).get("x") != 4 or view.get("face", {}).get("y") != -26:
+            fail(f"style entry {yasuo_id}.face must keep Yasuo compact portrait aligned at x=4,y=-26")
         if view.get("center", {}).get("y") != -12:
             fail(f"style entry {yasuo_id}.center.y must place the full model above the name")
 
@@ -1252,8 +1262,8 @@ def check_yasuo_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
                 fail(f"Yasuo {action} frame {index} body height {body_height}px is too large for UI/battle labels")
             if bottom_safe < 6:
                 fail(f"Yasuo {action} frame {index} leaves only {bottom_safe}px bottom safety above labels")
-            if action == "run" and frame.get("duration") != 0.065:
-                fail(f"Yasuo run frame {index} must keep stable 0.065s timing")
+            if action == "run" and frame.get("duration") != 0.085:
+                fail(f"Yasuo run frame {index} must keep the slower 0.085s timing")
             action_hashes[action].append(alpha_frame_hash(sheet_alpha, sheet_width, (x, y, w, h)))
         if action in {"attack", "skill", "skill2", "ult"} and len(set(action_hashes[action])) < min(4, len(action_hashes[action])):
             fail(f"Yasuo {action} must have real action motion, not repeated idle frames")
@@ -1305,6 +1315,8 @@ def check_yasuo_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
     ):
         if sfx_name not in set(walk_strings(yasuo.get(action, {}))):
             fail(f"Yasuo {action} must trigger {sfx_name}")
+    if "test_mod_yasuo_ult_voice" not in set(walk_strings(yasuo.get("ult", {}))):
+        fail("Yasuo ult must play fixed official VO through test_mod_yasuo_ult_voice")
 
     assert_official_audio_sources(
         "yasuo",
