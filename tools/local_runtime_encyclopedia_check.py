@@ -220,6 +220,72 @@ def assert_no_negative_speed_fields(node: object, label: str) -> None:
             fail(f"{label} has invalid negative speed {speed!r} on {effect_type}; TFM2 expects unsigned movement speeds")
 
 
+def check_viktor_ground_vfx(path: Path, champion: object) -> None:
+    if path.name != "viktor.data_champion":
+        return
+    if not isinstance(champion, dict):
+        fail(f"{path} must contain a JSON object")
+    skill2 = champion.get("skill2", {})
+    skill2_effect = skill2.get("effect", {}) if isinstance(skill2, dict) else {}
+    skill2_effects = skill2_effect.get("effects", []) if isinstance(skill2_effect, dict) else []
+    if not isinstance(skill2_effects, list):
+        fail(f"{path} skill2.effect.effects must be a list")
+    for node in skill2_effects:
+        if not isinstance(node, dict):
+            continue
+        if node.get("type") == "CasterViewEffect" and node.get("name") == "test_mod_viktor_siphon_shield":
+            fail("runtime Viktor skill2 still double-attaches the Siphon shield over the actor body")
+        if node.get("type") == "ViewEffect" and node.get("name") == "test_mod_viktor_gravity_field":
+            fail("runtime Viktor Gravity Field is still a caster-level ViewEffect instead of a target-ground anchor")
+
+    gravity_anchors = [
+        node
+        for node in iter_mapping_nodes(skill2)
+        if node.get("type") == "ParabolicProjectile" and node.get("name") == "test_mod_viktor_gravity_field_anchor"
+    ]
+    if len(gravity_anchors) != 2:
+        fail("runtime Viktor skill2 must use two gravity-field target-ground anchors")
+    for index, anchor in enumerate(gravity_anchors, start=1):
+        end_effects = anchor.get("end_effects")
+        if not isinstance(end_effects, list):
+            fail(f"runtime Viktor gravity anchor {index} must use end_effects")
+        if not any(item.get("type") == "ViewEffect" and item.get("name") == "test_mod_viktor_gravity_field" for item in end_effects if isinstance(item, dict)):
+            fail(f"runtime Viktor gravity anchor {index} must spawn Gravity Field at the target point")
+        if not any(item.get("type") == "RangePeriodProjectile" and item.get("name") == "test_mod_viktor_gravity_field" for item in end_effects if isinstance(item, dict)):
+            fail(f"runtime Viktor gravity anchor {index} must own the ground pulse")
+
+    ult = champion.get("ult", {})
+    ult_effect = ult.get("effect", {}) if isinstance(ult, dict) else {}
+    ground_storm_names = {"test_mod_viktor_storm_impact", "test_mod_viktor_chaos_storm"}
+    if isinstance(ult_effect, dict):
+        for branch_name in ("effect_none", "effect_buff"):
+            branch = ult_effect.get(branch_name, {})
+            branch_effects = branch.get("effects", []) if isinstance(branch, dict) else []
+            if not isinstance(branch_effects, list):
+                fail(f"{path} ult.{branch_name}.effects must be a list")
+            for node in branch_effects:
+                if not isinstance(node, dict):
+                    continue
+                if node.get("type") in {"ViewEffect", "RangePeriodProjectile"} and node.get("name") in ground_storm_names:
+                    fail(f"runtime Viktor ult {branch_name} still spawns storm terrain VFX outside the target-ground anchor")
+    storm_anchors = [
+        node
+        for node in iter_mapping_nodes(ult)
+        if node.get("type") == "ParabolicProjectile" and node.get("name") == "test_mod_viktor_chaos_storm_anchor"
+    ]
+    if len(storm_anchors) != 2:
+        fail("runtime Viktor ult must use two Chaos Storm target-ground anchors")
+    for index, anchor in enumerate(storm_anchors, start=1):
+        end_effects = anchor.get("end_effects")
+        if not isinstance(end_effects, list):
+            fail(f"runtime Viktor Chaos Storm anchor {index} must use end_effects")
+        end_names = {(item.get("type"), item.get("name")) for item in end_effects if isinstance(item, dict)}
+        if ("ViewEffect", "test_mod_viktor_storm_impact") not in end_names or ("ViewEffect", "test_mod_viktor_chaos_storm") not in end_names:
+            fail(f"runtime Viktor Chaos Storm anchor {index} must spawn both storm terrain VFX")
+        if not any(item.get("type") == "RangePeriodProjectile" and item.get("name") == "test_mod_viktor_chaos_storm" for item in end_effects if isinstance(item, dict)):
+            fail(f"runtime Viktor Chaos Storm anchor {index} must own the persistent storm pulse")
+
+
 def default_game_root() -> Path:
     if ROOT.parent.name.lower() == "github_publish":
         return ROOT.parent.parent
@@ -439,6 +505,7 @@ def check_runtime_copy(game_root: Path) -> None:
         data = load_json(data_path)
         check_view_effect_types(data_path, data)
         assert_no_negative_speed_fields(data, str(data_path))
+        check_viktor_ground_vfx(data_path, data)
 
     style = load_json(runtime_root / "style" / "champion_view.champion_view")
     if not isinstance(style, dict):

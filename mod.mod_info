@@ -3,8 +3,8 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.12.8",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version lifts Darius, Thresh, and Viktor standing side-card portraits so feet stay visible during pick/ban and exchange screens.",
+  "version": "0.12.9",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version anchors Viktor Gravity Field and Chaos Storm VFX to their target ground points instead of the actor body.",
   "last_updated": "2026-06-11",
   "dependencies": [
     {
