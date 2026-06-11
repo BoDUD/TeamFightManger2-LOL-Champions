@@ -23,7 +23,7 @@
     "test_mod_viktor": {
       "face": {
         "x": 0,
-        "y": -18
+        "y": -28
       },
       "center": {
         "x": 0,
@@ -33,7 +33,7 @@
     "bo_league_champions_viktor": {
       "face": {
         "x": 0,
-        "y": -18
+        "y": -28
       },
       "center": {
         "x": 0,
@@ -243,7 +243,7 @@
     "bo_league_champions_thresh": {
       "face": {
         "x": 2,
-        "y": -18
+        "y": -28
       },
       "center": {
         "x": 0,
@@ -253,7 +253,7 @@
     "test_mod_thresh": {
       "face": {
         "x": 2,
-        "y": -18
+        "y": -28
       },
       "center": {
         "x": 0,
@@ -263,7 +263,7 @@
     "bo_league_champions_darius": {
       "face": {
         "x": 2,
-        "y": -15
+        "y": -24
       },
       "center": {
         "x": 0,
@@ -273,7 +273,7 @@
     "test_mod_darius": {
       "face": {
         "x": 2,
-        "y": -15
+        "y": -24
       },
       "center": {
         "x": 0,

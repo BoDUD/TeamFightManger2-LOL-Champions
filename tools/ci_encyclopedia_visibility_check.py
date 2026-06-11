@@ -553,6 +553,11 @@ COMPACT_DISPLAY_LIMITS = {
     "thresh": {"max_width": 42, "max_height": 40, "min_bottom_safe": 12},
     "viktor": {"max_width": 39, "max_height": 42, "min_bottom_safe": 11},
 }
+SIDE_CARD_STANDING_FACE_OFFSETS = {
+    "darius": {"x": 2, "y": -24},
+    "thresh": {"x": 2, "y": -28},
+    "viktor": {"x": 0, "y": -28},
+}
 REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS: dict[str, dict[str, tuple[str, ...]]] = {}
 for _champion_id in AATROX_IDS:
     REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS[_champion_id] = {
@@ -1494,7 +1499,18 @@ def check_full_body_compact_portraits(entries: dict[str, Any]) -> None:
             center = view.get("center")
             if not isinstance(face, dict) or not isinstance(center, dict):
                 fail(f"style entry {style_id} must define both face and center cameras")
-            if face.get("y") != center.get("y"):
+            expected_side_face = SIDE_CARD_STANDING_FACE_OFFSETS.get(champion)
+            if expected_side_face is not None:
+                if face.get("x") != expected_side_face["x"] or face.get("y") != expected_side_face["y"]:
+                    fail(
+                        f"style entry {style_id}.face must be {expected_side_face} so pick/ban side cards show standing feet"
+                    )
+                if face.get("y", 0) >= center.get("y", 0):
+                    fail(
+                        f"style entry {style_id}.face.y must sit above center.y for side-card standing portraits; "
+                        f"got face.y={face.get('y')!r}, center.y={center.get('y')!r}"
+                    )
+            elif face.get("y") != center.get("y"):
                 fail(
                     f"style entry {style_id}.face.y must match center.y for full-body compact portraits; "
                     f"got face.y={face.get('y')!r}, center.y={center.get('y')!r}"
@@ -2548,8 +2564,8 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         view = entries.get(darius_id)
         if not isinstance(view, dict):
             fail(f"style/champion_view.champion_view missing entries.{darius_id}")
-        if view.get("face", {}).get("x") != 2 or view.get("face", {}).get("y") != -15:
-            fail(f"style entry {darius_id}.face must keep Darius full-body compact portrait at x=2,y=-15")
+        if view.get("face", {}).get("x") != 2 or view.get("face", {}).get("y") != -24:
+            fail(f"style entry {darius_id}.face must lift Darius side-card standing portrait to x=2,y=-24")
         if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -15:
             fail(f"style entry {darius_id}.center must keep Darius full-body display above the name at x=0,y=-15")
     assert_compact_idle_bottom_safety("darius")
@@ -2927,8 +2943,8 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         view = entries.get(thresh_id)
         if not isinstance(view, dict):
             fail(f"style/champion_view.champion_view missing entries.{thresh_id}")
-        if view.get("face", {}).get("x") != 2 or view.get("face", {}).get("y") != -18:
-            fail(f"style entry {thresh_id}.face must keep Thresh full-body compact portrait aligned at x=2,y=-18")
+        if view.get("face", {}).get("x") != 2 or view.get("face", {}).get("y") != -28:
+            fail(f"style entry {thresh_id}.face must lift Thresh side-card standing portrait to x=2,y=-28")
         if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -18:
             fail(f"style entry {thresh_id}.center must keep Thresh full-body display above the name at x=0,y=-18")
     assert_compact_idle_bottom_safety("thresh")
@@ -3188,8 +3204,8 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         view = entries.get(viktor_id)
         if not isinstance(view, dict):
             fail(f"style/champion_view.champion_view missing entries.{viktor_id}")
-        if view.get("face", {}).get("x") != 0 or view.get("face", {}).get("y") != -18:
-            fail(f"style entry {viktor_id}.face must keep Viktor full-body compact portrait aligned at x=0,y=-18")
+        if view.get("face", {}).get("x") != 0 or view.get("face", {}).get("y") != -28:
+            fail(f"style entry {viktor_id}.face must lift Viktor side-card standing portrait to x=0,y=-28")
         if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -18:
             fail(f"style entry {viktor_id}.center must keep Viktor rebuilt full-body display above the name at x=0,y=-18")
     assert_compact_idle_bottom_safety("viktor")
