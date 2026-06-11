@@ -718,7 +718,7 @@
       "name": "test_mod_fiddlesticks_drain_active",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_drain",
       "tag": "drain",
-      "z": -1,
+      "z": 1,
       "repeat": true
     },
     {
@@ -726,7 +726,7 @@
       "name": "test_mod_fiddlesticks_crowstorm_active",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_crowstorm",
       "tag": "storm",
-      "z": -1,
+      "z": 1,
       "repeat": true
     }
   ],
@@ -736,7 +736,7 @@
       "name": "test_mod_fiddlesticks_drain",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_drain",
       "tag": "drain",
-      "z": -1,
+      "z": 1,
       "is_follow": true
     },
     {
@@ -744,7 +744,7 @@
       "name": "test_mod_fiddlesticks_crowstorm",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_crowstorm",
       "tag": "storm",
-      "z": -1,
+      "z": 1,
       "is_follow": true
     }
   ],
