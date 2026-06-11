@@ -71,6 +71,10 @@ AATROX_MIN_RUN_FOOT_CENTER_RANGE = 0.9
 AATROX_MIN_RUN_FOOT_SHAPES = 2
 AATROX_MIN_RUN_FOOT_PIXELS = 24
 AATROX_MIN_RUN_LOWER_PIXELS = 40
+AATROX_RUN_FRAME_DURATION = 0.12
+AATROX_MAX_RUN_WIDTH_RANGE = 8
+AATROX_RUN_DETACHED_BLADE_MIN_X = 74
+AATROX_RUN_DETACHED_BLADE_MIN_Y = 45
 AATROX_IDLE_FRAME_XS = (0, 96, 192, 288, 384, 480, 576, 672, 768)
 AATROX_ULT_FRAME_X = 864
 AATROX_HIT_FRAME_X = 960
@@ -554,6 +558,7 @@ COMPACT_DISPLAY_LIMITS = {
     "viktor": {"max_width": 39, "max_height": 42, "min_bottom_safe": 11},
 }
 SIDE_CARD_STANDING_FACE_OFFSETS = {
+    "aatrox": {"x": 2, "y": -24},
     "darius": {"x": 2, "y": -24},
     "thresh": {"x": 2, "y": -28},
     "viktor": {"x": 0, "y": -28},
@@ -1565,8 +1570,8 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
         face_x = view.get("face", {}).get("x")
         face_y = view.get("face", {}).get("y")
         center_y = view.get("center", {}).get("y")
-        if face_x != 2 or face_y != -14:
-            fail(f"style entry {aatrox_id}.face must keep Aatrox weapon-visible full-body portrait at x=2,y=-14")
+        if face_x != 2 or face_y != -24:
+            fail(f"style entry {aatrox_id}.face must keep Aatrox weapon-visible compact portrait at x=2,y=-24")
         if center_y != -14:
             fail(f"style entry {aatrox_id}.center.y must keep Aatrox full-body display above labels at -14")
 
@@ -1687,15 +1692,27 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
                     f"Aatrox {action} frame {index} leaves only {bottom_safe}px bottom safety; "
                     "feet must stay above the name/health label like Viktor"
                 )
-            if action == "run" and frame.get("duration") != 0.085:
-                fail(f"Aatrox run frame {index} must use steadier 0.085s timing")
+            if action == "run":
+                if frame.get("duration") != AATROX_RUN_FRAME_DURATION:
+                    fail(f"Aatrox run frame {index} must use calmer {AATROX_RUN_FRAME_DURATION}s timing")
+                detached_pixels = 0
+                for local_y in range(AATROX_RUN_DETACHED_BLADE_MIN_Y, h):
+                    row_start = (y + local_y) * sheet_width
+                    for local_x in range(AATROX_RUN_DETACHED_BLADE_MIN_X, w):
+                        if sheet_alpha[row_start + x + local_x] != 0:
+                            detached_pixels += 1
+                if detached_pixels:
+                    fail(
+                        f"Aatrox run frame {index} has {detached_pixels} detached right-side blade pixels; "
+                        "clear actor fragments so the model does not flicker beside itself"
+                    )
 
     run_widths = [bbox[2] - bbox[0] for bbox in action_bboxes["run"]]
     run_heights = [bbox[3] - bbox[1] for bbox in action_bboxes["run"]]
     idle_widths = [bbox[2] - bbox[0] for bbox in action_bboxes["idle"]]
     if min(idle_widths) < 45:
         fail("Aatrox idle frames must keep the greatsword visible in compact portraits and recall")
-    if max(run_widths) - min(run_widths) > 32:
+    if max(run_widths) - min(run_widths) > AATROX_MAX_RUN_WIDTH_RANGE:
         fail("Aatrox run frame widths must stay stable to avoid animation jitter")
     for action in ("attack", "skill", "skill2"):
         widths = [bbox[2] - bbox[0] for bbox in action_bboxes[action]]
