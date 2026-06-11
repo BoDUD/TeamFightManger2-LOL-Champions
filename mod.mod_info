@@ -3,8 +3,8 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.12.1",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version reworks Viktor as the Herald of the Arcane with a new model, official audio coverage, AP Arcane Pulse attacks, visible Glorious Evolution stages, Siphon Power shielding, evolved Hextech Ray aftershocks, Gravity Field control, and redesigned Arcane Storm gameplay.",
+  "version": "0.12.2",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version restores the stronger Aatrox model, rebuilds Viktor's model and skill VFX into fuller Hextech effects, replaces placeholder-like Thresh, Darius, and Kayn VFX, and removes obsolete process/source model resources.",
   "last_updated": "2026-06-11",
   "dependencies": [
     {

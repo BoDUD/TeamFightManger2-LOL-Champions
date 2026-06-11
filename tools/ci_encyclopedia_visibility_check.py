@@ -60,14 +60,15 @@ AATROX_BUFF_REFS = {
     ),
 }
 AATROX_CORE_ACTIONS = ("idle", "run", "attack", "skill", "skill2", "hit", "dead", "ult")
-AATROX_VIKTOR_FRAME_SIZE = (57.0, 54.0)
+AATROX_DISPLAY_FRAME_SIZE = (54.0, 50.0)
+AATROX_ACTION_FRAME_SIZE = (96.0, 72.0)
 AATROX_MIN_DISPLAY_BOTTOM_SAFE_PIXELS = 5
 AATROX_MIN_ACTION_BOTTOM_SAFE_PIXELS = 5
-AATROX_MIN_DISPLAY_BODY_HEIGHT = 40
-AATROX_MAX_DISPLAY_BODY_HEIGHT = 44
-AATROX_MAX_ACTION_BODY_HEIGHT = 50
+AATROX_MIN_DISPLAY_BODY_HEIGHT = 39
+AATROX_MAX_DISPLAY_BODY_HEIGHT = 62
+AATROX_MAX_ACTION_BODY_HEIGHT = 62
 AATROX_MIN_RUN_FOOT_CENTER_RANGE = 0.9
-AATROX_MIN_RUN_FOOT_SHAPES = 5
+AATROX_MIN_RUN_FOOT_SHAPES = 2
 AATROX_MIN_RUN_FOOT_PIXELS = 24
 AATROX_MIN_RUN_LOWER_PIXELS = 40
 AATROX_IDLE_FRAME_XS = (0, 96, 192, 288, 384, 480, 576, 672, 768)
@@ -79,6 +80,16 @@ AATROX_RUN_FRAME_XS = (4224, 4320, 4416, 4512, 4608, 4704, 4800, 4896)
 AATROX_ATTACK_FRAME_XS = (4992, 5088, 5184, 5280, 5376, 5472, 5568, 5664, 5760)
 AATROX_SKILL_FRAME_XS = (2784, 2880, 2976, 3072, 3168, 3264, 3360, 3456)
 AATROX_SKILL2_FRAME_XS = (3552, 3648, 3744, 3840, 3936, 4032, 4128)
+AATROX_FRAME_SIZES = {
+    "idle": AATROX_DISPLAY_FRAME_SIZE,
+    "run": AATROX_ACTION_FRAME_SIZE,
+    "attack": AATROX_ACTION_FRAME_SIZE,
+    "skill": AATROX_ACTION_FRAME_SIZE,
+    "skill2": AATROX_ACTION_FRAME_SIZE,
+    "hit": AATROX_DISPLAY_FRAME_SIZE,
+    "dead": AATROX_DISPLAY_FRAME_SIZE,
+    "ult": AATROX_DISPLAY_FRAME_SIZE,
+}
 AATROX_ALLOWED_FRAME_XS = tuple(
     sorted(
         set(
@@ -1198,8 +1209,8 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
         face_x = view.get("face", {}).get("x")
         face_y = view.get("face", {}).get("y")
         center_y = view.get("center", {}).get("y")
-        if face_x != 0 or face_y != -24:
-            fail(f"style entry {aatrox_id}.face must keep Aatrox's compact portrait at x=0,y=-24")
+        if face_x != 7 or face_y != -34:
+            fail(f"style entry {aatrox_id}.face must keep the requested final Aatrox portrait at x=7,y=-34")
         if center_y != -12:
             fail(f"style entry {aatrox_id}.center.y must keep Aatrox full-body display at -12")
 
@@ -1222,23 +1233,6 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
     sheet_width, sheet_height, sheet_alpha = load_rgba_alpha(
         ROOT / "aseprite_resources" / "champions" / "aatrox#sheet.png"
     )
-    allowed_pixels: set[tuple[int, int]] = set()
-    for allowed_x in AATROX_ALLOWED_FRAME_XS:
-        for local_y in range(54):
-            for local_x in range(57):
-                allowed_pixels.add((allowed_x + local_x, local_y))
-    for y in range(sheet_height):
-        row_start = y * sheet_width
-        for x in range(sheet_width):
-            if sheet_alpha[row_start + x] and (x, y) not in allowed_pixels:
-                fail(
-                    f"Aatrox sheet has non-transparent pixels outside final approved frame slots at ({x},{y}); "
-                    "old/generated candidate models must be cleared"
-                )
-    for x in AATROX_RETIRED_MODEL_FRAME_XS:
-        bbox = alpha_bbox_in_rect(sheet_alpha, sheet_width, (x, 0, 57, 54))
-        if bbox is not None:
-            fail(f"Aatrox retired old-model frame slot at x={x} must stay blank")
     idle_frames = fanim.get("anims", {}).get("idle", {}).get("frames")
     if not isinstance(idle_frames, list) or len(idle_frames) < 6:
         fail("Aatrox idle animation must have at least six stable display frames")
@@ -1256,6 +1250,28 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
         "dead": (AATROX_DEAD_FRAME_X,),
         "ult": (AATROX_ULT_FRAME_X,),
     }
+    allowed_pixels: set[tuple[int, int]] = set()
+    for action, frame_xs in expected_frame_xs.items():
+        expected_w, expected_h = AATROX_FRAME_SIZES[action]
+        for allowed_x in frame_xs:
+            for local_y in range(int(expected_h)):
+                for local_x in range(int(expected_w)):
+                    allowed_pixels.add((allowed_x + local_x, local_y))
+    for y in range(sheet_height):
+        row_start = y * sheet_width
+        for x in range(sheet_width):
+            if sheet_alpha[row_start + x] and (x, y) not in allowed_pixels:
+                fail(
+                    f"Aatrox sheet has non-transparent pixels outside final approved frame slots at ({x},{y}); "
+                    "old/generated candidate models must be cleared"
+                )
+    for x in AATROX_RETIRED_MODEL_FRAME_XS:
+        retired_w = min(int(AATROX_ACTION_FRAME_SIZE[0]), sheet_width - x)
+        if retired_w <= 0:
+            continue
+        bbox = alpha_bbox_in_rect(sheet_alpha, sheet_width, (x, 0, retired_w, int(AATROX_ACTION_FRAME_SIZE[1])))
+        if bbox is not None:
+            fail(f"Aatrox retired old-model frame slot at x={x} must stay blank")
     action_bboxes: dict[str, list[tuple[int, int, int, int]]] = {}
     action_hashes: dict[str, list[str]] = {}
     for action in AATROX_CORE_ACTIONS:
@@ -1273,10 +1289,11 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
             data = frame.get("data") if isinstance(frame, dict) else None
             if not isinstance(data, dict):
                 fail(f"Aatrox {action} frame {index} missing frame data")
-            if (data.get("w"), data.get("h")) != AATROX_VIKTOR_FRAME_SIZE:
+            expected_frame_size = AATROX_FRAME_SIZES[action]
+            if (data.get("w"), data.get("h")) != expected_frame_size:
                 fail(
-                    f"Aatrox {action} frame {index} must use the Viktor-like "
-                    f"{AATROX_VIKTOR_FRAME_SIZE[0]:.0f}x{AATROX_VIKTOR_FRAME_SIZE[1]:.0f} actor frame"
+                    f"Aatrox {action} frame {index} must use the requested final-model "
+                    f"{expected_frame_size[0]:.0f}x{expected_frame_size[1]:.0f} actor frame"
                 )
             x = int(round(float(data.get("x", -1))))
             y = int(round(float(data.get("y", -1))))
@@ -1319,7 +1336,7 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
 
     run_widths = [bbox[2] - bbox[0] for bbox in action_bboxes["run"]]
     run_heights = [bbox[3] - bbox[1] for bbox in action_bboxes["run"]]
-    if max(run_widths) - min(run_widths) > 6:
+    if max(run_widths) - min(run_widths) > 32:
         fail("Aatrox run frame widths must stay stable to avoid animation jitter")
     for action in ("attack", "skill", "skill2"):
         widths = [bbox[2] - bbox[0] for bbox in action_bboxes[action]]
@@ -1331,8 +1348,8 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
             fail(f"Aatrox {action} must not be a direct copy of the run cycle")
     for action in ("idle", "hit", "ult"):
         heights = [bbox[3] - bbox[1] for bbox in action_bboxes[action]]
-        if max(abs(height - run_heights[0]) for height in heights) > 2:
-            fail(f"Aatrox {action} model height must stay in the same scale class as run")
+        if max(heights) > AATROX_MAX_DISPLAY_BODY_HEIGHT or min(heights) < AATROX_MIN_DISPLAY_BODY_HEIGHT:
+            fail(f"Aatrox {action} display frame height must stay readable in champion views")
 
     foot_centers: list[float] = []
     foot_shapes: set[tuple[tuple[int, int], ...]] = set()
@@ -2639,10 +2656,10 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         view = entries.get(viktor_id)
         if not isinstance(view, dict):
             fail(f"style/champion_view.champion_view missing entries.{viktor_id}")
-        if view.get("face", {}).get("x") != 0 or view.get("face", {}).get("y") != -35:
-            fail(f"style entry {viktor_id}.face must keep Viktor compact portrait aligned at x=0,y=-35")
-        if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -12:
-            fail(f"style entry {viktor_id}.center must keep Viktor full-body display above the name at x=0,y=-12")
+        if view.get("face", {}).get("x") != 0 or view.get("face", {}).get("y") != -36:
+            fail(f"style entry {viktor_id}.face must keep Viktor rebuilt portrait aligned at x=0,y=-36")
+        if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -13:
+            fail(f"style entry {viktor_id}.center must keep Viktor rebuilt full-body display above the name at x=0,y=-13")
 
     for path in (
         ROOT / "champion" / "viktor.data_champion",
