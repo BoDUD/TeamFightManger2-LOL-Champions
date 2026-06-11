@@ -162,14 +162,16 @@ REQUIRED_ENCYCLOPEDIA_NAME_TERMS: dict[str, dict[str, tuple[str, ...]]] = {
     },
 }
 SIDE_CARD_STANDING_FACE_OFFSETS = {
-    f"{MOD_ID}_aatrox": {"x": 7, "y": -24},
+    f"{MOD_ID}_aatrox": {"x": 2, "y": -16},
     f"{MOD_ID}_darius": {"x": 2, "y": -12},
+    f"{MOD_ID}_kayn": {"x": 4, "y": -18},
     f"{MOD_ID}_thresh": {"x": 0, "y": -12},
     f"{MOD_ID}_viktor": {"x": 0, "y": -28},
 }
 SIDE_CARD_STANDING_CENTER_OFFSETS = {
     f"{MOD_ID}_aatrox": {"x": 4, "y": -12},
     f"{MOD_ID}_darius": {"x": 0, "y": -12},
+    f"{MOD_ID}_kayn": {"x": 0, "y": -12},
     f"{MOD_ID}_thresh": {"x": 0, "y": -12},
     f"{MOD_ID}_viktor": {"x": 0, "y": -12},
 }
