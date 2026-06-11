@@ -1048,6 +1048,28 @@ def walk_strings(node: Any) -> list[str]:
     return []
 
 
+def iter_mapping_nodes(node: Any) -> list[dict[str, Any]]:
+    if isinstance(node, dict):
+        out = [node]
+        for value in node.values():
+            out.extend(iter_mapping_nodes(value))
+        return out
+    if isinstance(node, list):
+        out: list[dict[str, Any]] = []
+        for item in node:
+            out.extend(iter_mapping_nodes(item))
+        return out
+    return []
+
+
+def assert_no_negative_speed_fields(node: Any, label: str) -> None:
+    for mapping in iter_mapping_nodes(node):
+        speed = mapping.get("speed")
+        if isinstance(speed, (int, float)) and speed < 0:
+            effect_type = mapping.get("type", "<unknown>")
+            fail(f"{label} has invalid negative speed {speed!r} on {effect_type}; TFM2 expects unsigned movement speeds")
+
+
 def find_effect_nodes(node: Any, effect_type: str) -> list[dict[str, Any]]:
     out: list[dict[str, Any]] = []
     if isinstance(node, dict):
@@ -2421,7 +2443,6 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         "SwitchByBuff",
         "RangeEffect",
         "LineRangeProjectile",
-        "Knockback",
         "FixedAttack",
         "Heal",
         "Stun",
@@ -2442,6 +2463,7 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
             fail(f"champion/darius.data_champion must include LoL Darius mechanic token {required}")
 
     darius_category = darius.get("category")
+    assert_no_negative_speed_fields(darius, "champion/darius.data_champion")
     if darius_category != "Melee":
         fail(f"champion/darius.data_champion category must be Melee, got {darius_category!r}")
     tags = set(darius.get("tags", []))
@@ -2466,8 +2488,8 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         fail("Darius E/W must fire test_mod_darius_apprehend")
     if apprehend.get("width") != 15000 or apprehend.get("length") != 50000:
         fail("Darius Apprehend must use a tight one-direction pull lane, not a broad front/back sweep")
-    if "Knockback" not in skill2_strings or "-2600" not in json.dumps(darius.get("skill2", {}), ensure_ascii=False):
-        fail("Darius Apprehend must include negative Knockback to pull targets toward Darius")
+    if "Knockback" in skill2_strings:
+        fail("Darius Apprehend must not use data-only Knockback; negative speed breaks loading and positive speed pushes targets away")
     ult_strings = set(walk_strings(darius.get("ult", {})))
     if "test_mod_darius_hemo_5" not in ult_strings or "test_mod_darius_noxian_might" not in ult_strings:
         fail("Darius R must scale/branch on Hemorrhage stacks and Noxian Might")
@@ -2978,6 +3000,7 @@ def check_champion_visibility() -> None:
         data = load_json(path)
         check_effect_shapes(path, data)
         check_view_effect_types(path, data)
+        assert_no_negative_speed_fields(data, str(path.relative_to(ROOT)))
         champion_name = path.stem
         champion_id = data.get("id")
         expected_id = f"{MOD_ID}_{champion_name}"

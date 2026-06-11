@@ -1819,11 +1819,6 @@
                     "duration": 22
                   },
                   {
-                    "type": "Knockback",
-                    "speed": -2600,
-                    "tick": 9
-                  },
-                  {
                     "type": "AddBuff",
                     "buff_state": {
                       "name": "test_mod_darius_apprehend_slow",

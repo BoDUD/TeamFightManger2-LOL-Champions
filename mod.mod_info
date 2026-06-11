@@ -3,8 +3,8 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.12.3",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version fixes Darius label placement, Apprehend pull behavior, Guillotine stability, generated Darius icons, Aatrox weapon/attack/run stability, Kayn ult AI usability, and Thresh/Viktor encyclopedia search QA.",
+  "version": "0.12.4",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version fixes a Darius Apprehend data load regression that could keep League champions out of the in-game encyclopedia, and adds QA coverage for invalid negative movement speeds.",
   "last_updated": "2026-06-11",
   "dependencies": [
     {
