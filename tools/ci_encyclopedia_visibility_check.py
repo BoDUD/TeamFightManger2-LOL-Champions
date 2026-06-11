@@ -68,10 +68,11 @@ AATROX_MIN_DISPLAY_BODY_HEIGHT = 39
 AATROX_MAX_DISPLAY_BODY_HEIGHT = 62
 AATROX_MAX_ACTION_BODY_HEIGHT = 62
 AATROX_MIN_RUN_FOOT_CENTER_RANGE = 0.9
-AATROX_MIN_RUN_FOOT_SHAPES = 2
+AATROX_MIN_RUN_FOOT_SHAPES = 5
+AATROX_MIN_RUN_UNIQUE_FRAMES = 5
 AATROX_MIN_RUN_FOOT_PIXELS = 24
 AATROX_MIN_RUN_LOWER_PIXELS = 40
-AATROX_RUN_FRAME_DURATION = 0.12
+AATROX_RUN_FRAME_DURATION = 0.16
 AATROX_MAX_RUN_WIDTH_RANGE = 8
 AATROX_RUN_DETACHED_BLADE_MIN_X = 74
 AATROX_RUN_DETACHED_BLADE_MIN_Y = 45
@@ -1738,11 +1739,20 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
 
     run_widths = [bbox[2] - bbox[0] for bbox in action_bboxes["run"]]
     run_heights = [bbox[3] - bbox[1] for bbox in action_bboxes["run"]]
+    run_tops = [bbox[1] for bbox in action_bboxes["run"]]
+    run_bottoms = [bbox[3] for bbox in action_bboxes["run"]]
+    run_hashes = action_hashes["run"]
     idle_widths = [bbox[2] - bbox[0] for bbox in action_bboxes["idle"]]
     if min(idle_widths) < 45:
         fail("Aatrox idle frames must keep the greatsword visible in compact portraits and recall")
     if max(run_widths) - min(run_widths) > AATROX_MAX_RUN_WIDTH_RANGE:
         fail("Aatrox run frame widths must stay stable to avoid animation jitter")
+    if max(run_tops) - min(run_tops) > 1 or max(run_bottoms) - min(run_bottoms) > 1:
+        fail("Aatrox run body vertical anchor must stay stable; remove jumping/crouching frame pops")
+    if len(set(run_hashes)) < AATROX_MIN_RUN_UNIQUE_FRAMES:
+        fail("Aatrox run must have at least five distinct frames; a two-pose ABAB cycle reads like a zombie shuffle")
+    if len(run_hashes) == 8 and len(set(run_hashes[0::2])) == 1 and len(set(run_hashes[1::2])) == 1:
+        fail("Aatrox run must not alternate the same two poses across all eight frames")
     for action in ("attack", "skill", "skill2"):
         widths = [bbox[2] - bbox[0] for bbox in action_bboxes[action]]
         if max(widths) < min(run_widths):
