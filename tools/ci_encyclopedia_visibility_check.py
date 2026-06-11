@@ -749,6 +749,26 @@ def alpha_visible_pixels_in_rect(alpha: bytes, image_width: int, rect: tuple[int
     return visible
 
 
+def dark_actor_pixels_in_rect(rgba: bytes, image_width: int, rect: tuple[int, int, int, int]) -> int:
+    x0, y0, w, h = rect
+    dark_pixels = 0
+    for y in range(y0, y0 + h):
+        for x in range(x0, x0 + w):
+            index = (y * image_width + x) * 4
+            r = rgba[index]
+            g = rgba[index + 1]
+            b = rgba[index + 2]
+            a = rgba[index + 3]
+            if a <= 60:
+                continue
+            dark_or_grey_body = (r < 85 and g < 120 and b < 110) or (
+                abs(r - g) < 30 and abs(g - b) < 35 and r < 150
+            )
+            if dark_or_grey_body:
+                dark_pixels += 1
+    return dark_pixels
+
+
 def rgba_frame_stats(
     rgba: bytes, image_width: int, rect: tuple[int, int, int, int]
 ) -> tuple[int, int, tuple[int, int, int, int] | None, float]:
@@ -3118,6 +3138,16 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         if buff_refs.get(name) != expected:
             fail(f"champion/thresh.data_champion buff {name} must reference {expected}")
 
+    skill2_projectiles = find_effect_nodes(thresh.get("skill2", {}), "LineRangeProjectile")
+    flay = next((node for node in skill2_projectiles if node.get("name") == "test_mod_thresh_flay_sweep"), None)
+    if not isinstance(flay, dict):
+        fail("Thresh skill2 must fire the Flay sweep projectile after the lantern shield")
+    if flay.get("applied_target") != "EnemyWithoutTower":
+        fail("Thresh Flay must target enemies only; W shield must not create duplicate actor-following hits on allies")
+    knockback_nodes = find_effect_nodes(flay, "Knockback")
+    if not any(int(node.get("speed", 0)) >= 2000 and int(node.get("tick", 0)) >= 12 for node in knockback_nodes):
+        fail("Thresh Flay must use a visible Knockback of at least speed=2000 and tick=12 so enemies are actually pushed")
+
     for action, sfx_names in (
         ("skill", {"test_mod_thresh_q_cast", "test_mod_thresh_q_hit"}),
         ("skill2", {"test_mod_thresh_lantern_cast", "test_mod_thresh_lantern_shield", "test_mod_thresh_e_cast", "test_mod_thresh_e_hit"}),
@@ -3166,6 +3196,46 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
                 f"Thresh Death Sentence chain frame {index} has {left_body_pixels} pixels in the actor-body zone; "
                 "Q must stay a separate hook/soul-fire projectile, not a duplicate Thresh model"
             )
+    lantern_fanim = load_json(ROOT / "aseprite_resources" / "effects" / "thresh_lantern#anim.fanim")
+    lantern_frames = lantern_fanim.get("anims", {}).get("loop", {}).get("frames")
+    if not isinstance(lantern_frames, list):
+        fail("Thresh lantern fanim must expose loop frames")
+    lantern_sheet = ROOT / "aseprite_resources" / "effects" / "thresh_lantern#sheet.png"
+    lantern_width, _lantern_height, lantern_rgba = load_rgba(lantern_sheet)
+    _lantern_width_alpha, _lantern_height_alpha, lantern_alpha = load_rgba_alpha(lantern_sheet)
+    for index, frame in enumerate(lantern_frames):
+        data = frame.get("data") if isinstance(frame, dict) else None
+        if not isinstance(data, dict):
+            fail(f"Thresh lantern frame {index} missing frame data")
+        x = int(round(float(data.get("x", -1))))
+        y = int(round(float(data.get("y", -1))))
+        w = int(round(float(data.get("w", 0))))
+        h = int(round(float(data.get("h", 0))))
+        if (w, h) != (64, 64):
+            fail(f"Thresh lantern frame {index} must stay a 64x64 lantern-only buff cell")
+        left_edge_pixels = alpha_visible_pixels_in_rect(lantern_alpha, lantern_width, (x, y, 16, h))
+        if left_edge_pixels > 40:
+            fail(
+                f"Thresh lantern frame {index} has {left_edge_pixels} pixels on the left actor edge; "
+                "Dark Passage must be a lantern effect, not a second Thresh body"
+            )
+        dark_body_pixels = dark_actor_pixels_in_rect(lantern_rgba, lantern_width, (x, y, 32, h))
+        if dark_body_pixels > 240:
+            fail(
+                f"Thresh lantern frame {index} has {dark_body_pixels} dark actor-like pixels; "
+                "remove duplicated hood/body pixels from the lantern buff"
+            )
+    assert_generated_vfx_volume(
+        ROOT / "aseprite_resources" / "effects" / "thresh_flay_sweep#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "thresh_flay_sweep#anim.fanim",
+        "sweep",
+        "Thresh Flay sweep VFX",
+        min_visible=4500,
+        min_color_bins=1200,
+        min_height=84,
+        min_fill_ratio=0.35,
+        max_width=150,
+    )
     box_field = next(
         (node for node in find_effect_nodes(thresh.get("ult", {}), "RangePeriodProjectile") if node.get("name") == "test_mod_thresh_box_field"),
         None,

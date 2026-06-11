@@ -406,8 +406,8 @@
                       },
                       {
                         "type": "Knockback",
-                        "speed": 900,
-                        "tick": 6
+                        "speed": 2400,
+                        "tick": 14
                       },
                       {
                         "type": "AddBuff",
