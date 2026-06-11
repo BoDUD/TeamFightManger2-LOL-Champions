@@ -863,6 +863,50 @@ def count_palette_matches_in_rect(
     return matches
 
 
+def assert_compact_idle_bottom_safety(champion: str, *, min_bottom_safe: int = 10) -> None:
+    fanim_path = ROOT / "aseprite_resources" / "champions" / f"{champion}#anim.fanim"
+    sheet_path = ROOT / "aseprite_resources" / "champions" / f"{champion}#sheet.png"
+    fanim = load_json(fanim_path)
+    frames = fanim.get("anims", {}).get("idle", {}).get("frames") if isinstance(fanim, dict) else None
+    if not isinstance(frames, list) or not frames:
+        fail(f"{fanim_path.relative_to(ROOT)} must expose idle frames for compact portrait safety")
+    data = frames[0].get("data") if isinstance(frames[0], dict) else None
+    if not isinstance(data, dict):
+        fail(f"{champion} first idle frame missing frame data for compact portrait safety")
+    rect = (
+        int(round(float(data.get("x", -1)))),
+        int(round(float(data.get("y", -1)))),
+        int(round(float(data.get("w", 0)))),
+        int(round(float(data.get("h", 0)))),
+    )
+    sheet_width, _sheet_height, sheet_alpha = load_rgba_alpha(sheet_path)
+    bbox = alpha_bbox_in_rect(sheet_alpha, sheet_width, rect)
+    if bbox is None:
+        fail(f"{champion} first idle frame is blank; compact portraits need a full body")
+    bottom_safe = rect[3] - bbox[3]
+    if bottom_safe < min_bottom_safe:
+        fail(
+            f"{champion} first idle frame leaves only {bottom_safe}px below the feet/weapon; "
+            f"compact exchange/side-card portraits need at least {min_bottom_safe}px so legs stay visible"
+        )
+
+
+def check_standard_compact_idle_bottom_safety() -> None:
+    for fanim_path in sorted((ROOT / "aseprite_resources" / "champions").glob("*#anim.fanim")):
+        champion = fanim_path.name.split("#", 1)[0]
+        fanim = load_json(fanim_path)
+        frames = fanim.get("anims", {}).get("idle", {}).get("frames") if isinstance(fanim, dict) else None
+        if not isinstance(frames, list) or not frames:
+            continue
+        data = frames[0].get("data") if isinstance(frames[0], dict) else None
+        if not isinstance(data, dict):
+            continue
+        frame_size = (float(data.get("w", 0)), float(data.get("h", 0)))
+        if frame_size != (57.0, 54.0):
+            continue
+        assert_compact_idle_bottom_safety(champion)
+
+
 def count_green_residue(path: Path) -> int:
     width, height, rgba = load_rgba(path)
     offenders = 0
@@ -2420,6 +2464,7 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
             fail(f"style entry {darius_id}.face must keep Darius full-body compact portrait at x=2,y=-15")
         if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -15:
             fail(f"style entry {darius_id}.center must keep Darius full-body display above the name at x=0,y=-15")
+    assert_compact_idle_bottom_safety("darius")
 
     for path in (
         ROOT / "champion" / "darius.data_champion",
@@ -2784,6 +2829,7 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
             fail(f"style entry {thresh_id}.face must keep Thresh full-body compact portrait aligned at x=2,y=-18")
         if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -18:
             fail(f"style entry {thresh_id}.center must keep Thresh full-body display above the name at x=0,y=-18")
+    assert_compact_idle_bottom_safety("thresh")
 
     for path in (
         ROOT / "champion" / "thresh.data_champion",
@@ -3044,6 +3090,7 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
             fail(f"style entry {viktor_id}.face must keep Viktor full-body compact portrait aligned at x=0,y=-18")
         if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -18:
             fail(f"style entry {viktor_id}.center must keep Viktor rebuilt full-body display above the name at x=0,y=-18")
+    assert_compact_idle_bottom_safety("viktor")
 
     for path in (
         ROOT / "champion" / "viktor.data_champion",
@@ -3290,6 +3337,7 @@ def check_champion_visibility() -> None:
     if not isinstance(entries, dict):
         fail("style/champion_view.champion_view must contain an entries object")
     check_full_body_compact_portraits(entries)
+    check_standard_compact_idle_bottom_safety()
 
     champion_files = sorted((ROOT / "champion").glob("*.data_champion"))
     stems = {path.stem for path in champion_files}
