@@ -7,7 +7,7 @@
       },
       "center": {
         "x": 0,
-        "y": -14
+        "y": -24
       }
     },
     "bo_league_champions_aatrox": {
@@ -17,7 +17,7 @@
       },
       "center": {
         "x": 0,
-        "y": -14
+        "y": -24
       }
     },
     "test_mod_viktor": {
@@ -27,7 +27,7 @@
       },
       "center": {
         "x": 0,
-        "y": -18
+        "y": -28
       }
     },
     "bo_league_champions_viktor": {
@@ -37,7 +37,7 @@
       },
       "center": {
         "x": 0,
-        "y": -18
+        "y": -28
       }
     },
     "test_mod_veigar": {
@@ -247,7 +247,7 @@
       },
       "center": {
         "x": 0,
-        "y": -18
+        "y": -28
       }
     },
     "test_mod_thresh": {
@@ -257,7 +257,7 @@
       },
       "center": {
         "x": 0,
-        "y": -18
+        "y": -28
       }
     },
     "bo_league_champions_darius": {
@@ -267,7 +267,7 @@
       },
       "center": {
         "x": 0,
-        "y": -15
+        "y": -24
       }
     },
     "test_mod_darius": {
@@ -277,7 +277,7 @@
       },
       "center": {
         "x": 0,
-        "y": -15
+        "y": -24
       }
     }
   }

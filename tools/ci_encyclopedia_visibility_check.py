@@ -563,6 +563,12 @@ SIDE_CARD_STANDING_FACE_OFFSETS = {
     "thresh": {"x": 2, "y": -28},
     "viktor": {"x": 0, "y": -28},
 }
+SIDE_CARD_STANDING_CENTER_OFFSETS = {
+    "aatrox": {"x": 0, "y": -24},
+    "darius": {"x": 0, "y": -24},
+    "thresh": {"x": 0, "y": -28},
+    "viktor": {"x": 0, "y": -28},
+}
 REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS: dict[str, dict[str, tuple[str, ...]]] = {}
 for _champion_id in AATROX_IDS:
     REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS[_champion_id] = {
@@ -1530,10 +1536,13 @@ def check_full_body_compact_portraits(entries: dict[str, Any]) -> None:
                     fail(
                         f"style entry {style_id}.face must be {expected_side_face} so pick/ban side cards show standing feet"
                     )
-                if face.get("y", 0) >= center.get("y", 0):
+                expected_side_center = SIDE_CARD_STANDING_CENTER_OFFSETS.get(champion)
+                if not isinstance(expected_side_center, dict):
+                    fail(f"CI missing side-card center offset for {champion}")
+                if center.get("x") != expected_side_center["x"] or center.get("y") != expected_side_center["y"]:
                     fail(
-                        f"style entry {style_id}.face.y must sit above center.y for side-card standing portraits; "
-                        f"got face.y={face.get('y')!r}, center.y={center.get('y')!r}"
+                        f"style entry {style_id}.center must be {expected_side_center} so exchange standing cards show feet; "
+                        f"got center={center!r}"
                     )
             elif face.get("y") != center.get("y"):
                 fail(
@@ -1592,8 +1601,8 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
         center_y = view.get("center", {}).get("y")
         if face_x != 2 or face_y != -24:
             fail(f"style entry {aatrox_id}.face must keep Aatrox weapon-visible compact portrait at x=2,y=-24")
-        if center_y != -14:
-            fail(f"style entry {aatrox_id}.center.y must keep Aatrox full-body display above labels at -14")
+        if center_y != -24:
+            fail(f"style entry {aatrox_id}.center.y must lift Aatrox exchange standing display above labels at -24")
 
     for path in (
         ROOT / "aseprite_resources" / "champions" / "aatrox#sheet.png",
@@ -2603,8 +2612,8 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
             fail(f"style/champion_view.champion_view missing entries.{darius_id}")
         if view.get("face", {}).get("x") != 2 or view.get("face", {}).get("y") != -24:
             fail(f"style entry {darius_id}.face must lift Darius side-card standing portrait to x=2,y=-24")
-        if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -15:
-            fail(f"style entry {darius_id}.center must keep Darius full-body display above the name at x=0,y=-15")
+        if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -24:
+            fail(f"style entry {darius_id}.center must lift Darius exchange standing display to x=0,y=-24")
     assert_compact_idle_bottom_safety("darius")
 
     for path in (
@@ -2982,8 +2991,8 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
             fail(f"style/champion_view.champion_view missing entries.{thresh_id}")
         if view.get("face", {}).get("x") != 2 or view.get("face", {}).get("y") != -28:
             fail(f"style entry {thresh_id}.face must lift Thresh side-card standing portrait to x=2,y=-28")
-        if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -18:
-            fail(f"style entry {thresh_id}.center must keep Thresh full-body display above the name at x=0,y=-18")
+        if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -28:
+            fail(f"style entry {thresh_id}.center must lift Thresh exchange standing display to x=0,y=-28")
     assert_compact_idle_bottom_safety("thresh")
 
     for path in (
@@ -3293,8 +3302,8 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
             fail(f"style/champion_view.champion_view missing entries.{viktor_id}")
         if view.get("face", {}).get("x") != 0 or view.get("face", {}).get("y") != -28:
             fail(f"style entry {viktor_id}.face must lift Viktor side-card standing portrait to x=0,y=-28")
-        if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -18:
-            fail(f"style entry {viktor_id}.center must keep Viktor rebuilt full-body display above the name at x=0,y=-18")
+        if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -28:
+            fail(f"style entry {viktor_id}.center must lift Viktor exchange standing display to x=0,y=-28")
     assert_compact_idle_bottom_safety("viktor")
 
     for path in (
