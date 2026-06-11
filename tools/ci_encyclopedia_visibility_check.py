@@ -331,6 +331,7 @@ YASUO_SKILL_SOUND_VOLUME_FLOOR = 0.80
 JINX_IDS = ("bo_league_champions_jinx", "test_mod_jinx")
 JINX_FRAME_SIZE = (57.0, 54.0)
 JINX_CORE_ACTIONS = ("idle", "run", "attack", "skill", "skill2", "hit", "dead", "ult")
+JINX_MAX_RUN_DETACHED_COMPONENT_PIXELS = 0
 JINX_EFFECT_REFS = {
     "test_mod_jinx_minigun_bullet": (
         "asset/bo_league_champions/aseprite_resources/effects/jinx_minigun_bullet",
@@ -2511,6 +2512,38 @@ def check_jinx_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
                     lower_points.append((local_x, local_y))
         if len(lower_points) < 65:
             fail(f"Jinx run frame {index} has only {len(lower_points)} lower-body pixels; keep the full generated legs visible")
+        seen: set[tuple[int, int]] = set()
+        detached_component_pixels = 0
+        for local_y in range(h):
+            for local_x in range(w):
+                if sheet_alpha[(y + local_y) * sheet_width + x + local_x] == 0 or (local_x, local_y) in seen:
+                    continue
+                stack = [(local_x, local_y)]
+                seen.add((local_x, local_y))
+                component: list[tuple[int, int]] = []
+                while stack:
+                    point_x, point_y = stack.pop()
+                    component.append((point_x, point_y))
+                    for next_y in range(point_y - 1, point_y + 2):
+                        for next_x in range(point_x - 1, point_x + 2):
+                            if (
+                                next_x < 0
+                                or next_y < 0
+                                or next_x >= w
+                                or next_y >= h
+                                or (next_x, next_y) in seen
+                            ):
+                                continue
+                            if sheet_alpha[(y + next_y) * sheet_width + x + next_x] != 0:
+                                seen.add((next_x, next_y))
+                                stack.append((next_x, next_y))
+                if len(component) < len(lower_points):
+                    detached_component_pixels += len(component)
+        if detached_component_pixels > JINX_MAX_RUN_DETACHED_COMPONENT_PIXELS:
+            fail(
+                f"Jinx run frame {index} has {detached_component_pixels} detached pixels; "
+                "walk frames must not leave ghost/residue fragments behind the actor"
+            )
         foot_centers.append(sum(point[0] for point in lower_points) / len(lower_points))
         lower_shapes.add(tuple(lower_points))
     if max(foot_centers) - min(foot_centers) < 1.25:
