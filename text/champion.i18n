@@ -370,15 +370,15 @@
         "ult": "Super Mega Death Rocket!: fires a huge shark rocket across the map. On champion hit it explodes, deals heavy physical damage, and triggers Get Excited movement and attack speed."
       },
       "bo_league_champions_thresh": {
-        "name": "Thresh (Chain Warden)",
-        "attack": "Damnation / Flay chain: Thresh lashes with his chain scythe for <#ff9028ff>physical damage<> and a small <#a974ffff>magic burn<>. Every third basic attack becomes an empowered soul lash that slows the target and resets the chain-charge cycle.",
+        "name": "Thresh",
+        "attack": "Damnation / Flay chain: Chain Warden Thresh lashes with his chain scythe for <#ff9028ff>physical damage<> and a small <#a974ffff>magic burn<>. Every third basic attack becomes an empowered soul lash that slows the target and resets the chain-charge cycle.",
         "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
         "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
         "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
       },
       "test_mod_thresh": {
-        "name": "Thresh (Chain Warden)",
-        "attack": "Damnation / Flay chain: Thresh lashes with his chain scythe for <#ff9028ff>physical damage<> and a small <#a974ffff>magic burn<>. Every third basic attack becomes an empowered soul lash that slows the target and resets the chain-charge cycle.",
+        "name": "Thresh",
+        "attack": "Damnation / Flay chain: Chain Warden Thresh lashes with his chain scythe for <#ff9028ff>physical damage<> and a small <#a974ffff>magic burn<>. Every third basic attack becomes an empowered soul lash that slows the target and resets the chain-charge cycle.",
         "skill": "Q - Death Sentence: Thresh throws a non-piercing hook chain in a long line. The first enemy hit takes <#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% magic power<> magic damage, is stunned, heavily slowed, and has movement skills briefly blocked. Champion hits grant a permanent Damnation soul stack.",
         "skill2": "W/E - Dark Passage / Flay: Thresh lights his lantern to shield himself, then sweeps the chain scythe forward. Enemies hit take magic damage, are pushed back, slowed, and grant a Damnation soul stack on champion hit.",
         "ult": "R - The Box: Thresh summons spectral prison walls around himself. Enemies inside take heavy magic damage, are strongly slowed, and have movement skills briefly blocked. The Box lingers as a slowing field, and champion hits grant permanent souls."
@@ -2210,7 +2210,7 @@
       },
       "bo_league_champions_viktor": {
         "name": "维克托",
-        "attack": "奥术先驱维克托：奥术脉冲造成<#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75%法术强度<>的魔法伤害。虹吸蓄能时下一次普攻造成<#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115%法术强度<>并获得护盾。光荣进化会强化后续技能。",
+        "attack": "奥术先驱 / 机械先驱维克托：奥术脉冲造成<#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75%法术强度<>的魔法伤害。虹吸蓄能时下一次普攻造成<#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115%法术强度<>并获得护盾。光荣进化会强化后续技能。",
         "skill": "E - 海克斯射线：维克托的第三机械臂向指定方向发射激光，对直线敌人造成魔法伤害。进化后留下余震，造成伤害并短暂减速。命中敌方英雄会推进光荣进化。",
         "skill2": "Q/W - 虹吸能量 + 重力场：维克托获得护盾并强化下一次普攻，随后在目标位置制造重力场。区域内敌人被减速，停留到坍缩时会被眩晕；进化后还会干扰位移技能。",
         "ult": "R - 奥术风暴：维克托在目标位置召唤奥术风暴，造成初始爆发魔法伤害并干扰敌方技能，随后持续脉冲。施放奥术风暴会推进光荣进化；完全进化后范围更大、持续更久、脉冲更快。"
@@ -2273,7 +2273,7 @@
       },
       "test_mod_viktor": {
         "name": "维克托",
-        "attack": "奥术先驱维克托：奥术脉冲造成<#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75%法术强度<>的魔法伤害。虹吸蓄能时下一次普攻造成<#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115%法术强度<>并获得护盾。光荣进化会强化后续技能。",
+        "attack": "奥术先驱 / 机械先驱维克托：奥术脉冲造成<#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75%法术强度<>的魔法伤害。虹吸蓄能时下一次普攻造成<#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115%法术强度<>并获得护盾。光荣进化会强化后续技能。",
         "skill": "E - 海克斯射线：维克托的第三机械臂向指定方向发射激光，对直线敌人造成魔法伤害。进化后留下余震，造成伤害并短暂减速。命中敌方英雄会推进光荣进化。",
         "skill2": "Q/W - 虹吸能量 + 重力场：维克托获得护盾并强化下一次普攻，随后在目标位置制造重力场。区域内敌人被减速，停留到坍缩时会被眩晕；进化后还会干扰位移技能。",
         "ult": "R - 奥术风暴：维克托在目标位置召唤奥术风暴，造成初始爆发魔法伤害并干扰敌方技能，随后持续脉冲。施放奥术风暴会推进光荣进化；完全进化后范围更大、持续更久、脉冲更快。"
@@ -2370,15 +2370,15 @@
         "ult": "超究极死神飞弹：发射一枚横贯战场的巨型鲨鱼火箭。命中英雄时爆炸造成高额物理伤害，并触发罪恶快感，获得移动速度和攻击速度。"
       },
       "bo_league_champions_thresh": {
-        "name": "魂锁典狱长",
-        "attack": "被动 - 地狱诅咒 / 厄运钟摆链击：锤石（Thresh）挥动锁链镰刀，造成<#ff9028ff>物理伤害<>并附带少量<#a974ffff>魔法灼烧<>。每第三次普攻强化为灵魂链击，减速目标并重置链击层数。",
+        "name": "锤石",
+        "attack": "被动 - 地狱诅咒 / 厄运钟摆链击：魂锁典狱长锤石（Thresh）挥动锁链镰刀，造成<#ff9028ff>物理伤害<>并附带少量<#a974ffff>魔法灼烧<>。每第三次普攻强化为灵魂链击，减速目标并重置链击层数。",
         "skill": "Q - 死亡判决：锤石向前投出不可穿透的钩锁。命中的第一个敌人受到<#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75%法术强度<>的魔法伤害，被眩晕、重度减速，并短暂无法使用位移技能。命中英雄会获得永久地狱诅咒灵魂层数。",
         "skill2": "W/E - 魂引之灯 / 厄运钟摆：锤石点亮魂灯为自己提供护盾，随后向前横扫锁链镰刀。敌人受到魔法伤害、被击退并减速；命中英雄会获得永久灵魂层数。",
         "ult": "R - 幽冥监牢：锤石在自身周围召唤幽绿色灵魂墙。范围内敌人受到高额魔法伤害、强烈减速，并短暂无法使用位移技能。监牢会短暂残留为减速力场，命中英雄获得永久灵魂。"
       },
       "test_mod_thresh": {
-        "name": "魂锁典狱长",
-        "attack": "被动 - 地狱诅咒 / 厄运钟摆链击：锤石（Thresh）挥动锁链镰刀，造成<#ff9028ff>物理伤害<>并附带少量<#a974ffff>魔法灼烧<>。每第三次普攻强化为灵魂链击，减速目标并重置链击层数。",
+        "name": "锤石",
+        "attack": "被动 - 地狱诅咒 / 厄运钟摆链击：魂锁典狱长锤石（Thresh）挥动锁链镰刀，造成<#ff9028ff>物理伤害<>并附带少量<#a974ffff>魔法灼烧<>。每第三次普攻强化为灵魂链击，减速目标并重置链击层数。",
         "skill": "Q - 死亡判决：锤石向前投出不可穿透的钩锁。命中的第一个敌人受到<#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75%法术强度<>的魔法伤害，被眩晕、重度减速，并短暂无法使用位移技能。命中英雄会获得永久地狱诅咒灵魂层数。",
         "skill2": "W/E - 魂引之灯 / 厄运钟摆：锤石点亮魂灯为自己提供护盾，随后向前横扫锁链镰刀。敌人受到魔法伤害、被击退并减速；命中英雄会获得永久灵魂层数。",
         "ult": "R - 幽冥监牢：锤石在自身周围召唤幽绿色灵魂墙。范围内敌人受到高额魔法伤害、强烈减速，并短暂无法使用位移技能。监牢会短暂残留为减速力场，命中英雄获得永久灵魂。"
@@ -2410,7 +2410,7 @@
       },
       "bo_league_champions_viktor": {
         "name": "維克特",
-        "attack": "奧術先驅維克特：奧術脈衝造成<#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75%法術強度<>的魔法傷害。虹吸蓄能時下一次普攻造成<#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115%法術強度<>並獲得護盾。光榮進化會強化後續技能。",
+        "attack": "奧術先驅 / 機械先驅維克特：奧術脈衝造成<#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75%法術強度<>的魔法傷害。虹吸蓄能時下一次普攻造成<#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115%法術強度<>並獲得護盾。光榮進化會強化後續技能。",
         "skill": "E - 海克斯射線：維克特的第三機械臂向指定方向發射雷射，對直線敌人造成魔法傷害。進化後留下餘震，造成傷害並短暂減速。命中敌方英雄會推進光榮進化。",
         "skill2": "Q/W - 虹吸能量 + 重力場：維克特獲得護盾並強化下一次普攻，隨後在目標位置製造重力場。區域內敌人被減速，停留到塌縮時會被暈眩；進化後還會干擾位移技能。",
         "ult": "R - 奧術風暴：維克特在目標位置召喚奧術風暴，造成初始爆發魔法傷害並干擾敌方技能，隨後持續脈衝。施放奧術風暴會推進光榮進化；完全進化後範圍更大、持續更久、脈衝更快。"
@@ -2473,7 +2473,7 @@
       },
       "test_mod_viktor": {
         "name": "維克特",
-        "attack": "奧術先驅維克特：奧術脈衝造成<#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75%法術強度<>的魔法傷害。虹吸蓄能時下一次普攻造成<#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115%法術強度<>並獲得護盾。光榮進化會強化後續技能。",
+        "attack": "奧術先驅 / 機械先驅維克特：奧術脈衝造成<#a974ffff>12<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75%法術強度<>的魔法傷害。虹吸蓄能時下一次普攻造成<#a974ffff>35<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>115%法術強度<>並獲得護盾。光榮進化會強化後續技能。",
         "skill": "E - 海克斯射線：維克特的第三機械臂向指定方向發射雷射，對直線敌人造成魔法傷害。進化後留下餘震，造成傷害並短暂減速。命中敌方英雄會推進光榮進化。",
         "skill2": "Q/W - 虹吸能量 + 重力場：維克特獲得護盾並強化下一次普攻，隨後在目標位置製造重力場。區域內敌人被減速，停留到塌縮時會被暈眩；進化後還會干擾位移技能。",
         "ult": "R - 奧術風暴：維克特在目標位置召喚奧術風暴，造成初始爆發魔法傷害並干擾敌方技能，隨後持續脈衝。施放奧術風暴會推進光榮進化；完全進化後範圍更大、持續更久、脈衝更快。"
@@ -2570,15 +2570,15 @@
         "ult": "超究極死神飛彈：發射一枚橫貫戰場的巨型鯊魚火箭。命中英雄時爆炸造成高額物理傷害，並觸發罪惡快感，獲得移動速度和攻擊速度。"
       },
       "bo_league_champions_thresh": {
-        "name": "魂鎖典獄長",
-        "attack": "被動 - 地獄詛咒 / 厄運鐘擺鏈擊：瑟雷西（Thresh）揮動鎖鏈鐮刀，造成<#ff9028ff>物理傷害<>並附帶少量<#a974ffff>魔法灼燒<>。每第三次普攻強化為靈魂鏈擊，緩速目標並重置鏈擊層數。",
+        "name": "瑟雷西",
+        "attack": "被動 - 地獄詛咒 / 厄運鐘擺鏈擊：魂鎖典獄長瑟雷西（Thresh）揮動鎖鏈鐮刀，造成<#ff9028ff>物理傷害<>並附帶少量<#a974ffff>魔法灼燒<>。每第三次普攻強化為靈魂鏈擊，緩速目標並重置鏈擊層數。",
         "skill": "Q - 死亡判決：瑟雷西向前投出不可穿透的鉤鎖。命中的第一個敌人受到<#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75%魔法攻擊<>的魔法傷害，被暈眩、重度緩速，並短暫無法使用位移技能。命中英雄會獲得永久地獄詛咒靈魂層數。",
         "skill2": "W/E - 冥燈引路 / 厄運鐘擺：瑟雷西點亮冥燈為自己提供護盾，隨後向前橫掃鎖鏈鐮刀。敌人受到魔法傷害、被擊退並緩速；命中英雄會獲得永久靈魂層數。",
         "ult": "R - 幽冥監牢：瑟雷西在自身周圍召喚幽綠色靈魂牆。範圍內敌人受到高額魔法傷害、強烈緩速，並短暫無法使用位移技能。監牢會短暫殘留為緩速力場，命中英雄獲得永久靈魂。"
       },
       "test_mod_thresh": {
-        "name": "魂鎖典獄長",
-        "attack": "被動 - 地獄詛咒 / 厄運鐘擺鏈擊：瑟雷西（Thresh）揮動鎖鏈鐮刀，造成<#ff9028ff>物理傷害<>並附帶少量<#a974ffff>魔法灼燒<>。每第三次普攻強化為靈魂鏈擊，緩速目標並重置鏈擊層數。",
+        "name": "瑟雷西",
+        "attack": "被動 - 地獄詛咒 / 厄運鐘擺鏈擊：魂鎖典獄長瑟雷西（Thresh）揮動鎖鏈鐮刀，造成<#ff9028ff>物理傷害<>並附帶少量<#a974ffff>魔法灼燒<>。每第三次普攻強化為靈魂鏈擊，緩速目標並重置鏈擊層數。",
         "skill": "Q - 死亡判決：瑟雷西向前投出不可穿透的鉤鎖。命中的第一個敌人受到<#a974ffff>65<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75%魔法攻擊<>的魔法傷害，被暈眩、重度緩速，並短暫無法使用位移技能。命中英雄會獲得永久地獄詛咒靈魂層數。",
         "skill2": "W/E - 冥燈引路 / 厄運鐘擺：瑟雷西點亮冥燈為自己提供護盾，隨後向前橫掃鎖鏈鐮刀。敌人受到魔法傷害、被擊退並緩速；命中英雄會獲得永久靈魂層數。",
         "ult": "R - 幽冥監牢：瑟雷西在自身周圍召喚幽綠色靈魂牆。範圍內敌人受到高額魔法傷害、強烈緩速，並短暫無法使用位移技能。監牢會短暫殘留為緩速力場，命中英雄獲得永久靈魂。"

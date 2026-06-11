@@ -594,8 +594,8 @@ for _champion_id in THRESH_IDS:
 for _champion_id in VIKTOR_IDS:
     REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS[_champion_id] = {
         "en": ("Viktor", "Herald of the Arcane", "Glorious Evolution", "Hextech Ray", "Gravity Field", "Arcane Storm"),
-        "zh-hans": ("\u7ef4\u514b\u6258", "\u5965\u672f\u5148\u9a71", "\u5149\u8363\u8fdb\u5316", "\u6d77\u514b\u65af\u5c04\u7ebf", "\u91cd\u529b\u573a", "\u5965\u672f\u98ce\u66b4"),
-        "zh-hant": ("\u7dad\u514b\u7279", "\u5967\u8853\u5148\u9a45", "\u5149\u69ae\u9032\u5316", "\u6d77\u514b\u65af\u5c04\u7dda", "\u91cd\u529b\u5834", "\u5967\u8853\u98a8\u66b4"),
+        "zh-hans": ("\u7ef4\u514b\u6258", "\u5965\u672f\u5148\u9a71", "\u673a\u68b0\u5148\u9a71", "\u5149\u8363\u8fdb\u5316", "\u6d77\u514b\u65af\u5c04\u7ebf", "\u91cd\u529b\u573a", "\u5965\u672f\u98ce\u66b4"),
+        "zh-hant": ("\u7dad\u514b\u7279", "\u5967\u8853\u5148\u9a45", "\u6a5f\u68b0\u5148\u9a45", "\u5149\u69ae\u9032\u5316", "\u6d77\u514b\u65af\u5c04\u7dda", "\u91cd\u529b\u5834", "\u5967\u8853\u98a8\u66b4"),
     }
 AATROX_SOUND_MEDIA_IDS = {
     "test_mod_aatrox_attack_cast": ("29529616",),
@@ -777,6 +777,28 @@ def local_asset_path(asset: str) -> Path:
 def require_file(path: Path) -> None:
     if not path.is_file():
         fail(f"missing file: {path.relative_to(ROOT)}")
+
+
+def assert_static_recall_tags(champion_name: str) -> None:
+    fanim = load_json(ROOT / "aseprite_resources" / "champions" / f"{champion_name}#anim.fanim")
+    anims = fanim.get("anims") if isinstance(fanim, dict) else None
+    if not isinstance(anims, dict):
+        fail(f"{champion_name}#anim.fanim must contain anims")
+    idle_frames = anims.get("idle", {}).get("frames") if isinstance(anims.get("idle"), dict) else None
+    if not isinstance(idle_frames, list) or not idle_frames:
+        fail(f"{champion_name} idle animation must exist before adding static recall tags")
+    idle_data = idle_frames[0].get("data") if isinstance(idle_frames[0], dict) else None
+    if not isinstance(idle_data, dict):
+        fail(f"{champion_name} idle frame 0 missing frame data")
+    for tag in ("recall", "return"):
+        frames = anims.get(tag, {}).get("frames") if isinstance(anims.get(tag), dict) else None
+        if not isinstance(frames, list) or len(frames) != 1:
+            fail(f"{champion_name} {tag} must be a one-frame static animation for return-to-base")
+        frame = frames[0]
+        if not isinstance(frame, dict) or frame.get("data") != idle_data:
+            fail(f"{champion_name} {tag} must reuse idle frame 0 so recall does not wobble")
+        if frame.get("duration") != 0.2:
+            fail(f"{champion_name} {tag} must use a stable 0.2s hold frame")
 
 
 def effect_frame_bboxes(path: Path, frame_w: int, frame_h: int) -> list[tuple[int, int, int, int]]:
@@ -1026,6 +1048,19 @@ def walk_strings(node: Any) -> list[str]:
     return []
 
 
+def find_effect_nodes(node: Any, effect_type: str) -> list[dict[str, Any]]:
+    out: list[dict[str, Any]] = []
+    if isinstance(node, dict):
+        if node.get("type") == effect_type:
+            out.append(node)
+        for value in node.values():
+            out.extend(find_effect_nodes(value, effect_type))
+    elif isinstance(node, list):
+        for item in node:
+            out.extend(find_effect_nodes(item, effect_type))
+    return out
+
+
 def check_encyclopedia_search_terms(text: dict[str, Any]) -> None:
     for champion_id, terms_by_locale in REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS.items():
         for locale, required_terms in terms_by_locale.items():
@@ -1209,10 +1244,10 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
         face_x = view.get("face", {}).get("x")
         face_y = view.get("face", {}).get("y")
         center_y = view.get("center", {}).get("y")
-        if face_x != 7 or face_y != -34:
-            fail(f"style entry {aatrox_id}.face must keep the requested final Aatrox portrait at x=7,y=-34")
-        if center_y != -12:
-            fail(f"style entry {aatrox_id}.center.y must keep Aatrox full-body display at -12")
+        if face_x != 2 or face_y != -36:
+            fail(f"style entry {aatrox_id}.face must keep Aatrox weapon-visible portrait at x=2,y=-36")
+        if center_y != -14:
+            fail(f"style entry {aatrox_id}.center.y must keep Aatrox full-body display above labels at -14")
 
     for path in (
         ROOT / "aseprite_resources" / "champions" / "aatrox#sheet.png",
@@ -1331,11 +1366,14 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
                     f"Aatrox {action} frame {index} leaves only {bottom_safe}px bottom safety; "
                     "feet must stay above the name/health label like Viktor"
                 )
-            if action == "run" and frame.get("duration") != 0.065:
-                fail(f"Aatrox run frame {index} must keep Viktor-like 0.065s timing")
+            if action == "run" and frame.get("duration") != 0.085:
+                fail(f"Aatrox run frame {index} must use steadier 0.085s timing")
 
     run_widths = [bbox[2] - bbox[0] for bbox in action_bboxes["run"]]
     run_heights = [bbox[3] - bbox[1] for bbox in action_bboxes["run"]]
+    idle_widths = [bbox[2] - bbox[0] for bbox in action_bboxes["idle"]]
+    if min(idle_widths) < 45:
+        fail("Aatrox idle frames must keep the greatsword visible in compact portraits and recall")
     if max(run_widths) - min(run_widths) > 32:
         fail("Aatrox run frame widths must stay stable to avoid animation jitter")
     for action in ("attack", "skill", "skill2"):
@@ -1649,6 +1687,13 @@ def check_kayn_rework_contract(text: dict[str, Any], entries: dict[str, Any]) ->
             fail(f"Kayn {action} must keep its form branch logic after the top-level cast SFX")
     if "test_mod_kayn_ult_voice" not in set(walk_strings(kayn.get("ult", {}))):
         fail("Kayn ult must play fixed official VO through test_mod_kayn_ult_voice")
+    kayn_ult = kayn.get("ult", {})
+    if kayn_ult.get("range") < 80000 or kayn_ult.get("cooltime") > 3000 or kayn_ult.get("can_use_with_move") is not True:
+        fail("Kayn ult must keep AI-usable range/cooldown/cast-while-moving settings")
+    if kayn_ult.get("duration") > 60 or kayn_ult.get("start_timing") > 8:
+        fail("Kayn ult must enter quickly so AI casts do not stall before target selection")
+    if "36" not in json.dumps(kayn_ult, ensure_ascii=False):
+        fail("Kayn ult must use the shortened 36-tick trespass/stasis window")
     projectile_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in kayn.get("view_projectiles", [])}
     for name, expected in KAYN_EFFECT_REFS.items():
         if projectile_refs.get(name) != expected:
@@ -2196,10 +2241,10 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         view = entries.get(darius_id)
         if not isinstance(view, dict):
             fail(f"style/champion_view.champion_view missing entries.{darius_id}")
-        if view.get("face", {}).get("x") != 2 or view.get("face", {}).get("y") != -31:
-            fail(f"style entry {darius_id}.face must keep Darius compact portrait aligned at x=2,y=-31")
-        if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -13:
-            fail(f"style entry {darius_id}.center must keep Darius full-body display above the name at x=0,y=-13")
+        if view.get("face", {}).get("x") != 2 or view.get("face", {}).get("y") != -35:
+            fail(f"style entry {darius_id}.face must keep Darius compact portrait above the name at x=2,y=-35")
+        if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -15:
+            fail(f"style entry {darius_id}.center must keep Darius full-body display above the name at x=0,y=-15")
 
     for path in (
         ROOT / "champion" / "darius.data_champion",
@@ -2213,6 +2258,31 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         require_file(path)
         if path.suffix == ".png":
             require_no_green_residue(path)
+
+    for icon_path in (
+        ROOT / "icons" / "darius_skill.png",
+        ROOT / "icons" / "darius_skill2.png",
+        ROOT / "icons" / "darius_ult.png",
+    ):
+        width, height, rgba = load_rgba(icon_path)
+        if (width, height) != (64, 64):
+            fail(f"{icon_path.relative_to(ROOT)} must be a polished 64x64 generated skill icon")
+        visible_pixels = 0
+        red_or_steel_pixels = 0
+        colors: set[tuple[int, int, int, int]] = set()
+        for i in range(width * height):
+            pixel = tuple(rgba[i * 4 : i * 4 + 4])
+            colors.add(pixel)
+            r, g, b, a = pixel
+            if not a:
+                continue
+            visible_pixels += 1
+            if (r > 85 and r > g * 1.15 and r > b * 0.9) or (abs(r - g) < 28 and abs(g - b) < 35 and r > 55):
+                red_or_steel_pixels += 1
+        if visible_pixels < 3000 or len(colors) < 450:
+            fail(f"{icon_path.relative_to(ROOT)} must be detailed image-generated icon art, not a flat VFX thumbnail")
+        if red_or_steel_pixels < max(700, visible_pixels // 6):
+            fail(f"{icon_path.relative_to(ROOT)} must keep Darius's red/steel Noxian icon palette")
 
     effect_tags = {
         "darius_attack_slash": "slash",
@@ -2310,7 +2380,7 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
                 fail(f"Darius {action} frame {index} body height {body_height}px is too large for UI/battle labels")
             if action not in {"dead", "hit"} and body_height < 33:
                 fail(f"Darius {action} frame {index} body height {body_height}px is too small for a readable Noxian silhouette")
-            if action != "dead" and bottom_safe < 4:
+            if action != "dead" and bottom_safe < 8:
                 fail(f"Darius {action} frame {index} leaves only {bottom_safe}px bottom safety above labels")
         if action in {"attack", "skill", "skill2", "ult"} and len(set(action_hashes[action])) < min(4, len(action_hashes[action])):
             fail(f"Darius {action} must have real action motion, not repeated idle frames")
@@ -2351,7 +2421,7 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         "SwitchByBuff",
         "RangeEffect",
         "LineRangeProjectile",
-        "RushMoveToBack",
+        "Knockback",
         "FixedAttack",
         "Heal",
         "Stun",
@@ -2390,9 +2460,19 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
     skill2_strings = set(walk_strings(darius.get("skill2", {})))
     if "test_mod_darius_apprehend" not in skill2_strings or "test_mod_darius_crippling_strike_ready" not in skill2_strings:
         fail("Darius E/W must hook with Apprehend and prime Crippling Strike")
+    skill2_projectiles = find_effect_nodes(darius.get("skill2", {}), "LineRangeProjectile")
+    apprehend = next((node for node in skill2_projectiles if node.get("name") == "test_mod_darius_apprehend"), None)
+    if not isinstance(apprehend, dict):
+        fail("Darius E/W must fire test_mod_darius_apprehend")
+    if apprehend.get("width") != 15000 or apprehend.get("length") != 50000:
+        fail("Darius Apprehend must use a tight one-direction pull lane, not a broad front/back sweep")
+    if "Knockback" not in skill2_strings or "-2600" not in json.dumps(darius.get("skill2", {}), ensure_ascii=False):
+        fail("Darius Apprehend must include negative Knockback to pull targets toward Darius")
     ult_strings = set(walk_strings(darius.get("ult", {})))
     if "test_mod_darius_hemo_5" not in ult_strings or "test_mod_darius_noxian_might" not in ult_strings:
         fail("Darius R must scale/branch on Hemorrhage stacks and Noxian Might")
+    if "RushMoveToBack" in ult_strings:
+        fail("Darius R must be a stable targeted guillotine chop, not a RushMoveToBack actor warp")
 
     projectile_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in darius.get("view_projectiles", [])}
     for name, expected in DARIUS_EFFECT_REFS.items():
@@ -2433,9 +2513,9 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
 
 def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
     expected_display_names = {
-        "en": "Thresh (Chain Warden)",
-        "zh-hans": "\u9b42\u9501\u5178\u72f1\u957f",
-        "zh-hant": "\u9b42\u9396\u5178\u7344\u9577",
+        "en": "Thresh",
+        "zh-hans": "\u9524\u77f3",
+        "zh-hant": "\u745f\u96f7\u897f",
         "ko": "\uc4f0\ub808\uc26c",
     }
     expected_terms = {
@@ -2453,9 +2533,9 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
                 fail(f"text/champion.i18n locale {locale} missing {thresh_id}")
             name = str(row.get("name", ""))
             if name != expected_name:
-                fail(f"text/champion.i18n locale {locale} {thresh_id}.name must be short display name {expected_name!r}")
-            if locale in {"zh-hans", "zh-hant"} and any(alias in name for alias in ("Thresh", "\u9524\u77f3", "\u745f\u96f7\u897f")):
-                fail(f"text/champion.i18n locale {locale} {thresh_id}.name must not include search aliases")
+                fail(f"text/champion.i18n locale {locale} {thresh_id}.name must be searchable display name {expected_name!r}")
+            if locale in {"zh-hans", "zh-hant"} and "Thresh" in name:
+                fail(f"text/champion.i18n locale {locale} {thresh_id}.name must stay localized")
             for key in REQUIRED_DESCRIPTION_KEYS:
                 value = str(row.get(key, ""))
                 if "??" in value or "\ufffd" in value or "\u7e5d" in value:
@@ -2628,8 +2708,8 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
     }
     expected_terms = {
         "en": ("Herald of the Arcane", "Glorious Evolution", "Hextech Ray", "Gravity Field", "Arcane Storm"),
-        "zh-hans": ("\u5965\u672f\u5148\u9a71", "\u5149\u8363\u8fdb\u5316", "\u6d77\u514b\u65af\u5c04\u7ebf", "\u91cd\u529b\u573a", "\u5965\u672f\u98ce\u66b4"),
-        "zh-hant": ("\u5967\u8853\u5148\u9a45", "\u5149\u69ae\u9032\u5316", "\u6d77\u514b\u65af\u5c04\u7dda", "\u91cd\u529b\u5834", "\u5967\u8853\u98a8\u66b4"),
+        "zh-hans": ("\u5965\u672f\u5148\u9a71", "\u673a\u68b0\u5148\u9a71", "\u5149\u8363\u8fdb\u5316", "\u6d77\u514b\u65af\u5c04\u7ebf", "\u91cd\u529b\u573a", "\u5965\u672f\u98ce\u66b4"),
+        "zh-hant": ("\u5967\u8853\u5148\u9a45", "\u6a5f\u68b0\u5148\u9a45", "\u5149\u69ae\u9032\u5316", "\u6d77\u514b\u65af\u5c04\u7dda", "\u91cd\u529b\u5834", "\u5967\u8853\u98a8\u66b4"),
     }
     for locale, expected_name in expected_display_names.items():
         descriptions = text.get(locale, {}).get("description")
@@ -2977,6 +3057,8 @@ def check_champion_visibility() -> None:
     check_jinx_contract(text, entries)
     check_thresh_contract(text, entries)
     check_viktor_contract(text, entries)
+    for champion_name in ("aatrox", "darius", "kayn", "thresh", "viktor"):
+        assert_static_recall_tags(champion_name)
 
 
 def main() -> int:

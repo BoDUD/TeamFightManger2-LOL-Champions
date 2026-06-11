@@ -1779,7 +1779,7 @@
     "casting_type": "Direction",
     "casting_target": "EnemyWithoutTower",
     "attack_type": "Skill",
-    "range": 56000,
+    "range": 50000,
     "duration": 44,
     "cooltime": 780,
     "start_timing": 10,
@@ -1798,10 +1798,10 @@
         },
         {
           "type": "LineRangeProjectile",
-          "width": 23000,
-          "length": 56000,
-          "delay": 8,
-          "apply": 14,
+          "width": 15000,
+          "length": 50000,
+          "delay": 6,
+          "apply": 12,
           "name": "test_mod_darius_apprehend",
           "applied_target": "EnemyWithoutTower",
           "applied_effects": [
@@ -1816,7 +1816,12 @@
                   },
                   {
                     "type": "Stun",
-                    "duration": 18
+                    "duration": 22
+                  },
+                  {
+                    "type": "Knockback",
+                    "speed": -2600,
+                    "tick": 9
                   },
                   {
                     "type": "AddBuff",
@@ -1832,7 +1837,7 @@
                   },
                   {
                     "type": "BlockMoveSkill",
-                    "tick": 24
+                    "tick": 30
                   },
                   {
                     "type": "ViewEffect",
@@ -2165,9 +2170,9 @@
     "casting_target": "EnemyChampion",
     "attack_type": "Skill",
     "range": 52000,
-    "duration": 52,
+    "duration": 46,
     "cooltime": 3900,
-    "start_timing": 16,
+    "start_timing": 18,
     "cancelable": false,
     "can_use_with_move": false,
     "effect": {
@@ -2189,30 +2194,24 @@
             "name": "test_mod_darius_noxian_guillotine_cast_vfx"
           },
           {
-            "type": "RushMoveToBack",
-            "speed": 3200,
-            "applied_effects": [
+            "type": "Combine",
+            "effects": [
               {
-                "type": "Combine",
-                "effects": [
-                  {
-                    "type": "FixedAttack",
-                    "damage": 280,
-                    "attack_ratio": 190
-                  },
-                  {
-                    "type": "Stun",
-                    "duration": 8
-                  },
-                  {
-                    "type": "ViewEffect",
-                    "name": "test_mod_darius_noxian_guillotine_hit_vfx"
-                  },
-                  {
-                    "type": "TargetSfx",
-                    "name": "test_mod_darius_r_hit"
-                  }
-                ]
+                "type": "FixedAttack",
+                "damage": 280,
+                "attack_ratio": 190
+              },
+              {
+                "type": "Stun",
+                "duration": 8
+              },
+              {
+                "type": "ViewEffect",
+                "name": "test_mod_darius_noxian_guillotine_hit_vfx"
+              },
+              {
+                "type": "TargetSfx",
+                "name": "test_mod_darius_r_hit"
               }
             ]
           },
@@ -2273,30 +2272,24 @@
               "name": "test_mod_darius_noxian_guillotine_cast_vfx"
             },
             {
-              "type": "RushMoveToBack",
-              "speed": 3200,
-              "applied_effects": [
+              "type": "Combine",
+              "effects": [
                 {
-                  "type": "Combine",
-                  "effects": [
-                    {
-                      "type": "FixedAttack",
-                      "damage": 280,
-                      "attack_ratio": 190
-                    },
-                    {
-                      "type": "Stun",
-                      "duration": 8
-                    },
-                    {
-                      "type": "ViewEffect",
-                      "name": "test_mod_darius_noxian_guillotine_hit_vfx"
-                    },
-                    {
-                      "type": "TargetSfx",
-                      "name": "test_mod_darius_r_hit"
-                    }
-                  ]
+                  "type": "FixedAttack",
+                  "damage": 280,
+                  "attack_ratio": 190
+                },
+                {
+                  "type": "Stun",
+                  "duration": 8
+                },
+                {
+                  "type": "ViewEffect",
+                  "name": "test_mod_darius_noxian_guillotine_hit_vfx"
+                },
+                {
+                  "type": "TargetSfx",
+                  "name": "test_mod_darius_r_hit"
                 }
               ]
             },
@@ -2357,30 +2350,24 @@
                 "name": "test_mod_darius_noxian_guillotine_cast_vfx"
               },
               {
-                "type": "RushMoveToBack",
-                "speed": 3200,
-                "applied_effects": [
+                "type": "Combine",
+                "effects": [
                   {
-                    "type": "Combine",
-                    "effects": [
-                      {
-                        "type": "FixedAttack",
-                        "damage": 235,
-                        "attack_ratio": 170
-                      },
-                      {
-                        "type": "Stun",
-                        "duration": 8
-                      },
-                      {
-                        "type": "ViewEffect",
-                        "name": "test_mod_darius_noxian_guillotine_hit_vfx"
-                      },
-                      {
-                        "type": "TargetSfx",
-                        "name": "test_mod_darius_r_hit"
-                      }
-                    ]
+                    "type": "FixedAttack",
+                    "damage": 235,
+                    "attack_ratio": 170
+                  },
+                  {
+                    "type": "Stun",
+                    "duration": 8
+                  },
+                  {
+                    "type": "ViewEffect",
+                    "name": "test_mod_darius_noxian_guillotine_hit_vfx"
+                  },
+                  {
+                    "type": "TargetSfx",
+                    "name": "test_mod_darius_r_hit"
                   }
                 ]
               }
@@ -2405,30 +2392,24 @@
                   "name": "test_mod_darius_noxian_guillotine_cast_vfx"
                 },
                 {
-                  "type": "RushMoveToBack",
-                  "speed": 3200,
-                  "applied_effects": [
+                  "type": "Combine",
+                  "effects": [
                     {
-                      "type": "Combine",
-                      "effects": [
-                        {
-                          "type": "FixedAttack",
-                          "damage": 200,
-                          "attack_ratio": 155
-                        },
-                        {
-                          "type": "Stun",
-                          "duration": 8
-                        },
-                        {
-                          "type": "ViewEffect",
-                          "name": "test_mod_darius_noxian_guillotine_hit_vfx"
-                        },
-                        {
-                          "type": "TargetSfx",
-                          "name": "test_mod_darius_r_hit"
-                        }
-                      ]
+                      "type": "FixedAttack",
+                      "damage": 200,
+                      "attack_ratio": 155
+                    },
+                    {
+                      "type": "Stun",
+                      "duration": 8
+                    },
+                    {
+                      "type": "ViewEffect",
+                      "name": "test_mod_darius_noxian_guillotine_hit_vfx"
+                    },
+                    {
+                      "type": "TargetSfx",
+                      "name": "test_mod_darius_r_hit"
                     }
                   ]
                 }
@@ -2453,30 +2434,24 @@
                     "name": "test_mod_darius_noxian_guillotine_cast_vfx"
                   },
                   {
-                    "type": "RushMoveToBack",
-                    "speed": 3200,
-                    "applied_effects": [
+                    "type": "Combine",
+                    "effects": [
                       {
-                        "type": "Combine",
-                        "effects": [
-                          {
-                            "type": "FixedAttack",
-                            "damage": 170,
-                            "attack_ratio": 140
-                          },
-                          {
-                            "type": "Stun",
-                            "duration": 8
-                          },
-                          {
-                            "type": "ViewEffect",
-                            "name": "test_mod_darius_noxian_guillotine_hit_vfx"
-                          },
-                          {
-                            "type": "TargetSfx",
-                            "name": "test_mod_darius_r_hit"
-                          }
-                        ]
+                        "type": "FixedAttack",
+                        "damage": 170,
+                        "attack_ratio": 140
+                      },
+                      {
+                        "type": "Stun",
+                        "duration": 8
+                      },
+                      {
+                        "type": "ViewEffect",
+                        "name": "test_mod_darius_noxian_guillotine_hit_vfx"
+                      },
+                      {
+                        "type": "TargetSfx",
+                        "name": "test_mod_darius_r_hit"
                       }
                     ]
                   }
@@ -2501,30 +2476,24 @@
                       "name": "test_mod_darius_noxian_guillotine_cast_vfx"
                     },
                     {
-                      "type": "RushMoveToBack",
-                      "speed": 3200,
-                      "applied_effects": [
+                      "type": "Combine",
+                      "effects": [
                         {
-                          "type": "Combine",
-                          "effects": [
-                            {
-                              "type": "FixedAttack",
-                              "damage": 145,
-                              "attack_ratio": 130
-                            },
-                            {
-                              "type": "Stun",
-                              "duration": 8
-                            },
-                            {
-                              "type": "ViewEffect",
-                              "name": "test_mod_darius_noxian_guillotine_hit_vfx"
-                            },
-                            {
-                              "type": "TargetSfx",
-                              "name": "test_mod_darius_r_hit"
-                            }
-                          ]
+                          "type": "FixedAttack",
+                          "damage": 145,
+                          "attack_ratio": 130
+                        },
+                        {
+                          "type": "Stun",
+                          "duration": 8
+                        },
+                        {
+                          "type": "ViewEffect",
+                          "name": "test_mod_darius_noxian_guillotine_hit_vfx"
+                        },
+                        {
+                          "type": "TargetSfx",
+                          "name": "test_mod_darius_r_hit"
                         }
                       ]
                     }
@@ -2546,30 +2515,24 @@
                       "name": "test_mod_darius_noxian_guillotine_cast_vfx"
                     },
                     {
-                      "type": "RushMoveToBack",
-                      "speed": 3200,
-                      "applied_effects": [
+                      "type": "Combine",
+                      "effects": [
                         {
-                          "type": "Combine",
-                          "effects": [
-                            {
-                              "type": "FixedAttack",
-                              "damage": 120,
-                              "attack_ratio": 120
-                            },
-                            {
-                              "type": "Stun",
-                              "duration": 8
-                            },
-                            {
-                              "type": "ViewEffect",
-                              "name": "test_mod_darius_noxian_guillotine_hit_vfx"
-                            },
-                            {
-                              "type": "TargetSfx",
-                              "name": "test_mod_darius_r_hit"
-                            }
-                          ]
+                          "type": "FixedAttack",
+                          "damage": 120,
+                          "attack_ratio": 120
+                        },
+                        {
+                          "type": "Stun",
+                          "duration": 8
+                        },
+                        {
+                          "type": "ViewEffect",
+                          "name": "test_mod_darius_noxian_guillotine_hit_vfx"
+                        },
+                        {
+                          "type": "TargetSfx",
+                          "name": "test_mod_darius_r_hit"
                         }
                       ]
                     }
