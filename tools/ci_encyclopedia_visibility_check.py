@@ -3167,6 +3167,20 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         if missing:
             fail(f"Thresh {action} must trigger sound events {sorted(missing)}")
 
+    thresh_ult = thresh.get("ult", {})
+    if thresh_ult.get("casting_type") != "Targeting" or thresh_ult.get("casting_target") != "EnemyChampion":
+        fail("Thresh R must use EnemyChampion targeting so AI can actually choose The Box")
+    if int(thresh_ult.get("range", 0)) < 60000:
+        fail("Thresh R must expose a target range of at least 60000; range=0 makes AI skip The Box")
+    if int(thresh_ult.get("cooltime", 999999)) > 3000:
+        fail("Thresh R cooldown must stay at or below 3000 ticks so it appears during normal games")
+    ult_range_effects = [
+        node for node in find_effect_nodes(thresh_ult, "RangeEffect")
+        if node.get("apply_type") == "AroundCaster" and node.get("target") == "EnemyWithoutTower"
+    ]
+    if not ult_range_effects:
+        fail("Thresh R must still place The Box around Thresh on the ground, not as a detached target effect")
+
     chain_fanim = load_json(ROOT / "aseprite_resources" / "effects" / "thresh_death_sentence_chain#anim.fanim")
     chain_frames = chain_fanim.get("anims", {}).get("chain", {}).get("frames")
     if not isinstance(chain_frames, list):
