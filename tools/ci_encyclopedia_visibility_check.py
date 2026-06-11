@@ -399,6 +399,11 @@ THRESH_FRAME_SIZE = (57.0, 54.0)
 THRESH_CORE_ACTIONS = ("idle", "run", "attack", "skill", "skill2", "hit", "dead", "ult")
 THRESH_MIN_BOTTOM_SAFE = 8
 THRESH_MAX_BODY_WIDTH = 52
+THRESH_BOX_MIN_VISIBLE_PIXELS = 4000
+THRESH_BOX_MIN_STRONG_PIXELS = 250
+THRESH_BOX_MIN_COLOR_BINS = 450
+THRESH_BOX_MAX_FRAME_WIDTH = 96
+THRESH_BOX_MAX_FRAME_HEIGHT = 86
 THRESH_FORBIDDEN_CASTER_FOLLOW_VFX = {
     "test_mod_thresh_lantern_cast_vfx",
     "test_mod_thresh_flay_cast_vfx",
@@ -3208,6 +3213,8 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         fail("Thresh Death Sentence chain projectile must repeat so the hook does not vanish mid-flight")
     view_effect_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in thresh.get("view_effects", [])}
     view_effect_types = {item.get("name"): item.get("type") for item in thresh.get("view_effects", [])}
+    view_effect_z = {item.get("name"): item.get("z") for item in thresh.get("view_effects", [])}
+    view_effect_follow = {item.get("name"): item.get("is_follow") for item in thresh.get("view_effects", [])}
     for forbidden in THRESH_FORBIDDEN_CASTER_FOLLOW_VFX:
         if forbidden in view_effect_refs:
             fail(f"champion/thresh.data_champion view_effect {forbidden} is retired because it creates duplicate actor-following VFX")
@@ -3217,6 +3224,10 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
     for name in ("test_mod_thresh_box", "test_mod_thresh_box_field"):
         if view_effect_types.get(name) != "LoopAnimation":
             fail(f"Thresh {name} must be LoopAnimation so The Box does not vanish immediately")
+        if view_effect_z.get(name) != 1:
+            fail(f"Thresh {name} must render at z=1 so The Box is visible above terrain")
+        if view_effect_follow.get(name) is not False:
+            fail(f"Thresh {name} must stay ground-anchored with is_follow=false, not attached to the actor")
     buff_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in thresh.get("view_buffs", [])}
     for name, expected in THRESH_BUFF_REFS.items():
         if buff_refs.get(name) != expected:
@@ -3334,6 +3345,53 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         min_fill_ratio=0.35,
         max_width=150,
     )
+    box_fanim = load_json(ROOT / "aseprite_resources" / "effects" / "thresh_box#anim.fanim")
+    box_frames = box_fanim.get("anims", {}).get("box", {}).get("frames") if isinstance(box_fanim, dict) else None
+    if not isinstance(box_frames, list) or len(box_frames) < 6:
+        fail("Thresh The Box VFX must expose at least six loop frames")
+    box_width, _box_height, box_rgba = load_rgba(ROOT / "aseprite_resources" / "effects" / "thresh_box#sheet.png")
+    box_alpha = bytes(box_rgba[i * 4 + 3] for i in range(len(box_rgba) // 4))
+    for index, frame in enumerate(box_frames):
+        data = frame.get("data") if isinstance(frame, dict) else None
+        if not isinstance(data, dict):
+            fail(f"Thresh The Box frame {index} missing frame data")
+        x = int(round(float(data.get("x", -1))))
+        y = int(round(float(data.get("y", -1))))
+        w = int(round(float(data.get("w", 0))))
+        h = int(round(float(data.get("h", 0))))
+        bbox = alpha_bbox_in_rect(box_alpha, box_width, (x, y, w, h))
+        if bbox is None:
+            fail(f"Thresh The Box frame {index} is blank")
+        if bbox[2] - bbox[0] > THRESH_BOX_MAX_FRAME_WIDTH or bbox[3] - bbox[1] > THRESH_BOX_MAX_FRAME_HEIGHT:
+            fail(
+                f"Thresh The Box frame {index} is {bbox[2] - bbox[0]}x{bbox[3] - bbox[1]}px; "
+                "R VFX must be visible but not oversized on the battlefield"
+            )
+        visible = 0
+        strong = 0
+        color_bins: set[tuple[int, int, int]] = set()
+        for local_y in range(h):
+            for local_x in range(w):
+                rgba_index = ((y + local_y) * box_width + x + local_x) * 4
+                r = box_rgba[rgba_index]
+                g = box_rgba[rgba_index + 1]
+                b = box_rgba[rgba_index + 2]
+                a = box_rgba[rgba_index + 3]
+                if not a:
+                    continue
+                visible += 1
+                color_bins.add((r // 8, g // 8, b // 8))
+                if a >= 110 and g >= 165 and b >= 110:
+                    strong += 1
+        if visible < THRESH_BOX_MIN_VISIBLE_PIXELS:
+            fail(f"Thresh The Box frame {index} has only {visible} visible pixels; R must read as a real prison field")
+        if strong < THRESH_BOX_MIN_STRONG_PIXELS:
+            fail(f"Thresh The Box frame {index} has only {strong} bright wall pixels; R is too subtle in battle")
+        if len(color_bins) < THRESH_BOX_MIN_COLOR_BINS:
+            fail(
+                f"Thresh The Box frame {index} has only {len(color_bins)} color bins; "
+                "R VFX must use generated textured soul-wall art, not simple code-drawn lines"
+            )
     box_field = next(
         (node for node in find_effect_nodes(thresh.get("ult", {}), "RangePeriodProjectile") if node.get("name") == "test_mod_thresh_box_field"),
         None,
