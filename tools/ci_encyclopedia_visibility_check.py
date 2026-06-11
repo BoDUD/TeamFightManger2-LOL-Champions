@@ -562,14 +562,16 @@ COMPACT_DISPLAY_LIMITS = {
     "viktor": {"max_width": 39, "max_height": 42, "min_bottom_safe": 11},
 }
 SIDE_CARD_STANDING_FACE_OFFSETS = {
-    "aatrox": {"x": 7, "y": -24},
+    "aatrox": {"x": 2, "y": -16},
     "darius": {"x": 2, "y": -12},
+    "kayn": {"x": 4, "y": -18},
     "thresh": {"x": 0, "y": -12},
     "viktor": {"x": 0, "y": -28},
 }
 SIDE_CARD_STANDING_CENTER_OFFSETS = {
     "aatrox": {"x": 4, "y": -12},
     "darius": {"x": 0, "y": -12},
+    "kayn": {"x": 0, "y": -12},
     "thresh": {"x": 0, "y": -12},
     "viktor": {"x": 0, "y": -12},
 }
@@ -1604,8 +1606,8 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
         face_y = view.get("face", {}).get("y")
         center_x = view.get("center", {}).get("x")
         center_y = view.get("center", {}).get("y")
-        if face_x != 7 or face_y != -24:
-            fail(f"style entry {aatrox_id}.face must keep Aatrox compact portrait sword-visible at x=7,y=-24")
+        if face_x != 2 or face_y != -16:
+            fail(f"style entry {aatrox_id}.face must keep Aatrox HUD/scoreboard portrait centered at x=2,y=-16")
         if center_x != 4 or center_y != -12:
             fail(f"style entry {aatrox_id}.center must keep Aatrox exchange standing sword and feet visible at x=4,y=-12")
 
@@ -1944,8 +1946,8 @@ def check_kayn_rework_contract(text: dict[str, Any], entries: dict[str, Any]) ->
         center_y = view.get("center", {}).get("y")
         if face_x != 4:
             fail(f"style entry {kayn_id}.face.x must keep Kayn's compact portrait centered")
-        if face_y != -12:
-            fail(f"style entry {kayn_id}.face.y must keep Kayn's full-body compact portrait at -12")
+        if face_y != -18:
+            fail(f"style entry {kayn_id}.face.y must keep Kayn's HUD/scoreboard portrait centered at -18")
         if not isinstance(center_y, (int, float)) or not -20 <= center_y <= -8:
             fail(f"style entry {kayn_id}.center.y must keep the full-body display above the name")
 
