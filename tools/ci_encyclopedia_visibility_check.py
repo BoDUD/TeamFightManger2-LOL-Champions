@@ -142,10 +142,6 @@ DARIUS_VIEW_EFFECT_REFS = {
         "asset/bo_league_champions/aseprite_resources/effects/darius_decimate_heal",
         "heal",
     ),
-    "test_mod_darius_apprehend_cast_vfx": (
-        "asset/bo_league_champions/aseprite_resources/effects/darius_apprehend",
-        "chain",
-    ),
     "test_mod_darius_crippling_strike_vfx": (
         "asset/bo_league_champions/aseprite_resources/effects/darius_crippling_strike",
         "hit",
@@ -182,6 +178,7 @@ DARIUS_SOUND_MEDIA_IDS = {
 }
 DARIUS_SKILL_SOUND_EVENTS = set(DARIUS_SOUND_MEDIA_IDS)
 DARIUS_SKILL_SOUND_VOLUME_FLOOR = 0.84
+DARIUS_FORBIDDEN_VIEW_EFFECTS = {"test_mod_darius_apprehend_cast_vfx"}
 KAYN_IDS = ("bo_league_champions_kayn", "test_mod_kayn")
 KAYN_EFFECT_REFS = {
     "test_mod_kayn_q_slash": (
@@ -551,6 +548,11 @@ VIKTOR_SKILL_SOUND_EVENTS = {
     "test_mod_viktor_ult_voice",
 }
 VIKTOR_SKILL_SOUND_VOLUME_FLOOR = 0.84
+COMPACT_DISPLAY_LIMITS = {
+    "darius": {"max_width": 42, "max_height": 40, "min_bottom_safe": 12},
+    "thresh": {"max_width": 42, "max_height": 40, "min_bottom_safe": 12},
+    "viktor": {"max_width": 39, "max_height": 42, "min_bottom_safe": 11},
+}
 REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS: dict[str, dict[str, tuple[str, ...]]] = {}
 for _champion_id in AATROX_IDS:
     REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS[_champion_id] = {
@@ -813,6 +815,44 @@ def assert_generated_vfx_volume(
             fail(f"{label} frame {index} spans {frame_width}px; avoid full-width line/tether VFX in a single projectile frame")
 
 
+def assert_effect_frames_not_edge_cut(
+    sheet: Path,
+    fanim_path: Path,
+    tag: str,
+    label: str,
+    *,
+    border: int = 2,
+    max_border_pixels: int = 0,
+) -> None:
+    fanim = load_json(fanim_path)
+    frames = fanim.get("anims", {}).get(tag, {}).get("frames") if isinstance(fanim, dict) else None
+    if not isinstance(frames, list):
+        fail(f"{fanim_path.relative_to(ROOT)} must expose {tag!r} frames for {label}")
+    image_width, _image_height, rgba = load_rgba(sheet)
+    for index, frame in enumerate(frames):
+        data = frame.get("data") if isinstance(frame, dict) else None
+        if not isinstance(data, dict):
+            fail(f"{label} frame {index} missing frame data")
+        x0 = int(round(float(data.get("x", -1))))
+        y0 = int(round(float(data.get("y", -1))))
+        w = int(round(float(data.get("w", 0))))
+        h = int(round(float(data.get("h", 0))))
+        border_pixels = 0
+        for y in range(y0, y0 + h):
+            local_y = y - y0
+            for x in range(x0, x0 + w):
+                local_x = x - x0
+                if border <= local_x < w - border and border <= local_y < h - border:
+                    continue
+                if rgba[(y * image_width + x) * 4 + 3] > 20:
+                    border_pixels += 1
+        if border_pixels > max_border_pixels:
+            fail(
+                f"{label} frame {index} has {border_pixels} visible pixels touching the cell edge; "
+                "repack the VFX into the native cell instead of letting it flash as a cut-off half-effect"
+            )
+
+
 def collect_weapon_palette_from_rect(path: Path, rect: tuple[int, int, int, int]) -> set[tuple[int, int, int]]:
     image_width, _image_height, rgba = load_rgba(path)
     x0, y0, w, h = rect
@@ -891,6 +931,53 @@ def assert_compact_idle_bottom_safety(champion: str, *, min_bottom_safe: int = 1
         )
 
 
+def assert_compact_display_frame_size(champion: str) -> None:
+    limits = COMPACT_DISPLAY_LIMITS.get(champion)
+    if not limits:
+        return
+    fanim_path = ROOT / "aseprite_resources" / "champions" / f"{champion}#anim.fanim"
+    sheet_path = ROOT / "aseprite_resources" / "champions" / f"{champion}#sheet.png"
+    fanim = load_json(fanim_path)
+    anims = fanim.get("anims") if isinstance(fanim, dict) else None
+    if not isinstance(anims, dict):
+        fail(f"{fanim_path.relative_to(ROOT)} must contain anims")
+    sheet_width, _sheet_height, sheet_alpha = load_rgba_alpha(sheet_path)
+    seen_rects: set[tuple[int, int, int, int]] = set()
+    for action in ("idle", "recall", "return"):
+        frames = anims.get(action, {}).get("frames") if isinstance(anims.get(action), dict) else None
+        if not isinstance(frames, list) or not frames:
+            fail(f"{champion} {action} frames must exist for compact HUD portrait checks")
+        for index, frame in enumerate(frames):
+            data = frame.get("data") if isinstance(frame, dict) else None
+            if not isinstance(data, dict):
+                fail(f"{champion} {action} frame {index} missing frame data for compact HUD portrait checks")
+            rect = (
+                int(round(float(data.get("x", -1)))),
+                int(round(float(data.get("y", -1)))),
+                int(round(float(data.get("w", 0)))),
+                int(round(float(data.get("h", 0)))),
+            )
+            if rect in seen_rects:
+                continue
+            seen_rects.add(rect)
+            bbox = alpha_bbox_in_rect(sheet_alpha, sheet_width, rect)
+            if bbox is None:
+                fail(f"{champion} {action} frame {index} is blank; compact HUD portraits need a readable body")
+            body_width = bbox[2] - bbox[0]
+            body_height = bbox[3] - bbox[1]
+            bottom_safe = rect[3] - bbox[3]
+            if body_width > limits["max_width"] or body_height > limits["max_height"]:
+                fail(
+                    f"{champion} {action} frame {index} body {body_width}x{body_height}px is too large for compact HUD/side-list avatars; "
+                    f"limit is {limits['max_width']}x{limits['max_height']}px"
+                )
+            if bottom_safe < limits["min_bottom_safe"]:
+                fail(
+                    f"{champion} {action} frame {index} leaves only {bottom_safe}px bottom safety; "
+                    f"compact HUD/side-list avatars need at least {limits['min_bottom_safe']}px so feet do not disappear under names"
+                )
+
+
 def check_standard_compact_idle_bottom_safety() -> None:
     for fanim_path in sorted((ROOT / "aseprite_resources" / "champions").glob("*#anim.fanim")):
         champion = fanim_path.name.split("#", 1)[0]
@@ -905,6 +992,7 @@ def check_standard_compact_idle_bottom_safety() -> None:
         if frame_size != (57.0, 54.0):
             continue
         assert_compact_idle_bottom_safety(champion)
+        assert_compact_display_frame_size(champion)
 
 
 def count_green_residue(path: Path) -> int:
@@ -2548,11 +2636,11 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         ROOT / "aseprite_resources" / "effects" / "darius_apprehend#anim.fanim",
         "chain",
         "Darius Apprehend axe-pull VFX",
-        min_visible=3300,
-        min_color_bins=450,
-        min_height=48,
-        min_fill_ratio=0.36,
-        max_width=176,
+        min_visible=1500,
+        min_color_bins=800,
+        min_height=54,
+        min_fill_ratio=0.38,
+        max_width=150,
     )
     darius_axe_palette = collect_weapon_palette_from_rect(
         ROOT / "aseprite_resources" / "champions" / "darius#sheet.png",
@@ -2584,7 +2672,7 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
             darius_axe_palette,
             tolerance=28,
         )
-        if matches < 1800:
+        if matches < 900:
             fail(
                 f"Darius Apprehend frame {index} has only {matches} pixels matching the current axe palette; "
                 "E must use Darius's held weapon, not a generic generated axe"
@@ -2730,14 +2818,25 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
     skill2_strings = set(walk_strings(darius.get("skill2", {})))
     if "test_mod_darius_apprehend" not in skill2_strings or "test_mod_darius_crippling_strike_ready" not in skill2_strings:
         fail("Darius E/W must hook with Apprehend and prime Crippling Strike")
+    if darius.get("skill2", {}).get("casting_target") != "EnemyChampion":
+        fail("Darius Apprehend must target champions first so AI does not waste the pull read on minions or towers")
+    if darius.get("skill2", {}).get("range") != 66000:
+        fail("Darius Apprehend must expose enough AI cast range to be seen and used in battle")
     skill2_projectiles = find_effect_nodes(darius.get("skill2", {}), "LineRangeProjectile")
     apprehend = next((node for node in skill2_projectiles if node.get("name") == "test_mod_darius_apprehend"), None)
     if not isinstance(apprehend, dict):
         fail("Darius E/W must fire test_mod_darius_apprehend")
-    if apprehend.get("width") != 15000 or apprehend.get("length") != 50000:
-        fail("Darius Apprehend must use a tight one-direction pull lane, not a broad front/back sweep")
+    if apprehend.get("applied_target") != "EnemyChampion":
+        fail("Darius Apprehend projectile must apply to enemy champions so the hook visibly pulls heroes")
+    if apprehend.get("width") != 24000 or apprehend.get("length") != 66000:
+        fail("Darius Apprehend must use a readable one-direction axe-pull lane, not a broad front/back sweep or an invisible needle")
+    if apprehend.get("delay") != 5 or apprehend.get("apply") != 14:
+        fail("Darius Apprehend timing must keep the axe-chain visible before the pull resolves")
     if "MoveTo" not in set(walk_strings(apprehend)):
         fail("Darius Apprehend must include a MoveTo hit effect so the hook pulls/locks targets near Darius instead of only drawing a chain")
+    move_to_nodes = find_effect_nodes(apprehend, "MoveTo")
+    if not move_to_nodes or move_to_nodes[0].get("range") != 9000 or move_to_nodes[0].get("speed") != 4800:
+        fail("Darius Apprehend MoveTo must pull targets tightly in front of Darius without warping the actor body")
     if "test_mod_darius_apprehend_cast_vfx" in skill2_strings:
         fail("Darius Apprehend must not also play a caster-follow copy of the chain; that creates the double/front-back hook read")
     if "Knockback" in skill2_strings:
@@ -2756,6 +2855,9 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
     if projectile_repeat.get("test_mod_darius_apprehend") is not True:
         fail("Darius Apprehend projectile must repeat long enough to read as a pull chain")
     view_effect_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in darius.get("view_effects", [])}
+    for forbidden in DARIUS_FORBIDDEN_VIEW_EFFECTS:
+        if forbidden in view_effect_refs:
+            fail(f"champion/darius.data_champion view_effect {forbidden} is retired because it creates duplicate caster-following axe chains")
     for name, expected in DARIUS_VIEW_EFFECT_REFS.items():
         if view_effect_refs.get(name) != expected:
             fail(f"champion/darius.data_champion view_effect {name} must reference {expected}")
@@ -2899,7 +3001,7 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
             bottom_safe = h - bbox[3]
             if action != "dead" and body_height > 43:
                 fail(f"Thresh {action} frame {index} body height {body_height}px is too large for UI/battle labels")
-            min_body_height = 37 if action == "run" else 40
+            min_body_height = 38 if action == "idle" else 37 if action == "run" else 40
             if action != "dead" and body_height < min_body_height:
                 fail(f"Thresh {action} frame {index} body height {body_height}px is too small for readable Chain Warden silhouette")
             if action != "dead" and body_width > THRESH_MAX_BODY_WIDTH:
@@ -3166,7 +3268,7 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
     }
     expected_durations = {
         "idle": (0.11,) * 6,
-        "run": (0.065,) * 10,
+        "run": (0.11,) * 10,
         "attack": (0.05, 0.05, 0.055, 0.055, 0.06, 0.08),
         "skill": (0.07, 0.08, 0.09, 0.11, 0.18, 0.22),
         "skill2": (0.055, 0.055, 0.06, 0.075, 0.09, 0.105, 0.11),
@@ -3298,9 +3400,28 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         if projectile_repeat.get(projectile_name) is not True:
             fail(f"Viktor projectile {projectile_name} must repeat so the laser VFX stays visible for the gameplay window")
     view_effect_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in viktor.get("view_effects", [])}
+    view_effect_types = {item.get("name"): item.get("type") for item in viktor.get("view_effects", [])}
     for name, expected in VIKTOR_VIEW_EFFECT_REFS.items():
         if view_effect_refs.get(name) != expected:
             fail(f"champion/viktor.data_champion view_effect {name} must reference {expected}")
+    for name in ("test_mod_viktor_gravity_field", "test_mod_viktor_chaos_storm"):
+        if view_effect_types.get(name) != "LoopAnimation":
+            fail(f"Viktor {name} must be LoopAnimation so the field/storm persists instead of flashing once and vanishing")
+    if view_effect_types.get("test_mod_viktor_storm_impact") != "Animation":
+        fail("Viktor storm impact must remain a one-shot Animation separate from the persistent Chaos Storm loop")
+    assert_effect_frames_not_edge_cut(
+        ROOT / "aseprite_resources" / "effects" / "viktor_gravity_field#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "viktor_gravity_field#anim.fanim",
+        "gravity_field",
+        "Viktor Gravity Field VFX",
+    )
+    assert_effect_frames_not_edge_cut(
+        ROOT / "aseprite_resources" / "effects" / "viktor_storm_impact#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "viktor_storm_impact#anim.fanim",
+        "impact",
+        "Viktor Chaos Storm impact VFX",
+        max_border_pixels=4,
+    )
     buff_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in viktor.get("view_buffs", [])}
     for name, expected in VIKTOR_BUFF_REFS.items():
         if buff_refs.get(name) != expected:
