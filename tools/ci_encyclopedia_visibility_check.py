@@ -68,6 +68,7 @@ AATROX_MIN_DISPLAY_BODY_HEIGHT = 39
 AATROX_MAX_DISPLAY_BODY_HEIGHT = 48
 AATROX_MAX_ACTION_BODY_HEIGHT = 50
 AATROX_MAX_BATTLE_SCALE_DELTA = 8
+AATROX_MAX_BASIC_ATTACK_WIDTH = 62
 AATROX_MIN_RUN_FOOT_CENTER_RANGE = 0.9
 AATROX_MIN_RUN_FOOT_SHAPES = 5
 AATROX_MIN_RUN_UNIQUE_FRAMES = 5
@@ -1777,6 +1778,11 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
         fail("Aatrox run must not alternate the same two poses across all eight frames")
     for action in ("attack", "skill", "skill2"):
         widths = [bbox[2] - bbox[0] for bbox in action_bboxes[action]]
+        if action == "attack" and max(widths) > AATROX_MAX_BASIC_ATTACK_WIDTH:
+            fail(
+                f"Aatrox basic attack width {max(widths)}px is too large; "
+                "auto attacks must keep a stable forward-facing body and avoid Q-sized side cleaves"
+            )
         if max(widths) < min(run_widths):
             fail(f"Aatrox {action} must include readable weapon/body motion from the final model source")
         if len(set(action_hashes[action])) < min(4, len(action_hashes[action])):
