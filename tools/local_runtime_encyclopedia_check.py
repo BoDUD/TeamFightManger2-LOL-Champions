@@ -187,6 +187,28 @@ def check_view_effect_types(path: Path, champion: object) -> None:
             )
 
 
+def iter_mapping_nodes(node: object) -> list[dict[str, object]]:
+    if isinstance(node, dict):
+        out = [node]
+        for value in node.values():
+            out.extend(iter_mapping_nodes(value))
+        return out
+    if isinstance(node, list):
+        out: list[dict[str, object]] = []
+        for item in node:
+            out.extend(iter_mapping_nodes(item))
+        return out
+    return []
+
+
+def assert_no_negative_speed_fields(node: object, label: str) -> None:
+    for mapping in iter_mapping_nodes(node):
+        speed = mapping.get("speed")
+        if isinstance(speed, (int, float)) and speed < 0:
+            effect_type = mapping.get("type", "<unknown>")
+            fail(f"{label} has invalid negative speed {speed!r} on {effect_type}; TFM2 expects unsigned movement speeds")
+
+
 def default_game_root() -> Path:
     if ROOT.parent.name.lower() == "github_publish":
         return ROOT.parent.parent
@@ -403,7 +425,9 @@ def check_runtime_copy(game_root: Path) -> None:
             fail(f"runtime mod still contains retired actor-attached Jinx VFX: {runtime_root / relative}")
 
     for data_path in sorted((runtime_root / "champion").glob("*.data_champion")):
-        check_view_effect_types(data_path, load_json(data_path))
+        data = load_json(data_path)
+        check_view_effect_types(data_path, data)
+        assert_no_negative_speed_fields(data, str(data_path))
 
     style = load_json(runtime_root / "style" / "champion_view.champion_view")
     if not isinstance(style, dict):
