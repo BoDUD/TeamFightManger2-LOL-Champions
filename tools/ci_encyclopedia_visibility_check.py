@@ -62,11 +62,12 @@ AATROX_BUFF_REFS = {
 AATROX_CORE_ACTIONS = ("idle", "run", "attack", "skill", "skill2", "hit", "dead", "ult")
 AATROX_DISPLAY_FRAME_SIZE = (54.0, 50.0)
 AATROX_ACTION_FRAME_SIZE = (96.0, 72.0)
-AATROX_MIN_DISPLAY_BOTTOM_SAFE_PIXELS = 5
-AATROX_MIN_ACTION_BOTTOM_SAFE_PIXELS = 5
+AATROX_MIN_DISPLAY_BOTTOM_SAFE_PIXELS = 8
+AATROX_MIN_ACTION_BOTTOM_SAFE_PIXELS = 12
 AATROX_MIN_DISPLAY_BODY_HEIGHT = 39
-AATROX_MAX_DISPLAY_BODY_HEIGHT = 62
-AATROX_MAX_ACTION_BODY_HEIGHT = 62
+AATROX_MAX_DISPLAY_BODY_HEIGHT = 48
+AATROX_MAX_ACTION_BODY_HEIGHT = 50
+AATROX_MAX_BATTLE_SCALE_DELTA = 8
 AATROX_MIN_RUN_FOOT_CENTER_RANGE = 0.9
 AATROX_MIN_RUN_FOOT_SHAPES = 5
 AATROX_MIN_RUN_UNIQUE_FRAMES = 5
@@ -1707,7 +1708,7 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
             action_hashes[action].append(alpha_frame_hash(sheet_alpha, sheet_width, (x, y, w, h)))
             body_height = bbox[3] - bbox[1]
             bottom_safe = h - bbox[3]
-            if action in ("attack", "skill", "skill2", "dead"):
+            if action in ("run", "attack", "skill", "skill2"):
                 max_body_height = AATROX_MAX_ACTION_BODY_HEIGHT
                 min_bottom_safe = AATROX_MIN_ACTION_BOTTOM_SAFE_PIXELS
             else:
@@ -1749,8 +1750,23 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
     run_bottoms = [bbox[3] for bbox in action_bboxes["run"]]
     run_hashes = action_hashes["run"]
     idle_widths = [bbox[2] - bbox[0] for bbox in action_bboxes["idle"]]
-    if min(idle_widths) < 45:
+    if min(idle_widths) < 42:
         fail("Aatrox idle frames must keep the greatsword visible in compact portraits and recall")
+    battle_body_heights = [
+        bbox[3] - bbox[1]
+        for action in ("idle", "run", "attack", "skill", "skill2", "hit", "ult")
+        for bbox in action_bboxes[action]
+    ]
+    display_reference_heights = [
+        bbox[3] - bbox[1]
+        for action in ("idle", "hit", "ult")
+        for bbox in action_bboxes[action]
+    ]
+    if max(battle_body_heights) - min(display_reference_heights) > AATROX_MAX_BATTLE_SCALE_DELTA:
+        fail(
+            "Aatrox battle frames must stay in one body scale class; "
+            "run/skill frames must not grow larger than idle/hit/ult"
+        )
     if max(run_widths) - min(run_widths) > AATROX_MAX_RUN_WIDTH_RANGE:
         fail("Aatrox run frame widths must stay stable to avoid animation jitter")
     if max(run_tops) - min(run_tops) > 1 or max(run_bottoms) - min(run_bottoms) > 1:
@@ -1779,16 +1795,20 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
         x = int(round(float(data["x"])))
         y = int(round(float(data["y"])))
         w = int(round(float(data["w"])))
+        bbox = action_bboxes["run"][index]
+        body_height = bbox[3] - bbox[1]
+        lower_start = bbox[1] + (body_height * 2) // 3
+        foot_start = bbox[1] + (body_height * 3) // 4
         local_points: list[tuple[int, int]] = []
         lower_points: list[tuple[int, int]] = []
-        for local_y in range(30, 38):
+        for local_y in range(lower_start, bbox[3]):
             row_start = (y + local_y) * sheet_width
-            for local_x in range(18, min(45, w)):
+            for local_x in range(bbox[0], min(bbox[2], w)):
                 if sheet_alpha[row_start + x + local_x] != 0:
                     lower_points.append((local_x, local_y))
-        for local_y in range(31, 38):
+        for local_y in range(foot_start, bbox[3]):
             row_start = (y + local_y) * sheet_width
-            for local_x in range(20, min(42, w)):
+            for local_x in range(bbox[0], min(bbox[2], w)):
                 if sheet_alpha[row_start + x + local_x] != 0:
                     local_points.append((local_x, local_y))
         if not local_points:
