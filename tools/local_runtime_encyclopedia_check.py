@@ -164,6 +164,12 @@ SIDE_CARD_STANDING_FACE_OFFSETS = {
     f"{MOD_ID}_thresh": {"x": 2, "y": -28},
     f"{MOD_ID}_viktor": {"x": 0, "y": -28},
 }
+SIDE_CARD_STANDING_CENTER_OFFSETS = {
+    f"{MOD_ID}_aatrox": {"x": 0, "y": -24},
+    f"{MOD_ID}_darius": {"x": 0, "y": -24},
+    f"{MOD_ID}_thresh": {"x": 0, "y": -28},
+    f"{MOD_ID}_viktor": {"x": 0, "y": -28},
+}
 
 
 def fail(message: str) -> None:
@@ -528,6 +534,18 @@ def check_runtime_copy(game_root: Path) -> None:
             fail(
                 f"runtime champion_view entries.{champion_id}.face must be {expected_face} "
                 "so pick/ban side-card standing portraits show feet"
+            )
+    for champion_id, expected_center in SIDE_CARD_STANDING_CENTER_OFFSETS.items():
+        view = entries.get(champion_id)
+        if not isinstance(view, dict):
+            fail(f"runtime champion_view missing entries.{champion_id}")
+        center = view.get("center")
+        if not isinstance(center, dict):
+            fail(f"runtime champion_view entries.{champion_id}.center must be an object")
+        if center.get("x") != expected_center["x"] or center.get("y") != expected_center["y"]:
+            fail(
+                f"runtime champion_view entries.{champion_id}.center must be {expected_center} "
+                "so exchange standing cards show feet"
             )
 
     text = load_json(runtime_root / "text" / "champion.i18n")
