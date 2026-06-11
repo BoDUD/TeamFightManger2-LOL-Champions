@@ -559,10 +559,10 @@ COMPACT_DISPLAY_LIMITS = {
     "viktor": {"max_width": 39, "max_height": 42, "min_bottom_safe": 11},
 }
 SIDE_CARD_STANDING_FACE_OFFSETS = {
-    "aatrox": {"x": 2, "y": -12},
+    "aatrox": {"x": 2, "y": -24},
     "darius": {"x": 2, "y": -12},
     "thresh": {"x": 0, "y": -12},
-    "viktor": {"x": 0, "y": -12},
+    "viktor": {"x": 0, "y": -28},
 }
 SIDE_CARD_STANDING_CENTER_OFFSETS = {
     "aatrox": {"x": 0, "y": -12},
@@ -1600,8 +1600,8 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
         face_x = view.get("face", {}).get("x")
         face_y = view.get("face", {}).get("y")
         center_y = view.get("center", {}).get("y")
-        if face_x != 2 or face_y != -12:
-            fail(f"style entry {aatrox_id}.face must keep Aatrox weapon-visible compact portrait at x=2,y=-12")
+        if face_x != 2 or face_y != -24:
+            fail(f"style entry {aatrox_id}.face must keep Aatrox compact HUD/scoreboard portrait at x=2,y=-24")
         if center_y != -12:
             fail(f"style entry {aatrox_id}.center.y must recenter Aatrox exchange standing display above labels at -12")
 
@@ -3324,8 +3324,8 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         view = entries.get(viktor_id)
         if not isinstance(view, dict):
             fail(f"style/champion_view.champion_view missing entries.{viktor_id}")
-        if view.get("face", {}).get("x") != 0 or view.get("face", {}).get("y") != -12:
-            fail(f"style entry {viktor_id}.face must recenter Viktor side-card standing portrait to x=0,y=-12")
+        if view.get("face", {}).get("x") != 0 or view.get("face", {}).get("y") != -28:
+            fail(f"style entry {viktor_id}.face must keep Viktor compact HUD/scoreboard portrait at x=0,y=-28")
         if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -12:
             fail(f"style entry {viktor_id}.center must recenter Viktor exchange standing display to x=0,y=-12")
     assert_compact_idle_bottom_safety("viktor")
