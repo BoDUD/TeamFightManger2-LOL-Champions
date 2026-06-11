@@ -152,6 +152,12 @@ REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS: dict[str, dict[str, tuple[str, ...]]] = {
         "zh-hant": ("維克特", "奧術先驅", "光榮進化", "海克斯射線", "重力場", "奧術風暴"),
     },
 }
+REQUIRED_ENCYCLOPEDIA_NAME_TERMS: dict[str, dict[str, tuple[str, ...]]] = {
+    f"{MOD_ID}_aatrox": {
+        "zh-hans": ("\u6697\u88d4\u5251\u9b54",),
+        "zh-hant": ("\u6697\u88d4\u528d\u9b54",),
+    },
+}
 
 
 def fail(message: str) -> None:
@@ -547,6 +553,22 @@ def check_runtime_copy(game_root: Path) -> None:
 def check_encyclopedia_search_terms(text: object) -> None:
     if not isinstance(text, dict):
         fail("runtime champion text must contain a JSON object")
+    for champion_id, terms_by_locale in REQUIRED_ENCYCLOPEDIA_NAME_TERMS.items():
+        for locale, required_terms in terms_by_locale.items():
+            payload = text.get(locale)
+            descriptions = payload.get("description") if isinstance(payload, dict) else None
+            if not isinstance(descriptions, dict):
+                fail(f"runtime text locale {locale} missing description object")
+            row = descriptions.get(champion_id)
+            if not isinstance(row, dict):
+                fail(f"runtime text locale {locale} missing description.{champion_id}")
+            name = str(row.get("name", ""))
+            missing = [term for term in required_terms if term not in name]
+            if missing:
+                fail(
+                    f"runtime text locale {locale} description.{champion_id}.name "
+                    f"is missing encyclopedia name search terms {missing}"
+                )
     for champion_id, terms_by_locale in REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS.items():
         for locale, required_terms in terms_by_locale.items():
             payload = text.get(locale)

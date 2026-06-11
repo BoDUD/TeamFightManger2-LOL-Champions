@@ -3,8 +3,8 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.12.6",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version switches League compact portraits to full-body camera offsets so feet stay visible on side cards, exchange rows, scoreboards, and HUD lists, with CI coverage to prevent face cameras from drifting back to upper-body crops.",
+  "version": "0.12.7",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version makes Aatrox searchable by the Chinese champion title for encyclopedia lookups, while preserving the compact portrait and skill-stability gates.",
   "last_updated": "2026-06-11",
   "dependencies": [
     {
