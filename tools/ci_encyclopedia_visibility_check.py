@@ -1503,8 +1503,8 @@ def check_full_body_compact_portraits(entries: dict[str, Any]) -> None:
 
 def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
     expected_names = {
-        "zh-hans": ("\u4e9a\u6258\u514b\u65af",),
-        "zh-hant": ("\u4e9e\u6258\u514b\u65af",),
+        "zh-hans": ("\u6697\u88d4\u5251\u9b54",),
+        "zh-hant": ("\u6697\u88d4\u528d\u9b54",),
         "ko": ("\uc544\ud2b8\ub85d\uc2a4",),
     }
     expected_terms = {
