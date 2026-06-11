@@ -1793,10 +1793,6 @@
           "name": "test_mod_darius_e_cast"
         },
         {
-          "type": "CasterViewEffect",
-          "name": "test_mod_darius_apprehend_cast_vfx"
-        },
-        {
           "type": "LineRangeProjectile",
           "width": 15000,
           "length": 50000,
@@ -1817,6 +1813,12 @@
                   {
                     "type": "Stun",
                     "duration": 22
+                  },
+                  {
+                    "type": "MoveTo",
+                    "speed": 4200,
+                    "range": 12000,
+                    "end_effects": []
                   },
                   {
                     "type": "AddBuff",
@@ -2547,7 +2549,7 @@
       "anim": "asset/bo_league_champions/aseprite_resources/effects/darius_apprehend",
       "tag": "chain",
       "z": 1,
-      "repeat": false
+      "repeat": true
     }
   ],
   "view_effects": [
