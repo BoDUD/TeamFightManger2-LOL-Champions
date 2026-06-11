@@ -392,6 +392,13 @@ JINX_SKILL_SOUND_VOLUME_FLOOR = 0.84
 THRESH_IDS = ("bo_league_champions_thresh", "test_mod_thresh")
 THRESH_FRAME_SIZE = (57.0, 54.0)
 THRESH_CORE_ACTIONS = ("idle", "run", "attack", "skill", "skill2", "hit", "dead", "ult")
+THRESH_MIN_BOTTOM_SAFE = 8
+THRESH_MAX_BODY_WIDTH = 50
+THRESH_FORBIDDEN_CASTER_FOLLOW_VFX = {
+    "test_mod_thresh_lantern_cast_vfx",
+    "test_mod_thresh_flay_cast_vfx",
+    "test_mod_thresh_box_cast_vfx",
+}
 THRESH_EFFECT_REFS = {
     "test_mod_thresh_attack_chain": (
         "asset/bo_league_champions/aseprite_resources/effects/thresh_attack_chain",
@@ -415,19 +422,7 @@ THRESH_VIEW_EFFECT_REFS = {
         "asset/bo_league_champions/aseprite_resources/effects/thresh_death_sentence_hit",
         "hit",
     ),
-    "test_mod_thresh_lantern_cast_vfx": (
-        "asset/bo_league_champions/aseprite_resources/effects/thresh_lantern",
-        "loop",
-    ),
-    "test_mod_thresh_flay_cast_vfx": (
-        "asset/bo_league_champions/aseprite_resources/effects/thresh_flay_sweep",
-        "sweep",
-    ),
     "test_mod_thresh_box": (
-        "asset/bo_league_champions/aseprite_resources/effects/thresh_box",
-        "box",
-    ),
-    "test_mod_thresh_box_cast_vfx": (
         "asset/bo_league_champions/aseprite_resources/effects/thresh_box",
         "box",
     ),
@@ -473,6 +468,8 @@ THRESH_SKILL_SOUND_VOLUME_FLOOR = 0.84
 VIKTOR_IDS = ("bo_league_champions_viktor", "test_mod_viktor")
 VIKTOR_FRAME_SIZE = (57.0, 54.0)
 VIKTOR_CORE_ACTIONS = ("idle", "run", "attack", "skill", "skill2", "hit", "dead", "ult")
+VIKTOR_MIN_BOTTOM_SAFE = 7
+VIKTOR_MAX_CLEAN_CAST_WIDTH = 43
 VIKTOR_EFFECT_REFS = {
     "test_mod_viktor_attack_projectile": (
         "asset/bo_league_champions/aseprite_resources/effects/viktor_attack_projectile",
@@ -2570,10 +2567,10 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         view = entries.get(thresh_id)
         if not isinstance(view, dict):
             fail(f"style/champion_view.champion_view missing entries.{thresh_id}")
-        if view.get("face", {}).get("x") != 2 or view.get("face", {}).get("y") != -35:
-            fail(f"style entry {thresh_id}.face must keep Thresh compact portrait aligned at x=2,y=-35")
-        if view.get("center", {}).get("y") != -14:
-            fail(f"style entry {thresh_id}.center.y must keep Thresh full-body display above the name at y=-14")
+        if view.get("face", {}).get("x") != 2 or view.get("face", {}).get("y") != -38:
+            fail(f"style entry {thresh_id}.face must keep Thresh compact portrait aligned at x=2,y=-38")
+        if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -18:
+            fail(f"style entry {thresh_id}.center must keep Thresh full-body display above the name at x=0,y=-18")
 
     for path in (
         ROOT / "champion" / "thresh.data_champion",
@@ -2639,17 +2636,29 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
             action_bboxes[action].append(bbox)
             action_hashes[action].append(alpha_frame_hash(sheet_alpha, sheet_width, (x, y, w, h)))
             body_height = bbox[3] - bbox[1]
+            body_width = bbox[2] - bbox[0]
             bottom_safe = h - bbox[3]
-            if action != "dead" and body_height > 45:
+            if action != "dead" and body_height > 42:
                 fail(f"Thresh {action} frame {index} body height {body_height}px is too large for UI/battle labels")
-            if action != "dead" and body_height < 40:
+            min_body_height = 37 if action == "run" else 40
+            if action != "dead" and body_height < min_body_height:
                 fail(f"Thresh {action} frame {index} body height {body_height}px is too small for readable Chain Warden silhouette")
-            if bottom_safe < 5:
+            if action != "dead" and body_width > THRESH_MAX_BODY_WIDTH:
+                fail(f"Thresh {action} frame {index} width {body_width}px is too wide; keep hooks/flays in separate VFX")
+            if bottom_safe < THRESH_MIN_BOTTOM_SAFE:
                 fail(f"Thresh {action} frame {index} leaves only {bottom_safe}px bottom safety above labels")
             if action == "run" and frame.get("duration") != 0.095:
                 fail("Thresh run must use steady 0.095s walking timing")
         if action in {"attack", "skill", "skill2", "ult"} and len(set(action_hashes[action])) < min(4, len(action_hashes[action])):
             fail(f"Thresh {action} must have real action motion, not repeated idle frames")
+
+    run_bboxes = action_bboxes["run"]
+    run_widths = [bbox[2] - bbox[0] for bbox in run_bboxes]
+    run_heights = [bbox[3] - bbox[1] for bbox in run_bboxes]
+    if max(run_widths) - min(run_widths) > 16:
+        fail("Thresh run width range is too unstable; remove actor-embedded hook/flay sweeps from movement frames")
+    if max(run_heights) - min(run_heights) > 5:
+        fail("Thresh run height range is too unstable; movement must keep one body scale class")
 
     for action in ("attack", "skill", "skill2", "ult", "hit"):
         if tuple(action_hashes[action][: len(action_hashes["idle"])]) == tuple(action_hashes["idle"][: len(action_hashes[action])]):
@@ -2686,12 +2695,21 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         fail("Thresh Q first version must not auto-recast/dash after hook impact")
     if "test_mod_thresh_q_cast" not in q_strings or "test_mod_thresh_q_hit" not in q_strings:
         fail("Thresh Q must trigger official cast and hit sound events")
+    for forbidden in THRESH_FORBIDDEN_CASTER_FOLLOW_VFX:
+        if forbidden in strings:
+            fail(f"Thresh must not use actor-following cast VFX {forbidden}; keep body stable and play separate projectile/field VFX")
 
     projectile_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in thresh.get("view_projectiles", [])}
     for name, expected in THRESH_EFFECT_REFS.items():
         if projectile_refs.get(name) != expected:
             fail(f"champion/thresh.data_champion projectile {name} must reference {expected}")
+    projectile_repeat = {item.get("name"): item.get("repeat") for item in thresh.get("view_projectiles", [])}
+    if projectile_repeat.get("test_mod_thresh_death_sentence_chain") is not True:
+        fail("Thresh Death Sentence chain projectile must repeat so the hook does not vanish mid-flight")
     view_effect_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in thresh.get("view_effects", [])}
+    for forbidden in THRESH_FORBIDDEN_CASTER_FOLLOW_VFX:
+        if forbidden in view_effect_refs:
+            fail(f"champion/thresh.data_champion view_effect {forbidden} is retired because it creates duplicate actor-following VFX")
     for name, expected in THRESH_VIEW_EFFECT_REFS.items():
         if view_effect_refs.get(name) != expected:
             fail(f"champion/thresh.data_champion view_effect {name} must reference {expected}")
@@ -2709,6 +2727,14 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         missing = sfx_names - action_strings
         if missing:
             fail(f"Thresh {action} must trigger sound events {sorted(missing)}")
+
+    chain_fanim = load_json(ROOT / "aseprite_resources" / "effects" / "thresh_death_sentence_chain#anim.fanim")
+    chain_frames = chain_fanim.get("anims", {}).get("chain", {}).get("frames")
+    if not isinstance(chain_frames, list):
+        fail("Thresh Death Sentence chain fanim must expose chain frames")
+    chain_total_duration = sum(float(frame.get("duration", 0)) for frame in chain_frames)
+    if chain_total_duration < 0.55:
+        fail("Thresh Death Sentence chain animation is too short and can disappear before the hook reaches target")
 
     assert_official_audio_sources(
         "thresh",
@@ -2758,10 +2784,10 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         view = entries.get(viktor_id)
         if not isinstance(view, dict):
             fail(f"style/champion_view.champion_view missing entries.{viktor_id}")
-        if view.get("face", {}).get("x") != 0 or view.get("face", {}).get("y") != -36:
-            fail(f"style entry {viktor_id}.face must keep Viktor rebuilt portrait aligned at x=0,y=-36")
-        if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -13:
-            fail(f"style entry {viktor_id}.center must keep Viktor rebuilt full-body display above the name at x=0,y=-13")
+        if view.get("face", {}).get("x") != 0 or view.get("face", {}).get("y") != -39:
+            fail(f"style entry {viktor_id}.face must keep Viktor rebuilt portrait aligned at x=0,y=-39")
+        if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -18:
+            fail(f"style entry {viktor_id}.center must keep Viktor rebuilt full-body display above the name at x=0,y=-18")
 
     for path in (
         ROOT / "champion" / "viktor.data_champion",
@@ -2871,12 +2897,16 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
             action_bboxes[action].append(bbox)
             action_hashes[action].append(alpha_frame_hash(sheet_alpha, sheet_width, (x, y, w, h)))
             body_height = bbox[3] - bbox[1]
+            body_width = bbox[2] - bbox[0]
             bottom_safe = h - bbox[3]
-            if action != "dead" and body_height > 51:
+            if action != "dead" and body_height > 47:
                 fail(f"Viktor {action} frame {index} body height {body_height}px is too large for UI/battle labels")
-            if action != "dead" and body_height < 42:
+            min_body_height = 40 if action == "attack" else 42
+            if action != "dead" and body_height < min_body_height:
                 fail(f"Viktor {action} frame {index} body height {body_height}px is too small for Herald silhouette")
-            if action != "dead" and bottom_safe < 2:
+            if action in {"skill", "skill2", "ult"} and body_width > VIKTOR_MAX_CLEAN_CAST_WIDTH:
+                fail(f"Viktor {action} frame {index} width {body_width}px is too wide; keep laser/storm VFX outside the actor body")
+            if action != "dead" and bottom_safe < VIKTOR_MIN_BOTTOM_SAFE:
                 fail(f"Viktor {action} frame {index} leaves only {bottom_safe}px bottom safety above labels")
         if action in {"attack", "skill", "skill2", "ult"} and len(set(action_hashes[action])) < min(4, len(action_hashes[action])):
             fail(f"Viktor {action} must have real action motion, not repeated idle frames")
@@ -2887,6 +2917,16 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
 
     run_frames = anims.get("run", {}).get("frames")
     assert isinstance(run_frames, list)
+    run_bboxes = action_bboxes["run"]
+    run_widths = [bbox[2] - bbox[0] for bbox in run_bboxes]
+    run_heights = [bbox[3] - bbox[1] for bbox in run_bboxes]
+    run_bottoms = [VIKTOR_FRAME_SIZE[1] - bbox[3] for bbox in run_bboxes]
+    if max(run_widths) - min(run_widths) > 2:
+        fail("Viktor run width range is too unstable; movement must not alternate between body scale classes")
+    if max(run_heights) - min(run_heights) > 1:
+        fail("Viktor run height range is too unstable; movement must not alternate between crouched/tall actors")
+    if max(run_bottoms) - min(run_bottoms) > 1:
+        fail("Viktor run bottom anchor is unstable and will overlap labels/health bars")
     foot_centers: list[float] = []
     lower_shapes: set[tuple[tuple[int, int], ...]] = set()
     for index, frame in enumerate(run_frames):
@@ -2950,6 +2990,10 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
     for name, expected in VIKTOR_EFFECT_REFS.items():
         if projectile_refs.get(name) != expected:
             fail(f"champion/viktor.data_champion projectile {name} must reference {expected}")
+    projectile_repeat = {item.get("name"): item.get("repeat") for item in viktor.get("view_projectiles", [])}
+    for projectile_name in ("test_mod_viktor_laser", "test_mod_viktor_laser_aftershock"):
+        if projectile_repeat.get(projectile_name) is not True:
+            fail(f"Viktor projectile {projectile_name} must repeat so the laser VFX stays visible for the gameplay window")
     view_effect_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in viktor.get("view_effects", [])}
     for name, expected in VIKTOR_VIEW_EFFECT_REFS.items():
         if view_effect_refs.get(name) != expected:

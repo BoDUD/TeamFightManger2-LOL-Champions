@@ -1107,7 +1107,7 @@
       "anim": "asset/bo_league_champions/aseprite_resources/effects/viktor_laser",
       "tag": "laser",
       "z": -1,
-      "repeat": false
+      "repeat": true
     },
     {
       "type": "Animated",
@@ -1115,7 +1115,7 @@
       "anim": "asset/bo_league_champions/aseprite_resources/effects/viktor_laser_aftershock",
       "tag": "burn",
       "z": -2,
-      "repeat": false
+      "repeat": true
     }
   ],
   "view_buffs": [
