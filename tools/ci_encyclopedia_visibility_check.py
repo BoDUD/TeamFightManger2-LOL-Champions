@@ -564,6 +564,53 @@ VIKTOR_SKILL_SOUND_EVENTS = {
     "test_mod_viktor_ult_voice",
 }
 VIKTOR_SKILL_SOUND_VOLUME_FLOOR = 0.84
+FIDDLESTICKS_IDS = ("bo_league_champions_fiddlesticks", "test_mod_fiddlesticks")
+FIDDLESTICKS_FRAME_SIZE = (64.0, 64.0)
+FIDDLESTICKS_CORE_ACTIONS = ("idle", "run", "attack", "skill", "skill2", "hit", "dead", "ult")
+FIDDLESTICKS_EXPECTED_COUNTS = {
+    "idle": 8,
+    "run": 16,
+    "attack": 8,
+    "skill": 9,
+    "skill2": 11,
+    "ult": 11,
+    "hit": 1,
+    "dead": 1,
+}
+FIDDLESTICKS_MIN_BOTTOM_SAFE = 4
+FIDDLESTICKS_MIN_BODY_HEIGHT = 40
+FIDDLESTICKS_MAX_BODY_HEIGHT = 58
+FIDDLESTICKS_MAX_BODY_WIDTH = 57
+FIDDLESTICKS_EFFECT_REFS = {
+    "test_mod_fiddlesticks_attack_projectile": (
+        "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_attack_projectile",
+        "projectile",
+    ),
+    "test_mod_fiddlesticks_fear_projectile": (
+        "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_fear_projectile",
+        "projectile",
+    ),
+}
+FIDDLESTICKS_BUFF_REFS = {
+    "test_mod_fiddlesticks_drain_active": (
+        "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_drain",
+        "drain",
+    ),
+    "test_mod_fiddlesticks_crowstorm_active": (
+        "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_crowstorm",
+        "storm",
+    ),
+}
+FIDDLESTICKS_VIEW_EFFECT_REFS = {
+    "test_mod_fiddlesticks_drain": (
+        "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_drain",
+        "drain",
+    ),
+    "test_mod_fiddlesticks_crowstorm": (
+        "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_crowstorm",
+        "storm",
+    ),
+}
 COMPACT_DISPLAY_LIMITS = {
     "darius": {"max_width": 42, "max_height": 40, "min_bottom_safe": 12},
     "thresh": {"max_width": 42, "max_height": 40, "min_bottom_safe": 12},
@@ -572,6 +619,7 @@ COMPACT_DISPLAY_LIMITS = {
 SIDE_CARD_STANDING_FACE_OFFSETS = {
     "aatrox": {"x": 2, "y": -16},
     "darius": {"x": 2, "y": -12},
+    "fiddlesticks": {"x": 1, "y": -18},
     "kayn": {"x": 4, "y": -18},
     "thresh": {"x": 0, "y": -12},
     "viktor": {"x": 0, "y": -28},
@@ -579,6 +627,7 @@ SIDE_CARD_STANDING_FACE_OFFSETS = {
 SIDE_CARD_STANDING_CENTER_OFFSETS = {
     "aatrox": {"x": 4, "y": -12},
     "darius": {"x": 0, "y": -12},
+    "fiddlesticks": {"x": 0, "y": -14},
     "kayn": {"x": 0, "y": -12},
     "thresh": {"x": 0, "y": -12},
     "viktor": {"x": 0, "y": -12},
@@ -3409,6 +3458,184 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
     )
 
 
+def check_fiddlesticks_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
+    for fiddlesticks_id in FIDDLESTICKS_IDS:
+        view = entries.get(fiddlesticks_id)
+        if not isinstance(view, dict):
+            fail(f"style/champion_view.champion_view missing entries.{fiddlesticks_id}")
+        if view.get("face", {}).get("x") != 1 or view.get("face", {}).get("y") != -18:
+            fail(f"style entry {fiddlesticks_id}.face must keep Fiddlesticks card portrait at x=1,y=-18")
+        if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -14:
+            fail(f"style entry {fiddlesticks_id}.center must keep Fiddlesticks standing display at x=0,y=-14")
+
+    for path in (
+        ROOT / "champion" / "fiddlesticks.data_champion",
+        ROOT / "aseprite_resources" / "champions" / "fiddlesticks#sheet.png",
+        ROOT / "aseprite_resources" / "champions" / "fiddlesticks#anim.fanim",
+        ROOT / "icons" / "fiddlesticks_skill.png",
+        ROOT / "icons" / "fiddlesticks_skill2.png",
+        ROOT / "icons" / "fiddlesticks_ult.png",
+    ):
+        require_file(path)
+
+    for effect_name in (
+        "fiddlesticks_attack_projectile",
+        "fiddlesticks_fear_projectile",
+        "fiddlesticks_drain",
+        "fiddlesticks_crowstorm",
+    ):
+        require_file(ROOT / "aseprite_resources" / "effects" / f"{effect_name}#sheet.png")
+        require_file(ROOT / "aseprite_resources" / "effects" / f"{effect_name}#anim.fanim")
+
+    fanim = load_json(ROOT / "aseprite_resources" / "champions" / "fiddlesticks#anim.fanim")
+    sheet_width, sheet_height, sheet_alpha = load_rgba_alpha(
+        ROOT / "aseprite_resources" / "champions" / "fiddlesticks#sheet.png"
+    )
+    if sheet_height != int(FIDDLESTICKS_FRAME_SIZE[1]):
+        fail("Fiddlesticks actor sheet must keep 64px native frame height")
+
+    action_hashes: dict[str, list[str]] = {}
+    action_bboxes: dict[str, list[tuple[int, int, int, int]]] = {}
+    for action in FIDDLESTICKS_CORE_ACTIONS:
+        frames = fanim.get("anims", {}).get(action, {}).get("frames")
+        expected_count = FIDDLESTICKS_EXPECTED_COUNTS[action]
+        if not isinstance(frames, list) or len(frames) != expected_count:
+            fail(f"Fiddlesticks {action} animation must have {expected_count} frames")
+        action_hashes[action] = []
+        action_bboxes[action] = []
+        for index, frame in enumerate(frames):
+            data = frame.get("data") if isinstance(frame, dict) else None
+            if not isinstance(data, dict):
+                fail(f"Fiddlesticks {action} frame {index} missing frame data")
+            if (data.get("w"), data.get("h")) != FIDDLESTICKS_FRAME_SIZE:
+                fail(f"Fiddlesticks {action} frame {index} must use the 64x64 actor frame")
+            x = int(round(float(data.get("x", -1))))
+            y = int(round(float(data.get("y", -1))))
+            w = int(round(float(data.get("w", 0))))
+            h = int(round(float(data.get("h", 0))))
+            if x < 0 or y < 0 or x + w > sheet_width or y + h > sheet_height:
+                fail(f"Fiddlesticks {action} frame {index} points outside fiddlesticks#sheet.png")
+            bbox = alpha_bbox_in_rect(sheet_alpha, sheet_width, (x, y, w, h))
+            if bbox is None:
+                fail(f"Fiddlesticks {action} frame {index} is blank")
+            action_bboxes[action].append(bbox)
+            action_hashes[action].append(alpha_frame_hash(sheet_alpha, sheet_width, (x, y, w, h)))
+            body_width = bbox[2] - bbox[0]
+            body_height = bbox[3] - bbox[1]
+            bottom_safe = h - bbox[3]
+            if action != "dead":
+                if body_height < FIDDLESTICKS_MIN_BODY_HEIGHT:
+                    fail(f"Fiddlesticks {action} frame {index} body height {body_height}px is too small; model must not regress to a tiny old scarecrow")
+                if body_height > FIDDLESTICKS_MAX_BODY_HEIGHT:
+                    fail(f"Fiddlesticks {action} frame {index} body height {body_height}px is too large and may crop in cards")
+                if body_width > FIDDLESTICKS_MAX_BODY_WIDTH:
+                    fail(f"Fiddlesticks {action} frame {index} width {body_width}px is too wide; keep large magic in separate VFX")
+                if bottom_safe < FIDDLESTICKS_MIN_BOTTOM_SAFE:
+                    fail(f"Fiddlesticks {action} frame {index} leaves only {bottom_safe}px under the feet; side cards need visible legs")
+            elif body_height < 32:
+                fail("Fiddlesticks dead frame must remain a readable collapsed model, not a tiny residue blob")
+
+    if len(set(action_hashes["run"])) < 3:
+        fail("Fiddlesticks run must contain at least three distinct generated body poses")
+    for action in ("attack", "skill", "skill2", "ult"):
+        if len(set(action_hashes[action])) < 4:
+            fail(f"Fiddlesticks {action} must use generated action poses, not repeated idle frames")
+    run_heights = [bbox[3] - bbox[1] for bbox in action_bboxes["run"]]
+    if max(run_heights) - min(run_heights) > 8:
+        fail("Fiddlesticks run height range is too unstable; keep the rebuilt model in one scale class")
+
+    fiddlesticks = load_json(ROOT / "champion" / "fiddlesticks.data_champion")
+    strings = set(walk_strings(fiddlesticks))
+    for required in (
+        "test_mod_fiddlesticks_attack_projectile",
+        "test_mod_fiddlesticks_fear_projectile",
+        "test_mod_fiddlesticks_drain_active",
+        "test_mod_fiddlesticks_crowstorm_active",
+        "test_mod_fiddlesticks_drain",
+        "test_mod_fiddlesticks_crowstorm",
+        "Fear",
+        "Heal",
+        "Teleport",
+    ):
+        if required not in strings:
+            fail(f"champion/fiddlesticks.data_champion must include Fiddlesticks mechanic token {required}")
+
+    projectile_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in fiddlesticks.get("view_projectiles", [])}
+    projectile_repeat = {item.get("name"): item.get("repeat") for item in fiddlesticks.get("view_projectiles", [])}
+    for name, expected in FIDDLESTICKS_EFFECT_REFS.items():
+        if projectile_refs.get(name) != expected:
+            fail(f"champion/fiddlesticks.data_champion projectile {name} must reference {expected}")
+        if projectile_repeat.get(name) is not True:
+            fail(f"champion/fiddlesticks.data_champion projectile {name} must repeat so generated projectile art persists during travel")
+
+    buff_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in fiddlesticks.get("view_buffs", [])}
+    buff_z = {item.get("name"): item.get("z") for item in fiddlesticks.get("view_buffs", [])}
+    buff_repeat = {item.get("name"): item.get("repeat") for item in fiddlesticks.get("view_buffs", [])}
+    for name, expected in FIDDLESTICKS_BUFF_REFS.items():
+        if buff_refs.get(name) != expected:
+            fail(f"champion/fiddlesticks.data_champion buff {name} must reference {expected}")
+        if buff_z.get(name) != 1:
+            fail(f"champion/fiddlesticks.data_champion buff {name} must render at z=1 so generated VFX is visible above terrain")
+        if buff_repeat.get(name) is not True:
+            fail(f"champion/fiddlesticks.data_champion buff {name} must repeat for W/R duration")
+
+    view_effect_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in fiddlesticks.get("view_effects", [])}
+    view_effect_z = {item.get("name"): item.get("z") for item in fiddlesticks.get("view_effects", [])}
+    view_effect_follow = {item.get("name"): item.get("is_follow") for item in fiddlesticks.get("view_effects", [])}
+    for name, expected in FIDDLESTICKS_VIEW_EFFECT_REFS.items():
+        if view_effect_refs.get(name) != expected:
+            fail(f"champion/fiddlesticks.data_champion view_effect {name} must reference {expected}")
+        if view_effect_z.get(name) != 1:
+            fail(f"champion/fiddlesticks.data_champion view_effect {name} must render at z=1")
+        if view_effect_follow.get(name) is not True:
+            fail(f"champion/fiddlesticks.data_champion view_effect {name} must follow the caster as W/R aura VFX")
+
+    assert_generated_vfx_volume(
+        ROOT / "aseprite_resources" / "effects" / "fiddlesticks_attack_projectile#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "fiddlesticks_attack_projectile#anim.fanim",
+        "projectile",
+        "Fiddlesticks basic crow bolt VFX",
+        min_visible=120,
+        min_color_bins=24,
+        min_height=12,
+        min_fill_ratio=0.20,
+        max_width=32,
+    )
+    assert_generated_vfx_volume(
+        ROOT / "aseprite_resources" / "effects" / "fiddlesticks_fear_projectile#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "fiddlesticks_fear_projectile#anim.fanim",
+        "projectile",
+        "Fiddlesticks Terrify fear projectile VFX",
+        min_visible=150,
+        min_color_bins=80,
+        min_height=12,
+        min_fill_ratio=0.30,
+        max_width=32,
+    )
+    assert_generated_vfx_volume(
+        ROOT / "aseprite_resources" / "effects" / "fiddlesticks_drain#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "fiddlesticks_drain#anim.fanim",
+        "drain",
+        "Fiddlesticks Bountiful Harvest drain VFX",
+        min_visible=2300,
+        min_color_bins=360,
+        min_height=72,
+        min_fill_ratio=0.35,
+        max_width=120,
+    )
+    assert_generated_vfx_volume(
+        ROOT / "aseprite_resources" / "effects" / "fiddlesticks_crowstorm#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "fiddlesticks_crowstorm#anim.fanim",
+        "storm",
+        "Fiddlesticks Crowstorm VFX",
+        min_visible=2500,
+        min_color_bins=240,
+        min_height=82,
+        min_fill_ratio=0.38,
+        max_width=110,
+    )
+
+
 def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
     expected_display_names = {
         "en": "Viktor",
@@ -3925,6 +4152,7 @@ def check_champion_visibility() -> None:
     check_kayn_rework_contract(text, entries)
     check_yasuo_contract(text, entries)
     check_jinx_contract(text, entries)
+    check_fiddlesticks_contract(text, entries)
     check_thresh_contract(text, entries)
     check_viktor_contract(text, entries)
     for champion_name in ("aatrox", "darius", "kayn", "thresh", "viktor"):
