@@ -347,10 +347,6 @@
           "name": "test_mod_thresh_lantern_cast"
         },
         {
-          "type": "CasterViewEffect",
-          "name": "test_mod_thresh_lantern_cast_vfx"
-        },
-        {
           "type": "WithSelf",
           "effects": [
             {
@@ -383,10 +379,6 @@
             {
               "type": "Sfx",
               "name": "test_mod_thresh_e_cast"
-            },
-            {
-              "type": "CasterViewEffect",
-              "name": "test_mod_thresh_flay_cast_vfx"
             },
             {
               "type": "LineRangeProjectile",
@@ -478,10 +470,6 @@
         {
           "type": "Sfx",
           "name": "test_mod_thresh_ult_voice"
-        },
-        {
-          "type": "CasterViewEffect",
-          "name": "test_mod_thresh_box_cast_vfx"
         },
         {
           "type": "RangeEffect",
@@ -604,7 +592,7 @@
       "anim": "asset/bo_league_champions/aseprite_resources/effects/thresh_death_sentence_chain",
       "tag": "chain",
       "z": 1,
-      "repeat": false
+      "repeat": true
     },
     {
       "type": "Animated",
@@ -635,35 +623,11 @@
     },
     {
       "type": "Animation",
-      "name": "test_mod_thresh_lantern_cast_vfx",
-      "anim": "asset/bo_league_champions/aseprite_resources/effects/thresh_lantern",
-      "tag": "loop",
-      "z": 1,
-      "is_follow": true
-    },
-    {
-      "type": "Animation",
-      "name": "test_mod_thresh_flay_cast_vfx",
-      "anim": "asset/bo_league_champions/aseprite_resources/effects/thresh_flay_sweep",
-      "tag": "sweep",
-      "z": 2,
-      "is_follow": true
-    },
-    {
-      "type": "Animation",
       "name": "test_mod_thresh_box",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/thresh_box",
       "tag": "box",
       "z": -1,
       "is_follow": false
-    },
-    {
-      "type": "Animation",
-      "name": "test_mod_thresh_box_cast_vfx",
-      "anim": "asset/bo_league_champions/aseprite_resources/effects/thresh_box",
-      "tag": "box",
-      "z": -1,
-      "is_follow": true
     },
     {
       "type": "Animation",
