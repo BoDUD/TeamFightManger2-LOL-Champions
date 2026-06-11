@@ -1215,6 +1215,23 @@ def check_roster_visibility_coverage() -> None:
             fail(f"native_retirement_queue[{index}] has unsupported status {row.get('status')!r}")
 
 
+def check_full_body_compact_portraits(entries: dict[str, Any]) -> None:
+    for champion in sorted(EXPECTED_CHAMPIONS):
+        for style_id in (f"{MOD_ID}_{champion}", f"test_mod_{champion}"):
+            view = entries.get(style_id)
+            if not isinstance(view, dict):
+                fail(f"style/champion_view.champion_view missing entries.{style_id}")
+            face = view.get("face")
+            center = view.get("center")
+            if not isinstance(face, dict) or not isinstance(center, dict):
+                fail(f"style entry {style_id} must define both face and center cameras")
+            if face.get("y") != center.get("y"):
+                fail(
+                    f"style entry {style_id}.face.y must match center.y for full-body compact portraits; "
+                    f"got face.y={face.get('y')!r}, center.y={center.get('y')!r}"
+                )
+
+
 def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
     expected_names = {
         "zh-hans": ("\u4e9a\u6258\u514b\u65af",),
@@ -1263,8 +1280,8 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
         face_x = view.get("face", {}).get("x")
         face_y = view.get("face", {}).get("y")
         center_y = view.get("center", {}).get("y")
-        if face_x != 2 or face_y != -36:
-            fail(f"style entry {aatrox_id}.face must keep Aatrox weapon-visible portrait at x=2,y=-36")
+        if face_x != 2 or face_y != -14:
+            fail(f"style entry {aatrox_id}.face must keep Aatrox weapon-visible full-body portrait at x=2,y=-14")
         if center_y != -14:
             fail(f"style entry {aatrox_id}.center.y must keep Aatrox full-body display above labels at -14")
 
@@ -1582,8 +1599,8 @@ def check_kayn_rework_contract(text: dict[str, Any], entries: dict[str, Any]) ->
         center_y = view.get("center", {}).get("y")
         if face_x != 4:
             fail(f"style entry {kayn_id}.face.x must keep Kayn's compact portrait centered")
-        if face_y != -36:
-            fail(f"style entry {kayn_id}.face.y must keep Kayn's compact portrait at -36")
+        if face_y != -12:
+            fail(f"style entry {kayn_id}.face.y must keep Kayn's full-body compact portrait at -12")
         if not isinstance(center_y, (int, float)) or not -20 <= center_y <= -8:
             fail(f"style entry {kayn_id}.center.y must keep the full-body display above the name")
 
@@ -1802,8 +1819,8 @@ def check_yasuo_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
         view = entries.get(yasuo_id)
         if not isinstance(view, dict):
             fail(f"style/champion_view.champion_view missing entries.{yasuo_id}")
-        if view.get("face", {}).get("x") != 4 or view.get("face", {}).get("y") != -26:
-            fail(f"style entry {yasuo_id}.face must keep Yasuo compact portrait aligned at x=4,y=-26")
+        if view.get("face", {}).get("x") != 4 or view.get("face", {}).get("y") != -12:
+            fail(f"style entry {yasuo_id}.face must keep Yasuo full-body compact portrait aligned at x=4,y=-12")
         if view.get("center", {}).get("y") != -12:
             fail(f"style entry {yasuo_id}.center.y must place the full model above the name")
 
@@ -1992,8 +2009,8 @@ def check_jinx_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
         view = entries.get(jinx_id)
         if not isinstance(view, dict):
             fail(f"style/champion_view.champion_view missing entries.{jinx_id}")
-        if view.get("face", {}).get("x") != -2 or view.get("face", {}).get("y") != -37:
-            fail(f"style entry {jinx_id}.face must keep Jinx compact portrait aligned at x=-2,y=-37")
+        if view.get("face", {}).get("x") != -2 or view.get("face", {}).get("y") != -16:
+            fail(f"style entry {jinx_id}.face must keep Jinx full-body compact portrait aligned at x=-2,y=-16")
         if view.get("center", {}).get("y") != -16:
             fail(f"style entry {jinx_id}.center.y must keep the full model above the name at y=-16")
 
@@ -2260,8 +2277,8 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         view = entries.get(darius_id)
         if not isinstance(view, dict):
             fail(f"style/champion_view.champion_view missing entries.{darius_id}")
-        if view.get("face", {}).get("x") != 2 or view.get("face", {}).get("y") != -35:
-            fail(f"style entry {darius_id}.face must keep Darius compact portrait above the name at x=2,y=-35")
+        if view.get("face", {}).get("x") != 2 or view.get("face", {}).get("y") != -15:
+            fail(f"style entry {darius_id}.face must keep Darius full-body compact portrait at x=2,y=-15")
         if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -15:
             fail(f"style entry {darius_id}.center must keep Darius full-body display above the name at x=0,y=-15")
 
@@ -2567,8 +2584,8 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         view = entries.get(thresh_id)
         if not isinstance(view, dict):
             fail(f"style/champion_view.champion_view missing entries.{thresh_id}")
-        if view.get("face", {}).get("x") != 2 or view.get("face", {}).get("y") != -38:
-            fail(f"style entry {thresh_id}.face must keep Thresh compact portrait aligned at x=2,y=-38")
+        if view.get("face", {}).get("x") != 2 or view.get("face", {}).get("y") != -18:
+            fail(f"style entry {thresh_id}.face must keep Thresh full-body compact portrait aligned at x=2,y=-18")
         if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -18:
             fail(f"style entry {thresh_id}.center must keep Thresh full-body display above the name at x=0,y=-18")
 
@@ -2784,8 +2801,8 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         view = entries.get(viktor_id)
         if not isinstance(view, dict):
             fail(f"style/champion_view.champion_view missing entries.{viktor_id}")
-        if view.get("face", {}).get("x") != 0 or view.get("face", {}).get("y") != -39:
-            fail(f"style entry {viktor_id}.face must keep Viktor rebuilt portrait aligned at x=0,y=-39")
+        if view.get("face", {}).get("x") != 0 or view.get("face", {}).get("y") != -18:
+            fail(f"style entry {viktor_id}.face must keep Viktor full-body compact portrait aligned at x=0,y=-18")
         if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -18:
             fail(f"style entry {viktor_id}.center must keep Viktor rebuilt full-body display above the name at x=0,y=-18")
 
@@ -3033,6 +3050,7 @@ def check_champion_visibility() -> None:
     entries = style.get("entries")
     if not isinstance(entries, dict):
         fail("style/champion_view.champion_view must contain an entries object")
+    check_full_body_compact_portraits(entries)
 
     champion_files = sorted((ROOT / "champion").glob("*.data_champion"))
     stems = {path.stem for path in champion_files}
