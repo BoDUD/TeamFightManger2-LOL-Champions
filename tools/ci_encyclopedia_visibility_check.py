@@ -472,6 +472,9 @@ VIKTOR_FRAME_SIZE = (57.0, 54.0)
 VIKTOR_CORE_ACTIONS = ("idle", "run", "attack", "skill", "skill2", "hit", "dead", "ult")
 VIKTOR_MIN_BOTTOM_SAFE = 7
 VIKTOR_MAX_CLEAN_CAST_WIDTH = 43
+VIKTOR_LASER_MIN_APPLY = 60
+VIKTOR_AFTERSHOCK_MIN_APPLY = 72
+VIKTOR_STORM_MIN_TICKS = (300, 360)
 VIKTOR_EFFECT_REFS = {
     "test_mod_viktor_attack_projectile": (
         "asset/bo_league_champions/aseprite_resources/effects/viktor_attack_projectile",
@@ -3536,6 +3539,45 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
     for projectile_name in ("test_mod_viktor_laser", "test_mod_viktor_laser_aftershock"):
         if projectile_repeat.get(projectile_name) is not True:
             fail(f"Viktor projectile {projectile_name} must repeat so the laser VFX stays visible for the gameplay window")
+    projectile_z = {item.get("name"): item.get("z") for item in viktor.get("view_projectiles", [])}
+    for projectile_name in ("test_mod_viktor_laser", "test_mod_viktor_laser_aftershock"):
+        z_value = projectile_z.get(projectile_name)
+        if not isinstance(z_value, (int, float)) or z_value >= 0:
+            fail(f"Viktor projectile {projectile_name} must render on the ground layer with negative z, got {z_value!r}")
+    laser_projectiles = [
+        node
+        for node in find_effect_nodes(viktor.get("skill", {}), "LineRangeProjectile")
+        if node.get("name") in {
+            "test_mod_viktor_laser",
+            "test_mod_viktor_laser_champion_bonus",
+            "test_mod_viktor_laser_aftershock",
+        }
+    ]
+    laser_groups = {
+        "test_mod_viktor_laser": [node for node in laser_projectiles if node.get("name") == "test_mod_viktor_laser"],
+        "test_mod_viktor_laser_champion_bonus": [
+            node for node in laser_projectiles if node.get("name") == "test_mod_viktor_laser_champion_bonus"
+        ],
+        "test_mod_viktor_laser_aftershock": [
+            node for node in laser_projectiles if node.get("name") == "test_mod_viktor_laser_aftershock"
+        ],
+    }
+    for projectile_name in ("test_mod_viktor_laser", "test_mod_viktor_laser_champion_bonus"):
+        nodes = laser_groups[projectile_name]
+        if len(nodes) != 2:
+            fail(f"Viktor Hextech Ray must define two {projectile_name} projectiles, one normal and one evolved")
+        for node in nodes:
+            if node.get("apply", 0) < VIKTOR_LASER_MIN_APPLY:
+                fail(f"Viktor {projectile_name} must persist for at least {VIKTOR_LASER_MIN_APPLY} ticks")
+            if node.get("delay", 999) > 10:
+                fail(f"Viktor {projectile_name} must appear promptly on the ground, got delay {node.get('delay')!r}")
+            if node.get("width", 0) < 12000 or node.get("length", 0) < 90000:
+                fail(f"Viktor {projectile_name} must keep a broad terrain-line footprint")
+    aftershock_nodes = laser_groups["test_mod_viktor_laser_aftershock"]
+    if len(aftershock_nodes) != 1:
+        fail("Viktor evolved Hextech Ray must define one persistent aftershock ground projectile")
+    if aftershock_nodes[0].get("apply", 0) < VIKTOR_AFTERSHOCK_MIN_APPLY:
+        fail(f"Viktor laser aftershock must persist for at least {VIKTOR_AFTERSHOCK_MIN_APPLY} ticks")
     view_effect_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in viktor.get("view_effects", [])}
     view_effect_types = {item.get("name"): item.get("type") for item in viktor.get("view_effects", [])}
     for name, expected in VIKTOR_VIEW_EFFECT_REFS.items():
@@ -3617,6 +3659,11 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         ]
         if len(storm_pulses) != 1:
             fail(f"Viktor Chaos Storm anchor {index} must own exactly one persistent storm pulse")
+        if storm_pulses[0].get("tick", 0) < VIKTOR_STORM_MIN_TICKS[index - 1]:
+            fail(
+                f"Viktor Chaos Storm anchor {index} must persist on terrain for at least "
+                f"{VIKTOR_STORM_MIN_TICKS[index - 1]} ticks"
+            )
         if storm_pulses[0].get("first_delay") != 20:
             fail("Viktor Chaos Storm pulse must remain delayed until after the impact burst")
     assert_effect_frames_not_edge_cut(

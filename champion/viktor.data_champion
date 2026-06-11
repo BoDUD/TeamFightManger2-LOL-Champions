@@ -163,7 +163,7 @@
             "width": 12000,
             "length": 90000,
             "delay": 10,
-            "apply": 16,
+            "apply": 60,
             "name": "test_mod_viktor_laser",
             "applied_target": "EnemyWithoutTower",
             "applied_effects": [
@@ -189,7 +189,7 @@
             "width": 12000,
             "length": 90000,
             "delay": 10,
-            "apply": 16,
+            "apply": 60,
             "name": "test_mod_viktor_laser_champion_bonus",
             "applied_target": "EnemyChampion",
             "applied_effects": [
@@ -287,7 +287,7 @@
             "width": 12000,
             "length": 90000,
             "delay": 10,
-            "apply": 16,
+            "apply": 60,
             "name": "test_mod_viktor_laser",
             "applied_target": "EnemyWithoutTower",
             "applied_effects": [
@@ -313,7 +313,7 @@
             "width": 12000,
             "length": 90000,
             "delay": 10,
-            "apply": 16,
+            "apply": 60,
             "name": "test_mod_viktor_laser_champion_bonus",
             "applied_target": "EnemyChampion",
             "applied_effects": [
@@ -406,7 +406,7 @@
                 "width": 14000,
                 "length": 90000,
                 "delay": 0,
-                "apply": 12,
+                "apply": 72,
                 "name": "test_mod_viktor_laser_aftershock",
                 "applied_target": "EnemyWithoutTower",
                 "applied_effects": [
@@ -966,7 +966,7 @@
               {
                 "type": "RangePeriodProjectile",
                 "name": "test_mod_viktor_chaos_storm",
-                "tick": 240,
+                "tick": 300,
                 "period": 30,
                 "first_delay": 20,
                 "shape": {
@@ -1131,7 +1131,7 @@
               {
                 "type": "RangePeriodProjectile",
                 "name": "test_mod_viktor_chaos_storm",
-                "tick": 300,
+                "tick": 360,
                 "period": 25,
                 "first_delay": 20,
                 "shape": {

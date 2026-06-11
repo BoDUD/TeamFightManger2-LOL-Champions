@@ -114,6 +114,9 @@ VIKTOR_SOUND_EVENTS = (
     "test_mod_viktor_evolution",
     "test_mod_viktor_ult_voice",
 )
+VIKTOR_LASER_MIN_APPLY = 60
+VIKTOR_AFTERSHOCK_MIN_APPLY = 72
+VIKTOR_STORM_MIN_TICKS = (300, 360)
 REQUIRED_DESCRIPTION_KEYS = ("name", "attack", "skill", "skill2", "ult")
 REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS: dict[str, dict[str, tuple[str, ...]]] = {
     f"{MOD_ID}_aatrox": {
@@ -232,6 +235,37 @@ def check_viktor_ground_vfx(path: Path, champion: object) -> None:
         return
     if not isinstance(champion, dict):
         fail(f"{path} must contain a JSON object")
+    view_projectile_rows = champion.get("view_projectiles", [])
+    if not isinstance(view_projectile_rows, list):
+        fail(f"{path} view_projectiles must be a list")
+    projectile_z = {item.get("name"): item.get("z") for item in view_projectile_rows if isinstance(item, dict)}
+    for projectile_name in ("test_mod_viktor_laser", "test_mod_viktor_laser_aftershock"):
+        z_value = projectile_z.get(projectile_name)
+        if not isinstance(z_value, (int, float)) or z_value >= 0:
+            fail(f"runtime Viktor {projectile_name} must render on the ground layer with negative z")
+    skill = champion.get("skill", {})
+    laser_nodes = [
+        node
+        for node in iter_mapping_nodes(skill)
+        if node.get("type") == "LineRangeProjectile"
+        and node.get("name") in {
+            "test_mod_viktor_laser",
+            "test_mod_viktor_laser_champion_bonus",
+            "test_mod_viktor_laser_aftershock",
+        }
+    ]
+    for projectile_name in ("test_mod_viktor_laser", "test_mod_viktor_laser_champion_bonus"):
+        nodes = [node for node in laser_nodes if node.get("name") == projectile_name]
+        if len(nodes) != 2:
+            fail(f"runtime Viktor Hextech Ray must define two {projectile_name} projectiles")
+        for node in nodes:
+            if node.get("apply", 0) < VIKTOR_LASER_MIN_APPLY:
+                fail(f"runtime Viktor {projectile_name} must persist for at least {VIKTOR_LASER_MIN_APPLY} ticks")
+    aftershock_nodes = [node for node in laser_nodes if node.get("name") == "test_mod_viktor_laser_aftershock"]
+    if len(aftershock_nodes) != 1:
+        fail("runtime Viktor evolved Hextech Ray must define one aftershock ground projectile")
+    if aftershock_nodes[0].get("apply", 0) < VIKTOR_AFTERSHOCK_MIN_APPLY:
+        fail(f"runtime Viktor laser aftershock must persist for at least {VIKTOR_AFTERSHOCK_MIN_APPLY} ticks")
     skill2 = champion.get("skill2", {})
     skill2_effect = skill2.get("effect", {}) if isinstance(skill2, dict) else {}
     skill2_effects = skill2_effect.get("effects", []) if isinstance(skill2_effect, dict) else []
@@ -289,8 +323,17 @@ def check_viktor_ground_vfx(path: Path, champion: object) -> None:
         end_names = {(item.get("type"), item.get("name")) for item in end_effects if isinstance(item, dict)}
         if ("ViewEffect", "test_mod_viktor_storm_impact") not in end_names or ("ViewEffect", "test_mod_viktor_chaos_storm") not in end_names:
             fail(f"runtime Viktor Chaos Storm anchor {index} must spawn both storm terrain VFX")
-        if not any(item.get("type") == "RangePeriodProjectile" and item.get("name") == "test_mod_viktor_chaos_storm" for item in end_effects if isinstance(item, dict)):
+        storm_pulses = [
+            item
+            for item in end_effects
+            if isinstance(item, dict)
+            and item.get("type") == "RangePeriodProjectile"
+            and item.get("name") == "test_mod_viktor_chaos_storm"
+        ]
+        if not storm_pulses:
             fail(f"runtime Viktor Chaos Storm anchor {index} must own the persistent storm pulse")
+        if storm_pulses[0].get("tick", 0) < VIKTOR_STORM_MIN_TICKS[index - 1]:
+            fail(f"runtime Viktor Chaos Storm anchor {index} must persist for at least {VIKTOR_STORM_MIN_TICKS[index - 1]} ticks")
 
 
 def default_game_root() -> Path:
