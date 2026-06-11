@@ -158,6 +158,11 @@ REQUIRED_ENCYCLOPEDIA_NAME_TERMS: dict[str, dict[str, tuple[str, ...]]] = {
         "zh-hant": ("\u6697\u88d4\u528d\u9b54",),
     },
 }
+SIDE_CARD_STANDING_FACE_OFFSETS = {
+    f"{MOD_ID}_darius": {"x": 2, "y": -24},
+    f"{MOD_ID}_thresh": {"x": 2, "y": -28},
+    f"{MOD_ID}_viktor": {"x": 0, "y": -28},
+}
 
 
 def fail(message: str) -> None:
@@ -444,6 +449,18 @@ def check_runtime_copy(game_root: Path) -> None:
     for champion_id in CHAMPION_IDS:
         if champion_id not in entries:
             fail(f"runtime champion_view missing entries.{champion_id}")
+    for champion_id, expected_face in SIDE_CARD_STANDING_FACE_OFFSETS.items():
+        view = entries.get(champion_id)
+        if not isinstance(view, dict):
+            fail(f"runtime champion_view missing entries.{champion_id}")
+        face = view.get("face")
+        if not isinstance(face, dict):
+            fail(f"runtime champion_view entries.{champion_id}.face must be an object")
+        if face.get("x") != expected_face["x"] or face.get("y") != expected_face["y"]:
+            fail(
+                f"runtime champion_view entries.{champion_id}.face must be {expected_face} "
+                "so pick/ban side-card standing portraits show feet"
+            )
 
     text = load_json(runtime_root / "text" / "champion.i18n")
     if not isinstance(text, dict):
