@@ -560,13 +560,13 @@ COMPACT_DISPLAY_LIMITS = {
 SIDE_CARD_STANDING_FACE_OFFSETS = {
     "aatrox": {"x": 2, "y": -24},
     "darius": {"x": 2, "y": -24},
-    "thresh": {"x": 2, "y": -28},
+    "thresh": {"x": 0, "y": -12},
     "viktor": {"x": 0, "y": -28},
 }
 SIDE_CARD_STANDING_CENTER_OFFSETS = {
     "aatrox": {"x": 0, "y": -24},
     "darius": {"x": 0, "y": -24},
-    "thresh": {"x": 0, "y": -28},
+    "thresh": {"x": 0, "y": -12},
     "viktor": {"x": 0, "y": -28},
 }
 REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS: dict[str, dict[str, tuple[str, ...]]] = {}
@@ -2989,10 +2989,10 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         view = entries.get(thresh_id)
         if not isinstance(view, dict):
             fail(f"style/champion_view.champion_view missing entries.{thresh_id}")
-        if view.get("face", {}).get("x") != 2 or view.get("face", {}).get("y") != -28:
-            fail(f"style entry {thresh_id}.face must lift Thresh side-card standing portrait to x=2,y=-28")
-        if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -28:
-            fail(f"style entry {thresh_id}.center must lift Thresh exchange standing display to x=0,y=-28")
+        if view.get("face", {}).get("x") != 0 or view.get("face", {}).get("y") != -12:
+            fail(f"style entry {thresh_id}.face must keep Thresh roster card centered at x=0,y=-12")
+        if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -12:
+            fail(f"style entry {thresh_id}.center must keep Thresh exchange standing display centered at x=0,y=-12")
     assert_compact_idle_bottom_safety("thresh")
 
     for path in (
