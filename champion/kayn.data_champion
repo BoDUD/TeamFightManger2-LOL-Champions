@@ -345,10 +345,10 @@
   "ult": {
     "action_name": "ult",
     "description": "#asset/base/text/champion?description.bo_league_champions_kayn.ult",
-    "duration": 72,
-    "cooltime": 4200,
-    "start_timing": 12,
-    "range": 70000,
+    "duration": 60,
+    "cooltime": 3000,
+    "start_timing": 8,
+    "range": 82000,
     "casting_type": "Targeting",
     "casting_target": "EnemyChampion",
     "attack_type": "Skill",
@@ -372,7 +372,7 @@
           "effects": [
             {
               "type": "Invisible",
-              "tick": 48
+              "tick": 36
             },
             {
               "type": "AddCasterBuff",
@@ -380,7 +380,7 @@
                 "name": "test_mod_kayn_umbral_trespass_stasis",
                 "duration": {
                   "Time": {
-                    "tick": 48
+                    "tick": 36
                   }
                 },
                 "damaged_reduce": 100,
@@ -391,11 +391,11 @@
         },
         {
           "type": "Delayed",
-          "tick": 48,
+          "tick": 36,
           "effects": [
             {
               "type": "RushMoveToBack",
-              "speed": 3600,
+              "speed": 4200,
               "applied_effects": [
                 {
                   "type": "Combine",
@@ -436,7 +436,7 @@
       ]
     },
     "cancelable": false,
-    "can_use_with_move": false
+    "can_use_with_move": true
   },
   "view_projectiles": [
     {

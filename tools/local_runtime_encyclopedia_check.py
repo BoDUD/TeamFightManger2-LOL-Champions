@@ -448,8 +448,8 @@ def check_runtime_copy(game_root: Path) -> None:
                         "zh-hant": "暴走蘿莉",
                     },
                     f"{MOD_ID}_thresh": {
-                        "zh-hans": "魂锁典狱长",
-                        "zh-hant": "魂鎖典獄長",
+                        "zh-hans": "锤石",
+                        "zh-hant": "瑟雷西",
                     },
                     f"{MOD_ID}_viktor": {
                         "zh-hans": "维克托",
@@ -480,8 +480,6 @@ def check_runtime_copy(game_root: Path) -> None:
                         "犽宿",
                         "金克丝",
                         "金克絲",
-                        "锤石",
-                        "瑟雷西",
                         "奥术先驱",
                         "奧術先驅",
                     )
@@ -509,8 +507,8 @@ def check_runtime_copy(game_root: Path) -> None:
                         "zh-hant": ("瑟雷西", "魂鎖典獄長", "死亡判決", "冥燈引路", "厄運鐘擺", "幽冥監牢"),
                     },
                     f"{MOD_ID}_viktor": {
-                        "zh-hans": ("维克托", "奥术先驱", "光荣进化", "海克斯射线", "重力场", "奥术风暴"),
-                        "zh-hant": ("維克特", "奧術先驅", "光榮進化", "海克斯射線", "重力場", "奧術風暴"),
+                        "zh-hans": ("维克托", "奥术先驱", "机械先驱", "光荣进化", "海克斯射线", "重力场", "奥术风暴"),
+                        "zh-hant": ("維克特", "奧術先驅", "機械先驅", "光榮進化", "海克斯射線", "重力場", "奧術風暴"),
                     },
                 }
                 required_by_locale = required_terms_by_champion.get(champion_id)
