@@ -559,15 +559,15 @@ COMPACT_DISPLAY_LIMITS = {
 }
 SIDE_CARD_STANDING_FACE_OFFSETS = {
     "aatrox": {"x": 2, "y": -24},
-    "darius": {"x": 2, "y": -24},
+    "darius": {"x": 2, "y": -12},
     "thresh": {"x": 0, "y": -12},
-    "viktor": {"x": 0, "y": -28},
+    "viktor": {"x": 0, "y": -12},
 }
 SIDE_CARD_STANDING_CENTER_OFFSETS = {
     "aatrox": {"x": 0, "y": -24},
-    "darius": {"x": 0, "y": -24},
+    "darius": {"x": 0, "y": -12},
     "thresh": {"x": 0, "y": -12},
-    "viktor": {"x": 0, "y": -28},
+    "viktor": {"x": 0, "y": -12},
 }
 REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS: dict[str, dict[str, tuple[str, ...]]] = {}
 for _champion_id in AATROX_IDS:
@@ -2610,10 +2610,10 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         view = entries.get(darius_id)
         if not isinstance(view, dict):
             fail(f"style/champion_view.champion_view missing entries.{darius_id}")
-        if view.get("face", {}).get("x") != 2 or view.get("face", {}).get("y") != -24:
-            fail(f"style entry {darius_id}.face must lift Darius side-card standing portrait to x=2,y=-24")
-        if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -24:
-            fail(f"style entry {darius_id}.center must lift Darius exchange standing display to x=0,y=-24")
+        if view.get("face", {}).get("x") != 2 or view.get("face", {}).get("y") != -12:
+            fail(f"style entry {darius_id}.face must recenter Darius side-card standing portrait to x=2,y=-12")
+        if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -12:
+            fail(f"style entry {darius_id}.center must recenter Darius exchange standing display to x=0,y=-12")
     assert_compact_idle_bottom_safety("darius")
 
     for path in (
@@ -3314,10 +3314,10 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         view = entries.get(viktor_id)
         if not isinstance(view, dict):
             fail(f"style/champion_view.champion_view missing entries.{viktor_id}")
-        if view.get("face", {}).get("x") != 0 or view.get("face", {}).get("y") != -28:
-            fail(f"style entry {viktor_id}.face must lift Viktor side-card standing portrait to x=0,y=-28")
-        if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -28:
-            fail(f"style entry {viktor_id}.center must lift Viktor exchange standing display to x=0,y=-28")
+        if view.get("face", {}).get("x") != 0 or view.get("face", {}).get("y") != -12:
+            fail(f"style entry {viktor_id}.face must recenter Viktor side-card standing portrait to x=0,y=-12")
+        if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -12:
+            fail(f"style entry {viktor_id}.center must recenter Viktor exchange standing display to x=0,y=-12")
     assert_compact_idle_bottom_safety("viktor")
 
     for path in (
