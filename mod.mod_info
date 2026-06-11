@@ -3,8 +3,8 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.13.8",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version separates Aatrox and Viktor compact face cameras from their standing card cameras for cleaner HUD and scoreboard portraits.",
+  "version": "0.13.9",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version makes Viktor's Hextech Ray and Chaos Storm persist as target-ground effects and adds CI/runtime gates against short flashing laser regressions.",
   "last_updated": "2026-06-12",
   "dependencies": [
     {
