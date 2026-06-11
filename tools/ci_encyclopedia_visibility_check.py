@@ -562,13 +562,13 @@ COMPACT_DISPLAY_LIMITS = {
     "viktor": {"max_width": 39, "max_height": 42, "min_bottom_safe": 11},
 }
 SIDE_CARD_STANDING_FACE_OFFSETS = {
-    "aatrox": {"x": 2, "y": -24},
+    "aatrox": {"x": 7, "y": -24},
     "darius": {"x": 2, "y": -12},
     "thresh": {"x": 0, "y": -12},
     "viktor": {"x": 0, "y": -28},
 }
 SIDE_CARD_STANDING_CENTER_OFFSETS = {
-    "aatrox": {"x": 0, "y": -12},
+    "aatrox": {"x": 4, "y": -12},
     "darius": {"x": 0, "y": -12},
     "thresh": {"x": 0, "y": -12},
     "viktor": {"x": 0, "y": -12},
@@ -1602,11 +1602,12 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
             fail(f"style/champion_view.champion_view missing entries.{aatrox_id}")
         face_x = view.get("face", {}).get("x")
         face_y = view.get("face", {}).get("y")
+        center_x = view.get("center", {}).get("x")
         center_y = view.get("center", {}).get("y")
-        if face_x != 2 or face_y != -24:
-            fail(f"style entry {aatrox_id}.face must keep Aatrox compact HUD/scoreboard portrait at x=2,y=-24")
-        if center_y != -12:
-            fail(f"style entry {aatrox_id}.center.y must recenter Aatrox exchange standing display above labels at -12")
+        if face_x != 7 or face_y != -24:
+            fail(f"style entry {aatrox_id}.face must keep Aatrox compact portrait sword-visible at x=7,y=-24")
+        if center_x != 4 or center_y != -12:
+            fail(f"style entry {aatrox_id}.center must keep Aatrox exchange standing sword and feet visible at x=4,y=-12")
 
     for path in (
         ROOT / "aseprite_resources" / "champions" / "aatrox#sheet.png",

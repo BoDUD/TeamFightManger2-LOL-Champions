@@ -162,13 +162,13 @@ REQUIRED_ENCYCLOPEDIA_NAME_TERMS: dict[str, dict[str, tuple[str, ...]]] = {
     },
 }
 SIDE_CARD_STANDING_FACE_OFFSETS = {
-    f"{MOD_ID}_aatrox": {"x": 2, "y": -24},
+    f"{MOD_ID}_aatrox": {"x": 7, "y": -24},
     f"{MOD_ID}_darius": {"x": 2, "y": -12},
     f"{MOD_ID}_thresh": {"x": 0, "y": -12},
     f"{MOD_ID}_viktor": {"x": 0, "y": -28},
 }
 SIDE_CARD_STANDING_CENTER_OFFSETS = {
-    f"{MOD_ID}_aatrox": {"x": 0, "y": -12},
+    f"{MOD_ID}_aatrox": {"x": 4, "y": -12},
     f"{MOD_ID}_darius": {"x": 0, "y": -12},
     f"{MOD_ID}_thresh": {"x": 0, "y": -12},
     f"{MOD_ID}_viktor": {"x": 0, "y": -12},
@@ -576,7 +576,7 @@ def check_runtime_copy(game_root: Path) -> None:
         if face.get("x") != expected_face["x"] or face.get("y") != expected_face["y"]:
             fail(
                 f"runtime champion_view entries.{champion_id}.face must be {expected_face} "
-                "so pick/ban side-card standing portraits show feet"
+                "so pick/ban side-card standing portraits show feet and weapons"
             )
     for champion_id, expected_center in SIDE_CARD_STANDING_CENTER_OFFSETS.items():
         view = entries.get(champion_id)
@@ -588,7 +588,7 @@ def check_runtime_copy(game_root: Path) -> None:
         if center.get("x") != expected_center["x"] or center.get("y") != expected_center["y"]:
             fail(
                 f"runtime champion_view entries.{champion_id}.center must be {expected_center} "
-                "so exchange standing cards show feet"
+                "so exchange standing cards show feet and weapons"
             )
 
     text = load_json(runtime_root / "text" / "champion.i18n")
