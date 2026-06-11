@@ -256,7 +256,7 @@
         {
           "type": "LinearProjectile",
           "penetrate": false,
-          "speed": 2600,
+          "speed": 3000,
           "range": 98000,
           "name": "test_mod_thresh_death_sentence_chain",
           "shape": {
@@ -278,6 +278,12 @@
                   {
                     "type": "Stun",
                     "duration": 36
+                  },
+                  {
+                    "type": "MoveTo",
+                    "speed": 3800,
+                    "range": 14000,
+                    "end_effects": []
                   },
                   {
                     "type": "AddBuff",
@@ -492,7 +498,7 @@
                 "name": "test_mod_thresh_box_slow",
                 "duration": {
                   "Time": {
-                    "tick": 90
+                    "tick": 120
                   }
                 },
                 "move_speed_mult": -65
@@ -500,7 +506,7 @@
             },
             {
               "type": "BlockMoveSkill",
-              "tick": 24
+              "tick": 30
             },
             {
               "type": "ViewEffect",
@@ -529,8 +535,8 @@
         {
           "type": "RangePeriodProjectile",
           "name": "test_mod_thresh_box_field",
-          "tick": 180,
-          "period": 15,
+          "tick": 300,
+          "period": 20,
           "first_delay": 0,
           "shape": {
             "Circle": {
@@ -549,7 +555,7 @@
                       "name": "test_mod_thresh_box_linger_slow",
                       "duration": {
                         "Time": {
-                          "tick": 20
+                          "tick": 30
                         }
                       },
                       "move_speed_mult": -35
@@ -557,7 +563,7 @@
                   },
                   {
                     "type": "BlockMoveSkill",
-                    "tick": 10
+                    "tick": 12
                   }
                 ]
               },
@@ -622,7 +628,7 @@
       "is_follow": false
     },
     {
-      "type": "Animation",
+      "type": "LoopAnimation",
       "name": "test_mod_thresh_box",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/thresh_box",
       "tag": "box",
@@ -630,7 +636,7 @@
       "is_follow": false
     },
     {
-      "type": "Animation",
+      "type": "LoopAnimation",
       "name": "test_mod_thresh_box_field",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/thresh_box",
       "tag": "box",

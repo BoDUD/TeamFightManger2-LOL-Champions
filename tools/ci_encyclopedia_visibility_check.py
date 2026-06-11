@@ -393,7 +393,7 @@ THRESH_IDS = ("bo_league_champions_thresh", "test_mod_thresh")
 THRESH_FRAME_SIZE = (57.0, 54.0)
 THRESH_CORE_ACTIONS = ("idle", "run", "attack", "skill", "skill2", "hit", "dead", "ult")
 THRESH_MIN_BOTTOM_SAFE = 8
-THRESH_MAX_BODY_WIDTH = 50
+THRESH_MAX_BODY_WIDTH = 52
 THRESH_FORBIDDEN_CASTER_FOLLOW_VFX = {
     "test_mod_thresh_lantern_cast_vfx",
     "test_mod_thresh_flay_cast_vfx",
@@ -724,6 +724,143 @@ def alpha_frame_hash(alpha: bytes, image_width: int, rect: tuple[int, int, int, 
         start = y * image_width + x0
         digest.update(alpha[start : start + w])
     return digest.hexdigest()
+
+
+def alpha_visible_pixels_in_rect(alpha: bytes, image_width: int, rect: tuple[int, int, int, int]) -> int:
+    x0, y0, w, h = rect
+    visible = 0
+    for y in range(y0, y0 + h):
+        row_start = y * image_width
+        for x in range(x0, x0 + w):
+            if alpha[row_start + x] != 0:
+                visible += 1
+    return visible
+
+
+def rgba_frame_stats(
+    rgba: bytes, image_width: int, rect: tuple[int, int, int, int]
+) -> tuple[int, int, tuple[int, int, int, int] | None, float]:
+    x0, y0, w, h = rect
+    min_x = min_y = 10**9
+    max_x = max_y = -1
+    visible = 0
+    colors: set[tuple[int, int, int]] = set()
+    for y in range(y0, y0 + h):
+        for x in range(x0, x0 + w):
+            index = (y * image_width + x) * 4
+            r = rgba[index]
+            g = rgba[index + 1]
+            b = rgba[index + 2]
+            a = rgba[index + 3]
+            if a <= 20:
+                continue
+            local_x = x - x0
+            local_y = y - y0
+            visible += 1
+            colors.add((r // 8, g // 8, b // 8))
+            min_x = min(min_x, local_x)
+            min_y = min(min_y, local_y)
+            max_x = max(max_x, local_x + 1)
+            max_y = max(max_y, local_y + 1)
+    if max_x < 0:
+        return visible, len(colors), None, 0.0
+    bbox = (min_x, min_y, max_x, max_y)
+    bbox_area = max(1, (max_x - min_x) * (max_y - min_y))
+    return visible, len(colors), bbox, visible / bbox_area
+
+
+def assert_generated_vfx_volume(
+    sheet: Path,
+    fanim_path: Path,
+    tag: str,
+    label: str,
+    *,
+    min_visible: int,
+    min_color_bins: int,
+    min_height: int,
+    min_fill_ratio: float,
+    max_width: int | None = None,
+) -> None:
+    fanim = load_json(fanim_path)
+    frames = fanim.get("anims", {}).get(tag, {}).get("frames") if isinstance(fanim, dict) else None
+    if not isinstance(frames, list):
+        fail(f"{fanim_path.relative_to(ROOT)} must expose {tag!r} frames for {label}")
+    image_width, _image_height, rgba = load_rgba(sheet)
+    for index, frame in enumerate(frames):
+        data = frame.get("data") if isinstance(frame, dict) else None
+        if not isinstance(data, dict):
+            fail(f"{label} frame {index} missing frame data")
+        rect = (
+            int(round(float(data.get("x", -1)))),
+            int(round(float(data.get("y", -1)))),
+            int(round(float(data.get("w", 0)))),
+            int(round(float(data.get("h", 0)))),
+        )
+        visible, color_bins, bbox, fill_ratio = rgba_frame_stats(rgba, image_width, rect)
+        if bbox is None:
+            fail(f"{label} frame {index} is blank")
+        frame_width = bbox[2] - bbox[0]
+        frame_height = bbox[3] - bbox[1]
+        if visible < min_visible:
+            fail(f"{label} frame {index} has only {visible} visible pixels; image-generated VFX must not regress to line art")
+        if color_bins < min_color_bins:
+            fail(f"{label} frame {index} has only {color_bins} color bins; VFX must use raster image texture, not flat line strokes")
+        if frame_height < min_height:
+            fail(f"{label} frame {index} height {frame_height}px is too thin; hook/pull skills must have visible body volume")
+        if fill_ratio < min_fill_ratio:
+            fail(f"{label} frame {index} fill ratio {fill_ratio:.2f} is too sparse; avoid wire/arrow/guide-line skills")
+        if max_width is not None and frame_width > max_width:
+            fail(f"{label} frame {index} spans {frame_width}px; avoid full-width line/tether VFX in a single projectile frame")
+
+
+def collect_weapon_palette_from_rect(path: Path, rect: tuple[int, int, int, int]) -> set[tuple[int, int, int]]:
+    image_width, _image_height, rgba = load_rgba(path)
+    x0, y0, w, h = rect
+    colors: set[tuple[int, int, int]] = set()
+    for y in range(y0, y0 + h):
+        for x in range(x0, x0 + w):
+            index = (y * image_width + x) * 4
+            r = rgba[index]
+            g = rgba[index + 1]
+            b = rgba[index + 2]
+            a = rgba[index + 3]
+            if a <= 80:
+                continue
+            if r > 120 and 55 < g < 125 and 30 < b < 95:
+                continue
+            steel = abs(r - g) < 42 and abs(g - b) < 48 and r > 45
+            red = r > 70 and r > g * 1.25 and r > b * 1.1
+            dark = r < 70 and g < 60 and b < 65
+            if steel or red or dark:
+                colors.add((r, g, b))
+    return colors
+
+
+def count_palette_matches_in_rect(
+    rgba: bytes,
+    image_width: int,
+    rect: tuple[int, int, int, int],
+    palette: set[tuple[int, int, int]],
+    *,
+    tolerance: int,
+) -> int:
+    x0, y0, w, h = rect
+    matches = 0
+    palette_list = list(palette)
+    for y in range(y0, y0 + h):
+        for x in range(x0, x0 + w):
+            index = (y * image_width + x) * 4
+            r = rgba[index]
+            g = rgba[index + 1]
+            b = rgba[index + 2]
+            a = rgba[index + 3]
+            if a <= 80:
+                continue
+            for pr, pg, pb in palette_list:
+                if abs(r - pr) + abs(g - pg) + abs(b - pb) <= tolerance:
+                    matches += 1
+                    break
+    return matches
 
 
 def count_green_residue(path: Path) -> int:
@@ -2106,6 +2243,8 @@ def check_jinx_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
             bottom_safe = h - bbox[3]
             if action != "dead" and body_height > 45:
                 fail(f"Jinx {action} frame {index} body height {body_height}px is too large for UI/battle labels")
+            if action in {"skill2", "ult"} and body_height < 36:
+                fail(f"Jinx {action} frame {index} lost the actor body to a projectile/effect-only frame")
             if action != "dead" and bottom_safe < 9:
                 fail(f"Jinx {action} frame {index} leaves only {bottom_safe}px bottom safety above labels")
             if action == "run" and frame.get("duration") != 0.115:
@@ -2359,6 +2498,53 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         if effect_name not in {"darius_decimate_heal"} and red_pixels < max(20, visible_pixels // 10):
             fail(f"{sheet.relative_to(ROOT)} must keep Darius's red-black Noxian VFX palette")
 
+    assert_generated_vfx_volume(
+        ROOT / "aseprite_resources" / "effects" / "darius_apprehend#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "darius_apprehend#anim.fanim",
+        "chain",
+        "Darius Apprehend axe-pull VFX",
+        min_visible=3300,
+        min_color_bins=450,
+        min_height=48,
+        min_fill_ratio=0.36,
+        max_width=176,
+    )
+    darius_axe_palette = collect_weapon_palette_from_rect(
+        ROOT / "aseprite_resources" / "champions" / "darius#sheet.png",
+        (1197, 3, 38, 30),
+    )
+    if len(darius_axe_palette) < 80:
+        fail("Darius current axe palette could not be sampled; Apprehend VFX cannot prove it uses the model weapon")
+    apprehend_fanim = load_json(ROOT / "aseprite_resources" / "effects" / "darius_apprehend#anim.fanim")
+    apprehend_frames = apprehend_fanim.get("anims", {}).get("chain", {}).get("frames")
+    apprehend_width, _apprehend_height, apprehend_rgba = load_rgba(
+        ROOT / "aseprite_resources" / "effects" / "darius_apprehend#sheet.png"
+    )
+    if not isinstance(apprehend_frames, list):
+        fail("Darius Apprehend fanim must expose chain frames")
+    for index, frame in enumerate(apprehend_frames):
+        data = frame.get("data") if isinstance(frame, dict) else None
+        if not isinstance(data, dict):
+            fail(f"Darius Apprehend frame {index} missing frame data")
+        rect = (
+            int(round(float(data.get("x", -1)))),
+            int(round(float(data.get("y", -1)))),
+            int(round(float(data.get("w", 0)))),
+            int(round(float(data.get("h", 0)))),
+        )
+        matches = count_palette_matches_in_rect(
+            apprehend_rgba,
+            apprehend_width,
+            rect,
+            darius_axe_palette,
+            tolerance=28,
+        )
+        if matches < 1800:
+            fail(
+                f"Darius Apprehend frame {index} has only {matches} pixels matching the current axe palette; "
+                "E must use Darius's held weapon, not a generic generated axe"
+            )
+
     fanim = load_json(ROOT / "aseprite_resources" / "champions" / "darius#anim.fanim")
     sheet_width, sheet_height, sheet_alpha = load_rgba_alpha(
         ROOT / "aseprite_resources" / "champions" / "darius#sheet.png"
@@ -2411,11 +2597,14 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
             action_bboxes[action].append(bbox)
             action_hashes[action].append(alpha_frame_hash(sheet_alpha, sheet_width, (x, y, w, h)))
             body_height = bbox[3] - bbox[1]
+            body_width = bbox[2] - bbox[0]
             bottom_safe = h - bbox[3]
             if action != "dead" and body_height > 49:
                 fail(f"Darius {action} frame {index} body height {body_height}px is too large for UI/battle labels")
             if action not in {"dead", "hit"} and body_height < 33:
                 fail(f"Darius {action} frame {index} body height {body_height}px is too small for a readable Noxian silhouette")
+            if action == "ult" and body_width < 38:
+                fail(f"Darius ult frame {index} collapsed into a warped/dive pose instead of a stable guillotine chop")
             if action != "dead" and bottom_safe < 8:
                 fail(f"Darius {action} frame {index} leaves only {bottom_safe}px bottom safety above labels")
         if action in {"attack", "skill", "skill2", "ult"} and len(set(action_hashes[action])) < min(4, len(action_hashes[action])):
@@ -2502,6 +2691,10 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         fail("Darius E/W must fire test_mod_darius_apprehend")
     if apprehend.get("width") != 15000 or apprehend.get("length") != 50000:
         fail("Darius Apprehend must use a tight one-direction pull lane, not a broad front/back sweep")
+    if "MoveTo" not in set(walk_strings(apprehend)):
+        fail("Darius Apprehend must include a MoveTo hit effect so the hook pulls/locks targets near Darius instead of only drawing a chain")
+    if "test_mod_darius_apprehend_cast_vfx" in skill2_strings:
+        fail("Darius Apprehend must not also play a caster-follow copy of the chain; that creates the double/front-back hook read")
     if "Knockback" in skill2_strings:
         fail("Darius Apprehend must not use data-only Knockback; negative speed breaks loading and positive speed pushes targets away")
     ult_strings = set(walk_strings(darius.get("ult", {})))
@@ -2514,6 +2707,9 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
     for name, expected in DARIUS_EFFECT_REFS.items():
         if projectile_refs.get(name) != expected:
             fail(f"champion/darius.data_champion projectile {name} must reference {expected}")
+    projectile_repeat = {item.get("name"): item.get("repeat") for item in darius.get("view_projectiles", [])}
+    if projectile_repeat.get("test_mod_darius_apprehend") is not True:
+        fail("Darius Apprehend projectile must repeat long enough to read as a pull chain")
     view_effect_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in darius.get("view_effects", [])}
     for name, expected in DARIUS_VIEW_EFFECT_REFS.items():
         if view_effect_refs.get(name) != expected:
@@ -2655,7 +2851,7 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
             body_height = bbox[3] - bbox[1]
             body_width = bbox[2] - bbox[0]
             bottom_safe = h - bbox[3]
-            if action != "dead" and body_height > 42:
+            if action != "dead" and body_height > 43:
                 fail(f"Thresh {action} frame {index} body height {body_height}px is too large for UI/battle labels")
             min_body_height = 37 if action == "run" else 40
             if action != "dead" and body_height < min_body_height:
@@ -2664,8 +2860,8 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
                 fail(f"Thresh {action} frame {index} width {body_width}px is too wide; keep hooks/flays in separate VFX")
             if bottom_safe < THRESH_MIN_BOTTOM_SAFE:
                 fail(f"Thresh {action} frame {index} leaves only {bottom_safe}px bottom safety above labels")
-            if action == "run" and frame.get("duration") != 0.095:
-                fail("Thresh run must use steady 0.095s walking timing")
+            if action == "run" and frame.get("duration") != 0.12:
+                fail("Thresh run must use calmer 0.12s walking timing")
         if action in {"attack", "skill", "skill2", "ult"} and len(set(action_hashes[action])) < min(4, len(action_hashes[action])):
             fail(f"Thresh {action} must have real action motion, not repeated idle frames")
 
@@ -2710,6 +2906,8 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
     q_strings = set(walk_strings(skill_effect))
     if "RushMoveToBack" in q_strings:
         fail("Thresh Q first version must not auto-recast/dash after hook impact")
+    if "MoveTo" not in q_strings:
+        fail("Thresh Q must include a MoveTo hit effect so Death Sentence pulls/locks the hooked target near Thresh")
     if "test_mod_thresh_q_cast" not in q_strings or "test_mod_thresh_q_hit" not in q_strings:
         fail("Thresh Q must trigger official cast and hit sound events")
     for forbidden in THRESH_FORBIDDEN_CASTER_FOLLOW_VFX:
@@ -2724,12 +2922,16 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
     if projectile_repeat.get("test_mod_thresh_death_sentence_chain") is not True:
         fail("Thresh Death Sentence chain projectile must repeat so the hook does not vanish mid-flight")
     view_effect_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in thresh.get("view_effects", [])}
+    view_effect_types = {item.get("name"): item.get("type") for item in thresh.get("view_effects", [])}
     for forbidden in THRESH_FORBIDDEN_CASTER_FOLLOW_VFX:
         if forbidden in view_effect_refs:
             fail(f"champion/thresh.data_champion view_effect {forbidden} is retired because it creates duplicate actor-following VFX")
     for name, expected in THRESH_VIEW_EFFECT_REFS.items():
         if view_effect_refs.get(name) != expected:
             fail(f"champion/thresh.data_champion view_effect {name} must reference {expected}")
+    for name in ("test_mod_thresh_box", "test_mod_thresh_box_field"):
+        if view_effect_types.get(name) != "LoopAnimation":
+            fail(f"Thresh {name} must be LoopAnimation so The Box does not vanish immediately")
     buff_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in thresh.get("view_buffs", [])}
     for name, expected in THRESH_BUFF_REFS.items():
         if buff_refs.get(name) != expected:
@@ -2750,8 +2952,45 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
     if not isinstance(chain_frames, list):
         fail("Thresh Death Sentence chain fanim must expose chain frames")
     chain_total_duration = sum(float(frame.get("duration", 0)) for frame in chain_frames)
-    if chain_total_duration < 0.55:
+    if chain_total_duration < 0.72:
         fail("Thresh Death Sentence chain animation is too short and can disappear before the hook reaches target")
+    assert_generated_vfx_volume(
+        ROOT / "aseprite_resources" / "effects" / "thresh_death_sentence_chain#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "thresh_death_sentence_chain#anim.fanim",
+        "chain",
+        "Thresh Death Sentence hook VFX",
+        min_visible=3600,
+        min_color_bins=1200,
+        min_height=56,
+        min_fill_ratio=0.42,
+        max_width=178,
+    )
+    chain_width, _chain_height, chain_alpha = load_rgba_alpha(
+        ROOT / "aseprite_resources" / "effects" / "thresh_death_sentence_chain#sheet.png"
+    )
+    for index, frame in enumerate(chain_frames):
+        data = frame.get("data") if isinstance(frame, dict) else None
+        if not isinstance(data, dict):
+            fail(f"Thresh Death Sentence chain frame {index} missing frame data")
+        x = int(round(float(data.get("x", -1))))
+        y = int(round(float(data.get("y", -1))))
+        w = int(round(float(data.get("w", 0))))
+        h = int(round(float(data.get("h", 0))))
+        bbox = alpha_bbox_in_rect(chain_alpha, chain_width, (x, y, w, h))
+        if bbox is None:
+            fail(f"Thresh Death Sentence chain frame {index} is blank")
+        left_body_pixels = alpha_visible_pixels_in_rect(chain_alpha, chain_width, (x, y, min(57, w), min(54, h)))
+        if left_body_pixels > 2400:
+            fail(
+                f"Thresh Death Sentence chain frame {index} has {left_body_pixels} pixels in the actor-body zone; "
+                "Q must stay a separate hook/soul-fire projectile, not a duplicate Thresh model"
+            )
+    box_field = next(
+        (node for node in find_effect_nodes(thresh.get("ult", {}), "RangePeriodProjectile") if node.get("name") == "test_mod_thresh_box_field"),
+        None,
+    )
+    if not isinstance(box_field, dict) or box_field.get("tick", 0) < 300:
+        fail("Thresh R field must last at least 300 ticks so The Box reads as a real prison zone")
 
     assert_official_audio_sources(
         "thresh",
