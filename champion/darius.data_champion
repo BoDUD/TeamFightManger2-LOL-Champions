@@ -1777,9 +1777,9 @@
     "action_name": "skill2",
     "description": "#asset/base/text/champion?description.bo_league_champions_darius.skill2",
     "casting_type": "Direction",
-    "casting_target": "EnemyWithoutTower",
+    "casting_target": "EnemyChampion",
     "attack_type": "Skill",
-    "range": 50000,
+    "range": 66000,
     "duration": 44,
     "cooltime": 780,
     "start_timing": 10,
@@ -1794,12 +1794,12 @@
         },
         {
           "type": "LineRangeProjectile",
-          "width": 15000,
-          "length": 50000,
-          "delay": 6,
-          "apply": 12,
+          "width": 24000,
+          "length": 66000,
+          "delay": 5,
+          "apply": 14,
           "name": "test_mod_darius_apprehend",
-          "applied_target": "EnemyWithoutTower",
+          "applied_target": "EnemyChampion",
           "applied_effects": [
             {
               "effect": {
@@ -1816,8 +1816,8 @@
                   },
                   {
                     "type": "MoveTo",
-                    "speed": 4200,
-                    "range": 12000,
+                    "speed": 4800,
+                    "range": 9000,
                     "end_effects": []
                   },
                   {
@@ -2582,14 +2582,6 @@
       "name": "test_mod_darius_decimate_heal_vfx",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/darius_decimate_heal",
       "tag": "heal",
-      "z": 2,
-      "is_follow": true
-    },
-    {
-      "type": "Animation",
-      "name": "test_mod_darius_apprehend_cast_vfx",
-      "anim": "asset/bo_league_champions/aseprite_resources/effects/darius_apprehend",
-      "tag": "chain",
       "z": 2,
       "is_follow": true
     },
