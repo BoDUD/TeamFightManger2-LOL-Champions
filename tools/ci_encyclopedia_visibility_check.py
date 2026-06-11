@@ -3381,6 +3381,7 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         "Stun",
         "BlockMoveSkill",
         "LineRangeProjectile",
+        "ParabolicProjectile",
         "RangePeriodProjectile",
         "test_mod_viktor_siphon_empower",
         "test_mod_viktor_evolved_ray",
@@ -3425,6 +3426,79 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
             fail(f"Viktor {name} must be LoopAnimation so the field/storm persists instead of flashing once and vanishing")
     if view_effect_types.get("test_mod_viktor_storm_impact") != "Animation":
         fail("Viktor storm impact must remain a one-shot Animation separate from the persistent Chaos Storm loop")
+    skill2_top_level = viktor.get("skill2", {}).get("effect", {}).get("effects", [])
+    if not isinstance(skill2_top_level, list):
+        fail("Viktor skill2 must keep a top-level Combine.effects list")
+    for node in skill2_top_level:
+        if not isinstance(node, dict):
+            continue
+        if node.get("type") == "CasterViewEffect" and node.get("name") == "test_mod_viktor_siphon_shield":
+            fail("Viktor skill2 must not double-attach the Siphon shield over the actor body")
+        if node.get("type") == "ViewEffect" and node.get("name") == "test_mod_viktor_gravity_field":
+            fail("Viktor Gravity Field must be spawned from a target-ground anchor, not as a caster-level ViewEffect")
+    gravity_anchors = [
+        node
+        for node in find_effect_nodes(viktor.get("skill2", {}), "ParabolicProjectile")
+        if node.get("name") == "test_mod_viktor_gravity_field_anchor"
+    ]
+    if len(gravity_anchors) != 2:
+        fail("Viktor skill2 must use two gravity-field ground anchors, one normal and one evolved")
+    for index, anchor in enumerate(gravity_anchors, start=1):
+        end_effects = anchor.get("end_effects")
+        if not isinstance(end_effects, list):
+            fail(f"Viktor gravity anchor {index} must use end_effects for target-ground VFX")
+        if not any(item.get("type") == "ViewEffect" and item.get("name") == "test_mod_viktor_gravity_field" for item in end_effects if isinstance(item, dict)):
+            fail(f"Viktor gravity anchor {index} must spawn the field ViewEffect at the target point")
+        field_pulses = [
+            item
+            for item in end_effects
+            if isinstance(item, dict)
+            and item.get("type") == "RangePeriodProjectile"
+            and item.get("name") == "test_mod_viktor_gravity_field"
+        ]
+        if len(field_pulses) != 1:
+            fail(f"Viktor gravity anchor {index} must own exactly one ground RangePeriodProjectile pulse")
+        if field_pulses[0].get("first_delay", 0) < 15:
+            fail("Viktor Gravity Field pulse must wait after the anchor's immediate slow so it does not double-pop on cast")
+    storm_direct_names = {"test_mod_viktor_storm_impact", "test_mod_viktor_chaos_storm"}
+    for branch_name in ("effect_none", "effect_buff"):
+        branch = viktor.get("ult", {}).get("effect", {}).get(branch_name, {})
+        branch_effects = branch.get("effects") if isinstance(branch, dict) else None
+        if not isinstance(branch_effects, list):
+            fail(f"Viktor ult {branch_name} must keep a branch effects list")
+        for node in branch_effects:
+            if not isinstance(node, dict):
+                continue
+            if node.get("type") == "ViewEffect" and node.get("name") in storm_direct_names:
+                fail(f"Viktor ult {branch_name} must spawn storm VFX from the target-ground anchor, not directly on the caster")
+            if node.get("type") == "RangePeriodProjectile" and node.get("name") in storm_direct_names:
+                fail(f"Viktor ult {branch_name} must keep storm damage inside the target-ground anchor")
+    storm_anchors = [
+        node
+        for node in find_effect_nodes(viktor.get("ult", {}), "ParabolicProjectile")
+        if node.get("name") == "test_mod_viktor_chaos_storm_anchor"
+    ]
+    if len(storm_anchors) != 2:
+        fail("Viktor ult must use two Chaos Storm ground anchors, one normal and one evolved")
+    for index, anchor in enumerate(storm_anchors, start=1):
+        end_effects = anchor.get("end_effects")
+        if not isinstance(end_effects, list):
+            fail(f"Viktor Chaos Storm anchor {index} must use end_effects for terrain VFX")
+        end_names = {(item.get("type"), item.get("name")) for item in end_effects if isinstance(item, dict)}
+        for required_view in (("ViewEffect", "test_mod_viktor_storm_impact"), ("ViewEffect", "test_mod_viktor_chaos_storm")):
+            if required_view not in end_names:
+                fail(f"Viktor Chaos Storm anchor {index} must spawn {required_view[1]} on the terrain")
+        storm_pulses = [
+            item
+            for item in end_effects
+            if isinstance(item, dict)
+            and item.get("type") == "RangePeriodProjectile"
+            and item.get("name") == "test_mod_viktor_chaos_storm"
+        ]
+        if len(storm_pulses) != 1:
+            fail(f"Viktor Chaos Storm anchor {index} must own exactly one persistent storm pulse")
+        if storm_pulses[0].get("first_delay") != 20:
+            fail("Viktor Chaos Storm pulse must remain delayed until after the impact burst")
     assert_effect_frames_not_edge_cut(
         ROOT / "aseprite_resources" / "effects" / "viktor_gravity_field#sheet.png",
         ROOT / "aseprite_resources" / "effects" / "viktor_gravity_field#anim.fanim",
