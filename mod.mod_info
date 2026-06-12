@@ -3,8 +3,8 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.13.25",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version lifts Fiddlesticks actor frames above the battle nameplate, keeps feet visible in combat, and tightens CI bottom-safety guards for the scarecrow model.",
+  "version": "0.13.26",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version recenters Darius and Fiddlesticks compact HUD and scoreboard portraits, with CI/runtime guards for their tuned face offsets.",
   "last_updated": "2026-06-12",
   "dependencies": [
     {
