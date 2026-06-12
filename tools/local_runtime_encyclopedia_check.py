@@ -409,13 +409,34 @@ def check_fiddlesticks_ult_visibility(path: Path, champion: object) -> None:
     ):
         fail("runtime Fiddlesticks drain beam projectile must use the generated tether art at z=2 and repeat during the channel")
     buff_z = {item.get("name"): item.get("z") for item in view_buff_rows if isinstance(item, dict)}
-    effect_z = {item.get("name"): item.get("z") for item in view_effect_rows if isinstance(item, dict)}
+    effect_rows = {item.get("name"): item for item in view_effect_rows if isinstance(item, dict)}
+    effect_z = {name: item.get("z") for name, item in effect_rows.items()}
     if "test_mod_fiddlesticks_drain_tether" in effect_z:
         fail("runtime Fiddlesticks W must not attach a full tether ViewEffect at the target point")
     if buff_z.get("test_mod_fiddlesticks_crowstorm_active") != 2:
         fail("runtime Fiddlesticks Crowstorm buff must render at z=2")
-    if effect_z.get("test_mod_fiddlesticks_crowstorm") != 2:
-        fail("runtime Fiddlesticks Crowstorm view effect must render at z=2")
+    channel_effect = effect_rows.get("test_mod_fiddlesticks_crowstorm_channel")
+    if not isinstance(channel_effect, dict):
+        fail("runtime Fiddlesticks Crowstorm must register a generated pre-cast channel ViewEffect")
+    if (
+        channel_effect.get("type") != "Animation"
+        or channel_effect.get("anim") != "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_crowstorm_channel"
+        or channel_effect.get("tag") != "channel"
+        or channel_effect.get("z") != 3
+        or channel_effect.get("is_follow") is not True
+    ):
+        fail("runtime Fiddlesticks Crowstorm channel must follow the caster as a z=3 generated wind-up effect")
+    storm_effect = effect_rows.get("test_mod_fiddlesticks_crowstorm")
+    if not isinstance(storm_effect, dict):
+        fail("runtime Fiddlesticks Crowstorm must register the generated landing-zone ViewEffect")
+    if (
+        storm_effect.get("type") != "LoopAnimation"
+        or storm_effect.get("anim") != "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_crowstorm"
+        or storm_effect.get("tag") != "storm"
+        or storm_effect.get("z") != 2
+        or storm_effect.get("is_follow") is not False
+    ):
+        fail("runtime Fiddlesticks Crowstorm field must anchor on terrain as a z=2 generated loop, not follow the caster")
     drain_beams = [
         node
         for node in iter_mapping_nodes(champion.get("skill2", {}))
@@ -435,6 +456,46 @@ def check_fiddlesticks_ult_visibility(path: Path, champion: object) -> None:
         fail("runtime Fiddlesticks drain beam must remain visual-only; W pulses own the damage/heal")
     if any(node.get("name") == "test_mod_fiddlesticks_drain_tether" for node in iter_mapping_nodes(champion.get("skill2", {}))):
         fail("runtime Fiddlesticks W still references the retired target-point drain tether")
+    ult = champion.get("ult", {})
+    if not isinstance(ult, dict):
+        fail("runtime Fiddlesticks ult must be a JSON object")
+    start_timing = ult.get("start_timing")
+    if not isinstance(start_timing, (int, float)) or start_timing > 6:
+        fail("runtime Fiddlesticks Crowstorm must start its visible pre-cast quickly")
+    if ult.get("cancelable") is not False or ult.get("can_use_with_move") is not False:
+        fail("runtime Fiddlesticks Crowstorm must lock movement during the pre-cast channel")
+    ult_effect = ult.get("effect", {})
+    ult_effects = ult_effect.get("effects") if isinstance(ult_effect, dict) else None
+    if not isinstance(ult_effects, list):
+        fail("runtime Fiddlesticks Crowstorm must use a Combine effect list")
+    if any(isinstance(node, dict) and node.get("type") == "Teleport" for node in ult_effects):
+        fail("runtime Fiddlesticks Crowstorm must not teleport immediately before the channel")
+    if not any(
+        isinstance(node, dict)
+        and node.get("type") == "CasterViewEffect"
+        and node.get("name") == "test_mod_fiddlesticks_crowstorm_channel"
+        for node in ult_effects
+    ):
+        fail("runtime Fiddlesticks Crowstorm must show the generated pre-cast channel")
+    bind_nodes = [
+        node
+        for node in iter_mapping_nodes(ult)
+        if node.get("type") == "Bind"
+        and isinstance(node.get("duration"), (int, float))
+        and node.get("duration") >= 48
+    ]
+    if len(bind_nodes) != 1:
+        fail("runtime Fiddlesticks Crowstorm pre-cast must bind the caster for the full 48 tick channel")
+    delayed_landings = [
+        node
+        for node in ult_effects
+        if isinstance(node, dict)
+        and node.get("type") == "Delayed"
+        and node.get("tick", 0) >= 48
+        and any(isinstance(effect, dict) and effect.get("type") == "Teleport" for effect in node.get("effects", []))
+    ]
+    if len(delayed_landings) != 1:
+        fail("runtime Fiddlesticks Crowstorm must have exactly one delayed teleport landing after the channel")
     crowstorm_buffs = [
         node
         for node in iter_mapping_nodes(champion.get("ult", {}))
@@ -444,8 +505,41 @@ def check_fiddlesticks_ult_visibility(path: Path, champion: object) -> None:
     if len(crowstorm_buffs) != 1:
         fail("runtime Fiddlesticks ult must apply exactly one Crowstorm visual buff")
     duration_tick = crowstorm_buffs[0].get("buff_state", {}).get("duration", {}).get("Time", {}).get("tick")
-    if not isinstance(duration_tick, (int, float)) or duration_tick < 300:
-        fail("runtime Fiddlesticks Crowstorm visual buff must persist for at least 300 ticks")
+    if not isinstance(duration_tick, (int, float)) or duration_tick < 420:
+        fail("runtime Fiddlesticks Crowstorm visual buff must persist for at least 420 ticks")
+    storm_fields = [
+        node
+        for node in iter_mapping_nodes(champion.get("ult", {}))
+        if node.get("type") == "RangePeriodProjectile"
+        and node.get("name") == "test_mod_fiddlesticks_crowstorm"
+    ]
+    if len(storm_fields) != 1:
+        fail("runtime Fiddlesticks Crowstorm must create exactly one persistent landing field")
+    storm_field = storm_fields[0]
+    storm_radius = storm_field.get("shape", {}).get("Circle", {}).get("radius")
+    storm_tick = storm_field.get("tick")
+    storm_period = storm_field.get("period")
+    if (
+        not isinstance(storm_tick, (int, float))
+        or storm_tick < 420
+        or not isinstance(storm_period, (int, float))
+        or storm_period > 30
+        or storm_field.get("first_delay") != 0
+        or not isinstance(storm_radius, (int, float))
+        or storm_radius < 52000
+        or storm_field.get("applied_target") != "EnemyWithoutTower"
+    ):
+        fail("runtime Fiddlesticks Crowstorm field must be a long, large ground AoE after the jump")
+    fear_fields = [
+        node
+        for node in iter_mapping_nodes(champion.get("ult", {}))
+        if node.get("type") == "RangeEffect"
+        and node.get("target") == "EnemyChampion"
+        and node.get("shape", {}).get("Circle", {}).get("radius", 0) >= 52000
+        and any(isinstance(effect, dict) and effect.get("type") == "Fear" for effect in node.get("effects", []))
+    ]
+    if len(fear_fields) != 1:
+        fail("runtime Fiddlesticks Crowstorm landing must fear enemy champions in the large landing circle")
 
 
 def default_game_root() -> Path:
@@ -609,6 +703,8 @@ def check_runtime_copy(game_root: Path) -> None:
         "aseprite_resources/effects/fiddlesticks_drain_tether#anim.fanim",
         "aseprite_resources/effects/fiddlesticks_crowstorm#sheet.png",
         "aseprite_resources/effects/fiddlesticks_crowstorm#anim.fanim",
+        "aseprite_resources/effects/fiddlesticks_crowstorm_channel#sheet.png",
+        "aseprite_resources/effects/fiddlesticks_crowstorm_channel#anim.fanim",
         "icons/fiddlesticks_skill.png",
         "icons/fiddlesticks_skill2.png",
         "icons/fiddlesticks_ult.png",

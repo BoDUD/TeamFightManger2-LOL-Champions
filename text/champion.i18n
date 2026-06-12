@@ -41,7 +41,7 @@
         "attack": "까마귀 모양 투사체를 던져 대상에게 <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력의 75%<>만큼 <#a974ffff>마법 피해<>를 입힙니다.",
         "skill": "공포: 적 챔피언에게 악몽 투사체를 발사해 <#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력의 70%<>만큼 <#a974ffff>마법 피해<>를 입히고 1.25초 동안 공포에 빠뜨립니다.",
         "skill2": "풍작: 잠시 주변 적을 흡수해 반복적으로 <#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력의 25%<>만큼 <#a974ffff>마법 피해<>를 입히고, 적중한 적 하나당 피들스틱이 <#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>주문력의 8%<>만큼 회복합니다.",
-        "ult": "까마귀 폭풍: 적 챔피언에게 순간이동해 주변 적 챔피언을 잠시 공포에 빠뜨리고, 2초 동안 피들스틱을 폭풍으로 감싸 주변 적에게 반복적으로 <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력의 30%<>만큼 <#a974ffff>마법 피해<>를 입힙니다."
+        "ult": "Crowstorm: channels briefly, then blinks to an enemy champion, briefly fears nearby enemy champions, and opens a longer-lasting storm at the landing area, repeatedly dealing <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>magic damage<> to nearby enemies."
       },
       "bo_league_champions_azir": {
         "name": "아지르",
@@ -104,7 +104,7 @@
         "attack": "까마귀 모양 투사체를 던져 대상에게 <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력의 75%<>만큼 <#a974ffff>마법 피해<>를 입힙니다.",
         "skill": "공포: 적 챔피언에게 악몽 투사체를 발사해 <#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력의 70%<>만큼 <#a974ffff>마법 피해<>를 입히고 1.25초 동안 공포에 빠뜨립니다.",
         "skill2": "풍작: 잠시 주변 적을 흡수해 반복적으로 <#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력의 25%<>만큼 <#a974ffff>마법 피해<>를 입히고, 적중한 적 하나당 피들스틱이 <#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>주문력의 8%<>만큼 회복합니다.",
-        "ult": "까마귀 폭풍: 적 챔피언에게 순간이동해 주변 적 챔피언을 잠시 공포에 빠뜨리고, 2초 동안 피들스틱을 폭풍으로 감싸 주변 적에게 반복적으로 <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>주문력의 30%<>만큼 <#a974ffff>마법 피해<>를 입힙니다."
+        "ult": "Crowstorm: channels briefly, then blinks to an enemy champion, briefly fears nearby enemy champions, and opens a longer-lasting storm at the landing area, repeatedly dealing <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>magic damage<> to nearby enemies."
       },
       "test_mod_azir": {
         "name": "아지르",
@@ -241,7 +241,7 @@
         "attack": "Hurls a crow-shaped bolt at the target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% AP<> as <#a974ffff>magic damage<>.",
         "skill": "Terrify: sends a nightmare projectile at an enemy champion, dealing <#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> <#a974ffff>magic damage<> and fearing them for 1.25 seconds.",
         "skill2": "Bountiful Harvest: briefly drains nearby enemies, repeatedly dealing <#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>25% AP<> <#a974ffff>magic damage<> and healing Fiddlesticks for <#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>8% AP<> per enemy hit.",
-        "ult": "Crowstorm: blinks to an enemy champion, briefly fears nearby enemy champions, and surrounds Fiddlesticks with a storm for 2 seconds, repeatedly dealing <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>magic damage<> to nearby enemies."
+        "ult": "Crowstorm: channels briefly, then blinks to an enemy champion, briefly fears nearby enemy champions, and opens a longer-lasting storm at the landing area, repeatedly dealing <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>magic damage<> to nearby enemies."
       },
       "bo_league_champions_azir": {
         "name": "Azir",
@@ -304,7 +304,7 @@
         "attack": "Hurls a crow-shaped bolt at the target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% AP<> as <#a974ffff>magic damage<>.",
         "skill": "Terrify: sends a nightmare projectile at an enemy champion, dealing <#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> <#a974ffff>magic damage<> and fearing them for 1.25 seconds.",
         "skill2": "Bountiful Harvest: briefly drains nearby enemies, repeatedly dealing <#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>25% AP<> <#a974ffff>magic damage<> and healing Fiddlesticks for <#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>8% AP<> per enemy hit.",
-        "ult": "Crowstorm: blinks to an enemy champion, briefly fears nearby enemy champions, and surrounds Fiddlesticks with a storm for 2 seconds, repeatedly dealing <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>magic damage<> to nearby enemies."
+        "ult": "Crowstorm: channels briefly, then blinks to an enemy champion, briefly fears nearby enemy champions, and opens a longer-lasting storm at the landing area, repeatedly dealing <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>magic damage<> to nearby enemies."
       },
       "test_mod_azir": {
         "name": "Azir",
@@ -441,7 +441,7 @@
         "attack": "Hurls a crow-shaped bolt at the target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% AP<> as <#a974ffff>magic damage<>.",
         "skill": "Terrify: sends a nightmare projectile at an enemy champion, dealing <#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> <#a974ffff>magic damage<> and fearing them for 1.25 seconds.",
         "skill2": "Bountiful Harvest: briefly drains nearby enemies, repeatedly dealing <#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>25% AP<> <#a974ffff>magic damage<> and healing Fiddlesticks for <#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>8% AP<> per enemy hit.",
-        "ult": "Crowstorm: blinks to an enemy champion, briefly fears nearby enemy champions, and surrounds Fiddlesticks with a storm for 2 seconds, repeatedly dealing <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>magic damage<> to nearby enemies."
+        "ult": "Crowstorm: channels briefly, then blinks to an enemy champion, briefly fears nearby enemy champions, and opens a longer-lasting storm at the landing area, repeatedly dealing <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>magic damage<> to nearby enemies."
       },
       "bo_league_champions_azir": {
         "name": "Azir",
@@ -504,7 +504,7 @@
         "attack": "Hurls a crow-shaped bolt at the target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% AP<> as <#a974ffff>magic damage<>.",
         "skill": "Terrify: sends a nightmare projectile at an enemy champion, dealing <#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> <#a974ffff>magic damage<> and fearing them for 1.25 seconds.",
         "skill2": "Bountiful Harvest: briefly drains nearby enemies, repeatedly dealing <#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>25% AP<> <#a974ffff>magic damage<> and healing Fiddlesticks for <#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>8% AP<> per enemy hit.",
-        "ult": "Crowstorm: blinks to an enemy champion, briefly fears nearby enemy champions, and surrounds Fiddlesticks with a storm for 2 seconds, repeatedly dealing <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>magic damage<> to nearby enemies."
+        "ult": "Crowstorm: channels briefly, then blinks to an enemy champion, briefly fears nearby enemy champions, and opens a longer-lasting storm at the landing area, repeatedly dealing <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>magic damage<> to nearby enemies."
       },
       "test_mod_azir": {
         "name": "Azir",
@@ -641,7 +641,7 @@
         "attack": "Schleudert ein krähenförmiges Geschoss auf das Ziel und verursacht <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% AP<> als <#a974ffff>magischen Schaden<>.",
         "skill": "Furcht: schickt ein Alptraumprojektil auf einen gegnerischen Champion, verursacht <#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> <#a974ffff>magischen Schaden<> und versetzt ihn 1.25 Sekunden lang in Furcht.",
         "skill2": "Reiche Ernte: entzieht nahen Gegnern kurzzeitig Energie, verursacht wiederholt <#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>25% AP<> <#a974ffff>magischen Schaden<> und heilt Fiddlesticks für jeden getroffenen Gegner um <#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>8% AP<>.",
-        "ult": "Krähenschwarm: blinkt zu einem gegnerischen Champion, versetzt nahe gegnerische Champions kurz in Furcht und umgibt Fiddlesticks 2 Sekunden lang mit einem Sturm, der nahen Gegnern wiederholt <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>magischen Schaden<> zufügt."
+        "ult": "Krähenschwarm: blinkt zu einem gegnerischen Champion, versetzt nahe gegnerische Champions kurz in Furcht und umgibt Fiddlesticks l?ngere Zeit mit einem Sturm, der nahen Gegnern wiederholt <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>magischen Schaden<> zufügt."
       },
       "bo_league_champions_azir": {
         "name": "Azir",
@@ -704,7 +704,7 @@
         "attack": "Schleudert ein krähenförmiges Geschoss auf das Ziel und verursacht <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% AP<> als <#a974ffff>magischen Schaden<>.",
         "skill": "Furcht: schickt ein Alptraumprojektil auf einen gegnerischen Champion, verursacht <#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> <#a974ffff>magischen Schaden<> und versetzt ihn 1.25 Sekunden lang in Furcht.",
         "skill2": "Reiche Ernte: entzieht nahen Gegnern kurzzeitig Energie, verursacht wiederholt <#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>25% AP<> <#a974ffff>magischen Schaden<> und heilt Fiddlesticks für jeden getroffenen Gegner um <#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>8% AP<>.",
-        "ult": "Krähenschwarm: blinkt zu einem gegnerischen Champion, versetzt nahe gegnerische Champions kurz in Furcht und umgibt Fiddlesticks 2 Sekunden lang mit einem Sturm, der nahen Gegnern wiederholt <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>magischen Schaden<> zufügt."
+        "ult": "Krähenschwarm: blinkt zu einem gegnerischen Champion, versetzt nahe gegnerische Champions kurz in Furcht und umgibt Fiddlesticks l?ngere Zeit mit einem Sturm, der nahen Gegnern wiederholt <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>magischen Schaden<> zufügt."
       },
       "test_mod_azir": {
         "name": "Azir",
@@ -1041,7 +1041,7 @@
         "attack": "Arremessa um projétil em forma de corvo contra o alvo, causando <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% de AP<> como <#a974ffff>dano mágico<>.",
         "skill": "Aterrorizar: envia um projétil de pesadelo contra um campeão inimigo, causando <#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% de AP<> de <#a974ffff>dano mágico<> e amedrontando-o por 1.25 segundos.",
         "skill2": "Colheita Farta: drena brevemente inimigos próximos, causando repetidamente <#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>25% de AP<> de <#a974ffff>dano mágico<> e curando Fiddlesticks em <#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>8% de AP<> por inimigo atingido.",
-        "ult": "Tempestade de Corvos: desloca-se instantaneamente até um campeão inimigo, amedronta brevemente campeões inimigos próximos e envolve Fiddlesticks em uma tempestade por 2 segundos, causando repetidamente <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% de AP<> de <#a974ffff>dano mágico<> a inimigos próximos."
+        "ult": "Tempestade de Corvos: desloca-se instantaneamente até um campeão inimigo, amedronta brevemente campeões inimigos próximos e envolve Fiddlesticks em uma tempestade por mais tempo, causando repetidamente <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% de AP<> de <#a974ffff>dano mágico<> a inimigos próximos."
       },
       "bo_league_champions_azir": {
         "name": "Azir",
@@ -1104,7 +1104,7 @@
         "attack": "Arremessa um projétil em forma de corvo contra o alvo, causando <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% de AP<> como <#a974ffff>dano mágico<>.",
         "skill": "Aterrorizar: envia um projétil de pesadelo contra um campeão inimigo, causando <#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% de AP<> de <#a974ffff>dano mágico<> e amedrontando-o por 1.25 segundos.",
         "skill2": "Colheita Farta: drena brevemente inimigos próximos, causando repetidamente <#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>25% de AP<> de <#a974ffff>dano mágico<> e curando Fiddlesticks em <#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>8% de AP<> por inimigo atingido.",
-        "ult": "Tempestade de Corvos: desloca-se instantaneamente até um campeão inimigo, amedronta brevemente campeões inimigos próximos e envolve Fiddlesticks em uma tempestade por 2 segundos, causando repetidamente <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% de AP<> de <#a974ffff>dano mágico<> a inimigos próximos."
+        "ult": "Tempestade de Corvos: desloca-se instantaneamente até um campeão inimigo, amedronta brevemente campeões inimigos próximos e envolve Fiddlesticks em uma tempestade por mais tempo, causando repetidamente <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% de AP<> de <#a974ffff>dano mágico<> a inimigos próximos."
       },
       "test_mod_azir": {
         "name": "Azir",
@@ -1241,7 +1241,7 @@
         "attack": "Hurls a crow-shaped bolt at the target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% AP<> as <#a974ffff>magic damage<>.",
         "skill": "Terrify: sends a nightmare projectile at an enemy champion, dealing <#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> <#a974ffff>magic damage<> and fearing them for 1.25 seconds.",
         "skill2": "Bountiful Harvest: briefly drains nearby enemies, repeatedly dealing <#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>25% AP<> <#a974ffff>magic damage<> and healing Fiddlesticks for <#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>8% AP<> per enemy hit.",
-        "ult": "Crowstorm: blinks to an enemy champion, briefly fears nearby enemy champions, and surrounds Fiddlesticks with a storm for 2 seconds, repeatedly dealing <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>magic damage<> to nearby enemies."
+        "ult": "Crowstorm: channels briefly, then blinks to an enemy champion, briefly fears nearby enemy champions, and opens a longer-lasting storm at the landing area, repeatedly dealing <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>magic damage<> to nearby enemies."
       },
       "bo_league_champions_azir": {
         "name": "Azir",
@@ -1304,7 +1304,7 @@
         "attack": "Hurls a crow-shaped bolt at the target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% AP<> as <#a974ffff>magic damage<>.",
         "skill": "Terrify: sends a nightmare projectile at an enemy champion, dealing <#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> <#a974ffff>magic damage<> and fearing them for 1.25 seconds.",
         "skill2": "Bountiful Harvest: briefly drains nearby enemies, repeatedly dealing <#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>25% AP<> <#a974ffff>magic damage<> and healing Fiddlesticks for <#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>8% AP<> per enemy hit.",
-        "ult": "Crowstorm: blinks to an enemy champion, briefly fears nearby enemy champions, and surrounds Fiddlesticks with a storm for 2 seconds, repeatedly dealing <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>magic damage<> to nearby enemies."
+        "ult": "Crowstorm: channels briefly, then blinks to an enemy champion, briefly fears nearby enemy champions, and opens a longer-lasting storm at the landing area, repeatedly dealing <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>magic damage<> to nearby enemies."
       },
       "test_mod_azir": {
         "name": "Azir",
@@ -1441,7 +1441,7 @@
         "attack": "Hurls a crow-shaped bolt at the target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% AP<> as <#a974ffff>magic damage<>.",
         "skill": "Terrify: sends a nightmare projectile at an enemy champion, dealing <#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> <#a974ffff>magic damage<> and fearing them for 1.25 seconds.",
         "skill2": "Bountiful Harvest: briefly drains nearby enemies, repeatedly dealing <#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>25% AP<> <#a974ffff>magic damage<> and healing Fiddlesticks for <#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>8% AP<> per enemy hit.",
-        "ult": "Crowstorm: blinks to an enemy champion, briefly fears nearby enemy champions, and surrounds Fiddlesticks with a storm for 2 seconds, repeatedly dealing <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>magic damage<> to nearby enemies."
+        "ult": "Crowstorm: channels briefly, then blinks to an enemy champion, briefly fears nearby enemy champions, and opens a longer-lasting storm at the landing area, repeatedly dealing <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>magic damage<> to nearby enemies."
       },
       "bo_league_champions_azir": {
         "name": "Azir",
@@ -1504,7 +1504,7 @@
         "attack": "Hurls a crow-shaped bolt at the target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% AP<> as <#a974ffff>magic damage<>.",
         "skill": "Terrify: sends a nightmare projectile at an enemy champion, dealing <#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> <#a974ffff>magic damage<> and fearing them for 1.25 seconds.",
         "skill2": "Bountiful Harvest: briefly drains nearby enemies, repeatedly dealing <#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>25% AP<> <#a974ffff>magic damage<> and healing Fiddlesticks for <#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>8% AP<> per enemy hit.",
-        "ult": "Crowstorm: blinks to an enemy champion, briefly fears nearby enemy champions, and surrounds Fiddlesticks with a storm for 2 seconds, repeatedly dealing <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>magic damage<> to nearby enemies."
+        "ult": "Crowstorm: channels briefly, then blinks to an enemy champion, briefly fears nearby enemy champions, and opens a longer-lasting storm at the landing area, repeatedly dealing <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>magic damage<> to nearby enemies."
       },
       "test_mod_azir": {
         "name": "Azir",
@@ -1841,7 +1841,7 @@
         "attack": "Lanza un proyectil con forma de cuervo al objetivo e inflige <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% de AP<> como <#a974ffff>daño mágico<>.",
         "skill": "Aterrorizar: envía un proyectil de pesadilla a un campeón enemigo, inflige <#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% de AP<> como <#a974ffff>daño mágico<> y lo aterroriza durante 1.25 segundos.",
         "skill2": "Cosecha Abundante: drena brevemente a enemigos cercanos, inflige repetidamente <#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>25% de AP<> como <#a974ffff>daño mágico<> y cura a Fiddlesticks <#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>8% de AP<> por cada enemigo alcanzado.",
-        "ult": "Tormenta de Cuervos: se teleporta a un campeón enemigo, aterroriza brevemente a los campeones enemigos cercanos y rodea a Fiddlesticks con una tormenta durante 2 segundos, infligiendo repetidamente <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% de AP<> como <#a974ffff>daño mágico<> a enemigos cercanos."
+        "ult": "Tormenta de Cuervos: se teleporta a un campeón enemigo, aterroriza brevemente a los campeones enemigos cercanos y rodea a Fiddlesticks con una tormenta durante m?s tiempo, infligiendo repetidamente <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% de AP<> como <#a974ffff>daño mágico<> a enemigos cercanos."
       },
       "bo_league_champions_azir": {
         "name": "Azir",
@@ -1904,7 +1904,7 @@
         "attack": "Lanza un proyectil con forma de cuervo al objetivo e inflige <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% de AP<> como <#a974ffff>daño mágico<>.",
         "skill": "Aterrorizar: envía un proyectil de pesadilla a un campeón enemigo, inflige <#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% de AP<> como <#a974ffff>daño mágico<> y lo aterroriza durante 1.25 segundos.",
         "skill2": "Cosecha Abundante: drena brevemente a enemigos cercanos, inflige repetidamente <#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>25% de AP<> como <#a974ffff>daño mágico<> y cura a Fiddlesticks <#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>8% de AP<> por cada enemigo alcanzado.",
-        "ult": "Tormenta de Cuervos: se teleporta a un campeón enemigo, aterroriza brevemente a los campeones enemigos cercanos y rodea a Fiddlesticks con una tormenta durante 2 segundos, infligiendo repetidamente <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% de AP<> como <#a974ffff>daño mágico<> a enemigos cercanos."
+        "ult": "Tormenta de Cuervos: se teleporta a un campeón enemigo, aterroriza brevemente a los campeones enemigos cercanos y rodea a Fiddlesticks con una tormenta durante m?s tiempo, infligiendo repetidamente <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% de AP<> como <#a974ffff>daño mágico<> a enemigos cercanos."
       },
       "test_mod_azir": {
         "name": "Azir",
@@ -2041,7 +2041,7 @@
         "attack": "Lance un projectile en forme de corbeau sur la cible, infligeant <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% AP<> en <#a974ffff>dégâts magiques<>.",
         "skill": "Terreur : envoie un projectile cauchemardesque sur un champion ennemi, infligeant <#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> <#a974ffff>dégâts magiques<> et l'effrayant pendant 1.25 seconde.",
         "skill2": "Moisson fructueuse : draine brièvement les ennemis proches, infligeant plusieurs fois <#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>25% AP<> <#a974ffff>dégâts magiques<> et soignant Fiddlesticks de <#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>8% AP<> par ennemi touché.",
-        "ult": "Rafale de corbeaux : se téléporte sur un champion ennemi, effraie brièvement les champions ennemis proches et entoure Fiddlesticks d'une tempête pendant 2 secondes, infligeant plusieurs fois <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>dégâts magiques<> aux ennemis proches."
+        "ult": "Rafale de corbeaux : se téléporte sur un champion ennemi, effraie brièvement les champions ennemis proches et entoure Fiddlesticks d'une tempête pendant plus longtemps, infligeant plusieurs fois <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>dégâts magiques<> aux ennemis proches."
       },
       "bo_league_champions_azir": {
         "name": "Azir",
@@ -2104,7 +2104,7 @@
         "attack": "Lance un projectile en forme de corbeau sur la cible, infligeant <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% AP<> en <#a974ffff>dégâts magiques<>.",
         "skill": "Terreur : envoie un projectile cauchemardesque sur un champion ennemi, infligeant <#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> <#a974ffff>dégâts magiques<> et l'effrayant pendant 1.25 seconde.",
         "skill2": "Moisson fructueuse : draine brièvement les ennemis proches, infligeant plusieurs fois <#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>25% AP<> <#a974ffff>dégâts magiques<> et soignant Fiddlesticks de <#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>8% AP<> par ennemi touché.",
-        "ult": "Rafale de corbeaux : se téléporte sur un champion ennemi, effraie brièvement les champions ennemis proches et entoure Fiddlesticks d'une tempête pendant 2 secondes, infligeant plusieurs fois <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>dégâts magiques<> aux ennemis proches."
+        "ult": "Rafale de corbeaux : se téléporte sur un champion ennemi, effraie brièvement les champions ennemis proches et entoure Fiddlesticks d'une tempête pendant plus longtemps, infligeant plusieurs fois <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>dégâts magiques<> aux ennemis proches."
       },
       "test_mod_azir": {
         "name": "Azir",
@@ -2241,7 +2241,7 @@
         "attack": "向目标掷出鸦形弹体，造成<i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法术强度的75%<>的<#a974ffff>魔法伤害<>。",
         "skill": "恐惧：向一名敌方英雄发射噩梦弹体，造成<#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法术强度的70%<>的<#a974ffff>魔法伤害<>，并使其恐惧1.25秒。",
         "skill2": "五骨丰登：短暂汲取附近敌人，持续造成<#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法术强度的25%<>的<#a974ffff>魔法伤害<>，每命中一名敌人就为费德提克回复<#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>法术强度的8%<>生命值。",
-        "ult": "群鸦风暴：瞬移至一名敌方英雄身边，短暂恐惧附近敌方英雄，并使费德提克被风暴环绕2秒，持续对附近敌人造成<#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法术强度的30%<>的<#a974ffff>魔法伤害<>。"
+        "ult": "群鸦风暴：短暂蓄力后跳至一名敌方英雄身边，恐惧附近敌方英雄，并在落点展开更长时间的大范围风暴，持续对附近敌人造成<#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法术强度的30%<>的<#a974ffff>魔法伤害<>。"
       },
       "bo_league_champions_azir": {
         "name": "阿兹尔",
@@ -2304,7 +2304,7 @@
         "attack": "向目标掷出鸦形弹体，造成<i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法术强度的75%<>的<#a974ffff>魔法伤害<>。",
         "skill": "恐惧：向一名敌方英雄发射噩梦弹体，造成<#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法术强度的70%<>的<#a974ffff>魔法伤害<>，并使其恐惧1.25秒。",
         "skill2": "五骨丰登：短暂汲取附近敌人，持续造成<#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法术强度的25%<>的<#a974ffff>魔法伤害<>，每命中一名敌人就为费德提克回复<#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>法术强度的8%<>生命值。",
-        "ult": "群鸦风暴：瞬移至一名敌方英雄身边，短暂恐惧附近敌方英雄，并使费德提克被风暴环绕2秒，持续对附近敌人造成<#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法术强度的30%<>的<#a974ffff>魔法伤害<>。"
+        "ult": "群鸦风暴：短暂蓄力后跳至一名敌方英雄身边，恐惧附近敌方英雄，并在落点展开更长时间的大范围风暴，持续对附近敌人造成<#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法术强度的30%<>的<#a974ffff>魔法伤害<>。"
       },
       "test_mod_azir": {
         "name": "阿兹尔",
@@ -2441,7 +2441,7 @@
         "attack": "向目標擲出鴉形彈體，造成<i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法術強度的75%<>的<#a974ffff>魔法傷害<>。",
         "skill": "恐懼：向一名敵方英雄發射噩夢彈體，造成<#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法術強度的70%<>的<#a974ffff>魔法傷害<>，並使其恐懼1.25秒。",
         "skill2": "五骨豐登：短暫汲取附近敵人，持續造成<#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法術強度的25%<>的<#a974ffff>魔法傷害<>，每命中一名敵人就為費德提克回復<#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>法術強度的8%<>生命值。",
-        "ult": "群鴉風暴：瞬移至一名敵方英雄身邊，短暫恐懼附近敵方英雄，並使費德提克被風暴環繞2秒，持續對附近敵人造成<#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法術強度的30%<>的<#a974ffff>魔法傷害<>。"
+        "ult": "群鴉風暴：短暫蓄力後跳至一名敵方英雄身邊，恐懼附近敵方英雄，並在落點展開更長時間的大範圍風暴，持續對附近敵人造成<#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法術強度的30%<>的<#a974ffff>魔法傷害<>。"
       },
       "bo_league_champions_azir": {
         "name": "阿祈爾",
@@ -2504,7 +2504,7 @@
         "attack": "向目標擲出鴉形彈體，造成<i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法術強度的75%<>的<#a974ffff>魔法傷害<>。",
         "skill": "恐懼：向一名敵方英雄發射噩夢彈體，造成<#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法術強度的70%<>的<#a974ffff>魔法傷害<>，並使其恐懼1.25秒。",
         "skill2": "五骨豐登：短暫汲取附近敵人，持續造成<#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法術強度的25%<>的<#a974ffff>魔法傷害<>，每命中一名敵人就為費德提克回復<#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>法術強度的8%<>生命值。",
-        "ult": "群鴉風暴：瞬移至一名敵方英雄身邊，短暫恐懼附近敵方英雄，並使費德提克被風暴環繞2秒，持續對附近敵人造成<#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法術強度的30%<>的<#a974ffff>魔法傷害<>。"
+        "ult": "群鴉風暴：短暫蓄力後跳至一名敵方英雄身邊，恐懼附近敵方英雄，並在落點展開更長時間的大範圍風暴，持續對附近敵人造成<#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>法術強度的30%<>的<#a974ffff>魔法傷害<>。"
       },
       "test_mod_azir": {
         "name": "阿祈爾",
@@ -2641,7 +2641,7 @@
         "attack": "Hurls a crow-shaped bolt at the target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% AP<> as <#a974ffff>magic damage<>.",
         "skill": "Terrify: sends a nightmare projectile at an enemy champion, dealing <#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> <#a974ffff>magic damage<> and fearing them for 1.25 seconds.",
         "skill2": "Bountiful Harvest: briefly drains nearby enemies, repeatedly dealing <#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>25% AP<> <#a974ffff>magic damage<> and healing Fiddlesticks for <#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>8% AP<> per enemy hit.",
-        "ult": "Crowstorm: blinks to an enemy champion, briefly fears nearby enemy champions, and surrounds Fiddlesticks with a storm for 2 seconds, repeatedly dealing <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>magic damage<> to nearby enemies."
+        "ult": "Crowstorm: channels briefly, then blinks to an enemy champion, briefly fears nearby enemy champions, and opens a longer-lasting storm at the landing area, repeatedly dealing <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>magic damage<> to nearby enemies."
       },
       "bo_league_champions_azir": {
         "name": "Azir",
@@ -2704,7 +2704,7 @@
         "attack": "Hurls a crow-shaped bolt at the target, dealing <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>75% AP<> as <#a974ffff>magic damage<>.",
         "skill": "Terrify: sends a nightmare projectile at an enemy champion, dealing <#a974ffff>45<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>70% AP<> <#a974ffff>magic damage<> and fearing them for 1.25 seconds.",
         "skill2": "Bountiful Harvest: briefly drains nearby enemies, repeatedly dealing <#a974ffff>18<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>25% AP<> <#a974ffff>magic damage<> and healing Fiddlesticks for <#6aff55ff>30<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#6aff55ff>8% AP<> per enemy hit.",
-        "ult": "Crowstorm: blinks to an enemy champion, briefly fears nearby enemy champions, and surrounds Fiddlesticks with a storm for 2 seconds, repeatedly dealing <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>magic damage<> to nearby enemies."
+        "ult": "Crowstorm: channels briefly, then blinks to an enemy champion, briefly fears nearby enemy champions, and opens a longer-lasting storm at the landing area, repeatedly dealing <#a974ffff>26<> + <i#asset/base/ui/banpick/champion_stat_icon:ap_0><#a974ffff>30% AP<> <#a974ffff>magic damage<> to nearby enemies."
       },
       "test_mod_azir": {
         "name": "Azir",

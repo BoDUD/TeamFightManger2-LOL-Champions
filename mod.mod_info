@@ -3,8 +3,8 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.13.23",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version fixes Fiddlesticks compact portraits and rebuilds Bountiful Harvest as a narrow caster-to-target drain tether, with CI/runtime guards that block target-point tether regressions and stale installed assets.",
+  "version": "0.13.24",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version rebuilds Fiddlesticks Crowstorm with image-generated pre-cast and landing storm art, adds delayed jump timing, extends the storm to 420 ticks, and adds CI/runtime guards for persistent ground ult VFX.",
   "last_updated": "2026-06-12",
   "dependencies": [
     {

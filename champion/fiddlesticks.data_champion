@@ -446,9 +446,9 @@
   "ult": {
     "action_name": "ult",
     "description": "#asset/base/text/champion?description.bo_league_champions_fiddlesticks.ult",
-    "duration": 72,
+    "duration": 96,
     "cooltime": 1800,
-    "start_timing": 66,
+    "start_timing": 1,
     "range": 72000,
     "casting_type": "Targeting",
     "casting_target": "EnemyChampion",
@@ -457,122 +457,19 @@
       "type": "Combine",
       "effects": [
         {
-          "type": "Teleport"
-        },
-        {
           "type": "Sfx",
           "name": "test_mod_fiddlesticks_ult_screech"
         },
         {
-          "type": "AddCasterBuff",
-          "buff_state": {
-            "name": "test_mod_fiddlesticks_crowstorm_active",
-            "duration": {
-              "Time": {
-                "tick": 300
-              }
-            }
-          }
+          "type": "CasterViewEffect",
+          "name": "test_mod_fiddlesticks_crowstorm_channel"
         },
         {
-          "type": "RangeEffect",
-          "shape": {
-            "Circle": {
-              "radius": 48000
-            }
-          },
-          "target": "EnemyChampion",
-          "apply_type": "AroundCaster",
+          "type": "WithSelf",
           "effects": [
             {
-              "type": "Fear",
-              "tick": 12
-            }
-          ]
-        },
-        {
-          "type": "RangeEffect",
-          "shape": {
-            "Circle": {
-              "radius": 48000
-            }
-          },
-          "target": "EnemyWithoutTower",
-          "apply_type": "AroundCaster",
-          "effects": [
-            {
-              "type": "ApAttack",
-              "damage": 26,
-              "attack_ratio": 30
-            }
-          ]
-        },
-        {
-          "type": "Delayed",
-          "tick": 12,
-          "effects": [
-            {
-              "type": "RangeEffect",
-              "shape": {
-                "Circle": {
-                  "radius": 48000
-                }
-              },
-              "target": "EnemyWithoutTower",
-              "apply_type": "AroundCaster",
-              "effects": [
-                {
-                  "type": "ApAttack",
-                  "damage": 26,
-                  "attack_ratio": 30
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "Delayed",
-          "tick": 24,
-          "effects": [
-            {
-              "type": "RangeEffect",
-              "shape": {
-                "Circle": {
-                  "radius": 48000
-                }
-              },
-              "target": "EnemyWithoutTower",
-              "apply_type": "AroundCaster",
-              "effects": [
-                {
-                  "type": "ApAttack",
-                  "damage": 26,
-                  "attack_ratio": 30
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "Delayed",
-          "tick": 36,
-          "effects": [
-            {
-              "type": "RangeEffect",
-              "shape": {
-                "Circle": {
-                  "radius": 48000
-                }
-              },
-              "target": "EnemyWithoutTower",
-              "apply_type": "AroundCaster",
-              "effects": [
-                {
-                  "type": "ApAttack",
-                  "damage": 26,
-                  "attack_ratio": 30
-                }
-              ]
+              "type": "Bind",
+              "duration": 48
             }
           ]
         },
@@ -581,134 +478,55 @@
           "tick": 48,
           "effects": [
             {
-              "type": "RangeEffect",
-              "shape": {
-                "Circle": {
-                  "radius": 48000
+              "type": "Teleport"
+            },
+            {
+              "type": "AddCasterBuff",
+              "buff_state": {
+                "name": "test_mod_fiddlesticks_crowstorm_active",
+                "duration": {
+                  "Time": {
+                    "tick": 420
+                  }
                 }
-              },
-              "target": "EnemyWithoutTower",
-              "apply_type": "AroundCaster",
-              "effects": [
-                {
-                  "type": "ApAttack",
-                  "damage": 26,
-                  "attack_ratio": 30
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "Delayed",
-          "tick": 60,
-          "effects": [
+              }
+            },
             {
               "type": "RangeEffect",
               "shape": {
                 "Circle": {
-                  "radius": 48000
+                  "radius": 52000
                 }
               },
-              "target": "EnemyWithoutTower",
+              "target": "EnemyChampion",
               "apply_type": "AroundCaster",
               "effects": [
                 {
-                  "type": "ApAttack",
-                  "damage": 26,
-                  "attack_ratio": 30
+                  "type": "Fear",
+                  "tick": 18
                 }
               ]
-            }
-          ]
-        },
-        {
-          "type": "Delayed",
-          "tick": 72,
-          "effects": [
+            },
             {
-              "type": "RangeEffect",
+              "type": "RangePeriodProjectile",
+              "name": "test_mod_fiddlesticks_crowstorm",
+              "tick": 420,
+              "period": 30,
+              "first_delay": 0,
               "shape": {
                 "Circle": {
-                  "radius": 48000
+                  "radius": 52000
                 }
               },
-              "target": "EnemyWithoutTower",
-              "apply_type": "AroundCaster",
-              "effects": [
+              "applied_target": "EnemyWithoutTower",
+              "applied_effects": [
                 {
-                  "type": "ApAttack",
-                  "damage": 26,
-                  "attack_ratio": 30
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "Delayed",
-          "tick": 84,
-          "effects": [
-            {
-              "type": "RangeEffect",
-              "shape": {
-                "Circle": {
-                  "radius": 48000
-                }
-              },
-              "target": "EnemyWithoutTower",
-              "apply_type": "AroundCaster",
-              "effects": [
-                {
-                  "type": "ApAttack",
-                  "damage": 26,
-                  "attack_ratio": 30
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "Delayed",
-          "tick": 96,
-          "effects": [
-            {
-              "type": "RangeEffect",
-              "shape": {
-                "Circle": {
-                  "radius": 48000
-                }
-              },
-              "target": "EnemyWithoutTower",
-              "apply_type": "AroundCaster",
-              "effects": [
-                {
-                  "type": "ApAttack",
-                  "damage": 26,
-                  "attack_ratio": 30
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "Delayed",
-          "tick": 108,
-          "effects": [
-            {
-              "type": "RangeEffect",
-              "shape": {
-                "Circle": {
-                  "radius": 48000
-                }
-              },
-              "target": "EnemyWithoutTower",
-              "apply_type": "AroundCaster",
-              "effects": [
-                {
-                  "type": "ApAttack",
-                  "damage": 26,
-                  "attack_ratio": 30
+                  "effect": {
+                    "type": "ApAttack",
+                    "damage": 26,
+                    "attack_ratio": 30
+                  },
+                  "casting_type": "Targeting"
                 }
               ]
             }
@@ -774,6 +592,14 @@
   "view_effects": [
     {
       "type": "Animation",
+      "name": "test_mod_fiddlesticks_crowstorm_channel",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_crowstorm_channel",
+      "tag": "channel",
+      "z": 3,
+      "is_follow": true
+    },
+    {
+      "type": "Animation",
       "name": "test_mod_fiddlesticks_drain",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_drain",
       "tag": "drain",
@@ -781,12 +607,12 @@
       "is_follow": true
     },
     {
-      "type": "Animation",
+      "type": "LoopAnimation",
       "name": "test_mod_fiddlesticks_crowstorm",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_crowstorm",
       "tag": "storm",
       "z": 2,
-      "is_follow": true
+      "is_follow": false
     },
     {
       "type": "Animation",
