@@ -483,7 +483,7 @@
             "name": "test_mod_fiddlesticks_crowstorm_active",
             "duration": {
               "Time": {
-                "tick": 120
+                "tick": 300
               }
             }
           }
@@ -765,7 +765,7 @@
       "name": "test_mod_fiddlesticks_crowstorm_active",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_crowstorm",
       "tag": "storm",
-      "z": 1,
+      "z": 2,
       "repeat": true
     },
     {
@@ -791,7 +791,7 @@
       "name": "test_mod_fiddlesticks_crowstorm",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_crowstorm",
       "tag": "storm",
-      "z": 1,
+      "z": 2,
       "is_follow": true
     },
     {

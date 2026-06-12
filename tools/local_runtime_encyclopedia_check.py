@@ -277,6 +277,10 @@ def check_viktor_ground_vfx(path: Path, champion: object) -> None:
     view_effect_z = {item.get("name"): item.get("z") for item in view_effect_rows if isinstance(item, dict)}
     if view_effect_z.get("test_mod_viktor_siphon_shield", 0) >= 0:
         fail("runtime Viktor Siphon shield ViewEffect must render behind the actor")
+    if view_effect_z.get("test_mod_viktor_gravity_field") != -1:
+        fail("runtime Viktor Gravity Field must stay on the ground layer")
+    if view_effect_z.get("test_mod_viktor_chaos_storm") != 1:
+        fail("runtime Viktor Chaos Storm must render at z=1 so the terrain ult remains visible")
     view_buff_rows = champion.get("view_buffs", [])
     if not isinstance(view_buff_rows, list):
         fail(f"{path} view_buffs must be a list")
@@ -359,6 +363,55 @@ def check_viktor_ground_vfx(path: Path, champion: object) -> None:
             fail(f"runtime Viktor Chaos Storm anchor {index} must persist for at least {VIKTOR_STORM_MIN_TICKS[index - 1]} ticks")
 
 
+def check_thresh_ult_visibility(path: Path, champion: object) -> None:
+    if path.name != "thresh.data_champion":
+        return
+    if not isinstance(champion, dict):
+        fail(f"{path} must contain a JSON object")
+    view_effect_rows = champion.get("view_effects", [])
+    if not isinstance(view_effect_rows, list):
+        fail(f"{path} view_effects must be a list")
+    view_effect_z = {item.get("name"): item.get("z") for item in view_effect_rows if isinstance(item, dict)}
+    for name in ("test_mod_thresh_box", "test_mod_thresh_box_field"):
+        if view_effect_z.get(name) != 2:
+            fail(f"runtime Thresh {name} must render at z=2 so The Box remains obvious")
+    box_fields = [
+        node
+        for node in iter_mapping_nodes(champion.get("ult", {}))
+        if node.get("type") == "RangePeriodProjectile" and node.get("name") == "test_mod_thresh_box_field"
+    ]
+    if len(box_fields) != 1 or box_fields[0].get("tick", 0) < 300:
+        fail("runtime Thresh R field must persist for at least 300 ticks")
+
+
+def check_fiddlesticks_ult_visibility(path: Path, champion: object) -> None:
+    if path.name != "fiddlesticks.data_champion":
+        return
+    if not isinstance(champion, dict):
+        fail(f"{path} must contain a JSON object")
+    view_buff_rows = champion.get("view_buffs", [])
+    view_effect_rows = champion.get("view_effects", [])
+    if not isinstance(view_buff_rows, list) or not isinstance(view_effect_rows, list):
+        fail(f"{path} view_buffs and view_effects must be lists")
+    buff_z = {item.get("name"): item.get("z") for item in view_buff_rows if isinstance(item, dict)}
+    effect_z = {item.get("name"): item.get("z") for item in view_effect_rows if isinstance(item, dict)}
+    if buff_z.get("test_mod_fiddlesticks_crowstorm_active") != 2:
+        fail("runtime Fiddlesticks Crowstorm buff must render at z=2")
+    if effect_z.get("test_mod_fiddlesticks_crowstorm") != 2:
+        fail("runtime Fiddlesticks Crowstorm view effect must render at z=2")
+    crowstorm_buffs = [
+        node
+        for node in iter_mapping_nodes(champion.get("ult", {}))
+        if node.get("type") == "AddCasterBuff"
+        and node.get("buff_state", {}).get("name") == "test_mod_fiddlesticks_crowstorm_active"
+    ]
+    if len(crowstorm_buffs) != 1:
+        fail("runtime Fiddlesticks ult must apply exactly one Crowstorm visual buff")
+    duration_tick = crowstorm_buffs[0].get("buff_state", {}).get("duration", {}).get("Time", {}).get("tick")
+    if not isinstance(duration_tick, (int, float)) or duration_tick < 300:
+        fail("runtime Fiddlesticks Crowstorm visual buff must persist for at least 300 ticks")
+
+
 def default_game_root() -> Path:
     if ROOT.parent.name.lower() == "github_publish":
         return ROOT.parent.parent
@@ -397,6 +450,7 @@ def check_runtime_copy(game_root: Path) -> None:
         "champion/jinx.data_champion",
         "champion/thresh.data_champion",
         "champion/viktor.data_champion",
+        "champion/fiddlesticks.data_champion",
         "text/champion.i18n",
         "style/champion_view.champion_view",
         "aseprite_resources/champions/aatrox#sheet.png",
@@ -505,6 +559,8 @@ def check_runtime_copy(game_root: Path) -> None:
         "aseprite_resources/effects/viktor_evolution_aura#anim.fanim",
         "aseprite_resources/effects/viktor_storm_impact#sheet.png",
         "aseprite_resources/effects/viktor_storm_impact#anim.fanim",
+        "aseprite_resources/effects/fiddlesticks_crowstorm#sheet.png",
+        "aseprite_resources/effects/fiddlesticks_crowstorm#anim.fanim",
         "icons/kayn_skill.png",
         "icons/kayn_skill2.png",
         "icons/kayn_ult.png",
@@ -579,6 +635,8 @@ def check_runtime_copy(game_root: Path) -> None:
         check_view_effect_types(data_path, data)
         assert_no_negative_speed_fields(data, str(data_path))
         check_viktor_ground_vfx(data_path, data)
+        check_thresh_ult_visibility(data_path, data)
+        check_fiddlesticks_ult_visibility(data_path, data)
 
     style = load_json(runtime_root / "style" / "champion_view.champion_view")
     if not isinstance(style, dict):

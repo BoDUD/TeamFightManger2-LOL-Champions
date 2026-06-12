@@ -399,11 +399,12 @@ THRESH_FRAME_SIZE = (57.0, 54.0)
 THRESH_CORE_ACTIONS = ("idle", "run", "attack", "skill", "skill2", "hit", "dead", "ult")
 THRESH_MIN_BOTTOM_SAFE = 8
 THRESH_MAX_BODY_WIDTH = 52
-THRESH_BOX_MIN_VISIBLE_PIXELS = 4000
-THRESH_BOX_MIN_STRONG_PIXELS = 250
-THRESH_BOX_MIN_COLOR_BINS = 450
-THRESH_BOX_MAX_FRAME_WIDTH = 96
-THRESH_BOX_MAX_FRAME_HEIGHT = 86
+THRESH_BOX_MIN_VISIBLE_PIXELS = 7000
+THRESH_BOX_MIN_STRONG_PIXELS = 3200
+THRESH_BOX_MIN_COLOR_BINS = 800
+THRESH_BOX_MAX_FRAME_WIDTH = 120
+THRESH_BOX_MAX_FRAME_HEIGHT = 110
+THRESH_BOX_MIN_FRAME_MARGIN = 4
 THRESH_FORBIDDEN_CASTER_FOLLOW_VFX = {
     "test_mod_thresh_lantern_cast_vfx",
     "test_mod_thresh_flay_cast_vfx",
@@ -3385,8 +3386,8 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
     for name in ("test_mod_thresh_box", "test_mod_thresh_box_field"):
         if view_effect_types.get(name) != "LoopAnimation":
             fail(f"Thresh {name} must be LoopAnimation so The Box does not vanish immediately")
-        if view_effect_z.get(name) != 1:
-            fail(f"Thresh {name} must render at z=1 so The Box is visible above terrain")
+        if view_effect_z.get(name) != 2:
+            fail(f"Thresh {name} must render at z=2 so The Box stays obvious above terrain and units")
         if view_effect_follow.get(name) is not False:
             fail(f"Thresh {name} must stay ground-anchored with is_follow=false, not attached to the actor")
     buff_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in thresh.get("view_buffs", [])}
@@ -3528,6 +3529,12 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
                 f"Thresh The Box frame {index} is {bbox[2] - bbox[0]}x{bbox[3] - bbox[1]}px; "
                 "R VFX must be visible but not oversized on the battlefield"
             )
+        margins = (bbox[0], bbox[1], w - bbox[2], h - bbox[3])
+        if min(margins) < THRESH_BOX_MIN_FRAME_MARGIN:
+            fail(
+                f"Thresh The Box frame {index} margins {margins} are too tight; "
+                "keep the generated wall art inside the frame so it cannot crop in battle"
+            )
         visible = 0
         strong = 0
         color_bins: set[tuple[int, int, int]] = set()
@@ -3559,6 +3566,10 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
     )
     if not isinstance(box_field, dict) or box_field.get("tick", 0) < 300:
         fail("Thresh R field must last at least 300 ticks so The Box reads as a real prison zone")
+    view_effect_z = {item.get("name"): item.get("z") for item in thresh.get("view_effects", [])}
+    for name in ("test_mod_thresh_box", "test_mod_thresh_box_field"):
+        if view_effect_z.get(name) != 2:
+            fail(f"Thresh {name} must render at z=2 so The Box walls stay obvious over terrain and units")
 
     assert_official_audio_sources(
         "thresh",
@@ -3691,8 +3702,9 @@ def check_fiddlesticks_contract(text: dict[str, Any], entries: dict[str, Any]) -
     for name, expected in FIDDLESTICKS_BUFF_REFS.items():
         if buff_refs.get(name) != expected:
             fail(f"champion/fiddlesticks.data_champion buff {name} must reference {expected}")
-        if buff_z.get(name) != 1:
-            fail(f"champion/fiddlesticks.data_champion buff {name} must render at z=1 so generated VFX is visible above terrain")
+        expected_z = 2 if name == "test_mod_fiddlesticks_crowstorm_active" else 1
+        if buff_z.get(name) != expected_z:
+            fail(f"champion/fiddlesticks.data_champion buff {name} must render at z={expected_z}")
         if buff_repeat.get(name) is not True:
             fail(f"champion/fiddlesticks.data_champion buff {name} must repeat for W/R duration")
     for name, expected in FIDDLESTICKS_TARGET_BUFF_REFS.items():
@@ -3709,8 +3721,9 @@ def check_fiddlesticks_contract(text: dict[str, Any], entries: dict[str, Any]) -
     for name, expected in FIDDLESTICKS_VIEW_EFFECT_REFS.items():
         if view_effect_refs.get(name) != expected:
             fail(f"champion/fiddlesticks.data_champion view_effect {name} must reference {expected}")
-        if view_effect_z.get(name) != 1:
-            fail(f"champion/fiddlesticks.data_champion view_effect {name} must render at z=1")
+        expected_z = 2 if name == "test_mod_fiddlesticks_crowstorm" else 1
+        if view_effect_z.get(name) != expected_z:
+            fail(f"champion/fiddlesticks.data_champion view_effect {name} must render at z={expected_z}")
         if view_effect_follow.get(name) is not True:
             fail(f"champion/fiddlesticks.data_champion view_effect {name} must follow the caster as W/R aura VFX")
     for name, expected in FIDDLESTICKS_TARGET_VIEW_EFFECT_REFS.items():
@@ -3730,6 +3743,16 @@ def check_fiddlesticks_contract(text: dict[str, Any], entries: dict[str, Any]) -
     tether_count = skill2_strings.count("test_mod_fiddlesticks_drain_tether")
     if tether_count < 6:
         fail(f"Fiddlesticks Bountiful Harvest must show drain tether on every pulse, got {tether_count}")
+    crowstorm_buffs = [
+        node
+        for node in find_effect_nodes(fiddlesticks.get("ult", {}), "AddCasterBuff")
+        if node.get("buff_state", {}).get("name") == "test_mod_fiddlesticks_crowstorm_active"
+    ]
+    if len(crowstorm_buffs) != 1:
+        fail("Fiddlesticks Crowstorm ult must apply exactly one visible crowstorm caster buff")
+    crowstorm_duration = crowstorm_buffs[0].get("buff_state", {}).get("duration", {}).get("Time", {}).get("tick")
+    if not isinstance(crowstorm_duration, (int, float)) or crowstorm_duration < 300:
+        fail("Fiddlesticks Crowstorm visual buff must last at least 300 ticks like a real ult zone")
 
     assert_generated_vfx_volume(
         ROOT / "aseprite_resources" / "effects" / "fiddlesticks_attack_projectile#sheet.png",
@@ -3791,11 +3814,11 @@ def check_fiddlesticks_contract(text: dict[str, Any], entries: dict[str, Any]) -
         ROOT / "aseprite_resources" / "effects" / "fiddlesticks_crowstorm#anim.fanim",
         "storm",
         "Fiddlesticks Crowstorm VFX",
-        min_visible=2500,
-        min_color_bins=240,
-        min_height=82,
+        min_visible=9000,
+        min_color_bins=900,
+        min_height=84,
         min_fill_ratio=0.38,
-        max_width=110,
+        max_width=155,
     )
 
 
@@ -4099,6 +4122,10 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
     view_effect_z = {item.get("name"): item.get("z") for item in viktor.get("view_effects", [])}
     if view_effect_z.get("test_mod_viktor_siphon_shield", 0) >= 0:
         fail("Viktor Siphon shield ViewEffect must render behind the actor so Q cannot look like model deformation")
+    if view_effect_z.get("test_mod_viktor_gravity_field") != -1:
+        fail("Viktor Gravity Field must stay on the ground layer so W cannot look attached to the model")
+    if view_effect_z.get("test_mod_viktor_chaos_storm") != 1:
+        fail("Viktor Chaos Storm must render at z=1 so the target-ground ult is clearly visible")
     for name in ("test_mod_viktor_gravity_field", "test_mod_viktor_chaos_storm"):
         if view_effect_types.get(name) != "LoopAnimation":
             fail(f"Viktor {name} must be LoopAnimation so the field/storm persists instead of flashing once and vanishing")
@@ -4194,6 +4221,17 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         "chaos_storm",
         "Viktor Chaos Storm loop VFX",
     )
+    assert_generated_vfx_volume(
+        ROOT / "aseprite_resources" / "effects" / "viktor_chaos_storm#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "viktor_chaos_storm#anim.fanim",
+        "chaos_storm",
+        "Viktor Chaos Storm loop VFX",
+        min_visible=7200,
+        min_color_bins=2500,
+        min_height=80,
+        min_fill_ratio=0.60,
+        max_width=140,
+    )
     assert_effect_frames_not_edge_cut(
         ROOT / "aseprite_resources" / "effects" / "viktor_storm_impact#sheet.png",
         ROOT / "aseprite_resources" / "effects" / "viktor_storm_impact#anim.fanim",
@@ -4207,7 +4245,7 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         ("viktor_evolution_aura", "field", "Viktor evolution field aura VFX", 48, 48, 4),
         ("viktor_evolution_aura", "storm", "Viktor evolution storm aura VFX", 48, 48, 4),
         ("viktor_gravity_field", "gravity_field", "Viktor Gravity Field VFX", 80, 76, 8),
-        ("viktor_chaos_storm", "chaos_storm", "Viktor Chaos Storm loop VFX", 90, 76, 8),
+        ("viktor_chaos_storm", "chaos_storm", "Viktor Chaos Storm loop VFX", 140, 90, 4),
         ("viktor_storm_impact", "impact", "Viktor Chaos Storm impact VFX", 56, 70, 4),
         ("viktor_laser", "laser", "Viktor Hextech Ray ground VFX", 150, 52, 6),
         ("viktor_laser_aftershock", "burn", "Viktor Hextech Ray aftershock VFX", 150, 52, 6),
