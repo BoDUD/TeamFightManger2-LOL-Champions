@@ -413,8 +413,8 @@ def check_fiddlesticks_ult_visibility(path: Path, champion: object) -> None:
     effect_z = {name: item.get("z") for name, item in effect_rows.items()}
     if "test_mod_fiddlesticks_drain_tether" in effect_z:
         fail("runtime Fiddlesticks W must not attach a full tether ViewEffect at the target point")
-    if buff_z.get("test_mod_fiddlesticks_crowstorm_active") != 2:
-        fail("runtime Fiddlesticks Crowstorm buff must render at z=2")
+    if buff_z.get("test_mod_fiddlesticks_crowstorm_active") != 0:
+        fail("runtime Fiddlesticks Crowstorm buff must render at z=0 so the storm rings the feet instead of covering the model")
     channel_effect = effect_rows.get("test_mod_fiddlesticks_crowstorm_channel")
     if not isinstance(channel_effect, dict):
         fail("runtime Fiddlesticks Crowstorm must register a generated pre-cast channel ViewEffect")
@@ -433,10 +433,10 @@ def check_fiddlesticks_ult_visibility(path: Path, champion: object) -> None:
         storm_effect.get("type") != "LoopAnimation"
         or storm_effect.get("anim") != "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_crowstorm"
         or storm_effect.get("tag") != "storm"
-        or storm_effect.get("z") != 2
+        or storm_effect.get("z") != 0
         or storm_effect.get("is_follow") is not False
     ):
-        fail("runtime Fiddlesticks Crowstorm field must anchor on terrain as a z=2 generated loop, not follow the caster")
+        fail("runtime Fiddlesticks Crowstorm field must anchor on terrain as a z=0 generated foot-ring, not cover the caster")
     drain_beams = [
         node
         for node in iter_mapping_nodes(champion.get("skill2", {}))
