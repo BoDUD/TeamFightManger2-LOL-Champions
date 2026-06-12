@@ -3,8 +3,8 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.13.33",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version recenters Darius and Fiddlesticks compact portraits so battle HUD, scoreboard, and side-list avatars show the full body, with CI and runtime checks guarding their per-champion camera offsets.",
+  "version": "0.13.34",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version stops Thresh Dark Passage from drawing an actor-attached lantern buff, replacing it with a non-following ground ViewEffect and CI/runtime checks that prevent second-body skill afterimages.",
   "last_updated": "2026-06-12",
   "dependencies": [
     {

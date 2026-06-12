@@ -522,6 +522,29 @@ def check_thresh_ult_visibility(path: Path, champion: object) -> None:
     if not isinstance(view_effect_rows, list):
         fail(f"{path} view_effects must be a list")
     view_effect_z = {item.get("name"): item.get("z") for item in view_effect_rows if isinstance(item, dict)}
+    view_effect_type = {item.get("name"): item.get("type") for item in view_effect_rows if isinstance(item, dict)}
+    view_effect_follow = {item.get("name"): item.get("is_follow") for item in view_effect_rows if isinstance(item, dict)}
+    view_effect_ref = {item.get("name"): (item.get("anim"), item.get("tag")) for item in view_effect_rows if isinstance(item, dict)}
+    if view_effect_ref.get("test_mod_thresh_lantern_visual") != (
+        "asset/bo_league_champions/aseprite_resources/effects/thresh_lantern",
+        "loop",
+    ):
+        fail("runtime Thresh W lantern visual must be registered as a ground ViewEffect")
+    if view_effect_type.get("test_mod_thresh_lantern_visual") != "Animation":
+        fail("runtime Thresh W lantern visual must be one-shot Animation, not a lingering actor-attached loop")
+    if view_effect_z.get("test_mod_thresh_lantern_visual") != 1:
+        fail("runtime Thresh W lantern visual must render at z=1 near the ground")
+    if view_effect_follow.get("test_mod_thresh_lantern_visual") is not False:
+        fail("runtime Thresh W lantern visual must use is_follow=false to avoid second-Thresh afterimages")
+    view_buff_rows = champion.get("view_buffs", [])
+    if not isinstance(view_buff_rows, list):
+        fail(f"{path} view_buffs must be a list")
+    if view_buff_rows:
+        names = [item.get("name") for item in view_buff_rows if isinstance(item, dict)]
+        fail(f"runtime Thresh must not define actor-attached view_buffs that can look like a second body, got {names}")
+    for node in iter_mapping_nodes(champion.get("skill2", {})):
+        if node.get("type") == "AddCasterBuff" and node.get("buff_state", {}).get("name") == "test_mod_thresh_lantern_visual":
+            fail("runtime Thresh W lantern visual must be a non-following ViewEffect, not AddCasterBuff")
     for name in ("test_mod_thresh_box", "test_mod_thresh_box_field"):
         if view_effect_z.get(name) != 2:
             fail(f"runtime Thresh {name} must render at z=2 so The Box remains obvious")

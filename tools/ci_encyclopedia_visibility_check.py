@@ -429,6 +429,10 @@ THRESH_EFFECT_REFS = {
     ),
 }
 THRESH_VIEW_EFFECT_REFS = {
+    "test_mod_thresh_lantern_visual": (
+        "asset/bo_league_champions/aseprite_resources/effects/thresh_lantern",
+        "loop",
+    ),
     "test_mod_thresh_q_hit_vfx": (
         "asset/bo_league_champions/aseprite_resources/effects/thresh_death_sentence_hit",
         "hit",
@@ -442,12 +446,7 @@ THRESH_VIEW_EFFECT_REFS = {
         "box",
     ),
 }
-THRESH_BUFF_REFS = {
-    "test_mod_thresh_lantern_visual": (
-        "asset/bo_league_champions/aseprite_resources/effects/thresh_lantern",
-        "loop",
-    ),
-}
+THRESH_BUFF_REFS: dict[str, tuple[str, str]] = {}
 THRESH_SOUND_MEDIA_IDS = {
     "test_mod_thresh_attack_cast": "682908905",
     "test_mod_thresh_attack_hit": "571119671",
@@ -3502,6 +3501,12 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
     for name, expected in THRESH_VIEW_EFFECT_REFS.items():
         if view_effect_refs.get(name) != expected:
             fail(f"champion/thresh.data_champion view_effect {name} must reference {expected}")
+    if view_effect_types.get("test_mod_thresh_lantern_visual") != "Animation":
+        fail("Thresh lantern visual must be a one-shot ground ViewEffect, not a looping actor-attached buff")
+    if view_effect_z.get("test_mod_thresh_lantern_visual") != 1:
+        fail("Thresh lantern visual must render at z=1 near the ground instead of behind/inside the actor body")
+    if view_effect_follow.get("test_mod_thresh_lantern_visual") is not False:
+        fail("Thresh lantern visual must use is_follow=false so W does not create a second actor silhouette")
     for name in ("test_mod_thresh_box", "test_mod_thresh_box_field"):
         if view_effect_types.get(name) != "LoopAnimation":
             fail(f"Thresh {name} must be LoopAnimation so The Box does not vanish immediately")
@@ -3510,9 +3515,14 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         if view_effect_follow.get(name) is not False:
             fail(f"Thresh {name} must stay ground-anchored with is_follow=false, not attached to the actor")
     buff_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in thresh.get("view_buffs", [])}
+    if buff_refs:
+        fail(f"Thresh must not define actor-attached view_buffs because they create second-body afterimages, got {sorted(buff_refs)}")
     for name, expected in THRESH_BUFF_REFS.items():
         if buff_refs.get(name) != expected:
             fail(f"champion/thresh.data_champion buff {name} must reference {expected}")
+    for node in find_effect_nodes(thresh.get("skill2", {}), "AddCasterBuff"):
+        if node.get("buff_state", {}).get("name") == "test_mod_thresh_lantern_visual":
+            fail("Thresh W lantern visual must be spawned as a non-following ViewEffect, not AddCasterBuff")
 
     skill2_projectiles = find_effect_nodes(thresh.get("skill2", {}), "LineRangeProjectile")
     flay = next((node for node in skill2_projectiles if node.get("name") == "test_mod_thresh_flay_sweep"), None)

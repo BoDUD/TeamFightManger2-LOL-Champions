@@ -368,15 +368,8 @@
           "name": "test_mod_thresh_lantern_shield"
         },
         {
-          "type": "AddCasterBuff",
-          "buff_state": {
-            "name": "test_mod_thresh_lantern_visual",
-            "duration": {
-              "Time": {
-                "tick": 150
-              }
-            }
-          }
+          "type": "ViewEffect",
+          "name": "test_mod_thresh_lantern_visual"
         },
         {
           "type": "Delayed",
@@ -618,16 +611,16 @@
       "repeat": false
     }
   ],
-  "view_buffs": [
+  "view_buffs": [],
+  "view_effects": [
     {
-      "type": "Animated",
+      "type": "Animation",
       "name": "test_mod_thresh_lantern_visual",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/thresh_lantern",
       "tag": "loop",
-      "z": -1
-    }
-  ],
-  "view_effects": [
+      "z": 1,
+      "is_follow": false
+    },
     {
       "type": "Animation",
       "name": "test_mod_thresh_q_hit_vfx",
