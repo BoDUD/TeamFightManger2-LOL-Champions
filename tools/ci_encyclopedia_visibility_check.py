@@ -482,7 +482,8 @@ VIKTOR_MIN_BOTTOM_SAFE = 7
 VIKTOR_MAX_CLEAN_CAST_WIDTH = 43
 VIKTOR_LASER_MIN_APPLY = 60
 VIKTOR_AFTERSHOCK_MIN_APPLY = 72
-VIKTOR_STORM_MIN_TICKS = (300, 360)
+VIKTOR_STORM_MIN_TICKS = (420, 480)
+VIKTOR_STORM_MIN_ANIM_SECONDS = 6.0
 VIKTOR_EFFECT_REFS = {
     "test_mod_viktor_attack_projectile": (
         "asset/bo_league_champions/aseprite_resources/effects/viktor_attack_projectile",
@@ -983,6 +984,30 @@ def assert_no_chroma_key_residue(
                 f"{label} frame {index} has {residue} chroma-key pink residue pixels; "
                 "image-generated VFX must be cleaned before packing into the game"
             )
+
+
+def assert_animation_total_duration(
+    fanim_path: Path,
+    tag: str,
+    label: str,
+    *,
+    min_seconds: float,
+) -> None:
+    fanim = load_json(fanim_path)
+    frames = fanim.get("anims", {}).get(tag, {}).get("frames") if isinstance(fanim, dict) else None
+    if not isinstance(frames, list) or not frames:
+        fail(f"{fanim_path.relative_to(ROOT)} must expose {tag!r} frames for {label}")
+    total = 0.0
+    for index, frame in enumerate(frames):
+        duration = frame.get("duration") if isinstance(frame, dict) else None
+        if not isinstance(duration, (int, float)):
+            fail(f"{label} frame {index} missing numeric duration")
+        total += float(duration)
+    if total < min_seconds:
+        fail(
+            f"{label} one-shot animation lasts only {total:.2f}s; "
+            f"must last at least {min_seconds:.2f}s so the ground ult cannot flash for a split second"
+        )
 
 
 def assert_effect_frames_not_edge_cut(
@@ -4741,6 +4766,12 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         ROOT / "aseprite_resources" / "effects" / "viktor_chaos_storm#anim.fanim",
         "chaos_storm",
         "Viktor Chaos Storm loop VFX",
+    )
+    assert_animation_total_duration(
+        ROOT / "aseprite_resources" / "effects" / "viktor_chaos_storm#anim.fanim",
+        "chaos_storm",
+        "Viktor Chaos Storm loop VFX",
+        min_seconds=VIKTOR_STORM_MIN_ANIM_SECONDS,
     )
     assert_generated_vfx_volume(
         ROOT / "aseprite_resources" / "effects" / "viktor_chaos_storm#sheet.png",

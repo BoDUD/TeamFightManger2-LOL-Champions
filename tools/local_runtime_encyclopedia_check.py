@@ -117,7 +117,8 @@ VIKTOR_SOUND_EVENTS = (
 )
 VIKTOR_LASER_MIN_APPLY = 60
 VIKTOR_AFTERSHOCK_MIN_APPLY = 72
-VIKTOR_STORM_MIN_TICKS = (300, 360)
+VIKTOR_STORM_MIN_TICKS = (420, 480)
+VIKTOR_STORM_MIN_ANIM_SECONDS = 6.0
 REQUIRED_DESCRIPTION_KEYS = ("name", "attack", "skill", "skill2", "ult")
 REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS: dict[str, dict[str, tuple[str, ...]]] = {
     f"{MOD_ID}_aatrox": {
@@ -227,6 +228,20 @@ def iter_mapping_nodes(node: object) -> list[dict[str, object]]:
             out.extend(iter_mapping_nodes(item))
         return out
     return []
+
+
+def animation_total_duration(path: Path, tag: str) -> float:
+    fanim = load_json(path)
+    frames = fanim.get("anims", {}).get(tag, {}).get("frames") if isinstance(fanim, dict) else None
+    if not isinstance(frames, list) or not frames:
+        fail(f"{path} must expose {tag!r} frames")
+    total = 0.0
+    for index, frame in enumerate(frames):
+        duration = frame.get("duration") if isinstance(frame, dict) else None
+        if not isinstance(duration, (int, float)):
+            fail(f"{path} {tag} frame {index} missing numeric duration")
+        total += float(duration)
+    return total
 
 
 def assert_no_negative_speed_fields(node: object, label: str) -> None:
@@ -492,6 +507,14 @@ def check_viktor_ground_vfx(path: Path, champion: object) -> None:
             fail(f"runtime Viktor Chaos Storm anchor {index} must own the persistent storm pulse")
         if storm_pulses[0].get("tick", 0) < VIKTOR_STORM_MIN_TICKS[index - 1]:
             fail(f"runtime Viktor Chaos Storm anchor {index} must persist for at least {VIKTOR_STORM_MIN_TICKS[index - 1]} ticks")
+    runtime_root = path.parent.parent
+    storm_anim = runtime_root / "aseprite_resources" / "effects" / "viktor_chaos_storm#anim.fanim"
+    total_duration = animation_total_duration(storm_anim, "chaos_storm")
+    if total_duration < VIKTOR_STORM_MIN_ANIM_SECONDS:
+        fail(
+            f"runtime Viktor Chaos Storm loop VFX lasts only {total_duration:.2f}s; "
+            f"must last at least {VIKTOR_STORM_MIN_ANIM_SECONDS:.2f}s so the ground ult stays visible"
+        )
 
 
 def check_thresh_ult_visibility(path: Path, champion: object) -> None:

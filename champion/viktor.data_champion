@@ -1041,7 +1041,7 @@
               {
                 "type": "RangePeriodProjectile",
                 "name": "test_mod_viktor_chaos_storm",
-                "tick": 300,
+                "tick": 420,
                 "period": 30,
                 "first_delay": 20,
                 "shape": {
@@ -1206,7 +1206,7 @@
               {
                 "type": "RangePeriodProjectile",
                 "name": "test_mod_viktor_chaos_storm",
-                "tick": 360,
+                "tick": 480,
                 "period": 25,
                 "first_delay": 20,
                 "shape": {
