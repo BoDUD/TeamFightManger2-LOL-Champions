@@ -69,6 +69,10 @@ AATROX_MAX_DISPLAY_BODY_HEIGHT = 48
 AATROX_MAX_ACTION_BODY_HEIGHT = 50
 AATROX_MAX_BATTLE_SCALE_DELTA = 8
 AATROX_MAX_BASIC_ATTACK_WIDTH = 62
+AATROX_MIN_BASIC_ATTACK_UNIQUE_FRAMES = 7
+AATROX_MIN_BASIC_ATTACK_SWING_FRAMES = 2
+AATROX_MIN_BASIC_ATTACK_SWING_WIDTH = 58
+AATROX_MIN_BASIC_ATTACK_WIDTH_RANGE = 12
 AATROX_MIN_RUN_FOOT_CENTER_RANGE = 0.9
 AATROX_MIN_RUN_FOOT_SHAPES = 5
 AATROX_MIN_RUN_UNIQUE_FRAMES = 5
@@ -2035,6 +2039,33 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
                 f"Aatrox basic attack width {max(widths)}px is too large; "
                 "auto attacks must keep a stable forward-facing body and avoid Q-sized side cleaves"
             )
+        if action == "attack":
+            reused_run_frames = [
+                index + 1
+                for index, frame_hash in enumerate(action_hashes["attack"])
+                if frame_hash in set(action_hashes["run"])
+            ]
+            if reused_run_frames:
+                fail(
+                    "Aatrox basic attack must not reuse run-frame silhouettes; "
+                    f"attack frames {reused_run_frames} match run alpha hashes"
+                )
+            if len(set(action_hashes["attack"])) < AATROX_MIN_BASIC_ATTACK_UNIQUE_FRAMES:
+                fail(
+                    f"Aatrox basic attack must have at least {AATROX_MIN_BASIC_ATTACK_UNIQUE_FRAMES} "
+                    "distinct actor silhouettes so the sword swing reads in battle"
+                )
+            wide_frames = sum(width >= AATROX_MIN_BASIC_ATTACK_SWING_WIDTH for width in widths)
+            if wide_frames < AATROX_MIN_BASIC_ATTACK_SWING_FRAMES:
+                fail(
+                    "Aatrox basic attack must show the greatsword opening into a readable swing; "
+                    f"only {wide_frames} frames reach {AATROX_MIN_BASIC_ATTACK_SWING_WIDTH}px width"
+                )
+            if max(widths) - min(widths) < AATROX_MIN_BASIC_ATTACK_WIDTH_RANGE:
+                fail(
+                    "Aatrox basic attack must include visible windup-to-swing width change, "
+                    "not a nearly static idle/run pose"
+                )
         if max(widths) < min(run_widths):
             fail(f"Aatrox {action} must include readable weapon/body motion from the final model source")
         if len(set(action_hashes[action])) < min(4, len(action_hashes[action])):
