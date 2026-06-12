@@ -277,12 +277,12 @@
                   },
                   {
                     "type": "Stun",
-                    "duration": 36
+                    "duration": 52
                   },
                   {
                     "type": "MoveTo",
-                    "speed": 3800,
-                    "range": 14000,
+                    "speed": 5600,
+                    "range": 7000,
                     "end_effects": []
                   },
                   {
@@ -299,7 +299,7 @@
                   },
                   {
                     "type": "BlockMoveSkill",
-                    "tick": 30
+                    "tick": 46
                   },
                   {
                     "type": "ViewEffect",
@@ -405,9 +405,14 @@
                         "attack_ratio": 55
                       },
                       {
-                        "type": "Knockback",
-                        "speed": 2400,
-                        "tick": 14
+                        "type": "MoveTo",
+                        "speed": 5000,
+                        "range": 9000,
+                        "end_effects": []
+                      },
+                      {
+                        "type": "Stun",
+                        "duration": 18
                       },
                       {
                         "type": "AddBuff",
@@ -423,7 +428,7 @@
                       },
                       {
                         "type": "BlockMoveSkill",
-                        "tick": 10
+                        "tick": 24
                       },
                       {
                         "type": "TargetSfx",
