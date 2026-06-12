@@ -632,7 +632,7 @@
       "name": "test_mod_thresh_box",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/thresh_box",
       "tag": "box",
-      "z": 1,
+      "z": 2,
       "is_follow": false
     },
     {
@@ -640,7 +640,7 @@
       "name": "test_mod_thresh_box_field",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/thresh_box",
       "tag": "box",
-      "z": 1,
+      "z": 2,
       "is_follow": false
     }
   ],
