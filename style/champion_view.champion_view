@@ -62,8 +62,8 @@
     },
     "test_mod_jhin": {
       "face": {
-        "x": 0,
-        "y": -14
+        "x": 1,
+        "y": -16
       },
       "center": {
         "x": 0,
@@ -72,8 +72,8 @@
     },
     "bo_league_champions_jhin": {
       "face": {
-        "x": 0,
-        "y": -14
+        "x": 1,
+        "y": -16
       },
       "center": {
         "x": 0,

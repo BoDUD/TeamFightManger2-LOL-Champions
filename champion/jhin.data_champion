@@ -13,23 +13,23 @@
     "asset/bo_league_champions/icons/jhin_ult"
   ],
   "stat": {
-    "attack": 100,
-    "magic_power": 65,
-    "hp": 900,
-    "defence": 20,
-    "magic_resistance": 15,
-    "move_speed": 900,
+    "attack": 96,
+    "magic_power": 0,
+    "hp": 820,
+    "defence": 18,
+    "magic_resistance": 18,
+    "move_speed": 910,
     "hp_regen": 2,
     "stack": 0,
     "crit_chance": 0
   },
   "growth": {
-    "attack": 25,
-    "magic_power": 7,
-    "hp": 90,
-    "defence": 7,
-    "magic_resistance": 5,
-    "move_speed": 9,
+    "attack": 27,
+    "magic_power": 0,
+    "hp": 82,
+    "defence": 5,
+    "magic_resistance": 4,
+    "move_speed": 7,
     "hp_regen": 1,
     "stack": 0,
     "crit_chance": 0
@@ -37,9 +37,9 @@
   "attack": {
     "action_name": "attack",
     "description": "#asset/base/text/champion?description.bo_league_champions_jhin.attack",
-    "duration": 18,
-    "cooltime": 78,
-    "start_timing": 10,
+    "duration": 20,
+    "cooltime": 82,
+    "start_timing": 11,
     "cancelable": true,
     "range": 66000,
     "casting_type": "Targeting",
@@ -63,15 +63,24 @@
               },
               {
                 "type": "TargetProjectile",
-                "speed": 4500,
+                "speed": 5200,
                 "name": "test_mod_jhin_attack_shot",
                 "applied_target": "Enemy",
                 "applied_effects": [
                   {
                     "effect": {
-                      "type": "Attack",
-                      "damage": 0,
-                      "attack_ratio": 100
+                      "type": "Combine",
+                      "effects": [
+                        {
+                          "type": "Attack",
+                          "damage": 8,
+                          "attack_ratio": 100
+                        },
+                        {
+                          "type": "ViewEffect",
+                          "name": "test_mod_jhin_bullet_hit_small"
+                        }
+                      ]
                     },
                     "casting_type": "Targeting"
                   }
@@ -106,15 +115,24 @@
               },
               {
                 "type": "TargetProjectile",
-                "speed": 4500,
+                "speed": 5200,
                 "name": "test_mod_jhin_attack_shot",
                 "applied_target": "Enemy",
                 "applied_effects": [
                   {
                     "effect": {
-                      "type": "Attack",
-                      "damage": 0,
-                      "attack_ratio": 100
+                      "type": "Combine",
+                      "effects": [
+                        {
+                          "type": "Attack",
+                          "damage": 8,
+                          "attack_ratio": 100
+                        },
+                        {
+                          "type": "ViewEffect",
+                          "name": "test_mod_jhin_bullet_hit_small"
+                        }
+                      ]
                     },
                     "casting_type": "Targeting"
                   }
@@ -150,15 +168,24 @@
             },
             {
               "type": "TargetProjectile",
-              "speed": 4500,
+              "speed": 5200,
               "name": "test_mod_jhin_attack_shot",
               "applied_target": "Enemy",
               "applied_effects": [
                 {
                   "effect": {
-                    "type": "Attack",
-                    "damage": 0,
-                    "attack_ratio": 100
+                    "type": "Combine",
+                    "effects": [
+                      {
+                        "type": "Attack",
+                        "damage": 8,
+                        "attack_ratio": 100
+                      },
+                      {
+                        "type": "ViewEffect",
+                        "name": "test_mod_jhin_bullet_hit_small"
+                      }
+                    ]
                   },
                   "casting_type": "Targeting"
                 }
@@ -194,15 +221,36 @@
           },
           {
             "type": "TargetProjectile",
-            "speed": 4500,
+            "speed": 5400,
             "name": "test_mod_jhin_attack_shot_4",
             "applied_target": "Enemy",
             "applied_effects": [
               {
                 "effect": {
-                  "type": "Attack",
-                  "damage": 100,
-                  "attack_ratio": 200
+                  "type": "Combine",
+                  "effects": [
+                    {
+                      "type": "Attack",
+                      "damage": 85,
+                      "attack_ratio": 190
+                    },
+                    {
+                      "type": "AddBuff",
+                      "buff_state": {
+                        "name": "test_mod_jhin_fourth_shot_slow",
+                        "duration": {
+                          "Time": {
+                            "tick": 30
+                          }
+                        },
+                        "move_speed_mult": -20
+                      }
+                    },
+                    {
+                      "type": "ViewEffect",
+                      "name": "test_mod_jhin_fourth_shot_bloom"
+                    }
+                  ]
                 },
                 "casting_type": "Targeting"
               }
@@ -224,7 +272,12 @@
             "type": "AddCasterBuff",
             "buff_state": {
               "name": "test_mod_jhin_reload",
-              "attack_speed_mult": -80
+              "attack_speed_mult": -80,
+              "duration": {
+                "Time": {
+                  "tick": 72
+                }
+              }
             }
           },
           {
@@ -233,7 +286,7 @@
               "name": "test_mod_jhin_reload_visual",
               "duration": {
                 "Time": {
-                  "tick": 60
+                  "tick": 72
                 }
               }
             }
@@ -245,10 +298,10 @@
   "skill": {
     "action_name": "skill",
     "description": "#asset/base/text/champion?description.bo_league_champions_jhin.skill",
-    "duration": 32,
-    "cooltime": 480,
-    "start_timing": 14,
-    "range": 65000,
+    "duration": 34,
+    "cooltime": 510,
+    "start_timing": 15,
+    "range": 68000,
     "casting_type": "Targeting",
     "casting_target": "EnemyWithoutTower",
     "attack_type": "Skill",
@@ -261,21 +314,41 @@
         },
         {
           "type": "TargetSplashProjectile",
-          "speed": 4200,
-          "range": 28000,
+          "speed": 4300,
+          "range": 30000,
           "name": "test_mod_jhin_grenade",
           "y_offset": 0,
           "applied_target": "EnemyWithoutTower",
           "applied_effects": [
             {
               "effect": {
-                "type": "Attack",
-                "damage": 40,
-                "attack_ratio": 75
+                "type": "Combine",
+                "effects": [
+                  {
+                    "type": "Attack",
+                    "damage": 35,
+                    "attack_ratio": 70
+                  },
+                  {
+                    "type": "ViewEffect",
+                    "name": "test_mod_jhin_lotus_mark_apply"
+                  }
+                ]
               },
               "casting_type": "Targeting"
             }
           ]
+        },
+        {
+          "type": "AddCasterBuff",
+          "buff_state": {
+            "name": "test_mod_jhin_flourish_mark_ready",
+            "duration": {
+              "Time": {
+                "tick": 180
+              }
+            }
+          }
         }
       ]
     }
@@ -284,74 +357,222 @@
     "action_name": "skill2",
     "description": "#asset/base/text/champion?description.bo_league_champions_jhin.skill2",
     "duration": 66,
-    "cooltime": 360,
-    "start_timing": 40,
-    "range": 104000,
+    "cooltime": 660,
+    "start_timing": 34,
+    "range": 108000,
     "casting_type": "Direction",
     "casting_target": "EnemyWithoutTower",
     "attack_type": "Skill",
     "effect": {
-      "type": "Combine",
-      "effects": [
-        {
-          "type": "Sfx",
-          "name": "test_mod_jhin_deadly_flourish_cast"
-        },
-        {
-          "type": "LineRangeProjectile",
-          "width": 5000,
-          "length": 130000,
-          "delay": 19,
-          "apply": 19,
-          "name": "test_mod_jhin_deadly_flourish",
-          "applied_target": "EnemyWithoutTower",
-          "applied_effects": [
-            {
-              "effect": {
-                "type": "Attack",
-                "damage": 0,
-                "attack_ratio": 30
-              },
-              "casting_type": "Targeting"
-            }
-          ]
-        },
-        {
-          "type": "LineRangeProjectile",
-          "width": 5000,
-          "length": 130000,
-          "delay": 19,
-          "apply": 19,
-          "name": "test_mod_jhin_deadly_flourish_champion_bonus",
-          "applied_target": "EnemyChampion",
-          "applied_effects": [
-            {
-              "effect": {
-                "type": "Attack",
-                "damage": 70,
-                "attack_ratio": 40
-              },
-              "casting_type": "Targeting"
-            },
-            {
-              "effect": {
-                "type": "Stun",
-                "duration": 30
-              },
-              "casting_type": "Targeting"
-            }
-          ]
-        }
-      ]
+      "type": "SwitchByBuff",
+      "buff_name": "test_mod_jhin_flourish_mark_ready",
+      "effect_none": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "Sfx",
+            "name": "test_mod_jhin_deadly_flourish_cast"
+          },
+          {
+            "type": "LineRangeProjectile",
+            "width": 7500,
+            "length": 132000,
+            "delay": 18,
+            "apply": 18,
+            "name": "test_mod_jhin_deadly_flourish",
+            "applied_target": "EnemyWithoutTower",
+            "applied_effects": [
+              {
+                "effect": {
+                  "type": "Combine",
+                  "effects": [
+                    {
+                      "type": "Attack",
+                      "damage": 15,
+                      "attack_ratio": 35
+                    },
+                    {
+                      "type": "AddBuff",
+                      "buff_state": {
+                        "name": "test_mod_jhin_flourish_slow",
+                        "duration": {
+                          "Time": {
+                            "tick": 45
+                          }
+                        },
+                        "move_speed_mult": -35
+                      }
+                    },
+                    {
+                      "type": "ViewEffect",
+                      "name": "test_mod_jhin_lotus_mark_apply"
+                    }
+                  ]
+                },
+                "casting_type": "Targeting"
+              }
+            ]
+          },
+          {
+            "type": "Delayed",
+            "tick": 22,
+            "effects": [
+              {
+                "type": "LineRangeProjectile",
+                "width": 18000,
+                "length": 68000,
+                "delay": 0,
+                "apply": 18,
+                "name": "test_mod_jhin_lotus_trap_line",
+                "applied_target": "EnemyWithoutTower",
+                "applied_effects": [
+                  {
+                    "effect": {
+                      "type": "Combine",
+                      "effects": [
+                        {
+                          "type": "Attack",
+                          "damage": 20,
+                          "attack_ratio": 30
+                        },
+                        {
+                          "type": "AddBuff",
+                          "buff_state": {
+                            "name": "test_mod_jhin_lotus_trap_slow",
+                            "duration": {
+                              "Time": {
+                                "tick": 35
+                              }
+                            },
+                            "move_speed_mult": -25
+                          }
+                        },
+                        {
+                          "type": "ViewEffect",
+                          "name": "test_mod_jhin_lotus_trap_bloom"
+                        }
+                      ]
+                    },
+                    "casting_type": "Targeting"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "effect_buff": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "Sfx",
+            "name": "test_mod_jhin_deadly_flourish_cast"
+          },
+          {
+            "type": "LineRangeProjectile",
+            "width": 7500,
+            "length": 132000,
+            "delay": 18,
+            "apply": 18,
+            "name": "test_mod_jhin_deadly_flourish",
+            "applied_target": "EnemyChampion",
+            "applied_effects": [
+              {
+                "effect": {
+                  "type": "Combine",
+                  "effects": [
+                    {
+                      "type": "Attack",
+                      "damage": 80,
+                      "attack_ratio": 85
+                    },
+                    {
+                      "type": "Stun",
+                      "duration": 42
+                    },
+                    {
+                      "type": "AddBuff",
+                      "buff_state": {
+                        "name": "test_mod_jhin_flourish_root",
+                        "duration": {
+                          "Time": {
+                            "tick": 60
+                          }
+                        },
+                        "move_speed_mult": -50
+                      }
+                    },
+                    {
+                      "type": "ViewEffect",
+                      "name": "test_mod_jhin_deadly_flourish_root_bloom"
+                    }
+                  ]
+                },
+                "casting_type": "Targeting"
+              }
+            ]
+          },
+          {
+            "type": "RemoveCasterBuff",
+            "name": "test_mod_jhin_flourish_mark_ready"
+          },
+          {
+            "type": "Delayed",
+            "tick": 22,
+            "effects": [
+              {
+                "type": "LineRangeProjectile",
+                "width": 18000,
+                "length": 68000,
+                "delay": 0,
+                "apply": 18,
+                "name": "test_mod_jhin_lotus_trap_line",
+                "applied_target": "EnemyWithoutTower",
+                "applied_effects": [
+                  {
+                    "effect": {
+                      "type": "Combine",
+                      "effects": [
+                        {
+                          "type": "Attack",
+                          "damage": 20,
+                          "attack_ratio": 30
+                        },
+                        {
+                          "type": "AddBuff",
+                          "buff_state": {
+                            "name": "test_mod_jhin_lotus_trap_slow",
+                            "duration": {
+                              "Time": {
+                                "tick": 35
+                              }
+                            },
+                            "move_speed_mult": -25
+                          }
+                        },
+                        {
+                          "type": "ViewEffect",
+                          "name": "test_mod_jhin_lotus_trap_bloom"
+                        }
+                      ]
+                    },
+                    "casting_type": "Targeting"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
     }
   },
   "ult": {
     "action_name": "ult",
     "description": "#asset/base/text/champion?description.bo_league_champions_jhin.ult",
     "duration": 150,
-    "cooltime": 3600,
+    "cooltime": 3900,
     "start_timing": 1,
-    "range": 194000,
+    "range": 198000,
     "casting_type": "Direction",
     "casting_target": "EnemyChampion",
     "attack_type": "Skill",
@@ -384,26 +605,97 @@
           ]
         },
         {
-          "type": "Combine",
+          "type": "CasterViewEffect",
+          "name": "test_mod_jhin_curtain_call_stage"
+        },
+        {
+          "type": "LinearProjectile",
+          "penetrate": false,
+          "speed": 9500,
+          "range": 198000,
+          "name": "test_mod_jhin_curtain_call_shot",
+          "shape": {
+            "Circle": {
+              "radius": 6500
+            }
+          },
+          "applied_target": "EnemyChampion",
+          "applied_effects": [
+            {
+              "effect": {
+                "type": "Combine",
+                "effects": [
+                  {
+                    "type": "Attack",
+                    "damage": 180,
+                    "attack_ratio": 120
+                  },
+                  {
+                    "type": "AddBuff",
+                    "buff_state": {
+                      "name": "test_mod_jhin_curtain_call_slow",
+                      "duration": {
+                        "Time": {
+                          "tick": 45
+                        }
+                      },
+                      "move_speed_mult": -35
+                    }
+                  },
+                  {
+                    "type": "ViewEffect",
+                    "name": "test_mod_jhin_curtain_call_hit_bloom"
+                  }
+                ]
+              },
+              "casting_type": "Targeting"
+            }
+          ],
+          "end_effects": []
+        },
+        {
+          "type": "Delayed",
+          "tick": 36,
           "effects": [
             {
               "type": "LinearProjectile",
               "penetrate": false,
-              "speed": 9000,
-              "range": 195000,
+              "speed": 9500,
+              "range": 198000,
               "name": "test_mod_jhin_curtain_call_shot",
               "shape": {
                 "Circle": {
-                  "radius": 6000
+                  "radius": 6500
                 }
               },
               "applied_target": "EnemyChampion",
               "applied_effects": [
                 {
                   "effect": {
-                    "type": "Attack",
-                    "damage": 300,
-                    "attack_ratio": 150
+                    "type": "Combine",
+                    "effects": [
+                      {
+                        "type": "Attack",
+                        "damage": 180,
+                        "attack_ratio": 120
+                      },
+                      {
+                        "type": "AddBuff",
+                        "buff_state": {
+                          "name": "test_mod_jhin_curtain_call_slow",
+                          "duration": {
+                            "Time": {
+                              "tick": 45
+                            }
+                          },
+                          "move_speed_mult": -35
+                        }
+                      },
+                      {
+                        "type": "ViewEffect",
+                        "name": "test_mod_jhin_curtain_call_hit_bloom"
+                      }
+                    ]
                   },
                   "casting_type": "Targeting"
                 }
@@ -414,106 +706,103 @@
         },
         {
           "type": "Delayed",
-          "tick": 35,
+          "tick": 72,
           "effects": [
             {
-              "type": "Combine",
-              "effects": [
-                {
-                  "type": "LinearProjectile",
-                  "penetrate": false,
-                  "speed": 9000,
-                  "range": 195000,
-                  "name": "test_mod_jhin_curtain_call_shot",
-                  "shape": {
-                    "Circle": {
-                      "radius": 6000
-                    }
-                  },
-                  "applied_target": "EnemyChampion",
-                  "applied_effects": [
-                    {
-                      "effect": {
-                        "type": "Attack",
-                        "damage": 300,
-                        "attack_ratio": 150
-                      },
-                      "casting_type": "Targeting"
-                    }
-                  ],
-                  "end_effects": []
+              "type": "LinearProjectile",
+              "penetrate": false,
+              "speed": 9500,
+              "range": 198000,
+              "name": "test_mod_jhin_curtain_call_shot",
+              "shape": {
+                "Circle": {
+                  "radius": 6500
                 }
-              ]
+              },
+              "applied_target": "EnemyChampion",
+              "applied_effects": [
+                {
+                  "effect": {
+                    "type": "Combine",
+                    "effects": [
+                      {
+                        "type": "Attack",
+                        "damage": 180,
+                        "attack_ratio": 120
+                      },
+                      {
+                        "type": "AddBuff",
+                        "buff_state": {
+                          "name": "test_mod_jhin_curtain_call_slow",
+                          "duration": {
+                            "Time": {
+                              "tick": 45
+                            }
+                          },
+                          "move_speed_mult": -35
+                        }
+                      },
+                      {
+                        "type": "ViewEffect",
+                        "name": "test_mod_jhin_curtain_call_hit_bloom"
+                      }
+                    ]
+                  },
+                  "casting_type": "Targeting"
+                }
+              ],
+              "end_effects": []
             }
           ]
         },
         {
           "type": "Delayed",
-          "tick": 70,
+          "tick": 108,
           "effects": [
             {
-              "type": "Combine",
-              "effects": [
-                {
-                  "type": "LinearProjectile",
-                  "penetrate": false,
-                  "speed": 9000,
-                  "range": 195000,
-                  "name": "test_mod_jhin_curtain_call_shot",
-                  "shape": {
-                    "Circle": {
-                      "radius": 6000
-                    }
-                  },
-                  "applied_target": "EnemyChampion",
-                  "applied_effects": [
-                    {
-                      "effect": {
-                        "type": "Attack",
-                        "damage": 300,
-                        "attack_ratio": 150
-                      },
-                      "casting_type": "Targeting"
-                    }
-                  ],
-                  "end_effects": []
+              "type": "LinearProjectile",
+              "penetrate": false,
+              "speed": 9800,
+              "range": 198000,
+              "name": "test_mod_jhin_curtain_call_shot_4",
+              "shape": {
+                "Circle": {
+                  "radius": 9000
                 }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "Delayed",
-          "tick": 105,
-          "effects": [
-            {
-              "type": "Combine",
-              "effects": [
+              },
+              "applied_target": "EnemyChampion",
+              "applied_effects": [
                 {
-                  "type": "LinearProjectile",
-                  "penetrate": false,
-                  "speed": 9000,
-                  "range": 195000,
-                  "name": "test_mod_jhin_curtain_call_shot_4",
-                  "shape": {
-                    "Circle": {
-                      "radius": 6000
-                    }
-                  },
-                  "applied_target": "EnemyChampion",
-                  "applied_effects": [
-                    {
-                      "effect": {
+                  "effect": {
+                    "type": "Combine",
+                    "effects": [
+                      {
                         "type": "Attack",
-                        "damage": 300,
-                        "attack_ratio": 300
+                        "damage": 260,
+                        "attack_ratio": 215
                       },
-                      "casting_type": "Targeting"
-                    }
-                  ],
-                  "end_effects": []
+                      {
+                        "type": "AddBuff",
+                        "buff_state": {
+                          "name": "test_mod_jhin_curtain_call_slow",
+                          "duration": {
+                            "Time": {
+                              "tick": 60
+                            }
+                          },
+                          "move_speed_mult": -50
+                        }
+                      },
+                      {
+                        "type": "ViewEffect",
+                        "name": "test_mod_jhin_finale_bloom"
+                      }
+                    ]
+                  },
+                  "casting_type": "Targeting"
                 }
-              ]
+              ],
+              "end_effects": []
             }
           ]
         }
@@ -521,43 +810,6 @@
     }
   },
   "view_projectiles": [
-    {
-      "type": "Sprite",
-      "name": "test_mod_jhin_attack",
-      "sprite": "asset/base/sprite/arrow"
-    },
-    {
-      "type": "Animated",
-      "name": "test_mod_jhin_deadly_flourish",
-      "anim": "asset/bo_league_champions/aseprite_resources/effects/jhin_deadly_flourish",
-      "tag": "line",
-      "z": -1,
-      "repeat": false
-    },
-    {
-      "type": "Animated",
-      "name": "test_mod_jhin_curtain_call_shot",
-      "anim": "asset/bo_league_champions/aseprite_resources/effects/jhin_curtain_call_shot",
-      "tag": "projectile",
-      "z": 1,
-      "repeat": true
-    },
-    {
-      "type": "Animated",
-      "name": "test_mod_jhin_curtain_call_shot_4",
-      "anim": "asset/bo_league_champions/aseprite_resources/effects/jhin_curtain_call_shot_4",
-      "tag": "projectile",
-      "z": 1,
-      "repeat": true
-    },
-    {
-      "type": "Animated",
-      "name": "test_mod_jhin_grenade",
-      "anim": "asset/bo_league_champions/aseprite_resources/effects/jhin_grenade",
-      "tag": "projectile",
-      "z": 1,
-      "repeat": true
-    },
     {
       "type": "Animated",
       "name": "test_mod_jhin_attack_shot",
@@ -572,6 +824,46 @@
       "anim": "asset/bo_league_champions/aseprite_resources/effects/jhin_attack_shot_4",
       "tag": "projectile",
       "z": 1,
+      "repeat": true
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_jhin_grenade",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/jhin_grenade",
+      "tag": "projectile",
+      "z": 1,
+      "repeat": true
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_jhin_deadly_flourish",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/jhin_deadly_flourish",
+      "tag": "line",
+      "z": 2,
+      "repeat": false
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_jhin_lotus_trap_line",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/jhin_lotus_trap_line",
+      "tag": "line",
+      "z": 1,
+      "repeat": false
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_jhin_curtain_call_shot",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/jhin_curtain_call_shot",
+      "tag": "projectile",
+      "z": 2,
+      "repeat": true
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_jhin_curtain_call_shot_4",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/jhin_curtain_call_shot_4",
+      "tag": "projectile",
+      "z": 3,
       "repeat": true
     }
   ],
@@ -588,7 +880,21 @@
       "name": "test_mod_jhin_reload_visual",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/jhin_reload_circle",
       "tag": "loop",
-      "z": 5
+      "z": 4
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_jhin_flourish_mark_ready",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/jhin_lotus_mark_apply",
+      "tag": "mark",
+      "z": 4
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_jhin_curtain_call_channel",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/jhin_curtain_call_stage",
+      "tag": "stage",
+      "z": -1
     }
   ],
   "skill_icon": {
@@ -598,5 +904,71 @@
       "test_mod_jhin_skill2",
       "test_mod_jhin_ult"
     ]
-  }
+  },
+  "view_effects": [
+    {
+      "type": "Animation",
+      "name": "test_mod_jhin_bullet_hit_small",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/jhin_bullet_hit_small",
+      "tag": "hit",
+      "z": 2,
+      "is_follow": false
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_jhin_fourth_shot_bloom",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/jhin_fourth_shot_bloom",
+      "tag": "bloom",
+      "z": 3,
+      "is_follow": false
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_jhin_lotus_mark_apply",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/jhin_lotus_mark_apply",
+      "tag": "mark",
+      "z": 3,
+      "is_follow": false
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_jhin_lotus_trap_bloom",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/jhin_lotus_trap_bloom",
+      "tag": "bloom",
+      "z": 3,
+      "is_follow": false
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_jhin_deadly_flourish_root_bloom",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/jhin_deadly_flourish_root_bloom",
+      "tag": "root",
+      "z": 3,
+      "is_follow": false
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_jhin_curtain_call_stage",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/jhin_curtain_call_stage",
+      "tag": "stage",
+      "z": -1,
+      "is_follow": true
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_jhin_curtain_call_hit_bloom",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/jhin_curtain_call_hit_bloom",
+      "tag": "hit",
+      "z": 3,
+      "is_follow": false
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_jhin_finale_bloom",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/jhin_finale_bloom",
+      "tag": "finale",
+      "z": 4,
+      "is_follow": false
+    }
+  ]
 }
