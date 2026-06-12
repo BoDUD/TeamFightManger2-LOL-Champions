@@ -643,13 +643,14 @@ FIDDLESTICKS_TARGET_VIEW_EFFECT_REFS = {
 }
 COMPACT_DISPLAY_LIMITS = {
     "darius": {"max_width": 42, "max_height": 40, "min_bottom_safe": 12},
+    "fiddlesticks": {"max_width": 46, "max_height": 48, "min_bottom_safe": 16},
     "thresh": {"max_width": 42, "max_height": 40, "min_bottom_safe": 12},
     "viktor": {"max_width": 39, "max_height": 42, "min_bottom_safe": 11},
 }
 SIDE_CARD_STANDING_FACE_OFFSETS = {
     "aatrox": {"x": 2, "y": -16},
-    "darius": {"x": 2, "y": -6},
-    "fiddlesticks": {"x": 4, "y": -6},
+    "darius": {"x": 0, "y": -12},
+    "fiddlesticks": {"x": 0, "y": -14},
     "kayn": {"x": 4, "y": -18},
     "thresh": {"x": 0, "y": -12},
     "viktor": {"x": 0, "y": -28},
@@ -1141,7 +1142,11 @@ def assert_compact_idle_bottom_safety(champion: str, *, min_bottom_safe: int = 1
         )
 
 
-def assert_compact_display_frame_size(champion: str) -> None:
+def assert_compact_display_frame_size(
+    champion: str,
+    *,
+    actions: tuple[str, ...] = ("idle", "recall", "return"),
+) -> None:
     limits = COMPACT_DISPLAY_LIMITS.get(champion)
     if not limits:
         return
@@ -1153,7 +1158,7 @@ def assert_compact_display_frame_size(champion: str) -> None:
         fail(f"{fanim_path.relative_to(ROOT)} must contain anims")
     sheet_width, _sheet_height, sheet_alpha = load_rgba_alpha(sheet_path)
     seen_rects: set[tuple[int, int, int, int]] = set()
-    for action in ("idle", "recall", "return"):
+    for action in actions:
         frames = anims.get(action, {}).get("frames") if isinstance(anims.get(action), dict) else None
         if not isinstance(frames, list) or not frames:
             fail(f"{champion} {action} frames must exist for compact HUD portrait checks")
@@ -2850,11 +2855,12 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         view = entries.get(darius_id)
         if not isinstance(view, dict):
             fail(f"style/champion_view.champion_view missing entries.{darius_id}")
-        if view.get("face", {}).get("x") != 2 or view.get("face", {}).get("y") != -6:
-            fail(f"style entry {darius_id}.face must recenter Darius HUD/scoreboard portrait to x=2,y=-6")
+        if view.get("face", {}).get("x") != 0 or view.get("face", {}).get("y") != -12:
+            fail(f"style entry {darius_id}.face must recenter Darius HUD/scoreboard portrait to x=0,y=-12")
         if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -12:
             fail(f"style entry {darius_id}.center must recenter Darius exchange standing display to x=0,y=-12")
     assert_compact_idle_bottom_safety("darius")
+    assert_compact_display_frame_size("darius")
 
     for path in (
         ROOT / "champion" / "darius.data_champion",
@@ -3722,10 +3728,12 @@ def check_fiddlesticks_contract(text: dict[str, Any], entries: dict[str, Any]) -
         view = entries.get(fiddlesticks_id)
         if not isinstance(view, dict):
             fail(f"style/champion_view.champion_view missing entries.{fiddlesticks_id}")
-        if view.get("face", {}).get("x") != 4 or view.get("face", {}).get("y") != -6:
-            fail(f"style entry {fiddlesticks_id}.face must keep Fiddlesticks compact HUD/scoreboard portrait at x=4,y=-6")
+        if view.get("face", {}).get("x") != 0 or view.get("face", {}).get("y") != -14:
+            fail(f"style entry {fiddlesticks_id}.face must keep Fiddlesticks compact HUD/scoreboard portrait at x=0,y=-14")
         if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -14:
             fail(f"style entry {fiddlesticks_id}.center must keep Fiddlesticks standing display at x=0,y=-14")
+    assert_compact_idle_bottom_safety("fiddlesticks", min_bottom_safe=16)
+    assert_compact_display_frame_size("fiddlesticks", actions=("idle", "run"))
 
     for path in (
         ROOT / "champion" / "fiddlesticks.data_champion",
