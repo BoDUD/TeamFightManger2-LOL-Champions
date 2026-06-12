@@ -272,6 +272,53 @@
                 "casting_type": "Targeting"
               }
             ]
+          },
+          {
+            "type": "Delayed",
+            "tick": 24,
+            "effects": [
+              {
+                "type": "LineRangeProjectile",
+                "width": 14000,
+                "length": 90000,
+                "delay": 0,
+                "apply": 72,
+                "name": "test_mod_viktor_laser_aftershock",
+                "applied_target": "EnemyWithoutTower",
+                "applied_effects": [
+                  {
+                    "effect": {
+                      "type": "ApAttack",
+                      "damage": 35,
+                      "attack_ratio": 45
+                    },
+                    "casting_type": "Targeting"
+                  },
+                  {
+                    "effect": {
+                      "type": "AddBuff",
+                      "buff_state": {
+                        "name": "test_mod_viktor_laser_aftershock_slow",
+                        "duration": {
+                          "Time": {
+                            "tick": 24
+                          }
+                        },
+                        "move_speed_mult": -15
+                      }
+                    },
+                    "casting_type": "Targeting"
+                  },
+                  {
+                    "effect": {
+                      "type": "TargetSfx",
+                      "name": "test_mod_viktor_laser_aftershock_hit"
+                    },
+                    "casting_type": "Targeting"
+                  }
+                ]
+              }
+            ]
           }
         ]
       },
@@ -1197,28 +1244,28 @@
       "name": "test_mod_viktor_siphon_empower",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/viktor_siphon_shield",
       "tag": "shield",
-      "z": 4
+      "z": -1
     },
     {
       "type": "Animated",
       "name": "test_mod_viktor_evolved_ray",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/viktor_evolution_aura",
       "tag": "ray",
-      "z": 3
+      "z": -1
     },
     {
       "type": "Animated",
       "name": "test_mod_viktor_evolved_field",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/viktor_evolution_aura",
       "tag": "field",
-      "z": 3
+      "z": -1
     },
     {
       "type": "Animated",
       "name": "test_mod_viktor_evolved_storm",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/viktor_evolution_aura",
       "tag": "storm",
-      "z": 3
+      "z": -1
     }
   ],
   "view_effects": [
@@ -1227,7 +1274,7 @@
       "name": "test_mod_viktor_siphon_shield",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/viktor_siphon_shield",
       "tag": "shield",
-      "z": 3,
+      "z": -1,
       "is_follow": true
     },
     {

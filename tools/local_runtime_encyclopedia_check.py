@@ -264,10 +264,31 @@ def check_viktor_ground_vfx(path: Path, champion: object) -> None:
             if node.get("apply", 0) < VIKTOR_LASER_MIN_APPLY:
                 fail(f"runtime Viktor {projectile_name} must persist for at least {VIKTOR_LASER_MIN_APPLY} ticks")
     aftershock_nodes = [node for node in laser_nodes if node.get("name") == "test_mod_viktor_laser_aftershock"]
-    if len(aftershock_nodes) != 1:
-        fail("runtime Viktor evolved Hextech Ray must define one aftershock ground projectile")
-    if aftershock_nodes[0].get("apply", 0) < VIKTOR_AFTERSHOCK_MIN_APPLY:
-        fail(f"runtime Viktor laser aftershock must persist for at least {VIKTOR_AFTERSHOCK_MIN_APPLY} ticks")
+    if len(aftershock_nodes) != 2:
+        fail("runtime Viktor Hextech Ray must define aftershock ground projectiles in both normal and evolved branches")
+    for node in aftershock_nodes:
+        if node.get("apply", 0) < VIKTOR_AFTERSHOCK_MIN_APPLY:
+            fail(f"runtime Viktor laser aftershock must persist for at least {VIKTOR_AFTERSHOCK_MIN_APPLY} ticks")
+        if node.get("delay", 999) > 0:
+            fail("runtime Viktor laser aftershock projectile should appear immediately after its Delayed wrapper")
+    view_effect_rows = champion.get("view_effects", [])
+    if not isinstance(view_effect_rows, list):
+        fail(f"{path} view_effects must be a list")
+    view_effect_z = {item.get("name"): item.get("z") for item in view_effect_rows if isinstance(item, dict)}
+    if view_effect_z.get("test_mod_viktor_siphon_shield", 0) >= 0:
+        fail("runtime Viktor Siphon shield ViewEffect must render behind the actor")
+    view_buff_rows = champion.get("view_buffs", [])
+    if not isinstance(view_buff_rows, list):
+        fail(f"{path} view_buffs must be a list")
+    for buff_name in (
+        "test_mod_viktor_siphon_empower",
+        "test_mod_viktor_evolved_ray",
+        "test_mod_viktor_evolved_field",
+        "test_mod_viktor_evolved_storm",
+    ):
+        z_value = next((item.get("z") for item in view_buff_rows if isinstance(item, dict) and item.get("name") == buff_name), None)
+        if not isinstance(z_value, (int, float)) or z_value >= 0:
+            fail(f"runtime Viktor buff {buff_name} must render behind the actor")
     skill2 = champion.get("skill2", {})
     skill2_effect = skill2.get("effect", {}) if isinstance(skill2, dict) else {}
     skill2_effects = skill2_effect.get("effects", []) if isinstance(skill2_effect, dict) else []
