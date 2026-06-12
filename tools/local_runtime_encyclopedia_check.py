@@ -485,6 +485,39 @@ def check_thresh_ult_visibility(path: Path, champion: object) -> None:
         return
     if not isinstance(champion, dict):
         fail(f"{path} must contain a JSON object")
+    q_nodes = iter_mapping_nodes(champion.get("skill", {}))
+    q_move_to = [
+        node
+        for node in q_nodes
+        if node.get("type") == "MoveTo"
+    ]
+    if not any(int(node.get("speed", 0)) >= 5200 and int(node.get("range", 999999)) <= 8000 for node in q_move_to):
+        fail("runtime Thresh Q must strongly pull the hooked target back toward Thresh")
+    q_stuns = [node for node in q_nodes if node.get("type") == "Stun"]
+    if not any(int(node.get("duration", 0)) >= 50 for node in q_stuns):
+        fail("runtime Thresh Q must hold the hooked target long enough for the pull-back to be visible")
+    q_blocks = [node for node in q_nodes if node.get("type") == "BlockMoveSkill"]
+    if not any(int(node.get("tick", 0)) >= 42 for node in q_blocks):
+        fail("runtime Thresh Q must block movement skills long enough for Death Sentence pull-back to resolve")
+    flay_nodes = [
+        node
+        for node in iter_mapping_nodes(champion.get("skill2", {}))
+        if node.get("type") == "LineRangeProjectile" and node.get("name") == "test_mod_thresh_flay_sweep"
+    ]
+    if len(flay_nodes) != 1:
+        fail("runtime Thresh E/Flay must use exactly one sweep projectile")
+    flay = flay_nodes[0]
+    if any(node.get("type") == "Knockback" for node in iter_mapping_nodes(flay)):
+        fail("runtime Thresh E/Flay must not use Knockback; it should visibly pull enemies back toward Thresh")
+    flay_move_to = [node for node in iter_mapping_nodes(flay) if node.get("type") == "MoveTo"]
+    if not any(int(node.get("speed", 0)) >= 4800 and int(node.get("range", 999999)) <= 10000 for node in flay_move_to):
+        fail("runtime Thresh E/Flay must include a strong MoveTo pull")
+    flay_stuns = [node for node in iter_mapping_nodes(flay) if node.get("type") == "Stun"]
+    if not any(int(node.get("duration", 0)) >= 16 for node in flay_stuns):
+        fail("runtime Thresh E/Flay must briefly hold enemies after pulling them")
+    flay_blocks = [node for node in iter_mapping_nodes(flay) if node.get("type") == "BlockMoveSkill"]
+    if not any(int(node.get("tick", 0)) >= 20 for node in flay_blocks):
+        fail("runtime Thresh E/Flay must block movement skills long enough for pull-back to read")
     view_effect_rows = champion.get("view_effects", [])
     if not isinstance(view_effect_rows, list):
         fail(f"{path} view_effects must be a list")

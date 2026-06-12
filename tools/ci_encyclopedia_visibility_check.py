@@ -3439,7 +3439,7 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         "RangePeriodProjectile",
         "Shield",
         "Stun",
-        "Knockback",
+        "MoveTo",
         "BlockMoveSkill",
         "Permanent",
         "test_mod_thresh_death_sentence_chain",
@@ -3461,6 +3461,18 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         fail("Thresh Q first version must not auto-recast/dash after hook impact")
     if "MoveTo" not in q_strings:
         fail("Thresh Q must include a MoveTo hit effect so Death Sentence pulls/locks the hooked target near Thresh")
+    q_move_to_nodes = find_effect_nodes(skill_effect, "MoveTo")
+    if not any(
+        int(node.get("speed", 0)) >= 5200 and int(node.get("range", 999999)) <= 8000
+        for node in q_move_to_nodes
+    ):
+        fail("Thresh Q MoveTo must pull hooked enemies tightly to Thresh, not leave them far down the chain")
+    q_stun_nodes = find_effect_nodes(skill_effect, "Stun")
+    if not any(int(node.get("duration", 0)) >= 50 for node in q_stun_nodes):
+        fail("Thresh Q must hold the hooked target long enough for the pull-back to be visible")
+    q_block_nodes = find_effect_nodes(skill_effect, "BlockMoveSkill")
+    if not any(int(node.get("tick", 0)) >= 42 for node in q_block_nodes):
+        fail("Thresh Q must block movement skills long enough for Death Sentence pull-back to resolve")
     if "test_mod_thresh_q_cast" not in q_strings or "test_mod_thresh_q_hit" not in q_strings:
         fail("Thresh Q must trigger official cast and hit sound events")
     for forbidden in THRESH_FORBIDDEN_CASTER_FOLLOW_VFX:
@@ -3502,9 +3514,20 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         fail("Thresh skill2 must fire the Flay sweep projectile after the lantern shield")
     if flay.get("applied_target") != "EnemyWithoutTower":
         fail("Thresh Flay must target enemies only; W shield must not create duplicate actor-following hits on allies")
-    knockback_nodes = find_effect_nodes(flay, "Knockback")
-    if not any(int(node.get("speed", 0)) >= 2000 and int(node.get("tick", 0)) >= 12 for node in knockback_nodes):
-        fail("Thresh Flay must use a visible Knockback of at least speed=2000 and tick=12 so enemies are actually pushed")
+    if find_effect_nodes(flay, "Knockback"):
+        fail("Thresh Flay must not use Knockback here; this implementation should visibly pull enemies back toward Thresh")
+    flay_move_to_nodes = find_effect_nodes(flay, "MoveTo")
+    if not any(
+        int(node.get("speed", 0)) >= 4800 and int(node.get("range", 999999)) <= 10000
+        for node in flay_move_to_nodes
+    ):
+        fail("Thresh Flay must include a strong MoveTo pull so enemies visibly move back toward Thresh")
+    flay_stun_nodes = find_effect_nodes(flay, "Stun")
+    if not any(int(node.get("duration", 0)) >= 16 for node in flay_stun_nodes):
+        fail("Thresh Flay must briefly hold enemies after the pull so the displacement reads in battle")
+    flay_block_nodes = find_effect_nodes(flay, "BlockMoveSkill")
+    if not any(int(node.get("tick", 0)) >= 20 for node in flay_block_nodes):
+        fail("Thresh Flay must block movement skills long enough for the pull-back to be visible")
 
     for action, sfx_names in (
         ("skill", {"test_mod_thresh_q_cast", "test_mod_thresh_q_hit"}),
