@@ -4302,10 +4302,10 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
     view_effect_z = {item.get("name"): item.get("z") for item in viktor.get("view_effects", [])}
     if view_effect_z.get("test_mod_viktor_siphon_shield", 0) >= 0:
         fail("Viktor Siphon shield ViewEffect must render behind the actor so Q cannot look like model deformation")
-    if view_effect_z.get("test_mod_viktor_gravity_field") != -1:
-        fail("Viktor Gravity Field must stay on the ground layer so W cannot look attached to the model")
-    if view_effect_z.get("test_mod_viktor_chaos_storm") != 1:
-        fail("Viktor Chaos Storm must render at z=1 so the target-ground ult is clearly visible")
+    if view_effect_z.get("test_mod_viktor_gravity_field") != 1:
+        fail("Viktor Gravity Field must render at z=1 so the target-ground field is visible above terrain")
+    if view_effect_z.get("test_mod_viktor_chaos_storm") != 2:
+        fail("Viktor Chaos Storm must render at z=2 so the target-ground ult is clearly visible")
     for name in ("test_mod_viktor_gravity_field", "test_mod_viktor_chaos_storm"):
         if view_effect_types.get(name) != "LoopAnimation":
             fail(f"Viktor {name} must be LoopAnimation so the field/storm persists instead of flashing once and vanishing")
@@ -4334,6 +4334,8 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
             fail(f"Viktor gravity anchor {index} must use end_effects for target-ground VFX")
         if not any(item.get("type") == "ViewEffect" and item.get("name") == "test_mod_viktor_gravity_field" for item in end_effects if isinstance(item, dict)):
             fail(f"Viktor gravity anchor {index} must spawn the field ViewEffect at the target point")
+        if any(item.get("type") == "ViewEffect" and item.get("name") == "test_mod_viktor_gravity_field" and item.get("is_follow") is True for item in end_effects if isinstance(item, dict)):
+            fail(f"Viktor gravity anchor {index} must keep Gravity Field on the terrain, not attached to the caster")
         field_pulses = [
             item
             for item in end_effects
@@ -4373,6 +4375,8 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         for required_view in (("ViewEffect", "test_mod_viktor_storm_impact"), ("ViewEffect", "test_mod_viktor_chaos_storm")):
             if required_view not in end_names:
                 fail(f"Viktor Chaos Storm anchor {index} must spawn {required_view[1]} on the terrain")
+        if any(item.get("type") == "ViewEffect" and item.get("name") == "test_mod_viktor_chaos_storm" and item.get("is_follow") is True for item in end_effects if isinstance(item, dict)):
+            fail(f"Viktor Chaos Storm anchor {index} must keep the storm on the terrain, not attached to the caster")
         storm_pulses = [
             item
             for item in end_effects

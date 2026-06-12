@@ -1282,7 +1282,7 @@
       "name": "test_mod_viktor_gravity_field",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/viktor_gravity_field",
       "tag": "gravity_field",
-      "z": -1,
+      "z": 1,
       "is_follow": false
     },
     {
@@ -1290,7 +1290,7 @@
       "name": "test_mod_viktor_chaos_storm",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/viktor_chaos_storm",
       "tag": "chaos_storm",
-      "z": 1,
+      "z": 2,
       "is_follow": false
     },
     {
