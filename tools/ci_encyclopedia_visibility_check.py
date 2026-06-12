@@ -2997,6 +2997,58 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
     for action in ("attack", "skill", "skill2", "ult", "hit"):
         if tuple(action_hashes[action][: len(action_hashes["idle"])]) == tuple(action_hashes["idle"][: len(action_hashes[action])]):
             fail(f"Darius {action} must not be a direct copy of idle")
+    retired_reverse_ult_hashes = {
+        "f322a7d3156438e0e075ee2167103d2dd601a90f",
+        "657e43144c9679274f96220475ca0a3b41535241",
+    }
+    for index, frame_hash in enumerate(action_hashes["ult"]):
+        if frame_hash in retired_reverse_ult_hashes:
+            fail(
+                f"Darius ult frame {index} regressed to the retired horizontal/reverse chop pose; "
+                "R must wind up into a forward clockwise guillotine strike"
+            )
+
+    guillotine_fanim = load_json(ROOT / "aseprite_resources" / "effects" / "darius_noxian_guillotine#anim.fanim")
+    guillotine_frames = guillotine_fanim.get("anims", {}).get("cast", {}).get("frames")
+    if not isinstance(guillotine_frames, list):
+        fail("Darius Noxian Guillotine cast VFX must expose cast frames")
+    guillotine_width, _guillotine_height, guillotine_rgba = load_rgba(
+        ROOT / "aseprite_resources" / "effects" / "darius_noxian_guillotine#sheet.png"
+    )
+    for index, frame in enumerate(guillotine_frames):
+        data = frame.get("data") if isinstance(frame, dict) else None
+        if not isinstance(data, dict):
+            fail(f"Darius Noxian Guillotine cast frame {index} missing frame data")
+        x0 = int(round(float(data.get("x", -1))))
+        y0 = int(round(float(data.get("y", -1))))
+        w = int(round(float(data.get("w", 0))))
+        h = int(round(float(data.get("h", 0))))
+        visible = red_energy = body_tones = 0
+        for y in range(y0, y0 + h):
+            for x in range(x0, x0 + w):
+                pixel_index = (y * guillotine_width + x) * 4
+                r = guillotine_rgba[pixel_index]
+                g = guillotine_rgba[pixel_index + 1]
+                b = guillotine_rgba[pixel_index + 2]
+                a = guillotine_rgba[pixel_index + 3]
+                if not a:
+                    continue
+                visible += 1
+                if r > 95 and r > g * 1.25 and r > b * 0.75:
+                    red_energy += 1
+                skin_like = r > 120 and 65 < g < 170 and 35 < b < 130 and (r - g) < 90 and (g - b) > 5
+                steel_like = r > 70 and g > 70 and b > 75 and abs(r - g) < 35 and abs(g - b) < 45
+                if skin_like or steel_like:
+                    body_tones += 1
+        if visible < 120:
+            fail(f"Darius Noxian Guillotine cast frame {index} is too sparse to read as the R chop")
+        if red_energy < max(120, visible // 5):
+            fail(f"Darius Noxian Guillotine cast frame {index} must read as red Noxian slash energy")
+        if body_tones > 120:
+            fail(
+                f"Darius Noxian Guillotine cast frame {index} still contains {body_tones} skin/steel body pixels; "
+                "the caster VFX must be an effect-only slash so it cannot show a second reverse-facing Darius"
+            )
 
     run_frames = fanim.get("anims", {}).get("run", {}).get("frames")
     assert isinstance(run_frames, list)
