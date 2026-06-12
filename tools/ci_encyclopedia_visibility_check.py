@@ -3751,7 +3751,7 @@ def check_fiddlesticks_contract(text: dict[str, Any], entries: dict[str, Any]) -
     for name, expected in FIDDLESTICKS_BUFF_REFS.items():
         if buff_refs.get(name) != expected:
             fail(f"champion/fiddlesticks.data_champion buff {name} must reference {expected}")
-        expected_z = 2 if name == "test_mod_fiddlesticks_crowstorm_active" else 1
+        expected_z = 0 if name == "test_mod_fiddlesticks_crowstorm_active" else 1
         if buff_z.get(name) != expected_z:
             fail(f"champion/fiddlesticks.data_champion buff {name} must render at z={expected_z}")
         if buff_repeat.get(name) is not True:
@@ -3773,10 +3773,12 @@ def check_fiddlesticks_contract(text: dict[str, Any], entries: dict[str, Any]) -
             fail(f"champion/fiddlesticks.data_champion view_effect {name} must reference {expected}")
         expected_z = {
             "test_mod_fiddlesticks_crowstorm_channel": 3,
-            "test_mod_fiddlesticks_crowstorm": 2,
+            "test_mod_fiddlesticks_crowstorm": 0,
         }.get(name, 1)
         if view_effect_z.get(name) != expected_z:
             fail(f"champion/fiddlesticks.data_champion view_effect {name} must render at z={expected_z}")
+        if name == "test_mod_fiddlesticks_crowstorm" and view_effect_z.get(name) >= 1:
+            fail("champion/fiddlesticks.data_champion Crowstorm landing field must stay under the actor as a foot-ring, not cover the model")
         expected_follow = name != "test_mod_fiddlesticks_crowstorm"
         if view_effect_follow.get(name) is not expected_follow:
             if name == "test_mod_fiddlesticks_crowstorm":
