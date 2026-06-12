@@ -305,6 +305,11 @@ def check_viktor_ground_vfx(path: Path, champion: object) -> None:
     if not isinstance(view_projectile_rows, list):
         fail(f"{path} view_projectiles must be a list")
     projectile_z = {item.get("name"): item.get("z") for item in view_projectile_rows if isinstance(item, dict)}
+    projectile_repeat = {item.get("name"): item.get("repeat") for item in view_projectile_rows if isinstance(item, dict)}
+    if projectile_z.get("test_mod_viktor_siphon_projectile") != 2:
+        fail("runtime Viktor Siphon Power Q projectile must render at z=2 so it is visible in battle")
+    if projectile_repeat.get("test_mod_viktor_siphon_projectile") is not True:
+        fail("runtime Viktor Siphon Power Q projectile must repeat while travelling")
     for projectile_name in ("test_mod_viktor_laser", "test_mod_viktor_laser_aftershock"):
         z_value = projectile_z.get(projectile_name)
         if not isinstance(z_value, (int, float)) or z_value >= 0:
@@ -341,6 +346,8 @@ def check_viktor_ground_vfx(path: Path, champion: object) -> None:
     view_effect_z = {item.get("name"): item.get("z") for item in view_effect_rows if isinstance(item, dict)}
     if view_effect_z.get("test_mod_viktor_siphon_shield", 0) >= 0:
         fail("runtime Viktor Siphon shield ViewEffect must render behind the actor")
+    if view_effect_z.get("test_mod_viktor_siphon_impact") != 2:
+        fail("runtime Viktor Siphon Power Q impact must render at z=2 so the hit is visible")
     if view_effect_z.get("test_mod_viktor_gravity_field") != 1:
         fail("runtime Viktor Gravity Field must render at z=1 so the target-ground field is visible above terrain")
     if view_effect_z.get("test_mod_viktor_chaos_storm") != 2:
@@ -369,6 +376,48 @@ def check_viktor_ground_vfx(path: Path, champion: object) -> None:
             fail("runtime Viktor skill2 still double-attaches the Siphon shield over the actor body")
         if node.get("type") == "ViewEffect" and node.get("name") == "test_mod_viktor_gravity_field":
             fail("runtime Viktor Gravity Field is still a caster-level ViewEffect instead of a target-ground anchor")
+
+    siphon_projectiles = [
+        (index, node)
+        for index, node in enumerate(skill2_effects)
+        if isinstance(node, dict)
+        and node.get("type") == "ParabolicProjectile"
+        and node.get("name") == "test_mod_viktor_siphon_projectile"
+    ]
+    if len(siphon_projectiles) != 1:
+        fail("runtime Viktor Siphon Power Q must directly fire one visible projectile from skill2")
+    siphon_index, siphon_projectile = siphon_projectiles[0]
+    if siphon_projectile.get("travel_time", 999) > 8 or siphon_projectile.get("range", 0) < 72000:
+        fail("runtime Viktor Siphon Power Q projectile must be fast and cover the full cast range")
+    end_effects = siphon_projectile.get("end_effects")
+    if not isinstance(end_effects, list) or not any(
+        item.get("type") == "ViewEffect" and item.get("name") == "test_mod_viktor_siphon_impact"
+        for item in end_effects
+        if isinstance(item, dict)
+    ):
+        fail("runtime Viktor Siphon Power Q projectile must spawn the visible target impact")
+    empower_index = next(
+        (
+            index
+            for index, node in enumerate(skill2_effects)
+            if isinstance(node, dict)
+            and node.get("type") == "AddCasterBuff"
+            and node.get("buff_state", {}).get("name") == "test_mod_viktor_siphon_empower"
+        ),
+        None,
+    )
+    gravity_index = next(
+        (
+            index
+            for index, node in enumerate(skill2_effects)
+            if isinstance(node, dict)
+            and node.get("type") == "SwitchByBuff"
+            and node.get("buff_name") == "test_mod_viktor_evolved_field"
+        ),
+        None,
+    )
+    if empower_index is None or gravity_index is None or siphon_index > empower_index or siphon_index > gravity_index:
+        fail("runtime Viktor Siphon Power Q projectile must appear before the shield empower and Gravity Field follow-up")
 
     gravity_anchors = [
         node
@@ -758,6 +807,10 @@ def check_runtime_copy(game_root: Path) -> None:
         "aseprite_resources/effects/viktor_laser#anim.fanim",
         "aseprite_resources/effects/viktor_laser_aftershock#sheet.png",
         "aseprite_resources/effects/viktor_laser_aftershock#anim.fanim",
+        "aseprite_resources/effects/viktor_siphon_projectile#sheet.png",
+        "aseprite_resources/effects/viktor_siphon_projectile#anim.fanim",
+        "aseprite_resources/effects/viktor_siphon_impact#sheet.png",
+        "aseprite_resources/effects/viktor_siphon_impact#anim.fanim",
         "aseprite_resources/effects/viktor_gravity_field#sheet.png",
         "aseprite_resources/effects/viktor_gravity_field#anim.fanim",
         "aseprite_resources/effects/viktor_chaos_storm#sheet.png",

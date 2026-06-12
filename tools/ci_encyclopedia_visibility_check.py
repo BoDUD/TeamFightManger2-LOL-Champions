@@ -489,6 +489,10 @@ VIKTOR_EFFECT_REFS = {
         "asset/bo_league_champions/aseprite_resources/effects/viktor_attack_projectile",
         "projectile",
     ),
+    "test_mod_viktor_siphon_projectile": (
+        "asset/bo_league_champions/aseprite_resources/effects/viktor_siphon_projectile",
+        "projectile",
+    ),
     "test_mod_viktor_laser": (
         "asset/bo_league_champions/aseprite_resources/effects/viktor_laser",
         "laser",
@@ -502,6 +506,10 @@ VIKTOR_VIEW_EFFECT_REFS = {
     "test_mod_viktor_siphon_shield": (
         "asset/bo_league_champions/aseprite_resources/effects/viktor_siphon_shield",
         "shield",
+    ),
+    "test_mod_viktor_siphon_impact": (
+        "asset/bo_league_champions/aseprite_resources/effects/viktor_siphon_impact",
+        "impact",
     ),
     "test_mod_viktor_gravity_field": (
         "asset/bo_league_champions/aseprite_resources/effects/viktor_gravity_field",
@@ -4128,6 +4136,8 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         "viktor_laser_aftershock": "burn",
         "viktor_gravity_field": "gravity_field",
         "viktor_chaos_storm": "chaos_storm",
+        "viktor_siphon_projectile": "projectile",
+        "viktor_siphon_impact": "impact",
         "viktor_siphon_shield": "shield",
         "viktor_evolution_aura": "ray",
         "viktor_storm_impact": "impact",
@@ -4287,6 +4297,8 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         "test_mod_viktor_evolved_field",
         "test_mod_viktor_evolved_storm",
         "test_mod_viktor_laser_aftershock",
+        "test_mod_viktor_siphon_projectile",
+        "test_mod_viktor_siphon_impact",
         "test_mod_viktor_gravity_field",
         "test_mod_viktor_chaos_storm",
         "test_mod_viktor_chaos_storm_duration",
@@ -4312,10 +4324,12 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         if projectile_refs.get(name) != expected:
             fail(f"champion/viktor.data_champion projectile {name} must reference {expected}")
     projectile_repeat = {item.get("name"): item.get("repeat") for item in viktor.get("view_projectiles", [])}
-    for projectile_name in ("test_mod_viktor_laser", "test_mod_viktor_laser_aftershock"):
+    for projectile_name in ("test_mod_viktor_siphon_projectile", "test_mod_viktor_laser", "test_mod_viktor_laser_aftershock"):
         if projectile_repeat.get(projectile_name) is not True:
-            fail(f"Viktor projectile {projectile_name} must repeat so the laser VFX stays visible for the gameplay window")
+            fail(f"Viktor projectile {projectile_name} must repeat so the VFX stays visible for its gameplay window")
     projectile_z = {item.get("name"): item.get("z") for item in viktor.get("view_projectiles", [])}
+    if projectile_z.get("test_mod_viktor_siphon_projectile") != 2:
+        fail("Viktor Siphon Power Q projectile must render at z=2 so the battle cast is visible above minions")
     for projectile_name in ("test_mod_viktor_laser", "test_mod_viktor_laser_aftershock"):
         z_value = projectile_z.get(projectile_name)
         if not isinstance(z_value, (int, float)) or z_value >= 0:
@@ -4384,6 +4398,54 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
             fail("Viktor skill2 must not double-attach the Siphon shield over the actor body")
         if node.get("type") == "ViewEffect" and node.get("name") == "test_mod_viktor_gravity_field":
             fail("Viktor Gravity Field must be spawned from a target-ground anchor, not as a caster-level ViewEffect")
+    siphon_projectiles = [
+        (index, node)
+        for index, node in enumerate(skill2_top_level)
+        if isinstance(node, dict)
+        and node.get("type") == "ParabolicProjectile"
+        and node.get("name") == "test_mod_viktor_siphon_projectile"
+    ]
+    if len(siphon_projectiles) != 1:
+        fail("Viktor Siphon Power Q must directly fire one visible projectile from skill2 before the shield/gravity sequence")
+    siphon_index, siphon_projectile = siphon_projectiles[0]
+    if siphon_projectile.get("travel_time", 999) > 8:
+        fail("Viktor Siphon Power Q projectile must travel quickly enough to be readable on cast")
+    if siphon_projectile.get("range", 0) < 72000:
+        fail("Viktor Siphon Power Q projectile must cover the full Q/W cast range")
+    if siphon_projectile.get("applied_target") != "EnemyChampion":
+        fail("Viktor Siphon Power Q projectile must target enemy champions, not scenery or the caster")
+    siphon_end_effects = siphon_projectile.get("end_effects")
+    if not isinstance(siphon_end_effects, list):
+        fail("Viktor Siphon Power Q projectile must use end_effects for its target impact")
+    if not any(
+        isinstance(item, dict) and item.get("type") == "ViewEffect" and item.get("name") == "test_mod_viktor_siphon_impact"
+        for item in siphon_end_effects
+    ):
+        fail("Viktor Siphon Power Q projectile must spawn the visible target impact VFX")
+    empower_index = next(
+        (
+            index
+            for index, node in enumerate(skill2_top_level)
+            if isinstance(node, dict)
+            and node.get("type") == "AddCasterBuff"
+            and node.get("buff_state", {}).get("name") == "test_mod_viktor_siphon_empower"
+        ),
+        None,
+    )
+    gravity_index = next(
+        (
+            index
+            for index, node in enumerate(skill2_top_level)
+            if isinstance(node, dict)
+            and node.get("type") == "SwitchByBuff"
+            and node.get("buff_name") == "test_mod_viktor_evolved_field"
+        ),
+        None,
+    )
+    if empower_index is None or gravity_index is None:
+        fail("Viktor skill2 must keep the Siphon empower and Gravity Field sequence")
+    if siphon_index > empower_index or siphon_index > gravity_index:
+        fail("Viktor Siphon Power Q projectile must appear before the shield empower and Gravity Field follow-up")
     gravity_anchors = [
         node
         for node in find_effect_nodes(viktor.get("skill2", {}), "ParabolicProjectile")
@@ -4480,6 +4542,40 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         max_width=140,
     )
     assert_effect_frames_not_edge_cut(
+        ROOT / "aseprite_resources" / "effects" / "viktor_siphon_projectile#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "viktor_siphon_projectile#anim.fanim",
+        "projectile",
+        "Viktor Siphon Power Q projectile VFX",
+    )
+    assert_generated_vfx_volume(
+        ROOT / "aseprite_resources" / "effects" / "viktor_siphon_projectile#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "viktor_siphon_projectile#anim.fanim",
+        "projectile",
+        "Viktor Siphon Power Q projectile VFX",
+        min_visible=1800,
+        min_color_bins=70,
+        min_height=30,
+        min_fill_ratio=0.70,
+        max_width=70,
+    )
+    assert_effect_frames_not_edge_cut(
+        ROOT / "aseprite_resources" / "effects" / "viktor_siphon_impact#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "viktor_siphon_impact#anim.fanim",
+        "impact",
+        "Viktor Siphon Power Q impact VFX",
+    )
+    assert_generated_vfx_volume(
+        ROOT / "aseprite_resources" / "effects" / "viktor_siphon_impact#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "viktor_siphon_impact#anim.fanim",
+        "impact",
+        "Viktor Siphon Power Q impact VFX",
+        min_visible=1900,
+        min_color_bins=90,
+        min_height=45,
+        min_fill_ratio=0.40,
+        max_width=84,
+    )
+    assert_effect_frames_not_edge_cut(
         ROOT / "aseprite_resources" / "effects" / "viktor_storm_impact#sheet.png",
         ROOT / "aseprite_resources" / "effects" / "viktor_storm_impact#anim.fanim",
         "impact",
@@ -4487,6 +4583,8 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         max_border_pixels=4,
     )
     for sheet_name, tag, label, max_width, max_height, min_margin in (
+        ("viktor_siphon_projectile", "projectile", "Viktor Siphon Power Q projectile VFX", 70, 32, 2),
+        ("viktor_siphon_impact", "impact", "Viktor Siphon Power Q impact VFX", 84, 56, 3),
         ("viktor_siphon_shield", "shield", "Viktor Siphon shield VFX", 48, 48, 4),
         ("viktor_evolution_aura", "ray", "Viktor evolution aura VFX", 48, 48, 4),
         ("viktor_evolution_aura", "field", "Viktor evolution field aura VFX", 48, 48, 4),
@@ -4518,7 +4616,7 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
     for action, sfx_names in (
         ("attack", {"test_mod_viktor_attack_cast", "test_mod_viktor_attack_hit", "test_mod_viktor_siphon_empower_hit"}),
         ("skill", {"test_mod_viktor_laser_cast", "test_mod_viktor_laser_hit", "test_mod_viktor_laser_aftershock_hit", "test_mod_viktor_evolution"}),
-        ("skill2", {"test_mod_viktor_siphon_cast", "test_mod_viktor_gravity_field_cast", "test_mod_viktor_gravity_field_slow", "test_mod_viktor_evolution"}),
+        ("skill2", {"test_mod_viktor_siphon_cast", "test_mod_viktor_siphon_empower_hit", "test_mod_viktor_gravity_field_cast", "test_mod_viktor_gravity_field_slow", "test_mod_viktor_evolution"}),
         ("ult", {"test_mod_viktor_chaos_storm_cast", "test_mod_viktor_chaos_storm_duration", "test_mod_viktor_storm_impact", "test_mod_viktor_ult_voice", "test_mod_viktor_evolution"}),
     ):
         action_strings = set(walk_strings(viktor.get(action, {})))
