@@ -969,6 +969,49 @@ def assert_effect_frames_not_edge_cut(
             )
 
 
+def assert_effect_frame_bbox_limits(
+    sheet: Path,
+    fanim_path: Path,
+    tag: str,
+    label: str,
+    *,
+    max_width: int,
+    max_height: int,
+    min_margin: int = 0,
+) -> None:
+    fanim = load_json(fanim_path)
+    frames = fanim.get("anims", {}).get(tag, {}).get("frames") if isinstance(fanim, dict) else None
+    if not isinstance(frames, list):
+        fail(f"{fanim_path.relative_to(ROOT)} must expose {tag!r} frames for {label}")
+    image_width, _image_height, alpha = load_rgba_alpha(sheet)
+    for index, frame in enumerate(frames):
+        data = frame.get("data") if isinstance(frame, dict) else None
+        if not isinstance(data, dict):
+            fail(f"{label} frame {index} missing frame data")
+        rect = (
+            int(round(float(data.get("x", -1)))),
+            int(round(float(data.get("y", -1)))),
+            int(round(float(data.get("w", 0)))),
+            int(round(float(data.get("h", 0)))),
+        )
+        bbox = alpha_bbox_in_rect(alpha, image_width, rect)
+        if bbox is None:
+            fail(f"{label} frame {index} is blank")
+        frame_width = bbox[2] - bbox[0]
+        frame_height = bbox[3] - bbox[1]
+        if frame_width > max_width or frame_height > max_height:
+            fail(
+                f"{label} frame {index} visible bbox is {frame_width}x{frame_height}; "
+                f"keep it within {max_width}x{max_height} so it cannot deform or cover the champion"
+            )
+        margins = (bbox[0], bbox[1], rect[2] - bbox[2], rect[3] - bbox[3])
+        if min(margins) < min_margin:
+            fail(
+                f"{label} frame {index} margins {margins} are too tight; "
+                f"keep at least {min_margin}px transparent safety around the VFX"
+            )
+
+
 def collect_weapon_palette_from_rect(path: Path, rect: tuple[int, int, int, int]) -> set[tuple[int, int, int]]:
     image_width, _image_height, rgba = load_rgba(path)
     x0, y0, w, h = rect
@@ -3989,15 +4032,21 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
             if node.get("width", 0) < 12000 or node.get("length", 0) < 90000:
                 fail(f"Viktor {projectile_name} must keep a broad terrain-line footprint")
     aftershock_nodes = laser_groups["test_mod_viktor_laser_aftershock"]
-    if len(aftershock_nodes) != 1:
-        fail("Viktor evolved Hextech Ray must define one persistent aftershock ground projectile")
-    if aftershock_nodes[0].get("apply", 0) < VIKTOR_AFTERSHOCK_MIN_APPLY:
-        fail(f"Viktor laser aftershock must persist for at least {VIKTOR_AFTERSHOCK_MIN_APPLY} ticks")
+    if len(aftershock_nodes) != 2:
+        fail("Viktor Hextech Ray must define one persistent aftershock ground projectile in both normal and evolved branches")
+    for node in aftershock_nodes:
+        if node.get("apply", 0) < VIKTOR_AFTERSHOCK_MIN_APPLY:
+            fail(f"Viktor laser aftershock must persist for at least {VIKTOR_AFTERSHOCK_MIN_APPLY} ticks")
+        if node.get("delay", 999) > 0:
+            fail("Viktor laser aftershock projectile should appear immediately after its Delayed wrapper")
     view_effect_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in viktor.get("view_effects", [])}
     view_effect_types = {item.get("name"): item.get("type") for item in viktor.get("view_effects", [])}
     for name, expected in VIKTOR_VIEW_EFFECT_REFS.items():
         if view_effect_refs.get(name) != expected:
             fail(f"champion/viktor.data_champion view_effect {name} must reference {expected}")
+    view_effect_z = {item.get("name"): item.get("z") for item in viktor.get("view_effects", [])}
+    if view_effect_z.get("test_mod_viktor_siphon_shield", 0) >= 0:
+        fail("Viktor Siphon shield ViewEffect must render behind the actor so Q cannot look like model deformation")
     for name in ("test_mod_viktor_gravity_field", "test_mod_viktor_chaos_storm"):
         if view_effect_types.get(name) != "LoopAnimation":
             fail(f"Viktor {name} must be LoopAnimation so the field/storm persists instead of flashing once and vanishing")
@@ -4088,16 +4137,46 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         "Viktor Gravity Field VFX",
     )
     assert_effect_frames_not_edge_cut(
+        ROOT / "aseprite_resources" / "effects" / "viktor_chaos_storm#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "viktor_chaos_storm#anim.fanim",
+        "chaos_storm",
+        "Viktor Chaos Storm loop VFX",
+    )
+    assert_effect_frames_not_edge_cut(
         ROOT / "aseprite_resources" / "effects" / "viktor_storm_impact#sheet.png",
         ROOT / "aseprite_resources" / "effects" / "viktor_storm_impact#anim.fanim",
         "impact",
         "Viktor Chaos Storm impact VFX",
         max_border_pixels=4,
     )
+    for sheet_name, tag, label, max_width, max_height, min_margin in (
+        ("viktor_siphon_shield", "shield", "Viktor Siphon shield VFX", 48, 48, 4),
+        ("viktor_evolution_aura", "ray", "Viktor evolution aura VFX", 48, 48, 4),
+        ("viktor_evolution_aura", "field", "Viktor evolution field aura VFX", 48, 48, 4),
+        ("viktor_evolution_aura", "storm", "Viktor evolution storm aura VFX", 48, 48, 4),
+        ("viktor_gravity_field", "gravity_field", "Viktor Gravity Field VFX", 80, 76, 8),
+        ("viktor_chaos_storm", "chaos_storm", "Viktor Chaos Storm loop VFX", 90, 76, 8),
+        ("viktor_storm_impact", "impact", "Viktor Chaos Storm impact VFX", 56, 70, 4),
+        ("viktor_laser", "laser", "Viktor Hextech Ray ground VFX", 150, 52, 6),
+        ("viktor_laser_aftershock", "burn", "Viktor Hextech Ray aftershock VFX", 150, 52, 6),
+    ):
+        assert_effect_frame_bbox_limits(
+            ROOT / "aseprite_resources" / "effects" / f"{sheet_name}#sheet.png",
+            ROOT / "aseprite_resources" / "effects" / f"{sheet_name}#anim.fanim",
+            tag,
+            label,
+            max_width=max_width,
+            max_height=max_height,
+            min_margin=min_margin,
+        )
     buff_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in viktor.get("view_buffs", [])}
     for name, expected in VIKTOR_BUFF_REFS.items():
         if buff_refs.get(name) != expected:
             fail(f"champion/viktor.data_champion buff {name} must reference {expected}")
+    buff_z = {item.get("name"): item.get("z") for item in viktor.get("view_buffs", [])}
+    for name in VIKTOR_BUFF_REFS:
+        if buff_z.get(name, 0) >= 0:
+            fail(f"Viktor buff {name} must render behind the actor so champion body/feet stay readable")
 
     for action, sfx_names in (
         ("attack", {"test_mod_viktor_attack_cast", "test_mod_viktor_attack_hit", "test_mod_viktor_siphon_empower_hit"}),
