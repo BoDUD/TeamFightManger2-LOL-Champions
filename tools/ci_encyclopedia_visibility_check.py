@@ -581,6 +581,7 @@ FIDDLESTICKS_MIN_BOTTOM_SAFE = 12
 FIDDLESTICKS_MIN_BODY_HEIGHT = 34
 FIDDLESTICKS_MAX_BODY_HEIGHT = 49
 FIDDLESTICKS_MAX_BODY_WIDTH = 48
+FIDDLESTICKS_RUN_DURATION = 0.12
 FIDDLESTICKS_EFFECT_REFS = {
     "test_mod_fiddlesticks_attack_projectile": (
         "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_attack_projectile",
@@ -3532,6 +3533,8 @@ def check_fiddlesticks_contract(text: dict[str, Any], entries: dict[str, Any]) -
                     fail(f"Fiddlesticks {action} frame {index} width {body_width}px is too wide; keep large magic in separate VFX")
                 if bottom_safe < FIDDLESTICKS_MIN_BOTTOM_SAFE:
                     fail(f"Fiddlesticks {action} frame {index} leaves only {bottom_safe}px under the feet; side cards need visible legs")
+                if action == "run" and frame.get("duration") != FIDDLESTICKS_RUN_DURATION:
+                    fail("Fiddlesticks run must use calmer 0.12s walking timing, not the old twitchy 0.06s cycle")
             elif body_height < 30:
                 fail("Fiddlesticks dead frame must remain a readable collapsed model, not a tiny residue blob")
 
