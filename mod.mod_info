@@ -3,8 +3,8 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.13.28",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version lifts Viktor Gravity Field and Chaos Storm onto visible target-ground layers so W and R can be clearly seen on the map.",
+  "version": "0.13.29",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version makes Thresh The Box spawn its persistent terrain field at cast time so R is visible on the map, with CI and runtime checks guarding the direct field effect.",
   "last_updated": "2026-06-12",
   "dependencies": [
     {

@@ -389,6 +389,18 @@ def check_thresh_ult_visibility(path: Path, champion: object) -> None:
     ]
     if len(box_fields) != 1 or box_fields[0].get("tick", 0) < 300:
         fail("runtime Thresh R field must persist for at least 300 ticks")
+    ult_effect = champion.get("ult", {}).get("effect", {})
+    ult_direct_effects = ult_effect.get("effects") if isinstance(ult_effect, dict) else None
+    if not isinstance(ult_direct_effects, list):
+        fail("runtime Thresh R must keep its top-level Combine effects list")
+    has_direct_box_field_vfx = any(
+        isinstance(node, dict)
+        and node.get("type") == "ViewEffect"
+        and node.get("name") == "test_mod_thresh_box_field"
+        for node in ult_direct_effects
+    )
+    if not has_direct_box_field_vfx:
+        fail("runtime Thresh R must directly spawn test_mod_thresh_box_field so The Box is visible on the map")
 
 
 def check_fiddlesticks_ult_visibility(path: Path, champion: object) -> None:
