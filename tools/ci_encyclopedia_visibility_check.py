@@ -405,6 +405,8 @@ THRESH_BOX_MIN_COLOR_BINS = 800
 THRESH_BOX_MAX_FRAME_WIDTH = 120
 THRESH_BOX_MAX_FRAME_HEIGHT = 110
 THRESH_BOX_MIN_FRAME_MARGIN = 4
+THRESH_BOX_MIN_TICKS = 420
+THRESH_BOX_MIN_ANIM_SECONDS = 5.0
 THRESH_FORBIDDEN_CASTER_FOLLOW_VFX = {
     "test_mod_thresh_lantern_cast_vfx",
     "test_mod_thresh_flay_cast_vfx",
@@ -3729,7 +3731,7 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         isinstance(node, dict)
         and node.get("type") == "RangePeriodProjectile"
         and node.get("name") == "test_mod_thresh_box_field"
-        and int(node.get("tick", 0)) >= 300
+        and int(node.get("tick", 0)) >= THRESH_BOX_MIN_TICKS
         for node in anchor_end_effects
     ):
         fail("Thresh R target-ground anchor must own the long-lived terrain RangePeriodProjectile field")
@@ -3822,6 +3824,12 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
     box_frames = box_fanim.get("anims", {}).get("box", {}).get("frames") if isinstance(box_fanim, dict) else None
     if not isinstance(box_frames, list) or len(box_frames) < 6:
         fail("Thresh The Box VFX must expose at least six loop frames")
+    assert_animation_total_duration(
+        ROOT / "aseprite_resources" / "effects" / "thresh_box#anim.fanim",
+        "box",
+        "Thresh The Box ground prison VFX",
+        min_seconds=THRESH_BOX_MIN_ANIM_SECONDS,
+    )
     box_width, _box_height, box_rgba = load_rgba(ROOT / "aseprite_resources" / "effects" / "thresh_box#sheet.png")
     box_alpha = bytes(box_rgba[i * 4 + 3] for i in range(len(box_rgba) // 4))
     for index, frame in enumerate(box_frames):
@@ -3875,8 +3883,8 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         (node for node in find_effect_nodes(thresh.get("ult", {}), "RangePeriodProjectile") if node.get("name") == "test_mod_thresh_box_field"),
         None,
     )
-    if not isinstance(box_field, dict) or box_field.get("tick", 0) < 300:
-        fail("Thresh R field must last at least 300 ticks so The Box reads as a real prison zone")
+    if not isinstance(box_field, dict) or int(box_field.get("tick", 0)) < THRESH_BOX_MIN_TICKS:
+        fail(f"Thresh R field must last at least {THRESH_BOX_MIN_TICKS} ticks so The Box reads as a real prison zone")
     view_effect_z = {item.get("name"): item.get("z") for item in thresh.get("view_effects", [])}
     for name in ("test_mod_thresh_box", "test_mod_thresh_box_field"):
         if view_effect_z.get(name) != 3:

@@ -99,6 +99,8 @@ THRESH_SOUND_EVENTS = (
     "test_mod_thresh_soul_gain",
     "test_mod_thresh_ult_voice",
 )
+THRESH_BOX_MIN_TICKS = 420
+THRESH_BOX_MIN_ANIM_SECONDS = 5.0
 VIKTOR_SOUND_EVENTS = (
     "test_mod_viktor_attack_cast",
     "test_mod_viktor_attack_hit",
@@ -590,8 +592,16 @@ def check_thresh_ult_visibility(path: Path, champion: object) -> None:
         for node in iter_mapping_nodes(champion.get("ult", {}))
         if node.get("type") == "RangePeriodProjectile" and node.get("name") == "test_mod_thresh_box_field"
     ]
-    if len(box_fields) != 1 or box_fields[0].get("tick", 0) < 300:
-        fail("runtime Thresh R field must persist for at least 300 ticks")
+    if len(box_fields) != 1 or int(box_fields[0].get("tick", 0)) < THRESH_BOX_MIN_TICKS:
+        fail(f"runtime Thresh R field must persist for at least {THRESH_BOX_MIN_TICKS} ticks")
+    runtime_root = path.parent.parent
+    box_anim = runtime_root / "aseprite_resources" / "effects" / "thresh_box#anim.fanim"
+    total_duration = animation_total_duration(box_anim, "box")
+    if total_duration < THRESH_BOX_MIN_ANIM_SECONDS:
+        fail(
+            f"runtime Thresh The Box VFX lasts only {total_duration:.2f}s; "
+            f"must last at least {THRESH_BOX_MIN_ANIM_SECONDS:.2f}s so the terrain prison stays visible"
+        )
     ult_effect = champion.get("ult", {}).get("effect", {})
     ult_direct_effects = ult_effect.get("effects") if isinstance(ult_effect, dict) else None
     if not isinstance(ult_direct_effects, list):
@@ -617,7 +627,7 @@ def check_thresh_ult_visibility(path: Path, champion: object) -> None:
         isinstance(node, dict)
         and node.get("type") == "RangePeriodProjectile"
         and node.get("name") == "test_mod_thresh_box_field"
-        and node.get("tick", 0) >= 300
+        and int(node.get("tick", 0)) >= THRESH_BOX_MIN_TICKS
         for node in anchor_end_effects
     ):
         fail("runtime Thresh R target-ground anchor must own the long-lived terrain field")
