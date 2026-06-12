@@ -515,6 +515,34 @@
           "name": "test_mod_viktor_siphon_cast"
         },
         {
+          "type": "ParabolicProjectile",
+          "name": "test_mod_viktor_siphon_projectile",
+          "travel_time": 6,
+          "range": 72000,
+          "range_effect_name": "",
+          "shape": {
+            "Circle": {
+              "radius": 12000
+            }
+          },
+          "applied_target": "EnemyChampion",
+          "applied_effects": [
+            {
+              "effect": {
+                "type": "TargetSfx",
+                "name": "test_mod_viktor_siphon_empower_hit"
+              },
+              "casting_type": "Targeting"
+            }
+          ],
+          "end_effects": [
+            {
+              "type": "ViewEffect",
+              "name": "test_mod_viktor_siphon_impact"
+            }
+          ]
+        },
+        {
           "type": "WithSelf",
           "effects": [
             {
@@ -1223,6 +1251,14 @@
     },
     {
       "type": "Animated",
+      "name": "test_mod_viktor_siphon_projectile",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/viktor_siphon_projectile",
+      "tag": "projectile",
+      "z": 2,
+      "repeat": true
+    },
+    {
+      "type": "Animated",
       "name": "test_mod_viktor_laser",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/viktor_laser",
       "tag": "laser",
@@ -1276,6 +1312,14 @@
       "tag": "shield",
       "z": -1,
       "is_follow": true
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_viktor_siphon_impact",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/viktor_siphon_impact",
+      "tag": "impact",
+      "z": 2,
+      "is_follow": false
     },
     {
       "type": "LoopAnimation",

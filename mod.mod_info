@@ -3,8 +3,8 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.13.30",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version moves Darius Noxian Guillotine's main chop VFX onto the target point so R has a visible axe execution slash, with CI and runtime checks guarding every damage branch.",
+  "version": "0.13.31",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version makes Viktor's Siphon Power Q readable in battle with a visible arcane projectile and target impact, with CI and runtime checks preventing the effect from regressing into a tiny or model-attached flash.",
   "last_updated": "2026-06-12",
   "dependencies": [
     {
