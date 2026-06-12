@@ -648,7 +648,7 @@ COMPACT_DISPLAY_LIMITS = {
     "viktor": {"max_width": 39, "max_height": 42, "min_bottom_safe": 11},
 }
 SIDE_CARD_STANDING_FACE_OFFSETS = {
-    "aatrox": {"x": 2, "y": -16},
+    "aatrox": {"x": -8, "y": -4},
     "darius": {"x": 0, "y": -12},
     "fiddlesticks": {"x": 0, "y": 0},
     "jhin": {"x": 1, "y": -16},
@@ -1781,8 +1781,8 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
         face_y = view.get("face", {}).get("y")
         center_x = view.get("center", {}).get("x")
         center_y = view.get("center", {}).get("y")
-        if face_x != 2 or face_y != -16:
-            fail(f"style entry {aatrox_id}.face must keep Aatrox HUD/scoreboard portrait centered at x=2,y=-16")
+        if face_x != -8 or face_y != -4:
+            fail(f"style entry {aatrox_id}.face must keep Aatrox HUD/scoreboard portrait centered at x=-8,y=-4")
         if center_x != 4 or center_y != -12:
             fail(f"style entry {aatrox_id}.center must keep Aatrox exchange standing sword and feet visible at x=4,y=-12")
 
@@ -1802,15 +1802,63 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
     assert_aatrox_darkin_blade_vfx_identity()
 
     fanim = load_json(ROOT / "aseprite_resources" / "champions" / "aatrox#anim.fanim")
-    sheet_width, sheet_height, sheet_alpha = load_rgba_alpha(
-        ROOT / "aseprite_resources" / "champions" / "aatrox#sheet.png"
-    )
+    aatrox_sheet_path = ROOT / "aseprite_resources" / "champions" / "aatrox#sheet.png"
+    sheet_rgba_width, sheet_rgba_height, sheet_rgba = load_rgba(aatrox_sheet_path)
+    sheet_width, sheet_height, sheet_alpha = load_rgba_alpha(aatrox_sheet_path)
+    if sheet_rgba_width != sheet_width or sheet_rgba_height != sheet_height:
+        fail("Aatrox actor sheet RGBA/alpha dimensions disagree")
     idle_frames = fanim.get("anims", {}).get("idle", {}).get("frames")
     if not isinstance(idle_frames, list) or len(idle_frames) < 6:
         fail("Aatrox idle animation must have at least six stable display frames")
     run_frames = fanim.get("anims", {}).get("run", {}).get("frames")
     if not isinstance(run_frames, list) or len(run_frames) != 8:
         fail("Aatrox run must preserve its native eight-frame contract")
+
+    idle0 = idle_frames[0].get("data") if isinstance(idle_frames[0], dict) else None
+    if not isinstance(idle0, dict):
+        fail("Aatrox first idle frame missing frame data for compact portrait crop check")
+    face = entries[AATROX_IDS[0]]["face"]
+    rect_x = int(round(float(idle0.get("x", -1))))
+    rect_y = int(round(float(idle0.get("y", -1))))
+    rect_w = int(round(float(idle0.get("w", 0))))
+    rect_h = int(round(float(idle0.get("h", 0))))
+    face_x = int(face.get("x", 0))
+    face_y = int(face.get("y", 0))
+    red_pixels = 0
+    red_min_x = 10**9
+    red_max_x = -1
+    red_min_y = 10**9
+    red_max_y = -1
+    for local_y in range(40):
+        for local_x in range(40):
+            src_x = rect_x + local_x - face_x
+            src_y = rect_y + local_y - face_y
+            if src_x < rect_x or src_x >= rect_x + rect_w or src_y < rect_y or src_y >= rect_y + rect_h:
+                continue
+            index = (src_y * sheet_width + src_x) * 4
+            r = sheet_rgba[index]
+            g = sheet_rgba[index + 1]
+            b = sheet_rgba[index + 2]
+            a = sheet_rgba[index + 3]
+            if a > 40 and r > 75 and r > g * 1.25 and r > b * 1.05:
+                red_pixels += 1
+                red_min_x = min(red_min_x, local_x)
+                red_max_x = max(red_max_x, local_x + 1)
+                red_min_y = min(red_min_y, local_y)
+                red_max_y = max(red_max_y, local_y + 1)
+    if (
+        red_pixels < 80
+        or red_min_x > 10
+        or red_max_x < 32
+        or red_min_y < 7
+        or red_max_y < 28
+        or red_max_y > 34
+    ):
+        fail(
+            "Aatrox compact HUD/scoreboard face crop must center the horns/chest red core; "
+            f"got red_pixels={red_pixels}, red_x=({red_min_x},{red_max_x}), "
+            f"red_y=({red_min_y},{red_max_y}), face=({face_x},{face_y})"
+        )
 
     expected_frame_xs = {
         "idle": AATROX_IDLE_FRAME_XS,

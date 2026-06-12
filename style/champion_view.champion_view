@@ -2,8 +2,8 @@
   "entries": {
     "test_mod_aatrox": {
       "face": {
-        "x": 2,
-        "y": -16
+        "x": -8,
+        "y": -4
       },
       "center": {
         "x": 4,
@@ -12,8 +12,8 @@
     },
     "bo_league_champions_aatrox": {
       "face": {
-        "x": 2,
-        "y": -16
+        "x": -8,
+        "y": -4
       },
       "center": {
         "x": 4,
