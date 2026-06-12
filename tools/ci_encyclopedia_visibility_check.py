@@ -482,8 +482,12 @@ VIKTOR_FRAME_SIZE = (57.0, 54.0)
 VIKTOR_CORE_ACTIONS = ("idle", "run", "attack", "skill", "skill2", "hit", "dead", "ult")
 VIKTOR_MIN_BOTTOM_SAFE = 7
 VIKTOR_MAX_CLEAN_CAST_WIDTH = 43
-VIKTOR_LASER_MIN_APPLY = 60
-VIKTOR_AFTERSHOCK_MIN_APPLY = 72
+VIKTOR_LASER_MIN_APPLY = 120
+VIKTOR_AFTERSHOCK_MIN_APPLY = 132
+VIKTOR_GRAVITY_MIN_TICKS = (300, 360)
+VIKTOR_LASER_MIN_ANIM_SECONDS = 2.0
+VIKTOR_AFTERSHOCK_MIN_ANIM_SECONDS = 2.0
+VIKTOR_GRAVITY_MIN_ANIM_SECONDS = 5.0
 VIKTOR_STORM_MIN_TICKS = (420, 480)
 VIKTOR_STORM_MIN_ANIM_SECONDS = 6.0
 VIKTOR_EFFECT_REFS = {
@@ -4715,6 +4719,11 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         ]
         if len(field_pulses) != 1:
             fail(f"Viktor gravity anchor {index} must own exactly one ground RangePeriodProjectile pulse")
+        if int(field_pulses[0].get("tick", 0)) < VIKTOR_GRAVITY_MIN_TICKS[index - 1]:
+            fail(
+                f"Viktor Gravity Field anchor {index} must persist on terrain for at least "
+                f"{VIKTOR_GRAVITY_MIN_TICKS[index - 1]} ticks"
+            )
         if field_pulses[0].get("first_delay", 0) < 15:
             fail("Viktor Gravity Field pulse must wait after the anchor's immediate slow so it does not double-pop on cast")
     storm_direct_names = {"test_mod_viktor_storm_impact", "test_mod_viktor_chaos_storm"}
@@ -4768,6 +4777,24 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         ROOT / "aseprite_resources" / "effects" / "viktor_gravity_field#anim.fanim",
         "gravity_field",
         "Viktor Gravity Field VFX",
+    )
+    assert_animation_total_duration(
+        ROOT / "aseprite_resources" / "effects" / "viktor_laser#anim.fanim",
+        "laser",
+        "Viktor Hextech Ray ground VFX",
+        min_seconds=VIKTOR_LASER_MIN_ANIM_SECONDS,
+    )
+    assert_animation_total_duration(
+        ROOT / "aseprite_resources" / "effects" / "viktor_laser_aftershock#anim.fanim",
+        "burn",
+        "Viktor Hextech Ray aftershock VFX",
+        min_seconds=VIKTOR_AFTERSHOCK_MIN_ANIM_SECONDS,
+    )
+    assert_animation_total_duration(
+        ROOT / "aseprite_resources" / "effects" / "viktor_gravity_field#anim.fanim",
+        "gravity_field",
+        "Viktor Gravity Field VFX",
+        min_seconds=VIKTOR_GRAVITY_MIN_ANIM_SECONDS,
     )
     assert_effect_frames_not_edge_cut(
         ROOT / "aseprite_resources" / "effects" / "viktor_chaos_storm#sheet.png",

@@ -117,8 +117,12 @@ VIKTOR_SOUND_EVENTS = (
     "test_mod_viktor_evolution",
     "test_mod_viktor_ult_voice",
 )
-VIKTOR_LASER_MIN_APPLY = 60
-VIKTOR_AFTERSHOCK_MIN_APPLY = 72
+VIKTOR_LASER_MIN_APPLY = 120
+VIKTOR_AFTERSHOCK_MIN_APPLY = 132
+VIKTOR_GRAVITY_MIN_TICKS = (300, 360)
+VIKTOR_LASER_MIN_ANIM_SECONDS = 2.0
+VIKTOR_AFTERSHOCK_MIN_ANIM_SECONDS = 2.0
+VIKTOR_GRAVITY_MIN_ANIM_SECONDS = 5.0
 VIKTOR_STORM_MIN_TICKS = (420, 480)
 VIKTOR_STORM_MIN_ANIM_SECONDS = 6.0
 REQUIRED_DESCRIPTION_KEYS = ("name", "attack", "skill", "skill2", "ult")
@@ -465,8 +469,20 @@ def check_viktor_ground_vfx(path: Path, champion: object) -> None:
             fail(f"runtime Viktor gravity anchor {index} must spawn Gravity Field at the target point")
         if any(item.get("type") == "ViewEffect" and item.get("name") == "test_mod_viktor_gravity_field" and item.get("is_follow") is True for item in end_effects if isinstance(item, dict)):
             fail(f"runtime Viktor gravity anchor {index} must keep Gravity Field on the terrain, not attached to the caster")
-        if not any(item.get("type") == "RangePeriodProjectile" and item.get("name") == "test_mod_viktor_gravity_field" for item in end_effects if isinstance(item, dict)):
+        field_pulses = [
+            item
+            for item in end_effects
+            if isinstance(item, dict)
+            and item.get("type") == "RangePeriodProjectile"
+            and item.get("name") == "test_mod_viktor_gravity_field"
+        ]
+        if len(field_pulses) != 1:
             fail(f"runtime Viktor gravity anchor {index} must own the ground pulse")
+        if int(field_pulses[0].get("tick", 0)) < VIKTOR_GRAVITY_MIN_TICKS[index - 1]:
+            fail(
+                f"runtime Viktor Gravity Field anchor {index} must persist for at least "
+                f"{VIKTOR_GRAVITY_MIN_TICKS[index - 1]} ticks"
+            )
 
     ult = champion.get("ult", {})
     ult_effect = ult.get("effect", {}) if isinstance(ult, dict) else {}
@@ -510,6 +526,18 @@ def check_viktor_ground_vfx(path: Path, champion: object) -> None:
         if storm_pulses[0].get("tick", 0) < VIKTOR_STORM_MIN_TICKS[index - 1]:
             fail(f"runtime Viktor Chaos Storm anchor {index} must persist for at least {VIKTOR_STORM_MIN_TICKS[index - 1]} ticks")
     runtime_root = path.parent.parent
+    for anim_name, tag, label, min_seconds in (
+        ("viktor_laser", "laser", "runtime Viktor Hextech Ray ground VFX", VIKTOR_LASER_MIN_ANIM_SECONDS),
+        ("viktor_laser_aftershock", "burn", "runtime Viktor Hextech Ray aftershock VFX", VIKTOR_AFTERSHOCK_MIN_ANIM_SECONDS),
+        ("viktor_gravity_field", "gravity_field", "runtime Viktor Gravity Field VFX", VIKTOR_GRAVITY_MIN_ANIM_SECONDS),
+    ):
+        anim_path = runtime_root / "aseprite_resources" / "effects" / f"{anim_name}#anim.fanim"
+        total_duration = animation_total_duration(anim_path, tag)
+        if total_duration < min_seconds:
+            fail(
+                f"{label} lasts only {total_duration:.2f}s; "
+                f"must last at least {min_seconds:.2f}s so the terrain skill remains readable"
+            )
     storm_anim = runtime_root / "aseprite_resources" / "effects" / "viktor_chaos_storm#anim.fanim"
     total_duration = animation_total_duration(storm_anim, "chaos_storm")
     if total_duration < VIKTOR_STORM_MIN_ANIM_SECONDS:
