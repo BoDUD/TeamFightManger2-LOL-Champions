@@ -4,6 +4,7 @@ import hashlib
 import json
 import os
 import sys
+import zlib
 from pathlib import Path
 
 
@@ -125,6 +126,14 @@ VIKTOR_AFTERSHOCK_MIN_ANIM_SECONDS = 2.0
 VIKTOR_GRAVITY_MIN_ANIM_SECONDS = 5.0
 VIKTOR_STORM_MIN_TICKS = (420, 480)
 VIKTOR_STORM_MIN_ANIM_SECONDS = 6.0
+AATROX_RUNTIME_FRAME_SIZE = (96, 72)
+AATROX_RUNTIME_RUN_FRAME_XS = (4224, 4320, 4416, 4512, 4608, 4704, 4800, 4896)
+AATROX_RUNTIME_ATTACK_FRAME_XS = (4992, 5088, 5184, 5280, 5376, 5472, 5568, 5664, 5760)
+AATROX_RUNTIME_MAX_BASIC_ATTACK_WIDTH = 62
+AATROX_RUNTIME_MIN_BASIC_ATTACK_UNIQUE_FRAMES = 7
+AATROX_RUNTIME_MIN_BASIC_ATTACK_SWING_FRAMES = 2
+AATROX_RUNTIME_MIN_BASIC_ATTACK_SWING_WIDTH = 58
+AATROX_RUNTIME_MIN_BASIC_ATTACK_WIDTH_RANGE = 12
 REQUIRED_DESCRIPTION_KEYS = ("name", "attack", "skill", "skill2", "ult")
 REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS: dict[str, dict[str, tuple[str, ...]]] = {
     f"{MOD_ID}_aatrox": {
@@ -248,6 +257,143 @@ def animation_total_duration(path: Path, tag: str) -> float:
             fail(f"{path} {tag} frame {index} missing numeric duration")
         total += float(duration)
     return total
+
+
+def load_rgba_alpha(path: Path) -> tuple[int, int, bytes]:
+    raw = path.read_bytes()
+    if not raw.startswith(b"\x89PNG\r\n\x1a\n"):
+        fail(f"{path} is not a PNG file")
+
+    offset = 8
+    width = height = bit_depth = color_type = interlace = None
+    idat = bytearray()
+    while offset < len(raw):
+        length = int.from_bytes(raw[offset : offset + 4], "big")
+        chunk_type = raw[offset + 4 : offset + 8]
+        chunk_data = raw[offset + 8 : offset + 8 + length]
+        offset += 12 + length
+        if chunk_type == b"IHDR":
+            width = int.from_bytes(chunk_data[0:4], "big")
+            height = int.from_bytes(chunk_data[4:8], "big")
+            bit_depth = chunk_data[8]
+            color_type = chunk_data[9]
+            interlace = chunk_data[12]
+        elif chunk_type == b"IDAT":
+            idat.extend(chunk_data)
+        elif chunk_type == b"IEND":
+            break
+
+    if width is None or height is None:
+        fail(f"{path} missing PNG IHDR")
+    if bit_depth != 8 or color_type != 6 or interlace != 0:
+        fail(f"{path} must be non-interlaced 8-bit RGBA PNG for runtime alpha QA")
+
+    data = zlib.decompress(bytes(idat))
+    bpp = 4
+    stride = width * bpp
+    rows: list[bytearray] = []
+    pos = 0
+    for row_index in range(height):
+        filter_type = data[pos]
+        pos += 1
+        row = bytearray(data[pos : pos + stride])
+        pos += stride
+        prev = rows[row_index - 1] if row_index else bytearray(stride)
+        for i in range(stride):
+            left = row[i - bpp] if i >= bpp else 0
+            up = prev[i]
+            up_left = prev[i - bpp] if i >= bpp else 0
+            if filter_type == 0:
+                recon = row[i]
+            elif filter_type == 1:
+                recon = row[i] + left
+            elif filter_type == 2:
+                recon = row[i] + up
+            elif filter_type == 3:
+                recon = row[i] + ((left + up) // 2)
+            elif filter_type == 4:
+                p = left + up - up_left
+                pa = abs(p - left)
+                pb = abs(p - up)
+                pc = abs(p - up_left)
+                predictor = left if pa <= pb and pa <= pc else up if pb <= pc else up_left
+                recon = row[i] + predictor
+            else:
+                fail(f"{path} has unsupported PNG row filter {filter_type}")
+            row[i] = recon & 0xFF
+        rows.append(row)
+
+    alpha = bytearray(width * height)
+    for y, row in enumerate(rows):
+        for x in range(width):
+            alpha[y * width + x] = row[x * bpp + 3]
+    return width, height, bytes(alpha)
+
+
+def alpha_bbox_in_rect(alpha: bytes, image_width: int, rect: tuple[int, int, int, int]) -> tuple[int, int, int, int] | None:
+    x0, y0, w, h = rect
+    min_x = min_y = 10**9
+    max_x = max_y = -1
+    for y in range(y0, y0 + h):
+        row_start = y * image_width
+        for x in range(x0, x0 + w):
+            if alpha[row_start + x] != 0:
+                local_x = x - x0
+                local_y = y - y0
+                min_x = min(min_x, local_x)
+                min_y = min(min_y, local_y)
+                max_x = max(max_x, local_x + 1)
+                max_y = max(max_y, local_y + 1)
+    if max_x < 0:
+        return None
+    return min_x, min_y, max_x, max_y
+
+
+def alpha_frame_hash(alpha: bytes, image_width: int, rect: tuple[int, int, int, int]) -> str:
+    x0, y0, w, h = rect
+    digest = hashlib.sha1()
+    for y in range(y0, y0 + h):
+        start = y * image_width + x0
+        digest.update(alpha[start : start + w])
+    return digest.hexdigest()
+
+
+def check_aatrox_basic_attack_motion(runtime_root: Path) -> None:
+    sheet_path = runtime_root / "aseprite_resources" / "champions" / "aatrox#sheet.png"
+    sheet_width, _sheet_height, alpha = load_rgba_alpha(sheet_path)
+    frame_w, frame_h = AATROX_RUNTIME_FRAME_SIZE
+    run_hashes = {
+        alpha_frame_hash(alpha, sheet_width, (x, 0, frame_w, frame_h))
+        for x in AATROX_RUNTIME_RUN_FRAME_XS
+    }
+    attack_hashes: list[str] = []
+    attack_widths: list[int] = []
+    reused_run_frames: list[int] = []
+    for index, x in enumerate(AATROX_RUNTIME_ATTACK_FRAME_XS, start=1):
+        rect = (x, 0, frame_w, frame_h)
+        bbox = alpha_bbox_in_rect(alpha, sheet_width, rect)
+        if bbox is None:
+            fail(f"runtime Aatrox attack frame {index} is blank")
+        width = bbox[2] - bbox[0]
+        if width > AATROX_RUNTIME_MAX_BASIC_ATTACK_WIDTH:
+            fail(
+                f"runtime Aatrox attack frame {index} is {width}px wide; "
+                "basic attack must stay smaller than Q-sized cleaves"
+            )
+        frame_hash = alpha_frame_hash(alpha, sheet_width, rect)
+        attack_hashes.append(frame_hash)
+        attack_widths.append(width)
+        if frame_hash in run_hashes:
+            reused_run_frames.append(index)
+    if reused_run_frames:
+        fail(f"runtime Aatrox basic attack reuses run-frame silhouettes: {reused_run_frames}")
+    if len(set(attack_hashes)) < AATROX_RUNTIME_MIN_BASIC_ATTACK_UNIQUE_FRAMES:
+        fail("runtime Aatrox basic attack must have at least seven distinct actor silhouettes")
+    wide_frames = sum(width >= AATROX_RUNTIME_MIN_BASIC_ATTACK_SWING_WIDTH for width in attack_widths)
+    if wide_frames < AATROX_RUNTIME_MIN_BASIC_ATTACK_SWING_FRAMES:
+        fail("runtime Aatrox basic attack must show at least two readable greatsword swing frames")
+    if max(attack_widths) - min(attack_widths) < AATROX_RUNTIME_MIN_BASIC_ATTACK_WIDTH_RANGE:
+        fail("runtime Aatrox basic attack must include visible windup-to-swing width change")
 
 
 def assert_no_negative_speed_fields(node: object, label: str) -> None:
@@ -1093,6 +1239,8 @@ def check_runtime_copy(game_root: Path) -> None:
             fail(f"runtime mod is missing {runtime_file}")
         if sha256(repo_file) != sha256(runtime_file):
             fail(f"runtime mod file is stale or differs from repo: {runtime_file}")
+
+    check_aatrox_basic_attack_motion(runtime_root)
 
     for relative in (
         "aseprite_resources/effects/jinx_get_excited_aura#sheet.png",
