@@ -3192,6 +3192,57 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         fail("Darius R must scale/branch on Hemorrhage stacks and Noxian Might")
     if "RushMoveToBack" in ult_strings:
         fail("Darius R must be a stable targeted guillotine chop, not a RushMoveToBack actor warp")
+    caster_following_ult_chops = [
+        node
+        for node in find_effect_nodes(darius.get("ult", {}), "CasterViewEffect")
+        if node.get("name") == "test_mod_darius_noxian_guillotine_cast_vfx"
+    ]
+    if caster_following_ult_chops:
+        fail("Darius R chop VFX must play on the target point, not as a caster-following effect that can hide behind Darius")
+    ult_target_chop_branches: list[list[dict[str, Any]]] = []
+    for node in find_effect_nodes(darius.get("ult", {}), "Combine"):
+        effects = node.get("effects")
+        if not isinstance(effects, list):
+            continue
+        has_r_cast_sound = any(
+            isinstance(item, dict)
+            and item.get("type") == "Sfx"
+            and item.get("name") == "test_mod_darius_r_cast"
+            for item in effects
+        )
+        has_direct_damage_combine = any(
+            isinstance(item, dict)
+            and item.get("type") == "Combine"
+            and any(isinstance(child, dict) and child.get("type") == "FixedAttack" for child in item.get("effects", []))
+            for item in effects
+        )
+        if has_r_cast_sound and has_direct_damage_combine:
+            ult_target_chop_branches.append([item for item in effects if isinstance(item, dict)])
+    if len(ult_target_chop_branches) != 7:
+        fail(f"Darius R must keep seven Hemorrhage/Noxian Might damage branches with target chop VFX, got {len(ult_target_chop_branches)}")
+    for branch_index, effects in enumerate(ult_target_chop_branches, start=1):
+        chop_index = next(
+            (
+                index
+                for index, item in enumerate(effects)
+                if item.get("type") == "ViewEffect"
+                and item.get("name") == "test_mod_darius_noxian_guillotine_cast_vfx"
+            ),
+            None,
+        )
+        damage_index = next(
+            (
+                index
+                for index, item in enumerate(effects)
+                if item.get("type") == "Combine"
+                and any(isinstance(child, dict) and child.get("type") == "FixedAttack" for child in item.get("effects", []))
+            ),
+            None,
+        )
+        if chop_index is None:
+            fail(f"Darius R damage branch {branch_index} must directly spawn the Noxian Guillotine target chop ViewEffect")
+        if damage_index is None or chop_index > damage_index:
+            fail(f"Darius R damage branch {branch_index} must show the guillotine chop before damage resolves")
 
     projectile_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in darius.get("view_projectiles", [])}
     for name, expected in DARIUS_EFFECT_REFS.items():

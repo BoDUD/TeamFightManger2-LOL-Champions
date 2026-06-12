@@ -235,6 +235,67 @@ def assert_no_negative_speed_fields(node: object, label: str) -> None:
             fail(f"{label} has invalid negative speed {speed!r} on {effect_type}; TFM2 expects unsigned movement speeds")
 
 
+def check_darius_ult_visibility(path: Path, champion: object) -> None:
+    if path.name != "darius.data_champion":
+        return
+    if not isinstance(champion, dict):
+        fail(f"{path} must contain a JSON object")
+    caster_following_ult_chops = [
+        node
+        for node in iter_mapping_nodes(champion.get("ult", {}))
+        if node.get("type") == "CasterViewEffect"
+        and node.get("name") == "test_mod_darius_noxian_guillotine_cast_vfx"
+    ]
+    if caster_following_ult_chops:
+        fail("runtime Darius R chop VFX must be target-anchored, not caster-following")
+    ult_target_chop_branches: list[list[dict[str, object]]] = []
+    for node in iter_mapping_nodes(champion.get("ult", {})):
+        if node.get("type") != "Combine":
+            continue
+        effects = node.get("effects")
+        if not isinstance(effects, list):
+            continue
+        has_r_cast_sound = any(
+            isinstance(item, dict)
+            and item.get("type") == "Sfx"
+            and item.get("name") == "test_mod_darius_r_cast"
+            for item in effects
+        )
+        has_direct_damage_combine = any(
+            isinstance(item, dict)
+            and item.get("type") == "Combine"
+            and any(isinstance(child, dict) and child.get("type") == "FixedAttack" for child in item.get("effects", []))
+            for item in effects
+        )
+        if has_r_cast_sound and has_direct_damage_combine:
+            ult_target_chop_branches.append([item for item in effects if isinstance(item, dict)])
+    if len(ult_target_chop_branches) != 7:
+        fail(f"runtime Darius R must keep seven target-visible guillotine branches, got {len(ult_target_chop_branches)}")
+    for branch_index, effects in enumerate(ult_target_chop_branches, start=1):
+        chop_index = next(
+            (
+                index
+                for index, item in enumerate(effects)
+                if item.get("type") == "ViewEffect"
+                and item.get("name") == "test_mod_darius_noxian_guillotine_cast_vfx"
+            ),
+            None,
+        )
+        damage_index = next(
+            (
+                index
+                for index, item in enumerate(effects)
+                if item.get("type") == "Combine"
+                and any(isinstance(child, dict) and child.get("type") == "FixedAttack" for child in item.get("effects", []))
+            ),
+            None,
+        )
+        if chop_index is None:
+            fail(f"runtime Darius R branch {branch_index} must directly spawn the target chop ViewEffect")
+        if damage_index is None or chop_index > damage_index:
+            fail(f"runtime Darius R branch {branch_index} must show the chop before damage resolves")
+
+
 def check_viktor_ground_vfx(path: Path, champion: object) -> None:
     if path.name != "viktor.data_champion":
         return
@@ -797,6 +858,7 @@ def check_runtime_copy(game_root: Path) -> None:
         data = load_json(data_path)
         check_view_effect_types(data_path, data)
         assert_no_negative_speed_fields(data, str(data_path))
+        check_darius_ult_visibility(data_path, data)
         check_viktor_ground_vfx(data_path, data)
         check_thresh_ult_visibility(data_path, data)
         check_fiddlesticks_ult_visibility(data_path, data)
