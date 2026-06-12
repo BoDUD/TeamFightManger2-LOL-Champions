@@ -3,8 +3,8 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.13.39",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version fixes Aatrox compact HUD and scoreboard portrait framing so the horns and red chest core stay centered, while CI and runtime checks prevent the face crop from drifting back to the lower-body/sword offset.",
+  "version": "0.13.40",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version makes Viktor's Chaos Storm persist visibly on the terrain for a long LoL-like window, while CI and runtime checks verify both the gameplay pulse duration and the generated ground VFX animation length.",
   "last_updated": "2026-06-13",
   "dependencies": [
     {
