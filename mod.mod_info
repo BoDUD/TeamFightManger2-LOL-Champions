@@ -3,8 +3,8 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.13.34",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version stops Thresh Dark Passage from drawing an actor-attached lantern buff, replacing it with a non-following ground ViewEffect and CI/runtime checks that prevent second-body skill afterimages.",
+  "version": "0.13.35",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version rebuilds Darius Noxian Guillotine with held-axe actor chop frames, a target-point execution VFX, longer impact timing, and CI/runtime checks that prevent the R cast from regressing into a small follow-mode ground burst.",
   "last_updated": "2026-06-12",
   "dependencies": [
     {
