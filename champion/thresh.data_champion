@@ -548,7 +548,7 @@
             {
               "type": "RangePeriodProjectile",
               "name": "test_mod_thresh_box_field",
-              "tick": 300,
+              "tick": 420,
               "period": 20,
               "first_delay": 0,
               "shape": {
