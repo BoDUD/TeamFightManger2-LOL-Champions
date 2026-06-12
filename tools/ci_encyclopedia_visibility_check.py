@@ -643,6 +643,7 @@ FIDDLESTICKS_TARGET_VIEW_EFFECT_REFS = {
 COMPACT_DISPLAY_LIMITS = {
     "darius": {"max_width": 42, "max_height": 40, "min_bottom_safe": 12},
     "fiddlesticks": {"max_width": 46, "max_height": 48, "min_bottom_safe": 16},
+    "jhin": {"max_width": 64, "max_height": 50, "min_bottom_safe": 9},
     "thresh": {"max_width": 42, "max_height": 40, "min_bottom_safe": 12},
     "viktor": {"max_width": 39, "max_height": 42, "min_bottom_safe": 11},
 }
@@ -650,6 +651,7 @@ SIDE_CARD_STANDING_FACE_OFFSETS = {
     "aatrox": {"x": 2, "y": -16},
     "darius": {"x": 0, "y": -12},
     "fiddlesticks": {"x": 0, "y": -14},
+    "jhin": {"x": 1, "y": -16},
     "kayn": {"x": 4, "y": -18},
     "thresh": {"x": 0, "y": -12},
     "viktor": {"x": 0, "y": -28},
@@ -658,6 +660,7 @@ SIDE_CARD_STANDING_CENTER_OFFSETS = {
     "aatrox": {"x": 4, "y": -12},
     "darius": {"x": 0, "y": -12},
     "fiddlesticks": {"x": 0, "y": -14},
+    "jhin": {"x": 0, "y": -14},
     "kayn": {"x": 0, "y": -12},
     "thresh": {"x": 0, "y": -12},
     "viktor": {"x": 0, "y": -12},
@@ -4761,6 +4764,196 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         fail("Viktor ult voice source must document the official Viktor.en_US.wad.client")
 
 
+def check_jhin_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
+    jhin_id = f"{MOD_ID}_jhin"
+    view = entries.get(jhin_id)
+    if not isinstance(view, dict):
+        fail(f"style/champion_view.champion_view missing entries.{jhin_id}")
+    if view.get("face", {}).get("x") != 1 or view.get("face", {}).get("y") != -16:
+        fail(f"style entry {jhin_id}.face must keep Jhin compact portrait at x=1,y=-16")
+    if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -14:
+        fail(f"style entry {jhin_id}.center must keep Jhin standing card at x=0,y=-14")
+
+    qa_path = ROOT / "qa" / "jhin_imagegen_vgu.md"
+    require_file(qa_path)
+    qa_text = qa_path.read_text(encoding="utf-8")
+    for required_note in (
+        "image-generated actor source",
+        "image-generated VFX source",
+        "96f39fbd5ea7852334bd6901d6eb9d4fb42643aaaa5df69608d03cda90db60b5",
+        "c7a1a2b1f164a1b739600e28e214570548cbed58ada5735d1d721300442228c4",
+        "source/process PNGs are local-only",
+    ):
+        if required_note not in qa_text:
+            fail(f"qa/jhin_imagegen_vgu.md must document Jhin image-gen provenance note {required_note!r}")
+
+    for active_png in (
+        ROOT / "aseprite_resources" / "champions" / "jhin#sheet.png",
+        ROOT / "icons" / "jhin_skill.png",
+        ROOT / "icons" / "jhin_skill2.png",
+        ROOT / "icons" / "jhin_ult.png",
+    ):
+        require_file(active_png)
+        require_no_green_residue(active_png)
+
+    fanim = load_json(ROOT / "aseprite_resources" / "champions" / "jhin#anim.fanim")
+    anims = fanim.get("anims") if isinstance(fanim, dict) else None
+    if not isinstance(anims, dict):
+        fail("aseprite_resources/champions/jhin#anim.fanim must contain anims")
+    expected_counts = {
+        "idle": 7,
+        "run": 10,
+        "attack": 15,
+        "skill": 5,
+        "skill2": 3,
+        "ult": 3,
+        "hit": 1,
+        "dead": 1,
+    }
+    for action, expected_count in expected_counts.items():
+        frames = anims.get(action, {}).get("frames") if isinstance(anims.get(action), dict) else None
+        if not isinstance(frames, list) or len(frames) != expected_count:
+            fail(f"Jhin {action} must preserve {expected_count} native action frames")
+        for index, frame in enumerate(frames):
+            data = frame.get("data") if isinstance(frame, dict) else None
+            if not isinstance(data, dict):
+                fail(f"Jhin {action} frame {index} missing frame data")
+            if (float(data.get("w", 0)), float(data.get("h", 0))) != (64.0, 64.0):
+                fail(f"Jhin {action} frame {index} must stay inside the 64x64 native actor cell")
+
+    assert_compact_idle_bottom_safety("jhin", min_bottom_safe=10)
+    assert_compact_display_frame_size(
+        "jhin",
+        actions=("idle", "run", "attack", "skill", "skill2", "ult", "hit", "dead"),
+    )
+
+    sheet_width, _sheet_height, sheet_alpha = load_rgba_alpha(ROOT / "aseprite_resources" / "champions" / "jhin#sheet.png")
+    action_hashes: dict[str, list[str]] = {}
+    action_bboxes: dict[str, list[tuple[int, int, int, int]]] = {}
+    for action in ("idle", "run", "attack", "skill", "skill2", "ult"):
+        action_hashes[action] = []
+        action_bboxes[action] = []
+        for frame in anims[action]["frames"]:
+            data = frame["data"]
+            rect = (
+                int(round(float(data.get("x", -1)))),
+                int(round(float(data.get("y", -1)))),
+                int(round(float(data.get("w", 0)))),
+                int(round(float(data.get("h", 0)))),
+            )
+            bbox = alpha_bbox_in_rect(sheet_alpha, sheet_width, rect)
+            if bbox is None:
+                fail(f"Jhin {action} contains a blank body frame")
+            action_bboxes[action].append(bbox)
+            action_hashes[action].append(alpha_frame_hash(sheet_alpha, sheet_width, rect))
+    if len(set(action_hashes["run"])) < 5:
+        fail("Jhin run must use several generated stride poses, not a two-frame jitter loop")
+    if len(set(action_hashes["attack"])) < 6:
+        fail("Jhin attack must show real Whisper aiming/firing body motion")
+    if len(set(action_hashes["skill"])) < 4 or len(set(action_hashes["ult"])) < 3:
+        fail("Jhin skill and ult actions must use generated body poses, not repeated idle frames")
+    run_heights = [bbox[3] - bbox[1] for bbox in action_bboxes["run"]]
+    if max(run_heights) - min(run_heights) > 8:
+        fail("Jhin run height range is unstable; keep the image-generated model in one scale class")
+
+    jhin = load_json(ROOT / "champion" / "jhin.data_champion")
+    strings = set(walk_strings(jhin))
+    for forbidden in ("asset/base/sprite/arrow", "test_mod_jhin_attack"):
+        if forbidden in strings:
+            fail(f"champion/jhin.data_champion must not use old arrow/placeholder projectile token {forbidden}")
+    for required in (
+        "test_mod_jhin_attack_shot",
+        "test_mod_jhin_attack_shot_4",
+        "test_mod_jhin_bullet_hit_small",
+        "test_mod_jhin_fourth_shot_bloom",
+        "test_mod_jhin_lotus_mark_apply",
+        "test_mod_jhin_lotus_trap_line",
+        "test_mod_jhin_lotus_trap_bloom",
+        "test_mod_jhin_deadly_flourish_root_bloom",
+        "test_mod_jhin_curtain_call_stage",
+        "test_mod_jhin_curtain_call_hit_bloom",
+        "test_mod_jhin_finale_bloom",
+        "test_mod_jhin_flourish_mark_ready",
+        "test_mod_jhin_fourth_shot_slow",
+        "CasterViewEffect",
+        "ViewEffect",
+    ):
+        if required not in strings:
+            fail(f"champion/jhin.data_champion must include Jhin image-generated mechanic/VFX token {required}")
+
+    projectile_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in jhin.get("view_projectiles", [])}
+    expected_projectiles = {
+        "test_mod_jhin_attack_shot": ("asset/bo_league_champions/aseprite_resources/effects/jhin_attack_shot", "projectile"),
+        "test_mod_jhin_attack_shot_4": ("asset/bo_league_champions/aseprite_resources/effects/jhin_attack_shot_4", "projectile"),
+        "test_mod_jhin_grenade": ("asset/bo_league_champions/aseprite_resources/effects/jhin_grenade", "projectile"),
+        "test_mod_jhin_deadly_flourish": ("asset/bo_league_champions/aseprite_resources/effects/jhin_deadly_flourish", "line"),
+        "test_mod_jhin_lotus_trap_line": ("asset/bo_league_champions/aseprite_resources/effects/jhin_lotus_trap_line", "line"),
+        "test_mod_jhin_curtain_call_shot": ("asset/bo_league_champions/aseprite_resources/effects/jhin_curtain_call_shot", "projectile"),
+        "test_mod_jhin_curtain_call_shot_4": ("asset/bo_league_champions/aseprite_resources/effects/jhin_curtain_call_shot_4", "projectile"),
+    }
+    for name, expected in expected_projectiles.items():
+        if projectile_refs.get(name) != expected:
+            fail(f"champion/jhin.data_champion projectile {name} must reference generated asset {expected}")
+
+    buff_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in jhin.get("view_buffs", [])}
+    for name, expected in {
+        "test_mod_jhin_aa_3": ("asset/bo_league_champions/aseprite_resources/effects/jhin_fourth_shot_ready", "loop"),
+        "test_mod_jhin_reload_visual": ("asset/bo_league_champions/aseprite_resources/effects/jhin_reload_circle", "loop"),
+        "test_mod_jhin_flourish_mark_ready": ("asset/bo_league_champions/aseprite_resources/effects/jhin_lotus_mark_apply", "mark"),
+        "test_mod_jhin_curtain_call_channel": ("asset/bo_league_champions/aseprite_resources/effects/jhin_curtain_call_stage", "stage"),
+    }.items():
+        if buff_refs.get(name) != expected:
+            fail(f"champion/jhin.data_champion buff {name} must reference generated asset {expected}")
+
+    view_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in jhin.get("view_effects", [])}
+    for name, expected in {
+        "test_mod_jhin_bullet_hit_small": ("asset/bo_league_champions/aseprite_resources/effects/jhin_bullet_hit_small", "hit"),
+        "test_mod_jhin_fourth_shot_bloom": ("asset/bo_league_champions/aseprite_resources/effects/jhin_fourth_shot_bloom", "bloom"),
+        "test_mod_jhin_lotus_mark_apply": ("asset/bo_league_champions/aseprite_resources/effects/jhin_lotus_mark_apply", "mark"),
+        "test_mod_jhin_lotus_trap_bloom": ("asset/bo_league_champions/aseprite_resources/effects/jhin_lotus_trap_bloom", "bloom"),
+        "test_mod_jhin_deadly_flourish_root_bloom": ("asset/bo_league_champions/aseprite_resources/effects/jhin_deadly_flourish_root_bloom", "root"),
+        "test_mod_jhin_curtain_call_stage": ("asset/bo_league_champions/aseprite_resources/effects/jhin_curtain_call_stage", "stage"),
+        "test_mod_jhin_curtain_call_hit_bloom": ("asset/bo_league_champions/aseprite_resources/effects/jhin_curtain_call_hit_bloom", "hit"),
+        "test_mod_jhin_finale_bloom": ("asset/bo_league_champions/aseprite_resources/effects/jhin_finale_bloom", "finale"),
+    }.items():
+        if view_refs.get(name) != expected:
+            fail(f"champion/jhin.data_champion view_effect {name} must reference generated asset {expected}")
+
+    for sheet_name, tag, label, min_visible, min_color_bins, min_height, min_fill_ratio in (
+        ("jhin_attack_shot", "projectile", "Jhin Whisper bullet", 350, 140, 12, 0.22),
+        ("jhin_attack_shot_4", "projectile", "Jhin fourth-shot bullet", 400, 180, 14, 0.22),
+        ("jhin_deadly_flourish", "line", "Jhin Deadly Flourish generated sniper beam", 900, 320, 22, 0.18),
+        ("jhin_lotus_trap_line", "line", "Jhin Captive Audience generated trap line", 650, 260, 18, 0.16),
+        ("jhin_curtain_call_stage", "stage", "Jhin Curtain Call stage", 4000, 700, 72, 0.18),
+        ("jhin_finale_bloom", "finale", "Jhin Curtain Call finale bloom", 2000, 650, 60, 0.20),
+    ):
+        sheet = ROOT / "aseprite_resources" / "effects" / f"{sheet_name}#sheet.png"
+        fanim_path = ROOT / "aseprite_resources" / "effects" / f"{sheet_name}#anim.fanim"
+        require_file(sheet)
+        require_file(fanim_path)
+        require_no_green_residue(sheet)
+        assert_generated_vfx_volume(
+            sheet,
+            fanim_path,
+            tag,
+            label,
+            min_visible=min_visible,
+            min_color_bins=min_color_bins,
+            min_height=min_height,
+            min_fill_ratio=min_fill_ratio,
+        )
+
+    for locale in ("zh-hans", "zh-hant", "en"):
+        row = text.get(locale, {}).get("description", {}).get(jhin_id)
+        if not isinstance(row, dict):
+            fail(f"text/champion.i18n locale {locale} missing Jhin row")
+        surface = json.dumps(row, ensure_ascii=False)
+        terms = ("Jhin", "Curtain Call") if locale == "en" else ("烬" if locale == "zh-hans" else "燼", "完美")
+        for term in terms:
+            if term not in surface:
+                fail(f"text/champion.i18n locale {locale} Jhin description must include {term!r}")
+
+
 def check_champion_visibility() -> None:
     text = load_json(ROOT / "text" / "champion.i18n")
     style = load_json(ROOT / "style" / "champion_view.champion_view")
@@ -4858,6 +5051,7 @@ def check_champion_visibility() -> None:
     check_kayn_rework_contract(text, entries)
     check_yasuo_contract(text, entries)
     check_jinx_contract(text, entries)
+    check_jhin_contract(text, entries)
     check_fiddlesticks_contract(text, entries)
     check_thresh_contract(text, entries)
     check_viktor_contract(text, entries)

@@ -3,8 +3,8 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.13.36",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version moves Thresh The Box onto a target-ground anchor, raises its terrain VFX visibility, and adds CI/runtime checks that prevent R from regressing into an AroundCaster self-centered field.",
+  "version": "0.13.37",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version rebuilds Jhin with image-generated Virtuoso actor art, generated lotus/curtain/bullet VFX, refreshed skill icons, synchronized skill text, and CI checks that prevent his model or effects from regressing into cropped portraits or code-drawn line art.",
   "last_updated": "2026-06-12",
   "dependencies": [
     {
