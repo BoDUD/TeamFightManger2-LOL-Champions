@@ -2598,8 +2598,8 @@
       "name": "test_mod_darius_noxian_guillotine_cast_vfx",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/darius_noxian_guillotine",
       "tag": "cast",
-      "z": 2,
-      "is_follow": true
+      "z": 4,
+      "is_follow": false
     },
     {
       "type": "Animation",

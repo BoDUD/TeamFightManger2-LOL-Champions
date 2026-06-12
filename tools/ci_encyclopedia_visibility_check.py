@@ -3063,6 +3063,12 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
                 f"Darius ult frame {index} regressed to the retired horizontal/reverse chop pose; "
                 "R must wind up into a forward clockwise guillotine strike"
             )
+    full_width_ult_swings = sum(1 for bbox in action_bboxes["ult"] if bbox[2] - bbox[0] >= 55)
+    if full_width_ult_swings < 3:
+        fail(
+            f"Darius ult actor has only {full_width_ult_swings} full-width axe-swing frames; "
+            "Noxian Guillotine must show Darius himself carrying the axe through the chop"
+        )
 
     guillotine_fanim = load_json(ROOT / "aseprite_resources" / "effects" / "darius_noxian_guillotine#anim.fanim")
     guillotine_frames = guillotine_fanim.get("anims", {}).get("cast", {}).get("frames")
@@ -3071,6 +3077,8 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
     guillotine_width, _guillotine_height, guillotine_rgba = load_rgba(
         ROOT / "aseprite_resources" / "effects" / "darius_noxian_guillotine#sheet.png"
     )
+    axe_blade_peak = 0
+    large_chop_frames = 0
     for index, frame in enumerate(guillotine_frames):
         data = frame.get("data") if isinstance(frame, dict) else None
         if not isinstance(data, dict):
@@ -3079,7 +3087,10 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         y0 = int(round(float(data.get("y", -1))))
         w = int(round(float(data.get("w", 0))))
         h = int(round(float(data.get("h", 0))))
-        visible = red_energy = body_tones = 0
+        visible = red_energy = skin_tones = axe_blade = 0
+        min_visible_x = w
+        min_visible_y = h
+        max_visible_x = max_visible_y = -1
         for y in range(y0, y0 + h):
             for x in range(x0, x0 + w):
                 pixel_index = (y * guillotine_width + x) * 4
@@ -3090,21 +3101,56 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
                 if not a:
                     continue
                 visible += 1
+                local_x = x - x0
+                local_y = y - y0
+                min_visible_x = min(min_visible_x, local_x)
+                min_visible_y = min(min_visible_y, local_y)
+                max_visible_x = max(max_visible_x, local_x)
+                max_visible_y = max(max_visible_y, local_y)
                 if r > 95 and r > g * 1.25 and r > b * 0.75:
                     red_energy += 1
                 skin_like = r > 120 and 65 < g < 170 and 35 < b < 130 and (r - g) < 90 and (g - b) > 5
-                steel_like = r > 70 and g > 70 and b > 75 and abs(r - g) < 35 and abs(g - b) < 45
-                if skin_like or steel_like:
-                    body_tones += 1
+                steel_blade_like = (
+                    r > 70
+                    and g > 70
+                    and b > 75
+                    and abs(r - g) < 35
+                    and abs(g - b) < 45
+                    and (a > 120 or (r + g + b) > 300)
+                )
+                if skin_like:
+                    skin_tones += 1
+                if steel_blade_like:
+                    axe_blade += 1
+        if visible:
+            visible_width = max_visible_x - min_visible_x + 1
+            visible_height = max_visible_y - min_visible_y + 1
+        else:
+            visible_width = visible_height = 0
+        if visible_width >= 82 and visible_height >= 76:
+            large_chop_frames += 1
+        axe_blade_peak = max(axe_blade_peak, axe_blade)
         if visible < 120:
             fail(f"Darius Noxian Guillotine cast frame {index} is too sparse to read as the R chop")
         if red_energy < max(120, visible // 5):
             fail(f"Darius Noxian Guillotine cast frame {index} must read as red Noxian slash energy")
-        if body_tones > 120:
+        if index < 5 and axe_blade < 240:
             fail(
-                f"Darius Noxian Guillotine cast frame {index} still contains {body_tones} skin/steel body pixels; "
+                f"Darius Noxian Guillotine cast frame {index} has only {axe_blade} axe-blade pixels; "
+                "R must show a clear Noxian axe execution, not only a red ground burst"
+            )
+        if visible_width < 82 or visible_height < 76:
+            fail(
+                f"Darius Noxian Guillotine cast frame {index} visible bbox {visible_width}x{visible_height} is too small "
+                "to read as an in-battle execution chop"
+            )
+        if skin_tones > 90:
+            fail(
+                f"Darius Noxian Guillotine cast frame {index} still contains {skin_tones} skin/body pixels; "
                 "the caster VFX must be an effect-only slash so it cannot show a second reverse-facing Darius"
             )
+    if axe_blade_peak < 360 or large_chop_frames < 5:
+        fail("Darius R cast VFX must keep a large red axe execution silhouette across the cast sequence")
 
     run_frames = fanim.get("anims", {}).get("run", {}).get("frames")
     assert isinstance(run_frames, list)
@@ -3271,6 +3317,18 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
     for name, expected in DARIUS_VIEW_EFFECT_REFS.items():
         if view_effect_refs.get(name) != expected:
             fail(f"champion/darius.data_champion view_effect {name} must reference {expected}")
+    view_effects_by_name = {
+        item.get("name"): item
+        for item in darius.get("view_effects", [])
+        if isinstance(item, dict) and isinstance(item.get("name"), str)
+    }
+    guillotine_cast_vfx = view_effects_by_name.get("test_mod_darius_noxian_guillotine_cast_vfx")
+    if guillotine_cast_vfx is None:
+        fail("champion/darius.data_champion must define the target-point Darius R cast VFX")
+    if guillotine_cast_vfx.get("is_follow") is not False:
+        fail("Darius R cast VFX must be fixed on the target point so the execution chop remains visible")
+    if guillotine_cast_vfx.get("z", 0) < 4:
+        fail("Darius R cast VFX must render above units to show the axe execution clearly")
     buff_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in darius.get("view_buffs", [])}
     for name, expected in DARIUS_BUFF_REFS.items():
         if buff_refs.get(name) != expected:

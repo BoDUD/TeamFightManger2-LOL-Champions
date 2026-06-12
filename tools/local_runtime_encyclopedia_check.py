@@ -240,6 +240,18 @@ def check_darius_ult_visibility(path: Path, champion: object) -> None:
         return
     if not isinstance(champion, dict):
         fail(f"{path} must contain a JSON object")
+    view_effects_by_name = {
+        item.get("name"): item
+        for item in champion.get("view_effects", [])
+        if isinstance(item, dict) and isinstance(item.get("name"), str)
+    }
+    guillotine_cast_vfx = view_effects_by_name.get("test_mod_darius_noxian_guillotine_cast_vfx")
+    if guillotine_cast_vfx is None:
+        fail("runtime Darius R cast VFX must be defined")
+    if guillotine_cast_vfx.get("is_follow") is not False:
+        fail("runtime Darius R cast VFX must stay fixed on the target point instead of following a unit")
+    if guillotine_cast_vfx.get("z", 0) < 4:
+        fail("runtime Darius R cast VFX must render above units so the execution chop remains visible")
     caster_following_ult_chops = [
         node
         for node in iter_mapping_nodes(champion.get("ult", {}))
