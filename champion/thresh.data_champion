@@ -533,6 +533,10 @@
           ]
         },
         {
+          "type": "ViewEffect",
+          "name": "test_mod_thresh_box_field"
+        },
+        {
           "type": "RangePeriodProjectile",
           "name": "test_mod_thresh_box_field",
           "tick": 300,

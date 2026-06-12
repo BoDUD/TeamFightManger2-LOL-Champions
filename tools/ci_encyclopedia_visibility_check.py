@@ -3464,6 +3464,18 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         fail("Thresh R must expose a target range of at least 60000; range=0 makes AI skip The Box")
     if int(thresh_ult.get("cooltime", 999999)) > 3000:
         fail("Thresh R cooldown must stay at or below 3000 ticks so it appears during normal games")
+    ult_effect = thresh_ult.get("effect", {})
+    ult_direct_effects = ult_effect.get("effects") if isinstance(ult_effect, dict) else None
+    if not isinstance(ult_direct_effects, list):
+        fail("Thresh R must keep its top-level Combine effects list")
+    has_direct_box_field_vfx = any(
+        isinstance(node, dict)
+        and node.get("type") == "ViewEffect"
+        and node.get("name") == "test_mod_thresh_box_field"
+        for node in ult_direct_effects
+    )
+    if not has_direct_box_field_vfx:
+        fail("Thresh R must directly spawn test_mod_thresh_box_field so The Box is visible on the map even before enemies touch a wall")
     ult_range_effects = [
         node for node in find_effect_nodes(thresh_ult, "RangeEffect")
         if node.get("apply_type") == "AroundCaster" and node.get("target") == "EnemyWithoutTower"
