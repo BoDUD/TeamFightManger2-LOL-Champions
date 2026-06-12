@@ -109,6 +109,21 @@
                   {
                     "type": "Fear",
                     "tick": 75
+                  },
+                  {
+                    "type": "AddBuff",
+                    "buff_state": {
+                      "name": "test_mod_fiddlesticks_terrify_mark",
+                      "duration": {
+                        "Time": {
+                          "tick": 75
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ViewEffect",
+                    "name": "test_mod_fiddlesticks_fear_mark"
                   }
                 ]
               },
@@ -192,6 +207,10 @@
                     "attack_ratio": 0,
                     "ap_ratio": 8,
                     "heal_type": "Caster"
+                  },
+                  {
+                    "type": "ViewEffect",
+                    "name": "test_mod_fiddlesticks_drain_tether"
                   }
                 ]
               }
@@ -233,6 +252,10 @@
                         "attack_ratio": 0,
                         "ap_ratio": 8,
                         "heal_type": "Caster"
+                      },
+                      {
+                        "type": "ViewEffect",
+                        "name": "test_mod_fiddlesticks_drain_tether"
                       }
                     ]
                   }
@@ -276,6 +299,10 @@
                         "attack_ratio": 0,
                         "ap_ratio": 8,
                         "heal_type": "Caster"
+                      },
+                      {
+                        "type": "ViewEffect",
+                        "name": "test_mod_fiddlesticks_drain_tether"
                       }
                     ]
                   }
@@ -319,6 +346,10 @@
                         "attack_ratio": 0,
                         "ap_ratio": 8,
                         "heal_type": "Caster"
+                      },
+                      {
+                        "type": "ViewEffect",
+                        "name": "test_mod_fiddlesticks_drain_tether"
                       }
                     ]
                   }
@@ -362,6 +393,10 @@
                         "attack_ratio": 0,
                         "ap_ratio": 8,
                         "heal_type": "Caster"
+                      },
+                      {
+                        "type": "ViewEffect",
+                        "name": "test_mod_fiddlesticks_drain_tether"
                       }
                     ]
                   }
@@ -405,6 +440,10 @@
                         "attack_ratio": 0,
                         "ap_ratio": 8,
                         "heal_type": "Caster"
+                      },
+                      {
+                        "type": "ViewEffect",
+                        "name": "test_mod_fiddlesticks_drain_tether"
                       }
                     ]
                   }
@@ -728,6 +767,14 @@
       "tag": "storm",
       "z": 1,
       "repeat": true
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_fiddlesticks_terrify_mark",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_fear_mark",
+      "tag": "fear",
+      "z": 3,
+      "repeat": true
     }
   ],
   "view_effects": [
@@ -746,6 +793,22 @@
       "tag": "storm",
       "z": 1,
       "is_follow": true
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_fiddlesticks_fear_mark",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_fear_mark",
+      "tag": "fear",
+      "z": 3,
+      "is_follow": false
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_fiddlesticks_drain_tether",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_drain_tether",
+      "tag": "tether",
+      "z": 2,
+      "is_follow": false
     }
   ],
   "skill_icon": {

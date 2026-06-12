@@ -3,8 +3,8 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.13.18",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version calms Fiddlesticks run timing so the rebuilt model walks without twitching while keeping compact body and foot-visibility CI coverage.",
+  "version": "0.13.19",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version strengthens Fiddlesticks Terrify and Bountiful Harvest with generated target fear marks, visible drain tethers, and CI checks for those Q/W effects.",
   "last_updated": "2026-06-12",
   "dependencies": [
     {
