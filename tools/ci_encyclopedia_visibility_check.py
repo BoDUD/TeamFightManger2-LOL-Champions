@@ -592,6 +592,10 @@ FIDDLESTICKS_EFFECT_REFS = {
         "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_fear_projectile",
         "projectile",
     ),
+    "test_mod_fiddlesticks_drain_beam": (
+        "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_drain_tether",
+        "tether",
+    ),
 }
 FIDDLESTICKS_BUFF_REFS = {
     "test_mod_fiddlesticks_drain_active": (
@@ -624,10 +628,6 @@ FIDDLESTICKS_TARGET_VIEW_EFFECT_REFS = {
         "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_fear_mark",
         "fear",
     ),
-    "test_mod_fiddlesticks_drain_tether": (
-        "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_drain_tether",
-        "tether",
-    ),
 }
 COMPACT_DISPLAY_LIMITS = {
     "darius": {"max_width": 42, "max_height": 40, "min_bottom_safe": 12},
@@ -637,7 +637,7 @@ COMPACT_DISPLAY_LIMITS = {
 SIDE_CARD_STANDING_FACE_OFFSETS = {
     "aatrox": {"x": 2, "y": -16},
     "darius": {"x": 2, "y": -12},
-    "fiddlesticks": {"x": 1, "y": -18},
+    "fiddlesticks": {"x": 0, "y": -10},
     "kayn": {"x": 4, "y": -18},
     "thresh": {"x": 0, "y": -12},
     "viktor": {"x": 0, "y": -28},
@@ -3586,8 +3586,8 @@ def check_fiddlesticks_contract(text: dict[str, Any], entries: dict[str, Any]) -
         view = entries.get(fiddlesticks_id)
         if not isinstance(view, dict):
             fail(f"style/champion_view.champion_view missing entries.{fiddlesticks_id}")
-        if view.get("face", {}).get("x") != 1 or view.get("face", {}).get("y") != -18:
-            fail(f"style entry {fiddlesticks_id}.face must keep Fiddlesticks card portrait at x=1,y=-18")
+        if view.get("face", {}).get("x") != 0 or view.get("face", {}).get("y") != -10:
+            fail(f"style entry {fiddlesticks_id}.face must keep Fiddlesticks compact portrait at x=0,y=-10")
         if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -14:
             fail(f"style entry {fiddlesticks_id}.center must keep Fiddlesticks standing display at x=0,y=-14")
 
@@ -3680,7 +3680,7 @@ def check_fiddlesticks_contract(text: dict[str, Any], entries: dict[str, Any]) -
         "test_mod_fiddlesticks_drain",
         "test_mod_fiddlesticks_crowstorm",
         "test_mod_fiddlesticks_fear_mark",
-        "test_mod_fiddlesticks_drain_tether",
+        "test_mod_fiddlesticks_drain_beam",
         "Fear",
         "Heal",
         "Teleport",
@@ -3690,11 +3690,15 @@ def check_fiddlesticks_contract(text: dict[str, Any], entries: dict[str, Any]) -
 
     projectile_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in fiddlesticks.get("view_projectiles", [])}
     projectile_repeat = {item.get("name"): item.get("repeat") for item in fiddlesticks.get("view_projectiles", [])}
+    projectile_z = {item.get("name"): item.get("z") for item in fiddlesticks.get("view_projectiles", [])}
     for name, expected in FIDDLESTICKS_EFFECT_REFS.items():
         if projectile_refs.get(name) != expected:
             fail(f"champion/fiddlesticks.data_champion projectile {name} must reference {expected}")
         if projectile_repeat.get(name) is not True:
             fail(f"champion/fiddlesticks.data_champion projectile {name} must repeat so generated projectile art persists during travel")
+        expected_z = 2 if name == "test_mod_fiddlesticks_drain_beam" else 1
+        if projectile_z.get(name) != expected_z:
+            fail(f"champion/fiddlesticks.data_champion projectile {name} must render at z={expected_z}")
 
     buff_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in fiddlesticks.get("view_buffs", [])}
     buff_z = {item.get("name"): item.get("z") for item in fiddlesticks.get("view_buffs", [])}
@@ -3740,9 +3744,24 @@ def check_fiddlesticks_contract(text: dict[str, Any], entries: dict[str, Any]) -
         if required not in skill_strings:
             fail(f"Fiddlesticks Terrify must apply visible target fear token {required}")
     skill2_strings = walk_strings(fiddlesticks.get("skill2", {}))
-    tether_count = skill2_strings.count("test_mod_fiddlesticks_drain_tether")
-    if tether_count < 6:
-        fail(f"Fiddlesticks Bountiful Harvest must show drain tether on every pulse, got {tether_count}")
+    if "test_mod_fiddlesticks_drain_tether" in skill2_strings:
+        fail("Fiddlesticks Bountiful Harvest must not attach a full tether ViewEffect to every target pulse")
+    drain_beams = [
+        node
+        for node in find_effect_nodes(fiddlesticks.get("skill2", {}), "LineRangeProjectile")
+        if node.get("name") == "test_mod_fiddlesticks_drain_beam"
+    ]
+    if len(drain_beams) != 1:
+        fail("Fiddlesticks Bountiful Harvest must create exactly one caster-to-target drain beam projectile")
+    drain_beam = drain_beams[0]
+    if drain_beam.get("applied_target") != "EnemyWithoutTower":
+        fail("Fiddlesticks drain beam must target enemies so the tether connects from Fiddlesticks to the drained unit")
+    if drain_beam.get("width") != 7000 or drain_beam.get("length") != 36000:
+        fail("Fiddlesticks drain beam must be a narrow single-target tether, not a wide AoE strip")
+    if drain_beam.get("apply") < 72 or drain_beam.get("delay") != 0:
+        fail("Fiddlesticks drain beam must persist through the full W channel")
+    if drain_beam.get("applied_effects") != []:
+        fail("Fiddlesticks drain beam must be visual-only; damage/heal pulses stay in the W channel logic")
     crowstorm_buffs = [
         node
         for node in find_effect_nodes(fiddlesticks.get("ult", {}), "AddCasterBuff")
@@ -3803,11 +3822,20 @@ def check_fiddlesticks_contract(text: dict[str, Any], entries: dict[str, Any]) -
         ROOT / "aseprite_resources" / "effects" / "fiddlesticks_drain_tether#anim.fanim",
         "tether",
         "Fiddlesticks Bountiful Harvest drain tether VFX",
-        min_visible=8000,
-        min_color_bins=420,
-        min_height=88,
-        min_fill_ratio=0.42,
-        max_width=192,
+        min_visible=1000,
+        min_color_bins=45,
+        min_height=18,
+        min_fill_ratio=0.20,
+        max_width=155,
+    )
+    assert_effect_frame_bbox_limits(
+        ROOT / "aseprite_resources" / "effects" / "fiddlesticks_drain_tether#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "fiddlesticks_drain_tether#anim.fanim",
+        "tether",
+        "Fiddlesticks Bountiful Harvest drain tether VFX",
+        max_width=155,
+        max_height=32,
+        min_margin=8,
     )
     assert_generated_vfx_volume(
         ROOT / "aseprite_resources" / "effects" / "fiddlesticks_crowstorm#sheet.png",
