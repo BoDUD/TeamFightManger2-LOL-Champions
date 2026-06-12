@@ -103,7 +103,7 @@
     "test_mod_fiddlesticks": {
       "face": {
         "x": 0,
-        "y": -14
+        "y": 0
       },
       "center": {
         "x": 0,
@@ -113,7 +113,7 @@
     "bo_league_champions_fiddlesticks": {
       "face": {
         "x": 0,
-        "y": -14
+        "y": 0
       },
       "center": {
         "x": 0,

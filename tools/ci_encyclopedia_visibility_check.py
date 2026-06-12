@@ -650,7 +650,7 @@ COMPACT_DISPLAY_LIMITS = {
 SIDE_CARD_STANDING_FACE_OFFSETS = {
     "aatrox": {"x": 2, "y": -16},
     "darius": {"x": 0, "y": -12},
-    "fiddlesticks": {"x": 0, "y": -14},
+    "fiddlesticks": {"x": 0, "y": 0},
     "jhin": {"x": 1, "y": -16},
     "kayn": {"x": 4, "y": -18},
     "thresh": {"x": 0, "y": -12},
@@ -1715,7 +1715,7 @@ def check_full_body_compact_portraits(entries: dict[str, Any]) -> None:
             if expected_side_face is not None:
                 if face.get("x") != expected_side_face["x"] or face.get("y") != expected_side_face["y"]:
                     fail(
-                        f"style entry {style_id}.face must be {expected_side_face} so pick/ban side cards show standing feet"
+                        f"style entry {style_id}.face must be {expected_side_face} so compact HUD/scoreboard portraits stay aligned"
                     )
                 expected_side_center = SIDE_CARD_STANDING_CENTER_OFFSETS.get(champion)
                 if not isinstance(expected_side_center, dict):
@@ -3824,8 +3824,8 @@ def check_fiddlesticks_contract(text: dict[str, Any], entries: dict[str, Any]) -
         view = entries.get(fiddlesticks_id)
         if not isinstance(view, dict):
             fail(f"style/champion_view.champion_view missing entries.{fiddlesticks_id}")
-        if view.get("face", {}).get("x") != 0 or view.get("face", {}).get("y") != -14:
-            fail(f"style entry {fiddlesticks_id}.face must keep Fiddlesticks compact HUD/scoreboard portrait at x=0,y=-14")
+        if view.get("face", {}).get("x") != 0 or view.get("face", {}).get("y") != 0:
+            fail(f"style entry {fiddlesticks_id}.face must keep Fiddlesticks compact HUD/scoreboard portrait at x=0,y=0")
         if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -14:
             fail(f"style entry {fiddlesticks_id}.center must keep Fiddlesticks standing display at x=0,y=-14")
     assert_compact_idle_bottom_safety("fiddlesticks", min_bottom_safe=16)
@@ -3852,11 +3852,48 @@ def check_fiddlesticks_contract(text: dict[str, Any], entries: dict[str, Any]) -
         require_file(ROOT / "aseprite_resources" / "effects" / f"{effect_name}#anim.fanim")
 
     fanim = load_json(ROOT / "aseprite_resources" / "champions" / "fiddlesticks#anim.fanim")
+    sheet_rgba_width, _sheet_rgba_height, sheet_rgba = load_rgba(
+        ROOT / "aseprite_resources" / "champions" / "fiddlesticks#sheet.png"
+    )
     sheet_width, sheet_height, sheet_alpha = load_rgba_alpha(
         ROOT / "aseprite_resources" / "champions" / "fiddlesticks#sheet.png"
     )
+    if sheet_rgba_width != sheet_width:
+        fail("Fiddlesticks actor sheet RGBA/alpha dimensions disagree")
     if sheet_height != int(FIDDLESTICKS_FRAME_SIZE[1]):
         fail("Fiddlesticks actor sheet must keep 64px native frame height")
+
+    idle0 = fanim.get("anims", {}).get("idle", {}).get("frames", [{}])[0].get("data", {})
+    face = entries[FIDDLESTICKS_IDS[0]]["face"]
+    rect_x = int(round(float(idle0.get("x", -1))))
+    rect_y = int(round(float(idle0.get("y", -1))))
+    rect_w = int(round(float(idle0.get("w", 0))))
+    rect_h = int(round(float(idle0.get("h", 0))))
+    face_x = int(face.get("x", 0))
+    face_y = int(face.get("y", 0))
+    green_pixels = 0
+    green_min_y = 10**9
+    green_max_y = -1
+    for local_y in range(40):
+        for local_x in range(40):
+            src_x = rect_x + local_x - face_x
+            src_y = rect_y + local_y - face_y
+            if src_x < rect_x or src_x >= rect_x + rect_w or src_y < rect_y or src_y >= rect_y + rect_h:
+                continue
+            index = (src_y * sheet_width + src_x) * 4
+            r = sheet_rgba[index]
+            g = sheet_rgba[index + 1]
+            b = sheet_rgba[index + 2]
+            a = sheet_rgba[index + 3]
+            if a > 40 and g > 80 and g > r * 1.15 and g > b * 1.05:
+                green_pixels += 1
+                green_min_y = min(green_min_y, local_y)
+                green_max_y = max(green_max_y, local_y + 1)
+    if green_pixels < 10 or green_min_y < 10 or green_max_y > 28:
+        fail(
+            "Fiddlesticks compact HUD/scoreboard face crop must center the green eyes/core; "
+            f"got green_pixels={green_pixels}, green_y=({green_min_y},{green_max_y}), face=({face_x},{face_y})"
+        )
 
     action_hashes: dict[str, list[str]] = {}
     action_bboxes: dict[str, list[tuple[int, int, int, int]]] = {}

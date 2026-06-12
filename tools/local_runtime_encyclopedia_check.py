@@ -169,7 +169,7 @@ SIDE_CARD_STANDING_FACE_OFFSETS = {
     f"{MOD_ID}_jhin": {"x": 1, "y": -16},
     f"{MOD_ID}_thresh": {"x": 0, "y": -12},
     f"{MOD_ID}_viktor": {"x": 0, "y": -28},
-    f"{MOD_ID}_fiddlesticks": {"x": 0, "y": -14},
+    f"{MOD_ID}_fiddlesticks": {"x": 0, "y": 0},
 }
 SIDE_CARD_STANDING_CENTER_OFFSETS = {
     f"{MOD_ID}_aatrox": {"x": 4, "y": -12},
@@ -1070,7 +1070,7 @@ def check_runtime_copy(game_root: Path) -> None:
         if face.get("x") != expected_face["x"] or face.get("y") != expected_face["y"]:
             fail(
                 f"runtime champion_view entries.{champion_id}.face must be {expected_face} "
-                "so pick/ban side-card standing portraits show feet and weapons"
+                "so compact HUD/scoreboard portraits stay aligned"
             )
     for champion_id, expected_center in SIDE_CARD_STANDING_CENTER_OFFSETS.items():
         view = entries.get(champion_id)
