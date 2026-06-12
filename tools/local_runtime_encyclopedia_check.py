@@ -17,6 +17,7 @@ CHAMPION_IDS = (
     f"{MOD_ID}_jinx",
     f"{MOD_ID}_thresh",
     f"{MOD_ID}_viktor",
+    f"{MOD_ID}_fiddlesticks",
 )
 AATROX_SOUND_EVENTS = (
     "test_mod_aatrox_attack_cast",
@@ -167,6 +168,7 @@ SIDE_CARD_STANDING_FACE_OFFSETS = {
     f"{MOD_ID}_kayn": {"x": 4, "y": -18},
     f"{MOD_ID}_thresh": {"x": 0, "y": -12},
     f"{MOD_ID}_viktor": {"x": 0, "y": -28},
+    f"{MOD_ID}_fiddlesticks": {"x": 0, "y": -10},
 }
 SIDE_CARD_STANDING_CENTER_OFFSETS = {
     f"{MOD_ID}_aatrox": {"x": 4, "y": -12},
@@ -174,6 +176,7 @@ SIDE_CARD_STANDING_CENTER_OFFSETS = {
     f"{MOD_ID}_kayn": {"x": 0, "y": -12},
     f"{MOD_ID}_thresh": {"x": 0, "y": -12},
     f"{MOD_ID}_viktor": {"x": 0, "y": -12},
+    f"{MOD_ID}_fiddlesticks": {"x": 0, "y": -14},
 }
 
 
@@ -389,16 +392,49 @@ def check_fiddlesticks_ult_visibility(path: Path, champion: object) -> None:
         return
     if not isinstance(champion, dict):
         fail(f"{path} must contain a JSON object")
+    view_projectile_rows = champion.get("view_projectiles", [])
     view_buff_rows = champion.get("view_buffs", [])
     view_effect_rows = champion.get("view_effects", [])
-    if not isinstance(view_buff_rows, list) or not isinstance(view_effect_rows, list):
-        fail(f"{path} view_buffs and view_effects must be lists")
+    if not isinstance(view_projectile_rows, list) or not isinstance(view_buff_rows, list) or not isinstance(view_effect_rows, list):
+        fail(f"{path} view_projectiles, view_buffs, and view_effects must be lists")
+    projectile_rows = {item.get("name"): item for item in view_projectile_rows if isinstance(item, dict)}
+    drain_projectile = projectile_rows.get("test_mod_fiddlesticks_drain_beam")
+    if not isinstance(drain_projectile, dict):
+        fail("runtime Fiddlesticks W must use a caster-to-target drain beam projectile")
+    if (
+        drain_projectile.get("anim") != "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_drain_tether"
+        or drain_projectile.get("tag") != "tether"
+        or drain_projectile.get("z") != 2
+        or drain_projectile.get("repeat") is not True
+    ):
+        fail("runtime Fiddlesticks drain beam projectile must use the generated tether art at z=2 and repeat during the channel")
     buff_z = {item.get("name"): item.get("z") for item in view_buff_rows if isinstance(item, dict)}
     effect_z = {item.get("name"): item.get("z") for item in view_effect_rows if isinstance(item, dict)}
+    if "test_mod_fiddlesticks_drain_tether" in effect_z:
+        fail("runtime Fiddlesticks W must not attach a full tether ViewEffect at the target point")
     if buff_z.get("test_mod_fiddlesticks_crowstorm_active") != 2:
         fail("runtime Fiddlesticks Crowstorm buff must render at z=2")
     if effect_z.get("test_mod_fiddlesticks_crowstorm") != 2:
         fail("runtime Fiddlesticks Crowstorm view effect must render at z=2")
+    drain_beams = [
+        node
+        for node in iter_mapping_nodes(champion.get("skill2", {}))
+        if node.get("type") == "LineRangeProjectile"
+        and node.get("name") == "test_mod_fiddlesticks_drain_beam"
+    ]
+    if len(drain_beams) != 1:
+        fail("runtime Fiddlesticks W must create exactly one source-to-target drain beam")
+    drain_beam = drain_beams[0]
+    if drain_beam.get("applied_target") != "EnemyWithoutTower":
+        fail("runtime Fiddlesticks drain beam must connect to enemy units")
+    if drain_beam.get("width") != 7000 or drain_beam.get("length") != 36000:
+        fail("runtime Fiddlesticks drain beam must be a narrow line, not a wide body-covering strip")
+    if drain_beam.get("delay") != 0 or drain_beam.get("apply", 0) < 72:
+        fail("runtime Fiddlesticks drain beam must persist for the full W channel")
+    if drain_beam.get("applied_effects") != []:
+        fail("runtime Fiddlesticks drain beam must remain visual-only; W pulses own the damage/heal")
+    if any(node.get("name") == "test_mod_fiddlesticks_drain_tether" for node in iter_mapping_nodes(champion.get("skill2", {}))):
+        fail("runtime Fiddlesticks W still references the retired target-point drain tether")
     crowstorm_buffs = [
         node
         for node in iter_mapping_nodes(champion.get("ult", {}))
@@ -485,6 +521,8 @@ def check_runtime_copy(game_root: Path) -> None:
         "aseprite_resources/champions/thresh#anim.fanim",
         "aseprite_resources/champions/viktor#sheet.png",
         "aseprite_resources/champions/viktor#anim.fanim",
+        "aseprite_resources/champions/fiddlesticks#sheet.png",
+        "aseprite_resources/champions/fiddlesticks#anim.fanim",
         "aseprite_resources/effects/kayn_q_slash#sheet.png",
         "aseprite_resources/effects/kayn_q_slash#anim.fanim",
         "aseprite_resources/effects/kayn_w_blade_reach#sheet.png",
@@ -559,8 +597,21 @@ def check_runtime_copy(game_root: Path) -> None:
         "aseprite_resources/effects/viktor_evolution_aura#anim.fanim",
         "aseprite_resources/effects/viktor_storm_impact#sheet.png",
         "aseprite_resources/effects/viktor_storm_impact#anim.fanim",
+        "aseprite_resources/effects/fiddlesticks_attack_projectile#sheet.png",
+        "aseprite_resources/effects/fiddlesticks_attack_projectile#anim.fanim",
+        "aseprite_resources/effects/fiddlesticks_fear_projectile#sheet.png",
+        "aseprite_resources/effects/fiddlesticks_fear_projectile#anim.fanim",
+        "aseprite_resources/effects/fiddlesticks_fear_mark#sheet.png",
+        "aseprite_resources/effects/fiddlesticks_fear_mark#anim.fanim",
+        "aseprite_resources/effects/fiddlesticks_drain#sheet.png",
+        "aseprite_resources/effects/fiddlesticks_drain#anim.fanim",
+        "aseprite_resources/effects/fiddlesticks_drain_tether#sheet.png",
+        "aseprite_resources/effects/fiddlesticks_drain_tether#anim.fanim",
         "aseprite_resources/effects/fiddlesticks_crowstorm#sheet.png",
         "aseprite_resources/effects/fiddlesticks_crowstorm#anim.fanim",
+        "icons/fiddlesticks_skill.png",
+        "icons/fiddlesticks_skill2.png",
+        "icons/fiddlesticks_ult.png",
         "icons/kayn_skill.png",
         "icons/kayn_skill2.png",
         "icons/kayn_ult.png",
