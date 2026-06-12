@@ -102,8 +102,8 @@
     },
     "test_mod_fiddlesticks": {
       "face": {
-        "x": 4,
-        "y": -6
+        "x": 0,
+        "y": -14
       },
       "center": {
         "x": 0,
@@ -112,8 +112,8 @@
     },
     "bo_league_champions_fiddlesticks": {
       "face": {
-        "x": 4,
-        "y": -6
+        "x": 0,
+        "y": -14
       },
       "center": {
         "x": 0,
@@ -262,8 +262,8 @@
     },
     "bo_league_champions_darius": {
       "face": {
-        "x": 2,
-        "y": -6
+        "x": 0,
+        "y": -12
       },
       "center": {
         "x": 0,
@@ -272,8 +272,8 @@
     },
     "test_mod_darius": {
       "face": {
-        "x": 2,
-        "y": -6
+        "x": 0,
+        "y": -12
       },
       "center": {
         "x": 0,
