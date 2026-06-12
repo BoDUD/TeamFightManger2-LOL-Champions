@@ -640,8 +640,8 @@ COMPACT_DISPLAY_LIMITS = {
 }
 SIDE_CARD_STANDING_FACE_OFFSETS = {
     "aatrox": {"x": 2, "y": -16},
-    "darius": {"x": 2, "y": -12},
-    "fiddlesticks": {"x": 0, "y": -10},
+    "darius": {"x": 2, "y": -6},
+    "fiddlesticks": {"x": 4, "y": -6},
     "kayn": {"x": 4, "y": -18},
     "thresh": {"x": 0, "y": -12},
     "viktor": {"x": 0, "y": -28},
@@ -2842,8 +2842,8 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         view = entries.get(darius_id)
         if not isinstance(view, dict):
             fail(f"style/champion_view.champion_view missing entries.{darius_id}")
-        if view.get("face", {}).get("x") != 2 or view.get("face", {}).get("y") != -12:
-            fail(f"style entry {darius_id}.face must recenter Darius side-card standing portrait to x=2,y=-12")
+        if view.get("face", {}).get("x") != 2 or view.get("face", {}).get("y") != -6:
+            fail(f"style entry {darius_id}.face must recenter Darius HUD/scoreboard portrait to x=2,y=-6")
         if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -12:
             fail(f"style entry {darius_id}.center must recenter Darius exchange standing display to x=0,y=-12")
     assert_compact_idle_bottom_safety("darius")
@@ -3628,8 +3628,8 @@ def check_fiddlesticks_contract(text: dict[str, Any], entries: dict[str, Any]) -
         view = entries.get(fiddlesticks_id)
         if not isinstance(view, dict):
             fail(f"style/champion_view.champion_view missing entries.{fiddlesticks_id}")
-        if view.get("face", {}).get("x") != 0 or view.get("face", {}).get("y") != -10:
-            fail(f"style entry {fiddlesticks_id}.face must keep Fiddlesticks compact portrait at x=0,y=-10")
+        if view.get("face", {}).get("x") != 4 or view.get("face", {}).get("y") != -6:
+            fail(f"style entry {fiddlesticks_id}.face must keep Fiddlesticks compact HUD/scoreboard portrait at x=4,y=-6")
         if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -14:
             fail(f"style entry {fiddlesticks_id}.center must keep Fiddlesticks standing display at x=0,y=-14")
 
