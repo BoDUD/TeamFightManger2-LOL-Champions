@@ -280,10 +280,10 @@ def check_viktor_ground_vfx(path: Path, champion: object) -> None:
     view_effect_z = {item.get("name"): item.get("z") for item in view_effect_rows if isinstance(item, dict)}
     if view_effect_z.get("test_mod_viktor_siphon_shield", 0) >= 0:
         fail("runtime Viktor Siphon shield ViewEffect must render behind the actor")
-    if view_effect_z.get("test_mod_viktor_gravity_field") != -1:
-        fail("runtime Viktor Gravity Field must stay on the ground layer")
-    if view_effect_z.get("test_mod_viktor_chaos_storm") != 1:
-        fail("runtime Viktor Chaos Storm must render at z=1 so the terrain ult remains visible")
+    if view_effect_z.get("test_mod_viktor_gravity_field") != 1:
+        fail("runtime Viktor Gravity Field must render at z=1 so the target-ground field is visible above terrain")
+    if view_effect_z.get("test_mod_viktor_chaos_storm") != 2:
+        fail("runtime Viktor Chaos Storm must render at z=2 so the target-ground ult remains visible")
     view_buff_rows = champion.get("view_buffs", [])
     if not isinstance(view_buff_rows, list):
         fail(f"{path} view_buffs must be a list")
@@ -322,6 +322,8 @@ def check_viktor_ground_vfx(path: Path, champion: object) -> None:
             fail(f"runtime Viktor gravity anchor {index} must use end_effects")
         if not any(item.get("type") == "ViewEffect" and item.get("name") == "test_mod_viktor_gravity_field" for item in end_effects if isinstance(item, dict)):
             fail(f"runtime Viktor gravity anchor {index} must spawn Gravity Field at the target point")
+        if any(item.get("type") == "ViewEffect" and item.get("name") == "test_mod_viktor_gravity_field" and item.get("is_follow") is True for item in end_effects if isinstance(item, dict)):
+            fail(f"runtime Viktor gravity anchor {index} must keep Gravity Field on the terrain, not attached to the caster")
         if not any(item.get("type") == "RangePeriodProjectile" and item.get("name") == "test_mod_viktor_gravity_field" for item in end_effects if isinstance(item, dict)):
             fail(f"runtime Viktor gravity anchor {index} must own the ground pulse")
 
@@ -353,6 +355,8 @@ def check_viktor_ground_vfx(path: Path, champion: object) -> None:
         end_names = {(item.get("type"), item.get("name")) for item in end_effects if isinstance(item, dict)}
         if ("ViewEffect", "test_mod_viktor_storm_impact") not in end_names or ("ViewEffect", "test_mod_viktor_chaos_storm") not in end_names:
             fail(f"runtime Viktor Chaos Storm anchor {index} must spawn both storm terrain VFX")
+        if any(item.get("type") == "ViewEffect" and item.get("name") == "test_mod_viktor_chaos_storm" and item.get("is_follow") is True for item in end_effects if isinstance(item, dict)):
+            fail(f"runtime Viktor Chaos Storm anchor {index} must keep the storm on the terrain, not attached to the caster")
         storm_pulses = [
             item
             for item in end_effects
