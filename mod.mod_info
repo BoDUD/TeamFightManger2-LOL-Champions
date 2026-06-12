@@ -3,8 +3,8 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.13.24",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version rebuilds Fiddlesticks Crowstorm with image-generated pre-cast and landing storm art, adds delayed jump timing, extends the storm to 420 ticks, and adds CI/runtime guards for persistent ground ult VFX.",
+  "version": "0.13.25",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version lifts Fiddlesticks actor frames above the battle nameplate, keeps feet visible in combat, and tightens CI bottom-safety guards for the scarecrow model.",
   "last_updated": "2026-06-12",
   "dependencies": [
     {
