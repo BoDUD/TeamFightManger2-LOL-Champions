@@ -3,8 +3,8 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.13.41",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version makes Thresh's The Box persist visibly on the target terrain for a long LoL-like prison window, while CI and runtime checks verify both the gameplay field duration and the generated ground VFX animation length.",
+  "version": "0.13.42",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version makes Viktor's Hextech Ray and Gravity Field persist visibly on the terrain for LoL-like read windows, while CI and runtime checks verify gameplay duration and generated ground VFX animation length.",
   "last_updated": "2026-06-13",
   "dependencies": [
     {

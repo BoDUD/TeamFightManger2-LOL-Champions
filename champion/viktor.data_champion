@@ -163,7 +163,7 @@
             "width": 12000,
             "length": 90000,
             "delay": 10,
-            "apply": 60,
+            "apply": 120,
             "name": "test_mod_viktor_laser",
             "applied_target": "EnemyWithoutTower",
             "applied_effects": [
@@ -189,7 +189,7 @@
             "width": 12000,
             "length": 90000,
             "delay": 10,
-            "apply": 60,
+            "apply": 120,
             "name": "test_mod_viktor_laser_champion_bonus",
             "applied_target": "EnemyChampion",
             "applied_effects": [
@@ -282,7 +282,7 @@
                 "width": 14000,
                 "length": 90000,
                 "delay": 0,
-                "apply": 72,
+                "apply": 132,
                 "name": "test_mod_viktor_laser_aftershock",
                 "applied_target": "EnemyWithoutTower",
                 "applied_effects": [
@@ -334,7 +334,7 @@
             "width": 12000,
             "length": 90000,
             "delay": 10,
-            "apply": 60,
+            "apply": 120,
             "name": "test_mod_viktor_laser",
             "applied_target": "EnemyWithoutTower",
             "applied_effects": [
@@ -360,7 +360,7 @@
             "width": 12000,
             "length": 90000,
             "delay": 10,
-            "apply": 60,
+            "apply": 120,
             "name": "test_mod_viktor_laser_champion_bonus",
             "applied_target": "EnemyChampion",
             "applied_effects": [
@@ -453,7 +453,7 @@
                 "width": 14000,
                 "length": 90000,
                 "delay": 0,
-                "apply": 72,
+                "apply": 132,
                 "name": "test_mod_viktor_laser_aftershock",
                 "applied_target": "EnemyWithoutTower",
                 "applied_effects": [
@@ -608,7 +608,7 @@
               {
                 "type": "RangePeriodProjectile",
                 "name": "test_mod_viktor_gravity_field",
-                "tick": 165,
+                "tick": 300,
                 "period": 15,
                 "first_delay": 15,
                 "shape": {
@@ -767,7 +767,7 @@
               {
                 "type": "RangePeriodProjectile",
                 "name": "test_mod_viktor_gravity_field",
-                "tick": 195,
+                "tick": 360,
                 "period": 15,
                 "first_delay": 15,
                 "shape": {
