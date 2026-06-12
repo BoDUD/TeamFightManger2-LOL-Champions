@@ -2187,7 +2187,7 @@
             "name": "test_mod_darius_ult_voice"
           },
           {
-            "type": "CasterViewEffect",
+            "type": "ViewEffect",
             "name": "test_mod_darius_noxian_guillotine_cast_vfx"
           },
           {
@@ -2265,7 +2265,7 @@
               "name": "test_mod_darius_ult_voice"
             },
             {
-              "type": "CasterViewEffect",
+              "type": "ViewEffect",
               "name": "test_mod_darius_noxian_guillotine_cast_vfx"
             },
             {
@@ -2343,7 +2343,7 @@
                 "name": "test_mod_darius_ult_voice"
               },
               {
-                "type": "CasterViewEffect",
+                "type": "ViewEffect",
                 "name": "test_mod_darius_noxian_guillotine_cast_vfx"
               },
               {
@@ -2385,7 +2385,7 @@
                   "name": "test_mod_darius_ult_voice"
                 },
                 {
-                  "type": "CasterViewEffect",
+                  "type": "ViewEffect",
                   "name": "test_mod_darius_noxian_guillotine_cast_vfx"
                 },
                 {
@@ -2427,7 +2427,7 @@
                     "name": "test_mod_darius_ult_voice"
                   },
                   {
-                    "type": "CasterViewEffect",
+                    "type": "ViewEffect",
                     "name": "test_mod_darius_noxian_guillotine_cast_vfx"
                   },
                   {
@@ -2469,7 +2469,7 @@
                       "name": "test_mod_darius_ult_voice"
                     },
                     {
-                      "type": "CasterViewEffect",
+                      "type": "ViewEffect",
                       "name": "test_mod_darius_noxian_guillotine_cast_vfx"
                     },
                     {
@@ -2508,7 +2508,7 @@
                       "name": "test_mod_darius_ult_voice"
                     },
                     {
-                      "type": "CasterViewEffect",
+                      "type": "ViewEffect",
                       "name": "test_mod_darius_noxian_guillotine_cast_vfx"
                     },
                     {
