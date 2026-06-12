@@ -618,6 +618,10 @@ FIDDLESTICKS_VIEW_EFFECT_REFS = {
         "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_drain",
         "drain",
     ),
+    "test_mod_fiddlesticks_crowstorm_channel": (
+        "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_crowstorm_channel",
+        "channel",
+    ),
     "test_mod_fiddlesticks_crowstorm": (
         "asset/bo_league_champions/aseprite_resources/effects/fiddlesticks_crowstorm",
         "storm",
@@ -930,6 +934,44 @@ def assert_generated_vfx_volume(
             fail(f"{label} frame {index} fill ratio {fill_ratio:.2f} is too sparse; avoid wire/arrow/guide-line skills")
         if max_width is not None and frame_width > max_width:
             fail(f"{label} frame {index} spans {frame_width}px; avoid full-width line/tether VFX in a single projectile frame")
+
+
+def assert_no_chroma_key_residue(
+    sheet: Path,
+    fanim_path: Path,
+    tag: str,
+    label: str,
+    *,
+    max_pixels: int = 0,
+) -> None:
+    fanim = load_json(fanim_path)
+    frames = fanim.get("anims", {}).get(tag, {}).get("frames") if isinstance(fanim, dict) else None
+    if not isinstance(frames, list):
+        fail(f"{fanim_path.relative_to(ROOT)} must expose {tag!r} frames for {label}")
+    image_width, _image_height, rgba = load_rgba(sheet)
+    for index, frame in enumerate(frames):
+        data = frame.get("data") if isinstance(frame, dict) else None
+        if not isinstance(data, dict):
+            fail(f"{label} frame {index} missing frame data")
+        x0 = int(round(float(data.get("x", -1))))
+        y0 = int(round(float(data.get("y", -1))))
+        w = int(round(float(data.get("w", 0))))
+        h = int(round(float(data.get("h", 0))))
+        residue = 0
+        for y in range(y0, y0 + h):
+            for x in range(x0, x0 + w):
+                index_rgba = (y * image_width + x) * 4
+                r = rgba[index_rgba]
+                g = rgba[index_rgba + 1]
+                b = rgba[index_rgba + 2]
+                a = rgba[index_rgba + 3]
+                if a > 20 and r > 110 and b > 110 and g < 105 and r + b > g * 3:
+                    residue += 1
+        if residue > max_pixels:
+            fail(
+                f"{label} frame {index} has {residue} chroma-key pink residue pixels; "
+                "image-generated VFX must be cleaned before packing into the game"
+            )
 
 
 def assert_effect_frames_not_edge_cut(
@@ -3606,6 +3648,7 @@ def check_fiddlesticks_contract(text: dict[str, Any], entries: dict[str, Any]) -
         "fiddlesticks_fear_projectile",
         "fiddlesticks_drain",
         "fiddlesticks_crowstorm",
+        "fiddlesticks_crowstorm_channel",
     ):
         require_file(ROOT / "aseprite_resources" / "effects" / f"{effect_name}#sheet.png")
         require_file(ROOT / "aseprite_resources" / "effects" / f"{effect_name}#anim.fanim")
@@ -3679,8 +3722,10 @@ def check_fiddlesticks_contract(text: dict[str, Any], entries: dict[str, Any]) -
         "test_mod_fiddlesticks_terrify_mark",
         "test_mod_fiddlesticks_drain",
         "test_mod_fiddlesticks_crowstorm",
+        "test_mod_fiddlesticks_crowstorm_channel",
         "test_mod_fiddlesticks_fear_mark",
         "test_mod_fiddlesticks_drain_beam",
+        "RangePeriodProjectile",
         "Fear",
         "Heal",
         "Teleport",
@@ -3722,14 +3767,27 @@ def check_fiddlesticks_contract(text: dict[str, Any], entries: dict[str, Any]) -
     view_effect_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in fiddlesticks.get("view_effects", [])}
     view_effect_z = {item.get("name"): item.get("z") for item in fiddlesticks.get("view_effects", [])}
     view_effect_follow = {item.get("name"): item.get("is_follow") for item in fiddlesticks.get("view_effects", [])}
+    view_effect_types = {item.get("name"): item.get("type") for item in fiddlesticks.get("view_effects", [])}
     for name, expected in FIDDLESTICKS_VIEW_EFFECT_REFS.items():
         if view_effect_refs.get(name) != expected:
             fail(f"champion/fiddlesticks.data_champion view_effect {name} must reference {expected}")
-        expected_z = 2 if name == "test_mod_fiddlesticks_crowstorm" else 1
+        expected_z = {
+            "test_mod_fiddlesticks_crowstorm_channel": 3,
+            "test_mod_fiddlesticks_crowstorm": 2,
+        }.get(name, 1)
         if view_effect_z.get(name) != expected_z:
             fail(f"champion/fiddlesticks.data_champion view_effect {name} must render at z={expected_z}")
-        if view_effect_follow.get(name) is not True:
-            fail(f"champion/fiddlesticks.data_champion view_effect {name} must follow the caster as W/R aura VFX")
+        expected_follow = name != "test_mod_fiddlesticks_crowstorm"
+        if view_effect_follow.get(name) is not expected_follow:
+            if name == "test_mod_fiddlesticks_crowstorm":
+                fail("champion/fiddlesticks.data_champion Crowstorm landing field must anchor on terrain, not follow the caster body")
+            fail(f"champion/fiddlesticks.data_champion view_effect {name} must follow the caster during its channel/aura window")
+        expected_type = {
+            "test_mod_fiddlesticks_crowstorm_channel": "Animation",
+            "test_mod_fiddlesticks_crowstorm": "LoopAnimation",
+        }.get(name)
+        if expected_type is not None and view_effect_types.get(name) != expected_type:
+            fail(f"champion/fiddlesticks.data_champion view_effect {name} must use type {expected_type}")
     for name, expected in FIDDLESTICKS_TARGET_VIEW_EFFECT_REFS.items():
         if view_effect_refs.get(name) != expected:
             fail(f"champion/fiddlesticks.data_champion target view_effect {name} must reference {expected}")
@@ -3762,6 +3820,45 @@ def check_fiddlesticks_contract(text: dict[str, Any], entries: dict[str, Any]) -
         fail("Fiddlesticks drain beam must persist through the full W channel")
     if drain_beam.get("applied_effects") != []:
         fail("Fiddlesticks drain beam must be visual-only; damage/heal pulses stay in the W channel logic")
+    ult = fiddlesticks.get("ult", {})
+    start_timing = ult.get("start_timing")
+    if not isinstance(start_timing, (int, float)) or start_timing > 6:
+        fail("Fiddlesticks Crowstorm must start its channel quickly; the visible wind-up effect owns the delay")
+    if ult.get("cancelable") is not False or ult.get("can_use_with_move") is not False:
+        fail("Fiddlesticks Crowstorm must lock Fiddlesticks during the pre-cast channel")
+    ult_effect = ult.get("effect", {})
+    ult_effects = ult_effect.get("effects") if isinstance(ult_effect, dict) else None
+    if not isinstance(ult_effects, list):
+        fail("Fiddlesticks Crowstorm ult must use a Combine effect list")
+    if any(isinstance(node, dict) and node.get("type") == "Teleport" for node in ult_effects):
+        fail("Fiddlesticks Crowstorm must not teleport immediately; it needs a visible pre-cast channel first")
+    if not any(
+        isinstance(node, dict)
+        and node.get("type") == "CasterViewEffect"
+        and node.get("name") == "test_mod_fiddlesticks_crowstorm_channel"
+        for node in ult_effects
+    ):
+        fail("Fiddlesticks Crowstorm must show the generated pre-cast channel before the jump")
+    bind_nodes = [
+        node
+        for node in find_effect_nodes(ult, "Bind")
+        if isinstance(node.get("duration"), (int, float)) and node.get("duration") >= 48
+    ]
+    if len(bind_nodes) != 1:
+        fail("Fiddlesticks Crowstorm pre-cast must bind the caster for the full 48 tick channel")
+    landing_delays = [
+        node
+        for node in ult_effects
+        if isinstance(node, dict)
+        and node.get("type") == "Delayed"
+        and node.get("tick", 0) >= 48
+        and any(isinstance(effect, dict) and effect.get("type") == "Teleport" for effect in node.get("effects", []))
+    ]
+    if len(landing_delays) != 1:
+        fail("Fiddlesticks Crowstorm must have exactly one delayed teleport landing after the channel")
+    landing_effects = landing_delays[0].get("effects", [])
+    if not isinstance(landing_effects, list):
+        fail("Fiddlesticks Crowstorm delayed landing must contain an effect list")
     crowstorm_buffs = [
         node
         for node in find_effect_nodes(fiddlesticks.get("ult", {}), "AddCasterBuff")
@@ -3770,8 +3867,38 @@ def check_fiddlesticks_contract(text: dict[str, Any], entries: dict[str, Any]) -
     if len(crowstorm_buffs) != 1:
         fail("Fiddlesticks Crowstorm ult must apply exactly one visible crowstorm caster buff")
     crowstorm_duration = crowstorm_buffs[0].get("buff_state", {}).get("duration", {}).get("Time", {}).get("tick")
-    if not isinstance(crowstorm_duration, (int, float)) or crowstorm_duration < 300:
-        fail("Fiddlesticks Crowstorm visual buff must last at least 300 ticks like a real ult zone")
+    if not isinstance(crowstorm_duration, (int, float)) or crowstorm_duration < 420:
+        fail("Fiddlesticks Crowstorm visual buff must last at least 420 ticks like a real ult zone")
+    storm_fields = [
+        node
+        for node in find_effect_nodes(ult, "RangePeriodProjectile")
+        if node.get("name") == "test_mod_fiddlesticks_crowstorm"
+    ]
+    if len(storm_fields) != 1:
+        fail("Fiddlesticks Crowstorm must create exactly one persistent landing-zone damage field")
+    storm_field = storm_fields[0]
+    storm_radius = storm_field.get("shape", {}).get("Circle", {}).get("radius")
+    storm_tick = storm_field.get("tick")
+    storm_period = storm_field.get("period")
+    if (
+        not isinstance(storm_tick, (int, float))
+        or storm_tick < 420
+        or not isinstance(storm_period, (int, float))
+        or storm_period > 30
+        or storm_field.get("first_delay") != 0
+    ):
+        fail("Fiddlesticks Crowstorm landing field must start immediately and persist for at least 420 ticks")
+    if not isinstance(storm_radius, (int, float)) or storm_radius < 52000 or storm_field.get("applied_target") != "EnemyWithoutTower":
+        fail("Fiddlesticks Crowstorm landing field must be a large ground AoE around the landing point")
+    fear_fields = [
+        node
+        for node in find_effect_nodes(ult, "RangeEffect")
+        if node.get("target") == "EnemyChampion"
+        and node.get("shape", {}).get("Circle", {}).get("radius", 0) >= 52000
+        and any(isinstance(effect, dict) and effect.get("type") == "Fear" for effect in node.get("effects", []))
+    ]
+    if len(fear_fields) != 1:
+        fail("Fiddlesticks Crowstorm landing must visibly fear enemy champions in the big landing circle")
 
     assert_generated_vfx_volume(
         ROOT / "aseprite_resources" / "effects" / "fiddlesticks_attack_projectile#sheet.png",
@@ -3838,15 +3965,38 @@ def check_fiddlesticks_contract(text: dict[str, Any], entries: dict[str, Any]) -
         min_margin=8,
     )
     assert_generated_vfx_volume(
+        ROOT / "aseprite_resources" / "effects" / "fiddlesticks_crowstorm_channel#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "fiddlesticks_crowstorm_channel#anim.fanim",
+        "channel",
+        "Fiddlesticks Crowstorm pre-cast channel VFX",
+        min_visible=1500,
+        min_color_bins=320,
+        min_height=60,
+        min_fill_ratio=0.30,
+        max_width=90,
+    )
+    assert_no_chroma_key_residue(
+        ROOT / "aseprite_resources" / "effects" / "fiddlesticks_crowstorm_channel#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "fiddlesticks_crowstorm_channel#anim.fanim",
+        "channel",
+        "Fiddlesticks Crowstorm pre-cast channel VFX",
+    )
+    assert_generated_vfx_volume(
         ROOT / "aseprite_resources" / "effects" / "fiddlesticks_crowstorm#sheet.png",
         ROOT / "aseprite_resources" / "effects" / "fiddlesticks_crowstorm#anim.fanim",
         "storm",
         "Fiddlesticks Crowstorm VFX",
-        min_visible=9000,
-        min_color_bins=900,
-        min_height=84,
-        min_fill_ratio=0.38,
-        max_width=155,
+        min_visible=4300,
+        min_color_bins=650,
+        min_height=80,
+        min_fill_ratio=0.32,
+        max_width=170,
+    )
+    assert_no_chroma_key_residue(
+        ROOT / "aseprite_resources" / "effects" / "fiddlesticks_crowstorm#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "fiddlesticks_crowstorm#anim.fanim",
+        "storm",
+        "Fiddlesticks Crowstorm VFX",
     )
 
 
