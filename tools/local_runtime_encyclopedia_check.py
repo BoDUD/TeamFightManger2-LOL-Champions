@@ -558,8 +558,8 @@ def check_thresh_ult_visibility(path: Path, champion: object) -> None:
         if node.get("type") == "AddCasterBuff" and node.get("buff_state", {}).get("name") == "test_mod_thresh_lantern_visual":
             fail("runtime Thresh W lantern visual must be a non-following ViewEffect, not AddCasterBuff")
     for name in ("test_mod_thresh_box", "test_mod_thresh_box_field"):
-        if view_effect_z.get(name) != 2:
-            fail(f"runtime Thresh {name} must render at z=2 so The Box remains obvious")
+        if view_effect_z.get(name) != 3:
+            fail(f"runtime Thresh {name} must render at z=3 so The Box remains obvious")
     box_fields = [
         node
         for node in iter_mapping_nodes(champion.get("ult", {}))
@@ -571,14 +571,38 @@ def check_thresh_ult_visibility(path: Path, champion: object) -> None:
     ult_direct_effects = ult_effect.get("effects") if isinstance(ult_effect, dict) else None
     if not isinstance(ult_direct_effects, list):
         fail("runtime Thresh R must keep its top-level Combine effects list")
-    has_direct_box_field_vfx = any(
-        isinstance(node, dict)
-        and node.get("type") == "ViewEffect"
-        and node.get("name") == "test_mod_thresh_box_field"
+    if any(isinstance(node, dict) and node.get("type") == "ViewEffect" and node.get("name") == "test_mod_thresh_box_field" for node in ult_direct_effects):
+        fail("runtime Thresh R must spawn The Box from a target-ground anchor, not as a top-level/self ViewEffect")
+    target_box_anchors = [
+        node
         for node in ult_direct_effects
-    )
-    if not has_direct_box_field_vfx:
-        fail("runtime Thresh R must directly spawn test_mod_thresh_box_field so The Box is visible on the map")
+        if isinstance(node, dict)
+        and node.get("type") == "ParabolicProjectile"
+        and node.get("name") == "test_mod_thresh_box_ground_anchor"
+    ]
+    if len(target_box_anchors) != 1:
+        fail("runtime Thresh R must use exactly one target-ground ParabolicProjectile anchor")
+    anchor_end_effects = target_box_anchors[0].get("end_effects")
+    if not isinstance(anchor_end_effects, list):
+        fail("runtime Thresh R target-ground anchor must expose terrain end_effects")
+    for required_vfx in ("test_mod_thresh_box", "test_mod_thresh_box_field"):
+        if not any(isinstance(node, dict) and node.get("type") == "ViewEffect" and node.get("name") == required_vfx for node in anchor_end_effects):
+            fail(f"runtime Thresh R target-ground anchor must spawn {required_vfx} on the map")
+    if not any(
+        isinstance(node, dict)
+        and node.get("type") == "RangePeriodProjectile"
+        and node.get("name") == "test_mod_thresh_box_field"
+        and node.get("tick", 0) >= 300
+        for node in anchor_end_effects
+    ):
+        fail("runtime Thresh R target-ground anchor must own the long-lived terrain field")
+    if any(
+        node.get("type") == "RangeEffect"
+        and node.get("apply_type") == "AroundCaster"
+        and node.get("target") == "EnemyWithoutTower"
+        for node in iter_mapping_nodes(champion.get("ult", {}))
+    ):
+        fail("runtime Thresh R must not use AroundCaster; The Box belongs on target terrain")
 
 
 def check_fiddlesticks_ult_visibility(path: Path, champion: object) -> None:
