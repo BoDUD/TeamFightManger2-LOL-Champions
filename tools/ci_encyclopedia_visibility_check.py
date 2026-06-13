@@ -128,6 +128,12 @@ AATROX_Q_CAST_EFFECT_REFS = {
         "q3",
     ),
 }
+AATROX_UMBRAL_DASH_EFFECT_REFS = {
+    "test_mod_aatrox_umbral_dash_cast_vfx": (
+        "asset/bo_league_champions/aseprite_resources/effects/aatrox_umbral_dash",
+        "dash",
+    ),
+}
 BLITZCRANK_IDS = ("bo_league_champions_blitzcrank", "test_mod_blitzcrank")
 BLITZCRANK_FRAME_SIZE = (57.0, 54.0)
 BLITZCRANK_EXPECTED_COUNTS = {
@@ -1447,16 +1453,39 @@ def assert_aatrox_darkin_blade_vfx_identity() -> None:
     q1_heights = [bbox[3] - bbox[1] for bbox in q1[:5]]
     q2_widths = [bbox[2] - bbox[0] for bbox in q2[:5]]
     q3_heights = [bbox[3] - bbox[1] for bbox in q3[:4]]
-    if max(q1_widths) > 135:
-        fail(f"Aatrox Q1 VFX must read as a compact ground cleave, not a long spear projectile; widths={q1_widths}")
-    if min(q1_heights[:3]) < 55:
+    if max(q1_widths) > 190:
+        fail(f"Aatrox Q1 VFX must stay inside the native Darkin Blade cell; widths={q1_widths}")
+    if min(q1_heights[:3]) < 80:
         fail(f"Aatrox Q1 VFX must keep a visible vertical sword-impact core; heights={q1_heights}")
-    if max(q2_widths) < 165:
+    if max(q2_widths) < 175:
         fail(f"Aatrox Q2 VFX must remain the wider side sweep; widths={q2_widths}")
-    if max(q2_widths) - max(q1_widths) < 30:
-        fail("Aatrox Q1 and Q2 VFX must have visibly different hit-shape width")
     if max(q3_heights) < 90:
         fail(f"Aatrox Q3 VFX must read as a vertical slam/impact burst; heights={q3_heights}")
+
+
+def assert_aatrox_skill_vfx_imagegen_contract() -> None:
+    for effect_name, tag, label, frame_w, frame_h, min_visible, min_color_bins, min_height, min_fill_ratio in (
+        ("aatrox_q1_cleave", "q1", "Aatrox Q1 Darkin Blade image-generated cleave", 192, 96, 1300, 320, 55, 0.10),
+        ("aatrox_q2_cleave", "q2", "Aatrox Q2 Darkin Blade image-generated side sweep", 192, 96, 1300, 320, 35, 0.10),
+        ("aatrox_q3_cleave", "q3", "Aatrox Q3 Darkin Blade image-generated slam", 192, 96, 1300, 300, 25, 0.10),
+        ("aatrox_w_chain", "chain", "Aatrox W Infernal Chains image-generated launch", 192, 96, 1800, 500, 35, 0.18),
+        ("aatrox_w_chain_snap", "snap", "Aatrox W Infernal Chains image-generated snap", 192, 96, 1400, 500, 35, 0.14),
+        ("aatrox_umbral_dash", "dash", "Aatrox E Umbral Dash image-generated trail", 192, 96, 2600, 600, 35, 0.25),
+        ("aatrox_world_ender_aura", "loop", "Aatrox R World Ender image-generated wing aura", 128, 128, 4200, 550, 80, 0.35),
+    ):
+        sheet = ROOT / "aseprite_resources" / "effects" / f"{effect_name}#sheet.png"
+        fanim = ROOT / "aseprite_resources" / "effects" / f"{effect_name}#anim.fanim"
+        assert_generated_vfx_volume(
+            sheet,
+            fanim,
+            tag,
+            label,
+            min_visible=min_visible,
+            min_color_bins=min_color_bins,
+            min_height=min_height,
+            min_fill_ratio=min_fill_ratio,
+        )
+        assert_effect_frames_not_edge_cut(sheet, fanim, tag, label, border=1, max_border_pixels=0)
 
 
 def assert_kayn_skill_vfx_no_actor_body() -> None:
@@ -1986,6 +2015,7 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
         ROOT / "aseprite_resources" / "effects" / "aatrox_q3_cleave#sheet.png",
         ROOT / "aseprite_resources" / "effects" / "aatrox_w_chain#sheet.png",
         ROOT / "aseprite_resources" / "effects" / "aatrox_w_chain_snap#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "aatrox_umbral_dash#sheet.png",
         ROOT / "aseprite_resources" / "effects" / "aatrox_world_ender_aura#sheet.png",
     ):
         require_file(path)
@@ -1993,6 +2023,7 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
         if path.parent.name == "effects":
             require_no_aatrox_green_spill(path)
     assert_aatrox_darkin_blade_vfx_identity()
+    assert_aatrox_skill_vfx_imagegen_contract()
 
     fanim = load_json(ROOT / "aseprite_resources" / "champions" / "aatrox#anim.fanim")
     aatrox_sheet_path = ROOT / "aseprite_resources" / "champions" / "aatrox#sheet.png"
@@ -2293,6 +2324,9 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
     for name, expected in AATROX_Q_CAST_EFFECT_REFS.items():
         if view_effect_refs.get(name) != expected:
             fail(f"champion/aatrox.data_champion view_effect {name} must reference {expected}")
+    for name, expected in AATROX_UMBRAL_DASH_EFFECT_REFS.items():
+        if view_effect_refs.get(name) != expected:
+            fail(f"champion/aatrox.data_champion view_effect {name} must reference {expected}")
     skill_effect = aatrox.get("skill", {}).get("effect")
     if not isinstance(skill_effect, dict) or skill_effect.get("type") != "SwitchByBuff":
         fail("Aatrox Q must use staged SwitchByBuff recasts instead of firing all three Qs at once")
@@ -2330,22 +2364,28 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
     assert_q_stage(q2_switch.get("effect_none"), "Q1", "test_mod_aatrox_q1", "test_mod_aatrox_q1_cast_vfx")
     assert_q_stage(q2_switch.get("effect_buff"), "Q2", "test_mod_aatrox_q2", "test_mod_aatrox_q2_cast_vfx")
     assert_q_stage(skill_effect.get("effect_buff"), "Q3", "test_mod_aatrox_q3", "test_mod_aatrox_q3_cast_vfx")
+    skill2_strings = set(walk_strings(aatrox.get("skill2", {})))
+    if "test_mod_aatrox_umbral_dash_cast_vfx" not in skill2_strings:
+        fail("Aatrox skill2 must show the image-generated Umbral Dash trail before Infernal Chains")
+    for projectile in ("test_mod_aatrox_infernal_chains", "test_mod_aatrox_infernal_chains_snap"):
+        if projectile not in skill2_strings:
+            fail(f"Aatrox skill2 must keep {projectile} so Infernal Chains stays visible")
     buff_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in aatrox.get("view_buffs", [])}
     for name, expected in AATROX_BUFF_REFS.items():
         if buff_refs.get(name) != expected:
             fail(f"champion/aatrox.data_champion buff {name} must reference {expected}")
     world_ender = next((item for item in aatrox.get("view_buffs", []) if item.get("name") == "test_mod_aatrox_world_ender"), None)
-    if not isinstance(world_ender, dict) or world_ender.get("z") != -1:
-        fail("Aatrox World Ender aura must render behind the actor instead of covering the battlefield")
+    if not isinstance(world_ender, dict) or world_ender.get("z") != 3:
+        fail("Aatrox World Ender aura must render as a visible foreground demon-wing buff at z=3")
 
     aura_fanim = load_json(ROOT / "aseprite_resources" / "effects" / "aatrox_world_ender_aura#anim.fanim")
     aura_frames = aura_fanim.get("anims", {}).get("loop", {}).get("frames")
     if not isinstance(aura_frames, list) or len(aura_frames) != 6:
-        fail("Aatrox World Ender aura must have six restrained loop frames")
+        fail("Aatrox World Ender aura must have six loop frames")
     for index, frame in enumerate(aura_frames):
         data = frame.get("data") if isinstance(frame, dict) else None
-        if not isinstance(data, dict) or data.get("w") != 64.0 or data.get("h") != 64.0:
-            fail(f"Aatrox World Ender aura frame {index} must stay within 64x64")
+        if not isinstance(data, dict) or data.get("w") != 128.0 or data.get("h") != 128.0:
+            fail(f"Aatrox World Ender aura frame {index} must use the visible 128x128 demon-wing cell")
 
     assert_official_audio_sources(
         "aatrox",

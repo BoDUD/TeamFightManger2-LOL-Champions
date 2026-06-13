@@ -7,7 +7,8 @@ vfx,aseprite_resources\effects\aatrox_q2_cleave#sheet.png,"local image-gen LoL a
 vfx,aseprite_resources\effects\aatrox_q3_cleave#sheet.png,"local image-gen LoL ability source, not committed after rebuild",6 frame The Darkin Blade heavy smash crater and shock crack
 vfx,aseprite_resources\effects\aatrox_w_chain#sheet.png,"local image-gen LoL ability source, not committed after rebuild",6 frame Infernal Chains launch projectile
 vfx,aseprite_resources\effects\aatrox_w_chain_snap#sheet.png,"local image-gen LoL ability source, not committed after rebuild",6 frame Infernal Chains delayed snap and snare mark
-vfx,aseprite_resources\effects\aatrox_world_ender_aura#sheet.png,"local image-gen LoL ability source, not committed after rebuild","6 frame 64x64 restrained World Ender wing/rune aura rendered behind the actor"
+vfx,aseprite_resources\effects\aatrox_umbral_dash#sheet.png,"local image-gen LoL ability source, not committed after rebuild",6 frame Umbral Dash darkin blood-shadow trail used as the skill2 cast tell before Infernal Chains
+vfx,aseprite_resources\effects\aatrox_world_ender_aura#sheet.png,"local image-gen LoL ability source, not committed after rebuild","6 frame 128x128 World Ender demon-wing/rune aura rendered as a visible foreground buff"
 sfx,sound/sfx/test_mod_aatrox_*_clip.wav,existing workshop package,event names and audio files preserved
 logic,champion\aatrox.data_champion,manual staged-Q data pass,"The Darkin Blade uses SwitchByBuff recast stages: Q1 arms Q2, Q2 arms Q3, Q3 clears the stage buffs; no single cast may fire Q1/Q2/Q3 together"
 view,style/champion_view.champion_view,tuned refined actor offsets,face x=2 y=-16 for HUD/scoreboard portrait and center x=4 y=-12 for full-body display with the greatsword inside side-card bounds

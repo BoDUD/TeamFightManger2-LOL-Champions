@@ -16,6 +16,7 @@ In scope:
 - `aseprite_resources/effects/aatrox_q3_cleave#sheet.png`
 - `aseprite_resources/effects/aatrox_w_chain#sheet.png`
 - `aseprite_resources/effects/aatrox_w_chain_snap#sheet.png`
+- `aseprite_resources/effects/aatrox_umbral_dash#sheet.png`
 - `aseprite_resources/effects/aatrox_world_ender_aura#sheet.png`
 - `icons/aatrox_skill.png`
 - `icons/aatrox_skill2.png`
@@ -48,9 +49,9 @@ CI also fails if `source/` or `qa/` contains committed PNG/JPG/WebP process imag
 - Q VFX: the runtime now uses distinct Q1 narrow thrust, Q2 wide cleave, and Q3 heavy smash sheets instead of reusing one generic impact.
 - W / `skill2`: Infernal Chains replaces the earlier made-up dash guard. It fires a hooked chain, slows the target, then snaps again for delayed damage and brief control.
 - W VFX: launch and snap use separate chain sheets, so the delayed pull-back reads differently from the first projectile.
-- E / Umbral Dash: TFM2 has only three visible active skill slots, so E is not presented as a fake fourth button. Aatrox's sustain identity is represented by World Ender's vamp window.
+- E / Umbral Dash: TFM2 has only three visible active skill slots, so E is not presented as a fake fourth button. The 2026-06-14 VFX follow-up adds an image-generated darkin dash trail as the visible `skill2` cast tell before Infernal Chains.
 - R / `ult`: World Ender grants attack damage, movement speed, and vamp; it briefly fears nearby enemies on cast. It no longer gives unrelated armor, magic resist, or attack-speed padding.
-- R VFX: World Ender buff uses a restrained 64x64 wing/rune aura rendered behind the actor; idle, run, hit, dead, and the encyclopedia body stay clean.
+- R VFX: World Ender buff uses a visible 128x128 image-generated wing/rune aura rendered at foreground `z: 3`; idle, run, hit, dead, and the encyclopedia body stay clean.
 - Hit/dead/ult: these are packed from the same approved actor source in the same 57x54 frame class, so card, side-list, battle HUD, and exchange surfaces do not show a thinner display-only model or a different actor scale.
 - Text: zh-hans and zh-hant Aatrox rows are readable Chinese, with CI blocking `??` corruption for both the new id and the legacy `test_mod_aatrox` alias.
 - Icons: Q/W/R icons are rebuilt from the refined LoL ability image-gen source, green-key removed, dark framed, and exported at the existing 24x24 contract.
