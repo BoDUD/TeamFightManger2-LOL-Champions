@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 MOD_ID = "bo_league_champions"
 CHAMPION_IDS = (
     f"{MOD_ID}_aatrox",
+    f"{MOD_ID}_blitzcrank",
     f"{MOD_ID}_darius",
     f"{MOD_ID}_kayn",
     f"{MOD_ID}_yasuo",
@@ -126,6 +127,18 @@ VIKTOR_AFTERSHOCK_MIN_ANIM_SECONDS = 2.0
 VIKTOR_GRAVITY_MIN_ANIM_SECONDS = 5.0
 VIKTOR_STORM_MIN_TICKS = (420, 480)
 VIKTOR_STORM_MIN_ANIM_SECONDS = 6.0
+BLITZCRANK_SOUND_EVENTS = (
+    "test_mod_blitzcrank_attack_cast",
+    "test_mod_blitzcrank_attack_hit",
+    "test_mod_blitzcrank_power_fist_hit",
+    "test_mod_blitzcrank_q_cast",
+    "test_mod_blitzcrank_q_hit",
+    "test_mod_blitzcrank_overdrive_cast",
+    "test_mod_blitzcrank_barrier",
+    "test_mod_blitzcrank_r_cast",
+    "test_mod_blitzcrank_r_hit",
+    "test_mod_blitzcrank_ult_voice",
+)
 AATROX_RUNTIME_FRAME_SIZE = (96, 72)
 AATROX_RUNTIME_RUN_FRAME_XS = (4224, 4320, 4416, 4512, 4608, 4704, 4800, 4896)
 AATROX_RUNTIME_ATTACK_FRAME_XS = (4992, 5088, 5184, 5280, 5376, 5472, 5568, 5664, 5760)
@@ -146,6 +159,11 @@ REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS: dict[str, dict[str, tuple[str, ...]]] = {
         "en": ("Aatrox",),
         "zh-hans": ("亚托克斯", "剑魔"),
         "zh-hant": ("亞托克斯", "劍魔"),
+    },
+    f"{MOD_ID}_blitzcrank": {
+        "en": ("Blitzcrank", "Rocket Grab", "Overdrive", "Power Fist", "Static Field"),
+        "zh-hans": ("\u84b8\u6c7d\u673a\u5668\u4eba", "\u5e03\u91cc\u8328", "\u673a\u68b0\u98de\u722a", "\u8fc7\u8f7d\u8fd0\u8f6c", "\u80fd\u91cf\u94c1\u62f3", "\u9759\u7535\u529b\u573a"),
+        "zh-hant": ("\u84b8\u6c7d\u6a5f\u5668\u4eba", "\u5e03\u91cc\u8328", "\u6a5f\u68b0\u98db\u722a", "\u904e\u8f09\u904b\u8f49", "\u80fd\u91cf\u9435\u62f3", "\u975c\u96fb\u529b\u5834"),
     },
     f"{MOD_ID}_darius": {
         "en": ("Darius", "Hand of Noxus", "Hemorrhage", "Decimate", "Apprehend", "Crippling Strike", "Noxian Guillotine"),
@@ -186,6 +204,7 @@ REQUIRED_ENCYCLOPEDIA_NAME_TERMS: dict[str, dict[str, tuple[str, ...]]] = {
 }
 SIDE_CARD_STANDING_FACE_OFFSETS = {
     f"{MOD_ID}_aatrox": {"x": -8, "y": -6},
+    f"{MOD_ID}_blitzcrank": {"x": 0, "y": -8},
     f"{MOD_ID}_darius": {"x": 0, "y": -12},
     f"{MOD_ID}_kayn": {"x": 4, "y": -18},
     f"{MOD_ID}_jhin": {"x": 0, "y": -28},
@@ -195,6 +214,7 @@ SIDE_CARD_STANDING_FACE_OFFSETS = {
 }
 SIDE_CARD_STANDING_CENTER_OFFSETS = {
     f"{MOD_ID}_aatrox": {"x": 4, "y": -12},
+    f"{MOD_ID}_blitzcrank": {"x": 0, "y": -10},
     f"{MOD_ID}_darius": {"x": 0, "y": -12},
     f"{MOD_ID}_kayn": {"x": 0, "y": -12},
     f"{MOD_ID}_jhin": {"x": 0, "y": -20},
@@ -1043,6 +1063,7 @@ def check_runtime_copy(game_root: Path) -> None:
         "mod.mod_info",
         "mod.override_info",
         "champion/aatrox.data_champion",
+        "champion/blitzcrank.data_champion",
         "champion/darius.data_champion",
         "champion/kayn.data_champion",
         "champion/yasuo.data_champion",
@@ -1055,6 +1076,30 @@ def check_runtime_copy(game_root: Path) -> None:
         "style/champion_view.champion_view",
         "aseprite_resources/champions/aatrox#sheet.png",
         "aseprite_resources/champions/aatrox#anim.fanim",
+        "aseprite_resources/champions/blitzcrank#sheet.png",
+        "aseprite_resources/champions/blitzcrank#anim.fanim",
+        "aseprite_resources/effects/blitzcrank_attack_punch#sheet.png",
+        "aseprite_resources/effects/blitzcrank_attack_punch#anim.fanim",
+        "aseprite_resources/effects/blitzcrank_grab_hit#sheet.png",
+        "aseprite_resources/effects/blitzcrank_grab_hit#anim.fanim",
+        "aseprite_resources/effects/blitzcrank_mana_barrier#sheet.png",
+        "aseprite_resources/effects/blitzcrank_mana_barrier#anim.fanim",
+        "aseprite_resources/effects/blitzcrank_overdrive#sheet.png",
+        "aseprite_resources/effects/blitzcrank_overdrive#anim.fanim",
+        "aseprite_resources/effects/blitzcrank_power_fist_impact#sheet.png",
+        "aseprite_resources/effects/blitzcrank_power_fist_impact#anim.fanim",
+        "aseprite_resources/effects/blitzcrank_power_fist_ready#sheet.png",
+        "aseprite_resources/effects/blitzcrank_power_fist_ready#anim.fanim",
+        "aseprite_resources/effects/blitzcrank_punch_hit#sheet.png",
+        "aseprite_resources/effects/blitzcrank_punch_hit#anim.fanim",
+        "aseprite_resources/effects/blitzcrank_rocket_grab#sheet.png",
+        "aseprite_resources/effects/blitzcrank_rocket_grab#anim.fanim",
+        "aseprite_resources/effects/blitzcrank_static_field_cast#sheet.png",
+        "aseprite_resources/effects/blitzcrank_static_field_cast#anim.fanim",
+        "aseprite_resources/effects/blitzcrank_static_field_hit#sheet.png",
+        "aseprite_resources/effects/blitzcrank_static_field_hit#anim.fanim",
+        "aseprite_resources/effects/blitzcrank_static_field_linger#sheet.png",
+        "aseprite_resources/effects/blitzcrank_static_field_linger#anim.fanim",
         "aseprite_resources/champions/darius#sheet.png",
         "aseprite_resources/champions/darius#anim.fanim",
         "aseprite_resources/effects/darius_attack_slash#sheet.png",
@@ -1218,6 +1263,9 @@ def check_runtime_copy(game_root: Path) -> None:
         "icons/fiddlesticks_skill.png",
         "icons/fiddlesticks_skill2.png",
         "icons/fiddlesticks_ult.png",
+        "icons/blitzcrank_skill.png",
+        "icons/blitzcrank_skill2.png",
+        "icons/blitzcrank_ult.png",
         "icons/kayn_skill.png",
         "icons/kayn_skill2.png",
         "icons/kayn_ult.png",
@@ -1256,6 +1304,9 @@ def check_runtime_copy(game_root: Path) -> None:
             critical_files.append("sound/sfx/test_mod_aatrox_dash_effect_clip.wav")
         else:
             critical_files.append(f"sound/sfx/{event_name}_clip.wav")
+    for event_name in BLITZCRANK_SOUND_EVENTS:
+        critical_files.append(f"sound/sfx/{event_name}.sound_info")
+        critical_files.append(f"sound/sfx/{event_name}_clip.wav")
     for event_name in DARIUS_SOUND_EVENTS:
         critical_files.append(f"sound/sfx/{event_name}.sound_info")
         critical_files.append(f"sound/sfx/{event_name}_clip.wav")
@@ -1353,6 +1404,10 @@ def check_runtime_copy(game_root: Path) -> None:
                 if "??" in payload_text:
                     fail(f"runtime text locale {locale} description.{champion_id} still contains corrupted question marks")
                 expected_display_names = {
+                    f"{MOD_ID}_blitzcrank": {
+                        "zh-hans": "\u84b8\u6c7d\u673a\u5668\u4eba",
+                        "zh-hant": "\u84b8\u6c7d\u6a5f\u5668\u4eba",
+                    },
                     f"{MOD_ID}_darius": {
                         "zh-hans": "诺克萨斯之手",
                         "zh-hant": "諾克薩斯之手",
@@ -1393,6 +1448,7 @@ def check_runtime_copy(game_root: Path) -> None:
                         "Jinx",
                         "Thresh",
                         "Viktor",
+                        "Blitzcrank",
                         "Darius",
                         "诺手",
                         "諾手",
