@@ -472,9 +472,9 @@ THRESH_FRAME_SIZE = (57.0, 54.0)
 THRESH_CORE_ACTIONS = ("idle", "run", "attack", "skill", "skill2", "hit", "dead", "ult")
 THRESH_MIN_BOTTOM_SAFE = 8
 THRESH_MAX_BODY_WIDTH = 52
-THRESH_BOX_MIN_VISIBLE_PIXELS = 7000
-THRESH_BOX_MIN_STRONG_PIXELS = 3200
-THRESH_BOX_MIN_COLOR_BINS = 1800
+THRESH_BOX_MIN_VISIBLE_PIXELS = 5600
+THRESH_BOX_MIN_STRONG_PIXELS = 350
+THRESH_BOX_MIN_COLOR_BINS = 750
 THRESH_BOX_MAX_FRAME_WIDTH = 152
 THRESH_BOX_MAX_FRAME_HEIGHT = 122
 THRESH_BOX_MIN_FRAME_MARGIN = 4
@@ -4256,11 +4256,12 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         "SwitchByBuff",
         "LinearProjectile",
         "CasterViewEffect",
-        "ParabolicProjectile",
+        "RangeEffect",
         "RangePeriodProjectile",
         "Shield",
         "Stun",
         "MoveTo",
+        "Knockback",
         "WithSelf",
         "BlockMoveSkill",
         "Permanent",
@@ -4268,7 +4269,6 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         "test_mod_thresh_lantern_visual",
         "test_mod_thresh_flay_ground_sweep",
         "test_mod_thresh_flay_sweep",
-        "test_mod_thresh_box_ground_anchor",
         "test_mod_thresh_box_field",
         "test_mod_thresh_soul_stack",
         "test_mod_thresh_soul_gain",
@@ -4322,21 +4322,21 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
             fail(f"champion/thresh.data_champion view_effect {name} must reference {expected}")
     if view_effect_types.get("test_mod_thresh_lantern_visual") != "Animation":
         fail("Thresh lantern visual must be a one-shot ground ViewEffect, not a looping actor-attached buff")
-    if view_effect_z.get("test_mod_thresh_lantern_visual") != 1:
-        fail("Thresh lantern visual must render at z=1 near the ground instead of behind/inside the actor body")
+    if int(view_effect_z.get("test_mod_thresh_lantern_visual", 0)) < 4:
+        fail("Thresh lantern visual must render at z>=4 so the ground Dark Passage lantern is visible in battle")
     if view_effect_follow.get("test_mod_thresh_lantern_visual") is not False:
         fail("Thresh lantern visual must use is_follow=false so W does not create a second actor silhouette")
     if view_effect_types.get("test_mod_thresh_flay_ground_sweep") != "Animation":
         fail("Thresh Flay ground sweep must be an Animation ViewEffect so E has a visible non-linear bitmap cast read")
-    if view_effect_z.get("test_mod_thresh_flay_ground_sweep") != 2:
-        fail("Thresh Flay ground sweep must render at z=2 so E is visible over units without becoming a second actor")
+    if int(view_effect_z.get("test_mod_thresh_flay_ground_sweep", 0)) < 4:
+        fail("Thresh Flay ground sweep must render at z>=4 so E reads as a visible ground push")
     if view_effect_follow.get("test_mod_thresh_flay_ground_sweep") is not False:
         fail("Thresh Flay ground sweep must stay ground-anchored with is_follow=false")
     for name in ("test_mod_thresh_box", "test_mod_thresh_box_field"):
         if view_effect_types.get(name) != "LoopAnimation":
             fail(f"Thresh {name} must be LoopAnimation so The Box does not vanish immediately")
-        if view_effect_z.get(name) != 1:
-            fail(f"Thresh {name} must render at z=1 as a ground prison instead of covering the actor body")
+        if int(view_effect_z.get(name, 0)) < 4:
+            fail(f"Thresh {name} must render at z>=4 so The Box remains visible in live battles")
         if view_effect_follow.get(name) is not False:
             fail(f"Thresh {name} must stay ground-anchored with is_follow=false, not attached to the actor")
     buff_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in thresh.get("view_buffs", [])}
@@ -4365,20 +4365,20 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
     ]
     if len(flay_cast_vfx) != 1:
         fail("Thresh Flay must spawn exactly one ground sweep CasterViewEffect before the hit projectile")
-    if find_effect_nodes(flay, "Knockback"):
-        fail("Thresh Flay must not use Knockback here; this implementation should visibly pull enemies back toward Thresh")
-    flay_move_to_nodes = find_effect_nodes(flay, "MoveTo")
+    if find_effect_nodes(flay, "MoveTo"):
+        fail("Thresh Flay must use positive Knockback for the LoL ground push, not MoveTo pull-back")
+    flay_knockback_nodes = find_effect_nodes(flay, "Knockback")
     if not any(
-        int(node.get("speed", 0)) >= 5200 and int(node.get("range", 999999)) <= 12000
-        for node in flay_move_to_nodes
+        int(node.get("speed", 0)) >= 2200 and int(node.get("tick", 0)) >= 10
+        for node in flay_knockback_nodes
     ):
-        fail("Thresh Flay must include a strong MoveTo pull so enemies visibly move back toward Thresh")
+        fail("Thresh Flay must include a strong positive Knockback so enemies visibly get pushed by the ground sweep")
     flay_stun_nodes = find_effect_nodes(flay, "Stun")
     if not any(int(node.get("duration", 0)) >= 16 for node in flay_stun_nodes):
-        fail("Thresh Flay must briefly hold enemies after the pull so the displacement reads in battle")
+        fail("Thresh Flay must briefly hold enemies after the push so the displacement reads in battle")
     flay_block_nodes = find_effect_nodes(flay, "BlockMoveSkill")
     if not any(int(node.get("tick", 0)) >= 20 for node in flay_block_nodes):
-        fail("Thresh Flay must block movement skills long enough for the pull-back to be visible")
+        fail("Thresh Flay must block movement skills long enough for the push to be visible")
 
     for action, sfx_names in (
         ("skill", {"test_mod_thresh_q_cast", "test_mod_thresh_q_hit"}),
@@ -4395,14 +4395,16 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         fail("Thresh R must use EnemyChampion targeting so AI can actually choose The Box")
     if int(thresh_ult.get("range", 0)) < 60000:
         fail("Thresh R must expose a target range of at least 60000; range=0 makes AI skip The Box")
-    if int(thresh_ult.get("cooltime", 999999)) > 3000:
-        fail("Thresh R cooldown must stay at or below 3000 ticks so it appears during normal games")
+    if int(thresh_ult.get("cooltime", 999999)) > 2400:
+        fail("Thresh R cooldown must stay at or below 2400 ticks so it appears during normal games")
+    if int(thresh_ult.get("duration", 999999)) > 48 or int(thresh_ult.get("start_timing", 999999)) > 8:
+        fail("Thresh R must resolve quickly so AI casts do not stall before The Box release")
     ult_effect = thresh_ult.get("effect", {})
     ult_direct_effects = ult_effect.get("effects") if isinstance(ult_effect, dict) else None
     if not isinstance(ult_direct_effects, list):
         fail("Thresh R must keep its top-level Combine effects list")
-    if any(isinstance(node, dict) and node.get("type") == "ViewEffect" and node.get("name", "").startswith("test_mod_thresh_box") for node in ult_direct_effects):
-        fail("Thresh R must not flash a direct box ViewEffect at the top level; use the target-ground anchor end_effects")
+    if not any(isinstance(node, dict) and node.get("type") == "ViewEffect" and node.get("name") == "test_mod_thresh_box" for node in ult_direct_effects):
+        fail("Thresh R must spawn a direct high-z The Box ViewEffect so the ult is visible immediately")
     if any(
         isinstance(node, dict)
         and node.get("type") == "CasterViewEffect"
@@ -4410,44 +4412,44 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         for node in ult_direct_effects
     ):
         fail("Thresh R must not spawn The Box as a caster-level flash; it must land as a ground prison")
-    ground_anchors = [
-        node for node in ult_direct_effects
-        if isinstance(node, dict)
+    if any(
+        isinstance(node, dict)
         and node.get("type") == "ParabolicProjectile"
         and node.get("name") == "test_mod_thresh_box_ground_anchor"
+        for node in ult_direct_effects
+    ):
+        fail("Thresh R must not hide its AI-readable damage behind a ParabolicProjectile anchor")
+    direct_range_effects = [
+        node for node in ult_direct_effects
+        if isinstance(node, dict)
+        and node.get("type") == "RangeEffect"
+        and node.get("target") == "EnemyWithoutTower"
+        and node.get("apply_type") == "AroundCaster"
     ]
-    if len(ground_anchors) != 1:
-        fail("Thresh R must use exactly one target-ground box anchor so the prison appears on the battlefield")
-    box_anchor = ground_anchors[0]
-    if int(box_anchor.get("travel_time", 999)) > 6:
-        fail("Thresh R ground anchor must land quickly enough that The Box is visible with the cast")
-    anchor_shape = box_anchor.get("shape", {}).get("Circle", {}) if isinstance(box_anchor.get("shape"), dict) else {}
-    if int(anchor_shape.get("radius", 0)) < 54000:
-        fail("Thresh R ground anchor must keep a large prison radius")
-    if box_anchor.get("applied_target") != "EnemyWithoutTower":
-        fail("Thresh R ground anchor must affect enemies on the terrain, not only the selected champion")
+    if len(direct_range_effects) != 1:
+        fail("Thresh R must expose exactly one direct AroundCaster RangeEffect so AI can score The Box")
+    direct_box_hit = direct_range_effects[0]
+    direct_shape = direct_box_hit.get("shape", {}).get("Circle", {}) if isinstance(direct_box_hit.get("shape"), dict) else {}
+    if int(direct_shape.get("radius", 0)) < 54000:
+        fail("Thresh R direct RangeEffect must keep a large The Box radius")
     range_effect_names = {
-        applied.get("effect", {}).get("type")
-        for applied in box_anchor.get("applied_effects", [])
-        if isinstance(applied, dict) and isinstance(applied.get("effect"), dict)
+        effect.get("type")
+        for effect in direct_box_hit.get("effects", [])
+        if isinstance(effect, dict)
     }
     for required_effect in ("ApAttack", "AddBuff", "BlockMoveSkill", "TargetSfx"):
         if required_effect not in range_effect_names:
-            fail(f"Thresh R ground anchor must include {required_effect}")
-    anchor_end_effects = box_anchor.get("end_effects")
-    if not isinstance(anchor_end_effects, list):
-        fail("Thresh R ground anchor must own end_effects for visible terrain VFX")
-    if not any(isinstance(node, dict) and node.get("type") == "ViewEffect" and node.get("name") == "test_mod_thresh_box" for node in anchor_end_effects):
-        fail("Thresh R ground anchor must spawn the generated The Box terrain ViewEffect")
+            fail(f"Thresh R direct RangeEffect must include {required_effect}")
     box_fields = [
         node
-        for node in anchor_end_effects
-        if node.get("type") == "RangePeriodProjectile"
+        for node in ult_direct_effects
+        if isinstance(node, dict)
+        and node.get("type") == "RangePeriodProjectile"
         and node.get("name") == "test_mod_thresh_box_field"
         and int(node.get("tick", 0)) >= THRESH_BOX_MIN_TICKS
     ]
     if len(box_fields) != 1:
-        fail("Thresh R ground anchor must own exactly one long-lived terrain RangePeriodProjectile field")
+        fail("Thresh R must own exactly one top-level long-lived terrain RangePeriodProjectile field")
     box_field_shape = box_fields[0].get("shape", {}).get("Circle", {}) if isinstance(box_fields[0].get("shape"), dict) else {}
     if int(box_field_shape.get("radius", 0)) < 54000:
         fail("Thresh R terrain field must keep a large prison radius")
@@ -4464,11 +4466,11 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         ROOT / "aseprite_resources" / "effects" / "thresh_death_sentence_chain#anim.fanim",
         "chain",
         "Thresh Death Sentence hook VFX",
-        min_visible=3600,
-        min_color_bins=1200,
-        min_height=56,
-        min_fill_ratio=0.42,
-        max_width=178,
+        min_visible=2000,
+        min_color_bins=550,
+        min_height=30,
+        min_fill_ratio=0.18,
+        max_width=186,
     )
     chain_width, _chain_height, chain_alpha = load_rgba_alpha(
         ROOT / "aseprite_resources" / "effects" / "thresh_death_sentence_chain#sheet.png"
@@ -4494,6 +4496,9 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
     lantern_frames = lantern_fanim.get("anims", {}).get("loop", {}).get("frames")
     if not isinstance(lantern_frames, list):
         fail("Thresh lantern fanim must expose loop frames")
+    lantern_total_duration = sum(float(frame.get("duration", 0)) for frame in lantern_frames)
+    if lantern_total_duration < 1.0:
+        fail("Thresh W lantern animation must last at least 1.0s so Dark Passage is visible on the ground")
     lantern_sheet = ROOT / "aseprite_resources" / "effects" / "thresh_lantern#sheet.png"
     lantern_width, _lantern_height, lantern_rgba = load_rgba(lantern_sheet)
     _lantern_width_alpha, _lantern_height_alpha, lantern_alpha = load_rgba_alpha(lantern_sheet)
@@ -4507,28 +4512,38 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         h = int(round(float(data.get("h", 0))))
         if (w, h) != (64, 64):
             fail(f"Thresh lantern frame {index} must stay a 64x64 lantern-only buff cell")
-        left_edge_pixels = alpha_visible_pixels_in_rect(lantern_alpha, lantern_width, (x, y, 16, h))
-        if left_edge_pixels > 40:
+        visible = 0
+        bright = 0
+        ground_pixels = 0
+        for local_y in range(h):
+            for local_x in range(w):
+                rgba_index = ((y + local_y) * lantern_width + x + local_x) * 4
+                r = lantern_rgba[rgba_index]
+                g = lantern_rgba[rgba_index + 1]
+                b = lantern_rgba[rgba_index + 2]
+                a = lantern_rgba[rgba_index + 3]
+                if not a:
+                    continue
+                visible += 1
+                if a >= 100 and g >= 140 and b >= 80:
+                    bright += 1
+                if local_y >= 42:
+                    ground_pixels += 1
+        if visible < 1200 or bright < 150 or ground_pixels < 650:
             fail(
-                f"Thresh lantern frame {index} has {left_edge_pixels} pixels on the left actor edge; "
-                "Dark Passage must be a lantern effect, not a second Thresh body"
-            )
-        dark_body_pixels = dark_actor_pixels_in_rect(lantern_rgba, lantern_width, (x, y, 32, h))
-        if dark_body_pixels > 240:
-            fail(
-                f"Thresh lantern frame {index} has {dark_body_pixels} dark actor-like pixels; "
-                "remove duplicated hood/body pixels from the lantern buff"
+                f"Thresh lantern frame {index} must show a readable ground lantern and shield ring; "
+                f"visible={visible}, bright={bright}, ground_pixels={ground_pixels}"
             )
     assert_generated_vfx_volume(
         ROOT / "aseprite_resources" / "effects" / "thresh_flay_sweep#sheet.png",
         ROOT / "aseprite_resources" / "effects" / "thresh_flay_sweep#anim.fanim",
         "sweep",
         "Thresh Flay sweep VFX",
-        min_visible=4500,
-        min_color_bins=1200,
-        min_height=84,
-        min_fill_ratio=0.35,
-        max_width=150,
+        min_visible=1300,
+        min_color_bins=450,
+        min_height=48,
+        min_fill_ratio=0.08,
+        max_width=186,
     )
     box_fanim = load_json(ROOT / "aseprite_resources" / "effects" / "thresh_box#anim.fanim")
     box_frames = box_fanim.get("anims", {}).get("box", {}).get("frames") if isinstance(box_fanim, dict) else None
@@ -4597,8 +4612,8 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         fail(f"Thresh R field must last at least {THRESH_BOX_MIN_TICKS} ticks so The Box reads as a real prison zone")
     view_effect_z = {item.get("name"): item.get("z") for item in thresh.get("view_effects", [])}
     for name in ("test_mod_thresh_box", "test_mod_thresh_box_field"):
-        if view_effect_z.get(name) != 1:
-            fail(f"Thresh {name} must render at z=1 as a terrain prison that stays visible without covering the actor")
+        if int(view_effect_z.get(name, 0)) < 4:
+            fail(f"Thresh {name} must render at z>=4 so the terrain prison stays visible in battle")
 
     assert_official_audio_sources(
         "thresh",

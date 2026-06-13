@@ -820,9 +820,9 @@ def check_thresh_ult_visibility(path: Path, champion: object) -> None:
     if len(flay_nodes) != 1:
         fail("runtime Thresh E/Flay must use exactly one sweep projectile")
     flay = flay_nodes[0]
-    if flay.get("width") < 36000 or flay.get("length") < 56000:
+    if flay.get("width") < 40000 or flay.get("length") < 60000:
         fail("runtime Thresh E/Flay must use a broad sweep lane so the effect is not an invisible needle")
-    if flay.get("apply") < 24:
+    if flay.get("apply") < 30:
         fail("runtime Thresh E/Flay must remain active long enough to catch targets visibly")
     flay_cast_vfx = [
         node
@@ -831,17 +831,17 @@ def check_thresh_ult_visibility(path: Path, champion: object) -> None:
     ]
     if len(flay_cast_vfx) != 1:
         fail("runtime Thresh E/Flay must spawn exactly one ground sweep CasterViewEffect")
-    if any(node.get("type") == "Knockback" for node in iter_mapping_nodes(flay)):
-        fail("runtime Thresh E/Flay must not use Knockback; it should visibly pull enemies back toward Thresh")
-    flay_move_to = [node for node in iter_mapping_nodes(flay) if node.get("type") == "MoveTo"]
-    if not any(int(node.get("speed", 0)) >= 5200 and int(node.get("range", 999999)) <= 12000 for node in flay_move_to):
-        fail("runtime Thresh E/Flay must include a strong MoveTo pull")
+    if any(node.get("type") == "MoveTo" for node in iter_mapping_nodes(flay)):
+        fail("runtime Thresh E/Flay must use positive Knockback for the LoL ground push, not MoveTo pull-back")
+    flay_knockback = [node for node in iter_mapping_nodes(flay) if node.get("type") == "Knockback"]
+    if not any(int(node.get("speed", 0)) >= 2200 and int(node.get("tick", 0)) >= 10 for node in flay_knockback):
+        fail("runtime Thresh E/Flay must include a strong positive Knockback push")
     flay_stuns = [node for node in iter_mapping_nodes(flay) if node.get("type") == "Stun"]
     if not any(int(node.get("duration", 0)) >= 16 for node in flay_stuns):
-        fail("runtime Thresh E/Flay must briefly hold enemies after pulling them")
+        fail("runtime Thresh E/Flay must briefly hold enemies after pushing them")
     flay_blocks = [node for node in iter_mapping_nodes(flay) if node.get("type") == "BlockMoveSkill"]
     if not any(int(node.get("tick", 0)) >= 20 for node in flay_blocks):
-        fail("runtime Thresh E/Flay must block movement skills long enough for pull-back to read")
+        fail("runtime Thresh E/Flay must block movement skills long enough for the push to read")
     view_effect_rows = champion.get("view_effects", [])
     if not isinstance(view_effect_rows, list):
         fail(f"{path} view_effects must be a list")
@@ -856,8 +856,8 @@ def check_thresh_ult_visibility(path: Path, champion: object) -> None:
         fail("runtime Thresh W lantern visual must be registered as a ground ViewEffect")
     if view_effect_type.get("test_mod_thresh_lantern_visual") != "Animation":
         fail("runtime Thresh W lantern visual must be one-shot Animation, not a lingering actor-attached loop")
-    if view_effect_z.get("test_mod_thresh_lantern_visual") != 1:
-        fail("runtime Thresh W lantern visual must render at z=1 near the ground")
+    if int(view_effect_z.get("test_mod_thresh_lantern_visual", 0)) < 4:
+        fail("runtime Thresh W lantern visual must render at z>=4 so the ground lantern is visible")
     if view_effect_follow.get("test_mod_thresh_lantern_visual") is not False:
         fail("runtime Thresh W lantern visual must use is_follow=false to avoid second-Thresh afterimages")
     if view_effect_ref.get("test_mod_thresh_flay_ground_sweep") != (
@@ -867,8 +867,8 @@ def check_thresh_ult_visibility(path: Path, champion: object) -> None:
         fail("runtime Thresh E/Flay must register the generated ground sweep ViewEffect")
     if view_effect_type.get("test_mod_thresh_flay_ground_sweep") != "Animation":
         fail("runtime Thresh E/Flay ground sweep must be an Animation ViewEffect")
-    if view_effect_z.get("test_mod_thresh_flay_ground_sweep") != 2:
-        fail("runtime Thresh E/Flay ground sweep must render at z=2")
+    if int(view_effect_z.get("test_mod_thresh_flay_ground_sweep", 0)) < 4:
+        fail("runtime Thresh E/Flay ground sweep must render at z>=4")
     if view_effect_follow.get("test_mod_thresh_flay_ground_sweep") is not False:
         fail("runtime Thresh E/Flay ground sweep must use is_follow=false")
     view_buff_rows = champion.get("view_buffs", [])
@@ -881,8 +881,8 @@ def check_thresh_ult_visibility(path: Path, champion: object) -> None:
         if node.get("type") == "AddCasterBuff" and node.get("buff_state", {}).get("name") == "test_mod_thresh_lantern_visual":
             fail("runtime Thresh W lantern visual must be a non-following ViewEffect, not AddCasterBuff")
     for name in ("test_mod_thresh_box", "test_mod_thresh_box_field"):
-        if view_effect_z.get(name) != 1:
-            fail(f"runtime Thresh {name} must render at z=1 as a ground prison")
+        if int(view_effect_z.get(name, 0)) < 4:
+            fail(f"runtime Thresh {name} must render at z>=4 so The Box remains visible")
     box_fields = [
         node
         for node in iter_mapping_nodes(champion.get("ult", {}))
@@ -902,8 +902,8 @@ def check_thresh_ult_visibility(path: Path, champion: object) -> None:
     ult_direct_effects = ult_effect.get("effects") if isinstance(ult_effect, dict) else None
     if not isinstance(ult_direct_effects, list):
         fail("runtime Thresh R must keep its top-level Combine effects list")
-    if any(isinstance(node, dict) and node.get("type") == "ViewEffect" and node.get("name", "").startswith("test_mod_thresh_box") for node in ult_direct_effects):
-        fail("runtime Thresh R must not flash a direct box ViewEffect at the top level")
+    if not any(isinstance(node, dict) and node.get("type") == "ViewEffect" and node.get("name") == "test_mod_thresh_box" for node in ult_direct_effects):
+        fail("runtime Thresh R must spawn a direct The Box ViewEffect")
     if any(
         isinstance(node, dict)
         and node.get("type") == "CasterViewEffect"
@@ -911,45 +911,44 @@ def check_thresh_ult_visibility(path: Path, champion: object) -> None:
         for node in ult_direct_effects
     ):
         fail("runtime Thresh R must not spawn The Box as a caster-level flash")
-    ground_anchors = [
-        node for node in ult_direct_effects
-        if isinstance(node, dict)
+    if any(
+        isinstance(node, dict)
         and node.get("type") == "ParabolicProjectile"
         and node.get("name") == "test_mod_thresh_box_ground_anchor"
+        for node in ult_direct_effects
+    ):
+        fail("runtime Thresh R must not hide its AI-readable damage behind a ParabolicProjectile anchor")
+    range_effects = [
+        node for node in ult_direct_effects
+        if isinstance(node, dict)
+        and node.get("type") == "RangeEffect"
+        and node.get("target") == "EnemyWithoutTower"
+        and node.get("apply_type") == "AroundCaster"
     ]
-    if len(ground_anchors) != 1:
-        fail("runtime Thresh R must use exactly one target-ground box anchor")
-    box_anchor = ground_anchors[0]
-    if int(box_anchor.get("travel_time", 999)) > 6:
-        fail("runtime Thresh R ground anchor must land quickly enough to be visible")
-    anchor_shape = box_anchor.get("shape", {}).get("Circle", {}) if isinstance(box_anchor.get("shape"), dict) else {}
-    if int(anchor_shape.get("radius", 0)) < 54000:
-        fail("runtime Thresh R ground anchor must keep a large enough radius")
-    if box_anchor.get("applied_target") != "EnemyWithoutTower":
-        fail("runtime Thresh R ground anchor must affect enemies on the terrain")
+    if len(range_effects) != 1:
+        fail("runtime Thresh R must expose exactly one direct AroundCaster RangeEffect for AI scoring")
+    box_hit = range_effects[0]
+    box_hit_shape = box_hit.get("shape", {}).get("Circle", {}) if isinstance(box_hit.get("shape"), dict) else {}
+    if int(box_hit_shape.get("radius", 0)) < 54000:
+        fail("runtime Thresh R direct RangeEffect must keep a large enough radius")
     hit_effect_types = {
-        applied.get("effect", {}).get("type")
-        for applied in box_anchor.get("applied_effects", [])
-        if isinstance(applied, dict) and isinstance(applied.get("effect"), dict)
+        effect.get("type")
+        for effect in box_hit.get("effects", [])
+        if isinstance(effect, dict)
     }
     for required_effect in ("ApAttack", "AddBuff", "BlockMoveSkill", "TargetSfx"):
         if required_effect not in hit_effect_types:
-            fail(f"runtime Thresh R ground anchor must include {required_effect}")
-    anchor_end_effects = box_anchor.get("end_effects")
-    if not isinstance(anchor_end_effects, list):
-        fail("runtime Thresh R ground anchor must own end_effects for visible terrain VFX")
-    if not any(isinstance(node, dict) and node.get("type") == "ViewEffect" and node.get("name") == "test_mod_thresh_box" for node in anchor_end_effects):
-        fail("runtime Thresh R ground anchor must spawn the generated terrain ViewEffect")
+            fail(f"runtime Thresh R direct RangeEffect must include {required_effect}")
     box_fields_from_anchor = [
         node
-        for node in anchor_end_effects
+        for node in ult_direct_effects
         if isinstance(node, dict)
         and node.get("type") == "RangePeriodProjectile"
         and node.get("name") == "test_mod_thresh_box_field"
         and int(node.get("tick", 0)) >= THRESH_BOX_MIN_TICKS
     ]
     if len(box_fields_from_anchor) != 1:
-        fail("runtime Thresh R ground anchor must own a long-lived terrain field")
+        fail("runtime Thresh R must own a top-level long-lived terrain field")
     box_field_shape = box_fields_from_anchor[0].get("shape", {}).get("Circle", {}) if isinstance(box_fields_from_anchor[0].get("shape"), dict) else {}
     if int(box_field_shape.get("radius", 0)) < 54000:
         fail("runtime Thresh R terrain field must keep a large enough radius")
