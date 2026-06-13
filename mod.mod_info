@@ -3,8 +3,8 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.14.15",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Blitzcrank, Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version recenters Kayn's compact HUD and scoreboard portrait so his head, body, and scythe read in side-list/info-table avatars instead of cropping to the weapon edge, while preserving the Blitzcrank fixes.",
+  "version": "0.14.16",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Blitzcrank, Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version fixes Kayn's Umbral Trespass visibility by making the entry mark a stable target-ground effect and moving the exit burst into the actual rush-release branch, then documents the current roster-wide skill VFX audit.",
   "last_updated": "2026-06-14",
   "dependencies": [
     {

@@ -402,16 +402,16 @@
                   "attack_ratio": 160
                 },
                 {
+                  "type": "ViewEffect",
+                  "name": "test_mod_kayn_r_exit"
+                },
+                {
                   "type": "TargetSfx",
                   "name": "test_mod_kayn_r_hit"
                 }
               ]
             }
           ]
-        },
-        {
-          "type": "ViewEffect",
-          "name": "test_mod_kayn_r_exit"
         },
         {
           "type": "AddCasterBuff",
@@ -466,7 +466,7 @@
       "anim": "asset/bo_league_champions/aseprite_resources/effects/kayn_r_entry",
       "tag": "entry",
       "z": 5,
-      "is_follow": true
+      "is_follow": false
     },
     {
       "type": "Animation",
