@@ -3,9 +3,9 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.14.4",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Blitzcrank, Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version reworks Darius Noxian Guillotine with image-generated descending execution and red-black impact VFX so R reads as the LoL-style skyfall axe chop instead of code-line slash effects.",
-  "last_updated": "2026-06-13",
+  "version": "0.14.5",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Blitzcrank, Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version reworks Yasuo's Q/W/R skill VFX with image-generated katana thrust, vertical Wind Wall, Q3 tornado, and airborne Last Breath frames so the effects read closer to League instead of code-line wind shapes.",
+  "last_updated": "2026-06-14",
   "dependencies": [
     {
       "mod_id": "base",

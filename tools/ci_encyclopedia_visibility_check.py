@@ -2686,21 +2686,30 @@ def check_yasuo_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
     ):
         require_file(path)
         require_no_green_residue(path)
-    for effect_name in (
-        "yasuo_attack_slash",
-        "yasuo_q_stab",
-        "yasuo_q_tornado",
-        "yasuo_sweeping_blade",
-        "yasuo_wind_wall",
-        "yasuo_last_breath",
-        "yasuo_flow_shield",
-        "yasuo_after_breath_aura",
-    ):
+    yasuo_effect_tags = {
+        "yasuo_attack_slash": "slash",
+        "yasuo_q_stab": "stab",
+        "yasuo_q_tornado": "tornado",
+        "yasuo_sweeping_blade": "dash",
+        "yasuo_wind_wall": "wall",
+        "yasuo_last_breath": "burst",
+        "yasuo_flow_shield": "shield",
+        "yasuo_after_breath_aura": "loop",
+    }
+    for effect_name in yasuo_effect_tags:
         sheet = ROOT / "aseprite_resources" / "effects" / f"{effect_name}#sheet.png"
         fanim = ROOT / "aseprite_resources" / "effects" / f"{effect_name}#anim.fanim"
         require_file(sheet)
         require_file(fanim)
         require_no_green_residue(sheet)
+
+    for effect_name in (
+        "yasuo_attack_slash",
+        "yasuo_sweeping_blade",
+        "yasuo_flow_shield",
+        "yasuo_after_breath_aura",
+    ):
+        sheet = ROOT / "aseprite_resources" / "effects" / f"{effect_name}#sheet.png"
         width, height, rgba = load_rgba(sheet)
         wind_pixels = 0
         off_palette_pixels = 0
@@ -2718,6 +2727,177 @@ def check_yasuo_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
             fail(f"{sheet.relative_to(ROOT)} must contain a visible generated wind/sword effect")
         if off_palette_pixels > max(25, wind_pixels // 8):
             fail(f"{sheet.relative_to(ROOT)} contains actor/body-colored pixels; effects must not include a duplicate champion body")
+
+    def yasuo_effect_frame_metrics(effect_name: str, tag: str) -> list[dict[str, object]]:
+        fanim = load_json(ROOT / "aseprite_resources" / "effects" / f"{effect_name}#anim.fanim")
+        frames = fanim.get("anims", {}).get(tag, {}).get("frames") if isinstance(fanim, dict) else None
+        if not isinstance(frames, list):
+            fail(f"Yasuo {effect_name} must expose tag {tag!r}")
+        sheet_width, _sheet_height, rgba = load_rgba(
+            ROOT / "aseprite_resources" / "effects" / f"{effect_name}#sheet.png"
+        )
+        metrics: list[dict[str, object]] = []
+        for index, frame in enumerate(frames):
+            data = frame.get("data") if isinstance(frame, dict) else None
+            if not isinstance(data, dict):
+                fail(f"Yasuo {effect_name} frame {index} missing frame data")
+            x0 = int(round(float(data.get("x", -1))))
+            y0 = int(round(float(data.get("y", -1))))
+            w = int(round(float(data.get("w", 0))))
+            h = int(round(float(data.get("h", 0))))
+            visible = wind = white = steel = dark = gold_or_dust = 0
+            base_pixels = top_pixels = center_pixels = 0
+            colors: set[tuple[int, int, int, int]] = set()
+            min_x = w
+            min_y = h
+            max_x = max_y = -1
+            for y in range(y0, y0 + h):
+                for x in range(x0, x0 + w):
+                    pixel_index = (y * sheet_width + x) * 4
+                    r = rgba[pixel_index]
+                    g = rgba[pixel_index + 1]
+                    b = rgba[pixel_index + 2]
+                    a = rgba[pixel_index + 3]
+                    if not a:
+                        continue
+                    visible += 1
+                    colors.add((r, g, b, a))
+                    local_x = x - x0
+                    local_y = y - y0
+                    min_x = min(min_x, local_x)
+                    min_y = min(min_y, local_y)
+                    max_x = max(max_x, local_x)
+                    max_y = max(max_y, local_y)
+                    if b >= r + 12 and g >= r - 8 and (b >= 90 or g >= 90):
+                        wind += 1
+                    if a > 80 and r > 190 and g > 200 and b > 205:
+                        white += 1
+                    if (
+                        a > 80
+                        and r > 80
+                        and g > 80
+                        and b > 80
+                        and abs(r - g) < 45
+                        and abs(g - b) < 55
+                        and b >= r - 20
+                    ):
+                        steel += 1
+                    if a > 60 and r < 55 and g < 80 and b < 120:
+                        dark += 1
+                    if a > 40 and r > 120 and g > 85 and b < 100:
+                        gold_or_dust += 1
+                    if local_y >= h - 24:
+                        base_pixels += 1
+                    if local_y < 24:
+                        top_pixels += 1
+                    if w * 0.35 <= local_x <= w * 0.65:
+                        center_pixels += 1
+            if visible:
+                visible_width = max_x - min_x + 1
+                visible_height = max_y - min_y + 1
+            else:
+                visible_width = visible_height = 0
+            if visible < 250 or len(colors) < 140:
+                fail(
+                    f"Yasuo {effect_name} frame {index} is too sparse/flat; "
+                    "skill VFX must be generated bitmap art, not code-line placeholders"
+                )
+            metrics.append(
+                {
+                    "visible": visible,
+                    "wind": wind,
+                    "white": white,
+                    "steel": steel,
+                    "dark": dark,
+                    "gold_or_dust": gold_or_dust,
+                    "colors": len(colors),
+                    "width": visible_width,
+                    "height": visible_height,
+                    "base": base_pixels,
+                    "top": top_pixels,
+                    "center": center_pixels,
+                }
+            )
+        return metrics
+
+    q_stab_metrics = yasuo_effect_frame_metrics("yasuo_q_stab", "stab")
+    q_long_thrust_frames = 0
+    for index, metrics in enumerate(q_stab_metrics):
+        if int(metrics["wind"]) < 900 or int(metrics["steel"]) < 250:
+            fail(
+                f"Yasuo Q stab frame {index} must show a generated steel katana thrust with wind wrap; "
+                f"got wind={metrics['wind']}, steel={metrics['steel']}"
+            )
+        if int(metrics["gold_or_dust"]) + int(metrics["dark"]) < 70:
+            fail(f"Yasuo Q stab frame {index} must keep a visible sword hilt/handle, not only a blue wind streak")
+        if int(metrics["width"]) >= 100:
+            q_long_thrust_frames += 1
+    if q_long_thrust_frames < 5 or max(int(metrics["steel"]) for metrics in q_stab_metrics) < 700:
+        fail(
+            "Yasuo Q Steel Tempest must read as a long forward katana thrust, not a crescent wind swipe; "
+            f"long_frames={q_long_thrust_frames}, steel_peak={max(int(metrics['steel']) for metrics in q_stab_metrics)}"
+        )
+
+    q_tornado_metrics = yasuo_effect_frame_metrics("yasuo_q_tornado", "tornado")
+    tall_cyclone_frames = sum(
+        1
+        for metrics in q_tornado_metrics
+        if int(metrics["height"]) >= 87 and int(metrics["wind"]) >= 1500 and int(metrics["center"]) >= 1500
+    )
+    full_cyclone_frames = sum(
+        1
+        for metrics in q_tornado_metrics
+        if int(metrics["visible"]) >= 3000 and int(metrics["height"]) >= 92 and int(metrics["wind"]) >= 2500
+    )
+    if tall_cyclone_frames < 6 or full_cyclone_frames < 3:
+        fail(
+            "Yasuo Q3 tornado must be a readable image-generated vertical cyclone sequence; "
+            f"tall={tall_cyclone_frames}, full={full_cyclone_frames}"
+        )
+
+    wall_metrics = yasuo_effect_frame_metrics("yasuo_wind_wall", "wall")
+    if int(wall_metrics[0]["width"]) < 80 or int(wall_metrics[0]["height"]) > 45:
+        fail("Yasuo Wind Wall frame 0 must start as a low ground gust, not a circular aura")
+    vertical_wall_frames = sum(
+        1
+        for metrics in wall_metrics[1:]
+        if int(metrics["height"]) >= 90 and int(metrics["base"]) >= 700 and int(metrics["wind"]) >= 900
+    )
+    full_wall_frames = sum(
+        1
+        for metrics in wall_metrics
+        if int(metrics["height"]) >= 90 and int(metrics["base"]) >= 1000 and int(metrics["center"]) >= 900
+    )
+    if vertical_wall_frames < 5 or full_wall_frames < 3:
+        fail(
+            "Yasuo W must raise a ground-anchored vertical Wind Wall, not a ground ring; "
+            f"vertical={vertical_wall_frames}, full={full_wall_frames}"
+        )
+
+    last_breath_metrics = yasuo_effect_frame_metrics("yasuo_last_breath", "burst")
+    aerial_slash_frames = sum(
+        1
+        for metrics in last_breath_metrics
+        if int(metrics["height"]) >= 90
+        and int(metrics["dark"]) >= 100
+        and int(metrics["top"]) >= 100
+        and int(metrics["wind"]) >= 1100
+    )
+    center_air_frames = sum(
+        1
+        for metrics in last_breath_metrics
+        if int(metrics["center"]) >= 1300 and int(metrics["height"]) >= 90
+    )
+    impact_frames = sum(
+        1
+        for metrics in last_breath_metrics
+        if int(metrics["base"]) >= 1000 and int(metrics["width"]) >= 60 and int(metrics["wind"]) >= 2000
+    )
+    if aerial_slash_frames < 5 or center_air_frames < 5 or impact_frames < 1:
+        fail(
+            "Yasuo R Last Breath must read as airborne suspended sword cuts with a final drop impact, "
+            f"not a generic ground cyclone; aerial={aerial_slash_frames}, center={center_air_frames}, impact={impact_frames}"
+        )
 
     fanim = load_json(ROOT / "aseprite_resources" / "champions" / "yasuo#anim.fanim")
     sheet_width, sheet_height, sheet_alpha = load_rgba_alpha(
