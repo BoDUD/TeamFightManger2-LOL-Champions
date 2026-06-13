@@ -153,6 +153,8 @@ JHIN_RUNTIME_MIN_RUN_UNIQUE_FRAMES = 8
 JHIN_RUNTIME_MAX_UPRIGHT_RUN_WIDTH = 50
 JHIN_RUNTIME_MIN_UPRIGHT_RUN_HEIGHT = 47
 JHIN_RUNTIME_MAX_UPRIGHT_RUN_TOP = 8
+JHIN_RUNTIME_MAX_RUN_HIGH_LEFT_PIXELS = 60
+JHIN_RUNTIME_MAX_RUN_CENTROID_X_RANGE = 4.0
 REQUIRED_DESCRIPTION_KEYS = ("name", "attack", "skill", "skill2", "ult")
 REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS: dict[str, dict[str, tuple[str, ...]]] = {
     f"{MOD_ID}_aatrox": {
@@ -388,6 +390,32 @@ def alpha_frame_hash(alpha: bytes, image_width: int, rect: tuple[int, int, int, 
     return digest.hexdigest()
 
 
+def alpha_visible_pixels_in_rect(alpha: bytes, image_width: int, rect: tuple[int, int, int, int]) -> int:
+    x0, y0, w, h = rect
+    visible = 0
+    for y in range(y0, y0 + h):
+        row_start = y * image_width
+        for x in range(x0, x0 + w):
+            if alpha[row_start + x] != 0:
+                visible += 1
+    return visible
+
+
+def alpha_centroid_x_in_rect(alpha: bytes, image_width: int, rect: tuple[int, int, int, int]) -> float | None:
+    x0, y0, w, h = rect
+    total_x = 0
+    visible = 0
+    for y in range(y0, y0 + h):
+        row_start = y * image_width
+        for x in range(x0, x0 + w):
+            if alpha[row_start + x] != 0:
+                total_x += x - x0
+                visible += 1
+    if visible == 0:
+        return None
+    return total_x / visible
+
+
 def check_aatrox_basic_attack_motion(runtime_root: Path) -> None:
     sheet_path = runtime_root / "aseprite_resources" / "champions" / "aatrox#sheet.png"
     sheet_width, _sheet_height, alpha = load_rgba_alpha(sheet_path)
@@ -434,6 +462,8 @@ def check_jhin_upright_run_pose(runtime_root: Path) -> None:
     widths: list[int] = []
     heights: list[int] = []
     tops: list[int] = []
+    high_left_pixels: list[int] = []
+    centroid_xs: list[float] = []
     for index, x in enumerate(JHIN_RUNTIME_RUN_FRAME_XS, start=1):
         rect = (x, 0, frame_w, frame_h)
         bbox = alpha_bbox_in_rect(alpha, sheet_width, rect)
@@ -443,6 +473,12 @@ def check_jhin_upright_run_pose(runtime_root: Path) -> None:
         widths.append(bbox[2] - bbox[0])
         heights.append(bbox[3] - bbox[1])
         tops.append(bbox[1])
+        high_left_rect = (x, 0, min(28, frame_w), min(20, frame_h))
+        high_left_pixels.append(alpha_visible_pixels_in_rect(alpha, sheet_width, high_left_rect))
+        centroid_x = alpha_centroid_x_in_rect(alpha, sheet_width, rect)
+        if centroid_x is None:
+            fail(f"runtime Jhin run frame {index} is blank")
+        centroid_xs.append(centroid_x)
     if len(set(hashes)) < JHIN_RUNTIME_MIN_RUN_UNIQUE_FRAMES:
         fail("runtime Jhin run must keep at least eight distinct upright generated stride poses")
     if max(widths) > JHIN_RUNTIME_MAX_UPRIGHT_RUN_WIDTH:
@@ -451,6 +487,10 @@ def check_jhin_upright_run_pose(runtime_root: Path) -> None:
         fail("runtime Jhin run is too short and has regressed toward crouched sprint poses")
     if max(tops) > JHIN_RUNTIME_MAX_UPRIGHT_RUN_TOP:
         fail("runtime Jhin run top is too low; keep an upright LoL-like posture")
+    if max(high_left_pixels) > JHIN_RUNTIME_MAX_RUN_HIGH_LEFT_PIXELS:
+        fail("runtime Jhin run has high-left vertical weapon pixels; prevent the zombie-step frame")
+    if max(centroid_xs) - min(centroid_xs) > JHIN_RUNTIME_MAX_RUN_CENTROID_X_RANGE:
+        fail("runtime Jhin run horizontal centroid is unstable; prevent snapping/zombie-step motion")
 
 
 def assert_no_negative_speed_fields(node: object, label: str) -> None:
