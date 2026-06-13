@@ -3,8 +3,8 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.14.10",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Blitzcrank, Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version rebuilds Blitzcrank Q/W/E/R around image-generated Rocket Grab, Overdrive, Power Fist, and Static Field bitmap sheets, with Q pulling enemies back, W granting speed, E knocking targets up, and R applying a visible silence field.",
+  "version": "0.14.11",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Blitzcrank, Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version fixes Blitzcrank's draft/card actor model by reinforcing the lower-body pixels from an image-generated full-body reference so the robot's legs and feet remain visible while preserving the existing 57x54 animation contract.",
   "last_updated": "2026-06-14",
   "dependencies": [
     {

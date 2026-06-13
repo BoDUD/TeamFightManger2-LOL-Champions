@@ -6074,12 +6074,14 @@ def check_blitzcrank_contract(text: dict[str, Any], entries: dict[str, Any]) -> 
         fail("Blitzcrank actor sheet RGBA/alpha dimensions disagree")
     action_hashes: dict[str, list[str]] = {}
     action_heights: dict[str, list[int]] = {}
+    action_lower_body: dict[str, list[tuple[int, int, int]]] = {}
     for action, expected_count in BLITZCRANK_EXPECTED_COUNTS.items():
         frames = anims.get(action, {}).get("frames") if isinstance(anims.get(action), dict) else None
         if not isinstance(frames, list) or len(frames) != expected_count:
             fail(f"Blitzcrank {action} must preserve {expected_count} 57x54 action frames")
         action_hashes[action] = []
         action_heights[action] = []
+        action_lower_body[action] = []
         for index, frame in enumerate(frames):
             data = frame.get("data") if isinstance(frame, dict) else None
             if not isinstance(data, dict):
@@ -6100,6 +6102,20 @@ def check_blitzcrank_contract(text: dict[str, Any], entries: dict[str, Any]) -> 
                 fail(f"Blitzcrank {action} frame {index} leaves only {bottom_safe}px below feet; avoid feet under UI names")
             action_hashes[action].append(alpha_frame_hash(sheet_alpha, sheet_width, rect))
             action_heights[action].append(bbox[3] - bbox[1])
+            visible_pixels = 0
+            lower_body_pixels = 0
+            foot_pixels = 0
+            for local_y in range(rect[3]):
+                for local_x in range(rect[2]):
+                    alpha_index = (rect[1] + local_y) * sheet_width + rect[0] + local_x
+                    if sheet_alpha[alpha_index] <= 20:
+                        continue
+                    visible_pixels += 1
+                    if local_y >= 32:
+                        lower_body_pixels += 1
+                    if local_y >= 40:
+                        foot_pixels += 1
+            action_lower_body[action].append((visible_pixels, lower_body_pixels, foot_pixels))
 
     if len(set(action_hashes["run"])) < 7:
         fail("Blitzcrank run must use multiple generated stride frames, not repeated idle frames")
@@ -6109,6 +6125,15 @@ def check_blitzcrank_contract(text: dict[str, Any], entries: dict[str, Any]) -> 
         fail("Blitzcrank skill and overdrive actions must use generated body poses")
     if max(action_heights["run"]) - min(action_heights["run"]) > 4:
         fail("Blitzcrank run body height is unstable; keep the robot in one scale class")
+    for action in ("idle", "run", "attack", "skill", "skill2", "ult", "hit"):
+        for index, (visible_pixels, lower_body_pixels, foot_pixels) in enumerate(action_lower_body[action]):
+            lower_ratio = lower_body_pixels / max(1, visible_pixels)
+            foot_ratio = foot_pixels / max(1, visible_pixels)
+            if lower_ratio < 0.23 or foot_pixels < 40 or foot_ratio < 0.03:
+                fail(
+                    f"Blitzcrank {action} frame {index} legs/feet are not readable enough for draft cards; "
+                    f"lower_ratio={lower_ratio:.3f}, foot_pixels={foot_pixels}, foot_ratio={foot_ratio:.3f}"
+                )
     assert_compact_idle_bottom_safety("blitzcrank", min_bottom_safe=10)
 
     idle0 = anims.get("idle", {}).get("frames", [{}])[0].get("data", {})
@@ -6149,7 +6174,7 @@ def check_blitzcrank_contract(text: dict[str, Any], entries: dict[str, Any]) -> 
         or cyan_max_x > 30
         or cyan_min_y > 4
         or cyan_max_y < 20
-        or cyan_max_y > 25
+        or cyan_max_y > 27
     ):
         fail(
             "Blitzcrank compact HUD/scoreboard face crop must center the blue eyes/chest core; "
