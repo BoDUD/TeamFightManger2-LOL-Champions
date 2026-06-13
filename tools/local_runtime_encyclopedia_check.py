@@ -587,6 +587,36 @@ def check_blitzcrank_skill_contract(path: Path, champion: object) -> None:
     ready_states = named_buff_states(skill2, "AddCasterBuff", "test_mod_blitzcrank_power_fist_ready")
     if len(ready_states) != 1 or buff_duration_tick(ready_states[0]) < 360:
         fail("runtime Blitzcrank E must prime the next attack long enough to be used")
+    runtime_root = path.parent.parent
+    ready_anim = load_json(runtime_root / "aseprite_resources" / "effects" / "blitzcrank_power_fist_ready#anim.fanim")
+    ready_frames = ready_anim.get("anims", {}).get("ready", {}).get("frames") if isinstance(ready_anim, dict) else None
+    if not isinstance(ready_frames, list) or len(ready_frames) != 6:
+        fail("runtime Blitzcrank E ready buff must expose six compact generated frames")
+    sheet_width, _sheet_height, sheet_alpha = load_rgba_alpha(
+        runtime_root / "aseprite_resources" / "effects" / "blitzcrank_power_fist_ready#sheet.png"
+    )
+    for index, frame in enumerate(ready_frames):
+        data = frame.get("data") if isinstance(frame, dict) else None
+        if not isinstance(data, dict):
+            fail(f"runtime Blitzcrank E ready buff frame {index} missing frame data")
+        rect = (
+            int(round(float(data.get("x", -1)))),
+            int(round(float(data.get("y", -1)))),
+            int(round(float(data.get("w", 0)))),
+            int(round(float(data.get("h", 0)))),
+        )
+        if rect[2] > 48 or rect[3] > 48:
+            fail(f"runtime Blitzcrank E ready buff frame {index} cell {rect[2]}x{rect[3]} is too large for an actor-following buff")
+        bbox = alpha_bbox_in_rect(sheet_alpha, sheet_width, rect)
+        if bbox is None:
+            fail(f"runtime Blitzcrank E ready buff frame {index} is blank")
+        frame_width = bbox[2] - bbox[0]
+        frame_height = bbox[3] - bbox[1]
+        if frame_width > 46 or frame_height > 32:
+            fail(
+                f"runtime Blitzcrank E ready buff frame {index} visible bbox is {frame_width}x{frame_height}; "
+                "keep Power Fist as a compact hand glow instead of a giant actor-covering fist"
+            )
     fatigue_states = named_buff_states(skill2, "AddCasterBuff", "test_mod_blitzcrank_overdrive_fatigue")
     if not fatigue_states or min(int(state.get("move_speed_mult", 0)) for state in fatigue_states) >= 0:
         fail("runtime Blitzcrank W must slow Blitzcrank briefly after Overdrive ends")

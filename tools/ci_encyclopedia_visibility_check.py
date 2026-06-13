@@ -6403,7 +6403,7 @@ def check_blitzcrank_contract(text: dict[str, Any], entries: dict[str, Any]) -> 
         ("blitzcrank_grab_hit", "hit", "Blitzcrank Rocket Grab clamp and pull impact", 1250, 900, 34, 0.30),
         ("blitzcrank_overdrive", "loop", "Blitzcrank Overdrive self-speed buff", 1100, 900, 28, 0.30),
         ("blitzcrank_punch_hit", "hit", "Blitzcrank punch hit burst", 1200, 550, 30, 0.22),
-        ("blitzcrank_power_fist_ready", "ready", "Blitzcrank Power Fist compact fist glow", 1100, 800, 34, 0.30),
+        ("blitzcrank_power_fist_ready", "ready", "Blitzcrank Power Fist compact fist glow", 450, 380, 20, 0.45),
         ("blitzcrank_power_fist_impact", "impact", "Blitzcrank Power Fist impact", 1900, 1000, 50, 0.28),
         ("blitzcrank_static_field_cast", "cast", "Blitzcrank Static Field cast", 2200, 1350, 46, 0.28),
         ("blitzcrank_static_field_hit", "hit", "Blitzcrank Static Field hit", 2300, 1200, 45, 0.30),
@@ -6425,6 +6425,15 @@ def check_blitzcrank_contract(text: dict[str, Any], entries: dict[str, Any]) -> 
             min_height=min_height,
             min_fill_ratio=min_fill_ratio,
         )
+    assert_effect_frame_bbox_limits(
+        ROOT / "aseprite_resources" / "effects" / "blitzcrank_power_fist_ready#sheet.png",
+        ROOT / "aseprite_resources" / "effects" / "blitzcrank_power_fist_ready#anim.fanim",
+        "ready",
+        "Blitzcrank Power Fist compact ready buff",
+        max_width=46,
+        max_height=32,
+        min_margin=2,
+    )
     assert_animation_total_duration(
         ROOT / "aseprite_resources" / "effects" / "blitzcrank_static_field_linger#anim.fanim",
         "field",
