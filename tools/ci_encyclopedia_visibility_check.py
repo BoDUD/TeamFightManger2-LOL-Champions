@@ -745,7 +745,7 @@ SIDE_CARD_STANDING_FACE_OFFSETS = {
     "fiddlesticks": {"x": -8, "y": -6},
     "jhin": {"x": 0, "y": -28},
     "jinx": {"x": -2, "y": -16},
-    "kayn": {"x": 4, "y": -18},
+    "kayn": {"x": -18, "y": 0},
     "thresh": {"x": 0, "y": -15},
     "viktor": {"x": 0, "y": -28},
     "yasuo": {"x": 4, "y": -12},
@@ -2363,10 +2363,10 @@ def check_kayn_rework_contract(text: dict[str, Any], entries: dict[str, Any]) ->
         face_x = view.get("face", {}).get("x")
         face_y = view.get("face", {}).get("y")
         center_y = view.get("center", {}).get("y")
-        if face_x != 4:
-            fail(f"style entry {kayn_id}.face.x must keep Kayn's compact portrait centered")
-        if face_y != -18:
-            fail(f"style entry {kayn_id}.face.y must keep Kayn's HUD/scoreboard portrait centered at -18")
+        if face_x != -18:
+            fail(f"style entry {kayn_id}.face.x must keep Kayn's compact portrait centered at -18")
+        if face_y != 0:
+            fail(f"style entry {kayn_id}.face.y must keep Kayn's HUD/scoreboard portrait centered at 0")
         if not isinstance(center_y, (int, float)) or not -20 <= center_y <= -8:
             fail(f"style entry {kayn_id}.center.y must keep the full-body display above the name")
 
@@ -2384,6 +2384,94 @@ def check_kayn_rework_contract(text: dict[str, Any], entries: dict[str, Any]) ->
     ):
         require_file(path)
         require_no_green_residue(path)
+
+    face = entries["bo_league_champions_kayn"]["face"]
+    face_x = int(face.get("x", 0))
+    face_y = int(face.get("y", 0))
+    face_sheet_width, face_sheet_height, face_sheet_rgba = load_rgba(
+        ROOT / "aseprite_resources" / "champions" / "kayn#sheet.png"
+    )
+    face_fanim = load_json(ROOT / "aseprite_resources" / "champions" / "kayn#anim.fanim")
+    idle0 = face_fanim.get("anims", {}).get("idle", {}).get("frames", [{}])[0].get("data", {})
+    rect_x = int(round(float(idle0.get("x", 0))))
+    rect_y = int(round(float(idle0.get("y", 0))))
+    rect_w = int(round(float(idle0.get("w", 0))))
+    rect_h = int(round(float(idle0.get("h", 0))))
+
+    def kayn_face_metrics(crop_size: int) -> tuple[int, int, int, int, int, int, int, int, int]:
+        skin_pixels = 0
+        skin_min_x = 10**9
+        skin_max_x = -1
+        skin_min_y = 10**9
+        skin_max_y = -1
+        hair_pixels = 0
+        hair_min_x = 10**9
+        hair_max_x = -1
+        for local_y in range(crop_size):
+            for local_x in range(crop_size):
+                src_x = rect_x + local_x - face_x
+                src_y = rect_y + local_y - face_y
+                if src_x < rect_x or src_x >= rect_x + rect_w or src_y < rect_y or src_y >= rect_y + rect_h:
+                    continue
+                index = (src_y * face_sheet_width + src_x) * 4
+                r = face_sheet_rgba[index]
+                g = face_sheet_rgba[index + 1]
+                b = face_sheet_rgba[index + 2]
+                a = face_sheet_rgba[index + 3]
+                if a <= 40:
+                    continue
+                if r >= 130 and 70 <= g <= 165 and 45 <= b <= 135 and r > g * 1.05 and r > b * 1.35:
+                    skin_pixels += 1
+                    skin_min_x = min(skin_min_x, local_x)
+                    skin_max_x = max(skin_max_x, local_x + 1)
+                    skin_min_y = min(skin_min_y, local_y)
+                    skin_max_y = max(skin_max_y, local_y + 1)
+                if 40 <= r <= 105 and 65 <= g <= 135 and 85 <= b <= 170 and b > r * 1.2 and b >= g:
+                    hair_pixels += 1
+                    hair_min_x = min(hair_min_x, local_x)
+                    hair_max_x = max(hair_max_x, local_x + 1)
+        return skin_pixels, skin_min_x, skin_max_x, skin_min_y, skin_max_y, hair_pixels, hair_min_x, hair_max_x, crop_size
+
+    side_face = kayn_face_metrics(40)
+    score_face = kayn_face_metrics(32)
+    if (
+        side_face[0] < 30
+        or side_face[1] < 0
+        or side_face[1] > 12
+        or side_face[2] < 18
+        or side_face[2] > 24
+        or side_face[3] < 7
+        or side_face[3] > 12
+        or side_face[4] < 24
+        or side_face[5] < 10
+        or side_face[7] > 24
+    ):
+        fail(
+            "Kayn side-list compact portrait must center blue hair and face instead of showing mostly body/scythe; "
+            f"got skin_pixels={side_face[0]}, skin_x=({side_face[1]},{side_face[2]}), "
+            f"skin_y=({side_face[3]},{side_face[4]}), hair_pixels={side_face[5]}, "
+            f"hair_x=({side_face[6]},{side_face[7]}), face=({face_x},{face_y})"
+        )
+    if (
+        score_face[0] < 30
+        or score_face[1] < 8
+        or score_face[1] > 12
+        or score_face[2] < 18
+        or score_face[2] > 24
+        or score_face[3] < 7
+        or score_face[3] > 12
+        or score_face[4] < 24
+        or score_face[5] < 10
+        or score_face[6] < 12
+        or score_face[7] > 24
+    ):
+        fail(
+            "Kayn 32px scoreboard portrait must center the face instead of clipping it at the right edge; "
+            f"got skin_pixels={score_face[0]}, skin_x=({score_face[1]},{score_face[2]}), "
+            f"skin_y=({score_face[3]},{score_face[4]}), hair_pixels={score_face[5]}, "
+            f"hair_x=({score_face[6]},{score_face[7]}), face=({face_x},{face_y})"
+        )
+
     assert_kayn_skill_vfx_no_actor_body()
     assert_kayn_q_and_attack_vfx_readable()
 
