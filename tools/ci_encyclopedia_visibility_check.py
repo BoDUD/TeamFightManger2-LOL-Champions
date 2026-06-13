@@ -746,7 +746,7 @@ JHIN_MIN_UPRIGHT_RUN_HEIGHT = 47
 JHIN_MAX_UPRIGHT_RUN_TOP = 8
 SIDE_CARD_STANDING_FACE_OFFSETS = {
     "aatrox": {"x": -8, "y": -6},
-    "blitzcrank": {"x": 0, "y": -14},
+    "blitzcrank": {"x": -10, "y": -8},
     "darius": {"x": 0, "y": -12},
     "fiddlesticks": {"x": 0, "y": -2},
     "jhin": {"x": 0, "y": -28},
@@ -5285,8 +5285,8 @@ def check_blitzcrank_contract(text: dict[str, Any], entries: dict[str, Any]) -> 
     view = entries.get(blitz_id)
     if not isinstance(view, dict):
         fail(f"style/champion_view.champion_view missing entries.{blitz_id}")
-    if view.get("face") != {"x": 0, "y": -14}:
-        fail(f"style entry {blitz_id}.face must keep Blitzcrank compact portrait at x=0,y=-14")
+    if view.get("face") != {"x": -10, "y": -8}:
+        fail(f"style entry {blitz_id}.face must keep Blitzcrank compact portrait at x=-10,y=-8")
     if view.get("center") != {"x": 0, "y": -18}:
         fail(f"style entry {blitz_id}.center must keep Blitzcrank standing card feet safe at x=0,y=-18")
     compat_view = entries.get("test_mod_blitzcrank")
@@ -5307,7 +5307,11 @@ def check_blitzcrank_contract(text: dict[str, Any], entries: dict[str, Any]) -> 
     anims = fanim.get("anims") if isinstance(fanim, dict) else None
     if not isinstance(anims, dict):
         fail("aseprite_resources/champions/blitzcrank#anim.fanim must contain anims")
-    sheet_width, _sheet_height, sheet_alpha = load_rgba_alpha(ROOT / "aseprite_resources" / "champions" / "blitzcrank#sheet.png")
+    sheet_path = ROOT / "aseprite_resources" / "champions" / "blitzcrank#sheet.png"
+    sheet_rgba_width, _sheet_rgba_height, sheet_rgba = load_rgba(sheet_path)
+    sheet_width, _sheet_height, sheet_alpha = load_rgba_alpha(sheet_path)
+    if sheet_rgba_width != sheet_width:
+        fail("Blitzcrank actor sheet RGBA/alpha dimensions disagree")
     action_hashes: dict[str, list[str]] = {}
     action_heights: dict[str, list[int]] = {}
     for action, expected_count in BLITZCRANK_EXPECTED_COUNTS.items():
@@ -5346,6 +5350,53 @@ def check_blitzcrank_contract(text: dict[str, Any], entries: dict[str, Any]) -> 
     if max(action_heights["run"]) - min(action_heights["run"]) > 4:
         fail("Blitzcrank run body height is unstable; keep the robot in one scale class")
     assert_compact_idle_bottom_safety("blitzcrank", min_bottom_safe=10)
+
+    idle0 = anims.get("idle", {}).get("frames", [{}])[0].get("data", {})
+    rect_x = int(round(float(idle0.get("x", -1))))
+    rect_y = int(round(float(idle0.get("y", -1))))
+    rect_w = int(round(float(idle0.get("w", 0))))
+    rect_h = int(round(float(idle0.get("h", 0))))
+    face = view["face"]
+    face_x = int(face.get("x", 0))
+    face_y = int(face.get("y", 0))
+    cyan_pixels = 0
+    cyan_min_x = 10**9
+    cyan_max_x = -1
+    cyan_min_y = 10**9
+    cyan_max_y = -1
+    for local_y in range(40):
+        for local_x in range(40):
+            src_x = rect_x + local_x - face_x
+            src_y = rect_y + local_y - face_y
+            if src_x < rect_x or src_x >= rect_x + rect_w or src_y < rect_y or src_y >= rect_y + rect_h:
+                continue
+            index = (src_y * sheet_width + src_x) * 4
+            r = sheet_rgba[index]
+            g = sheet_rgba[index + 1]
+            b = sheet_rgba[index + 2]
+            a = sheet_rgba[index + 3]
+            if a > 40 and b > 120 and g > 100 and b > r * 1.35 and g > r * 1.15:
+                cyan_pixels += 1
+                cyan_min_x = min(cyan_min_x, local_x)
+                cyan_max_x = max(cyan_max_x, local_x + 1)
+                cyan_min_y = min(cyan_min_y, local_y)
+                cyan_max_y = max(cyan_max_y, local_y + 1)
+    if (
+        cyan_pixels < 40
+        or cyan_min_x < 14
+        or cyan_min_x > 20
+        or cyan_max_x < 24
+        or cyan_max_x > 30
+        or cyan_min_y > 4
+        or cyan_max_y < 20
+        or cyan_max_y > 25
+    ):
+        fail(
+            "Blitzcrank compact HUD/scoreboard face crop must center the blue eyes/chest core; "
+            f"got cyan_pixels={cyan_pixels}, cyan_x=({cyan_min_x},{cyan_max_x}), "
+            f"cyan_y=({cyan_min_y},{cyan_max_y}), face=({face_x},{face_y})"
+        )
+
     assert_compact_display_frame_size(
         "blitzcrank",
         actions=("idle", "run", "attack", "skill", "skill2", "ult", "hit", "dead", "recall", "return"),
