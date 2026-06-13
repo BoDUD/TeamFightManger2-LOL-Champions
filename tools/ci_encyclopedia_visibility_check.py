@@ -741,7 +741,7 @@ JHIN_MAX_RUN_CENTROID_X_RANGE = 4.0
 SIDE_CARD_STANDING_FACE_OFFSETS = {
     "aatrox": {"x": -8, "y": -6},
     "blitzcrank": {"x": -10, "y": -8},
-    "darius": {"x": 0, "y": -12},
+    "darius": {"x": -12, "y": -2},
     "fiddlesticks": {"x": -8, "y": -6},
     "jhin": {"x": 0, "y": -28},
     "jinx": {"x": -2, "y": -16},
@@ -3077,8 +3077,8 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         view = entries.get(darius_id)
         if not isinstance(view, dict):
             fail(f"style/champion_view.champion_view missing entries.{darius_id}")
-        if view.get("face", {}).get("x") != 0 or view.get("face", {}).get("y") != -12:
-            fail(f"style entry {darius_id}.face must recenter Darius HUD/scoreboard portrait to x=0,y=-12")
+        if view.get("face", {}).get("x") != -12 or view.get("face", {}).get("y") != -2:
+            fail(f"style entry {darius_id}.face must recenter Darius HUD/scoreboard portrait to x=-12,y=-2")
         if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -12:
             fail(f"style entry {darius_id}.center must recenter Darius exchange standing display to x=0,y=-12")
     assert_compact_idle_bottom_safety("darius")
@@ -3096,6 +3096,59 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         require_file(path)
         if path.suffix == ".png":
             require_no_green_residue(path)
+
+    face = entries["bo_league_champions_darius"]["face"]
+    face_x = int(face.get("x", 0))
+    face_y = int(face.get("y", 0))
+    face_sheet_width, face_sheet_height, face_sheet_rgba = load_rgba(
+        ROOT / "aseprite_resources" / "champions" / "darius#sheet.png"
+    )
+    face_fanim = load_json(ROOT / "aseprite_resources" / "champions" / "darius#anim.fanim")
+    idle0 = face_fanim.get("anims", {}).get("idle", {}).get("frames", [{}])[0].get("data", {})
+    rect_x = int(round(float(idle0.get("x", 0))))
+    rect_y = int(round(float(idle0.get("y", 0))))
+    rect_w = int(round(float(idle0.get("w", 0))))
+    rect_h = int(round(float(idle0.get("h", 0))))
+
+    def darius_skin_metrics(crop_size: int) -> tuple[int, int, int, int, int]:
+        skin_pixels = 0
+        skin_min_x = 10**9
+        skin_max_x = -1
+        skin_min_y = 10**9
+        skin_max_y = -1
+        for local_y in range(crop_size):
+            for local_x in range(crop_size):
+                src_x = rect_x + local_x - face_x
+                src_y = rect_y + local_y - face_y
+                if src_x < rect_x or src_x >= rect_x + rect_w or src_y < rect_y or src_y >= rect_y + rect_h:
+                    continue
+                index = (src_y * face_sheet_width + src_x) * 4
+                r = face_sheet_rgba[index]
+                g = face_sheet_rgba[index + 1]
+                b = face_sheet_rgba[index + 2]
+                a = face_sheet_rgba[index + 3]
+                if a > 40 and r >= 130 and 70 <= g <= 155 and 35 <= b <= 115 and r > g * 1.12 and r > b * 1.45:
+                    skin_pixels += 1
+                    skin_min_x = min(skin_min_x, local_x)
+                    skin_max_x = max(skin_max_x, local_x + 1)
+                    skin_min_y = min(skin_min_y, local_y)
+                    skin_max_y = max(skin_max_y, local_y + 1)
+        return skin_pixels, skin_min_x, skin_max_x, skin_min_y, skin_max_y
+
+    side_skin = darius_skin_metrics(40)
+    score_skin = darius_skin_metrics(32)
+    if side_skin[0] < 40 or side_skin[1] > 10 or side_skin[2] > 34 or side_skin[3] < 4 or side_skin[3] > 10 or side_skin[4] < 24:
+        fail(
+            "Darius side-list compact portrait must keep the face readable instead of showing mostly armor/body; "
+            f"got skin_pixels={side_skin[0]}, skin_x=({side_skin[1]},{side_skin[2]}), "
+            f"skin_y=({side_skin[3]},{side_skin[4]}), face=({face_x},{face_y})"
+        )
+    if score_skin[0] < 35 or score_skin[1] > 10 or score_skin[2] > 31 or score_skin[3] < 4 or score_skin[3] > 10 or score_skin[4] < 24:
+        fail(
+            "Darius 32px scoreboard portrait must center the face instead of clipping it at the upper/right edge; "
+            f"got skin_pixels={score_skin[0]}, skin_x=({score_skin[1]},{score_skin[2]}), "
+            f"skin_y=({score_skin[3]},{score_skin[4]}), face=({face_x},{face_y})"
+        )
 
     for icon_path in (
         ROOT / "icons" / "darius_skill.png",
