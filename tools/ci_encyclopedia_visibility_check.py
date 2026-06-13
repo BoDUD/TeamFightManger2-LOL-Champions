@@ -1483,53 +1483,101 @@ def assert_kayn_skill_vfx_no_actor_body() -> None:
                     purple = b > 115 and r > 65 and g < 110
                     red = r > 130 and g < 95 and b < 155
                     blue = b > 130 and g > 70 and r < 125
-                    neutral_or_white = max(r, g, b) < 130 or (r > 145 and g > 140 and b > 130)
+                    skin_like = (
+                        a > 80
+                        and 115 <= r < 190
+                        and 50 <= g <= 165
+                        and 35 <= b <= 145
+                        and r > g * 1.05
+                        and r > b * 1.45
+                        and max(r, g, b) - min(r, g, b) < 105
+                    )
                     if frame_w == 64:
                         in_body_zone = 18 <= x <= 46 and 4 <= y <= 62
                     else:
                         in_body_zone = 58 <= x <= 134 and 4 <= y <= 92
-                    if in_body_zone and neutral_or_white and not (purple or red or blue):
+                    if in_body_zone and skin_like and not (purple or red or blue):
                         bodylike_pixels += 1
-            if bodylike_pixels:
+            if bodylike_pixels > 24:
                 fail(
                     f"{path.relative_to(ROOT)} frame {frame_index} contains {bodylike_pixels} "
-                    "neutral actor-body pixels; Kayn skill VFX must be aura/slash only"
+                    "actor-body-like pixels; Kayn skill VFX must be image-generated shadows/slashes/marks only"
                 )
+
+
+def kayn_effect_frame_metrics(name: str, frame_w: int, frame_h: int) -> dict[str, list[int]]:
+    path = ROOT / "aseprite_resources" / "effects" / f"{name}#sheet.png"
+    width, height, rgba = load_rgba(path)
+    if height != frame_h or width % frame_w:
+        fail(f"{path.relative_to(ROOT)} must use {frame_w}x{frame_h} frames")
+    frame_count = width // frame_w
+    metrics: dict[str, list[int]] = {"widths": [], "heights": [], "bright": [], "red": [], "purple": []}
+    _, _, alpha = load_rgba_alpha(path)
+    for frame_index in range(frame_count):
+        bbox = alpha_bbox_in_rect(alpha, width, (frame_index * frame_w, 0, frame_w, frame_h))
+        if bbox is None:
+            fail(f"{path.relative_to(ROOT)} frame {frame_index} is empty")
+        metrics["widths"].append(bbox[2] - bbox[0])
+        metrics["heights"].append(bbox[3] - bbox[1])
+        bright = 0
+        red = 0
+        purple = 0
+        for y in range(frame_h):
+            for x in range(frame_w):
+                i = ((y * width) + frame_index * frame_w + x) * 4
+                r = rgba[i]
+                g = rgba[i + 1]
+                b = rgba[i + 2]
+                a = rgba[i + 3]
+                if not a:
+                    continue
+                if (b > 145 or r > 180) and max(r, g, b) - min(r, g, b) > 35:
+                    bright += 1
+                if r > 150 and g < 100 and b < 170:
+                    red += 1
+                if b > 110 and r > 50 and g < 120:
+                    purple += 1
+        metrics["bright"].append(bright)
+        metrics["red"].append(red)
+        metrics["purple"].append(purple)
+    return metrics
 
 
 def assert_kayn_q_and_attack_vfx_readable() -> None:
     for name, frame_w, frame_h, min_bright, max_width in (
-        ("kayn_q_slash", 192, 96, 260, 150),
+        ("kayn_q_slash", 192, 96, 800, 165),
         ("kayn_attack_slash", 96, 72, 80, 92),
     ):
-        path = ROOT / "aseprite_resources" / "effects" / f"{name}#sheet.png"
-        width, height, rgba = load_rgba(path)
-        if height != frame_h or width % frame_w:
-            fail(f"{path.relative_to(ROOT)} must use {frame_w}x{frame_h} frames")
-        frame_count = width // frame_w
-        bright_counts: list[int] = []
-        widths: list[int] = []
-        _, _, alpha = load_rgba_alpha(path)
-        for frame_index in range(frame_count):
-            bbox = alpha_bbox_in_rect(alpha, width, (frame_index * frame_w, 0, frame_w, frame_h))
-            if bbox is None:
-                fail(f"{path.relative_to(ROOT)} frame {frame_index} is empty")
-            widths.append(bbox[2] - bbox[0])
-            bright = 0
-            for y in range(frame_h):
-                for x in range(frame_w):
-                    i = ((y * width) + frame_index * frame_w + x) * 4
-                    r = rgba[i]
-                    g = rgba[i + 1]
-                    b = rgba[i + 2]
-                    a = rgba[i + 3]
-                    if a and (b > 145 or r > 180) and max(r, g, b) - min(r, g, b) > 35:
-                        bright += 1
-            bright_counts.append(bright)
+        metrics = kayn_effect_frame_metrics(name, frame_w, frame_h)
+        bright_counts = metrics["bright"]
+        widths = metrics["widths"]
         if max(bright_counts) < min_bright:
-            fail(f"{path.relative_to(ROOT)} must have a visible bright slash; bright counts={bright_counts}")
+            fail(f"aseprite_resources/effects/{name}#sheet.png must have a visible bright slash; bright counts={bright_counts}")
         if max(widths) > max_width:
-            fail(f"{path.relative_to(ROOT)} is too wide for its role; widths={widths}")
+            fail(f"aseprite_resources/effects/{name}#sheet.png is too wide for its role; widths={widths}")
+
+    w_metrics = kayn_effect_frame_metrics("kayn_w_blade_reach", 192, 96)
+    wide_w_frames = sum(width >= 130 for width in w_metrics["widths"])
+    if max(w_metrics["widths"]) < 165 or wide_w_frames < 3:
+        fail(f"Kayn W Blade's Reach must read as a long straight ground strike, not a Q-like crescent; widths={w_metrics['widths']}")
+    if max(w_metrics["bright"]) < 900 or max(w_metrics["red"]) < 400:
+        fail(
+            "Kayn W Blade's Reach must keep a bright red-purple blade/fissure core; "
+            f"bright={w_metrics['bright']}, red={w_metrics['red']}"
+        )
+
+    r_entry = kayn_effect_frame_metrics("kayn_r_entry", 192, 96)
+    if max(r_entry["bright"]) < 1000 or max(r_entry["red"]) < 300 or max(r_entry["purple"]) < 900:
+        fail(
+            "Kayn R entry must be a visible image-generated red eye/shadow mark; "
+            f"bright={r_entry['bright']}, red={r_entry['red']}, purple={r_entry['purple']}"
+        )
+    r_exit = kayn_effect_frame_metrics("kayn_r_exit", 192, 96)
+    if max(r_exit["bright"]) < 1200 or max(r_exit["red"]) < 600 or max(r_exit["purple"]) < 900:
+        fail(
+            "Kayn R exit must be a visible image-generated darkin rupture/scythe burst; "
+            f"bright={r_exit['bright']}, red={r_exit['red']}, purple={r_exit['purple']}"
+        )
 
 
 def assert_jinx_r_big_projectile() -> None:
@@ -2577,13 +2625,64 @@ def check_kayn_rework_contract(text: dict[str, Any], entries: dict[str, Any]) ->
             fail(f"Kayn {action} must keep its form branch logic after the top-level cast SFX")
     if "test_mod_kayn_ult_voice" not in set(walk_strings(kayn.get("ult", {}))):
         fail("Kayn ult must play fixed official VO through test_mod_kayn_ult_voice")
+
+    view_projectiles = {
+        item.get("name"): item for item in kayn.get("view_projectiles", []) if isinstance(item, dict)
+    }
+    for projectile_name in ("test_mod_kayn_q_slash", "test_mod_kayn_w_blade_reach"):
+        projectile = view_projectiles.get(projectile_name)
+        if not isinstance(projectile, dict) or projectile.get("z", 0) < 3:
+            fail(f"Kayn {projectile_name} must render above terrain/minions with z >= 3")
+    view_effects = {item.get("name"): item for item in kayn.get("view_effects", []) if isinstance(item, dict)}
+    r_entry_view = view_effects.get("test_mod_kayn_r_entry")
+    if not isinstance(r_entry_view, dict) or r_entry_view.get("z", 0) < 4 or r_entry_view.get("is_follow") is not True:
+        fail("Kayn R entry mark must be a high-z following target effect so Umbral Trespass is visible")
+    r_exit_view = view_effects.get("test_mod_kayn_r_exit")
+    if not isinstance(r_exit_view, dict) or r_exit_view.get("z", 0) < 4:
+        fail("Kayn R exit burst must render at high z so the hit is visible in live matches")
+
     kayn_ult = kayn.get("ult", {})
-    if kayn_ult.get("range") < 80000 or kayn_ult.get("cooltime") > 3000 or kayn_ult.get("can_use_with_move") is not True:
+    if kayn_ult.get("range") < 80000 or kayn_ult.get("cooltime") > 2400 or kayn_ult.get("can_use_with_move") is not True:
         fail("Kayn ult must keep AI-usable range/cooldown/cast-while-moving settings")
-    if kayn_ult.get("duration") > 60 or kayn_ult.get("start_timing") > 8:
+    if kayn_ult.get("duration") > 48 or kayn_ult.get("start_timing") > 6:
         fail("Kayn ult must enter quickly so AI casts do not stall before target selection")
-    if "36" not in json.dumps(kayn_ult, ensure_ascii=False):
-        fail("Kayn ult must use the shortened 36-tick trespass/stasis window")
+    ult_effect = kayn_ult.get("effect")
+    ult_effects = ult_effect.get("effects") if isinstance(ult_effect, dict) else None
+    if not isinstance(ult_effects, list):
+        fail("Kayn ult must be a top-level Combine effect list")
+    if len(ult_effects) < 6:
+        fail("Kayn ult must expose cast SFX, target entry, self stasis, direct rush damage, and exit VFX")
+    if not isinstance(ult_effects[2], dict) or ult_effects[2] != {"type": "ViewEffect", "name": "test_mod_kayn_r_entry"}:
+        fail("Kayn R entry must be a target ViewEffect instead of a caster-following hidden effect")
+    if any(
+        isinstance(effect, dict)
+        and effect.get("type") == "CasterViewEffect"
+        and effect.get("name") == "test_mod_kayn_r_entry"
+        for effect in ult_effects
+    ):
+        fail("Kayn R entry must not be attached to the invisible caster")
+    direct_rushes = [
+        effect for effect in ult_effects if isinstance(effect, dict) and effect.get("type") == "RushMoveToBack"
+    ]
+    if len(direct_rushes) != 1:
+        fail("Kayn ult must expose exactly one direct top-level RushMoveToBack so AI scoring sees the release")
+    direct_rush_payload = json.dumps(direct_rushes[0], ensure_ascii=False)
+    if '"Attack"' not in direct_rush_payload or "test_mod_kayn_r_hit" not in direct_rush_payload:
+        fail("Kayn ult direct RushMoveToBack must carry the Attack damage and hit SFX")
+    top_level_exit_names = [
+        effect.get("name")
+        for effect in ult_effects
+        if isinstance(effect, dict) and effect.get("type") == "ViewEffect"
+    ]
+    if "test_mod_kayn_r_exit" not in top_level_exit_names:
+        fail("Kayn ult must spawn a top-level R exit ViewEffect at the release hit")
+    if any(
+        isinstance(effect, dict)
+        and effect.get("type") == "Delayed"
+        and "RushMoveToBack" in json.dumps(effect, ensure_ascii=False)
+        for effect in ult_effects
+    ):
+        fail("Kayn ult damage release must not be hidden only inside Delayed; the AI must see it directly")
     projectile_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in kayn.get("view_projectiles", [])}
     for name, expected in KAYN_EFFECT_REFS.items():
         if projectile_refs.get(name) != expected:

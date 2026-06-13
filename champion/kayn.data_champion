@@ -345,9 +345,9 @@
   "ult": {
     "action_name": "ult",
     "description": "#asset/base/text/champion?description.bo_league_champions_kayn.ult",
-    "duration": 60,
-    "cooltime": 3000,
-    "start_timing": 8,
+    "duration": 48,
+    "cooltime": 2400,
+    "start_timing": 6,
     "range": 82000,
     "casting_type": "Targeting",
     "casting_target": "EnemyChampion",
@@ -364,7 +364,7 @@
           "name": "test_mod_kayn_ult_voice"
         },
         {
-          "type": "CasterViewEffect",
+          "type": "ViewEffect",
           "name": "test_mod_kayn_r_entry"
         },
         {
@@ -372,7 +372,7 @@
           "effects": [
             {
               "type": "Invisible",
-              "tick": 36
+              "tick": 24
             },
             {
               "type": "AddCasterBuff",
@@ -380,7 +380,7 @@
                 "name": "test_mod_kayn_umbral_trespass_stasis",
                 "duration": {
                   "Time": {
-                    "tick": 36
+                    "tick": 24
                   }
                 },
                 "damaged_reduce": 100,
@@ -390,48 +390,42 @@
           ]
         },
         {
-          "type": "Delayed",
-          "tick": 36,
-          "effects": [
+          "type": "RushMoveToBack",
+          "speed": 5200,
+          "applied_effects": [
             {
-              "type": "RushMoveToBack",
-              "speed": 4200,
-              "applied_effects": [
+              "type": "Combine",
+              "effects": [
                 {
-                  "type": "Combine",
-                  "effects": [
-                    {
-                      "type": "Attack",
-                      "damage": 180,
-                      "attack_ratio": 160
-                    },
-                    {
-                      "type": "TargetSfx",
-                      "name": "test_mod_kayn_r_hit"
-                    }
-                  ]
+                  "type": "Attack",
+                  "damage": 180,
+                  "attack_ratio": 160
+                },
+                {
+                  "type": "TargetSfx",
+                  "name": "test_mod_kayn_r_hit"
                 }
               ]
-            },
-            {
-              "type": "ViewEffect",
-              "name": "test_mod_kayn_r_exit"
-            },
-            {
-              "type": "AddCasterBuff",
-              "buff_state": {
-                "name": "test_mod_kayn_darkin_ascension",
-                "duration": {
-                  "Time": {
-                    "tick": 600
-                  }
-                },
-                "attack": 35,
-                "move_speed_mult": 15,
-                "vamp": 30
-              }
             }
           ]
+        },
+        {
+          "type": "ViewEffect",
+          "name": "test_mod_kayn_r_exit"
+        },
+        {
+          "type": "AddCasterBuff",
+          "buff_state": {
+            "name": "test_mod_kayn_darkin_ascension",
+            "duration": {
+              "Time": {
+                "tick": 600
+              }
+            },
+            "attack": 35,
+            "move_speed_mult": 15,
+            "vamp": 30
+          }
         }
       ]
     },
@@ -444,7 +438,7 @@
       "name": "test_mod_kayn_q_slash",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/kayn_q_slash",
       "tag": "slash",
-      "z": 1,
+      "z": 3,
       "repeat": false
     },
     {
@@ -452,7 +446,7 @@
       "name": "test_mod_kayn_w_blade_reach",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/kayn_w_blade_reach",
       "tag": "blade",
-      "z": 1,
+      "z": 3,
       "repeat": false
     }
   ],
@@ -471,7 +465,7 @@
       "name": "test_mod_kayn_r_entry",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/kayn_r_entry",
       "tag": "entry",
-      "z": -1,
+      "z": 5,
       "is_follow": true
     },
     {
@@ -479,7 +473,7 @@
       "name": "test_mod_kayn_r_exit",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/kayn_r_exit",
       "tag": "exit",
-      "z": 1,
+      "z": 6,
       "is_follow": false
     },
     {
@@ -495,7 +489,7 @@
       "name": "test_mod_kayn_q_slash_cast_vfx",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/kayn_q_slash",
       "tag": "slash",
-      "z": 1,
+      "z": 3,
       "is_follow": true
     }
   ],
