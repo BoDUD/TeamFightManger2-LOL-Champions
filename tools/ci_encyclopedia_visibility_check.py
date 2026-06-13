@@ -746,23 +746,27 @@ JHIN_MIN_UPRIGHT_RUN_HEIGHT = 47
 JHIN_MAX_UPRIGHT_RUN_TOP = 8
 SIDE_CARD_STANDING_FACE_OFFSETS = {
     "aatrox": {"x": -8, "y": -6},
-    "blitzcrank": {"x": 0, "y": -8},
+    "blitzcrank": {"x": 0, "y": -10},
     "darius": {"x": 0, "y": -12},
     "fiddlesticks": {"x": 0, "y": -2},
     "jhin": {"x": 0, "y": -28},
+    "jinx": {"x": -2, "y": -16},
     "kayn": {"x": 4, "y": -18},
-    "thresh": {"x": 0, "y": -12},
+    "thresh": {"x": 0, "y": -18},
     "viktor": {"x": 0, "y": -28},
+    "yasuo": {"x": 4, "y": -12},
 }
 SIDE_CARD_STANDING_CENTER_OFFSETS = {
-    "aatrox": {"x": 4, "y": -12},
-    "blitzcrank": {"x": 0, "y": -10},
+    "aatrox": {"x": 4, "y": -16},
+    "blitzcrank": {"x": 0, "y": -12},
     "darius": {"x": 0, "y": -12},
     "fiddlesticks": {"x": 0, "y": -14},
-    "jhin": {"x": 0, "y": -20},
+    "jhin": {"x": 0, "y": -24},
+    "jinx": {"x": 0, "y": -16},
     "kayn": {"x": 0, "y": -12},
-    "thresh": {"x": 0, "y": -12},
+    "thresh": {"x": 0, "y": -18},
     "viktor": {"x": 0, "y": -12},
+    "yasuo": {"x": 0, "y": -12},
 }
 REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS: dict[str, dict[str, tuple[str, ...]]] = {}
 for _champion_id in AATROX_IDS:
@@ -1912,8 +1916,8 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
         center_y = view.get("center", {}).get("y")
         if face_x != -8 or face_y != -6:
             fail(f"style entry {aatrox_id}.face must keep Aatrox HUD/scoreboard portrait centered at x=-8,y=-6")
-        if center_x != 4 or center_y != -12:
-            fail(f"style entry {aatrox_id}.center must keep Aatrox exchange standing sword and feet visible at x=4,y=-12")
+        if center_x != 4 or center_y != -16:
+            fail(f"style entry {aatrox_id}.center must keep Aatrox exchange standing sword and feet visible at x=4,y=-16")
 
     for path in (
         ROOT / "aseprite_resources" / "champions" / "aatrox#sheet.png",
@@ -3602,10 +3606,10 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         view = entries.get(thresh_id)
         if not isinstance(view, dict):
             fail(f"style/champion_view.champion_view missing entries.{thresh_id}")
-        if view.get("face", {}).get("x") != 0 or view.get("face", {}).get("y") != -12:
-            fail(f"style entry {thresh_id}.face must keep Thresh roster card centered at x=0,y=-12")
-        if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -12:
-            fail(f"style entry {thresh_id}.center must keep Thresh exchange standing display centered at x=0,y=-12")
+        if view.get("face", {}).get("x") != 0 or view.get("face", {}).get("y") != -18:
+            fail(f"style entry {thresh_id}.face must keep Thresh roster card centered at x=0,y=-18")
+        if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -18:
+            fail(f"style entry {thresh_id}.center must keep Thresh exchange standing display centered at x=0,y=-18")
     assert_compact_idle_bottom_safety("thresh")
 
     for path in (
@@ -5054,8 +5058,8 @@ def check_jhin_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
         fail(f"style/champion_view.champion_view missing entries.{jhin_id}")
     if view.get("face", {}).get("x") != 0 or view.get("face", {}).get("y") != -28:
         fail(f"style entry {jhin_id}.face must keep Jhin compact portrait above the name label at x=0,y=-28")
-    if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -20:
-        fail(f"style entry {jhin_id}.center must keep Jhin standing card feet above the name label at x=0,y=-20")
+    if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -24:
+        fail(f"style entry {jhin_id}.center must keep Jhin standing card feet above the name label at x=0,y=-24")
 
     qa_path = ROOT / "qa" / "jhin_imagegen_vgu.md"
     require_file(qa_path)
@@ -5281,10 +5285,10 @@ def check_blitzcrank_contract(text: dict[str, Any], entries: dict[str, Any]) -> 
     view = entries.get(blitz_id)
     if not isinstance(view, dict):
         fail(f"style/champion_view.champion_view missing entries.{blitz_id}")
-    if view.get("face") != {"x": 0, "y": -8}:
-        fail(f"style entry {blitz_id}.face must keep Blitzcrank compact portrait at x=0,y=-8")
-    if view.get("center") != {"x": 0, "y": -10}:
-        fail(f"style entry {blitz_id}.center must keep Blitzcrank standing card feet safe at x=0,y=-10")
+    if view.get("face") != {"x": 0, "y": -10}:
+        fail(f"style entry {blitz_id}.face must keep Blitzcrank compact portrait at x=0,y=-10")
+    if view.get("center") != {"x": 0, "y": -12}:
+        fail(f"style entry {blitz_id}.center must keep Blitzcrank standing card feet safe at x=0,y=-12")
     compat_view = entries.get("test_mod_blitzcrank")
     if compat_view != view:
         fail("style/champion_view.champion_view must keep test_mod_blitzcrank aligned with bo_league_champions_blitzcrank")

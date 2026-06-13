@@ -204,23 +204,27 @@ REQUIRED_ENCYCLOPEDIA_NAME_TERMS: dict[str, dict[str, tuple[str, ...]]] = {
 }
 SIDE_CARD_STANDING_FACE_OFFSETS = {
     f"{MOD_ID}_aatrox": {"x": -8, "y": -6},
-    f"{MOD_ID}_blitzcrank": {"x": 0, "y": -8},
+    f"{MOD_ID}_blitzcrank": {"x": 0, "y": -10},
     f"{MOD_ID}_darius": {"x": 0, "y": -12},
     f"{MOD_ID}_kayn": {"x": 4, "y": -18},
     f"{MOD_ID}_jhin": {"x": 0, "y": -28},
-    f"{MOD_ID}_thresh": {"x": 0, "y": -12},
+    f"{MOD_ID}_jinx": {"x": -2, "y": -16},
+    f"{MOD_ID}_thresh": {"x": 0, "y": -18},
     f"{MOD_ID}_viktor": {"x": 0, "y": -28},
     f"{MOD_ID}_fiddlesticks": {"x": 0, "y": -2},
+    f"{MOD_ID}_yasuo": {"x": 4, "y": -12},
 }
 SIDE_CARD_STANDING_CENTER_OFFSETS = {
-    f"{MOD_ID}_aatrox": {"x": 4, "y": -12},
-    f"{MOD_ID}_blitzcrank": {"x": 0, "y": -10},
+    f"{MOD_ID}_aatrox": {"x": 4, "y": -16},
+    f"{MOD_ID}_blitzcrank": {"x": 0, "y": -12},
     f"{MOD_ID}_darius": {"x": 0, "y": -12},
     f"{MOD_ID}_kayn": {"x": 0, "y": -12},
-    f"{MOD_ID}_jhin": {"x": 0, "y": -20},
-    f"{MOD_ID}_thresh": {"x": 0, "y": -12},
+    f"{MOD_ID}_jhin": {"x": 0, "y": -24},
+    f"{MOD_ID}_jinx": {"x": 0, "y": -16},
+    f"{MOD_ID}_thresh": {"x": 0, "y": -18},
     f"{MOD_ID}_viktor": {"x": 0, "y": -12},
     f"{MOD_ID}_fiddlesticks": {"x": 0, "y": -14},
+    f"{MOD_ID}_yasuo": {"x": 0, "y": -12},
 }
 
 
