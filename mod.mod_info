@@ -3,8 +3,8 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.14.16",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Blitzcrank, Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version fixes Kayn's Umbral Trespass visibility by making the entry mark a stable target-ground effect and moving the exit burst into the actual rush-release branch, then documents the current roster-wide skill VFX audit.",
+  "version": "0.14.17",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Blitzcrank, Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version fixes Viktor's Q/E/W/R visibility by lengthening Siphon Power's projectile, making Death Ray appear immediately at foreground z, and promoting Gravity Field plus Chaos Storm to high-z target-ground effects.",
   "last_updated": "2026-06-14",
   "dependencies": [
     {
