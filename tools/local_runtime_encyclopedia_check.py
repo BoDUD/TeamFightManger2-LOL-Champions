@@ -219,7 +219,7 @@ SIDE_CARD_STANDING_CENTER_OFFSETS = {
     f"{MOD_ID}_blitzcrank": {"x": 0, "y": -18},
     f"{MOD_ID}_darius": {"x": 0, "y": -12},
     f"{MOD_ID}_kayn": {"x": 0, "y": -12},
-    f"{MOD_ID}_jhin": {"x": 0, "y": -20},
+    f"{MOD_ID}_jhin": {"x": 0, "y": -22},
     f"{MOD_ID}_jinx": {"x": 0, "y": -16},
     f"{MOD_ID}_thresh": {"x": 0, "y": -15},
     f"{MOD_ID}_viktor": {"x": 0, "y": -12},
