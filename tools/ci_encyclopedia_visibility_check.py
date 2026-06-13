@@ -761,7 +761,7 @@ SIDE_CARD_STANDING_CENTER_OFFSETS = {
     "blitzcrank": {"x": 0, "y": -18},
     "darius": {"x": 0, "y": -12},
     "fiddlesticks": {"x": 0, "y": -14},
-    "jhin": {"x": 0, "y": -24},
+    "jhin": {"x": 0, "y": -20},
     "jinx": {"x": 0, "y": -16},
     "kayn": {"x": 0, "y": -12},
     "thresh": {"x": 0, "y": -18},
@@ -5058,8 +5058,8 @@ def check_jhin_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
         fail(f"style/champion_view.champion_view missing entries.{jhin_id}")
     if view.get("face", {}).get("x") != 0 or view.get("face", {}).get("y") != -28:
         fail(f"style entry {jhin_id}.face must keep Jhin compact portrait above the name label at x=0,y=-28")
-    if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -24:
-        fail(f"style entry {jhin_id}.center must keep Jhin standing card feet above the name label at x=0,y=-24")
+    if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -20:
+        fail(f"style entry {jhin_id}.center must keep Jhin standing card below the top edge while feet stay above the name label at x=0,y=-20")
 
     qa_path = ROOT / "qa" / "jhin_imagegen_vgu.md"
     require_file(qa_path)
