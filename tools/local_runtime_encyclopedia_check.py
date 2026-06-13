@@ -504,6 +504,143 @@ def assert_no_negative_speed_fields(node: object, label: str) -> None:
             )
 
 
+def check_blitzcrank_skill_contract(path: Path, champion: object) -> None:
+    if path.name != "blitzcrank.data_champion":
+        return
+    if not isinstance(champion, dict):
+        fail(f"{path} must contain a JSON object")
+
+    def max_effect_number(node: object, effect_type: str, key: str) -> float:
+        values = [
+            float(mapping[key])
+            for mapping in iter_mapping_nodes(node)
+            if mapping.get("type") == effect_type and isinstance(mapping.get(key), (int, float))
+        ]
+        return max(values) if values else 0.0
+
+    def named_buff_states(node: object, effect_type: str, buff_name: str) -> list[dict[str, object]]:
+        states: list[dict[str, object]] = []
+        for mapping in iter_mapping_nodes(node):
+            if mapping.get("type") != effect_type:
+                continue
+            state = mapping.get("buff_state")
+            if isinstance(state, dict) and state.get("name") == buff_name:
+                states.append(state)
+        return states
+
+    def buff_duration_tick(state: dict[str, object]) -> int:
+        duration = state.get("duration")
+        if not isinstance(duration, dict):
+            return 0
+        time = duration.get("Time")
+        if not isinstance(time, dict):
+            return 0
+        tick = time.get("tick")
+        return int(tick) if isinstance(tick, (int, float)) else 0
+
+    q_nodes = iter_mapping_nodes(champion.get("skill", {}))
+    q_projectiles = [
+        node
+        for node in q_nodes
+        if node.get("type") == "LinearProjectile" and node.get("name") == "test_mod_blitzcrank_rocket_grab"
+    ]
+    if len(q_projectiles) != 1:
+        fail(f"runtime Blitzcrank Q must use exactly one generated Rocket Grab projectile, got {len(q_projectiles)}")
+    q_projectile = q_projectiles[0]
+    if q_projectile.get("penetrate") is not False or int(q_projectile.get("speed", 0)) < 4400:
+        fail("runtime Blitzcrank Q must be a fast non-piercing Rocket Grab")
+    if any(node.get("type") in {"Knockback", "Teleport", "DirTeleport", "RushMoveToBack"} for node in q_nodes):
+        fail("runtime Blitzcrank Q must pull the target with MoveTo, not teleport or knockback")
+    q_pulls = [node for node in q_nodes if node.get("type") == "MoveTo"]
+    if len(q_pulls) != 1:
+        fail(f"runtime Blitzcrank Q must contain exactly one target pull MoveTo, got {len(q_pulls)}")
+    if int(q_pulls[0].get("speed", 0)) < 8000 or int(q_pulls[0].get("range", 999999)) > 2200:
+        fail("runtime Blitzcrank Q pull must drag the hooked target tightly back to Blitzcrank")
+    if max_effect_number(champion.get("skill", {}), "BlockMoveSkill", "tick") < 48:
+        fail("runtime Blitzcrank Q must block movement skills during the hook pull")
+
+    attack_effect = champion.get("attack", {}).get("effect", {})
+    effect_buff = attack_effect.get("effect_buff") if isinstance(attack_effect, dict) else None
+    if not isinstance(effect_buff, dict):
+        fail("runtime Blitzcrank attack must expose a Power Fist effect_buff branch")
+    if max_effect_number(effect_buff, "Airborne", "duration") < 36:
+        fail("runtime Blitzcrank E/Power Fist must knock the target up")
+    if max_effect_number(effect_buff, "BlockMoveSkill", "tick") < 30:
+        fail("runtime Blitzcrank E/Power Fist must block movement skills during the pop-up")
+    if not any(node.get("type") == "RemoveCasterBuff" and node.get("name") == "test_mod_blitzcrank_power_fist_ready" for node in iter_mapping_nodes(effect_buff)):
+        fail("runtime Blitzcrank E/Power Fist must consume the primed punch buff")
+
+    skill2 = champion.get("skill2", {})
+    if any(node.get("type") == "Shield" for node in iter_mapping_nodes(skill2)):
+        fail("runtime Blitzcrank W/E must not use Mana Barrier shield behavior")
+    overdrive_states = named_buff_states(skill2, "AddCasterBuff", "test_mod_blitzcrank_overdrive")
+    if len(overdrive_states) != 1:
+        fail(f"runtime Blitzcrank W must add exactly one Overdrive buff, got {len(overdrive_states)}")
+    overdrive = overdrive_states[0]
+    if (
+        buff_duration_tick(overdrive) < 210
+        or int(overdrive.get("move_speed_mult", 0)) < 40
+        or int(overdrive.get("attack_speed_mult", 0)) < 25
+    ):
+        fail("runtime Blitzcrank W must grant strong move-speed and attack-speed buffs")
+    ready_states = named_buff_states(skill2, "AddCasterBuff", "test_mod_blitzcrank_power_fist_ready")
+    if len(ready_states) != 1 or buff_duration_tick(ready_states[0]) < 360:
+        fail("runtime Blitzcrank E must prime the next attack long enough to be used")
+    fatigue_states = named_buff_states(skill2, "AddCasterBuff", "test_mod_blitzcrank_overdrive_fatigue")
+    if not fatigue_states or min(int(state.get("move_speed_mult", 0)) for state in fatigue_states) >= 0:
+        fail("runtime Blitzcrank W must slow Blitzcrank briefly after Overdrive ends")
+
+    ult = champion.get("ult", {})
+    ult_nodes = iter_mapping_nodes(ult)
+    if any(node.get("type") == "Shield" for node in ult_nodes):
+        fail("runtime Blitzcrank R must be Static Field silence/damage, not a shield")
+    ult_effect = ult.get("effect", {}) if isinstance(ult, dict) else {}
+    ult_effects = ult_effect.get("effects") if isinstance(ult_effect, dict) else None
+    if not isinstance(ult_effects, list):
+        fail("runtime Blitzcrank R must expose direct top-level effects")
+    direct_static_hits = [
+        node
+        for node in ult_effects
+        if isinstance(node, dict)
+        and node.get("type") == "RangeEffect"
+        and node.get("target") == "EnemyWithoutTower"
+        and node.get("apply_type") == "AroundCaster"
+        and node.get("shape", {}).get("Circle", {}).get("radius", 0) >= 52000
+    ]
+    if len(direct_static_hits) != 1:
+        fail(f"runtime Blitzcrank R must expose one direct Static Field hit/silence AoE, got {len(direct_static_hits)}")
+    if max_effect_number(direct_static_hits[0].get("effects", []), "BlockSkill", "tick") < 60:
+        fail("runtime Blitzcrank R opening pulse must silence/block enemy skills")
+    direct_fields = [
+        node
+        for node in ult_effects
+        if isinstance(node, dict)
+        and node.get("type") == "RangePeriodProjectile"
+        and node.get("name") == "test_mod_blitzcrank_static_field_linger"
+    ]
+    if len(direct_fields) != 1:
+        fail(f"runtime Blitzcrank R must spawn one generated lingering ground field, got {len(direct_fields)}")
+    field = direct_fields[0]
+    if int(field.get("tick", 0)) < 120 or int(field.get("period", 999)) > 30 or field.get("first_delay") != 0:
+        fail("runtime Blitzcrank R lingering field must persist and pulse immediately")
+    if max_effect_number(field, "BlockSkill", "tick") < 15:
+        fail("runtime Blitzcrank R lingering field must keep applying short silence/block pulses")
+
+    view_effects = {
+        item.get("name"): item
+        for item in champion.get("view_effects", [])
+        if isinstance(item, dict) and isinstance(item.get("name"), str)
+    }
+    for name, min_z in {
+        "test_mod_blitzcrank_static_field_cast": 4,
+        "test_mod_blitzcrank_static_field_hit": 4,
+        "test_mod_blitzcrank_static_field_linger": 3,
+    }.items():
+        row = view_effects.get(name)
+        if not isinstance(row, dict) or int(row.get("z", 0)) < min_z:
+            fail(f"runtime Blitzcrank {name} must render at z>={min_z} so Static Field is visible")
+
+
 def check_darius_ult_visibility(path: Path, champion: object) -> None:
     if path.name != "darius.data_champion":
         return
@@ -1484,6 +1621,7 @@ def check_runtime_copy(game_root: Path) -> None:
         data = load_json(data_path)
         check_view_effect_types(data_path, data)
         assert_no_negative_speed_fields(data, str(data_path))
+        check_blitzcrank_skill_contract(data_path, data)
         check_darius_ult_visibility(data_path, data)
         check_viktor_ground_vfx(data_path, data)
         check_thresh_ult_visibility(data_path, data)

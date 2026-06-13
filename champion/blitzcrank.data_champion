@@ -86,21 +86,25 @@
           },
           {
             "type": "Attack",
-            "damage": 35,
-            "attack_ratio": 125
+            "damage": 48,
+            "attack_ratio": 165
           },
           {
             "type": "ApAttack",
-            "damage": 35,
-            "attack_ratio": 55
+            "damage": 20,
+            "attack_ratio": 35
           },
           {
             "type": "Airborne",
-            "duration": 24
+            "duration": 42
           },
           {
             "type": "Stun",
-            "duration": 12
+            "duration": 20
+          },
+          {
+            "type": "BlockMoveSkill",
+            "tick": 34
           },
           {
             "type": "RemoveCasterBuff",
@@ -140,7 +144,7 @@
         {
           "type": "LinearProjectile",
           "penetrate": false,
-          "speed": 3600,
+          "speed": 4600,
           "range": 98000,
           "name": "test_mod_blitzcrank_rocket_grab",
           "shape": {
@@ -161,12 +165,12 @@
                   },
                   {
                     "type": "Stun",
-                    "duration": 36
+                    "duration": 42
                   },
                   {
                     "type": "MoveTo",
-                    "speed": 5600,
-                    "range": 7000,
+                    "speed": 8200,
+                    "range": 1800,
                     "end_effects": []
                   },
                   {
@@ -183,7 +187,7 @@
                   },
                   {
                     "type": "BlockMoveSkill",
-                    "tick": 36
+                    "tick": 48
                   },
                   {
                     "type": "TargetSfx",
@@ -228,27 +232,12 @@
             "name": "test_mod_blitzcrank_overdrive",
             "duration": {
               "Time": {
-                "tick": 180
+                "tick": 240
               }
             },
-            "move_speed_mult": 28,
-            "attack_speed_mult": 15
+            "move_speed_mult": 45,
+            "attack_speed_mult": 30
           }
-        },
-        {
-          "type": "WithSelf",
-          "effects": [
-            {
-              "type": "Shield",
-              "amount": 110,
-              "ap_ratio": 35,
-              "tick": 180
-            }
-          ]
-        },
-        {
-          "type": "Sfx",
-          "name": "test_mod_blitzcrank_barrier"
         },
         {
           "type": "AddCasterBuff",
@@ -256,14 +245,14 @@
             "name": "test_mod_blitzcrank_power_fist_ready",
             "duration": {
               "Time": {
-                "tick": 240
+                "tick": 420
               }
             }
           }
         },
         {
           "type": "Delayed",
-          "tick": 180,
+          "tick": 240,
           "effects": [
             {
               "type": "AddCasterBuff",
@@ -271,10 +260,10 @@
                 "name": "test_mod_blitzcrank_overdrive_fatigue",
                 "duration": {
                   "Time": {
-                    "tick": 60
+                    "tick": 75
                   }
                 },
-                "move_speed_mult": -15
+                "move_speed_mult": -18
               }
             }
           ]
@@ -310,101 +299,78 @@
           "name": "test_mod_blitzcrank_static_field_cast"
         },
         {
-          "type": "WithSelf",
+          "type": "RangeEffect",
+          "shape": {
+            "Circle": {
+              "radius": 56000
+            }
+          },
+          "target": "EnemyWithoutTower",
+          "apply_type": "AroundCaster",
           "effects": [
             {
-              "type": "Shield",
-              "amount": 90,
-              "ap_ratio": 25,
-              "tick": 150
+              "type": "ApAttack",
+              "damage": 160,
+              "attack_ratio": 95
             },
             {
-              "type": "RangeEffect",
-              "shape": {
-                "Circle": {
-                  "radius": 52000
-                }
-              },
-              "target": "EnemyWithoutTower",
-              "apply_type": "AroundCaster",
-              "effects": [
-                {
-                  "type": "ApAttack",
-                  "damage": 135,
-                  "attack_ratio": 90
-                },
-                {
-                  "type": "BlockSkill",
-                  "tick": 30
-                },
-                {
-                  "type": "AddBuff",
-                  "buff_state": {
-                    "name": "test_mod_blitzcrank_static_field_slow",
-                    "duration": {
-                      "Time": {
-                        "tick": 45
-                      }
-                    },
-                    "move_speed_mult": -25
+              "type": "BlockSkill",
+              "tick": 72
+            },
+            {
+              "type": "AddBuff",
+              "buff_state": {
+                "name": "test_mod_blitzcrank_static_field_slow",
+                "duration": {
+                  "Time": {
+                    "tick": 45
                   }
                 },
-                {
-                  "type": "TargetSfx",
-                  "name": "test_mod_blitzcrank_r_hit"
-                },
-                {
-                  "type": "ViewEffect",
-                  "name": "test_mod_blitzcrank_static_field_hit"
-                }
-              ]
+                "move_speed_mult": -20
+              }
             },
             {
-              "type": "RangePeriodProjectile",
-              "name": "test_mod_blitzcrank_static_field_linger",
-              "tick": 420,
-              "period": 30,
-              "first_delay": 0,
-              "shape": {
-                "Circle": {
-                  "radius": 46000
-                }
-              },
-              "applied_target": "EnemyWithoutTower",
-              "applied_effects": [
-                {
-                  "effect": {
-                    "type": "Combine",
-                    "effects": [
-                      {
-                        "type": "ApAttack",
-                        "damage": 24,
-                        "attack_ratio": 20
-                      },
-                      {
-                        "type": "AddBuff",
-                        "buff_state": {
-                          "name": "test_mod_blitzcrank_static_field_linger_slow",
-                          "duration": {
-                            "Time": {
-                              "tick": 25
-                            }
-                          },
-                          "move_speed_mult": -15
-                        }
-                      },
-                      {
-                        "type": "BlockSkill",
-                        "tick": 8
-                      }
-                    ]
-                  },
-                  "casting_type": "Targeting"
-                }
-              ],
-              "end_effects": []
+              "type": "TargetSfx",
+              "name": "test_mod_blitzcrank_r_hit"
+            },
+            {
+              "type": "ViewEffect",
+              "name": "test_mod_blitzcrank_static_field_hit"
             }
           ]
+        },
+        {
+          "type": "RangePeriodProjectile",
+          "name": "test_mod_blitzcrank_static_field_linger",
+          "tick": 150,
+          "period": 30,
+          "first_delay": 0,
+          "shape": {
+            "Circle": {
+              "radius": 50000
+            }
+          },
+          "applied_target": "EnemyWithoutTower",
+          "applied_effects": [
+            {
+              "effect": {
+                "type": "Combine",
+                "effects": [
+                  {
+                    "type": "ApAttack",
+                    "damage": 18,
+                    "attack_ratio": 15
+                  },
+                  {
+                    "type": "BlockSkill",
+                    "tick": 18
+                  }
+                ]
+              },
+              "casting_type": "Targeting"
+            }
+          ],
+          "end_effects": []
         }
       ]
     }
@@ -415,7 +381,7 @@
       "name": "test_mod_blitzcrank_rocket_grab",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_rocket_grab",
       "tag": "grab",
-      "z": 2,
+      "z": 3,
       "repeat": true
     }
   ],
@@ -425,7 +391,7 @@
       "name": "test_mod_blitzcrank_overdrive",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_overdrive",
       "tag": "loop",
-      "z": 2,
+      "z": 3,
       "repeat": true
     },
     {
@@ -433,7 +399,7 @@
       "name": "test_mod_blitzcrank_power_fist_ready",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_power_fist_ready",
       "tag": "ready",
-      "z": 3,
+      "z": 4,
       "repeat": true
     }
   ],
@@ -451,7 +417,7 @@
       "name": "test_mod_blitzcrank_power_fist_impact",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_power_fist_impact",
       "tag": "impact",
-      "z": 3,
+      "z": 4,
       "is_follow": false
     },
     {
@@ -459,7 +425,7 @@
       "name": "test_mod_blitzcrank_grab_hit",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_grab_hit",
       "tag": "hit",
-      "z": 3,
+      "z": 4,
       "is_follow": false
     },
     {
@@ -467,7 +433,7 @@
       "name": "test_mod_blitzcrank_static_field_cast",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_static_field_cast",
       "tag": "cast",
-      "z": 1,
+      "z": 4,
       "is_follow": false
     },
     {
@@ -475,7 +441,7 @@
       "name": "test_mod_blitzcrank_static_field_hit",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_static_field_hit",
       "tag": "hit",
-      "z": 2,
+      "z": 4,
       "is_follow": false
     },
     {
@@ -483,7 +449,7 @@
       "name": "test_mod_blitzcrank_static_field_linger",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_static_field_linger",
       "tag": "field",
-      "z": 1,
+      "z": 3,
       "is_follow": false
     }
   ],
