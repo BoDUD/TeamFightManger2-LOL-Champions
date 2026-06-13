@@ -6263,8 +6263,9 @@ def check_blitzcrank_contract(text: dict[str, Any], entries: dict[str, Any]) -> 
     if len(q_pull_nodes) != 1:
         fail(f"Blitzcrank Rocket Grab must contain exactly one target pull MoveTo, got {len(q_pull_nodes)}")
     q_pull = q_pull_nodes[0]
-    if int(q_pull.get("speed", 0)) < 8000 or int(q_pull.get("range", 999999)) > 2200:
-        fail("Blitzcrank Rocket Grab MoveTo must pull the hooked target tightly back without breaking data loading")
+    q_pull_range = int(q_pull.get("range", 999999))
+    if int(q_pull.get("speed", 0)) < 8000 or q_pull_range < 8000 or q_pull_range > 11000:
+        fail("Blitzcrank Rocket Grab MoveTo must stop hooked targets in front of Blitzcrank instead of overlapping his body")
     if max_effect_number(blitz.get("skill", {}), "BlockMoveSkill", "tick") < 48:
         fail("Blitzcrank Rocket Grab must block movement skills long enough for the hook pull to complete")
     attack_effect = blitz.get("attack", {}).get("effect", {})
