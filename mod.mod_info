@@ -3,8 +3,8 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.13.47",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version makes Thresh's The Box appear around Thresh as a long-lived battlefield prison, with CI and runtime checks preventing hidden target-anchor ult regressions.",
+  "version": "0.14.0",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Blitzcrank, Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version adds image-generated Blitzcrank model art, skill icons, and bitmap VFX for Rocket Grab, Overdrive/Power Fist, Mana Barrier, and Static Field, with CI gates for encyclopedia registration and non-line-art effects.",
   "last_updated": "2026-06-13",
   "dependencies": [
     {

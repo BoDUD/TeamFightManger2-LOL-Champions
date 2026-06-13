@@ -1,0 +1,538 @@
+{
+  "id": "bo_league_champions_blitzcrank",
+  "category": "Melee",
+  "tags": [
+    "AP",
+    "Melee",
+    "Tank",
+    "CC"
+  ],
+  "sprite": "asset/bo_league_champions/aseprite_resources/champions/blitzcrank",
+  "anim_prefix": "",
+  "skill_icons": [
+    "asset/bo_league_champions/icons/blitzcrank_skill",
+    "asset/bo_league_champions/icons/blitzcrank_skill2",
+    "asset/bo_league_champions/icons/blitzcrank_ult"
+  ],
+  "stat": {
+    "attack": 64,
+    "magic_power": 48,
+    "hp": 1040,
+    "defence": 34,
+    "magic_resistance": 26,
+    "move_speed": 900,
+    "hp_regen": 5,
+    "stack": 0,
+    "crit_chance": 0
+  },
+  "growth": {
+    "attack": 12,
+    "magic_power": 8,
+    "hp": 112,
+    "defence": 7,
+    "magic_resistance": 5,
+    "move_speed": 6,
+    "hp_regen": 1,
+    "stack": 0,
+    "crit_chance": 0
+  },
+  "attack": {
+    "action_name": "attack",
+    "description": "#asset/base/text/champion?description.bo_league_champions_blitzcrank.attack",
+    "duration": 26,
+    "cooltime": 70,
+    "start_timing": 14,
+    "cancelable": true,
+    "range": 30000,
+    "casting_type": "Targeting",
+    "casting_target": "Enemy",
+    "attack_type": "BaseAttack",
+    "effect": {
+      "type": "SwitchByBuff",
+      "buff_name": "test_mod_blitzcrank_power_fist_ready",
+      "effect_none": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "Sfx",
+            "name": "test_mod_blitzcrank_attack_cast"
+          },
+          {
+            "type": "CasterViewEffect",
+            "name": "test_mod_blitzcrank_attack_punch"
+          },
+          {
+            "type": "Attack",
+            "damage": 12,
+            "attack_ratio": 90
+          },
+          {
+            "type": "ApAttack",
+            "damage": 8,
+            "attack_ratio": 25
+          },
+          {
+            "type": "TargetSfx",
+            "name": "test_mod_blitzcrank_attack_hit"
+          },
+          {
+            "type": "ViewEffect",
+            "name": "test_mod_blitzcrank_punch_hit"
+          }
+        ]
+      },
+      "effect_buff": {
+        "type": "Combine",
+        "effects": [
+          {
+            "type": "Sfx",
+            "name": "test_mod_blitzcrank_attack_cast"
+          },
+          {
+            "type": "CasterViewEffect",
+            "name": "test_mod_blitzcrank_attack_punch"
+          },
+          {
+            "type": "Attack",
+            "damage": 35,
+            "attack_ratio": 125
+          },
+          {
+            "type": "ApAttack",
+            "damage": 35,
+            "attack_ratio": 55
+          },
+          {
+            "type": "Airborne",
+            "duration": 24
+          },
+          {
+            "type": "Stun",
+            "duration": 12
+          },
+          {
+            "type": "RemoveCasterBuff",
+            "name": "test_mod_blitzcrank_power_fist_ready"
+          },
+          {
+            "type": "TargetSfx",
+            "name": "test_mod_blitzcrank_power_fist_hit"
+          },
+          {
+            "type": "ViewEffect",
+            "name": "test_mod_blitzcrank_power_fist_impact"
+          }
+        ]
+      }
+    }
+  },
+  "skill": {
+    "action_name": "skill",
+    "description": "#asset/base/text/champion?description.bo_league_champions_blitzcrank.skill",
+    "duration": 48,
+    "cooltime": 900,
+    "start_timing": 14,
+    "cancelable": false,
+    "can_use_with_move": false,
+    "range": 98000,
+    "casting_type": "Direction",
+    "casting_target": "EnemyWithoutTower",
+    "attack_type": "Skill",
+    "effect": {
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "Sfx",
+          "name": "test_mod_blitzcrank_q_cast"
+        },
+        {
+          "type": "LinearProjectile",
+          "penetrate": false,
+          "speed": 3600,
+          "range": 98000,
+          "name": "test_mod_blitzcrank_rocket_grab",
+          "shape": {
+            "Circle": {
+              "radius": 9000
+            }
+          },
+          "applied_target": "EnemyWithoutTower",
+          "applied_effects": [
+            {
+              "effect": {
+                "type": "Combine",
+                "effects": [
+                  {
+                    "type": "ApAttack",
+                    "damage": 70,
+                    "attack_ratio": 80
+                  },
+                  {
+                    "type": "Stun",
+                    "duration": 36
+                  },
+                  {
+                    "type": "MoveTo",
+                    "speed": 6200,
+                    "range": 8000,
+                    "end_effects": []
+                  },
+                  {
+                    "type": "AddBuff",
+                    "buff_state": {
+                      "name": "test_mod_blitzcrank_grabbed_slow",
+                      "duration": {
+                        "Time": {
+                          "tick": 60
+                        }
+                      },
+                      "move_speed_mult": -60
+                    }
+                  },
+                  {
+                    "type": "BlockMoveSkill",
+                    "tick": 36
+                  },
+                  {
+                    "type": "TargetSfx",
+                    "name": "test_mod_blitzcrank_q_hit"
+                  },
+                  {
+                    "type": "ViewEffect",
+                    "name": "test_mod_blitzcrank_grab_hit"
+                  }
+                ]
+              },
+              "casting_type": "Targeting"
+            }
+          ],
+          "end_effects": []
+        }
+      ]
+    }
+  },
+  "skill2": {
+    "action_name": "skill2",
+    "description": "#asset/base/text/champion?description.bo_league_champions_blitzcrank.skill2",
+    "duration": 26,
+    "cooltime": 660,
+    "start_timing": 1,
+    "cancelable": true,
+    "can_use_with_move": true,
+    "range": 0,
+    "casting_type": "None",
+    "casting_target": "AllyOnlySelf",
+    "attack_type": "Skill",
+    "effect": {
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "Sfx",
+          "name": "test_mod_blitzcrank_overdrive_cast"
+        },
+        {
+          "type": "AddCasterBuff",
+          "buff_state": {
+            "name": "test_mod_blitzcrank_overdrive",
+            "duration": {
+              "Time": {
+                "tick": 180
+              }
+            },
+            "move_speed_mult": 28,
+            "attack_speed_mult": 15
+          }
+        },
+        {
+          "type": "WithSelf",
+          "effects": [
+            {
+              "type": "Shield",
+              "amount": 110,
+              "ap_ratio": 35,
+              "tick": 180
+            }
+          ]
+        },
+        {
+          "type": "CasterViewEffect",
+          "name": "test_mod_blitzcrank_mana_barrier"
+        },
+        {
+          "type": "Sfx",
+          "name": "test_mod_blitzcrank_barrier"
+        },
+        {
+          "type": "AddCasterBuff",
+          "buff_state": {
+            "name": "test_mod_blitzcrank_power_fist_ready",
+            "duration": {
+              "Time": {
+                "tick": 240
+              }
+            }
+          }
+        },
+        {
+          "type": "CasterViewEffect",
+          "name": "test_mod_blitzcrank_power_fist_ready"
+        },
+        {
+          "type": "Delayed",
+          "tick": 180,
+          "effects": [
+            {
+              "type": "AddCasterBuff",
+              "buff_state": {
+                "name": "test_mod_blitzcrank_overdrive_fatigue",
+                "duration": {
+                  "Time": {
+                    "tick": 60
+                  }
+                },
+                "move_speed_mult": -15
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "ult": {
+    "action_name": "ult",
+    "description": "#asset/base/text/champion?description.bo_league_champions_blitzcrank.ult",
+    "duration": 48,
+    "cooltime": 3000,
+    "start_timing": 12,
+    "cancelable": false,
+    "can_use_with_move": false,
+    "range": 0,
+    "casting_type": "None",
+    "casting_target": "AllyOnlySelf",
+    "attack_type": "Skill",
+    "effect": {
+      "type": "Combine",
+      "effects": [
+        {
+          "type": "Sfx",
+          "name": "test_mod_blitzcrank_r_cast"
+        },
+        {
+          "type": "Sfx",
+          "name": "test_mod_blitzcrank_ult_voice"
+        },
+        {
+          "type": "CasterViewEffect",
+          "name": "test_mod_blitzcrank_static_field_cast"
+        },
+        {
+          "type": "WithSelf",
+          "effects": [
+            {
+              "type": "Shield",
+              "amount": 90,
+              "ap_ratio": 25,
+              "tick": 150
+            },
+            {
+              "type": "RangeEffect",
+              "shape": {
+                "Circle": {
+                  "radius": 52000
+                }
+              },
+              "target": "EnemyWithoutTower",
+              "apply_type": "AroundCaster",
+              "effects": [
+                {
+                  "type": "ApAttack",
+                  "damage": 135,
+                  "attack_ratio": 90
+                },
+                {
+                  "type": "BlockSkill",
+                  "tick": 30
+                },
+                {
+                  "type": "AddBuff",
+                  "buff_state": {
+                    "name": "test_mod_blitzcrank_static_field_slow",
+                    "duration": {
+                      "Time": {
+                        "tick": 45
+                      }
+                    },
+                    "move_speed_mult": -25
+                  }
+                },
+                {
+                  "type": "TargetSfx",
+                  "name": "test_mod_blitzcrank_r_hit"
+                },
+                {
+                  "type": "ViewEffect",
+                  "name": "test_mod_blitzcrank_static_field_hit"
+                }
+              ]
+            },
+            {
+              "type": "RangePeriodProjectile",
+              "name": "test_mod_blitzcrank_static_field_linger",
+              "tick": 420,
+              "period": 30,
+              "first_delay": 0,
+              "shape": {
+                "Circle": {
+                  "radius": 46000
+                }
+              },
+              "applied_target": "EnemyWithoutTower",
+              "applied_effects": [
+                {
+                  "effect": {
+                    "type": "Combine",
+                    "effects": [
+                      {
+                        "type": "ApAttack",
+                        "damage": 24,
+                        "attack_ratio": 20
+                      },
+                      {
+                        "type": "AddBuff",
+                        "buff_state": {
+                          "name": "test_mod_blitzcrank_static_field_linger_slow",
+                          "duration": {
+                            "Time": {
+                              "tick": 25
+                            }
+                          },
+                          "move_speed_mult": -15
+                        }
+                      },
+                      {
+                        "type": "BlockSkill",
+                        "tick": 8
+                      }
+                    ]
+                  },
+                  "casting_type": "Targeting"
+                }
+              ],
+              "end_effects": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "view_projectiles": [
+    {
+      "type": "Animated",
+      "name": "test_mod_blitzcrank_rocket_grab",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_rocket_grab",
+      "tag": "grab",
+      "z": 2,
+      "repeat": true
+    }
+  ],
+  "view_buffs": [
+    {
+      "type": "Animated",
+      "name": "test_mod_blitzcrank_overdrive",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_overdrive",
+      "tag": "loop",
+      "z": 2,
+      "repeat": true
+    },
+    {
+      "type": "Animated",
+      "name": "test_mod_blitzcrank_power_fist_ready",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_power_fist_ready",
+      "tag": "ready",
+      "z": 3,
+      "repeat": true
+    }
+  ],
+  "view_effects": [
+    {
+      "type": "Animation",
+      "name": "test_mod_blitzcrank_attack_punch",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_attack_punch",
+      "tag": "punch",
+      "z": 2,
+      "is_follow": true
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_blitzcrank_punch_hit",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_punch_hit",
+      "tag": "hit",
+      "z": 2,
+      "is_follow": false
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_blitzcrank_power_fist_impact",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_power_fist_impact",
+      "tag": "impact",
+      "z": 3,
+      "is_follow": false
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_blitzcrank_grab_hit",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_grab_hit",
+      "tag": "hit",
+      "z": 3,
+      "is_follow": false
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_blitzcrank_mana_barrier",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_mana_barrier",
+      "tag": "shield",
+      "z": 3,
+      "is_follow": true
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_blitzcrank_power_fist_ready",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_power_fist_ready",
+      "tag": "ready",
+      "z": 3,
+      "is_follow": true
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_blitzcrank_static_field_cast",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_static_field_cast",
+      "tag": "cast",
+      "z": 1,
+      "is_follow": false
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_blitzcrank_static_field_hit",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_static_field_hit",
+      "tag": "hit",
+      "z": 2,
+      "is_follow": false
+    },
+    {
+      "type": "LoopAnimation",
+      "name": "test_mod_blitzcrank_static_field_linger",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_static_field_linger",
+      "tag": "field",
+      "z": 1,
+      "is_follow": false
+    }
+  ],
+  "skill_icon": {
+    "source": "asset/bo_league_champions/aseprite_resources/UI_aseprite/test_mod_skill_icons",
+    "tags": [
+      "test_mod_blitzcrank_skill",
+      "test_mod_blitzcrank_skill2",
+      "test_mod_blitzcrank_ult"
+    ]
+  }
+}

@@ -13,6 +13,7 @@ MOD_ID = "bo_league_champions"
 EXPECTED_CHAMPIONS = {
     "aatrox",
     "azir",
+    "blitzcrank",
     "darius",
     "ezreal",
     "fiddlesticks",
@@ -126,6 +127,86 @@ AATROX_Q_CAST_EFFECT_REFS = {
         "asset/bo_league_champions/aseprite_resources/effects/aatrox_q3_cleave",
         "q3",
     ),
+}
+BLITZCRANK_IDS = ("bo_league_champions_blitzcrank", "test_mod_blitzcrank")
+BLITZCRANK_FRAME_SIZE = (57.0, 54.0)
+BLITZCRANK_EXPECTED_COUNTS = {
+    "idle": 8,
+    "run": 10,
+    "attack": 8,
+    "skill": 8,
+    "skill2": 8,
+    "ult": 6,
+    "hit": 1,
+    "dead": 1,
+    "recall": 1,
+    "return": 1,
+}
+BLITZCRANK_PROJECTILE_REFS = {
+    "test_mod_blitzcrank_rocket_grab": (
+        "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_rocket_grab",
+        "grab",
+    ),
+}
+BLITZCRANK_BUFF_REFS = {
+    "test_mod_blitzcrank_overdrive": (
+        "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_overdrive",
+        "loop",
+    ),
+    "test_mod_blitzcrank_power_fist_ready": (
+        "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_power_fist_ready",
+        "ready",
+    ),
+}
+BLITZCRANK_VIEW_EFFECT_REFS = {
+    "test_mod_blitzcrank_attack_punch": (
+        "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_attack_punch",
+        "punch",
+    ),
+    "test_mod_blitzcrank_punch_hit": (
+        "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_punch_hit",
+        "hit",
+    ),
+    "test_mod_blitzcrank_power_fist_impact": (
+        "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_power_fist_impact",
+        "impact",
+    ),
+    "test_mod_blitzcrank_grab_hit": (
+        "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_grab_hit",
+        "hit",
+    ),
+    "test_mod_blitzcrank_mana_barrier": (
+        "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_mana_barrier",
+        "shield",
+    ),
+    "test_mod_blitzcrank_power_fist_ready": (
+        "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_power_fist_ready",
+        "ready",
+    ),
+    "test_mod_blitzcrank_static_field_cast": (
+        "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_static_field_cast",
+        "cast",
+    ),
+    "test_mod_blitzcrank_static_field_hit": (
+        "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_static_field_hit",
+        "hit",
+    ),
+    "test_mod_blitzcrank_static_field_linger": (
+        "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_static_field_linger",
+        "field",
+    ),
+}
+BLITZCRANK_SOUND_EVENTS = {
+    "test_mod_blitzcrank_attack_cast",
+    "test_mod_blitzcrank_attack_hit",
+    "test_mod_blitzcrank_power_fist_hit",
+    "test_mod_blitzcrank_q_cast",
+    "test_mod_blitzcrank_q_hit",
+    "test_mod_blitzcrank_overdrive_cast",
+    "test_mod_blitzcrank_barrier",
+    "test_mod_blitzcrank_r_cast",
+    "test_mod_blitzcrank_r_hit",
+    "test_mod_blitzcrank_ult_voice",
 }
 DARIUS_IDS = ("bo_league_champions_darius", "test_mod_darius")
 DARIUS_FRAME_SIZE = (57.0, 54.0)
@@ -652,6 +733,7 @@ FIDDLESTICKS_TARGET_VIEW_EFFECT_REFS = {
     ),
 }
 COMPACT_DISPLAY_LIMITS = {
+    "blitzcrank": {"max_width": 53, "max_height": 44, "min_bottom_safe": 10},
     "darius": {"max_width": 42, "max_height": 40, "min_bottom_safe": 12},
     "fiddlesticks": {"max_width": 46, "max_height": 48, "min_bottom_safe": 16},
     "jhin": {"max_width": 64, "max_height": 50, "min_bottom_safe": 9},
@@ -664,6 +746,7 @@ JHIN_MIN_UPRIGHT_RUN_HEIGHT = 47
 JHIN_MAX_UPRIGHT_RUN_TOP = 8
 SIDE_CARD_STANDING_FACE_OFFSETS = {
     "aatrox": {"x": -8, "y": -6},
+    "blitzcrank": {"x": 0, "y": -8},
     "darius": {"x": 0, "y": -12},
     "fiddlesticks": {"x": 0, "y": -2},
     "jhin": {"x": 0, "y": -28},
@@ -673,6 +756,7 @@ SIDE_CARD_STANDING_FACE_OFFSETS = {
 }
 SIDE_CARD_STANDING_CENTER_OFFSETS = {
     "aatrox": {"x": 4, "y": -12},
+    "blitzcrank": {"x": 0, "y": -10},
     "darius": {"x": 0, "y": -12},
     "fiddlesticks": {"x": 0, "y": -14},
     "jhin": {"x": 0, "y": -20},
@@ -686,6 +770,12 @@ for _champion_id in AATROX_IDS:
         "en": ("Aatrox",),
         "zh-hans": ("\u4e9a\u6258\u514b\u65af", "\u5251\u9b54"),
         "zh-hant": ("\u4e9e\u6258\u514b\u65af", "\u528d\u9b54"),
+    }
+for _champion_id in BLITZCRANK_IDS:
+    REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS[_champion_id] = {
+        "en": ("Blitzcrank", "Rocket Grab", "Overdrive", "Power Fist", "Static Field"),
+        "zh-hans": ("\u84b8\u6c7d\u673a\u5668\u4eba", "\u5e03\u91cc\u8328", "\u673a\u68b0\u98de\u722a", "\u8fc7\u8f7d\u8fd0\u8f6c", "\u80fd\u91cf\u94c1\u62f3", "\u9759\u7535\u529b\u573a"),
+        "zh-hant": ("\u84b8\u6c7d\u6a5f\u5668\u4eba", "\u5e03\u91cc\u8328", "\u6a5f\u68b0\u98db\u722a", "\u904e\u8f09\u904b\u8f49", "\u80fd\u91cf\u9435\u62f3", "\u975c\u96fb\u529b\u5834"),
     }
 for _champion_id in DARIUS_IDS:
     REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS[_champion_id] = {
@@ -5167,6 +5257,196 @@ def check_jhin_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
                 fail(f"text/champion.i18n locale {locale} Jhin description must include {term!r}")
 
 
+def check_blitzcrank_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
+    blitz_id = f"{MOD_ID}_blitzcrank"
+    for champion_id in BLITZCRANK_IDS:
+        for locale in ("zh-hans", "zh-hant", "en"):
+            row = text.get(locale, {}).get("description", {}).get(champion_id)
+            if not isinstance(row, dict):
+                fail(f"text/champion.i18n locale {locale} missing Blitzcrank row {champion_id}")
+            missing = [key for key in REQUIRED_DESCRIPTION_KEYS if not row.get(key)]
+            if missing:
+                fail(f"text/champion.i18n locale {locale} {champion_id} missing {missing}")
+            surface = json.dumps(row, ensure_ascii=False)
+            if "?" in row.get("name", ""):
+                fail(f"text/champion.i18n locale {locale} {champion_id} has corrupted question-mark display name")
+            if locale == "zh-hans" and row.get("name") != "\u84b8\u6c7d\u673a\u5668\u4eba":
+                fail(f"text/champion.i18n zh-hans {champion_id} name must be 蒸汽机器人")
+            if locale == "zh-hant" and row.get("name") != "\u84b8\u6c7d\u6a5f\u5668\u4eba":
+                fail(f"text/champion.i18n zh-hant {champion_id} name must be 蒸汽機器人")
+            for term in REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS[champion_id].get(locale, ()):
+                if term not in surface:
+                    fail(f"text/champion.i18n locale {locale} {champion_id} must include searchable Blitzcrank term {term!r}")
+
+    view = entries.get(blitz_id)
+    if not isinstance(view, dict):
+        fail(f"style/champion_view.champion_view missing entries.{blitz_id}")
+    if view.get("face") != {"x": 0, "y": -8}:
+        fail(f"style entry {blitz_id}.face must keep Blitzcrank compact portrait at x=0,y=-8")
+    if view.get("center") != {"x": 0, "y": -10}:
+        fail(f"style entry {blitz_id}.center must keep Blitzcrank standing card feet safe at x=0,y=-10")
+    compat_view = entries.get("test_mod_blitzcrank")
+    if compat_view != view:
+        fail("style/champion_view.champion_view must keep test_mod_blitzcrank aligned with bo_league_champions_blitzcrank")
+
+    for active_png in (
+        ROOT / "aseprite_resources" / "champions" / "blitzcrank#sheet.png",
+        ROOT / "icons" / "blitzcrank_skill.png",
+        ROOT / "icons" / "blitzcrank_skill2.png",
+        ROOT / "icons" / "blitzcrank_ult.png",
+    ):
+        require_file(active_png)
+        require_no_green_residue(active_png)
+
+    fanim_path = ROOT / "aseprite_resources" / "champions" / "blitzcrank#anim.fanim"
+    fanim = load_json(fanim_path)
+    anims = fanim.get("anims") if isinstance(fanim, dict) else None
+    if not isinstance(anims, dict):
+        fail("aseprite_resources/champions/blitzcrank#anim.fanim must contain anims")
+    sheet_width, _sheet_height, sheet_alpha = load_rgba_alpha(ROOT / "aseprite_resources" / "champions" / "blitzcrank#sheet.png")
+    action_hashes: dict[str, list[str]] = {}
+    action_heights: dict[str, list[int]] = {}
+    for action, expected_count in BLITZCRANK_EXPECTED_COUNTS.items():
+        frames = anims.get(action, {}).get("frames") if isinstance(anims.get(action), dict) else None
+        if not isinstance(frames, list) or len(frames) != expected_count:
+            fail(f"Blitzcrank {action} must preserve {expected_count} 57x54 action frames")
+        action_hashes[action] = []
+        action_heights[action] = []
+        for index, frame in enumerate(frames):
+            data = frame.get("data") if isinstance(frame, dict) else None
+            if not isinstance(data, dict):
+                fail(f"Blitzcrank {action} frame {index} missing frame data")
+            rect = (
+                int(round(float(data.get("x", -1)))),
+                int(round(float(data.get("y", -1)))),
+                int(round(float(data.get("w", 0)))),
+                int(round(float(data.get("h", 0)))),
+            )
+            if (float(data.get("w", 0)), float(data.get("h", 0))) != BLITZCRANK_FRAME_SIZE:
+                fail(f"Blitzcrank {action} frame {index} must stay inside the 57x54 native actor cell")
+            bbox = alpha_bbox_in_rect(sheet_alpha, sheet_width, rect)
+            if bbox is None:
+                fail(f"Blitzcrank {action} frame {index} is blank")
+            bottom_safe = rect[3] - bbox[3]
+            if bottom_safe < 10:
+                fail(f"Blitzcrank {action} frame {index} leaves only {bottom_safe}px below feet; avoid feet under UI names")
+            action_hashes[action].append(alpha_frame_hash(sheet_alpha, sheet_width, rect))
+            action_heights[action].append(bbox[3] - bbox[1])
+
+    if len(set(action_hashes["run"])) < 7:
+        fail("Blitzcrank run must use multiple generated stride frames, not repeated idle frames")
+    if len(set(action_hashes["attack"])) < 4:
+        fail("Blitzcrank attack must show real mechanical punch motion")
+    if len(set(action_hashes["skill"])) < 5 or len(set(action_hashes["skill2"])) < 5:
+        fail("Blitzcrank skill and overdrive actions must use generated body poses")
+    if max(action_heights["run"]) - min(action_heights["run"]) > 4:
+        fail("Blitzcrank run body height is unstable; keep the robot in one scale class")
+    assert_compact_idle_bottom_safety("blitzcrank", min_bottom_safe=10)
+    assert_compact_display_frame_size(
+        "blitzcrank",
+        actions=("idle", "run", "attack", "skill", "skill2", "ult", "hit", "dead", "recall", "return"),
+    )
+
+    blitz = load_json(ROOT / "champion" / "blitzcrank.data_champion")
+    strings = set(walk_strings(blitz))
+    for forbidden in ("asset/base/sprite/arrow", "test_mod_thresh", "darius_apprehend", "code-generated", "line_art"):
+        if forbidden in strings:
+            fail(f"champion/blitzcrank.data_champion must not reuse placeholder/line-art token {forbidden}")
+    for required in (
+        "SwitchByBuff",
+        "test_mod_blitzcrank_power_fist_ready",
+        "LinearProjectile",
+        "test_mod_blitzcrank_rocket_grab",
+        "MoveTo",
+        "BlockMoveSkill",
+        "Airborne",
+        "test_mod_blitzcrank_overdrive",
+        "test_mod_blitzcrank_mana_barrier",
+        "RangeEffect",
+        "RangePeriodProjectile",
+        "test_mod_blitzcrank_static_field_linger",
+        "BlockSkill",
+    ):
+        if required not in strings:
+            fail(f"champion/blitzcrank.data_champion must include Blitzcrank mechanic token {required}")
+    if blitz.get("category") != "Melee":
+        fail(f"champion/blitzcrank.data_champion category must be Melee, got {blitz.get('category')!r}")
+    for tag in ("AP", "Melee", "Tank", "CC"):
+        if tag not in blitz.get("tags", []):
+            fail(f"champion/blitzcrank.data_champion tags must include {tag}")
+    expected_icons = [
+        "asset/bo_league_champions/icons/blitzcrank_skill",
+        "asset/bo_league_champions/icons/blitzcrank_skill2",
+        "asset/bo_league_champions/icons/blitzcrank_ult",
+    ]
+    if blitz.get("skill_icons") != expected_icons:
+        fail("champion/blitzcrank.data_champion must use image-generated Blitzcrank skill icons")
+
+    projectile_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in blitz.get("view_projectiles", [])}
+    for name, expected in BLITZCRANK_PROJECTILE_REFS.items():
+        if projectile_refs.get(name) != expected:
+            fail(f"champion/blitzcrank.data_champion projectile {name} must reference generated asset {expected}")
+    buff_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in blitz.get("view_buffs", [])}
+    for name, expected in BLITZCRANK_BUFF_REFS.items():
+        if buff_refs.get(name) != expected:
+            fail(f"champion/blitzcrank.data_champion buff {name} must reference generated asset {expected}")
+    view_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in blitz.get("view_effects", [])}
+    for name, expected in BLITZCRANK_VIEW_EFFECT_REFS.items():
+        if view_refs.get(name) != expected:
+            fail(f"champion/blitzcrank.data_champion view_effect {name} must reference generated asset {expected}")
+    if next(item for item in blitz["view_effects"] if item["name"] == "test_mod_blitzcrank_static_field_linger").get("is_follow") is not False:
+        fail("Blitzcrank Static Field linger must be terrain-anchored, not stuck to the actor body")
+
+    for sheet_name, tag, label, min_visible, min_color_bins, min_height, min_fill_ratio in (
+        ("blitzcrank_rocket_grab", "grab", "Blitzcrank Rocket Grab image-generated chain fist", 1500, 800, 32, 0.24),
+        ("blitzcrank_attack_punch", "punch", "Blitzcrank attack punch VFX", 1400, 600, 28, 0.22),
+        ("blitzcrank_punch_hit", "hit", "Blitzcrank punch hit burst", 1200, 550, 30, 0.22),
+        ("blitzcrank_power_fist_ready", "ready", "Blitzcrank Power Fist ready aura", 1200, 500, 32, 0.22),
+        ("blitzcrank_power_fist_impact", "impact", "Blitzcrank Power Fist impact", 1800, 750, 34, 0.24),
+        ("blitzcrank_mana_barrier", "shield", "Blitzcrank Mana Barrier shield", 1500, 550, 36, 0.24),
+        ("blitzcrank_static_field_cast", "cast", "Blitzcrank Static Field cast", 2200, 900, 54, 0.24),
+        ("blitzcrank_static_field_hit", "hit", "Blitzcrank Static Field hit", 1800, 750, 34, 0.22),
+        ("blitzcrank_static_field_linger", "field", "Blitzcrank Static Field terrain linger", 2200, 900, 54, 0.24),
+    ):
+        sheet = ROOT / "aseprite_resources" / "effects" / f"{sheet_name}#sheet.png"
+        fanim_path = ROOT / "aseprite_resources" / "effects" / f"{sheet_name}#anim.fanim"
+        require_file(sheet)
+        require_file(fanim_path)
+        require_no_green_residue(sheet)
+        assert_no_chroma_key_residue(sheet, fanim_path, tag, label)
+        assert_generated_vfx_volume(
+            sheet,
+            fanim_path,
+            tag,
+            label,
+            min_visible=min_visible,
+            min_color_bins=min_color_bins,
+            min_height=min_height,
+            min_fill_ratio=min_fill_ratio,
+        )
+    assert_animation_total_duration(
+        ROOT / "aseprite_resources" / "effects" / "blitzcrank_static_field_linger#anim.fanim",
+        "field",
+        "Blitzcrank Static Field terrain linger",
+        min_seconds=0.6,
+    )
+
+    overrides = load_json(ROOT / "mod.override_info")
+    for event in BLITZCRANK_SOUND_EVENTS:
+        info = require_sound_info_assets(event)
+        volume = info["plays"][0]["volume"]
+        if volume < 0.80:
+            fail(f"sound/sfx/{event}.sound_info volume {volume} is too quiet for Blitzcrank skill audio")
+        for suffix in ("", "_clip"):
+            key = f"asset/base/sound/sfx/{event}{suffix}"
+            expected = {
+                "remapping": f"asset/bo_league_champions/sound/sfx/{event}{suffix}",
+                "type": "override",
+            }
+            if overrides.get(key) != expected:
+                fail(f"mod.override_info must override Blitzcrank audio asset {key}")
+
+
 def check_champion_visibility() -> None:
     text = load_json(ROOT / "text" / "champion.i18n")
     style = load_json(ROOT / "style" / "champion_view.champion_view")
@@ -5246,6 +5526,8 @@ def check_champion_visibility() -> None:
 
     if f"{MOD_ID}_aatrox" not in ids:
         fail("Aatrox encyclopedia chain is missing bo_league_champions_aatrox")
+    if f"{MOD_ID}_blitzcrank" not in ids:
+        fail("Blitzcrank encyclopedia chain is missing bo_league_champions_blitzcrank")
     if f"{MOD_ID}_darius" not in ids:
         fail("Darius encyclopedia chain is missing bo_league_champions_darius")
     if f"{MOD_ID}_kayn" not in ids:
@@ -5260,6 +5542,7 @@ def check_champion_visibility() -> None:
         fail("Viktor encyclopedia chain is missing bo_league_champions_viktor")
     check_encyclopedia_search_terms(text)
     check_aatrox_rework_contract(text, entries)
+    check_blitzcrank_contract(text, entries)
     check_darius_contract(text, entries)
     check_kayn_rework_contract(text, entries)
     check_yasuo_contract(text, entries)
@@ -5268,7 +5551,7 @@ def check_champion_visibility() -> None:
     check_fiddlesticks_contract(text, entries)
     check_thresh_contract(text, entries)
     check_viktor_contract(text, entries)
-    for champion_name in ("aatrox", "darius", "kayn", "thresh", "viktor"):
+    for champion_name in ("aatrox", "blitzcrank", "darius", "kayn", "thresh", "viktor"):
         assert_static_recall_tags(champion_name)
 
 

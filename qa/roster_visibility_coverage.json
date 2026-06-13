@@ -5,6 +5,7 @@
   "verified_hide_path": false,
   "current_stage": "Gate native visibility before claiming a complete League roster; do not hide base heroes until the mod has a proven safe data/runtime path.",
   "league_champions": [
+    "blitzcrank",
     "darius",
     "aatrox",
     "azir",
