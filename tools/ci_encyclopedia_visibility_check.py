@@ -658,6 +658,10 @@ COMPACT_DISPLAY_LIMITS = {
     "thresh": {"max_width": 42, "max_height": 40, "min_bottom_safe": 12},
     "viktor": {"max_width": 39, "max_height": 42, "min_bottom_safe": 11},
 }
+JHIN_MIN_RUN_UNIQUE_FRAMES = 8
+JHIN_MAX_UPRIGHT_RUN_WIDTH = 50
+JHIN_MIN_UPRIGHT_RUN_HEIGHT = 47
+JHIN_MAX_UPRIGHT_RUN_TOP = 8
 SIDE_CARD_STANDING_FACE_OFFSETS = {
     "aatrox": {"x": -8, "y": -4},
     "darius": {"x": 0, "y": -12},
@@ -5028,15 +5032,35 @@ def check_jhin_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
                 fail(f"Jhin {action} contains a blank body frame")
             action_bboxes[action].append(bbox)
             action_hashes[action].append(alpha_frame_hash(sheet_alpha, sheet_width, rect))
-    if len(set(action_hashes["run"])) < 5:
-        fail("Jhin run must use several generated stride poses, not a two-frame jitter loop")
+    if len(set(action_hashes["run"])) < JHIN_MIN_RUN_UNIQUE_FRAMES:
+        fail(
+            f"Jhin run must use at least {JHIN_MIN_RUN_UNIQUE_FRAMES} upright generated stride poses, "
+            "not a repeated crouched sprint or idle loop"
+        )
     if len(set(action_hashes["attack"])) < 6:
         fail("Jhin attack must show real Whisper aiming/firing body motion")
     if len(set(action_hashes["skill"])) < 4 or len(set(action_hashes["ult"])) < 3:
         fail("Jhin skill and ult actions must use generated body poses, not repeated idle frames")
+    run_widths = [bbox[2] - bbox[0] for bbox in action_bboxes["run"]]
     run_heights = [bbox[3] - bbox[1] for bbox in action_bboxes["run"]]
     if max(run_heights) - min(run_heights) > 8:
         fail("Jhin run height range is unstable; keep the image-generated model in one scale class")
+    run_tops = [bbox[1] for bbox in action_bboxes["run"]]
+    if max(run_widths) > JHIN_MAX_UPRIGHT_RUN_WIDTH:
+        fail(
+            f"Jhin run frame width {max(run_widths)}px is too wide; "
+            "his movement must stay upright and theatrical, not a horizontal rifle sprint"
+        )
+    if min(run_heights) < JHIN_MIN_UPRIGHT_RUN_HEIGHT:
+        fail(
+            f"Jhin run frame height {min(run_heights)}px is too short; "
+            "avoid crouched sprint poses that no longer read like Jhin"
+        )
+    if max(run_tops) > JHIN_MAX_UPRIGHT_RUN_TOP:
+        fail(
+            f"Jhin run frame top {max(run_tops)}px is too low; "
+            "the run row must keep an upright LoL-like posture"
+        )
 
     jhin = load_json(ROOT / "champion" / "jhin.data_champion")
     strings = set(walk_strings(jhin))

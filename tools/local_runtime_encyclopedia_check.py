@@ -134,6 +134,12 @@ AATROX_RUNTIME_MIN_BASIC_ATTACK_UNIQUE_FRAMES = 7
 AATROX_RUNTIME_MIN_BASIC_ATTACK_SWING_FRAMES = 2
 AATROX_RUNTIME_MIN_BASIC_ATTACK_SWING_WIDTH = 58
 AATROX_RUNTIME_MIN_BASIC_ATTACK_WIDTH_RANGE = 12
+JHIN_RUNTIME_FRAME_SIZE = (64, 64)
+JHIN_RUNTIME_RUN_FRAME_XS = tuple(range(0, 640, 64))
+JHIN_RUNTIME_MIN_RUN_UNIQUE_FRAMES = 8
+JHIN_RUNTIME_MAX_UPRIGHT_RUN_WIDTH = 50
+JHIN_RUNTIME_MIN_UPRIGHT_RUN_HEIGHT = 47
+JHIN_RUNTIME_MAX_UPRIGHT_RUN_TOP = 8
 REQUIRED_DESCRIPTION_KEYS = ("name", "attack", "skill", "skill2", "ult")
 REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS: dict[str, dict[str, tuple[str, ...]]] = {
     f"{MOD_ID}_aatrox": {
@@ -394,6 +400,33 @@ def check_aatrox_basic_attack_motion(runtime_root: Path) -> None:
         fail("runtime Aatrox basic attack must show at least two readable greatsword swing frames")
     if max(attack_widths) - min(attack_widths) < AATROX_RUNTIME_MIN_BASIC_ATTACK_WIDTH_RANGE:
         fail("runtime Aatrox basic attack must include visible windup-to-swing width change")
+
+
+def check_jhin_upright_run_pose(runtime_root: Path) -> None:
+    sheet_path = runtime_root / "aseprite_resources" / "champions" / "jhin#sheet.png"
+    sheet_width, _sheet_height, alpha = load_rgba_alpha(sheet_path)
+    frame_w, frame_h = JHIN_RUNTIME_FRAME_SIZE
+    hashes: list[str] = []
+    widths: list[int] = []
+    heights: list[int] = []
+    tops: list[int] = []
+    for index, x in enumerate(JHIN_RUNTIME_RUN_FRAME_XS, start=1):
+        rect = (x, 0, frame_w, frame_h)
+        bbox = alpha_bbox_in_rect(alpha, sheet_width, rect)
+        if bbox is None:
+            fail(f"runtime Jhin run frame {index} is blank")
+        hashes.append(alpha_frame_hash(alpha, sheet_width, rect))
+        widths.append(bbox[2] - bbox[0])
+        heights.append(bbox[3] - bbox[1])
+        tops.append(bbox[1])
+    if len(set(hashes)) < JHIN_RUNTIME_MIN_RUN_UNIQUE_FRAMES:
+        fail("runtime Jhin run must keep at least eight distinct upright generated stride poses")
+    if max(widths) > JHIN_RUNTIME_MAX_UPRIGHT_RUN_WIDTH:
+        fail("runtime Jhin run is too wide and has regressed toward the horizontal rifle sprint")
+    if min(heights) < JHIN_RUNTIME_MIN_UPRIGHT_RUN_HEIGHT:
+        fail("runtime Jhin run is too short and has regressed toward crouched sprint poses")
+    if max(tops) > JHIN_RUNTIME_MAX_UPRIGHT_RUN_TOP:
+        fail("runtime Jhin run top is too low; keep an upright LoL-like posture")
 
 
 def assert_no_negative_speed_fields(node: object, label: str) -> None:
@@ -1241,6 +1274,7 @@ def check_runtime_copy(game_root: Path) -> None:
             fail(f"runtime mod file is stale or differs from repo: {runtime_file}")
 
     check_aatrox_basic_attack_motion(runtime_root)
+    check_jhin_upright_run_pose(runtime_root)
 
     for relative in (
         "aseprite_resources/effects/jinx_get_excited_aura#sheet.png",
