@@ -751,7 +751,7 @@ SIDE_CARD_STANDING_FACE_OFFSETS = {
     "fiddlesticks": {"x": -8, "y": -6},
     "jhin": {"x": 0, "y": -28},
     "jinx": {"x": -2, "y": -16},
-    "kayn": {"x": -18, "y": 0},
+    "kayn": {"x": 20, "y": 0},
     "thresh": {"x": 0, "y": -15},
     "viktor": {"x": 0, "y": -28},
     "yasuo": {"x": 4, "y": -12},
@@ -2451,8 +2451,8 @@ def check_kayn_rework_contract(text: dict[str, Any], entries: dict[str, Any]) ->
         face_x = view.get("face", {}).get("x")
         face_y = view.get("face", {}).get("y")
         center_y = view.get("center", {}).get("y")
-        if face_x != -18:
-            fail(f"style entry {kayn_id}.face.x must keep Kayn's compact portrait centered at -18")
+        if face_x != 20:
+            fail(f"style entry {kayn_id}.face.x must keep Kayn's compact portrait centered at 20")
         if face_y != 0:
             fail(f"style entry {kayn_id}.face.y must keep Kayn's HUD/scoreboard portrait centered at 0")
         if not isinstance(center_y, (int, float)) or not -20 <= center_y <= -8:
@@ -2497,8 +2497,8 @@ def check_kayn_rework_contract(text: dict[str, Any], entries: dict[str, Any]) ->
         hair_max_x = -1
         for local_y in range(crop_size):
             for local_x in range(crop_size):
-                src_x = rect_x + local_x - face_x
-                src_y = rect_y + local_y - face_y
+                src_x = rect_x + local_x + face_x
+                src_y = rect_y + local_y + face_y
                 if src_x < rect_x or src_x >= rect_x + rect_w or src_y < rect_y or src_y >= rect_y + rect_h:
                     continue
                 index = (src_y * face_sheet_width + src_x) * 4
