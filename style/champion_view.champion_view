@@ -182,8 +182,8 @@
     },
     "bo_league_champions_kayn": {
       "face": {
-        "x": 4,
-        "y": -18
+        "x": -18,
+        "y": 0
       },
       "center": {
         "x": 0,
@@ -192,8 +192,8 @@
     },
     "test_mod_kayn": {
       "face": {
-        "x": 4,
-        "y": -18
+        "x": -18,
+        "y": 0
       },
       "center": {
         "x": 0,
