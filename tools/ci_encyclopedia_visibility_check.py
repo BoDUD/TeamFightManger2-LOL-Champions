@@ -752,7 +752,7 @@ SIDE_CARD_STANDING_FACE_OFFSETS = {
     "jhin": {"x": 0, "y": -28},
     "jinx": {"x": -2, "y": -16},
     "kayn": {"x": 4, "y": -18},
-    "thresh": {"x": 0, "y": -18},
+    "thresh": {"x": 0, "y": -15},
     "viktor": {"x": 0, "y": -28},
     "yasuo": {"x": 4, "y": -12},
 }
@@ -764,7 +764,7 @@ SIDE_CARD_STANDING_CENTER_OFFSETS = {
     "jhin": {"x": 0, "y": -20},
     "jinx": {"x": 0, "y": -16},
     "kayn": {"x": 0, "y": -12},
-    "thresh": {"x": 0, "y": -18},
+    "thresh": {"x": 0, "y": -15},
     "viktor": {"x": 0, "y": -12},
     "yasuo": {"x": 0, "y": -12},
 }
@@ -3606,10 +3606,10 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         view = entries.get(thresh_id)
         if not isinstance(view, dict):
             fail(f"style/champion_view.champion_view missing entries.{thresh_id}")
-        if view.get("face", {}).get("x") != 0 or view.get("face", {}).get("y") != -18:
-            fail(f"style entry {thresh_id}.face must keep Thresh roster card centered at x=0,y=-18")
-        if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -18:
-            fail(f"style entry {thresh_id}.center must keep Thresh exchange standing display centered at x=0,y=-18")
+        if view.get("face", {}).get("x") != 0 or view.get("face", {}).get("y") != -15:
+            fail(f"style entry {thresh_id}.face must keep Thresh roster card inside the frame at x=0,y=-15")
+        if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -15:
+            fail(f"style entry {thresh_id}.center must keep Thresh exchange standing display inside the frame at x=0,y=-15")
     assert_compact_idle_bottom_safety("thresh")
 
     for path in (
