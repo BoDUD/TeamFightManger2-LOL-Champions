@@ -290,6 +290,10 @@
           "name": "test_mod_aatrox_dash_cast"
         },
         {
+          "type": "CasterViewEffect",
+          "name": "test_mod_aatrox_umbral_dash_cast_vfx"
+        },
+        {
           "type": "LineRangeProjectile",
           "width": 9500,
           "length": 66000,
@@ -498,7 +502,7 @@
       "name": "test_mod_aatrox_world_ender",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/aatrox_world_ender_aura",
       "tag": "loop",
-      "z": -1
+      "z": 3
     }
   ],
   "skill_icon": {
@@ -531,6 +535,14 @@
       "name": "test_mod_aatrox_q3_cast_vfx",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/aatrox_q3_cleave",
       "tag": "q3",
+      "z": 2,
+      "is_follow": true
+    },
+    {
+      "type": "Animation",
+      "name": "test_mod_aatrox_umbral_dash_cast_vfx",
+      "anim": "asset/bo_league_champions/aseprite_resources/effects/aatrox_umbral_dash",
+      "tag": "dash",
       "z": 2,
       "is_follow": true
     }
