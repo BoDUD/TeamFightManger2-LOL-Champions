@@ -119,13 +119,13 @@ VIKTOR_SOUND_EVENTS = (
     "test_mod_viktor_evolution",
     "test_mod_viktor_ult_voice",
 )
-VIKTOR_LASER_MIN_APPLY = 120
-VIKTOR_AFTERSHOCK_MIN_APPLY = 132
-VIKTOR_GRAVITY_MIN_TICKS = (300, 360)
+VIKTOR_LASER_MIN_APPLY = 150
+VIKTOR_AFTERSHOCK_MIN_APPLY = 150
+VIKTOR_GRAVITY_MIN_TICKS = (390, 450)
 VIKTOR_LASER_MIN_ANIM_SECONDS = 2.0
 VIKTOR_AFTERSHOCK_MIN_ANIM_SECONDS = 2.0
 VIKTOR_GRAVITY_MIN_ANIM_SECONDS = 5.0
-VIKTOR_STORM_MIN_TICKS = (420, 480)
+VIKTOR_STORM_MIN_TICKS = (540, 600)
 VIKTOR_STORM_MIN_ANIM_SECONDS = 6.0
 BLITZCRANK_SOUND_EVENTS = (
     "test_mod_blitzcrank_attack_cast",
@@ -587,14 +587,14 @@ def check_viktor_ground_vfx(path: Path, champion: object) -> None:
         fail(f"{path} view_projectiles must be a list")
     projectile_z = {item.get("name"): item.get("z") for item in view_projectile_rows if isinstance(item, dict)}
     projectile_repeat = {item.get("name"): item.get("repeat") for item in view_projectile_rows if isinstance(item, dict)}
-    if projectile_z.get("test_mod_viktor_siphon_projectile") != 2:
-        fail("runtime Viktor Siphon Power Q projectile must render at z=2 so it is visible in battle")
+    if not isinstance(projectile_z.get("test_mod_viktor_siphon_projectile"), (int, float)) or projectile_z.get("test_mod_viktor_siphon_projectile", 0) < 3:
+        fail("runtime Viktor Siphon Power Q projectile must render at z>=3 so it is visible in battle")
     if projectile_repeat.get("test_mod_viktor_siphon_projectile") is not True:
         fail("runtime Viktor Siphon Power Q projectile must repeat while travelling")
-    for projectile_name in ("test_mod_viktor_laser", "test_mod_viktor_laser_aftershock"):
-        z_value = projectile_z.get(projectile_name)
-        if not isinstance(z_value, (int, float)) or z_value >= 0:
-            fail(f"runtime Viktor {projectile_name} must render on the ground layer with negative z")
+    if not isinstance(projectile_z.get("test_mod_viktor_laser"), (int, float)) or projectile_z.get("test_mod_viktor_laser", 0) < 2:
+        fail("runtime Viktor Death Ray must render at z>=2 so the generated ground lane is visible above map clutter")
+    if not isinstance(projectile_z.get("test_mod_viktor_laser_aftershock"), (int, float)) or projectile_z.get("test_mod_viktor_laser_aftershock", 0) < 1:
+        fail("runtime Viktor Death Ray aftershock must render at z>=1 so the ground burn remains readable")
     skill = champion.get("skill", {})
     laser_nodes = [
         node
@@ -613,6 +613,8 @@ def check_viktor_ground_vfx(path: Path, champion: object) -> None:
         for node in nodes:
             if node.get("apply", 0) < VIKTOR_LASER_MIN_APPLY:
                 fail(f"runtime Viktor {projectile_name} must persist for at least {VIKTOR_LASER_MIN_APPLY} ticks")
+            if node.get("width", 0) < 17000:
+                fail(f"runtime Viktor {projectile_name} must keep a broad generated Death Ray footprint")
     aftershock_nodes = [node for node in laser_nodes if node.get("name") == "test_mod_viktor_laser_aftershock"]
     if len(aftershock_nodes) != 2:
         fail("runtime Viktor Hextech Ray must define aftershock ground projectiles in both normal and evolved branches")
@@ -621,18 +623,22 @@ def check_viktor_ground_vfx(path: Path, champion: object) -> None:
             fail(f"runtime Viktor laser aftershock must persist for at least {VIKTOR_AFTERSHOCK_MIN_APPLY} ticks")
         if node.get("delay", 999) > 0:
             fail("runtime Viktor laser aftershock projectile should appear immediately after its Delayed wrapper")
+        if node.get("width", 0) < 21000:
+            fail("runtime Viktor laser aftershock must keep a broad generated ground-burn footprint")
     view_effect_rows = champion.get("view_effects", [])
     if not isinstance(view_effect_rows, list):
         fail(f"{path} view_effects must be a list")
     view_effect_z = {item.get("name"): item.get("z") for item in view_effect_rows if isinstance(item, dict)}
     if view_effect_z.get("test_mod_viktor_siphon_shield", 0) >= 0:
         fail("runtime Viktor Siphon shield ViewEffect must render behind the actor")
-    if view_effect_z.get("test_mod_viktor_siphon_impact") != 2:
-        fail("runtime Viktor Siphon Power Q impact must render at z=2 so the hit is visible")
-    if view_effect_z.get("test_mod_viktor_gravity_field") != 1:
-        fail("runtime Viktor Gravity Field must render at z=1 so the target-ground field is visible above terrain")
-    if view_effect_z.get("test_mod_viktor_chaos_storm") != 2:
-        fail("runtime Viktor Chaos Storm must render at z=2 so the target-ground ult remains visible")
+    if view_effect_z.get("test_mod_viktor_siphon_impact", 0) < 3:
+        fail("runtime Viktor Siphon Power Q impact must render at z>=3 so the hit is visible")
+    if view_effect_z.get("test_mod_viktor_gravity_field", 0) < 4:
+        fail("runtime Viktor Gravity Field must render at z>=4 so the target-ground field is visible above terrain")
+    if view_effect_z.get("test_mod_viktor_chaos_storm", 0) < 5:
+        fail("runtime Viktor Chaos Storm must render at z>=5 so the target-ground ult remains visible")
+    if view_effect_z.get("test_mod_viktor_storm_impact", 0) < 5:
+        fail("runtime Viktor Chaos Storm impact must render at z>=5 so the opening strike remains visible")
     view_buff_rows = champion.get("view_buffs", [])
     if not isinstance(view_buff_rows, list):
         fail(f"{path} view_buffs must be a list")
@@ -705,72 +711,107 @@ def check_viktor_ground_vfx(path: Path, champion: object) -> None:
         for node in iter_mapping_nodes(skill2)
         if node.get("type") == "ParabolicProjectile" and node.get("name") == "test_mod_viktor_gravity_field_anchor"
     ]
-    if len(gravity_anchors) != 2:
-        fail("runtime Viktor skill2 must use two gravity-field target-ground anchors")
-    for index, anchor in enumerate(gravity_anchors, start=1):
-        end_effects = anchor.get("end_effects")
-        if not isinstance(end_effects, list):
-            fail(f"runtime Viktor gravity anchor {index} must use end_effects")
-        if not any(item.get("type") == "ViewEffect" and item.get("name") == "test_mod_viktor_gravity_field" for item in end_effects if isinstance(item, dict)):
-            fail(f"runtime Viktor gravity anchor {index} must spawn Gravity Field at the target point")
-        if any(item.get("type") == "ViewEffect" and item.get("name") == "test_mod_viktor_gravity_field" and item.get("is_follow") is True for item in end_effects if isinstance(item, dict)):
-            fail(f"runtime Viktor gravity anchor {index} must keep Gravity Field on the terrain, not attached to the caster")
+    if gravity_anchors:
+        fail("runtime Viktor Gravity Field must not hide its visible ground zone behind ParabolicProjectile end_effects")
+    gravity_switch = next(
+        (
+            node
+            for node in iter_mapping_nodes(skill2)
+            if node.get("type") == "SwitchByBuff" and node.get("buff_name") == "test_mod_viktor_evolved_field"
+        ),
+        None,
+    )
+    if not isinstance(gravity_switch, dict):
+        fail("runtime Viktor skill2 must keep the Gravity Field normal/evolved branch switch")
+    for index, branch_name in enumerate(("effect_none", "effect_buff"), start=1):
+        branch = gravity_switch.get(branch_name)
+        effects = branch.get("effects") if isinstance(branch, dict) else None
+        if not isinstance(effects, list):
+            fail(f"runtime Viktor Gravity Field {branch_name} must be a direct target-ground Combine branch")
+        if not any(
+            item.get("type") == "ViewEffect" and item.get("name") == "test_mod_viktor_gravity_field"
+            for item in effects
+            if isinstance(item, dict)
+        ):
+            fail(f"runtime Viktor Gravity Field {branch_name} must spawn an immediate high-z ground ViewEffect")
         field_pulses = [
             item
-            for item in end_effects
+            for item in effects
             if isinstance(item, dict)
             and item.get("type") == "RangePeriodProjectile"
             and item.get("name") == "test_mod_viktor_gravity_field"
         ]
         if len(field_pulses) != 1:
-            fail(f"runtime Viktor gravity anchor {index} must own the ground pulse")
-        if int(field_pulses[0].get("tick", 0)) < VIKTOR_GRAVITY_MIN_TICKS[index - 1]:
+            fail(f"runtime Viktor Gravity Field {branch_name} must own exactly one direct ground pulse")
+        pulse = field_pulses[0]
+        if int(pulse.get("tick", 0)) < VIKTOR_GRAVITY_MIN_TICKS[index - 1]:
             fail(
-                f"runtime Viktor Gravity Field anchor {index} must persist for at least "
+                f"runtime Viktor Gravity Field {branch_name} must persist for at least "
                 f"{VIKTOR_GRAVITY_MIN_TICKS[index - 1]} ticks"
             )
+        if int(pulse.get("first_delay", -1)) != 0:
+            fail("runtime Viktor Gravity Field pulse must start immediately so the magnetic field is visible on cast")
+        radius = pulse.get("shape", {}).get("Circle", {}).get("radius") if isinstance(pulse.get("shape"), dict) else 0
+        if int(radius) < (39000 if index == 1 else 43000):
+            fail(f"runtime Viktor Gravity Field {branch_name} radius is too small for a readable ground magnetic zone")
 
     ult = champion.get("ult", {})
-    ult_effect = ult.get("effect", {}) if isinstance(ult, dict) else {}
-    ground_storm_names = {"test_mod_viktor_storm_impact", "test_mod_viktor_chaos_storm"}
-    if isinstance(ult_effect, dict):
-        for branch_name in ("effect_none", "effect_buff"):
-            branch = ult_effect.get(branch_name, {})
-            branch_effects = branch.get("effects", []) if isinstance(branch, dict) else []
-            if not isinstance(branch_effects, list):
-                fail(f"{path} ult.{branch_name}.effects must be a list")
-            for node in branch_effects:
-                if not isinstance(node, dict):
-                    continue
-                if node.get("type") in {"ViewEffect", "RangePeriodProjectile"} and node.get("name") in ground_storm_names:
-                    fail(f"runtime Viktor ult {branch_name} still spawns storm terrain VFX outside the target-ground anchor")
     storm_anchors = [
         node
         for node in iter_mapping_nodes(ult)
         if node.get("type") == "ParabolicProjectile" and node.get("name") == "test_mod_viktor_chaos_storm_anchor"
     ]
-    if len(storm_anchors) != 2:
-        fail("runtime Viktor ult must use two Chaos Storm target-ground anchors")
-    for index, anchor in enumerate(storm_anchors, start=1):
-        end_effects = anchor.get("end_effects")
-        if not isinstance(end_effects, list):
-            fail(f"runtime Viktor Chaos Storm anchor {index} must use end_effects")
-        end_names = {(item.get("type"), item.get("name")) for item in end_effects if isinstance(item, dict)}
-        if ("ViewEffect", "test_mod_viktor_storm_impact") not in end_names or ("ViewEffect", "test_mod_viktor_chaos_storm") not in end_names:
-            fail(f"runtime Viktor Chaos Storm anchor {index} must spawn both storm terrain VFX")
-        if any(item.get("type") == "ViewEffect" and item.get("name") == "test_mod_viktor_chaos_storm" and item.get("is_follow") is True for item in end_effects if isinstance(item, dict)):
-            fail(f"runtime Viktor Chaos Storm anchor {index} must keep the storm on the terrain, not attached to the caster")
-        storm_pulses = [
-            item
-            for item in end_effects
-            if isinstance(item, dict)
-            and item.get("type") == "RangePeriodProjectile"
-            and item.get("name") == "test_mod_viktor_chaos_storm"
+    if storm_anchors:
+        fail("runtime Viktor Chaos Storm must not hide its generated ground storm behind ParabolicProjectile end_effects")
+    ult_effect = ult.get("effect", {}) if isinstance(ult, dict) else {}
+    for index, branch_name in enumerate(("effect_none", "effect_buff"), start=1):
+        branch = ult_effect.get(branch_name, {}) if isinstance(ult_effect, dict) else {}
+        branch_effects = branch.get("effects", []) if isinstance(branch, dict) else []
+        if not isinstance(branch_effects, list):
+            fail(f"{path} ult.{branch_name}.effects must be a list")
+        names = {(node.get("type"), node.get("name")) for node in branch_effects if isinstance(node, dict)}
+        for required_view in (("ViewEffect", "test_mod_viktor_storm_impact"), ("ViewEffect", "test_mod_viktor_chaos_storm")):
+            if required_view not in names:
+                fail(f"runtime Viktor ult {branch_name} must spawn direct high-z {required_view[1]} on the target ground")
+        if any(
+            isinstance(node, dict)
+            and node.get("type") == "CasterViewEffect"
+            and str(node.get("name", "")).startswith("test_mod_viktor_chaos_storm")
+            for node in branch_effects
+        ):
+            fail("runtime Viktor Chaos Storm must not be caster-following; it must land as a target-ground storm")
+        impact_zones = [
+            node
+            for node in branch_effects
+            if isinstance(node, dict)
+            and node.get("type") == "ApplyInProjectile"
+            and node.get("name") == "test_mod_viktor_chaos_storm_impact_zone"
         ]
-        if not storm_pulses:
-            fail(f"runtime Viktor Chaos Storm anchor {index} must own the persistent storm pulse")
-        if storm_pulses[0].get("tick", 0) < VIKTOR_STORM_MIN_TICKS[index - 1]:
-            fail(f"runtime Viktor Chaos Storm anchor {index} must persist for at least {VIKTOR_STORM_MIN_TICKS[index - 1]} ticks")
+        if len(impact_zones) != 1:
+            fail(f"runtime Viktor ult {branch_name} must expose one direct target-ground impact zone")
+        impact_zone = impact_zones[0]
+        if impact_zone.get("follow_caster") is not False or int(impact_zone.get("tick", 999)) > 8:
+            fail(f"runtime Viktor ult {branch_name} impact zone must resolve quickly on the target ground")
+        impact_radius = impact_zone.get("shape", {}).get("Circle", {}).get("radius") if isinstance(impact_zone.get("shape"), dict) else 0
+        if int(impact_radius) < (38000 if index == 1 else 42000):
+            fail(f"runtime Viktor ult {branch_name} impact radius is too small for Chaos Storm")
+        storm_pulses = [
+            node
+            for node in branch_effects
+            if isinstance(node, dict)
+            and node.get("type") == "RangePeriodProjectile"
+            and node.get("name") == "test_mod_viktor_chaos_storm"
+        ]
+        if len(storm_pulses) != 1:
+            fail(f"runtime Viktor ult {branch_name} must own exactly one direct persistent storm pulse")
+        storm_pulse = storm_pulses[0]
+        if storm_pulse.get("tick", 0) < VIKTOR_STORM_MIN_TICKS[index - 1]:
+            fail(f"runtime Viktor ult {branch_name} must persist for at least {VIKTOR_STORM_MIN_TICKS[index - 1]} ticks")
+        if int(storm_pulse.get("first_delay", 999)) > 10:
+            fail("runtime Viktor Chaos Storm pulse must start soon after the impact burst")
+        storm_radius = storm_pulse.get("shape", {}).get("Circle", {}).get("radius") if isinstance(storm_pulse.get("shape"), dict) else 0
+        if int(storm_radius) < (38000 if index == 1 else 42000):
+            fail(f"runtime Viktor ult {branch_name} pulse radius is too small for Chaos Storm")
     runtime_root = path.parent.parent
     for anim_name, tag, label, min_seconds in (
         ("viktor_laser", "laser", "runtime Viktor Hextech Ray ground VFX", VIKTOR_LASER_MIN_ANIM_SECONDS),
