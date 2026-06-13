@@ -554,8 +554,9 @@ def check_blitzcrank_skill_contract(path: Path, champion: object) -> None:
     q_pulls = [node for node in q_nodes if node.get("type") == "MoveTo"]
     if len(q_pulls) != 1:
         fail(f"runtime Blitzcrank Q must contain exactly one target pull MoveTo, got {len(q_pulls)}")
-    if int(q_pulls[0].get("speed", 0)) < 8000 or int(q_pulls[0].get("range", 999999)) > 2200:
-        fail("runtime Blitzcrank Q pull must drag the hooked target tightly back to Blitzcrank")
+    q_pull_range = int(q_pulls[0].get("range", 999999))
+    if int(q_pulls[0].get("speed", 0)) < 8000 or q_pull_range < 8000 or q_pull_range > 11000:
+        fail("runtime Blitzcrank Q pull must stop hooked targets in front of Blitzcrank instead of overlapping his body")
     if max_effect_number(champion.get("skill", {}), "BlockMoveSkill", "tick") < 48:
         fail("runtime Blitzcrank Q must block movement skills during the hook pull")
 

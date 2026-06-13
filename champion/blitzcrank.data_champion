@@ -170,7 +170,7 @@
                   {
                     "type": "MoveTo",
                     "speed": 8200,
-                    "range": 1800,
+                    "range": 9000,
                     "end_effects": []
                   },
                   {
