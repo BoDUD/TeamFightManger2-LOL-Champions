@@ -565,8 +565,9 @@ VIKTOR_FRAME_SIZE = (57.0, 54.0)
 VIKTOR_CORE_ACTIONS = ("idle", "run", "attack", "skill", "skill2", "hit", "dead", "ult")
 VIKTOR_MIN_BOTTOM_SAFE = 7
 VIKTOR_MAX_CLEAN_CAST_WIDTH = 43
-VIKTOR_LASER_MIN_APPLY = 150
-VIKTOR_AFTERSHOCK_MIN_APPLY = 150
+VIKTOR_LASER_MIN_APPLY = 180
+VIKTOR_AFTERSHOCK_MIN_APPLY = 180
+VIKTOR_SIPHON_TRAVEL_TICKS = (16, 24)
 VIKTOR_GRAVITY_MIN_TICKS = (390, 450)
 VIKTOR_LASER_MIN_ANIM_SECONDS = 2.0
 VIKTOR_AFTERSHOCK_MIN_ANIM_SECONDS = 2.0
@@ -5372,12 +5373,12 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         if projectile_repeat.get(projectile_name) is not True:
             fail(f"Viktor projectile {projectile_name} must repeat so the VFX stays visible for its gameplay window")
     projectile_z = {item.get("name"): item.get("z") for item in viktor.get("view_projectiles", [])}
-    if not isinstance(projectile_z.get("test_mod_viktor_siphon_projectile"), (int, float)) or projectile_z.get("test_mod_viktor_siphon_projectile", 0) < 3:
-        fail("Viktor Siphon Power Q projectile must render at z>=3 so the battle cast is visible above minions")
-    if not isinstance(projectile_z.get("test_mod_viktor_laser"), (int, float)) or projectile_z.get("test_mod_viktor_laser", 0) < 2:
-        fail("Viktor Death Ray must render at z>=2 so the generated ground lane is visible above map clutter")
-    if not isinstance(projectile_z.get("test_mod_viktor_laser_aftershock"), (int, float)) or projectile_z.get("test_mod_viktor_laser_aftershock", 0) < 1:
-        fail("Viktor Death Ray aftershock must render at z>=1 so the ground burn remains readable")
+    if not isinstance(projectile_z.get("test_mod_viktor_siphon_projectile"), (int, float)) or projectile_z.get("test_mod_viktor_siphon_projectile", 0) < 5:
+        fail("Viktor Siphon Power Q projectile must render at z>=5 so the battle cast is visible above minions")
+    if not isinstance(projectile_z.get("test_mod_viktor_laser"), (int, float)) or projectile_z.get("test_mod_viktor_laser", 0) < 6:
+        fail("Viktor Death Ray must render at z>=6 so the generated ground lane is visible above map clutter")
+    if not isinstance(projectile_z.get("test_mod_viktor_laser_aftershock"), (int, float)) or projectile_z.get("test_mod_viktor_laser_aftershock", 0) < 5:
+        fail("Viktor Death Ray aftershock must render at z>=5 so the ground burn remains readable")
     laser_projectiles = [
         node
         for node in find_effect_nodes(viktor.get("skill", {}), "LineRangeProjectile")
@@ -5403,8 +5404,8 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         for node in nodes:
             if node.get("apply", 0) < VIKTOR_LASER_MIN_APPLY:
                 fail(f"Viktor {projectile_name} must persist for at least {VIKTOR_LASER_MIN_APPLY} ticks")
-            if node.get("delay", 999) > 10:
-                fail(f"Viktor {projectile_name} must appear promptly on the ground, got delay {node.get('delay')!r}")
+            if node.get("delay", 999) != 0:
+                fail(f"Viktor {projectile_name} must appear immediately on the ground, got delay {node.get('delay')!r}")
             if node.get("width", 0) < 17000 or node.get("length", 0) < 90000:
                 fail(f"Viktor {projectile_name} must keep a broad terrain-line footprint")
     aftershock_nodes = laser_groups["test_mod_viktor_laser_aftershock"]
@@ -5425,14 +5426,14 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
     view_effect_z = {item.get("name"): item.get("z") for item in viktor.get("view_effects", [])}
     if view_effect_z.get("test_mod_viktor_siphon_shield", 0) >= 0:
         fail("Viktor Siphon shield ViewEffect must render behind the actor so Q cannot look like model deformation")
-    if view_effect_z.get("test_mod_viktor_siphon_impact", 0) < 3:
-        fail("Viktor Siphon Power Q impact must render at z>=3 so the target burst is visible")
-    if view_effect_z.get("test_mod_viktor_gravity_field", 0) < 4:
-        fail("Viktor Gravity Field must render at z>=4 so the target-ground field is visible above terrain")
-    if view_effect_z.get("test_mod_viktor_chaos_storm", 0) < 5:
-        fail("Viktor Chaos Storm must render at z>=5 so the target-ground ult is clearly visible")
-    if view_effect_z.get("test_mod_viktor_storm_impact", 0) < 5:
-        fail("Viktor Chaos Storm impact must render at z>=5 so the opening lightning strike is visible")
+    if view_effect_z.get("test_mod_viktor_siphon_impact", 0) < 5:
+        fail("Viktor Siphon Power Q impact must render at z>=5 so the target burst is visible")
+    if view_effect_z.get("test_mod_viktor_gravity_field", 0) < 7:
+        fail("Viktor Gravity Field must render at z>=7 so the target-ground field is visible above terrain")
+    if view_effect_z.get("test_mod_viktor_chaos_storm", 0) < 8:
+        fail("Viktor Chaos Storm must render at z>=8 so the target-ground ult is clearly visible")
+    if view_effect_z.get("test_mod_viktor_storm_impact", 0) < 8:
+        fail("Viktor Chaos Storm impact must render at z>=8 so the opening lightning strike is visible")
     for name in ("test_mod_viktor_gravity_field", "test_mod_viktor_chaos_storm"):
         if view_effect_types.get(name) != "LoopAnimation":
             fail(f"Viktor {name} must be LoopAnimation so the field/storm persists instead of flashing once and vanishing")
@@ -5458,8 +5459,13 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
     if len(siphon_projectiles) != 1:
         fail("Viktor Siphon Power Q must directly fire one visible projectile from skill2 before the shield/gravity sequence")
     siphon_index, siphon_projectile = siphon_projectiles[0]
-    if siphon_projectile.get("travel_time", 999) > 8:
-        fail("Viktor Siphon Power Q projectile must travel quickly enough to be readable on cast")
+    travel_time = int(siphon_projectile.get("travel_time", -1))
+    min_travel, max_travel = VIKTOR_SIPHON_TRAVEL_TICKS
+    if not (min_travel <= travel_time <= max_travel):
+        fail(
+            "Viktor Siphon Power Q projectile must stay on-screen long enough to reach the target; "
+            f"expected {min_travel}-{max_travel} ticks, got {travel_time!r}"
+        )
     if siphon_projectile.get("range", 0) < 72000:
         fail("Viktor Siphon Power Q projectile must cover the full Q/W cast range")
     if siphon_projectile.get("applied_target") != "EnemyChampion":
@@ -5604,8 +5610,8 @@ def check_viktor_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
                 f"Viktor ult {branch_name} must persist on terrain for at least "
                 f"{VIKTOR_STORM_MIN_TICKS[index - 1]} ticks"
             )
-        if int(storm_pulse.get("first_delay", 999)) > 10:
-            fail("Viktor Chaos Storm pulse must start soon after the impact burst")
+        if int(storm_pulse.get("first_delay", 999)) != 0:
+            fail("Viktor Chaos Storm pulse must start immediately so the storm is visible with its impact burst")
         storm_radius = storm_pulse.get("shape", {}).get("Circle", {}).get("radius") if isinstance(storm_pulse.get("shape"), dict) else 0
         if int(storm_radius) < (38000 if index == 1 else 42000):
             fail(f"Viktor ult {branch_name} pulse radius is too small for Chaos Storm")
