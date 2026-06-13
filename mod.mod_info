@@ -3,8 +3,8 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.13.46",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version retunes the compact HUD, scoreboard, and side-list portrait cameras for Jhin, Aatrox, and Fiddlesticks, with CI and runtime checks locking the corrected face offsets.",
+  "version": "0.13.47",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version makes Thresh's The Box appear around Thresh as a long-lived battlefield prison, with CI and runtime checks preventing hidden target-anchor ult regressions.",
   "last_updated": "2026-06-13",
   "dependencies": [
     {

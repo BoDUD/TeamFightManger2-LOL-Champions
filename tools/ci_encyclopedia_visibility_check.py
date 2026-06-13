@@ -3615,11 +3615,13 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
     for required in (
         "SwitchByBuff",
         "LinearProjectile",
-        "ParabolicProjectile",
+        "CasterViewEffect",
+        "RangeEffect",
         "RangePeriodProjectile",
         "Shield",
         "Stun",
         "MoveTo",
+        "WithSelf",
         "BlockMoveSkill",
         "Permanent",
         "test_mod_thresh_death_sentence_chain",
@@ -3741,45 +3743,50 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
     ult_direct_effects = ult_effect.get("effects") if isinstance(ult_effect, dict) else None
     if not isinstance(ult_direct_effects, list):
         fail("Thresh R must keep its top-level Combine effects list")
-    if any(isinstance(node, dict) and node.get("type") == "ViewEffect" and node.get("name") == "test_mod_thresh_box_field" for node in ult_direct_effects):
-        fail("Thresh R must spawn The Box from a target-ground anchor, not as an ambiguous top-level/self ViewEffect")
-    target_box_anchors = [
-        node
+    if any(isinstance(node, dict) and node.get("type") == "ViewEffect" and node.get("name", "").startswith("test_mod_thresh_box") for node in ult_direct_effects):
+        fail("Thresh R must use CasterViewEffect for self-centered ground walls; direct ViewEffect can anchor to the target")
+    if any(isinstance(node, dict) and node.get("type") == "ParabolicProjectile" and node.get("name") == "test_mod_thresh_box_ground_anchor" for node in ult_direct_effects):
+        fail("Thresh R must not use the target-ground ParabolicProjectile anchor; it made The Box hard to see in live games")
+    caster_vfx = {
+        node.get("name")
         for node in ult_direct_effects
-        if isinstance(node, dict)
-        and node.get("type") == "ParabolicProjectile"
-        and node.get("name") == "test_mod_thresh_box_ground_anchor"
-    ]
-    if len(target_box_anchors) != 1:
-        fail("Thresh R must use exactly one target-ground ParabolicProjectile anchor for The Box")
-    box_anchor = target_box_anchors[0]
-    if int(box_anchor.get("travel_time", 999)) > 6:
-        fail("Thresh R ground anchor must resolve quickly so The Box appears on the terrain immediately")
-    if box_anchor.get("applied_target") != "EnemyWithoutTower":
-        fail("Thresh R ground anchor must apply around the target terrain point to enemy units")
-    anchor_shape = box_anchor.get("shape", {}).get("Circle", {}) if isinstance(box_anchor.get("shape"), dict) else {}
-    if int(anchor_shape.get("radius", 0)) < 50000:
-        fail("Thresh R ground anchor must keep a large enough terrain radius for The Box")
-    anchor_end_effects = box_anchor.get("end_effects")
-    if not isinstance(anchor_end_effects, list):
-        fail("Thresh R target-ground anchor must expose end_effects for terrain VFX")
+        if isinstance(node, dict) and node.get("type") == "CasterViewEffect"
+    }
     for required_vfx in ("test_mod_thresh_box", "test_mod_thresh_box_field"):
-        if not any(isinstance(node, dict) and node.get("type") == "ViewEffect" and node.get("name") == required_vfx for node in anchor_end_effects):
-            fail(f"Thresh R target-ground anchor must spawn {required_vfx} on the map")
-    if not any(
-        isinstance(node, dict)
-        and node.get("type") == "RangePeriodProjectile"
+        if required_vfx not in caster_vfx:
+            fail(f"Thresh R must spawn {required_vfx} from Thresh's cast point with CasterViewEffect")
+    with_self_effects = [
+        effect
+        for node in ult_direct_effects
+        if isinstance(node, dict) and node.get("type") == "WithSelf" and isinstance(node.get("effects"), list)
+        for effect in node["effects"]
+        if isinstance(effect, dict)
+    ]
+    ult_range_effects = [
+        node for node in with_self_effects
+        if node.get("type") == "RangeEffect"
+        and node.get("apply_type") == "AroundCaster"
+        and node.get("target") == "EnemyWithoutTower"
+    ]
+    if len(ult_range_effects) != 1:
+        fail("Thresh R must apply The Box hit through exactly one WithSelf AroundCaster RangeEffect")
+    box_range = ult_range_effects[0]
+    range_shape = box_range.get("shape", {}).get("Circle", {}) if isinstance(box_range.get("shape"), dict) else {}
+    if int(range_shape.get("radius", 0)) < 50000:
+        fail("Thresh R AroundCaster RangeEffect must keep a large enough prison radius")
+    range_effect_names = {effect.get("type") for effect in box_range.get("effects", []) if isinstance(effect, dict)}
+    for required_effect in ("ApAttack", "AddBuff", "BlockMoveSkill", "TargetSfx"):
+        if required_effect not in range_effect_names:
+            fail(f"Thresh R AroundCaster RangeEffect must include {required_effect}")
+    box_fields = [
+        node
+        for node in with_self_effects
+        if node.get("type") == "RangePeriodProjectile"
         and node.get("name") == "test_mod_thresh_box_field"
         and int(node.get("tick", 0)) >= THRESH_BOX_MIN_TICKS
-        for node in anchor_end_effects
-    ):
-        fail("Thresh R target-ground anchor must own the long-lived terrain RangePeriodProjectile field")
-    ult_range_effects = [
-        node for node in find_effect_nodes(thresh_ult, "RangeEffect")
-        if node.get("apply_type") == "AroundCaster" and node.get("target") == "EnemyWithoutTower"
     ]
-    if ult_range_effects:
-        fail("Thresh R must not use AroundCaster; The Box must be placed on the target terrain point")
+    if len(box_fields) != 1:
+        fail("Thresh R must own exactly one long-lived WithSelf RangePeriodProjectile field")
 
     chain_fanim = load_json(ROOT / "aseprite_resources" / "effects" / "thresh_death_sentence_chain#anim.fanim")
     chain_frames = chain_fanim.get("anims", {}).get("chain", {}).get("frames")

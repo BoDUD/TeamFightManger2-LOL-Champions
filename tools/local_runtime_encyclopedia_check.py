@@ -813,38 +813,47 @@ def check_thresh_ult_visibility(path: Path, champion: object) -> None:
     ult_direct_effects = ult_effect.get("effects") if isinstance(ult_effect, dict) else None
     if not isinstance(ult_direct_effects, list):
         fail("runtime Thresh R must keep its top-level Combine effects list")
-    if any(isinstance(node, dict) and node.get("type") == "ViewEffect" and node.get("name") == "test_mod_thresh_box_field" for node in ult_direct_effects):
-        fail("runtime Thresh R must spawn The Box from a target-ground anchor, not as a top-level/self ViewEffect")
-    target_box_anchors = [
-        node
+    if any(isinstance(node, dict) and node.get("type") == "ViewEffect" and node.get("name", "").startswith("test_mod_thresh_box") for node in ult_direct_effects):
+        fail("runtime Thresh R must use CasterViewEffect for self-centered ground walls")
+    if any(isinstance(node, dict) and node.get("type") == "ParabolicProjectile" and node.get("name") == "test_mod_thresh_box_ground_anchor" for node in ult_direct_effects):
+        fail("runtime Thresh R must not use the target-ground anchor that hides The Box away from Thresh")
+    caster_vfx = {
+        node.get("name")
         for node in ult_direct_effects
-        if isinstance(node, dict)
-        and node.get("type") == "ParabolicProjectile"
-        and node.get("name") == "test_mod_thresh_box_ground_anchor"
-    ]
-    if len(target_box_anchors) != 1:
-        fail("runtime Thresh R must use exactly one target-ground ParabolicProjectile anchor")
-    anchor_end_effects = target_box_anchors[0].get("end_effects")
-    if not isinstance(anchor_end_effects, list):
-        fail("runtime Thresh R target-ground anchor must expose terrain end_effects")
+        if isinstance(node, dict) and node.get("type") == "CasterViewEffect"
+    }
     for required_vfx in ("test_mod_thresh_box", "test_mod_thresh_box_field"):
-        if not any(isinstance(node, dict) and node.get("type") == "ViewEffect" and node.get("name") == required_vfx for node in anchor_end_effects):
-            fail(f"runtime Thresh R target-ground anchor must spawn {required_vfx} on the map")
-    if not any(
-        isinstance(node, dict)
-        and node.get("type") == "RangePeriodProjectile"
-        and node.get("name") == "test_mod_thresh_box_field"
-        and int(node.get("tick", 0)) >= THRESH_BOX_MIN_TICKS
-        for node in anchor_end_effects
-    ):
-        fail("runtime Thresh R target-ground anchor must own the long-lived terrain field")
-    if any(
-        node.get("type") == "RangeEffect"
+        if required_vfx not in caster_vfx:
+            fail(f"runtime Thresh R must spawn {required_vfx} from Thresh's cast point")
+    with_self_effects = [
+        effect
+        for node in ult_direct_effects
+        if isinstance(node, dict) and node.get("type") == "WithSelf" and isinstance(node.get("effects"), list)
+        for effect in node["effects"]
+        if isinstance(effect, dict)
+    ]
+    around_caster_hits = [
+        node for node in with_self_effects
+        if node.get("type") == "RangeEffect"
         and node.get("apply_type") == "AroundCaster"
         and node.get("target") == "EnemyWithoutTower"
-        for node in iter_mapping_nodes(champion.get("ult", {}))
+    ]
+    if len(around_caster_hits) != 1:
+        fail("runtime Thresh R must apply its hit through exactly one WithSelf AroundCaster RangeEffect")
+    box_shape = around_caster_hits[0].get("shape", {}).get("Circle", {}) if isinstance(around_caster_hits[0].get("shape"), dict) else {}
+    if int(box_shape.get("radius", 0)) < 50000:
+        fail("runtime Thresh R AroundCaster RangeEffect must keep a large enough radius")
+    hit_effect_types = {effect.get("type") for effect in around_caster_hits[0].get("effects", []) if isinstance(effect, dict)}
+    for required_effect in ("ApAttack", "AddBuff", "BlockMoveSkill", "TargetSfx"):
+        if required_effect not in hit_effect_types:
+            fail(f"runtime Thresh R AroundCaster RangeEffect must include {required_effect}")
+    if not any(
+        node.get("type") == "RangePeriodProjectile"
+        and node.get("name") == "test_mod_thresh_box_field"
+        and int(node.get("tick", 0)) >= THRESH_BOX_MIN_TICKS
+        for node in with_self_effects
     ):
-        fail("runtime Thresh R must not use AroundCaster; The Box belongs on target terrain")
+        fail("runtime Thresh R must own a long-lived WithSelf terrain field")
 
 
 def check_fiddlesticks_ult_visibility(path: Path, champion: object) -> None:
