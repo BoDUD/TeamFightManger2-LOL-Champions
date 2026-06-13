@@ -663,10 +663,10 @@ JHIN_MAX_UPRIGHT_RUN_WIDTH = 50
 JHIN_MIN_UPRIGHT_RUN_HEIGHT = 47
 JHIN_MAX_UPRIGHT_RUN_TOP = 8
 SIDE_CARD_STANDING_FACE_OFFSETS = {
-    "aatrox": {"x": -8, "y": -4},
+    "aatrox": {"x": -8, "y": -6},
     "darius": {"x": 0, "y": -12},
-    "fiddlesticks": {"x": 0, "y": 0},
-    "jhin": {"x": 1, "y": -22},
+    "fiddlesticks": {"x": 0, "y": -2},
+    "jhin": {"x": 0, "y": -28},
     "kayn": {"x": 4, "y": -18},
     "thresh": {"x": 0, "y": -12},
     "viktor": {"x": 0, "y": -28},
@@ -1820,8 +1820,8 @@ def check_aatrox_rework_contract(text: dict[str, Any], entries: dict[str, Any]) 
         face_y = view.get("face", {}).get("y")
         center_x = view.get("center", {}).get("x")
         center_y = view.get("center", {}).get("y")
-        if face_x != -8 or face_y != -4:
-            fail(f"style entry {aatrox_id}.face must keep Aatrox HUD/scoreboard portrait centered at x=-8,y=-4")
+        if face_x != -8 or face_y != -6:
+            fail(f"style entry {aatrox_id}.face must keep Aatrox HUD/scoreboard portrait centered at x=-8,y=-6")
         if center_x != 4 or center_y != -12:
             fail(f"style entry {aatrox_id}.center must keep Aatrox exchange standing sword and feet visible at x=4,y=-12")
 
@@ -3944,8 +3944,8 @@ def check_fiddlesticks_contract(text: dict[str, Any], entries: dict[str, Any]) -
         view = entries.get(fiddlesticks_id)
         if not isinstance(view, dict):
             fail(f"style/champion_view.champion_view missing entries.{fiddlesticks_id}")
-        if view.get("face", {}).get("x") != 0 or view.get("face", {}).get("y") != 0:
-            fail(f"style entry {fiddlesticks_id}.face must keep Fiddlesticks compact HUD/scoreboard portrait at x=0,y=0")
+        if view.get("face", {}).get("x") != 0 or view.get("face", {}).get("y") != -2:
+            fail(f"style entry {fiddlesticks_id}.face must keep Fiddlesticks compact HUD/scoreboard portrait at x=0,y=-2")
         if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -14:
             fail(f"style entry {fiddlesticks_id}.center must keep Fiddlesticks standing display at x=0,y=-14")
     assert_compact_idle_bottom_safety("fiddlesticks", min_bottom_safe=16)
@@ -4955,8 +4955,8 @@ def check_jhin_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
     view = entries.get(jhin_id)
     if not isinstance(view, dict):
         fail(f"style/champion_view.champion_view missing entries.{jhin_id}")
-    if view.get("face", {}).get("x") != 1 or view.get("face", {}).get("y") != -22:
-        fail(f"style entry {jhin_id}.face must keep Jhin compact portrait above the name label at x=1,y=-22")
+    if view.get("face", {}).get("x") != 0 or view.get("face", {}).get("y") != -28:
+        fail(f"style entry {jhin_id}.face must keep Jhin compact portrait above the name label at x=0,y=-28")
     if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -20:
         fail(f"style entry {jhin_id}.center must keep Jhin standing card feet above the name label at x=0,y=-20")
 

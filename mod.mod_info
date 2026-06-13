@@ -3,8 +3,8 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.13.45",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version rebuilds Jhin's run row from upright generated actor poses so his movement reads closer to League's theatrical stride, while CI and runtime checks prevent the crouched horizontal sprint from returning.",
+  "version": "0.13.46",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version retunes the compact HUD, scoreboard, and side-list portrait cameras for Jhin, Aatrox, and Fiddlesticks, with CI and runtime checks locking the corrected face offsets.",
   "last_updated": "2026-06-13",
   "dependencies": [
     {
