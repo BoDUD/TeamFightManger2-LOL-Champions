@@ -662,7 +662,7 @@ SIDE_CARD_STANDING_FACE_OFFSETS = {
     "aatrox": {"x": -8, "y": -4},
     "darius": {"x": 0, "y": -12},
     "fiddlesticks": {"x": 0, "y": 0},
-    "jhin": {"x": 1, "y": -16},
+    "jhin": {"x": 1, "y": -22},
     "kayn": {"x": 4, "y": -18},
     "thresh": {"x": 0, "y": -12},
     "viktor": {"x": 0, "y": -28},
@@ -671,7 +671,7 @@ SIDE_CARD_STANDING_CENTER_OFFSETS = {
     "aatrox": {"x": 4, "y": -12},
     "darius": {"x": 0, "y": -12},
     "fiddlesticks": {"x": 0, "y": -14},
-    "jhin": {"x": 0, "y": -14},
+    "jhin": {"x": 0, "y": -20},
     "kayn": {"x": 0, "y": -12},
     "thresh": {"x": 0, "y": -12},
     "viktor": {"x": 0, "y": -12},
@@ -4951,10 +4951,10 @@ def check_jhin_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
     view = entries.get(jhin_id)
     if not isinstance(view, dict):
         fail(f"style/champion_view.champion_view missing entries.{jhin_id}")
-    if view.get("face", {}).get("x") != 1 or view.get("face", {}).get("y") != -16:
-        fail(f"style entry {jhin_id}.face must keep Jhin compact portrait at x=1,y=-16")
-    if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -14:
-        fail(f"style entry {jhin_id}.center must keep Jhin standing card at x=0,y=-14")
+    if view.get("face", {}).get("x") != 1 or view.get("face", {}).get("y") != -22:
+        fail(f"style entry {jhin_id}.face must keep Jhin compact portrait above the name label at x=1,y=-22")
+    if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -20:
+        fail(f"style entry {jhin_id}.center must keep Jhin standing card feet above the name label at x=0,y=-20")
 
     qa_path = ROOT / "qa" / "jhin_imagegen_vgu.md"
     require_file(qa_path)

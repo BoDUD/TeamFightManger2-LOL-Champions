@@ -63,21 +63,21 @@
     "test_mod_jhin": {
       "face": {
         "x": 1,
-        "y": -16
+        "y": -22
       },
       "center": {
         "x": 0,
-        "y": -14
+        "y": -20
       }
     },
     "bo_league_champions_jhin": {
       "face": {
         "x": 1,
-        "y": -16
+        "y": -22
       },
       "center": {
         "x": 0,
-        "y": -14
+        "y": -20
       }
     },
     "test_mod_vayne": {
