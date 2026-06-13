@@ -476,74 +476,66 @@
           "name": "test_mod_thresh_ult_voice"
         },
         {
-          "type": "ParabolicProjectile",
-          "name": "test_mod_thresh_box_ground_anchor",
-          "travel_time": 4,
-          "range": 62000,
-          "range_effect_name": "",
-          "shape": {
-            "Circle": {
-              "radius": 52000
-            }
-          },
-          "applied_target": "EnemyWithoutTower",
-          "applied_effects": [
+          "type": "CasterViewEffect",
+          "name": "test_mod_thresh_box"
+        },
+        {
+          "type": "CasterViewEffect",
+          "name": "test_mod_thresh_box_field"
+        },
+        {
+          "type": "WithSelf",
+          "effects": [
             {
-              "effect": {
-                "type": "Combine",
-                "effects": [
-                  {
-                    "type": "ApAttack",
-                    "damage": 120,
-                    "attack_ratio": 85
-                  },
-                  {
-                    "type": "AddBuff",
-                    "buff_state": {
-                      "name": "test_mod_thresh_box_slow",
-                      "duration": {
-                        "Time": {
-                          "tick": 120
-                        }
-                      },
-                      "move_speed_mult": -65
-                    }
-                  },
-                  {
-                    "type": "BlockMoveSkill",
-                    "tick": 30
-                  },
-                  {
-                    "type": "TargetSfx",
-                    "name": "test_mod_thresh_r_hit"
-                  },
-                  {
-                    "type": "AddCasterBuff",
-                    "only_to_enemy": true,
-                    "buff_state": {
-                      "name": "test_mod_thresh_soul_stack",
-                      "duration": "Permanent",
-                      "defence": 2,
-                      "magic_power": 3
-                    }
-                  },
-                  {
-                    "type": "Sfx",
-                    "name": "test_mod_thresh_soul_gain"
-                  }
-                ]
+              "type": "RangeEffect",
+              "shape": {
+                "Circle": {
+                  "radius": 52000
+                }
               },
-              "casting_type": "Targeting"
-            }
-          ],
-          "end_effects": [
-            {
-              "type": "ViewEffect",
-              "name": "test_mod_thresh_box"
-            },
-            {
-              "type": "ViewEffect",
-              "name": "test_mod_thresh_box_field"
+              "target": "EnemyWithoutTower",
+              "apply_type": "AroundCaster",
+              "effects": [
+                {
+                  "type": "ApAttack",
+                  "damage": 120,
+                  "attack_ratio": 85
+                },
+                {
+                  "type": "AddBuff",
+                  "buff_state": {
+                    "name": "test_mod_thresh_box_slow",
+                    "duration": {
+                      "Time": {
+                        "tick": 120
+                      }
+                    },
+                    "move_speed_mult": -65
+                  }
+                },
+                {
+                  "type": "BlockMoveSkill",
+                  "tick": 30
+                },
+                {
+                  "type": "TargetSfx",
+                  "name": "test_mod_thresh_r_hit"
+                },
+                {
+                  "type": "AddCasterBuff",
+                  "only_to_enemy": true,
+                  "buff_state": {
+                    "name": "test_mod_thresh_soul_stack",
+                    "duration": "Permanent",
+                    "defence": 2,
+                    "magic_power": 3
+                  }
+                },
+                {
+                  "type": "Sfx",
+                  "name": "test_mod_thresh_soul_gain"
+                }
+              ]
             },
             {
               "type": "RangePeriodProjectile",
