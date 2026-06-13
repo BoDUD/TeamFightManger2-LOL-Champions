@@ -164,9 +164,10 @@
                     "duration": 36
                   },
                   {
-                    "type": "Knockback",
-                    "speed": -5200,
-                    "tick": 14
+                    "type": "MoveTo",
+                    "speed": 5600,
+                    "range": 7000,
+                    "end_effects": []
                   },
                   {
                     "type": "AddBuff",

@@ -742,7 +742,7 @@ SIDE_CARD_STANDING_FACE_OFFSETS = {
     "aatrox": {"x": -8, "y": -6},
     "blitzcrank": {"x": -10, "y": -8},
     "darius": {"x": 0, "y": -12},
-    "fiddlesticks": {"x": 0, "y": -2},
+    "fiddlesticks": {"x": -8, "y": -6},
     "jhin": {"x": 0, "y": -28},
     "jinx": {"x": -2, "y": -16},
     "kayn": {"x": 4, "y": -18},
@@ -1692,11 +1692,9 @@ def assert_no_negative_speed_fields(node: Any, label: str) -> None:
         speed = mapping.get("speed")
         if isinstance(speed, (int, float)) and speed < 0:
             effect_type = mapping.get("type", "<unknown>")
-            if effect_type == "Knockback":
-                continue
             fail(
                 f"{label} has invalid negative speed {speed!r} on {effect_type}; "
-                "only Knockback may use a negative speed for pull-style crowd control"
+                "use MoveTo for pull-style crowd control instead of negative-speed Knockback"
             )
 
 
@@ -4083,8 +4081,8 @@ def check_fiddlesticks_contract(text: dict[str, Any], entries: dict[str, Any]) -
         view = entries.get(fiddlesticks_id)
         if not isinstance(view, dict):
             fail(f"style/champion_view.champion_view missing entries.{fiddlesticks_id}")
-        if view.get("face", {}).get("x") != 0 or view.get("face", {}).get("y") != -2:
-            fail(f"style entry {fiddlesticks_id}.face must keep Fiddlesticks compact HUD/scoreboard portrait at x=0,y=-2")
+        if view.get("face", {}).get("x") != -8 or view.get("face", {}).get("y") != -6:
+            fail(f"style entry {fiddlesticks_id}.face must keep Fiddlesticks compact HUD/scoreboard portrait at x=-8,y=-6")
         if view.get("center", {}).get("x") != 0 or view.get("center", {}).get("y") != -14:
             fail(f"style entry {fiddlesticks_id}.center must keep Fiddlesticks standing display at x=0,y=-14")
     assert_compact_idle_bottom_safety("fiddlesticks", min_bottom_safe=16)
@@ -4130,28 +4128,55 @@ def check_fiddlesticks_contract(text: dict[str, Any], entries: dict[str, Any]) -
     rect_h = int(round(float(idle0.get("h", 0))))
     face_x = int(face.get("x", 0))
     face_y = int(face.get("y", 0))
-    green_pixels = 0
-    green_min_y = 10**9
-    green_max_y = -1
-    for local_y in range(40):
-        for local_x in range(40):
-            src_x = rect_x + local_x - face_x
-            src_y = rect_y + local_y - face_y
-            if src_x < rect_x or src_x >= rect_x + rect_w or src_y < rect_y or src_y >= rect_y + rect_h:
-                continue
-            index = (src_y * sheet_width + src_x) * 4
-            r = sheet_rgba[index]
-            g = sheet_rgba[index + 1]
-            b = sheet_rgba[index + 2]
-            a = sheet_rgba[index + 3]
-            if a > 40 and g > 80 and g > r * 1.15 and g > b * 1.05:
-                green_pixels += 1
-                green_min_y = min(green_min_y, local_y)
-                green_max_y = max(green_max_y, local_y + 1)
-    if green_pixels < 10 or green_min_y < 10 or green_max_y > 28:
+
+    def fiddlesticks_green_metrics(crop_size: int) -> tuple[int, int, int, int, int]:
+        green_pixels = 0
+        green_min_x = 10**9
+        green_max_x = -1
+        green_min_y = 10**9
+        green_max_y = -1
+        for local_y in range(crop_size):
+            for local_x in range(crop_size):
+                src_x = rect_x + local_x - face_x
+                src_y = rect_y + local_y - face_y
+                if src_x < rect_x or src_x >= rect_x + rect_w or src_y < rect_y or src_y >= rect_y + rect_h:
+                    continue
+                index = (src_y * sheet_width + src_x) * 4
+                r = sheet_rgba[index]
+                g = sheet_rgba[index + 1]
+                b = sheet_rgba[index + 2]
+                a = sheet_rgba[index + 3]
+                if a > 40 and g > 80 and g > r * 1.15 and g > b * 1.05:
+                    green_pixels += 1
+                    green_min_x = min(green_min_x, local_x)
+                    green_max_x = max(green_max_x, local_x + 1)
+                    green_min_y = min(green_min_y, local_y)
+                    green_max_y = max(green_max_y, local_y + 1)
+        return green_pixels, green_min_x, green_max_x, green_min_y, green_max_y
+
+    side_green = fiddlesticks_green_metrics(40)
+    score_green = fiddlesticks_green_metrics(32)
+    if side_green[0] < 16 or side_green[1] < 12 or side_green[1] > 20 or side_green[2] < 30:
         fail(
-            "Fiddlesticks compact HUD/scoreboard face crop must center the green eyes/core; "
-            f"got green_pixels={green_pixels}, green_y=({green_min_y},{green_max_y}), face=({face_x},{face_y})"
+            "Fiddlesticks side-list compact face crop must keep the green eyes/core away from the left edge; "
+            f"got green_pixels={side_green[0]}, green_x=({side_green[1]},{side_green[2]}), "
+            f"green_y=({side_green[3]},{side_green[4]}), face=({face_x},{face_y})"
+        )
+    if (
+        score_green[0] < 10
+        or score_green[1] < 13
+        or score_green[1] > 18
+        or score_green[2] < 20
+        or score_green[2] > 24
+        or score_green[3] < 4
+        or score_green[3] > 8
+        or score_green[4] < 16
+        or score_green[4] > 22
+    ):
+        fail(
+            "Fiddlesticks 32px scoreboard face crop must center the green eyes/core instead of clipping the body at the edge; "
+            f"got green_pixels={score_green[0]}, green_x=({score_green[1]},{score_green[2]}), "
+            f"green_y=({score_green[3]},{score_green[4]}), face=({face_x},{face_y})"
         )
 
     action_hashes: dict[str, list[str]] = {}
@@ -5477,7 +5502,7 @@ def check_blitzcrank_contract(text: dict[str, Any], entries: dict[str, Any]) -> 
         "test_mod_blitzcrank_power_fist_ready",
         "LinearProjectile",
         "test_mod_blitzcrank_rocket_grab",
-        "Knockback",
+        "MoveTo",
         "BlockMoveSkill",
         "Airborne",
         "test_mod_blitzcrank_overdrive",
@@ -5494,16 +5519,16 @@ def check_blitzcrank_contract(text: dict[str, Any], entries: dict[str, Any]) -> 
         if tag not in blitz.get("tags", []):
             fail(f"champion/blitzcrank.data_champion tags must include {tag}")
     skill_strings = set(walk_strings(blitz.get("skill", {})))
-    if "MoveTo" in skill_strings or "RushMoveToBack" in skill_strings or "Teleport" in skill_strings or "DirTeleport" in skill_strings:
+    if "RushMoveToBack" in skill_strings or "Teleport" in skill_strings or "DirTeleport" in skill_strings:
         fail("Blitzcrank Rocket Grab must pull the hit target back; it must not move or teleport Blitzcrank to the target")
-    q_pull_nodes = find_effect_nodes(blitz.get("skill", {}), "Knockback")
+    if find_effect_nodes(blitz.get("skill", {}), "Knockback"):
+        fail("Blitzcrank Rocket Grab must not use Knockback; negative speed breaks loading and positive speed pushes targets away")
+    q_pull_nodes = find_effect_nodes(blitz.get("skill", {}), "MoveTo")
     if len(q_pull_nodes) != 1:
-        fail(f"Blitzcrank Rocket Grab must contain exactly one target pull Knockback, got {len(q_pull_nodes)}")
+        fail(f"Blitzcrank Rocket Grab must contain exactly one target pull MoveTo, got {len(q_pull_nodes)}")
     q_pull = q_pull_nodes[0]
-    if q_pull.get("speed", 0) >= 0:
-        fail(f"Blitzcrank Rocket Grab Knockback speed must be negative to pull the target, got {q_pull.get('speed')!r}")
-    if not 8 <= int(q_pull.get("tick", 0)) <= 20:
-        fail(f"Blitzcrank Rocket Grab pull tick must keep the grab readable without self-flight, got {q_pull.get('tick')!r}")
+    if int(q_pull.get("speed", 0)) < 5200 or int(q_pull.get("range", 999999)) > 8000:
+        fail("Blitzcrank Rocket Grab MoveTo must pull the hooked target tightly back without breaking data loading")
     attack_effect = blitz.get("attack", {}).get("effect", {})
     effect_none = attack_effect.get("effect_none") if isinstance(attack_effect, dict) else None
     effect_buff = attack_effect.get("effect_buff") if isinstance(attack_effect, dict) else None
