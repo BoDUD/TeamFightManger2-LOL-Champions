@@ -159,10 +159,6 @@ BLITZCRANK_BUFF_REFS = {
     ),
 }
 BLITZCRANK_VIEW_EFFECT_REFS = {
-    "test_mod_blitzcrank_attack_punch": (
-        "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_attack_punch",
-        "punch",
-    ),
     "test_mod_blitzcrank_punch_hit": (
         "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_punch_hit",
         "hit",
@@ -174,14 +170,6 @@ BLITZCRANK_VIEW_EFFECT_REFS = {
     "test_mod_blitzcrank_grab_hit": (
         "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_grab_hit",
         "hit",
-    ),
-    "test_mod_blitzcrank_mana_barrier": (
-        "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_mana_barrier",
-        "shield",
-    ),
-    "test_mod_blitzcrank_power_fist_ready": (
-        "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_power_fist_ready",
-        "ready",
     ),
     "test_mod_blitzcrank_static_field_cast": (
         "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_static_field_cast",
@@ -1683,7 +1671,12 @@ def assert_no_negative_speed_fields(node: Any, label: str) -> None:
         speed = mapping.get("speed")
         if isinstance(speed, (int, float)) and speed < 0:
             effect_type = mapping.get("type", "<unknown>")
-            fail(f"{label} has invalid negative speed {speed!r} on {effect_type}; TFM2 expects unsigned movement speeds")
+            if effect_type == "Knockback":
+                continue
+            fail(
+                f"{label} has invalid negative speed {speed!r} on {effect_type}; "
+                "only Knockback may use a negative speed for pull-style crowd control"
+            )
 
 
 def find_effect_nodes(node: Any, effect_type: str) -> list[dict[str, Any]]:
@@ -5412,11 +5405,10 @@ def check_blitzcrank_contract(text: dict[str, Any], entries: dict[str, Any]) -> 
         "test_mod_blitzcrank_power_fist_ready",
         "LinearProjectile",
         "test_mod_blitzcrank_rocket_grab",
-        "MoveTo",
+        "Knockback",
         "BlockMoveSkill",
         "Airborne",
         "test_mod_blitzcrank_overdrive",
-        "test_mod_blitzcrank_mana_barrier",
         "RangeEffect",
         "RangePeriodProjectile",
         "test_mod_blitzcrank_static_field_linger",
@@ -5429,6 +5421,37 @@ def check_blitzcrank_contract(text: dict[str, Any], entries: dict[str, Any]) -> 
     for tag in ("AP", "Melee", "Tank", "CC"):
         if tag not in blitz.get("tags", []):
             fail(f"champion/blitzcrank.data_champion tags must include {tag}")
+    skill_strings = set(walk_strings(blitz.get("skill", {})))
+    if "MoveTo" in skill_strings or "RushMoveToBack" in skill_strings or "Teleport" in skill_strings or "DirTeleport" in skill_strings:
+        fail("Blitzcrank Rocket Grab must pull the hit target back; it must not move or teleport Blitzcrank to the target")
+    q_pull_nodes = find_effect_nodes(blitz.get("skill", {}), "Knockback")
+    if len(q_pull_nodes) != 1:
+        fail(f"Blitzcrank Rocket Grab must contain exactly one target pull Knockback, got {len(q_pull_nodes)}")
+    q_pull = q_pull_nodes[0]
+    if q_pull.get("speed", 0) >= 0:
+        fail(f"Blitzcrank Rocket Grab Knockback speed must be negative to pull the target, got {q_pull.get('speed')!r}")
+    if not 8 <= int(q_pull.get("tick", 0)) <= 20:
+        fail(f"Blitzcrank Rocket Grab pull tick must keep the grab readable without self-flight, got {q_pull.get('tick')!r}")
+    attack_effect = blitz.get("attack", {}).get("effect", {})
+    effect_none = attack_effect.get("effect_none") if isinstance(attack_effect, dict) else None
+    effect_buff = attack_effect.get("effect_buff") if isinstance(attack_effect, dict) else None
+    if not isinstance(effect_none, dict) or not isinstance(effect_buff, dict):
+        fail("Blitzcrank attack must use SwitchByBuff effect_none/effect_buff branches")
+    normal_attack_strings = set(walk_strings(effect_none))
+    empowered_attack_strings = set(walk_strings(effect_buff))
+    if "test_mod_blitzcrank_attack_punch" in normal_attack_strings:
+        fail("Blitzcrank basic attack must not use the oversized rocket-fist caster VFX")
+    if "test_mod_blitzcrank_attack_punch" in empowered_attack_strings:
+        fail("Blitzcrank Power Fist attack must rely on actor motion plus target impact, not an oversized caster fist")
+    for required_power_fist_token in ("Airborne", "RemoveCasterBuff", "test_mod_blitzcrank_power_fist_impact"):
+        if required_power_fist_token not in empowered_attack_strings:
+            fail(f"Blitzcrank empowered attack missing Power Fist token {required_power_fist_token}")
+    skill2_strings = set(walk_strings(blitz.get("skill2", {})))
+    for forbidden_skill2_token in ("test_mod_blitzcrank_mana_barrier", "test_mod_blitzcrank_attack_punch"):
+        if forbidden_skill2_token in skill2_strings:
+            fail(f"Blitzcrank W/E must not attach oversized actor-following VFX {forbidden_skill2_token}")
+    if "CasterViewEffect" in skill2_strings:
+        fail("Blitzcrank W/E readiness must be represented by the small buff glow, not one-shot caster-follow VFX")
     expected_icons = [
         "asset/bo_league_champions/icons/blitzcrank_skill",
         "asset/bo_league_champions/icons/blitzcrank_skill2",
@@ -5451,14 +5474,20 @@ def check_blitzcrank_contract(text: dict[str, Any], entries: dict[str, Any]) -> 
             fail(f"champion/blitzcrank.data_champion view_effect {name} must reference generated asset {expected}")
     if next(item for item in blitz["view_effects"] if item["name"] == "test_mod_blitzcrank_static_field_linger").get("is_follow") is not False:
         fail("Blitzcrank Static Field linger must be terrain-anchored, not stuck to the actor body")
+    retired_follow_effects = {
+        "test_mod_blitzcrank_attack_punch",
+        "test_mod_blitzcrank_mana_barrier",
+        "test_mod_blitzcrank_power_fist_ready",
+    }
+    still_registered = retired_follow_effects.intersection(view_refs)
+    if still_registered:
+        fail(f"Blitzcrank retired oversized caster-follow effects must not be registered as view_effects: {sorted(still_registered)}")
 
     for sheet_name, tag, label, min_visible, min_color_bins, min_height, min_fill_ratio in (
         ("blitzcrank_rocket_grab", "grab", "Blitzcrank Rocket Grab image-generated chain fist", 1500, 800, 32, 0.24),
-        ("blitzcrank_attack_punch", "punch", "Blitzcrank attack punch VFX", 1400, 600, 28, 0.22),
         ("blitzcrank_punch_hit", "hit", "Blitzcrank punch hit burst", 1200, 550, 30, 0.22),
-        ("blitzcrank_power_fist_ready", "ready", "Blitzcrank Power Fist ready aura", 1200, 500, 32, 0.22),
+        ("blitzcrank_power_fist_ready", "ready", "Blitzcrank Power Fist compact fist glow", 450, 400, 24, 0.08),
         ("blitzcrank_power_fist_impact", "impact", "Blitzcrank Power Fist impact", 1800, 750, 34, 0.24),
-        ("blitzcrank_mana_barrier", "shield", "Blitzcrank Mana Barrier shield", 1500, 550, 36, 0.24),
         ("blitzcrank_static_field_cast", "cast", "Blitzcrank Static Field cast", 2200, 900, 54, 0.24),
         ("blitzcrank_static_field_hit", "hit", "Blitzcrank Static Field hit", 1800, 750, 34, 0.22),
         ("blitzcrank_static_field_linger", "field", "Blitzcrank Static Field terrain linger", 2200, 900, 54, 0.24),
