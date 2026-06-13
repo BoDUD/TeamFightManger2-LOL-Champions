@@ -474,11 +474,11 @@ THRESH_MIN_BOTTOM_SAFE = 8
 THRESH_MAX_BODY_WIDTH = 52
 THRESH_BOX_MIN_VISIBLE_PIXELS = 7000
 THRESH_BOX_MIN_STRONG_PIXELS = 3200
-THRESH_BOX_MIN_COLOR_BINS = 800
-THRESH_BOX_MAX_FRAME_WIDTH = 120
-THRESH_BOX_MAX_FRAME_HEIGHT = 110
+THRESH_BOX_MIN_COLOR_BINS = 1800
+THRESH_BOX_MAX_FRAME_WIDTH = 152
+THRESH_BOX_MAX_FRAME_HEIGHT = 122
 THRESH_BOX_MIN_FRAME_MARGIN = 4
-THRESH_BOX_MIN_TICKS = 420
+THRESH_BOX_MIN_TICKS = 540
 THRESH_BOX_MIN_ANIM_SECONDS = 5.0
 THRESH_FORBIDDEN_CASTER_FOLLOW_VFX = {
     "test_mod_thresh_lantern_cast_vfx",
@@ -511,6 +511,10 @@ THRESH_VIEW_EFFECT_REFS = {
     "test_mod_thresh_q_hit_vfx": (
         "asset/bo_league_champions/aseprite_resources/effects/thresh_death_sentence_hit",
         "hit",
+    ),
+    "test_mod_thresh_flay_ground_sweep": (
+        "asset/bo_league_champions/aseprite_resources/effects/thresh_flay_sweep",
+        "sweep",
     ),
     "test_mod_thresh_box": (
         "asset/bo_league_champions/aseprite_resources/effects/thresh_box",
@@ -3703,7 +3707,7 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         "SwitchByBuff",
         "LinearProjectile",
         "CasterViewEffect",
-        "RangeEffect",
+        "ParabolicProjectile",
         "RangePeriodProjectile",
         "Shield",
         "Stun",
@@ -3713,7 +3717,9 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         "Permanent",
         "test_mod_thresh_death_sentence_chain",
         "test_mod_thresh_lantern_visual",
+        "test_mod_thresh_flay_ground_sweep",
         "test_mod_thresh_flay_sweep",
+        "test_mod_thresh_box_ground_anchor",
         "test_mod_thresh_box_field",
         "test_mod_thresh_soul_stack",
         "test_mod_thresh_soul_gain",
@@ -3771,11 +3777,17 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         fail("Thresh lantern visual must render at z=1 near the ground instead of behind/inside the actor body")
     if view_effect_follow.get("test_mod_thresh_lantern_visual") is not False:
         fail("Thresh lantern visual must use is_follow=false so W does not create a second actor silhouette")
+    if view_effect_types.get("test_mod_thresh_flay_ground_sweep") != "Animation":
+        fail("Thresh Flay ground sweep must be an Animation ViewEffect so E has a visible non-linear bitmap cast read")
+    if view_effect_z.get("test_mod_thresh_flay_ground_sweep") != 2:
+        fail("Thresh Flay ground sweep must render at z=2 so E is visible over units without becoming a second actor")
+    if view_effect_follow.get("test_mod_thresh_flay_ground_sweep") is not False:
+        fail("Thresh Flay ground sweep must stay ground-anchored with is_follow=false")
     for name in ("test_mod_thresh_box", "test_mod_thresh_box_field"):
         if view_effect_types.get(name) != "LoopAnimation":
             fail(f"Thresh {name} must be LoopAnimation so The Box does not vanish immediately")
-        if view_effect_z.get(name) != 3:
-            fail(f"Thresh {name} must render at z=3 so The Box stays obvious above terrain and units")
+        if view_effect_z.get(name) != 1:
+            fail(f"Thresh {name} must render at z=1 as a ground prison instead of covering the actor body")
         if view_effect_follow.get(name) is not False:
             fail(f"Thresh {name} must stay ground-anchored with is_follow=false, not attached to the actor")
     buff_refs = {item.get("name"): (item.get("anim"), item.get("tag")) for item in thresh.get("view_buffs", [])}
@@ -3794,11 +3806,21 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         fail("Thresh skill2 must fire the Flay sweep projectile after the lantern shield")
     if flay.get("applied_target") != "EnemyWithoutTower":
         fail("Thresh Flay must target enemies only; W shield must not create duplicate actor-following hits on allies")
+    if flay.get("width") < 36000 or flay.get("length") < 56000:
+        fail("Thresh Flay must use a broad sweep lane so E does not read as an invisible needle")
+    if flay.get("apply") < 24:
+        fail("Thresh Flay sweep must remain active long enough to be seen and to catch targets")
+    flay_cast_vfx = [
+        node for node in find_effect_nodes(thresh.get("skill2", {}), "CasterViewEffect")
+        if node.get("name") == "test_mod_thresh_flay_ground_sweep"
+    ]
+    if len(flay_cast_vfx) != 1:
+        fail("Thresh Flay must spawn exactly one ground sweep CasterViewEffect before the hit projectile")
     if find_effect_nodes(flay, "Knockback"):
         fail("Thresh Flay must not use Knockback here; this implementation should visibly pull enemies back toward Thresh")
     flay_move_to_nodes = find_effect_nodes(flay, "MoveTo")
     if not any(
-        int(node.get("speed", 0)) >= 4800 and int(node.get("range", 999999)) <= 10000
+        int(node.get("speed", 0)) >= 5200 and int(node.get("range", 999999)) <= 12000
         for node in flay_move_to_nodes
     ):
         fail("Thresh Flay must include a strong MoveTo pull so enemies visibly move back toward Thresh")
@@ -3831,49 +3853,55 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
     if not isinstance(ult_direct_effects, list):
         fail("Thresh R must keep its top-level Combine effects list")
     if any(isinstance(node, dict) and node.get("type") == "ViewEffect" and node.get("name", "").startswith("test_mod_thresh_box") for node in ult_direct_effects):
-        fail("Thresh R must use CasterViewEffect for self-centered ground walls; direct ViewEffect can anchor to the target")
-    if any(isinstance(node, dict) and node.get("type") == "ParabolicProjectile" and node.get("name") == "test_mod_thresh_box_ground_anchor" for node in ult_direct_effects):
-        fail("Thresh R must not use the target-ground ParabolicProjectile anchor; it made The Box hard to see in live games")
-    caster_vfx = {
-        node.get("name")
+        fail("Thresh R must not flash a direct box ViewEffect at the top level; use the target-ground anchor end_effects")
+    if any(
+        isinstance(node, dict)
+        and node.get("type") == "CasterViewEffect"
+        and str(node.get("name", "")).startswith("test_mod_thresh_box")
         for node in ult_direct_effects
-        if isinstance(node, dict) and node.get("type") == "CasterViewEffect"
+    ):
+        fail("Thresh R must not spawn The Box as a caster-level flash; it must land as a ground prison")
+    ground_anchors = [
+        node for node in ult_direct_effects
+        if isinstance(node, dict)
+        and node.get("type") == "ParabolicProjectile"
+        and node.get("name") == "test_mod_thresh_box_ground_anchor"
+    ]
+    if len(ground_anchors) != 1:
+        fail("Thresh R must use exactly one target-ground box anchor so the prison appears on the battlefield")
+    box_anchor = ground_anchors[0]
+    if int(box_anchor.get("travel_time", 999)) > 6:
+        fail("Thresh R ground anchor must land quickly enough that The Box is visible with the cast")
+    anchor_shape = box_anchor.get("shape", {}).get("Circle", {}) if isinstance(box_anchor.get("shape"), dict) else {}
+    if int(anchor_shape.get("radius", 0)) < 54000:
+        fail("Thresh R ground anchor must keep a large prison radius")
+    if box_anchor.get("applied_target") != "EnemyWithoutTower":
+        fail("Thresh R ground anchor must affect enemies on the terrain, not only the selected champion")
+    range_effect_names = {
+        applied.get("effect", {}).get("type")
+        for applied in box_anchor.get("applied_effects", [])
+        if isinstance(applied, dict) and isinstance(applied.get("effect"), dict)
     }
-    for required_vfx in ("test_mod_thresh_box", "test_mod_thresh_box_field"):
-        if required_vfx not in caster_vfx:
-            fail(f"Thresh R must spawn {required_vfx} from Thresh's cast point with CasterViewEffect")
-    with_self_effects = [
-        effect
-        for node in ult_direct_effects
-        if isinstance(node, dict) and node.get("type") == "WithSelf" and isinstance(node.get("effects"), list)
-        for effect in node["effects"]
-        if isinstance(effect, dict)
-    ]
-    ult_range_effects = [
-        node for node in with_self_effects
-        if node.get("type") == "RangeEffect"
-        and node.get("apply_type") == "AroundCaster"
-        and node.get("target") == "EnemyWithoutTower"
-    ]
-    if len(ult_range_effects) != 1:
-        fail("Thresh R must apply The Box hit through exactly one WithSelf AroundCaster RangeEffect")
-    box_range = ult_range_effects[0]
-    range_shape = box_range.get("shape", {}).get("Circle", {}) if isinstance(box_range.get("shape"), dict) else {}
-    if int(range_shape.get("radius", 0)) < 50000:
-        fail("Thresh R AroundCaster RangeEffect must keep a large enough prison radius")
-    range_effect_names = {effect.get("type") for effect in box_range.get("effects", []) if isinstance(effect, dict)}
     for required_effect in ("ApAttack", "AddBuff", "BlockMoveSkill", "TargetSfx"):
         if required_effect not in range_effect_names:
-            fail(f"Thresh R AroundCaster RangeEffect must include {required_effect}")
+            fail(f"Thresh R ground anchor must include {required_effect}")
+    anchor_end_effects = box_anchor.get("end_effects")
+    if not isinstance(anchor_end_effects, list):
+        fail("Thresh R ground anchor must own end_effects for visible terrain VFX")
+    if not any(isinstance(node, dict) and node.get("type") == "ViewEffect" and node.get("name") == "test_mod_thresh_box" for node in anchor_end_effects):
+        fail("Thresh R ground anchor must spawn the generated The Box terrain ViewEffect")
     box_fields = [
         node
-        for node in with_self_effects
+        for node in anchor_end_effects
         if node.get("type") == "RangePeriodProjectile"
         and node.get("name") == "test_mod_thresh_box_field"
         and int(node.get("tick", 0)) >= THRESH_BOX_MIN_TICKS
     ]
     if len(box_fields) != 1:
-        fail("Thresh R must own exactly one long-lived WithSelf RangePeriodProjectile field")
+        fail("Thresh R ground anchor must own exactly one long-lived terrain RangePeriodProjectile field")
+    box_field_shape = box_fields[0].get("shape", {}).get("Circle", {}) if isinstance(box_fields[0].get("shape"), dict) else {}
+    if int(box_field_shape.get("radius", 0)) < 54000:
+        fail("Thresh R terrain field must keep a large prison radius")
 
     chain_fanim = load_json(ROOT / "aseprite_resources" / "effects" / "thresh_death_sentence_chain#anim.fanim")
     chain_frames = chain_fanim.get("anims", {}).get("chain", {}).get("frames")
@@ -4020,8 +4048,8 @@ def check_thresh_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         fail(f"Thresh R field must last at least {THRESH_BOX_MIN_TICKS} ticks so The Box reads as a real prison zone")
     view_effect_z = {item.get("name"): item.get("z") for item in thresh.get("view_effects", [])}
     for name in ("test_mod_thresh_box", "test_mod_thresh_box_field"):
-        if view_effect_z.get(name) != 3:
-            fail(f"Thresh {name} must render at z=3 so The Box walls stay obvious over terrain and units")
+        if view_effect_z.get(name) != 1:
+            fail(f"Thresh {name} must render at z=1 as a terrain prison that stays visible without covering the actor")
 
     assert_official_audio_sources(
         "thresh",
