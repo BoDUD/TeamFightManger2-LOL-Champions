@@ -282,8 +282,8 @@
     },
     "bo_league_champions_blitzcrank": {
       "face": {
-        "x": -10,
-        "y": -8
+        "x": -8,
+        "y": 0
       },
       "center": {
         "x": 0,
@@ -292,8 +292,8 @@
     },
     "test_mod_blitzcrank": {
       "face": {
-        "x": -10,
-        "y": -8
+        "x": -8,
+        "y": 0
       },
       "center": {
         "x": 0,

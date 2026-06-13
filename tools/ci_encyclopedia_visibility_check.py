@@ -746,7 +746,7 @@ JHIN_MAX_RUN_HIGH_LEFT_PIXELS = 60
 JHIN_MAX_RUN_CENTROID_X_RANGE = 4.0
 SIDE_CARD_STANDING_FACE_OFFSETS = {
     "aatrox": {"x": -8, "y": -6},
-    "blitzcrank": {"x": -10, "y": -8},
+    "blitzcrank": {"x": -8, "y": 0},
     "darius": {"x": -12, "y": -2},
     "fiddlesticks": {"x": -8, "y": -6},
     "jhin": {"x": 0, "y": -28},
@@ -6045,8 +6045,8 @@ def check_blitzcrank_contract(text: dict[str, Any], entries: dict[str, Any]) -> 
     view = entries.get(blitz_id)
     if not isinstance(view, dict):
         fail(f"style/champion_view.champion_view missing entries.{blitz_id}")
-    if view.get("face") != {"x": -10, "y": -8}:
-        fail(f"style entry {blitz_id}.face must keep Blitzcrank compact portrait at x=-10,y=-8")
+    if view.get("face") != {"x": -8, "y": 0}:
+        fail(f"style entry {blitz_id}.face must keep Blitzcrank compact portrait at x=-8,y=0")
     if view.get("center") != {"x": 0, "y": -18}:
         fail(f"style entry {blitz_id}.center must keep Blitzcrank standing card feet safe at x=0,y=-18")
     compat_view = entries.get("test_mod_blitzcrank")
@@ -6144,42 +6144,45 @@ def check_blitzcrank_contract(text: dict[str, Any], entries: dict[str, Any]) -> 
     face = view["face"]
     face_x = int(face.get("x", 0))
     face_y = int(face.get("y", 0))
-    cyan_pixels = 0
-    cyan_min_x = 10**9
-    cyan_max_x = -1
-    cyan_min_y = 10**9
-    cyan_max_y = -1
-    for local_y in range(40):
-        for local_x in range(40):
-            src_x = rect_x + local_x - face_x
-            src_y = rect_y + local_y - face_y
-            if src_x < rect_x or src_x >= rect_x + rect_w or src_y < rect_y or src_y >= rect_y + rect_h:
-                continue
-            index = (src_y * sheet_width + src_x) * 4
-            r = sheet_rgba[index]
-            g = sheet_rgba[index + 1]
-            b = sheet_rgba[index + 2]
-            a = sheet_rgba[index + 3]
-            if a > 40 and b > 120 and g > 100 and b > r * 1.35 and g > r * 1.15:
-                cyan_pixels += 1
-                cyan_min_x = min(cyan_min_x, local_x)
-                cyan_max_x = max(cyan_max_x, local_x + 1)
-                cyan_min_y = min(cyan_min_y, local_y)
-                cyan_max_y = max(cyan_max_y, local_y + 1)
-    if (
-        cyan_pixels < 40
-        or cyan_min_x < 14
-        or cyan_min_x > 20
-        or cyan_max_x < 24
-        or cyan_max_x > 30
-        or cyan_min_y > 4
-        or cyan_max_y < 20
-        or cyan_max_y > 27
-    ):
+
+    def blitz_cyan_metrics(crop_size: int) -> tuple[int, int, int, int, int]:
+        cyan_pixels = 0
+        cyan_min_x = 10**9
+        cyan_max_x = -1
+        cyan_min_y = 10**9
+        cyan_max_y = -1
+        for local_y in range(crop_size):
+            for local_x in range(crop_size):
+                src_x = rect_x + local_x - face_x
+                src_y = rect_y + local_y - face_y
+                if src_x < rect_x or src_x >= rect_x + rect_w or src_y < rect_y or src_y >= rect_y + rect_h:
+                    continue
+                index = (src_y * sheet_width + src_x) * 4
+                r = sheet_rgba[index]
+                g = sheet_rgba[index + 1]
+                b = sheet_rgba[index + 2]
+                a = sheet_rgba[index + 3]
+                if a > 40 and b > 120 and g > 100 and b > r * 1.35 and g > r * 1.15:
+                    cyan_pixels += 1
+                    cyan_min_x = min(cyan_min_x, local_x)
+                    cyan_max_x = max(cyan_max_x, local_x + 1)
+                    cyan_min_y = min(cyan_min_y, local_y)
+                    cyan_max_y = max(cyan_max_y, local_y + 1)
+        return cyan_pixels, cyan_min_x, cyan_max_x, cyan_min_y, cyan_max_y
+
+    side_cyan = blitz_cyan_metrics(40)
+    score_cyan = blitz_cyan_metrics(32)
+    if side_cyan[0] < 55 or side_cyan[1] < 18 or side_cyan[2] > 31 or side_cyan[3] < 7 or side_cyan[4] < 30:
         fail(
-            "Blitzcrank compact HUD/scoreboard face crop must center the blue eyes/chest core; "
-            f"got cyan_pixels={cyan_pixels}, cyan_x=({cyan_min_x},{cyan_max_x}), "
-            f"cyan_y=({cyan_min_y},{cyan_max_y}), face=({face_x},{face_y})"
+            "Blitzcrank side-list compact portrait must show the robot head and chest core, not mostly torso/shoulder armor; "
+            f"got cyan_pixels={side_cyan[0]}, cyan_x=({side_cyan[1]},{side_cyan[2]}), "
+            f"cyan_y=({side_cyan[3]},{side_cyan[4]}), face=({face_x},{face_y})"
+        )
+    if score_cyan[0] < 50 or score_cyan[1] < 18 or score_cyan[2] > 31 or score_cyan[3] < 7 or score_cyan[4] < 30:
+        fail(
+            "Blitzcrank 32px scoreboard portrait must keep blue eyes/core readable instead of cropping to the torso; "
+            f"got cyan_pixels={score_cyan[0]}, cyan_x=({score_cyan[1]},{score_cyan[2]}), "
+            f"cyan_y=({score_cyan[3]},{score_cyan[4]}), face=({face_x},{face_y})"
         )
 
     assert_compact_display_frame_size(
