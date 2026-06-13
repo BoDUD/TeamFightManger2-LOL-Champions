@@ -160,10 +160,10 @@
           },
           {
             "type": "LineRangeProjectile",
-            "width": 12000,
+            "width": 17000,
             "length": 90000,
-            "delay": 10,
-            "apply": 120,
+            "delay": 6,
+            "apply": 150,
             "name": "test_mod_viktor_laser",
             "applied_target": "EnemyWithoutTower",
             "applied_effects": [
@@ -186,10 +186,10 @@
           },
           {
             "type": "LineRangeProjectile",
-            "width": 12000,
+            "width": 17000,
             "length": 90000,
-            "delay": 10,
-            "apply": 120,
+            "delay": 6,
+            "apply": 150,
             "name": "test_mod_viktor_laser_champion_bonus",
             "applied_target": "EnemyChampion",
             "applied_effects": [
@@ -279,10 +279,10 @@
             "effects": [
               {
                 "type": "LineRangeProjectile",
-                "width": 14000,
+                "width": 21000,
                 "length": 90000,
                 "delay": 0,
-                "apply": 132,
+                "apply": 150,
                 "name": "test_mod_viktor_laser_aftershock",
                 "applied_target": "EnemyWithoutTower",
                 "applied_effects": [
@@ -331,10 +331,10 @@
           },
           {
             "type": "LineRangeProjectile",
-            "width": 12000,
+            "width": 17000,
             "length": 90000,
-            "delay": 10,
-            "apply": 120,
+            "delay": 6,
+            "apply": 150,
             "name": "test_mod_viktor_laser",
             "applied_target": "EnemyWithoutTower",
             "applied_effects": [
@@ -357,10 +357,10 @@
           },
           {
             "type": "LineRangeProjectile",
-            "width": 12000,
+            "width": 17000,
             "length": 90000,
-            "delay": 10,
-            "apply": 120,
+            "delay": 6,
+            "apply": 150,
             "name": "test_mod_viktor_laser_champion_bonus",
             "applied_target": "EnemyChampion",
             "applied_effects": [
@@ -450,10 +450,10 @@
             "effects": [
               {
                 "type": "LineRangeProjectile",
-                "width": 14000,
+                "width": 21000,
                 "length": 90000,
                 "delay": 0,
-                "apply": 132,
+                "apply": 150,
                 "name": "test_mod_viktor_laser_aftershock",
                 "applied_target": "EnemyWithoutTower",
                 "applied_effects": [
@@ -572,35 +572,8 @@
           "type": "SwitchByBuff",
           "buff_name": "test_mod_viktor_evolved_field",
           "effect_none": {
-            "type": "ParabolicProjectile",
-            "name": "test_mod_viktor_gravity_field_anchor",
-            "travel_time": 6,
-            "range": 72000,
-            "range_effect_name": "",
-            "shape": {
-              "Circle": {
-                "radius": 35000
-              }
-            },
-            "applied_target": "EnemyChampion",
-            "applied_effects": [
-              {
-                "effect": {
-                  "type": "AddBuff",
-                  "buff_state": {
-                    "name": "test_mod_viktor_gravity_field_slow",
-                    "duration": {
-                      "Time": {
-                        "tick": 20
-                      }
-                    },
-                    "move_speed_mult": -35
-                  }
-                },
-                "casting_type": "Targeting"
-              }
-            ],
-            "end_effects": [
+            "type": "Combine",
+            "effects": [
               {
                 "type": "ViewEffect",
                 "name": "test_mod_viktor_gravity_field"
@@ -608,12 +581,12 @@
               {
                 "type": "RangePeriodProjectile",
                 "name": "test_mod_viktor_gravity_field",
-                "tick": 300,
+                "tick": 390,
                 "period": 15,
-                "first_delay": 15,
+                "first_delay": 0,
                 "shape": {
                   "Circle": {
-                    "radius": 35000
+                    "radius": 39000
                   }
                 },
                 "applied_target": "EnemyChampion",
@@ -724,42 +697,8 @@
             ]
           },
           "effect_buff": {
-            "type": "ParabolicProjectile",
-            "name": "test_mod_viktor_gravity_field_anchor",
-            "travel_time": 6,
-            "range": 72000,
-            "range_effect_name": "",
-            "shape": {
-              "Circle": {
-                "radius": 37000
-              }
-            },
-            "applied_target": "EnemyChampion",
-            "applied_effects": [
-              {
-                "effect": {
-                  "type": "AddBuff",
-                  "buff_state": {
-                    "name": "test_mod_viktor_gravity_field_slow",
-                    "duration": {
-                      "Time": {
-                        "tick": 20
-                      }
-                    },
-                    "move_speed_mult": -35
-                  }
-                },
-                "casting_type": "Targeting"
-              },
-              {
-                "effect": {
-                  "type": "BlockMoveSkill",
-                  "tick": 8
-                },
-                "casting_type": "Targeting"
-              }
-            ],
-            "end_effects": [
+            "type": "Combine",
+            "effects": [
               {
                 "type": "ViewEffect",
                 "name": "test_mod_viktor_gravity_field"
@@ -767,12 +706,12 @@
               {
                 "type": "RangePeriodProjectile",
                 "name": "test_mod_viktor_gravity_field",
-                "tick": 360,
+                "tick": 450,
                 "period": 15,
-                "first_delay": 15,
+                "first_delay": 0,
                 "shape": {
                   "Circle": {
-                    "radius": 37000
+                    "radius": 43000
                   }
                 },
                 "applied_target": "EnemyChampion",
@@ -984,14 +923,21 @@
             }
           },
           {
-            "type": "ParabolicProjectile",
-            "name": "test_mod_viktor_chaos_storm_anchor",
-            "travel_time": 6,
-            "range": 85000,
-            "range_effect_name": "",
+            "type": "ViewEffect",
+            "name": "test_mod_viktor_storm_impact"
+          },
+          {
+            "type": "ViewEffect",
+            "name": "test_mod_viktor_chaos_storm"
+          },
+          {
+            "type": "ApplyInProjectile",
+            "name": "test_mod_viktor_chaos_storm_impact_zone",
+            "follow_caster": false,
+            "tick": 6,
             "shape": {
               "Circle": {
-                "radius": 36000
+                "radius": 38000
               }
             },
             "applied_target": "EnemyWithoutTower",
@@ -1018,58 +964,48 @@
                 },
                 "casting_type": "Targeting"
               }
-            ],
-            "end_effects": [
+            ]
+          },
+          {
+            "type": "Delayed",
+            "tick": 10,
+            "effects": [
               {
-                "type": "ViewEffect",
-                "name": "test_mod_viktor_storm_impact"
-              },
-              {
-                "type": "ViewEffect",
-                "name": "test_mod_viktor_chaos_storm"
-              },
-              {
-                "type": "Delayed",
-                "tick": 20,
-                "effects": [
-                  {
-                    "type": "Sfx",
-                    "name": "test_mod_viktor_chaos_storm_duration"
-                  }
-                ]
-              },
-              {
-                "type": "RangePeriodProjectile",
-                "name": "test_mod_viktor_chaos_storm",
-                "tick": 420,
-                "period": 30,
-                "first_delay": 20,
-                "shape": {
-                  "Circle": {
-                    "radius": 36000
-                  }
-                },
-                "applied_target": "EnemyWithoutTower",
-                "applied_effects": [
-                  {
-                    "effect": {
-                      "type": "ApAttack",
-                      "damage": 34,
-                      "attack_ratio": 30
-                    },
-                    "casting_type": "Targeting"
-                  },
-                  {
-                    "effect": {
-                      "type": "BlockSkill",
-                      "tick": 12
-                    },
-                    "casting_type": "Targeting"
-                  }
-                ],
-                "end_effects": []
+                "type": "Sfx",
+                "name": "test_mod_viktor_chaos_storm_duration"
               }
             ]
+          },
+          {
+            "type": "RangePeriodProjectile",
+            "name": "test_mod_viktor_chaos_storm",
+            "tick": 540,
+            "period": 28,
+            "first_delay": 10,
+            "shape": {
+              "Circle": {
+                "radius": 38000
+              }
+            },
+            "applied_target": "EnemyWithoutTower",
+            "applied_effects": [
+              {
+                "effect": {
+                  "type": "ApAttack",
+                  "damage": 34,
+                  "attack_ratio": 30
+                },
+                "casting_type": "Targeting"
+              },
+              {
+                "effect": {
+                  "type": "BlockSkill",
+                  "tick": 12
+                },
+                "casting_type": "Targeting"
+              }
+            ],
+            "end_effects": []
           }
         ]
       },
@@ -1149,11 +1085,18 @@
             }
           },
           {
-            "type": "ParabolicProjectile",
-            "name": "test_mod_viktor_chaos_storm_anchor",
-            "travel_time": 6,
-            "range": 85000,
-            "range_effect_name": "",
+            "type": "ViewEffect",
+            "name": "test_mod_viktor_storm_impact"
+          },
+          {
+            "type": "ViewEffect",
+            "name": "test_mod_viktor_chaos_storm"
+          },
+          {
+            "type": "ApplyInProjectile",
+            "name": "test_mod_viktor_chaos_storm_impact_zone",
+            "follow_caster": false,
+            "tick": 6,
             "shape": {
               "Circle": {
                 "radius": 42000
@@ -1183,58 +1126,48 @@
                 },
                 "casting_type": "Targeting"
               }
-            ],
-            "end_effects": [
+            ]
+          },
+          {
+            "type": "Delayed",
+            "tick": 10,
+            "effects": [
               {
-                "type": "ViewEffect",
-                "name": "test_mod_viktor_storm_impact"
-              },
-              {
-                "type": "ViewEffect",
-                "name": "test_mod_viktor_chaos_storm"
-              },
-              {
-                "type": "Delayed",
-                "tick": 20,
-                "effects": [
-                  {
-                    "type": "Sfx",
-                    "name": "test_mod_viktor_chaos_storm_duration"
-                  }
-                ]
-              },
-              {
-                "type": "RangePeriodProjectile",
-                "name": "test_mod_viktor_chaos_storm",
-                "tick": 480,
-                "period": 25,
-                "first_delay": 20,
-                "shape": {
-                  "Circle": {
-                    "radius": 42000
-                  }
-                },
-                "applied_target": "EnemyWithoutTower",
-                "applied_effects": [
-                  {
-                    "effect": {
-                      "type": "ApAttack",
-                      "damage": 38,
-                      "attack_ratio": 35
-                    },
-                    "casting_type": "Targeting"
-                  },
-                  {
-                    "effect": {
-                      "type": "BlockSkill",
-                      "tick": 15
-                    },
-                    "casting_type": "Targeting"
-                  }
-                ],
-                "end_effects": []
+                "type": "Sfx",
+                "name": "test_mod_viktor_chaos_storm_duration"
               }
             ]
+          },
+          {
+            "type": "RangePeriodProjectile",
+            "name": "test_mod_viktor_chaos_storm",
+            "tick": 600,
+            "period": 24,
+            "first_delay": 10,
+            "shape": {
+              "Circle": {
+                "radius": 42000
+              }
+            },
+            "applied_target": "EnemyWithoutTower",
+            "applied_effects": [
+              {
+                "effect": {
+                  "type": "ApAttack",
+                  "damage": 38,
+                  "attack_ratio": 35
+                },
+                "casting_type": "Targeting"
+              },
+              {
+                "effect": {
+                  "type": "BlockSkill",
+                  "tick": 15
+                },
+                "casting_type": "Targeting"
+              }
+            ],
+            "end_effects": []
           }
         ]
       }
@@ -1246,7 +1179,7 @@
       "name": "test_mod_viktor_attack_projectile",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/viktor_attack_projectile",
       "tag": "projectile",
-      "z": 1,
+      "z": 2,
       "repeat": true
     },
     {
@@ -1254,7 +1187,7 @@
       "name": "test_mod_viktor_siphon_projectile",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/viktor_siphon_projectile",
       "tag": "projectile",
-      "z": 2,
+      "z": 3,
       "repeat": true
     },
     {
@@ -1262,7 +1195,7 @@
       "name": "test_mod_viktor_laser",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/viktor_laser",
       "tag": "laser",
-      "z": -1,
+      "z": 2,
       "repeat": true
     },
     {
@@ -1270,7 +1203,7 @@
       "name": "test_mod_viktor_laser_aftershock",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/viktor_laser_aftershock",
       "tag": "burn",
-      "z": -2,
+      "z": 1,
       "repeat": true
     }
   ],
@@ -1318,7 +1251,7 @@
       "name": "test_mod_viktor_siphon_impact",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/viktor_siphon_impact",
       "tag": "impact",
-      "z": 2,
+      "z": 3,
       "is_follow": false
     },
     {
@@ -1326,7 +1259,7 @@
       "name": "test_mod_viktor_gravity_field",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/viktor_gravity_field",
       "tag": "gravity_field",
-      "z": 1,
+      "z": 4,
       "is_follow": false
     },
     {
@@ -1334,7 +1267,7 @@
       "name": "test_mod_viktor_chaos_storm",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/viktor_chaos_storm",
       "tag": "chaos_storm",
-      "z": 2,
+      "z": 5,
       "is_follow": false
     },
     {
@@ -1342,7 +1275,7 @@
       "name": "test_mod_viktor_storm_impact",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/viktor_storm_impact",
       "tag": "impact",
-      "z": 2,
+      "z": 5,
       "is_follow": false
     }
   ],

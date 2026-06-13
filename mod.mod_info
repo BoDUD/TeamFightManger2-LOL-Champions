@@ -3,8 +3,8 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.14.7",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Blitzcrank, Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version rebuilds Thresh Q/W/E/R with image-generated Death Sentence, ground Dark Passage lantern, ground Flay push, and The Box prison VFX while making The Box AI-readable through a direct top-level range hit instead of hidden anchor/end-effect behavior.",
+  "version": "0.14.8",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Blitzcrank, Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version rebuilds Viktor Q/W/E/R with image-generated Siphon Power, Death Ray, Gravity Field, and Chaos Storm VFX while moving Gravity Field and Chaos Storm to direct high-z target-ground effects instead of hidden anchor/end-effect behavior.",
   "last_updated": "2026-06-14",
   "dependencies": [
     {
