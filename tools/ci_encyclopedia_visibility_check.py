@@ -3442,7 +3442,10 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         ROOT / "aseprite_resources" / "effects" / "darius_noxian_guillotine#sheet.png"
     )
     axe_blade_peak = 0
-    large_chop_frames = 0
+    descending_darius_frames = 0
+    body_readable_frames = 0
+    ground_execution_frames = 0
+    detailed_cast_frames = 0
     for index, frame in enumerate(guillotine_frames):
         data = frame.get("data") if isinstance(frame, dict) else None
         if not isinstance(data, dict):
@@ -3451,7 +3454,8 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
         y0 = int(round(float(data.get("y", -1))))
         w = int(round(float(data.get("w", 0))))
         h = int(round(float(data.get("h", 0))))
-        visible = red_energy = skin_tones = axe_blade = 0
+        visible = red_energy = skin_tones = axe_blade = dark_armor = 0
+        colors: set[tuple[int, int, int, int]] = set()
         min_visible_x = w
         min_visible_y = h
         max_visible_x = max_visible_y = -1
@@ -3465,6 +3469,7 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
                 if not a:
                     continue
                 visible += 1
+                colors.add((r, g, b, a))
                 local_x = x - x0
                 local_y = y - y0
                 min_visible_x = min(min_visible_x, local_x)
@@ -3486,35 +3491,144 @@ def check_darius_contract(text: dict[str, Any], entries: dict[str, Any]) -> None
                     skin_tones += 1
                 if steel_blade_like:
                     axe_blade += 1
+                if a > 80 and r < 75 and g < 75 and b < 85:
+                    dark_armor += 1
         if visible:
             visible_width = max_visible_x - min_visible_x + 1
             visible_height = max_visible_y - min_visible_y + 1
         else:
             visible_width = visible_height = 0
-        if visible_width >= 82 and visible_height >= 76:
-            large_chop_frames += 1
+        if visible_height >= 108 and dark_armor >= 700 and skin_tones >= 65:
+            descending_darius_frames += 1
+        if skin_tones >= 70:
+            body_readable_frames += 1
+        if visible_width >= 96 and visible_height >= 78 and red_energy >= 1200:
+            ground_execution_frames += 1
+        if len(colors) >= 350:
+            detailed_cast_frames += 1
         axe_blade_peak = max(axe_blade_peak, axe_blade)
         if visible < 120:
             fail(f"Darius Noxian Guillotine cast frame {index} is too sparse to read as the R chop")
-        if red_energy < max(120, visible // 5):
+        if len(colors) < 250:
+            fail(f"Darius Noxian Guillotine cast frame {index} is too flat; use image-generated bitmap art, not code lines")
+        if red_energy < max(80, visible // 9):
             fail(f"Darius Noxian Guillotine cast frame {index} must read as red Noxian slash energy")
-        if index < 5 and axe_blade < 240:
+        if axe_blade < 90:
             fail(
                 f"Darius Noxian Guillotine cast frame {index} has only {axe_blade} axe-blade pixels; "
                 "R must show a clear Noxian axe execution, not only a red ground burst"
             )
-        if visible_width < 82 or visible_height < 76:
+        if visible_height < 76:
             fail(
                 f"Darius Noxian Guillotine cast frame {index} visible bbox {visible_width}x{visible_height} is too small "
                 "to read as an in-battle execution chop"
             )
-        if skin_tones > 90:
+        if index < 5 and (skin_tones < 65 or dark_armor < 700 or visible_height < 108):
             fail(
-                f"Darius Noxian Guillotine cast frame {index} still contains {skin_tones} skin/body pixels; "
-                "the caster VFX must be an effect-only slash so it cannot show a second reverse-facing Darius"
+                f"Darius Noxian Guillotine cast frame {index} must show image-generated Darius descending into the chop; "
+                f"got skin={skin_tones}, dark_armor={dark_armor}, bbox={visible_width}x{visible_height}"
             )
-    if axe_blade_peak < 360 or large_chop_frames < 5:
-        fail("Darius R cast VFX must keep a large red axe execution silhouette across the cast sequence")
+        if index >= 5 and visible_width < 100:
+            fail(
+                f"Darius Noxian Guillotine cast landing frame {index} bbox {visible_width}x{visible_height} is too narrow; "
+                "the final frames must spread into the red-black execution impact"
+            )
+    if (
+        axe_blade_peak < 300
+        or descending_darius_frames < 5
+        or body_readable_frames < 6
+        or ground_execution_frames < 2
+        or detailed_cast_frames < len(guillotine_frames)
+    ):
+        fail(
+            "Darius R cast VFX must be image-generated descending Darius execution frames: "
+            f"axe_peak={axe_blade_peak}, descending={descending_darius_frames}, "
+            f"body={body_readable_frames}, impact={ground_execution_frames}, detailed={detailed_cast_frames}"
+        )
+
+    guillotine_hit_fanim = load_json(ROOT / "aseprite_resources" / "effects" / "darius_noxian_guillotine_hit#anim.fanim")
+    guillotine_hit_frames = guillotine_hit_fanim.get("anims", {}).get("hit", {}).get("frames")
+    if not isinstance(guillotine_hit_frames, list):
+        fail("Darius Noxian Guillotine hit VFX must expose hit frames")
+    guillotine_hit_width, _guillotine_hit_height, guillotine_hit_rgba = load_rgba(
+        ROOT / "aseprite_resources" / "effects" / "darius_noxian_guillotine_hit#sheet.png"
+    )
+    heavy_hit_frames = 0
+    residual_hit_frames = 0
+    hit_steel_peak = 0
+    hit_color_peak = 0
+    for index, frame in enumerate(guillotine_hit_frames):
+        data = frame.get("data") if isinstance(frame, dict) else None
+        if not isinstance(data, dict):
+            fail(f"Darius Noxian Guillotine hit frame {index} missing frame data")
+        x0 = int(round(float(data.get("x", -1))))
+        y0 = int(round(float(data.get("y", -1))))
+        w = int(round(float(data.get("w", 0))))
+        h = int(round(float(data.get("h", 0))))
+        visible = red_energy = steel_shards = 0
+        colors: set[tuple[int, int, int, int]] = set()
+        min_visible_x = w
+        min_visible_y = h
+        max_visible_x = max_visible_y = -1
+        for y in range(y0, y0 + h):
+            for x in range(x0, x0 + w):
+                pixel_index = (y * guillotine_hit_width + x) * 4
+                r = guillotine_hit_rgba[pixel_index]
+                g = guillotine_hit_rgba[pixel_index + 1]
+                b = guillotine_hit_rgba[pixel_index + 2]
+                a = guillotine_hit_rgba[pixel_index + 3]
+                if not a:
+                    continue
+                visible += 1
+                colors.add((r, g, b, a))
+                local_x = x - x0
+                local_y = y - y0
+                min_visible_x = min(min_visible_x, local_x)
+                min_visible_y = min(min_visible_y, local_y)
+                max_visible_x = max(max_visible_x, local_x)
+                max_visible_y = max(max_visible_y, local_y)
+                if r > 95 and r > g * 1.25 and r > b * 0.75:
+                    red_energy += 1
+                if (
+                    r > 70
+                    and g > 70
+                    and b > 75
+                    and abs(r - g) < 35
+                    and abs(g - b) < 45
+                    and (a > 120 or (r + g + b) > 300)
+                ):
+                    steel_shards += 1
+        if visible:
+            visible_width = max_visible_x - min_visible_x + 1
+            visible_height = max_visible_y - min_visible_y + 1
+        else:
+            visible_width = visible_height = 0
+        hit_steel_peak = max(hit_steel_peak, steel_shards)
+        hit_color_peak = max(hit_color_peak, len(colors))
+        if index < 6:
+            if visible_width < 70 or visible_height < 95:
+                fail(
+                    f"Darius Noxian Guillotine hit frame {index} bbox {visible_width}x{visible_height} is too small "
+                    "for the red-black axe impact"
+                )
+            if red_energy < max(180, visible // 6):
+                fail(f"Darius Noxian Guillotine hit frame {index} must be a red Noxian impact burst")
+            if visible_width >= 100 and red_energy >= 1500:
+                heavy_hit_frames += 1
+        else:
+            if visible < 250 or red_energy < 100 or visible_width < 100:
+                fail(
+                    f"Darius Noxian Guillotine hit residual frame {index} must keep generated particle/crack aftermath; "
+                    f"got visible={visible}, red={red_energy}, width={visible_width}"
+                )
+            residual_hit_frames += 1
+        if len(colors) < min(400, max(120, visible // 2)):
+            fail(f"Darius Noxian Guillotine hit frame {index} is too flat for generated impact art")
+    if heavy_hit_frames < 3 or residual_hit_frames < 2 or hit_steel_peak < 90 or hit_color_peak < 1000:
+        fail(
+            "Darius R hit VFX must keep image-generated axe-impact and fading aftermath frames; "
+            f"heavy={heavy_hit_frames}, residual={residual_hit_frames}, steel_peak={hit_steel_peak}, color_peak={hit_color_peak}"
+        )
 
     run_frames = fanim.get("anims", {}).get("run", {}).get("frames")
     assert isinstance(run_frames, list)
