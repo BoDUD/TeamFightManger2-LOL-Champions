@@ -3,7 +3,7 @@
     "test_mod_aatrox": {
       "face": {
         "x": -8,
-        "y": -4
+        "y": -6
       },
       "center": {
         "x": 4,
@@ -13,7 +13,7 @@
     "bo_league_champions_aatrox": {
       "face": {
         "x": -8,
-        "y": -4
+        "y": -6
       },
       "center": {
         "x": 4,
@@ -62,8 +62,8 @@
     },
     "test_mod_jhin": {
       "face": {
-        "x": 1,
-        "y": -22
+        "x": 0,
+        "y": -28
       },
       "center": {
         "x": 0,
@@ -72,8 +72,8 @@
     },
     "bo_league_champions_jhin": {
       "face": {
-        "x": 1,
-        "y": -22
+        "x": 0,
+        "y": -28
       },
       "center": {
         "x": 0,
@@ -103,7 +103,7 @@
     "test_mod_fiddlesticks": {
       "face": {
         "x": 0,
-        "y": 0
+        "y": -2
       },
       "center": {
         "x": 0,
@@ -113,7 +113,7 @@
     "bo_league_champions_fiddlesticks": {
       "face": {
         "x": 0,
-        "y": 0
+        "y": -2
       },
       "center": {
         "x": 0,
