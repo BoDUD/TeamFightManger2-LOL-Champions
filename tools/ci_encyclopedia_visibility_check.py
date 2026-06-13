@@ -736,6 +736,8 @@ JHIN_MIN_RUN_UNIQUE_FRAMES = 8
 JHIN_MAX_UPRIGHT_RUN_WIDTH = 50
 JHIN_MIN_UPRIGHT_RUN_HEIGHT = 47
 JHIN_MAX_UPRIGHT_RUN_TOP = 8
+JHIN_MAX_RUN_HIGH_LEFT_PIXELS = 60
+JHIN_MAX_RUN_CENTROID_X_RANGE = 4.0
 SIDE_CARD_STANDING_FACE_OFFSETS = {
     "aatrox": {"x": -8, "y": -6},
     "blitzcrank": {"x": -10, "y": -8},
@@ -950,6 +952,21 @@ def alpha_visible_pixels_in_rect(alpha: bytes, image_width: int, rect: tuple[int
             if alpha[row_start + x] != 0:
                 visible += 1
     return visible
+
+
+def alpha_centroid_x_in_rect(alpha: bytes, image_width: int, rect: tuple[int, int, int, int]) -> float | None:
+    x0, y0, w, h = rect
+    total_x = 0
+    visible = 0
+    for y in range(y0, y0 + h):
+        row_start = y * image_width
+        for x in range(x0, x0 + w):
+            if alpha[row_start + x] != 0:
+                total_x += x - x0
+                visible += 1
+    if visible == 0:
+        return None
+    return total_x / visible
 
 
 def dark_actor_pixels_in_rect(rgba: bytes, image_width: int, rect: tuple[int, int, int, int]) -> int:
@@ -5168,6 +5185,23 @@ def check_jhin_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
     if max(run_heights) - min(run_heights) > 8:
         fail("Jhin run height range is unstable; keep the image-generated model in one scale class")
     run_tops = [bbox[1] for bbox in action_bboxes["run"]]
+    run_high_left_pixels: list[int] = []
+    run_centroid_xs: list[float] = []
+    for index, frame in enumerate(anims["run"]["frames"], start=1):
+        data = frame["data"]
+        rect = (
+            int(round(float(data.get("x", -1)))),
+            int(round(float(data.get("y", -1)))),
+            int(round(float(data.get("w", 0)))),
+            int(round(float(data.get("h", 0)))),
+        )
+        high_left_rect = (rect[0], rect[1], min(28, rect[2]), min(20, rect[3]))
+        high_left_pixels = alpha_visible_pixels_in_rect(sheet_alpha, sheet_width, high_left_rect)
+        run_high_left_pixels.append(high_left_pixels)
+        centroid_x = alpha_centroid_x_in_rect(sheet_alpha, sheet_width, rect)
+        if centroid_x is None:
+            fail(f"Jhin run frame {index} is blank")
+        run_centroid_xs.append(centroid_x)
     if max(run_widths) > JHIN_MAX_UPRIGHT_RUN_WIDTH:
         fail(
             f"Jhin run frame width {max(run_widths)}px is too wide; "
@@ -5182,6 +5216,16 @@ def check_jhin_contract(text: dict[str, Any], entries: dict[str, Any]) -> None:
         fail(
             f"Jhin run frame top {max(run_tops)}px is too low; "
             "the run row must keep an upright LoL-like posture"
+        )
+    if max(run_high_left_pixels) > JHIN_MAX_RUN_HIGH_LEFT_PIXELS:
+        fail(
+            f"Jhin run high-left weapon pixels {max(run_high_left_pixels)} exceed "
+            f"{JHIN_MAX_RUN_HIGH_LEFT_PIXELS}; prevent the vertical-gun zombie-step frame"
+        )
+    if max(run_centroid_xs) - min(run_centroid_xs) > JHIN_MAX_RUN_CENTROID_X_RANGE:
+        fail(
+            f"Jhin run horizontal centroid range {max(run_centroid_xs) - min(run_centroid_xs):.2f}px is unstable; "
+            "keep the stride centered instead of snapping between poses"
         )
 
     jhin = load_json(ROOT / "champion" / "jhin.data_champion")

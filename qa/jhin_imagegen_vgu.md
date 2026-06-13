@@ -25,3 +25,4 @@ Local source hashes used for this rebuild:
 - The first idle frame keeps the full mask, gun, legs, and feet inside compact display bounds so card/list/HUD portraits do not crop the lower body.
 - W/E and R VFX use generated red-gold lotus and theater-stage art. The script only crops, scales, and packs generated source art into runtime sheets; it does not create geometry-line placeholder art.
 - `champion/jhin.data_champion` removes the old base arrow projectile and wires generated projectile, buff, and view-effect assets for all active skills.
+- 2026-06-13 follow-up: rebuilt the run row from the same accepted actor bitmap sheet to remove the crouched vertical-gun zombie-step frame while preserving the native 10-frame action contract. CI and local runtime QA now check high-left weapon pixels and run centroid stability.
