@@ -58,10 +58,6 @@
             "name": "test_mod_blitzcrank_attack_cast"
           },
           {
-            "type": "CasterViewEffect",
-            "name": "test_mod_blitzcrank_attack_punch"
-          },
-          {
             "type": "Attack",
             "damage": 12,
             "attack_ratio": 90
@@ -87,10 +83,6 @@
           {
             "type": "Sfx",
             "name": "test_mod_blitzcrank_attack_cast"
-          },
-          {
-            "type": "CasterViewEffect",
-            "name": "test_mod_blitzcrank_attack_punch"
           },
           {
             "type": "Attack",
@@ -172,10 +164,9 @@
                     "duration": 36
                   },
                   {
-                    "type": "MoveTo",
-                    "speed": 6200,
-                    "range": 8000,
-                    "end_effects": []
+                    "type": "Knockback",
+                    "speed": -5200,
+                    "tick": 14
                   },
                   {
                     "type": "AddBuff",
@@ -255,10 +246,6 @@
           ]
         },
         {
-          "type": "CasterViewEffect",
-          "name": "test_mod_blitzcrank_mana_barrier"
-        },
-        {
           "type": "Sfx",
           "name": "test_mod_blitzcrank_barrier"
         },
@@ -272,10 +259,6 @@
               }
             }
           }
-        },
-        {
-          "type": "CasterViewEffect",
-          "name": "test_mod_blitzcrank_power_fist_ready"
         },
         {
           "type": "Delayed",
@@ -456,14 +439,6 @@
   "view_effects": [
     {
       "type": "Animation",
-      "name": "test_mod_blitzcrank_attack_punch",
-      "anim": "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_attack_punch",
-      "tag": "punch",
-      "z": 2,
-      "is_follow": true
-    },
-    {
-      "type": "Animation",
       "name": "test_mod_blitzcrank_punch_hit",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_punch_hit",
       "tag": "hit",
@@ -485,22 +460,6 @@
       "tag": "hit",
       "z": 3,
       "is_follow": false
-    },
-    {
-      "type": "Animation",
-      "name": "test_mod_blitzcrank_mana_barrier",
-      "anim": "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_mana_barrier",
-      "tag": "shield",
-      "z": 3,
-      "is_follow": true
-    },
-    {
-      "type": "Animation",
-      "name": "test_mod_blitzcrank_power_fist_ready",
-      "anim": "asset/bo_league_champions/aseprite_resources/effects/blitzcrank_power_fist_ready",
-      "tag": "ready",
-      "z": 3,
-      "is_follow": true
     },
     {
       "type": "Animation",

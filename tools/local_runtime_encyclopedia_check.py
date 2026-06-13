@@ -458,7 +458,12 @@ def assert_no_negative_speed_fields(node: object, label: str) -> None:
         speed = mapping.get("speed")
         if isinstance(speed, (int, float)) and speed < 0:
             effect_type = mapping.get("type", "<unknown>")
-            fail(f"{label} has invalid negative speed {speed!r} on {effect_type}; TFM2 expects unsigned movement speeds")
+            if effect_type == "Knockback":
+                continue
+            fail(
+                f"{label} has invalid negative speed {speed!r} on {effect_type}; "
+                "only Knockback may use a negative speed for pull-style crowd control"
+            )
 
 
 def check_darius_ult_visibility(path: Path, champion: object) -> None:
