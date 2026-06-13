@@ -208,7 +208,7 @@ SIDE_CARD_STANDING_FACE_OFFSETS = {
     f"{MOD_ID}_aatrox": {"x": -8, "y": -6},
     f"{MOD_ID}_blitzcrank": {"x": -8, "y": 0},
     f"{MOD_ID}_darius": {"x": -12, "y": -2},
-    f"{MOD_ID}_kayn": {"x": -18, "y": 0},
+    f"{MOD_ID}_kayn": {"x": 20, "y": 0},
     f"{MOD_ID}_jhin": {"x": 0, "y": -28},
     f"{MOD_ID}_jinx": {"x": -2, "y": -16},
     f"{MOD_ID}_thresh": {"x": 0, "y": -15},
