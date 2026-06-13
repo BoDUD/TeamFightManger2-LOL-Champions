@@ -745,6 +745,53 @@ def check_darius_ult_visibility(path: Path, champion: object) -> None:
             fail(f"runtime Darius R branch {branch_index} must show the chop before damage resolves")
 
 
+def check_kayn_ult_visibility(path: Path, champion: object) -> None:
+    if path.name != "kayn.data_champion":
+        return
+    if not isinstance(champion, dict):
+        fail(f"{path} must contain a JSON object")
+    view_effects = {
+        item.get("name"): item
+        for item in champion.get("view_effects", [])
+        if isinstance(item, dict) and isinstance(item.get("name"), str)
+    }
+    r_entry = view_effects.get("test_mod_kayn_r_entry")
+    if not isinstance(r_entry, dict) or r_entry.get("z", 0) < 5 or r_entry.get("is_follow") is not False:
+        fail("runtime Kayn R entry must be a high-z non-following target-ground ViewEffect")
+    r_exit = view_effects.get("test_mod_kayn_r_exit")
+    if not isinstance(r_exit, dict) or r_exit.get("z", 0) < 5 or r_exit.get("is_follow") is not False:
+        fail("runtime Kayn R exit must be a high-z non-following target-ground ViewEffect")
+
+    ult = champion.get("ult", {})
+    ult_effect = ult.get("effect", {}) if isinstance(ult, dict) else {}
+    ult_effects = ult_effect.get("effects") if isinstance(ult_effect, dict) else None
+    if not isinstance(ult_effects, list):
+        fail("runtime Kayn R must expose a top-level Combine effect list")
+    top_level_exit = [
+        node
+        for node in ult_effects
+        if isinstance(node, dict)
+        and node.get("type") == "ViewEffect"
+        and node.get("name") == "test_mod_kayn_r_exit"
+    ]
+    if top_level_exit:
+        fail("runtime Kayn R exit must not fire at cast start; it belongs in the release branch")
+    rushes = [
+        node
+        for node in ult_effects
+        if isinstance(node, dict) and node.get("type") == "RushMoveToBack"
+    ]
+    if len(rushes) != 1:
+        fail(f"runtime Kayn R must keep one direct RushMoveToBack release branch, got {len(rushes)}")
+    rush_exit = [
+        node
+        for node in iter_mapping_nodes(rushes[0])
+        if node.get("type") == "ViewEffect" and node.get("name") == "test_mod_kayn_r_exit"
+    ]
+    if len(rush_exit) != 1:
+        fail("runtime Kayn R release branch must directly spawn the R exit ViewEffect")
+
+
 def check_viktor_ground_vfx(path: Path, champion: object) -> None:
     if path.name != "viktor.data_champion":
         return
@@ -1654,6 +1701,7 @@ def check_runtime_copy(game_root: Path) -> None:
         assert_no_negative_speed_fields(data, str(data_path))
         check_blitzcrank_skill_contract(data_path, data)
         check_darius_ult_visibility(data_path, data)
+        check_kayn_ult_visibility(data_path, data)
         check_viktor_ground_vfx(data_path, data)
         check_thresh_ult_visibility(data_path, data)
         check_fiddlesticks_ult_visibility(data_path, data)

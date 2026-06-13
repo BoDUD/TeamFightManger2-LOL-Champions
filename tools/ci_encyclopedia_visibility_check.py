@@ -2675,10 +2675,10 @@ def check_kayn_rework_contract(text: dict[str, Any], entries: dict[str, Any]) ->
             fail(f"Kayn {projectile_name} must render above terrain/minions with z >= 3")
     view_effects = {item.get("name"): item for item in kayn.get("view_effects", []) if isinstance(item, dict)}
     r_entry_view = view_effects.get("test_mod_kayn_r_entry")
-    if not isinstance(r_entry_view, dict) or r_entry_view.get("z", 0) < 4 or r_entry_view.get("is_follow") is not True:
-        fail("Kayn R entry mark must be a high-z following target effect so Umbral Trespass is visible")
+    if not isinstance(r_entry_view, dict) or r_entry_view.get("z", 0) < 5 or r_entry_view.get("is_follow") is not False:
+        fail("Kayn R entry mark must be a high-z non-following target-ground effect so Umbral Trespass is visible")
     r_exit_view = view_effects.get("test_mod_kayn_r_exit")
-    if not isinstance(r_exit_view, dict) or r_exit_view.get("z", 0) < 4:
+    if not isinstance(r_exit_view, dict) or r_exit_view.get("z", 0) < 5 or r_exit_view.get("is_follow") is not False:
         fail("Kayn R exit burst must render at high z so the hit is visible in live matches")
 
     kayn_ult = kayn.get("ult", {})
@@ -2709,13 +2709,20 @@ def check_kayn_rework_contract(text: dict[str, Any], entries: dict[str, Any]) ->
     direct_rush_payload = json.dumps(direct_rushes[0], ensure_ascii=False)
     if '"Attack"' not in direct_rush_payload or "test_mod_kayn_r_hit" not in direct_rush_payload:
         fail("Kayn ult direct RushMoveToBack must carry the Attack damage and hit SFX")
+    rush_exit_names = [
+        effect.get("name")
+        for effect in iter_mapping_nodes(direct_rushes[0])
+        if isinstance(effect, dict) and effect.get("type") == "ViewEffect"
+    ]
+    if "test_mod_kayn_r_exit" not in rush_exit_names:
+        fail("Kayn ult must spawn the R exit ViewEffect inside the direct RushMoveToBack release branch")
     top_level_exit_names = [
         effect.get("name")
         for effect in ult_effects
         if isinstance(effect, dict) and effect.get("type") == "ViewEffect"
     ]
-    if "test_mod_kayn_r_exit" not in top_level_exit_names:
-        fail("Kayn ult must spawn a top-level R exit ViewEffect at the release hit")
+    if "test_mod_kayn_r_exit" in top_level_exit_names:
+        fail("Kayn R exit must not fire at cast start; keep it inside the release branch")
     if any(
         isinstance(effect, dict)
         and effect.get("type") == "Delayed"
