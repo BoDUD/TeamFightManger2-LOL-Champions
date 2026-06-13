@@ -337,8 +337,8 @@
     "action_name": "skill2",
     "description": "#asset/base/text/champion?description.bo_league_champions_thresh.skill2",
     "duration": 42,
-    "cooltime": 900,
-    "start_timing": 8,
+    "cooltime": 840,
+    "start_timing": 6,
     "cancelable": false,
     "can_use_with_move": false,
     "range": 52000,
@@ -372,84 +372,77 @@
           "name": "test_mod_thresh_lantern_visual"
         },
         {
-          "type": "Delayed",
-          "tick": 14,
-          "effects": [
+          "type": "Sfx",
+          "name": "test_mod_thresh_e_cast"
+        },
+        {
+          "type": "CasterViewEffect",
+          "name": "test_mod_thresh_flay_ground_sweep"
+        },
+        {
+          "type": "LineRangeProjectile",
+          "width": 42000,
+          "length": 60000,
+          "delay": 0,
+          "apply": 32,
+          "name": "test_mod_thresh_flay_sweep",
+          "applied_target": "EnemyWithoutTower",
+          "applied_effects": [
             {
-              "type": "Sfx",
-              "name": "test_mod_thresh_e_cast"
-            },
-            {
-              "type": "CasterViewEffect",
-              "name": "test_mod_thresh_flay_ground_sweep"
-            },
-            {
-              "type": "LineRangeProjectile",
-              "width": 38000,
-              "length": 56000,
-              "delay": 2,
-              "apply": 28,
-              "name": "test_mod_thresh_flay_sweep",
-              "applied_target": "EnemyWithoutTower",
-              "applied_effects": [
-                {
-                  "effect": {
-                    "type": "Combine",
-                    "effects": [
-                      {
-                        "type": "ApAttack",
-                        "damage": 45,
-                        "attack_ratio": 55
-                      },
-                      {
-                        "type": "MoveTo",
-                        "speed": 5400,
-                        "range": 12000,
-                        "end_effects": []
-                      },
-                      {
-                        "type": "Stun",
-                        "duration": 20
-                      },
-                      {
-                        "type": "AddBuff",
-                        "buff_state": {
-                          "name": "test_mod_thresh_flay_slow",
-                          "duration": {
-                            "Time": {
-                              "tick": 45
-                            }
-                          },
-                          "move_speed_mult": -35
-                        }
-                      },
-                      {
-                        "type": "BlockMoveSkill",
-                        "tick": 28
-                      },
-                      {
-                        "type": "TargetSfx",
-                        "name": "test_mod_thresh_e_hit"
-                      },
-                      {
-                        "type": "AddCasterBuff",
-                        "only_to_enemy": true,
-                        "buff_state": {
-                          "name": "test_mod_thresh_soul_stack",
-                          "duration": "Permanent",
-                          "defence": 2,
-                          "magic_power": 3
-                        }
-                      },
-                      {
-                        "type": "Sfx",
-                        "name": "test_mod_thresh_soul_gain"
-                      }
-                    ]
+              "effect": {
+                "type": "Combine",
+                "effects": [
+                  {
+                    "type": "ApAttack",
+                    "damage": 52,
+                    "attack_ratio": 60
                   },
-                  "casting_type": "Targeting"
-                }
-              ]
+                  {
+                    "type": "Knockback",
+                    "speed": 2600,
+                    "tick": 12
+                  },
+                  {
+                    "type": "Stun",
+                    "duration": 18
+                  },
+                  {
+                    "type": "AddBuff",
+                    "buff_state": {
+                      "name": "test_mod_thresh_flay_slow",
+                      "duration": {
+                        "Time": {
+                          "tick": 48
+                        }
+                      },
+                      "move_speed_mult": -35
+                    }
+                  },
+                  {
+                    "type": "BlockMoveSkill",
+                    "tick": 30
+                  },
+                  {
+                    "type": "TargetSfx",
+                    "name": "test_mod_thresh_e_hit"
+                  },
+                  {
+                    "type": "AddCasterBuff",
+                    "only_to_enemy": true,
+                    "buff_state": {
+                      "name": "test_mod_thresh_soul_stack",
+                      "duration": "Permanent",
+                      "defence": 2,
+                      "magic_power": 3
+                    }
+                  },
+                  {
+                    "type": "Sfx",
+                    "name": "test_mod_thresh_soul_gain"
+                  }
+                ]
+              },
+              "casting_type": "Targeting"
             }
           ]
         }
@@ -459,9 +452,9 @@
   "ult": {
     "action_name": "ult",
     "description": "#asset/base/text/champion?description.bo_league_champions_thresh.ult",
-    "duration": 54,
-    "cooltime": 2700,
-    "start_timing": 14,
+    "duration": 48,
+    "cooltime": 2400,
+    "start_timing": 8,
     "cancelable": false,
     "can_use_with_move": false,
     "range": 68000,
@@ -480,11 +473,76 @@
           "name": "test_mod_thresh_ult_voice"
         },
         {
-          "type": "ParabolicProjectile",
-          "name": "test_mod_thresh_box_ground_anchor",
-          "travel_time": 4,
-          "range": 68000,
-          "range_effect_name": "",
+          "type": "ViewEffect",
+          "name": "test_mod_thresh_box"
+        },
+        {
+          "type": "RangeEffect",
+          "shape": {
+            "Circle": {
+              "radius": 56000
+            }
+          },
+          "target": "EnemyWithoutTower",
+          "apply_type": "AroundCaster",
+          "effects": [
+            {
+              "type": "ApAttack",
+              "damage": 125,
+              "attack_ratio": 90
+            },
+            {
+              "type": "AddBuff",
+              "buff_state": {
+                "name": "test_mod_thresh_box_slow",
+                "duration": {
+                  "Time": {
+                    "tick": 150
+                  }
+                },
+                "move_speed_mult": -70
+              }
+            },
+            {
+              "type": "BlockMoveSkill",
+              "tick": 36
+            },
+            {
+              "type": "TargetSfx",
+              "name": "test_mod_thresh_r_hit"
+            },
+            {
+              "type": "AddCasterBuff",
+              "only_to_enemy": true,
+              "buff_state": {
+                "name": "test_mod_thresh_soul_stack",
+                "duration": "Permanent",
+                "defence": 2,
+                "magic_power": 3
+              }
+            },
+            {
+              "type": "Sfx",
+              "name": "test_mod_thresh_soul_gain"
+            }
+          ]
+        },
+        {
+          "type": "Delayed",
+          "tick": 18,
+          "effects": [
+            {
+              "type": "Sfx",
+              "name": "test_mod_thresh_r_hit"
+            }
+          ]
+        },
+        {
+          "type": "RangePeriodProjectile",
+          "name": "test_mod_thresh_box_field",
+          "tick": 540,
+          "period": 20,
+          "first_delay": 0,
           "shape": {
             "Circle": {
               "radius": 56000
@@ -494,118 +552,30 @@
           "applied_effects": [
             {
               "effect": {
-                "type": "ApAttack",
-                "damage": 125,
-                "attack_ratio": 90
-              },
-              "casting_type": "Targeting"
-            },
-            {
-              "effect": {
-                "type": "AddBuff",
-                "buff_state": {
-                  "name": "test_mod_thresh_box_slow",
-                  "duration": {
-                    "Time": {
-                      "tick": 150
+                "type": "Combine",
+                "effects": [
+                  {
+                    "type": "AddBuff",
+                    "buff_state": {
+                      "name": "test_mod_thresh_box_linger_slow",
+                      "duration": {
+                        "Time": {
+                          "tick": 35
+                        }
+                      },
+                      "move_speed_mult": -40
                     }
                   },
-                  "move_speed_mult": -70
-                }
-              },
-              "casting_type": "Targeting"
-            },
-            {
-              "effect": {
-                "type": "BlockMoveSkill",
-                "tick": 36
-              },
-              "casting_type": "Targeting"
-            },
-            {
-              "effect": {
-                "type": "TargetSfx",
-                "name": "test_mod_thresh_r_hit"
-              },
-              "casting_type": "Targeting"
-            },
-            {
-              "effect": {
-                "type": "AddCasterBuff",
-                "only_to_enemy": true,
-                "buff_state": {
-                  "name": "test_mod_thresh_soul_stack",
-                  "duration": "Permanent",
-                  "defence": 2,
-                  "magic_power": 3
-                }
-              },
-              "casting_type": "Targeting"
-            },
-            {
-              "effect": {
-                "type": "Sfx",
-                "name": "test_mod_thresh_soul_gain"
+                  {
+                    "type": "BlockMoveSkill",
+                    "tick": 14
+                  }
+                ]
               },
               "casting_type": "Targeting"
             }
           ],
-          "end_effects": [
-            {
-              "type": "ViewEffect",
-              "name": "test_mod_thresh_box"
-            },
-            {
-              "type": "Delayed",
-              "tick": 18,
-              "effects": [
-                {
-                  "type": "Sfx",
-                  "name": "test_mod_thresh_r_hit"
-                }
-              ]
-            },
-            {
-              "type": "RangePeriodProjectile",
-              "name": "test_mod_thresh_box_field",
-              "tick": 540,
-              "period": 20,
-              "first_delay": 0,
-              "shape": {
-                "Circle": {
-                  "radius": 56000
-                }
-              },
-              "applied_target": "EnemyWithoutTower",
-              "applied_effects": [
-                {
-                  "effect": {
-                    "type": "Combine",
-                    "effects": [
-                      {
-                        "type": "AddBuff",
-                        "buff_state": {
-                          "name": "test_mod_thresh_box_linger_slow",
-                          "duration": {
-                            "Time": {
-                              "tick": 35
-                            }
-                          },
-                          "move_speed_mult": -40
-                        }
-                      },
-                      {
-                        "type": "BlockMoveSkill",
-                        "tick": 14
-                      }
-                    ]
-                  },
-                  "casting_type": "Targeting"
-                }
-              ],
-              "end_effects": []
-            }
-          ]
+          "end_effects": []
         }
       ]
     }
@@ -632,7 +602,7 @@
       "name": "test_mod_thresh_death_sentence_chain",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/thresh_death_sentence_chain",
       "tag": "chain",
-      "z": 1,
+      "z": 3,
       "repeat": true
     },
     {
@@ -640,7 +610,7 @@
       "name": "test_mod_thresh_flay_sweep",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/thresh_flay_sweep",
       "tag": "sweep",
-      "z": 1,
+      "z": 3,
       "repeat": false
     }
   ],
@@ -651,7 +621,7 @@
       "name": "test_mod_thresh_lantern_visual",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/thresh_lantern",
       "tag": "loop",
-      "z": 1,
+      "z": 4,
       "is_follow": false
     },
     {
@@ -659,7 +629,7 @@
       "name": "test_mod_thresh_q_hit_vfx",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/thresh_death_sentence_hit",
       "tag": "hit",
-      "z": 2,
+      "z": 4,
       "is_follow": false
     },
     {
@@ -667,7 +637,7 @@
       "name": "test_mod_thresh_box",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/thresh_box",
       "tag": "box",
-      "z": 1,
+      "z": 4,
       "is_follow": false
     },
     {
@@ -675,7 +645,7 @@
       "name": "test_mod_thresh_box_field",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/thresh_box",
       "tag": "box",
-      "z": 1,
+      "z": 4,
       "is_follow": false
     },
     {
@@ -683,7 +653,7 @@
       "name": "test_mod_thresh_flay_ground_sweep",
       "anim": "asset/bo_league_champions/aseprite_resources/effects/thresh_flay_sweep",
       "tag": "sweep",
-      "z": 2,
+      "z": 4,
       "is_follow": false
     }
   ],

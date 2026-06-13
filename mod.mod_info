@@ -3,8 +3,8 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.14.6",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Blitzcrank, Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version fixes Kayn's AI-readable Umbral Trespass release and rebuilds Kayn Q/W/R with image-generated Reaping Slash, Blade's Reach, entry mark, and darkin rupture VFX so the effects read in live matches instead of hidden delayed/audio-only behavior.",
+  "version": "0.14.7",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Blitzcrank, Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version rebuilds Thresh Q/W/E/R with image-generated Death Sentence, ground Dark Passage lantern, ground Flay push, and The Box prison VFX while making The Box AI-readable through a direct top-level range hit instead of hidden anchor/end-effect behavior.",
   "last_updated": "2026-06-14",
   "dependencies": [
     {
