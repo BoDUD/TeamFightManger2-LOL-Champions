@@ -6035,6 +6035,12 @@ def check_blitzcrank_contract(text: dict[str, Any], entries: dict[str, Any]) -> 
             for term in REQUIRED_ENCYCLOPEDIA_SEARCH_TERMS[champion_id].get(locale, ()):
                 if term not in surface:
                     fail(f"text/champion.i18n locale {locale} {champion_id} must include searchable Blitzcrank term {term!r}")
+            for forbidden_text in ("Mana Barrier", "shielding his chassis", "shield,", "\u62a4\u76fe", "\u6cd5\u529b\u5c4f\u969c", "\u8b77\u76fe"):
+                if forbidden_text in surface:
+                    fail(
+                        f"text/champion.i18n locale {locale} {champion_id} must describe LoL-like W/R "
+                        f"without shield fallback text {forbidden_text!r}"
+                    )
 
     view = entries.get(blitz_id)
     if not isinstance(view, dict):
@@ -6182,17 +6188,60 @@ def check_blitzcrank_contract(text: dict[str, Any], entries: dict[str, Any]) -> 
     for tag in ("AP", "Melee", "Tank", "CC"):
         if tag not in blitz.get("tags", []):
             fail(f"champion/blitzcrank.data_champion tags must include {tag}")
+
+    def max_effect_number(node: Any, effect_type: str, key: str) -> float:
+        values = [
+            float(effect[key])
+            for effect in find_effect_nodes(node, effect_type)
+            if isinstance(effect.get(key), (int, float))
+        ]
+        return max(values) if values else 0.0
+
+    def named_buff_states(node: Any, effect_type: str, buff_name: str) -> list[dict[str, Any]]:
+        states: list[dict[str, Any]] = []
+        for effect in find_effect_nodes(node, effect_type):
+            state = effect.get("buff_state")
+            if isinstance(state, dict) and state.get("name") == buff_name:
+                states.append(state)
+        return states
+
+    def buff_duration_tick(state: dict[str, Any]) -> int:
+        duration = state.get("duration")
+        if not isinstance(duration, dict):
+            return 0
+        time = duration.get("Time")
+        if not isinstance(time, dict):
+            return 0
+        tick = time.get("tick")
+        return int(tick) if isinstance(tick, (int, float)) else 0
+
     skill_strings = set(walk_strings(blitz.get("skill", {})))
     if "RushMoveToBack" in skill_strings or "Teleport" in skill_strings or "DirTeleport" in skill_strings:
         fail("Blitzcrank Rocket Grab must pull the hit target back; it must not move or teleport Blitzcrank to the target")
     if find_effect_nodes(blitz.get("skill", {}), "Knockback"):
         fail("Blitzcrank Rocket Grab must not use Knockback; negative speed breaks loading and positive speed pushes targets away")
+    q_projectiles = [
+        node
+        for node in find_effect_nodes(blitz.get("skill", {}), "LinearProjectile")
+        if node.get("name") == "test_mod_blitzcrank_rocket_grab"
+    ]
+    if len(q_projectiles) != 1:
+        fail(f"Blitzcrank Rocket Grab must use exactly one generated chain-fist projectile, got {len(q_projectiles)}")
+    q_projectile = q_projectiles[0]
+    if (
+        q_projectile.get("penetrate") is not False
+        or int(q_projectile.get("speed", 0)) < 4400
+        or int(q_projectile.get("range", 0)) < 90000
+    ):
+        fail("Blitzcrank Rocket Grab must be a fast, non-piercing long chain fist like LoL Q")
     q_pull_nodes = find_effect_nodes(blitz.get("skill", {}), "MoveTo")
     if len(q_pull_nodes) != 1:
         fail(f"Blitzcrank Rocket Grab must contain exactly one target pull MoveTo, got {len(q_pull_nodes)}")
     q_pull = q_pull_nodes[0]
-    if int(q_pull.get("speed", 0)) < 5200 or int(q_pull.get("range", 999999)) > 8000:
+    if int(q_pull.get("speed", 0)) < 8000 or int(q_pull.get("range", 999999)) > 2200:
         fail("Blitzcrank Rocket Grab MoveTo must pull the hooked target tightly back without breaking data loading")
+    if max_effect_number(blitz.get("skill", {}), "BlockMoveSkill", "tick") < 48:
+        fail("Blitzcrank Rocket Grab must block movement skills long enough for the hook pull to complete")
     attack_effect = blitz.get("attack", {}).get("effect", {})
     effect_none = attack_effect.get("effect_none") if isinstance(attack_effect, dict) else None
     effect_buff = attack_effect.get("effect_buff") if isinstance(attack_effect, dict) else None
@@ -6207,12 +6256,84 @@ def check_blitzcrank_contract(text: dict[str, Any], entries: dict[str, Any]) -> 
     for required_power_fist_token in ("Airborne", "RemoveCasterBuff", "test_mod_blitzcrank_power_fist_impact"):
         if required_power_fist_token not in empowered_attack_strings:
             fail(f"Blitzcrank empowered attack missing Power Fist token {required_power_fist_token}")
+    if max_effect_number(effect_buff, "Airborne", "duration") < 36:
+        fail("Blitzcrank Power Fist must visibly knock the target up, not merely play a hit spark")
+    if max_effect_number(effect_buff, "Stun", "duration") < 18:
+        fail("Blitzcrank Power Fist must hold the target during the airborne pop-up")
+    if max_effect_number(effect_buff, "BlockMoveSkill", "tick") < 30:
+        fail("Blitzcrank Power Fist must block movement skills while the target is popped up")
     skill2_strings = set(walk_strings(blitz.get("skill2", {})))
-    for forbidden_skill2_token in ("test_mod_blitzcrank_mana_barrier", "test_mod_blitzcrank_attack_punch"):
+    if find_effect_nodes(blitz.get("skill2", {}), "Shield"):
+        fail("Blitzcrank W/E must be Overdrive plus Power Fist; do not replace W with Mana Barrier shielding")
+    for forbidden_skill2_token in ("test_mod_blitzcrank_mana_barrier", "test_mod_blitzcrank_barrier", "test_mod_blitzcrank_attack_punch"):
         if forbidden_skill2_token in skill2_strings:
             fail(f"Blitzcrank W/E must not attach oversized actor-following VFX {forbidden_skill2_token}")
     if "CasterViewEffect" in skill2_strings:
         fail("Blitzcrank W/E readiness must be represented by the small buff glow, not one-shot caster-follow VFX")
+    overdrive_states = named_buff_states(blitz.get("skill2", {}), "AddCasterBuff", "test_mod_blitzcrank_overdrive")
+    if len(overdrive_states) != 1:
+        fail(f"Blitzcrank W must add exactly one Overdrive self-buff, got {len(overdrive_states)}")
+    overdrive_state = overdrive_states[0]
+    if (
+        buff_duration_tick(overdrive_state) < 210
+        or int(overdrive_state.get("move_speed_mult", 0)) < 40
+        or int(overdrive_state.get("attack_speed_mult", 0)) < 25
+    ):
+        fail("Blitzcrank W Overdrive must give a strong LoL-like move-speed and attack-speed steroid")
+    ready_states = named_buff_states(blitz.get("skill2", {}), "AddCasterBuff", "test_mod_blitzcrank_power_fist_ready")
+    if len(ready_states) != 1 or buff_duration_tick(ready_states[0]) < 360:
+        fail("Blitzcrank E Power Fist must be primed by W/E long enough for the next punch")
+    fatigue_delays = [
+        node
+        for node in find_effect_nodes(blitz.get("skill2", {}), "Delayed")
+        if "test_mod_blitzcrank_overdrive_fatigue" in set(walk_strings(node))
+    ]
+    fatigue_states = named_buff_states(blitz.get("skill2", {}), "AddCasterBuff", "test_mod_blitzcrank_overdrive_fatigue")
+    if not fatigue_delays or max(float(node.get("tick", 0)) for node in fatigue_delays) < 220:
+        fail("Blitzcrank W Overdrive must apply its self-slow after the speed window ends")
+    if not fatigue_states or min(int(state.get("move_speed_mult", 0)) for state in fatigue_states) >= 0:
+        fail("Blitzcrank W Overdrive fatigue must briefly slow Blitzcrank after the buff")
+    ult_strings = set(walk_strings(blitz.get("ult", {})))
+    if "test_mod_blitzcrank_barrier" in ult_strings or find_effect_nodes(blitz.get("ult", {}), "Shield"):
+        fail("Blitzcrank R Static Field must be a damaging silence field, not a self-shield fallback")
+    ult_effects = blitz.get("ult", {}).get("effect", {}).get("effects", [])
+    if not isinstance(ult_effects, list):
+        fail("Blitzcrank R must expose direct top-level effects for AI scoring")
+    direct_static_hits = [
+        node
+        for node in ult_effects
+        if isinstance(node, dict)
+        and node.get("type") == "RangeEffect"
+        and node.get("target") == "EnemyWithoutTower"
+        and node.get("apply_type") == "AroundCaster"
+        and node.get("shape", {}).get("Circle", {}).get("radius", 0) >= 52000
+    ]
+    if len(direct_static_hits) != 1:
+        fail(f"Blitzcrank R Static Field must expose one direct large AoE hit/silence for AI, got {len(direct_static_hits)}")
+    direct_static_hit = direct_static_hits[0]
+    if max_effect_number(direct_static_hit.get("effects", []), "BlockSkill", "tick") < 60:
+        fail("Blitzcrank R Static Field must briefly silence/block skills on the opening pulse")
+    if "test_mod_blitzcrank_static_field_hit" not in set(walk_strings(direct_static_hit)):
+        fail("Blitzcrank R Static Field opening pulse must show the generated hit VFX")
+    direct_static_fields = [
+        node
+        for node in ult_effects
+        if isinstance(node, dict)
+        and node.get("type") == "RangePeriodProjectile"
+        and node.get("name") == "test_mod_blitzcrank_static_field_linger"
+    ]
+    if len(direct_static_fields) != 1:
+        fail(f"Blitzcrank R Static Field must spawn one visible generated lingering ground field, got {len(direct_static_fields)}")
+    direct_static_field = direct_static_fields[0]
+    if (
+        int(direct_static_field.get("tick", 0)) < 120
+        or int(direct_static_field.get("period", 999)) > 30
+        or direct_static_field.get("first_delay") != 0
+        or direct_static_field.get("shape", {}).get("Circle", {}).get("radius", 0) < 48000
+    ):
+        fail("Blitzcrank R Static Field linger must be a prompt, large, persistent terrain field")
+    if max_effect_number(direct_static_field, "BlockSkill", "tick") < 15:
+        fail("Blitzcrank R Static Field linger must keep applying short silence/block pulses")
     expected_icons = [
         "asset/bo_league_champions/icons/blitzcrank_skill",
         "asset/bo_league_champions/icons/blitzcrank_skill2",
@@ -6233,8 +6354,15 @@ def check_blitzcrank_contract(text: dict[str, Any], entries: dict[str, Any]) -> 
     for name, expected in BLITZCRANK_VIEW_EFFECT_REFS.items():
         if view_refs.get(name) != expected:
             fail(f"champion/blitzcrank.data_champion view_effect {name} must reference generated asset {expected}")
-    if next(item for item in blitz["view_effects"] if item["name"] == "test_mod_blitzcrank_static_field_linger").get("is_follow") is not False:
+    view_effect_items = {item.get("name"): item for item in blitz.get("view_effects", []) if isinstance(item, dict)}
+    if view_effect_items["test_mod_blitzcrank_static_field_linger"].get("is_follow") is not False:
         fail("Blitzcrank Static Field linger must be terrain-anchored, not stuck to the actor body")
+    if int(view_effect_items["test_mod_blitzcrank_static_field_cast"].get("z", 0)) < 4:
+        fail("Blitzcrank Static Field cast must render in the foreground so R is visible in fights")
+    if int(view_effect_items["test_mod_blitzcrank_static_field_hit"].get("z", 0)) < 4:
+        fail("Blitzcrank Static Field hit must render in the foreground so R impact is visible")
+    if int(view_effect_items["test_mod_blitzcrank_static_field_linger"].get("z", 0)) < 3:
+        fail("Blitzcrank Static Field terrain linger must render above terrain clutter")
     retired_follow_effects = {
         "test_mod_blitzcrank_attack_punch",
         "test_mod_blitzcrank_mana_barrier",
@@ -6245,13 +6373,15 @@ def check_blitzcrank_contract(text: dict[str, Any], entries: dict[str, Any]) -> 
         fail(f"Blitzcrank retired oversized caster-follow effects must not be registered as view_effects: {sorted(still_registered)}")
 
     for sheet_name, tag, label, min_visible, min_color_bins, min_height, min_fill_ratio in (
-        ("blitzcrank_rocket_grab", "grab", "Blitzcrank Rocket Grab image-generated chain fist", 1500, 800, 32, 0.24),
+        ("blitzcrank_rocket_grab", "grab", "Blitzcrank Rocket Grab image-generated chain fist", 1800, 1050, 48, 0.20),
+        ("blitzcrank_grab_hit", "hit", "Blitzcrank Rocket Grab clamp and pull impact", 1250, 900, 34, 0.30),
+        ("blitzcrank_overdrive", "loop", "Blitzcrank Overdrive self-speed buff", 1100, 900, 28, 0.30),
         ("blitzcrank_punch_hit", "hit", "Blitzcrank punch hit burst", 1200, 550, 30, 0.22),
-        ("blitzcrank_power_fist_ready", "ready", "Blitzcrank Power Fist compact fist glow", 450, 400, 24, 0.08),
-        ("blitzcrank_power_fist_impact", "impact", "Blitzcrank Power Fist impact", 1800, 750, 34, 0.24),
-        ("blitzcrank_static_field_cast", "cast", "Blitzcrank Static Field cast", 2200, 900, 54, 0.24),
-        ("blitzcrank_static_field_hit", "hit", "Blitzcrank Static Field hit", 1800, 750, 34, 0.22),
-        ("blitzcrank_static_field_linger", "field", "Blitzcrank Static Field terrain linger", 2200, 900, 54, 0.24),
+        ("blitzcrank_power_fist_ready", "ready", "Blitzcrank Power Fist compact fist glow", 1100, 800, 34, 0.30),
+        ("blitzcrank_power_fist_impact", "impact", "Blitzcrank Power Fist impact", 1900, 1000, 50, 0.28),
+        ("blitzcrank_static_field_cast", "cast", "Blitzcrank Static Field cast", 2200, 1350, 46, 0.28),
+        ("blitzcrank_static_field_hit", "hit", "Blitzcrank Static Field hit", 2300, 1200, 45, 0.30),
+        ("blitzcrank_static_field_linger", "field", "Blitzcrank Static Field terrain linger", 1900, 1100, 50, 0.28),
     ):
         sheet = ROOT / "aseprite_resources" / "effects" / f"{sheet_name}#sheet.png"
         fanim_path = ROOT / "aseprite_resources" / "effects" / f"{sheet_name}#anim.fanim"

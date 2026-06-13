@@ -3,8 +3,8 @@
   "mod_id": "bo_league_champions",
   "name": "BO-League Champions",
   "author": "silverbear",
-  "version": "0.14.9",
-  "description": "BO-League Champions expands Teamfight Manager 2 with Blitzcrank, Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version rebuilds Aatrox Q/W/E/R skill visuals from image-generated Darkin Blade, Infernal Chains, Umbral Dash, and World Ender bitmap sheets, with World Ender promoted to a visible 128x128 foreground demon-wing aura.",
+  "version": "0.14.10",
+  "description": "BO-League Champions expands Teamfight Manager 2 with Blitzcrank, Darius, Thresh, Jinx, Yasuo, Aatrox, Kayn, Viktor, Veigar, Jhin, Vayne, Fiddlesticks, Azir, Fizz, and Ezreal. This version rebuilds Blitzcrank Q/W/E/R around image-generated Rocket Grab, Overdrive, Power Fist, and Static Field bitmap sheets, with Q pulling enemies back, W granting speed, E knocking targets up, and R applying a visible silence field.",
   "last_updated": "2026-06-14",
   "dependencies": [
     {
