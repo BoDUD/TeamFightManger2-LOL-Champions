@@ -4,7 +4,7 @@ Date: 2026-06-11
 
 ## Scope
 
-- Replaced Thresh `Flay` with image-generated chain-and-soul push frames.
+- Replaced Thresh `Flay` with generated bitmap chain-and-soul push frames, then reworked the 2026-06-13 follow-up into a larger ground sweep that stays separate from the actor body.
 - Replaced Darius `Noxian Guillotine` cast and hit VFX with image-generated execution chop frames.
 - Replaced Kayn `Umbral Trespass` entry and exit VFX with image-generated shadow dive and burst frames.
 - Restored the user-selected stronger Aatrox actor sheet with black armor, large horns, and oversized greatsword action frames, then updated the model contract to match that final sheet.
@@ -15,8 +15,8 @@ Date: 2026-06-11
 
 ## Findings
 
-- Thresh: the clean `origin/main` actor already uses the LoL-style green soul face, lantern, chain, and hook silhouette. The older black-hood screenshot came from an out-of-date dirty/runtime folder and should be corrected by syncing the merged mod folder. Flay's VFX was still too crescent-like, so it now uses a chain-backed horizontal shove wave that reads as E pushing enemies away.
-- Thresh R follow-up: The Box must read as a terrain prison, not an actor duplicate or hidden target marker. The 2026-06-13 live-readability pass replaces the target-ground `ParabolicProjectile` anchor with self-centered, non-following `CasterViewEffect` walls plus a `WithSelf`/`AroundCaster` hit and long-lived field, so AI casts stay visible around Thresh like LoL's The Box.
+- Thresh: the clean `origin/main` actor already uses the LoL-style green soul face, lantern, chain, and hook silhouette. The older black-hood screenshot came from an out-of-date dirty/runtime folder and should be corrected by syncing the merged mod folder. Flay's VFX had become too subtle in live play, so the accepted follow-up uses a larger non-linear bitmap ground sweep plus one widened hit lane and MoveTo pull; it is not attached to the actor and does not use code-line geometry.
+- Thresh R follow-up: The self-centered `CasterViewEffect` wall route was rejected because live games still made The Box hard to read. The accepted 2026-06-13 pass uses a target-ground `ParabolicProjectile` anchor whose end effects spawn the generated terrain prison and its long-lived `RangePeriodProjectile` field for 540 ticks. Two unrelated image-generation attempts were rejected and kept out of active assets; the committed sheet is non-linear bitmap effect art, not code-generated pentagon lines.
 - Darius: the first rebuilt ultimate still read too much like a target blood burst in live play. The 2026-06-12 follow-up rebuild fixes the R cast as a target-point execution VFX with visible steel axe-blade pixels, a large red clockwise/downward chop silhouette, and a longer hit shockwave so `Noxian Guillotine` does not disappear as a small ground ring. The actor `ult` row was also rebuilt from continuous held-axe swing frames so Darius himself visibly raises, chops, and follows through instead of standing beside the effect.
 - Kayn: Q/W slash sheets are acceptable and read as scythe arcs. R entry/exit had the most symbol-like feel, so only those sheets were replaced with shadow-body entry and red-purple exit burst frames.
 - Aatrox: the current mainline actor sheet was too uniformly red and muddy. This pass restores the requested earlier Darkin model with readable horns, black armor, giant sword, and larger attack/skill poses. The basic attack remains model-driven and does not trigger the oversized skill slash VFX, while Q/W/R keep their existing Darkin Blade, dash, and World Ender VFX/SFX wiring.
